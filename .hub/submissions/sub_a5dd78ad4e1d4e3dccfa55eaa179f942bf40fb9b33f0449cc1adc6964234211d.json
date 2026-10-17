@@ -1,0 +1,47 @@
+{
+  "schema_version": "1",
+  "submission_id": "sub_a5dd78ad4e1d4e3dccfa55eaa179f942bf40fb9b33f0449cc1adc6964234211d",
+  "principal_id": "b876ce28a7344396821d46bf687133c61e5043e691d50b986d732a263a9bfd20",
+  "key_hash": "68f6e9276d199e64d92fcb44086fe6bdfb1b03341655bad0ae547cf2d8391ef5",
+  "payload_hash": "10caf537b8d6544c5fbd499315325976e7d3061bd32cfd876aaf42de2c1ce2f9",
+  "skill_id": "maniskill-panda-pick-cube",
+  "base": {
+    "hub_commit": "5d3e75d0038c99a2dbb7327fc9ecc83ed50a3771",
+    "record_version": "1.0.0",
+    "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907"
+  },
+  "new_record_version": "contrib-a5dd78ad4e1d4e3d",
+  "change_kind": "docs_fix",
+  "summary": "Document the verified Windows source-only preparation command and its non-execution result.",
+  "environment": {
+    "os": "windows",
+    "python": "3.10.11",
+    "robot": "panda",
+    "runtime": "maniskill",
+    "runtime_version": "3.0.0b22"
+  },
+  "evidence": {
+    "command": "rsh.py prepare maniskill-panda-pick-cube --project CLEAN_PROJECT --download-only --json",
+    "level": "contributor_reported",
+    "reported_by": "submitter",
+    "result": "Pinned 243636110-byte upstream archive SHA-256 and extracted paths verified in two clean Windows projects; corrected render_backend=none adapter preserved. Source-only preparation reports needs_configuration with no venv or dependency install. ManiSkill imports and robot task execution: not_run."
+  },
+  "attribution": {
+    "contributor_label": "Superfast Robotics deployment verification",
+    "preserve_upstream_attribution": true
+  },
+  "hub_validation": {
+    "level": "structure_checked",
+    "runtime": "not_run",
+    "result": "Exact pins, allowlisted paths and strict patch application checked; submitted code was not executed."
+  },
+  "patch_paths": [
+    "docs/recipes/maniskill-panda-pick-cube.md",
+    "catalog/records/maniskill-panda-pick-cube.json"
+  ],
+  "patch_hashes": {
+    "docs/recipes/maniskill-panda-pick-cube.md": "028a606e4146e63217d9ed5a9cd50d1dbcbcae62c6663630328f903530c1f24f",
+    "catalog/records/maniskill-panda-pick-cube.json": "3e4812f9119e9f1f02b99649ac97de5620dc7776105c2e0921639c0f43c8803c"
+  },
+  "created_at": "2026-10-17T12:01:17.813Z"
+}
