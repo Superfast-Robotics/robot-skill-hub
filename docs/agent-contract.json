@@ -110,6 +110,8 @@
         ],
         "purpose": "Preserve a useful finding already observed during the user task.",
         "local_persistence": "first",
+        "pins_unavailable_action": "retain_supplied_finding_file_and_continue_without_outbox",
+        "unchanged_save_action": "return_existing_entry_without_delivery_use_explicit_flush",
         "automatic_post_attempts": 1,
         "next_action": "continue_user_task"
       },
@@ -229,6 +231,9 @@
     "closing_trigger": "After resolving a catalog-related setup or invocation issue, remember the useful minimal observation unless matching published memory already covers it."
   },
   "wire": {
+    "client_headers": {
+      "User-Agent": "robot-skill-hub/1"
+    },
     "save_memory": {
       "method": "POST",
       "url": "https://api.superfastrobotics.com/v1/memories",
@@ -250,6 +255,7 @@
       "method": "POST",
       "path": "/v1/memories",
       "headers": {
+        "User-Agent": "robot-skill-hub/1",
         "Content-Type": "application/json",
         "Authorization": "Bearer {scoped_token}",
         "Idempotency-Key": "{finding_fingerprint}"

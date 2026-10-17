@@ -72,18 +72,20 @@ Read `.robot-skill-hub.json` in the project or the explicit `--policy FILE`. Pub
 
 The user must already have authorized these public skill/kind scopes. Both allowlists must contain the current values. A token, existing `publication.public_submission_allowed`, or permission to complete the task does not grant this separate public memory scope.
 
-When the scope is already authorized, proceed without another question for each finding. If permission, scope, pins or a token is unavailable, preserve the local finding and continue; do not interrupt the task to solicit public-sharing permission. Set `RSH_API_URL=https://api.superfastrobotics.com` and `RSH_SUBMISSION_TOKEN` in local configuration only when an operator has provided the scoped token.
+When the scope is already authorized, proceed without another question for each finding. If permission, scope or a token is unavailable, preserve the local outbox entry and continue; do not interrupt the task to solicit public-sharing permission. If exact pins cannot be resolved, `save` skips before creating an outbox entry: retain the supplied finding file and continue. Set `RSH_API_URL=https://api.superfastrobotics.com` and `RSH_SUBMISSION_TOKEN` in local configuration only when an operator has provided the scoped token.
 
 The wire request contains `publication.public_submission_allowed: true` only after the memory policy passes. That declaration is derived from memory authorization; it does not reuse patch authorization.
 
 ## Delivery and reuse
 
-`save` attempts at most one POST when authorized. Repeated findings retain a stable content identity. A transport failure leaves the local entry available and does not block the main task. Use explicit bounded retries only when useful:
+`save` attempts at most one POST when authorized. Repeated findings retain a stable content identity. An unchanged `save` never delivers or retries, even if permission or a token became available since the first save. A transport failure leaves the local entry available and does not block the main task. Use `flush` for that retained entry after authorization becomes available or an explicit retry is useful:
 
 ```sh
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py flush --project ./experiment --limit 1 --json
 ```
 
 The API accepts `POST /v1/memories` with a Bearer token and Idempotency-Key, creates an internal draft PR, and does not execute memory text. Local persistence, server storage and publication are separate outcomes. A maintainer merges the reviewed data; the public memory index and publication proof then make it discoverable. Do not poll in the background or report a stored entry as published.
+
+Direct HTTP clients should identify themselves with `User-Agent: robot-skill-hub/1`; the CLI includes this header. Cloudflare currently rejects the default Python urllib user agent at the API edge.
 
 The canonical machine interfaces are [memory schema](https://hub.superfastrobotics.com/schemas/memory.schema.json), [project policy schema](https://hub.superfastrobotics.com/schemas/project-policy.schema.json) and [published memory index](https://hub.superfastrobotics.com/catalog/v1/memories.json).

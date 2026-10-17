@@ -27,6 +27,8 @@ The Bearer credential is separate from project sharing policy. `publication.publ
 
 ## Contract
 
+Direct clients should send `User-Agent: robot-skill-hub/1` on API requests. The CLI includes this header; the current Cloudflare edge rejects the default Python urllib user agent with HTTP 403 / error 1010 before the Worker runs.
+
 * `POST /v1/submissions`: `Authorization: Bearer <pilot token>`, `Idempotency-Key: <8–128 ASCII chars>`, `Content-Type: application/json`. Body is the contribution bundle from the installed CLI. Maximum 64 KiB, streamed and enforced even without Content-Length. The server receipt's metadata must fit 24 KiB (a larger environment/evidence block yields 422 before a branch is created). Up to eight existing text files, each up to 128 KiB after applying the patch.
 * `GET /v1/submissions/<submission_id>`: same principal token required. Other principals receive 404.
 * `POST /v1/memories`: same scoped Bearer token and sharing assertion, with a structured finding instead of a patch. Maximum 16 KiB UTF-8 body. Identity derives from the principal and finding fingerprint; a caller-supplied Idempotency-Key is optional and does not change identity.

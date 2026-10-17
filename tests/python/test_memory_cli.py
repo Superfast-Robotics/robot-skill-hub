@@ -137,6 +137,28 @@ class MemoryTests(unittest.TestCase):
         self.assertEqual(calls[0], calls[1])
         self.assertEqual(result["results"][0]["status"], "stored")
 
+    def test_safe_api_rejection_details_survive_without_raw_body_or_automatic_rebase(self):
+        self.policy()
+        diagnostic = {"reason_code": "stale_record", "message": "The pinned catalog commit does not contain this record.",
+                      "next_action": "inspect_original_catalog_base"}
+        raw_error = {**diagnostic, "payload": {"token": "should-never-be-copied"}, "raw_body": "private submitted observation"}
+        error = RshError("submission_conflict", "Submission API rejected the request.", api_error=raw_error, http_status=409)
+        with mock.patch.object(contributions, "request_json", side_effect=error) as network:
+            first = self.save()
+            path = Path(first["finding_path"])
+            saved = json.loads(path.read_text())
+            second = self.save()
+        self.assertEqual(network.call_count, 1)
+        self.assertEqual(first["status"], "local_saved")
+        self.assertEqual(first["reason_code"], "submission_conflict")
+        self.assertEqual(first["next_action"], "continue_user_task")
+        self.assertEqual(first["delivery_error"], diagnostic)
+        self.assertEqual(second["delivery_error"], diagnostic)
+        self.assertEqual(saved["delivery"]["api_error"], diagnostic)
+        self.assertEqual(saved["payload"]["base"]["hub_commit"], HUB)
+        self.assertNotIn("should-never-be-copied", path.read_text())
+        self.assertNotIn("private submitted observation", path.read_text())
+
     def test_source_version_and_environment_changes_have_distinct_identity(self):
         first = self.save()
         catalog = fixture_catalog()

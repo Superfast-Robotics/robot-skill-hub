@@ -146,7 +146,25 @@ def entry_result(entry, path, *, reason=None, network=False):
             "reason_code": reason or delivery.get("reason_code", "finding_saved_locally"),
             "fingerprint": entry["fingerprint"], "finding_path": str(path.resolve()),
             "network_performed": network, "next_action": "continue_user_task",
+            **({"delivery_error": delivery["api_error"]} if delivery.get("api_error") else {}),
             **{key: response[key] for key in ("memory_id", "status_path", "pr_url", "content_sha256") if key in response}}
+
+
+def safe_api_error(error):
+    """Keep only bounded diagnostic strings, never the response body or request."""
+    result = {}
+    if not isinstance(error, dict):
+        return result
+    for key, maximum in (("reason_code", 120), ("message", 500), ("next_action", 160)):
+        value = error.get(key)
+        if not text(value, 1, maximum):
+            continue
+        try:
+            reject_secrets({key: value})
+        except RshError:
+            continue
+        result[key] = value
+    return result
 
 
 def deliver(entry, path, project, *, policy_path=None, api_url=None):
@@ -182,6 +200,9 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
     except (RshError, OSError, ValueError, TypeError) as error:
         reason = error.result["reason_code"] if isinstance(error, RshError) else "memory_delivery_failed"
         entry["delivery"] = {**entry.get("delivery", {}), "status": "pending", "reason_code": reason}
+        details = safe_api_error(error.result.get("api_error")) if isinstance(error, RshError) else {}
+        if details:
+            entry["delivery"]["api_error"] = details
         write_json(path, entry)
         # No automatic retry here. An explicit flush reuses the exact same wire bytes.
         return entry_result(entry, path, reason=reason, network=entry["delivery"].get("attempted", False))

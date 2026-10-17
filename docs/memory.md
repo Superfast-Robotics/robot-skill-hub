@@ -24,7 +24,9 @@ python /PATH_TO_SKILL/scripts/rsh.py flush --project ./experiment --limit 1 --js
 
 Reading memories matches exact source and record versions plus known environment filters. Missing values do not prove applicability. Save only useful facts from the actual task; do not perform extra experiments to generate contributions. Keep evidence minimal and omit secrets, private project details, complete logs and conversations.
 
-Public requests use `POST /v1/memories`, a scoped Bearer token and a stable Idempotency-Key. `save` attempts at most one POST after local persistence. `flush` explicitly retries a bounded outbox batch. Network or review failures never block the user's task.
+Public requests use `POST /v1/memories`, a scoped Bearer token and a stable Idempotency-Key. `save` attempts at most one POST after local persistence. An unchanged `save` never delivers or retries, including after authorization or a token becomes available; use `flush` to deliver the retained entry. `flush` explicitly retries a bounded outbox batch. Network or review failures never block the user's task. If exact pins are unavailable, retain the supplied finding file; an outbox entry cannot be constructed yet.
+
+Direct HTTP clients should send `User-Agent: robot-skill-hub/1`, as the CLI does. The current Cloudflare API edge rejects the default Python urllib user agent.
 
 The Worker validates the request and creates an internal draft PR. A stored entry is not published. A maintainer reviews and merges the data; the catalog builder publishes reviewed entries from main and records proof in the publication manifest. Duplicate requests keep the same identity. Runtime outcomes remain contributor-reported even after maintainer merge.
 
