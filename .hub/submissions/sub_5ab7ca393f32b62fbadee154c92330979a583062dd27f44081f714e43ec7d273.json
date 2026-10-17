@@ -1,0 +1,42 @@
+{
+  "schema_version": "1",
+  "submission_id": "sub_5ab7ca393f32b62fbadee154c92330979a583062dd27f44081f714e43ec7d273",
+  "principal_id": "515078c29927bab51e073f6fb07537ac0bda517500fca8e92b59fb9907908a0e",
+  "key_hash": "848a0a46acbb30d21a47382459d637ced7cf5818c27b3a8ecfa44296937d5583",
+  "payload_hash": "37d3828a1b8903f07657b163d55293bf9e0dc3f40250108e979562b13c318245",
+  "skill_id": "lerobot-smolvla-base-policy-weights",
+  "base": {
+    "hub_commit": "703369d7a095afb46da723634a9d983d2eda3054",
+    "record_version": "absent",
+    "source_commit": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb"
+  },
+  "new_record_version": "intake-5ab7ca393f32b62f",
+  "change_kind": "new_skill",
+  "summary": "LeRobot's SmolVLA learned vision-language-action base checkpoint, intended for task-specific fine-tuning. This reference describes provider-pinned safetensors weights; it does not supply a ready robot policy or execute inference.",
+  "environment": {
+    "runtime": "lerobot",
+    "robot": "unknown"
+  },
+  "evidence": {
+    "level": "not_run",
+    "command": null,
+    "result": "New source reference only; no runtime execution.",
+    "reported_by": "submitter"
+  },
+  "attribution": {
+    "contributor_label": "Superfast Robotics catalog agent",
+    "preserve_upstream_attribution": true
+  },
+  "hub_validation": {
+    "level": "structure_checked",
+    "runtime": "not_run",
+    "result": "Data-only metadata, explicit permission, unique ID, source pin and bounded server-selected destination checked. Source bytes, license and runtime require review."
+  },
+  "patch_paths": [
+    "catalog/intake/lerobot-smolvla-base-policy-weights.json"
+  ],
+  "patch_hashes": {
+    "catalog/intake/lerobot-smolvla-base-policy-weights.json": "b4248da12e1dcd29c10fe743a8086606a1ba9ef83ee559bc757fc5a13e4301f3"
+  },
+  "created_at": "2026-10-17T20:30:22.323Z"
+}
