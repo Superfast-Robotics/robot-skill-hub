@@ -1,0 +1,370 @@
+{
+  "schema_version": "1",
+  "recorded_at": "2026-10-17T22:10:25.935675+00:00",
+  "classification": "local catalog storage and query validation; production rollout pending",
+  "baseline_code_commit": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+  "reviewed_code_commit": "d7a5f86699571e2444929f75e9aa625d94cf4794",
+  "code_binding": "Checks and measurements executed on candidate bytes before commit; all four byte hashes were independently matched to this committed tree. No execution-time commit identity is inferred.",
+  "files_sha256": {
+    "api/src/catalog.ts": "6be9315c50f6e9c827fc21eee760246361a7e8b346d58c814f720ddc472998fd",
+    "api/test/workerd/catalog.test.ts": "cedcb36abbd33d51955d5546a1ec8dbbaab2c5837c283f86f3350212235dc959",
+    "api/migrations-catalog/0002_page_memberships.sql": "9fd364f79cbcea9f1e44d9032aaa135b92704281dea37847eb5eea08a1073bf8",
+    "api/README.md": "73310035538e0990fb59ca849f920c3fbd8d121338f28e3455d8f68f0d5f2412"
+  },
+  "checks": [
+    {
+      "command": "npm.cmd run check",
+      "exit_code": 0,
+      "result": "TypeScript noEmit pass"
+    },
+    {
+      "command": "RSH_CATALOG_NATIVE_FIXTURE=<absolute original site>; npm.cmd test",
+      "exit_code": 0,
+      "unit": {
+        "passed": 95,
+        "failed": 0,
+        "skipped": 0
+      },
+      "native_workers": {
+        "passed": 39,
+        "failed": 0,
+        "skipped": 0
+      },
+      "publisher_fixture": {
+        "hub_commit": "850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492",
+        "search_records": 1272,
+        "findings": 3
+      }
+    }
+  ],
+  "raw_terminal_log_persisted": false,
+  "local_write_comparison": {
+    "method": "Miniflare/workerd native D1 meta.rows_written; database schema DDL excluded; identical two-generation warmed baselines, final retirement converged with ten bounded prune calls; controlled thin-record/finding fixture changes, no upstream source execution or production billing claim",
+    "fixture_source_commit": "850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492",
+    "fixture_manifest_sha256": "baf97e052d890be7376a34a300cade87aefe8fa3443ba256b1f81ebfb07d9f10",
+    "fixture_note": "Real publisher thin rows and findings are rewrapped under synthetic commits. Finding/source cases make controlled local metadata changes, without downloading or executing sources.",
+    "initial_ingestion": {
+      "baseline_rows_written": 14858,
+      "candidate_rows_written": 14906,
+      "schema_DDL_included": false
+    },
+    "steady_publications": [
+      {
+        "scenario": "docs",
+        "records": 1272,
+        "findings": 3,
+        "baseline_rows_written": 5168,
+        "candidate_rows_written": 84,
+        "baseline_rows_read": 178343,
+        "candidate_rows_read": 85342,
+        "sync_calls_per_variant": 16
+      },
+      {
+        "scenario": "finding",
+        "records": 1272,
+        "findings": 4,
+        "baseline_rows_written": 5174,
+        "candidate_rows_written": 101,
+        "baseline_rows_read": 178390,
+        "candidate_rows_read": 85393,
+        "sync_calls_per_variant": 16
+      },
+      {
+        "scenario": "source",
+        "records": 1272,
+        "findings": 3,
+        "baseline_rows_written": 5180,
+        "candidate_rows_written": 365,
+        "baseline_rows_read": 178396,
+        "candidate_rows_read": 85623,
+        "sync_calls_per_variant": 16
+      }
+    ],
+    "page_boundary_caveat": "Changed byte sizes can shift page boundaries and reduce reuse; a changed row rewrites its affected membership group.",
+    "results_sha256": "3f82ab94940d5d1cfa3cf99d7e333852d5549ece84b2cf92ac3e8e826acd8875",
+    "reproducer_sha256": "80ccb785c64b99ee18ff42f46bf67abc0fba63ccd78d613c79332ccffa0fe615",
+    "production_billing_measurement": false
+  },
+  "independent_query_review": {
+    "candidate_hash_bound": true,
+    "native_runtime": "5.20261012.1-beta",
+    "fixture": {
+      "searchDocumentsPerGroupGeneration": 1272,
+      "memoryDocumentsPerGroupGeneration": 1272,
+      "searchGroupsPerGeneration": 13,
+      "memoryGroupsPerGeneration": 13,
+      "maximumMembersPerGroup": 100,
+      "selectedGroupGeneration": "0000000000000000000000000000000000000000",
+      "comparedGroupGenerationCounts": [
+        1,
+        3
+      ],
+      "additionalLegacyComparisonGeneration": {
+        "count": 1,
+        "commit": "llllllllllllllllllllllllllllllllllllllll",
+        "membershipsPerKind": 1272,
+        "documents": "References the selected group generation documents; adds no documents."
+      },
+      "disjointScope": "Each group generation has distinct synthetic document/group hashes. IDs and minimal projected contents repeat across generations. Each has one search needle and one needle skill pin; selected queries return one row.",
+      "seededDirectly": true,
+      "limitations": "Synthetic query-plan fixture, not a valid publisher fixture: minimal row projections and short synthetic document/group hashes; generation metadata is not exercised for activation. It does not validate publication checksums, sync, production inventory, or arbitrary scale."
+    },
+    "cases": [
+      {
+        "groupBasedGenerations": 1,
+        "fts": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              4,
+              5
+            ],
+            "sumRowsRead": 9,
+            "statementResultRowCounts": [
+              1,
+              1
+            ]
+          },
+          "initialViewEquivalentSql": {
+            "rowsRead": [
+              1314,
+              1315
+            ],
+            "sumRowsRead": 2629,
+            "statementResultRowCounts": [
+              1,
+              1
+            ]
+          },
+          "finalImportedIndexedSearch": {
+            "rowsRead": [
+              6,
+              7
+            ],
+            "sumRowsRead": 13,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "findings": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              2544,
+              2545
+            ],
+            "sumRowsRead": 5089
+          },
+          "initialViewEquivalentSql": {
+            "rowsRead": [
+              1314,
+              1315
+            ],
+            "sumRowsRead": 2629
+          },
+          "finalImportedIndexedFindings": {
+            "rowsRead": [
+              6,
+              7
+            ],
+            "sumRowsRead": 13,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "filterOnly": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              2546,
+              2547
+            ],
+            "sumRowsRead": 5093
+          },
+          "viewEquivalentSql": {
+            "rowsRead": [
+              2584,
+              2585
+            ],
+            "sumRowsRead": 5169
+          },
+          "finalImportedIndexedSearch": {
+            "rowsRead": [
+              2584,
+              2585
+            ],
+            "sumRowsRead": 5169,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "exactIdEquivalentSql": {
+          "rowsRead": 28,
+          "resultRows": 1
+        }
+      },
+      {
+        "groupBasedGenerations": 3,
+        "fts": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              8,
+              9
+            ],
+            "sumRowsRead": 17,
+            "statementResultRowCounts": [
+              1,
+              1
+            ]
+          },
+          "initialViewEquivalentSql": {
+            "rowsRead": [
+              1322,
+              1323
+            ],
+            "sumRowsRead": 2645,
+            "statementResultRowCounts": [
+              1,
+              1
+            ]
+          },
+          "finalImportedIndexedSearch": {
+            "rowsRead": [
+              18,
+              19
+            ],
+            "sumRowsRead": 37,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "findings": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              2544,
+              2545
+            ],
+            "sumRowsRead": 5089
+          },
+          "initialViewEquivalentSql": {
+            "rowsRead": [
+              1320,
+              1321
+            ],
+            "sumRowsRead": 2641
+          },
+          "finalImportedIndexedFindings": {
+            "rowsRead": [
+              16,
+              17
+            ],
+            "sumRowsRead": 33,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "filterOnly": {
+          "legacyEquivalentSql": {
+            "rowsRead": [
+              2548,
+              2549
+            ],
+            "sumRowsRead": 5097
+          },
+          "viewEquivalentSql": {
+            "rowsRead": [
+              2588,
+              2589
+            ],
+            "sumRowsRead": 5177
+          },
+          "finalImportedIndexedSearch": {
+            "rowsRead": [
+              2588,
+              2589
+            ],
+            "sumRowsRead": 5177,
+            "total": 1,
+            "resultRows": 1,
+            "rowsWritten": [
+              0,
+              0
+            ]
+          }
+        },
+        "exactIdEquivalentSql": {
+          "rowsRead": 29,
+          "resultRows": 1
+        }
+      }
+    ],
+    "receipt_sha256": "07425d8ef9353c885e33b55f7162a2f5dd8241d388e69b5e210b96b436f90c49",
+    "scope": "Synthetic direct-SQL query fixture; imported candidate functions and explicitly labeled equivalent SQL. Not publisher, HTTP, production integration or arbitrary-scale evidence."
+  },
+  "old_worker_additive_schema_probe": {
+    "observed_at": "2026-10-17T22:05:19.626Z",
+    "old_worker_commit": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+    "old_worker_bundle_sha256": "89e0e1322c5342097ddfa17886faa3b80210609a153da0595b2b11708c0f7dd0",
+    "migration_sha256": "9fd364f79cbcea9f1e44d9032aaa135b92704281dea37847eb5eea08a1073bf8",
+    "publisher_fixture_hub_commit": "850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492",
+    "publisher_records": 1272,
+    "publisher_findings": 3,
+    "local_sync_calls": 16,
+    "local_search_calls": 1,
+    "intercepted_fixed_origin_reads": 66,
+    "real_network_requests": 0,
+    "assertions": {
+      "old_worker_ingests_under_additive_schema": true,
+      "legacy_null_receipts_remain_valid": true,
+      "new_effective_views_include_legacy_members": true,
+      "old_worker_serves_native_DWA_query": true,
+      "rollback_after_shared_group_activation_proved": false
+    },
+    "counts": {
+      "legacy_search": 1272,
+      "legacy_findings": 3,
+      "legacy_receipts": 16,
+      "shared_groups": 0,
+      "effective_search": 1272,
+      "effective_findings": 3
+    }
+  },
+  "reviewed_invariants": [
+    "verified current fixed-page bytes and hashes before group reuse",
+    "exact generation and total/distinct identities",
+    "atomic group/receipt/cursor retry and rollback",
+    "legacy active and mixed legacy/new staging",
+    "bounded whole-group GC and shared-document retention",
+    "candidate-driven FTS and pinned findings",
+    "cleanup failures preserve previous active"
+  ],
+  "production_migration_verified": false,
+  "production_deployment_verified": false,
+  "production_native_activation_verified": false,
+  "external_HTTP_requests_for_local_checks": 0,
+  "source_artifact_execution": false,
+  "simulator_execution": "not_run",
+  "physical_robot_execution": "not_run",
+  "rollout": {
+    "schema_before_Worker": true,
+    "pre_group_Worker_rollback_after_group_activation_safe": false,
+    "paid_resource_or_plan_change_required": false
+  }
+}
