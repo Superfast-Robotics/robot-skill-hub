@@ -181,6 +181,7 @@
       }
     ],
     "credential_configuration": {
+      "default_api_url": "https://api.superfastrobotics.com",
       "api_url_environment": "RSH_API_URL",
       "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
       "token_environment": "RSH_SUBMISSION_TOKEN",
@@ -343,7 +344,7 @@
       "body_max_utf8_bytes": 16384,
       "authentication": "allowed_agent_Bearer_token",
       "idempotency_header": "Idempotency-Key",
-      "client_command": "rsh.py register SKILL_JSON --project DIR --json",
+      "client_command": "rsh.py register SKILL_JSON --project DIR --contributor LABEL --json",
       "project_scope": "publication.public_submission_allowed and exact publication.allowed_new_skill_ids",
       "result": "internal_draft_PR_then_maintainer_review_and_publication",
       "artifact_execution": false

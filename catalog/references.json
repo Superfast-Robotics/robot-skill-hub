@@ -26627,7 +26627,10 @@
         "runtime_verification": "not_run",
         "checked_at": "2026-10-17",
         "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
-      }
+      },
+      "robots": [
+        "kuka"
+      ]
     },
     {
       "id": "pybullet-inverse-dynamics",
@@ -26753,7 +26756,10 @@
         "runtime_verification": "not_run",
         "checked_at": "2026-10-17",
         "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
-      }
+      },
+      "robots": [
+        "kuka"
+      ]
     },
     {
       "id": "pybullet-jacobian",
@@ -26875,7 +26881,10 @@
         "runtime_verification": "not_run",
         "checked_at": "2026-10-17",
         "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
-      }
+      },
+      "robots": [
+        "kuka"
+      ]
     },
     {
       "id": "pybullet-kuka-with-cube",
@@ -26939,7 +26948,10 @@
         "runtime_verification": "not_run",
         "checked_at": "2026-10-17",
         "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
-      }
+      },
+      "robots": [
+        "kuka"
+      ]
     },
     {
       "id": "pybullet-pdcontrol",

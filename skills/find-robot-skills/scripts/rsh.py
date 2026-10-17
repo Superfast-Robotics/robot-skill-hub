@@ -7,7 +7,7 @@ import json
 import sys
 
 from rshlib import contributions, intake, memories, setup
-from rshlib.core import RshError, find, inspect, load_catalog, lookup, read_json
+from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
 
@@ -167,7 +167,7 @@ def execute(args, catalog_location):
             raise RshError("invalid_arguments", "--download-only cannot be combined with --install-deps.")
         if not catalog_location:
             catalog = pinned_project_catalog(catalog, args.project, args.skill_id)
-        selected = lookup(catalog, args.skill_id)
+        selected = lookup_preparation(catalog, args.skill_id)
         if ((args.expected_source_commit and args.expected_source_commit != selected["source"]["commit"])
                 or (args.expected_record_version and args.expected_record_version != selected["maintenance"]["record_version"])):
             raise RshError("selected_recipe_changed", "Catalog selection differs from the explicitly selected source or recipe version.",

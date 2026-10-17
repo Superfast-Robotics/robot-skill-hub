@@ -192,6 +192,10 @@ def build(cache, fetch=False):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": CHECKED,
                          "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."},
         })
+        # These four reviewed sources explicitly load a kuka_iiwa URDF/SDF.
+        # This discovery label does not claim a tested execution environment.
+        if framework == "pybullet" and "kuka" in capabilities:
+            records[-1]["robots"] = ["kuka"]
     destination = ROOT / "catalog/references.json"
     existing = json.loads(destination.read_text(encoding="utf-8")) if destination.exists() else {"records": []}
     records = merge_reference_records(existing["records"], records)

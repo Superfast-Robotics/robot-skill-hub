@@ -151,6 +151,22 @@ def lookup(catalog, skill_id):
     raise RshError("skill_not_found", f"No catalog skill named {skill_id}.", status="unsupported", next_action="find_supported_skill")
 
 
+def lookup_preparation(catalog, skill_id):
+    """Known source references have inspection instructions, not an adapter."""
+    for record in catalog["records"]:
+        if record["id"] == skill_id:
+            return record
+    for reference in catalog.get("references", {}).get("records", []):
+        if isinstance(reference, dict) and reference.get("id") == skill_id:
+            source = reference.get("source", {})
+            raise RshError("source_reference_no_adapter", "This pinned source reference has no Hub preparation adapter.",
+                           status="unsupported", next_action="open_source_reference", skill_id=skill_id,
+                           kind="source_reference", hub_prepare=False, source_url=source.get("url"),
+                           setup_url=reference.get("access", {}).get("setup_url") or reference.get("setup_url"),
+                           source_download_performed=False, environment_created=False, execution_performed=False)
+    return lookup(catalog, skill_id)
+
+
 ENVIRONMENT_FIELDS = ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture")
 
 
@@ -194,17 +210,43 @@ def selection_base(catalog, record, *, reference=False):
     return {"record_version": version, "hub_commit": hub, "source_commit": commit}
 
 
+def reference_environment_matches(record, environment):
+    """Filter discovery facts without manufacturing environment combinations."""
+    supplied = {key: str(environment[key]).strip().lower() for key in ENVIRONMENT_FIELDS
+                if environment.get(key) is not None and str(environment[key]).strip().lower() not in ("", "unknown")}
+    if not supplied:
+        return True
+    combinations = record.get("compatibility", [])
+    if isinstance(combinations, dict):
+        combinations = [combinations]
+    if isinstance(combinations, list) and any(isinstance(combo, dict) and all(
+            isinstance(combo.get(key), str) and combo[key].strip().lower() == value
+            for key, value in supplied.items()) for combo in combinations):
+        return True
+    if len(supplied) != 1:
+        return False
+    if "runtime" in supplied:
+        return any(isinstance(record.get(key), str) and record[key].strip().lower() == supplied["runtime"]
+                   for key in ("runtime", "framework"))
+    if "robot" in supplied:
+        robots = record.get("robots", [])
+        return isinstance(robots, list) and any(isinstance(robot, str) and robot.strip().lower() == supplied["robot"] for robot in robots)
+    return False
+
+
 def find(catalog, query, environment, limit=3):
-    tokens = re.findall(r"[a-z0-9]+", query.lower())
+    # Match the public API: separators split terms, but an unfamiliar Unicode
+    # word or punctuation-bearing token must not silently become an empty query.
+    tokens = re.sub(r"[-_/]", " ", query.lower()).split()
     results = []
     for record in catalog["records"]:
         matched = compatibility(record, environment)
         if matched["compatibility_status"] == "incompatible":
             continue
-        words = " ".join([record["id"], record["name"], record["summary"],
-                          *record["capabilities"], *record.get("aliases", [])]).lower()
+        words = re.sub(r"[-_/]", " ", " ".join([record["id"], record["name"], record["summary"],
+                          *record["capabilities"], *record.get("aliases", [])]).lower())
         score = sum(token in words for token in tokens)
-        if tokens and score == 0:
+        if tokens and score != len(tokens):
             continue
         results.append({"id": record["id"], "name": record["name"], "summary": record["summary"],
                         "kind": "preparation_recipe", "hub_prepare": True, "next_action": "inspect_recipe",
@@ -221,16 +263,15 @@ def find(catalog, query, environment, limit=3):
         if not isinstance(record, dict):
             continue
         framework = str(record.get("framework", "")).lower()
-        runtime = str(environment.get("runtime", "unknown")).lower()
-        if runtime not in ("", "unknown", framework):
+        if not reference_environment_matches(record, environment):
             continue
         if (not IDENTIFIER.fullmatch(str(record.get("id", ""))) or not isinstance(record.get("source"), dict)
                 or not SOURCE_REVISION.fullmatch(str(record["source"].get("commit") or record["source"].get("revision", "")))):
             continue
-        words = " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
-                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", [])]).lower()
+        words = re.sub(r"[-_/]", " ", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
+                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", [])]).lower())
         score = sum(token in words for token in tokens)
-        if tokens and score == 0:
+        if tokens and score != len(tokens):
             continue
         results.append({"id": record["id"], "name": record.get("name", record["id"]),
                         "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,

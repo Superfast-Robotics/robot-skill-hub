@@ -228,10 +228,7 @@ def submission_token():
 
 def api_configuration(api_url):
     token, _ = submission_token()
-    api_url = api_url or os.environ.get("RSH_API_URL")
-    if not api_url:
-        raise RshError("missing_api_url", "Set RSH_API_URL or pass --api-url.", status="blocked",
-                       next_action="configure_api_endpoint", network_performed=False)
+    api_url = api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com"
     require_url(api_url, local_http=True)
     parsed = urllib.parse.urlsplit(api_url)
     if parsed.query:

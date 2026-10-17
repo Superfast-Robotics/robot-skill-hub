@@ -1,0 +1,209 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T16:39:55Z",
+  "scope": "Maintainer integration verification; no upstream robot or policy code executed by these checks.",
+  "public_http": {
+    "hub_commit": "8adbd359627f39c68b49b74bbb8b97fac617573b",
+    "checks": [
+      {
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db",
+        "bytes": 97
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "sha256": "eaa9f0cef5dc73988974c422ba753241d7d0d2502fe88c86976c82dfb3f5b544",
+        "bytes": 1511
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/search.json",
+        "status": 200,
+        "sha256": "6edd063647e9c67e2888ac0588176cd275b9767168cba87a9a7ab34ad542675d",
+        "bytes": 826919
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
+        "status": 200,
+        "sha256": "1f793b64bf1699b5672be4d9d00e97129167e3a20318ba7d4e8ae33c87542de5",
+        "bytes": 199340
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
+        "status": 200,
+        "sha256": "594c782a53671b38d331a627248f35b7614bd781f6e34456471ed5858ec3c0ba",
+        "bytes": 2701693
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/source-index-manifest.json",
+        "status": 200,
+        "sha256": "c6c8ca098c391e67f9e398e7ba2749ae66efad36b810568f7b5d07e1372c9004",
+        "bytes": 49428
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/privacy.md",
+        "status": 200,
+        "sha256": "99799818193e04a943cec85cb6086f6682fb14632e84d408dafb1521c6517075",
+        "bytes": 1728
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/discovery.md",
+        "status": 200,
+        "sha256": "07a9d5e2680b12e32448e11f119d886c0ef470ef734f306fad8a53254f9fc9f4",
+        "bytes": 2554
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/new-skills.md",
+        "status": 200,
+        "sha256": "9a40960e003433fd2c68eb4b5948f1025ca8acc66b41680adb9c3ae162f26906",
+        "bytes": 3258
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms.txt",
+        "status": 200,
+        "sha256": "82b64d98dcababa0b3e3448b7409094ae905521a08c5cc61f01b8f0912fffd70",
+        "bytes": 209032
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms-full.txt",
+        "status": 200,
+        "sha256": "10885f930a884d3eff6101f462317d7d18b7ff5434d33b6c355c9dd757e9715d",
+        "bytes": 3082536
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/agent.json",
+        "status": 200,
+        "sha256": "fa31f98e7b661ed1e93a70ca910826e805c18d4a76f9d8e719a6b4c2d26e0c04",
+        "bytes": 15374
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/openapi.json",
+        "status": 200,
+        "sha256": "b10ad1e68b043f2eea07c686d8f916b2eb7ea38631fba600b6fd1ed7f6fd858e",
+        "bytes": 32949
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+        "status": 200,
+        "sha256": "30c0e301afc0b0a5819f6ee0fa24da5f316604efc121a54da986de2a0e6dc871",
+        "bytes": 5547
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/",
+        "status": 200,
+        "sha256": "c8f7afef31bfd9f7f4b3572da59966ff40f33afcdb10f66776ce6ce8bfcbb942",
+        "bytes": 3924
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/capabilities",
+        "status": 200,
+        "sha256": "15992a73cc2b75f2ee204dd7d5f9782d325f9dcb4118dd7571a1224dd32e521b",
+        "bytes": 2429
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=pick%20cube&limit=2",
+        "status": 200,
+        "sha256": "3e8855d99ca53aa5f22e4b8894249327f5285b5cb960d8dbe92314e50f22da51",
+        "bytes": 3043
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/maniskill-panda-pick-cube",
+        "status": 200,
+        "sha256": "cf8e4aa556362a70d614fd3de395cd67586802b3d01491dea3ca9e504e8a8f43",
+        "bytes": 12188
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/pybullet-inverse-kinematics",
+        "status": 200,
+        "sha256": "db2f5dc3c58136a7fed24d7ce9cdd2d65dc95878a4b3384e45d2a24ebf41a803",
+        "bytes": 2705
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/catalog",
+        "status": 200,
+        "sha256": "1f793b64bf1699b5672be4d9d00e97129167e3a20318ba7d4e8ae33c87542de5",
+        "bytes": 199340
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/references",
+        "status": 200,
+        "sha256": "594c782a53671b38d331a627248f35b7614bd781f6e34456471ed5858ec3c0ba",
+        "bytes": 2701693
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?hub_commit=0000000000000000000000000000000000000000",
+        "status": 409,
+        "sha256": "031c0df89da243ce049fe4b7e42eb02319db2b8374fef014de080942abfa69ca",
+        "bytes": 252
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/no-such-published-skill",
+        "status": 404,
+        "sha256": "4a42d687d935edb6043010e7f7fb38a7eab874bd3ce7e802a091cac1ad2b7ef2",
+        "bytes": 212
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/session",
+        "status": 401,
+        "sha256": "fc7aabea8300e9c070d097c9fac8b1a2b97b62961934d49291e293d2cc6db6ee",
+        "bytes": 151
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/metrics",
+        "status": 200,
+        "sha256": "13adc06dc380ee901d98ddd46ce1036bdae6120806b10e7583f184e27eaf2805",
+        "bytes": 1099
+      }
+    ],
+    "counts": {
+      "recipes": 17,
+      "references": 651,
+      "memories": 3
+    }
+  },
+  "official_mcp_sdk": {
+    "version": "1.32.1",
+    "server": {
+      "name": "robot-skill-hub",
+      "version": "0.2.0"
+    },
+    "tools": [
+      "find_robot_skills",
+      "inspect_robot_skill",
+      "get_hub_capabilities"
+    ],
+    "live_search_inspect_capabilities_passed": true
+  },
+  "new_skill_submission": {
+    "skill_id": "openpi-simple-client",
+    "submission_id": "sub_a32fedaa23356d30812bb1ec1f6cac6033214543d7ff3a8e96467752b1c3ae7e",
+    "pr_url": "https://github.com/Superfast-Robotics/robot-skill-hub/pull/5",
+    "initial_post_status": 201,
+    "reviewed_head": "34d45da17122330a02c8c4cdc614c8bf412d01f1",
+    "review_check_run": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39049704712",
+    "merge_commit": "347861f0053ac592025d26735986072d4840d6c5",
+    "accepted_path": "catalog/intake/openpi-simple-client.json",
+    "accepted_sha256": "d49970ef714750dc434160003f8935fa5bb9f6373b2d5f5bf22fb6668d11e494",
+    "published_version": "intake-a32fedaa23356d30",
+    "published_hub_commit": "347861f0053ac592025d26735986072d4840d6c5",
+    "owner_status": "published",
+    "anonymous_status_http": 401,
+    "different_owner_status_http": 404,
+    "replay_http_status": 200,
+    "replay_same_submission_and_pr": true,
+    "public_record_url": "https://hub.superfastrobotics.com/references/openpi-simple-client/skill.json",
+    "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+    "source_sha256": "3f4445762376cfa25ce0812ecaacc225f4ddc7d2ab66d219563d6150803c6767",
+    "runtime_verification": "not_run",
+    "hub_prepare": false
+  },
+  "legacy_submission": {
+    "submission_id": "sub_a5dd78ad4e1d4e3dccfa55eaa179f942bf40fb9b33f0449cc1adc6964234211d",
+    "status": "published",
+    "publication_scope": "historical"
+  },
+  "internal_validation_excluded_from_access_target": true,
+  "coverage_limit": "Finite pinned official examples and reviewed intake records; not an exhaustive Internet index.",
+  "robot_execution_limit": "Only the separately preserved PickCube and StackCube CPU/state seed-0 evidence establishes task completion for those exact configurations."
+}

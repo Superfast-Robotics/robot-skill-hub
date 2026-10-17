@@ -3,7 +3,7 @@
 New skills enter the Hub as pinned source references. C++, ROS actions, learned policies, model files, robot descriptions and other artifacts can be referenced without inventing a Python adapter or claiming runtime compatibility. Executable preparation recipes remain a separately reviewed integration.
 
 1. Create one explicit small skill JSON using the `skill` definition in [the intake schema](https://hub.superfastrobotics.com/schemas/intake.schema.json). Include upstream authors, the applicable license and scope, setup instructions, requirements and compatibility observations. Use `unknown` where unobserved. Source bytes need an exact SHA-256 and byte count. Git sources use an exact `source.commit` and a source URL containing that commit. A standalone artifact uses `source.revision = sha256:<digest>` and omits `commit`.
-2. Have an operator issue a scoped submission token. Store it outside the project and set `RSH_SUBMISSION_TOKEN_FILE` to its local path. Set `RSH_API_URL=https://api.superfastrobotics.com`.
+2. Have an operator issue a scoped submission token. Store it outside the project and set `RSH_SUBMISSION_TOKEN_FILE` to its local path. The API defaults to `https://api.superfastrobotics.com`; use `RSH_API_URL` or `--api-url` only for an explicitly selected alternate endpoint.
 3. In a project already authorized to share publicly, set the exact new ID in `.robot-skill-hub.json`:
 
 ```json

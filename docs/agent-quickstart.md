@@ -27,6 +27,8 @@ Use the exact returned ID and inspect its source pin, license, requirements, con
 
 Discovery uses the latest available catalog, a local cache and bundled offline fallback. Report the result's origin and freshness. `--offline` prevents automatic discovery reads; `--refresh` requests a fresh index. An explicit `--catalog FILE_OR_URL` selects that catalog. Unknown environment fields stay unknown; explicit mismatches are excluded.
 
+Search requires every query term. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. If a source reference has no preparation adapter, open its pinned source and upstream setup instructions.
+
 Before troubleshooting a Hub recipe, read findings for the exact selected record/source and known environment:
 
 ```sh
@@ -49,7 +51,7 @@ python /PATH_TO_SKILL/scripts/rsh.py setup --project ./experiment --allow-public
 python /PATH_TO_SKILL/scripts/rsh.py setup-check --project ./experiment --check-api --json
 ```
 
-Repeat `--skill` and `--kind` for the exact authorized allowlists. Setup replaces only the memory scope and preserves unrelated project policy. For local-only use, choose `setup --project ./experiment --local-only --json`. Keep the operator-issued token in a private one-line UTF-8 file and set `RSH_SUBMISSION_TOKEN_FILE` to its absolute path; `RSH_SUBMISSION_TOKEN` takes precedence if both are set. Neither setup nor policy files store credentials. `setup-check` makes no network call unless `--check-api` is given; that option performs one authenticated `GET /v1/session` and creates no PR. A valid token does not grant public sharing scope.
+Repeat `--skill` and `--kind` for the exact authorized allowlists. Setup replaces only the memory scope and preserves unrelated project policy. For local-only use, choose `setup --project ./experiment --local-only --json`. Keep the operator-issued token in a private one-line UTF-8 file and set `RSH_SUBMISSION_TOKEN_FILE` to its absolute path; `RSH_SUBMISSION_TOKEN` takes precedence if both are set. Neither setup nor policy files store credentials. Contribution commands use the canonical Hub API by default; `RSH_API_URL` or `--api-url` selects an alternate endpoint. `setup-check` makes no network call unless `--check-api` is given; that option performs one authenticated `GET /v1/session` and creates no PR. A valid token does not grant public sharing scope.
 
 When the work already reveals a reusable fact, preserve the minimal observation, optional confirmed resolution, environment and actual evidence in a finding file:
 
@@ -73,6 +75,6 @@ Do not run extra experiments to produce findings, save private project material,
 
 ## Register a new source
 
-Use `rsh.py register SKILL_JSON --project DIR --json`. The source record can describe code, a policy, a model or another robotics artifact without a Python adapter. Exact source checksums, license and authorship remain required. Read [new-skill registration](new-skills.md) for the schema and the separate exact project sharing scope. A successful API submission is an internal draft PR; publication requires maintainer review and proof.
+Use `rsh.py register SKILL_JSON --project DIR --contributor LABEL --json`. The source record can describe code, a policy, a model or another robotics artifact without a Python adapter. Exact source checksums, license and authorship remain required. Read [new-skill registration](new-skills.md) for the schema and the separate exact project sharing scope. A successful API submission is an internal draft PR; publication requires maintainer review and proof.
 
 Online discovery can send an optional random installation ID for aggregate access measurements. Set `RSH_TELEMETRY=off` to opt out; offline use is unchanged. [Privacy](privacy.md).

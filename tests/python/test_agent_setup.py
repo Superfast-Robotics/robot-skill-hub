@@ -39,6 +39,22 @@ class SetupTests(unittest.TestCase):
         return setup.configure(self.project, allow_public_memory=True, skill_ids=["fixture-pick"],
                                kinds=["missing_requirement"], **kwargs)
 
+    def test_contribution_api_defaults_to_hub_and_preserves_explicit_endpoint_precedence(self):
+        os.environ["RSH_SUBMISSION_TOKEN_FILE"] = str(self.token_file)
+        self.assertEqual(contributions.api_configuration(None), ("https://api.superfastrobotics.com", TOKEN))
+        os.environ["RSH_API_URL"] = "https://operator.example.test/"
+        self.assertEqual(contributions.api_configuration(None), ("https://operator.example.test", TOKEN))
+        self.assertEqual(contributions.api_configuration("http://127.0.0.1:8765/"), ("http://127.0.0.1:8765", TOKEN))
+
+    def test_default_endpoint_never_supplies_credentials_or_accepts_a_credential_url(self):
+        with self.assertRaises(RshError) as error:
+            contributions.api_configuration(None)
+        self.assertEqual(error.exception.result["reason_code"], "missing_submission_token")
+        os.environ["RSH_SUBMISSION_TOKEN_FILE"] = str(self.token_file)
+        for endpoint in ("https://user:password@example.test", "https://example.test?key=secret"):
+            with self.assertRaises(RshError):
+                contributions.api_configuration(endpoint)
+
     def test_explicit_scope_is_required_and_replaces_only_memory_policy(self):
         existing = {"publication": {"public_submission_allowed": True, "allowed_paths": ["docs/*"]},
                     "private_extension": {"retain": "value"}, "memory": {"public_save_allowed": False}}

@@ -1,6 +1,18 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
-## Confirmed locally
+## Public discovery and new-source intake
+
+The expansion indexes 651 pinned official source examples from 16 ecosystems, plus the reviewed OpenPI intake below. This is a finite, reproducible source census. It does not establish complete Internet coverage or runtime compatibility for those references.
+
+- Public HTTP verification passed 25 checks: resource checksums, bounded search and inspection, plain HTML, published guides/schemas, default Python HTTP access, version conflicts and unauthenticated-session rejection. The official MCP SDK 1.32.1 connected to the deployed Worker, initialized, listed all three read-only tools, and called search, inspection and capabilities successfully.
+- The genuine OpenPI client reference went through `POST /v1/skills` (201), internal draft [PR #5](https://github.com/Superfast-Robotics/robot-skill-hub/pull/5), independent pinned-source/license review, successful [PR checks](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39049704712), merge and live `published` status. Exact accepted bytes are proven by the publication manifest. Replaying its original local bundle recovered the same submission and PR; anonymous and different-owner status reads returned 401 and 404. The original older patch submission still reports `published`.
+- The OpenPI example generates random observation-shaped inputs for policy-server timing. Its code was inspected, not executed. It has no Hub preparation adapter and its runtime evidence remains `not_run`.
+- An independent fresh-agent review cloned the public repository and verified actual KUKA source/license hashes and expanded reference access. It identified inconsistent CLI/API filtering and misleading preparation errors. Follow-up regression checks now require every query term, preserve whole environment combinations, and return source/setup links for references without adapters.
+- Follow-up local checks passed: Python 118 tests with two Windows symlink-privilege skips, publication 25 tests, API 79 tests, native Workers transport 7 tests, and TypeScript validation. These checks do not establish additional robot task completion. The initial expansion's [Checks](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39049492558) and [Pages deployment](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39049492557) also succeeded.
+
+See the [sanitized live integration proof](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/evidence/integration/v0.2.0/verification.json). All maintainer HTTP/MCP validation requests opted out of the launch access counter. Measurement scope and its limits are documented in [privacy.md](privacy.md) and [growth-status.md](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/docs/growth-status.md).
+
+## Earlier local verification
 
 - Python CLI, adapter and operator tests: **72 passed** on Linux, including the real symlink regression. Windows passed the other 71 and skipped that one privilege-dependent case.
 - Catalog integrity/publication tests: **13 passed**.

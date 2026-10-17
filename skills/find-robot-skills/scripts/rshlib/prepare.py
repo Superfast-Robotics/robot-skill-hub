@@ -11,7 +11,7 @@ import urllib.request
 import venv
 from pathlib import Path
 
-from .core import (RshError, compatibility, format_argv, local_environment, lookup,
+from .core import (RshError, compatibility, format_argv, local_environment, lookup_preparation,
                    python_satisfies, read_json, safe_relative, validate_record, write_json)
 
 ARCHIVE_LIMIT = 512 * 1024 * 1024
@@ -101,7 +101,7 @@ def source_is_unchanged(source_dir, hashes):
 
 
 def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan=False, download_only=False, source_archive=None):
-    record = validate_record(lookup(catalog, skill_id))
+    record = validate_record(lookup_preparation(catalog, skill_id))
     project = Path(project).expanduser().resolve()
     local = local_environment()
     supplied = dict(environment) if download_only else {**environment, "os": local["os"],

@@ -39,7 +39,7 @@ For initial configuration explicitly requested by an operator, use `setup --proj
 
 Solve the user's task first. Do not run extra experiments just to create findings, save routine noise, include private project material or credentials, or let memory saving, retries or review block the work. A successful save does not mean publication or verified task success.
 
-To contribute a new source already found during authorized work, read [new-skills.md](references/new-skills.md), then use `register SKILL_JSON --project DIR --json`. It preserves a local draft and submits only under the project's exact new-skill sharing scope plus an allowed-agent token. Do not replace source discovery with an invented execution adapter or runtime claim.
+To contribute a new source already found during authorized work, read [new-skills.md](references/new-skills.md), then use `register SKILL_JSON --project DIR --contributor LABEL --json`. It preserves a local draft and submits only under the project's exact new-skill sharing scope plus an allowed-agent token. Do not replace source discovery with an invented execution adapter or runtime claim.
 
 Online discovery sends a random optional installation ID to the owned Hub API for aggregate access measurements; no project content or query text is stored in metrics. Set `RSH_TELEMETRY=off` to opt out. See the [privacy details](https://hub.superfastrobotics.com/privacy.md). Measurement and contribution delivery never gate the user's task.
 

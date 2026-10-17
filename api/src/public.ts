@@ -4,7 +4,7 @@ import { measure, measurementReport, type MetricsEnv, type Background } from './
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -96,7 +96,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       for (const key of filters) {
         if (!input[key]) continue;
         // A framework is a discovery fact, not a tested environment combination.
-        if (filters.length === 1 && key === 'runtime' && String(row.runtime || '').toLowerCase() === input.runtime.toLowerCase()) continue;
+        if (filters.length === 1 && key === 'runtime' && [row.runtime, row.framework].some(value => typeof value === 'string' && value.toLowerCase() === input.runtime.toLowerCase())) continue;
+        if (filters.length === 1 && key === 'robot' && Array.isArray(row.robots) && row.robots.some((robot: unknown) => typeof robot === 'string' && robot.toLowerCase() === input.robot.toLowerCase())) continue;
         const combinations = Array.isArray(row.compatibility) ? row.compatibility : [];
         if (!combinations.some((c: Row) => String(c[key] || '').toLowerCase() === input[key].toLowerCase() && ['runtime', 'robot', 'controller', 'observation', 'os'].every(k => !input[k] || String(c[k] || '').toLowerCase() === input[k].toLowerCase()))) return false;
       }

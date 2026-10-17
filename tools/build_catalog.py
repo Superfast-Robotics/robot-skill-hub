@@ -580,7 +580,7 @@ def search_row(record, output, base, recipe=False):
     row = {"id": record["id"], "name": record["name"], "summary": record["summary"],
            "kind": "preparation_recipe" if recipe else "source_reference",
            "capabilities": record.get("capabilities", []), "aliases": record.get("aliases", []),
-           "compatibility": combinations, "runtime": runtime,
+           "compatibility": combinations, "runtime": runtime, "framework": record.get("framework", runtime),
            "record_version": record["maintenance"]["record_version"] if recipe else "source-" + source["sha256"],
            "source_commit": source.get("commit") or source["revision"],
            "source_sha256": source.get("archive_sha256") if recipe else source["sha256"],

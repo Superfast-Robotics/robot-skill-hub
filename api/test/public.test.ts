@@ -18,7 +18,7 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
   const text = details.map(d => JSON.stringify(d));
   const rows = details.map((d, index) => ({ id: d.id, name: d.name, summary: d.summary, kind: index === 0 ? 'preparation_recipe' : 'source_reference',
     hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + d.source.sha256, record_sha256: hash(text[index]),
-    capabilities: [index === 0 ? 'pick' : 'grasp'], aliases: index === 0 ? ['cube transfer'] : [], robots: [index === 1 ? 'ur5' : 'panda'], runtime: index === 1 ? 'ros2' : 'maniskill',
+    capabilities: [index === 0 ? 'pick' : 'grasp'], aliases: index === 0 ? ['cube transfer'] : [], robots: [index === 1 ? 'ur5' : 'panda'], runtime: index === 1 ? 'ros2' : 'maniskill', framework: index === 2 ? 'openpi' : 'maniskill',
     compatibility: index === 0 ? [combo('maniskill', 'panda'), combo('mujoco', 'ur5', 'torque', 'rgb', 'windows')] : index === 1 ? [combo('ros2', 'ur5')] : [],
     record_url: 'https://attacker.example.org/ignored-destination.json', evidence: d.evidence }));
   const search = JSON.stringify({ schema_version: '1', hub_commit: HUB, counts: { recipes: 1, references: 2, memories: 0 }, records: rows });
@@ -61,7 +61,20 @@ test('environment filters match one compatibility combination and never combine 
   const exact: any = await (await s.request('/v1/search?runtime=maniskill&robot=panda&controller=pd_joint_pos&os=linux'))!.json();
   assert.deepEqual(exact.results.map((r: any) => r.id), ['alpha-pick']);
   const mixed: any = await (await s.request('/v1/search?runtime=maniskill&robot=ur5'))!.json(); assert.equal(mixed.total, 0);
-  const unknown: any = await (await s.request('/v1/search?robot=panda&kind=source_reference'))!.json(); assert.equal(unknown.total, 0);
+  const unknown: any = await (await s.request('/v1/search?robot=panda&os=linux&kind=source_reference'))!.json(); assert.equal(unknown.total, 0);
+});
+
+test('single robot discovery uses explicit robot metadata without inventing an environment combination', async () => {
+  const s = fixture();
+  const known: any = await (await s.request('/v1/search?robot=panda&kind=source_reference'))!.json();
+  assert.deepEqual(known.results.map((row: any) => row.id), ['gamma-policy']);
+  assert.equal(known.results[0].hub_prepare, false);
+  assert.equal(known.results[0].evidence.runtime_verification, 'not_run');
+  assert.deepEqual(known.results[0].compatibility, []);
+  const absent: any = await (await s.request('/v1/search?robot=kuka'))!.json(); assert.equal(absent.total, 0);
+  const mixed: any = await (await s.request('/v1/search?robot=panda&runtime=ros2&kind=source_reference'))!.json(); assert.equal(mixed.total, 0);
+  const framework: any = await (await s.request('/v1/search?runtime=openpi'))!.json(); assert.deepEqual(framework.results.map((row: any) => row.id), ['gamma-policy']);
+  const guessed: any = await (await s.request('/v1/search?runtime=openpi&robot=panda'))!.json(); assert.equal(guessed.total, 0);
 });
 
 test('pagination is stable, bounded and pinned to its original catalog commit', async () => {
