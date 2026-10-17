@@ -205,12 +205,15 @@ test('strict diff supports no-newline files and rejects counts, binary, rename a
   assert.throws(() => applyPatch('a\n', overlap), /ordered/);
 });
 
-test('real adapter bounds repository and handles GitHub PR creation race without status permission', async () => {
+test('real adapter bounds repository, authenticates PRs and reads public checks without token permissions', async () => {
   const s = await setup(); const data: any = await (await s.post()).json(); const pr = s.github.pulls.get(data.submission_id)!; const receipt = readReceipt(pr.body)!;
   const requests: { url: string; method: string }[] = []; let lookups = 0;
   const fakeFetch: typeof fetch = async (input, init) => {
     const url = String(input); const method = init?.method || 'GET'; requests.push({ url, method });
     assert.ok(url.startsWith('https://api.github.com/repos/Superfast-Robotics/robot-skill-hub/'));
+    const headers = new Headers(init?.headers);
+    assert.equal(headers.get('Authorization'), url.includes('/check-runs') ? null : 'Bearer not-a-real-token');
+    assert.equal(init?.redirect, 'error');
     if (url.includes('/pulls?')) { lookups++; return Response.json(lookups === 1 ? [] : [pr]); }
     if (url.endsWith('/pulls') && method === 'POST') return Response.json({ message: 'already exists' }, { status: 422 });
     if (url.includes('/check-runs')) return Response.json({ check_runs: [{ name: 'test', status: 'completed', conclusion: 'success' }] });
@@ -220,6 +223,37 @@ test('real adapter bounds repository and handles GitHub PR creation race without
   assert.equal((await github.createPull(receipt)).number, pr.number);
   assert.equal((await github.getChecks(HUB)).state, 'success');
   assert.ok(!requests.some(r => r.url.endsWith('/status')));
+});
+
+test('public check reads reject invalid refs and fail closed without credential retries', async () => {
+  let calls = 0;
+  const github = new GitHub('dedicated-repository-token', async (input, init) => {
+    calls++;
+    assert.equal(String(input), `https://api.github.com/repos/Superfast-Robotics/robot-skill-hub/commits/${HUB}/check-runs?per_page=100&filter=latest`);
+    assert.equal(new Headers(init?.headers).has('Authorization'), false);
+    return Response.json({ message: 'API rate limit exceeded' }, { status: 403 });
+  });
+  for (const ref of ['main', '../another-repo', HUB + '?redirect=elsewhere']) {
+    await assert.rejects(github.getChecks(ref), (error: unknown) => error instanceof ApiError && error.status === 503);
+  }
+  assert.equal(calls, 0);
+  await assert.rejects(github.getChecks(HUB), (error: unknown) => error instanceof ApiError && error.status === 503);
+  assert.equal(calls, 1);
+});
+
+test('failed PR mutation keeps authentication and is never retried anonymously', async () => {
+  const s = await setup(); const data: any = await (await s.post()).json();
+  const receipt = readReceipt(s.github.pulls.get(data.submission_id)!.body)!;
+  const methods: string[] = [];
+  const github = new GitHub('dedicated-repository-token', async (input, init) => {
+    const method = init?.method || 'GET'; methods.push(method);
+    assert.equal(new Headers(init?.headers).get('Authorization'), 'Bearer dedicated-repository-token');
+    if (String(input).includes('/pulls?')) return Response.json([]);
+    assert.equal(method, 'POST');
+    return Response.json({ message: 'Forbidden' }, { status: 403 });
+  });
+  await assert.rejects(github.createPull(receipt), (error: unknown) => error instanceof ApiError && error.status === 503);
+  assert.deepEqual(methods, ['GET', 'POST']);
 });
 
 test('actual catalog record accepts a docs patch and invalidates inherited execution evidence', async () => {

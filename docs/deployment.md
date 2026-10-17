@@ -1,7 +1,7 @@
 # Deployment and operations
 
 Repository: https://github.com/Superfast-Robotics/robot-skill-hub  
-Catalog fallback: https://superfast-robotics.github.io/robot-skill-hub/  
+Catalog: https://superfastrobotics.com/  
 Worker: `robot-skill-hub-api`  
 Cloudflare account: `8df378989a27166c1180b588582573df`  
 API custom domain: https://api.superfastrobotics.com  
@@ -14,7 +14,7 @@ These are deployment targets. See `docs/verification.md` for what was actually c
 Use Python 3.10 and Node 24. On Windows with restricted PowerShell scripts use `npm.cmd`/`npx.cmd`.
 
 ```powershell
-python tools/build_catalog.py --hub-commit (git rev-parse HEAD) --base-url https://superfast-robotics.github.io/robot-skill-hub
+python tools/build_catalog.py --hub-commit (git rev-parse HEAD) --base-url https://superfastrobotics.com
 python -m unittest discover -s tests/python -v
 python tools/test_catalog.py -v
 npm.cmd --prefix api ci
@@ -38,7 +38,7 @@ Create a fine-grained token at https://github.com/settings/personal-access-token
 
 - Resource owner: **Superfast-Robotics**.
 - Repository access: **Only select repositories → robot-skill-hub**.
-- Repository permissions: **Contents: Read and write**, **Pull requests: Read and write**, **Checks: Read-only**. Metadata read is automatic.
+- Repository permissions: **Contents: Read and write**, **Pull requests: Read and write**. Metadata read is automatic.
 - Use a reasonable expiry and rotate it before expiry. If the organization requires approval, approve the token in Organization Settings → Personal access tokens → Pending requests.
 
 This API deliberately has no permission to change workflow files. Save the token as one line to `.local/github-bot-token.secret` (Git-ignored), or enter it into the hidden prompt of the script:
@@ -62,7 +62,7 @@ Each caller needs a distinct principal. Set `disabled:true` on a configured toke
 
 `api/wrangler.jsonc` attaches `api.superfastrobotics.com` as a Worker custom domain. Cloudflare manages its DNS record and certificate when the authenticated account has Worker routing permission.
 
-To attach the catalog to the apex, add in Cloudflare → superfastrobotics.com → DNS → Records:
+The catalog is configured to use the apex domain. For a fresh setup, add in Cloudflare → superfastrobotics.com → DNS → Records:
 
 ```text
 Type: CNAME
@@ -71,7 +71,7 @@ Target: superfast-robotics.github.io
 Proxy status: DNS only
 ```
 
-Do not replace unrelated existing DNS records. Then set repository Settings → Pages → Custom domain to `superfastrobotics.com`, and enable **Enforce HTTPS** after GitHub issues the certificate. Set repository Settings → Secrets and variables → Actions → Variables → `SITE_BASE_URL=https://superfastrobotics.com`. Re-run `Publish catalog`. Update `PUBLICATION_URL` in the Worker config to `https://superfastrobotics.com/catalog/v1/publication.json`, redeploy and verify it. The github.io URL remains the initial fallback until the custom domain is confirmed.
+Do not replace unrelated existing DNS records. Then set repository Settings → Pages → Custom domain to `superfastrobotics.com`, and enable **Enforce HTTPS** after GitHub issues the certificate. Set repository Settings → Secrets and variables → Actions → Variables → `SITE_BASE_URL=https://superfastrobotics.com`. Re-run `Publish catalog`. Update `PUBLICATION_URL` in the Worker config to `https://superfastrobotics.com/catalog/v1/publication.json`, redeploy and verify it. After enabling the custom domain, GitHub redirects the old github.io project URL to the canonical domain. The Worker uses the canonical manifest URL directly.
 
 ## Review and publication
 

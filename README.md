@@ -2,7 +2,7 @@
 
 Find reusable robot code for your current environment, with pinned sources and runnable examples.
 
-Public catalog: **https://superfast-robotics.github.io/robot-skill-hub/**  
+Public catalog: **https://superfastrobotics.com/**  
 Submission API: **https://api.superfastrobotics.com** (also `https://robot-skill-hub-api.superfast-robotics.workers.dev`)
 
 This preview starts with official ManiSkill Panda **PickCube-v1** and **StackCube-v1** motion planning recipes. The intended simulation environment is Linux x86_64, Python 3.10, ManiSkill 3.0.0b22, state observations and CPU simulation. Sources and recipe versions are pinned. Simulator execution is **not_run / 미검증** until a matching machine actually completes the task. Windows supports catalog search and source preparation; it is not a supported simulator target.
@@ -28,7 +28,7 @@ Agents preserve useful fixes locally first. When the project explicitly permits 
 Local validation:
 
 ```sh
-python tools/build_catalog.py --hub-commit HEAD --base-url https://superfast-robotics.github.io/robot-skill-hub
+python tools/build_catalog.py --hub-commit HEAD --base-url https://superfastrobotics.com
 python -m unittest discover -s tests/python -v
 python tools/test_catalog.py -v
 npm --prefix api ci

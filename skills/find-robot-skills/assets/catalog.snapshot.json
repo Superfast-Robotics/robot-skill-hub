@@ -1,7 +1,7 @@
 {
   "schema_version": "1",
-  "hub_commit": "bce078743a86b55b3f89109bccd9c03ea82f9f50",
-  "catalog_url": "https://superfast-robotics.github.io/robot-skill-hub/catalog/v1/index.json",
+  "hub_commit": "a9e7cf6d9da21e9bb583e115b1bf0b667ac4ec1e",
+  "catalog_url": "https://superfastrobotics.com/catalog/v1/index.json",
   "records": [
     {
       "schema_version": "1",

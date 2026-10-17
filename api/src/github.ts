@@ -8,10 +8,16 @@ export class GitHub implements GitHubAdapter {
   token: string;
   fetcher: typeof fetch;
   constructor(token: string, fetcher: typeof fetch = fetch) { this.token = token; this.fetcher = fetcher; }
-  async request(path: string, method = 'GET', body?: unknown, allowed: number[] = []): Promise<any> {
+  private async request(path: string, method = 'GET', body?: unknown, allowed: number[] = [], access: 'authenticated' | 'public-checks' = 'authenticated'): Promise<any> {
+    // Public check-run reads need no Checks permission. Never downgrade other
+    // requests or retry a failed mutation without the dedicated repository token.
+    const publicChecks = access === 'public-checks';
+    if (publicChecks && (method !== 'GET' || !/^\/commits\/[a-f0-9]{40}\/check-runs\?per_page=100&filter=latest$/.test(path))) {
+      throw new ApiError(503, 'github_unavailable', 'Unexpected public check-run request.');
+    }
     const response = await this.fetcher(PREFIX + path, {
       method, redirect: 'error', signal: AbortSignal.timeout(12000),
-      headers: { Authorization: `Bearer ${this.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'robot-skill-hub-api', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
+      headers: { ...(publicChecks ? {} : { Authorization: `Bearer ${this.token}` }), Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'robot-skill-hub-api', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
       ...(body === undefined ? {} : { body: JSON.stringify(body) })
     });
     if (allowed.includes(response.status)) { await response.body?.cancel(); return { _status: response.status }; }
@@ -78,7 +84,7 @@ export class GitHub implements GitHubAdapter {
     throw new ApiError(503, 'github_unavailable', 'PR creation did not finish; retry with the same idempotency key.');
   }
   async getChecks(sha: string): Promise<Checks> {
-    const runs = await this.request(`/commits/${sha}/check-runs?per_page=100&filter=latest`);
+    const runs = await this.request(`/commits/${sha}/check-runs?per_page=100&filter=latest`, 'GET', undefined, [], 'public-checks');
     const checks = runs.check_runs || [];
     const failures = checks.filter((r: any) => r.status === 'completed' && !['success', 'neutral', 'skipped'].includes(r.conclusion)).map((r: any) => r.name);
     if (failures.length) return { state: 'failure', reasons: failures, completed: checks.filter((r: any) => r.status === 'completed').length };

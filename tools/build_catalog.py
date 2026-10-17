@@ -17,7 +17,7 @@ import sys
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BASE = "https://superfast-robotics.github.io/robot-skill-hub"
+DEFAULT_BASE = "https://superfastrobotics.com"
 REPO = "https://github.com/Superfast-Robotics/robot-skill-hub"
 
 
@@ -309,6 +309,10 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
+    for name in ("contributing.md", "compatibility.md"):
+        document = ROOT / "docs" / name
+        if document.exists():
+            write(output / name, document.read_text(encoding="utf-8"))
     shutil.copytree(ROOT / "web", output / "assets", dirs_exist_ok=True)
     shutil.copytree(ROOT / "schemas", output / "schemas", dirs_exist_ok=True)
     publication_records = []

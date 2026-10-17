@@ -16,12 +16,12 @@ npm.cmd run dev
 
 Set these under Cloudflare dashboard → Workers & Pages → robot-skill-hub-api → Settings → Variables and Secrets (type **Secret**), or run `npx.cmd wrangler secret put NAME` inside `api`:
 
-* `GITHUB_TOKEN`: a dedicated fine-grained GitHub token restricted to **Superfast-Robotics/robot-skill-hub**. Repository permissions: **Contents: Read and write**, **Pull requests: Read and write**, **Checks: Read-only**, Metadata read (automatic). Organization approval/SSO may be required. No workflow permission is needed. This credential never goes into an agent installation.
+* `GITHUB_TOKEN`: a dedicated fine-grained GitHub token restricted to **Superfast-Robotics/robot-skill-hub**. Repository permissions: **Contents: Read and write**, **Pull requests: Read and write**, Metadata read (automatic). Organization approval/SSO may be required. Checks and workflow permissions are not needed. This credential never goes into an agent installation.
 * `SUBMISSION_TOKENS_JSON`: JSON array, for example `[{"principal_id":"pilot-1","sha256":"REPLACE_WITH_SHA256_OF_RANDOM_SUBMISSION_TOKEN"}]`. Use at least 32 random bytes, encode as base64url. Store only its SHA-256 here. Issue the raw token privately to the allowed pilot agent through local `RSH_SUBMISSION_TOKEN`. Token rotation retaining the same `principal_id` preserves access to the principal's own receipts. Set `disabled: true` to revoke. Do not put tokens in Git, CLI arguments, skill docs, logs or browser JavaScript.
 
 The Bearer credential is separate from project sharing policy. `publication.public_submission_allowed: true` is mandatory and acknowledges that the patch, environment, evidence and attribution may be publicly visible immediately in GitHub. Only submit a minimal patch after local policy allows public contribution. This assertion is not verified identity or robot verification.
 
-`wrangler.jsonc` fixes the account, Worker and `api.superfastrobotics.com` custom domain. Wrangler login needs that account's Workers Scripts edit and zone/domain management permissions to create the custom domain; no paid upgrade is required by this design. Run `npm.cmd run deploy`. The default public manifest URL is the GitHub Pages project URL; if Pages has a custom domain, update `PUBLICATION_URL` to its canonical `/catalog/v1/publication.json` URL before deploying (redirects are deliberately rejected).
+`wrangler.jsonc` fixes the account, Worker and `api.superfastrobotics.com` custom domain. Wrangler login needs that account's Workers Scripts edit and zone/domain management permissions to create the custom domain; no paid upgrade is required by this design. Run `npm.cmd run deploy`. The public manifest URL is the canonical custom-domain URL `https://superfastrobotics.com/catalog/v1/publication.json`; keep `PUBLICATION_URL` in sync with Pages because redirects are deliberately rejected.
 
 ## Contract
 
@@ -40,6 +40,8 @@ Cloudflare rate-limit bindings restrict pilot writes to 10/minute and status to 
 ## Review, checks and publication
 
 Maintainers can apply `rsh:checking`, `rsh:needs_changes`, `rsh:rejected`, or `rsh:publish_failed` labels. Failed GitHub check runs yield `needs_changes`; completed successful checks yield `pending_review`. Intake's `hub_validation.runtime` remains `not_run` because it never runs submitted code. The contributor's evidence is always separate and self-reported.
+
+Check runs are read without an Authorization header from the fixed **public** repository and a full commit SHA. [GitHub documents unauthenticated access to public check runs](https://docs.github.com/en/rest/checks/runs#list-check-runs-for-a-git-reference), so the dedicated token needs no Checks permission. All other GitHub operations retain the dedicated token; failed writes are never retried anonymously. Public reads share [GitHub's 60 requests/hour unauthenticated rate limit per originating IP](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api#primary-rate-limit-for-unauthenticated-users), so exhausted quota returns a retryable 503 rather than treating checks as successful. This public-read approach depends on the repository remaining public.
 
 Merge alone yields `merged`. `published` requires the actually served public manifest to contain the receipt ID, exact new record/source versions and SHA-256 hashes of every changed file, plus proof that the PR merge commit is an ancestor of the manifest's deployed hub commit. Publication failure yields `publish_failed` when checks or the maintainer label show failure. Unreachable or stale manifests cannot yield `published`.
 
