@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-17T23:05:38.836148+00:00",
+  "scope": "Persist the eight reviewed discovery aliases in their source-project artifact inputs; exact offline importer rebuild.",
+  "metadata_review": "robotics-query-aliases-2026-10-18.json",
+  "metadata_review_sha256": "09177515f3c4cb36612ce77f2abe9a78ef975880f1d0414d07619e2cca40beb5",
+  "source_manifest_sha256_before": "73c55a974f6299e559d5734e8663080be4604b13741f6b2754ed536df58c3e5e",
+  "source_manifest_sha256_after": "f9eba41a9e9736d2a97d6731b20aa6378d59d773f49f0a4768753c4aee8d357e",
+  "generated_catalog_sha256": "f00feb224baf5be3c3c60c7790f63eec1b988dffbf0b662ea1e431a6a186c22c",
+  "artifact_alias_inputs_changed": 8,
+  "source_identity_requirements_compatibility_and_runtime_changed": false,
+  "offline_importer": {
+    "exit_code": 0,
+    "exact_catalog_rebuild": true,
+    "fetch_enabled": false,
+    "upstream_source_execution": false,
+    "source_imports": 0,
+    "stdout_sha256": "b29d4dbac047f8b098c5151a5331abb1e6b497d9054cbdba903c3358d35aac0f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "publication_or_robot_runtime_verified": false
+}
