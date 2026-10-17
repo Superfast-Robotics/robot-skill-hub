@@ -1,0 +1,53 @@
+"""Evidence acceptance and timeout behavior; these do not run a simulator."""
+import importlib.util
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = importlib.util.spec_from_file_location("runtime_verifier", ROOT / "tools/run_runtime_verification.py")
+VERIFIER = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(VERIFIER)
+
+
+class RuntimeEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        self.record = {"invocation": {"inputs": {"task": "PickCube-v1"}}}
+        self.execution = {"started": True, "exit_code": 0, "timed_out": False}
+        self.result = {"status": "task_complete", "success": True, "elapsed_steps": 12,
+                       "task": "PickCube-v1", "seed": 0, "runtime": "3.0.0b22", "robot": "panda",
+                       "controller": "pd_joint_pos", "observation": "state", "sim_backend": "cpu", "render_backend": "none"}
+
+    def assess(self):
+        return VERIFIER.assess_result(self.record, self.execution, "diagnostic\n" + json.dumps(self.result) + "\n")
+
+    def test_success_requires_actual_exit_and_exact_contract(self):
+        self.assertEqual(self.assess()["status"], "task_complete")
+        for key, value in (("exit_code", 1), ("timed_out", True), ("started", False)):
+            with self.subTest(key=key):
+                execution = {**self.execution, key: value}
+                self.assertFalse(VERIFIER.assess_result(self.record, execution, json.dumps(self.result))["success"])
+        self.result["render_backend"] = "gpu"
+        self.assertFalse(self.assess()["success"])
+
+    def test_preparation_and_failed_tasks_are_never_success(self):
+        for result in ({"status": "ready", "execution_performed": False},
+                       {**self.result, "success": False}, {**self.result, "elapsed_steps": True}):
+            self.assertFalse(VERIFIER.assess_result(self.record, self.execution, json.dumps(result))["success"])
+
+    def test_external_timeout_preserves_both_logs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            prefix = Path(directory) / "timeout"
+            execution, stdout = VERIFIER.run_command(
+                [sys.executable, "-u", "-c", "import sys,time; print('started'); print('diagnostic',file=sys.stderr); time.sleep(10)"],
+                prefix, timeout=0.4)
+            self.assertTrue(execution["timed_out"])
+            self.assertNotEqual(execution["exit_code"], 0)
+            self.assertIn("started", stdout)
+            self.assertIn("diagnostic", prefix.with_suffix(".stderr.txt").read_text())
+
+
+if __name__ == "__main__":
+    unittest.main()

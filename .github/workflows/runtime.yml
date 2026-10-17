@@ -1,0 +1,39 @@
+name: Verify pinned CPU runtime
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: runtime-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      MS_SKIP_ASSET_DOWNLOAD_PROMPT: '1'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install shared libraries for the pinned Linux wheels
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libgl1 libegl1 libxext6 libglib2.0-0 libvulkan1
+      - name: Prepare isolated recipes and run one seed per task
+        run: python tools/run_runtime_verification.py --output "$RUNNER_TEMP/runtime-artifacts" --work-dir "$RUNNER_TEMP/runtime-work"
+      - name: Preserve execution evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinned-cpu-runtime-${{ github.run_id }}
+          path: ${{ runner.temp }}/runtime-artifacts
+          if-no-files-found: warn
+          retention-days: 7
