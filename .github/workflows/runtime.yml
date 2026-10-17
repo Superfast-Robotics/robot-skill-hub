@@ -16,6 +16,7 @@ jobs:
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
       PYTHONUNBUFFERED: '1'
+      VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,7 +27,11 @@ jobs:
       - name: Install shared libraries for the pinned Linux wheels
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y libgl1 libegl1 libxext6 libglib2.0-0 libvulkan1
+          sudo apt-get install --no-install-recommends -y libgl1 libegl1 libxext6 libglib2.0-0 libvulkan1 mesa-vulkan-drivers vulkan-tools
+      - name: Record the software Vulkan device
+        run: |
+          mkdir -p "$RUNNER_TEMP/runtime-artifacts"
+          vulkaninfo --summary > "$RUNNER_TEMP/runtime-artifacts/vulkan-summary.txt"
       - name: Prepare isolated recipes and run one seed per task
         run: python tools/run_runtime_verification.py --output "$RUNNER_TEMP/runtime-artifacts" --work-dir "$RUNNER_TEMP/runtime-work"
       - name: Preserve execution evidence, including failures
