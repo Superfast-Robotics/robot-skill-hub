@@ -295,6 +295,7 @@ def shell(title, description, body, base, path=""):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
+<link rel="icon" href="data:,">
 <link rel="canonical" href="{esc(canonical)}">
 <link rel="alternate" type="application/json" href="{esc(base)}/catalog/v1/index.json" title="Catalog JSON">
 </head>

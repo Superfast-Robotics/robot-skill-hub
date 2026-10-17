@@ -40,6 +40,14 @@
 - A third clean project fetched the published catalog and prepared that exact new version from the SHA-checked cached upstream archive. The new lock pins the published record/source/hub commit; the previous project's lock hash remained unchanged. Result: **needs_configuration**, no venv, no dependency installation, no robot execution. This verifies API-mediated publication and source preparation reuse, not robot task completion.
 - Actual workerd testing found and fixed two transport issues absent from Node-only tests: native fetch class receiver binding and unsupported redirect:error. Persistent workerd tests now cover actual fetch invocation, manual redirect rejection, and manifest-based publication using intercepted outbound calls and dummy credentials.
 
+## Agent-first domain and catalog rollout
+
+- `b746fa0de0d6b8cea2bb12f8cb5825edf2b95d76` passed both GitHub Checks and Publish catalog. The HTTPS manifest at https://hub.superfastrobotics.com/catalog/v1/publication.json contained that actual commit, 17 current preparation records and the original historical publication proof.
+- The catalog HTML, 40-entry reference JSON, full-text index, new DrawSVG record, archived publication HTML/JSON, robots, sitemap and record schema returned HTTP 200. The CLI fetched the public catalog and selected the two Panda Stick drawing recipes. A fresh browser confirmed zero stylesheets and zero scripts in the Hub page.
+- The company holding page is published independently from https://github.com/Superfast-Robotics/superfast-robotics.github.io. Its public HTTPS HTML contains only the supplied top-left wordmark, the name-card-inspired moving starfield and centered `COMING SOON` message. Desktop, 390px and 320px rendering, outward star motion, reduced-motion freezing/resuming and console checks passed locally.
+- Both Pages domains have approved TLS certificates and HTTPS enforcement enabled. The apex remains the company site; Hub links and Worker publication reads use the `hub` subdomain.
+- Worker version `8c634be8-e524-4bf2-bb29-db7b9582b940` was deployed with the new direct manifest URL and historical publication support. A real authenticated status read returned HTTP 200, `published`, `publication_scope: historical`, the original published version/commit and the new versioned Hub URL. Original receipts and accepted hashes were not edited.
+
 ## Pending / unverified
 
 - ManiSkill dependency installation, successful ManiSkill import and PickCube/StackCube task completion on Linux remain `not_run`. This Windows host is not a supported simulator environment; Docker's engine was unavailable and no general WSL Linux distribution was installed. No GPU or paid execution service was provisioned.
