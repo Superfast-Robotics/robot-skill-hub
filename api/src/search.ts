@@ -7,8 +7,8 @@ export function wordTerms(value: string): string[] {
  * Keep identifiers and repeated stars in the existing word-prefix grammar.
  */
 export function queryTerms(value: string): string[] {
-  const normalized = value.replace(/(?<![\p{L}\p{N}\p{M}_*])([ad])\*(?![\p{L}\p{N}\p{M}_*])/giu,
-    (_, letter: string) => letter.toLowerCase() === 'a' ? 'astar' : 'dstar');
+  const normalized = value.replace(/(?<![\p{L}\p{N}\p{M}_*])(rrt|[ad])\*(?![\p{L}\p{N}\p{M}_*])/giu,
+    (_, algorithm: string) => algorithm.toLowerCase() + 'star');
   return wordTerms(normalized);
 }
 

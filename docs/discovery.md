@@ -37,7 +37,7 @@ For MCP clients that accept a `mcpServers` object with HTTP transports:
 
 Configuration field names depend on the client. The transport URL is the same. A public server record in [server.json](../server.json) describes the endpoint for registry clients.
 
-The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.3) is active and latest for version `0.3.3`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.3) records its source commit and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
+Resolve the published server version through the [official MCP Registry latest record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/latest), and compare it with your client's initialization response. The [public source previews](https://github.com/Superfast-Robotics/robot-skill-hub/releases) record their exact source commits and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
 
 For agents already using Context7, the documentation library is `/superfast-robotics/robot-skill-hub`. Its [public page](https://context7.com/superfast-robotics/robot-skill-hub), finalized search result and actual CLI documentation retrieval were verified on 2026-10-17. The [registration receipt](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/evidence/discovery/v0.3.3/context7-registration.json) records the exact scope; this channel supplies usage documentation, rather than installing or executing robot code.
 

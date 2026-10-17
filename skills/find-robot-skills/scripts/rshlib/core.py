@@ -256,7 +256,7 @@ def validate_find_pagination(limit, offset, hub_commit, *, maximum_limit=50):
 
 
 def query_terms(value):
-    """Rewrite only standalone A*/D* query literals; document words stay unchanged."""
+    """Rewrite only standalone A*/D*/RRT* queries; document words stay unchanged."""
     import unicodedata
 
     def adjacent_identifier(character):
@@ -267,9 +267,9 @@ def query_terms(value):
         after = value[match.end()] if match.end() < len(value) else None
         if any(character is not None and adjacent_identifier(character) for character in (before, after)):
             return match.group()
-        return "astar" if match.group()[0].lower() == "a" else "dstar"
+        return match.group()[:-1].lower() + "star"
 
-    return re.findall(r"[^\W_]+", re.sub(r"[aAdD]\*", algorithm, value).lower())
+    return re.findall(r"[^\W_]+", re.sub(r"(?:[rR][rR][tT]|[aAdD])\*", algorithm, value).lower())
 
 
 def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):

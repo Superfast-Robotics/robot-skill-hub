@@ -212,6 +212,50 @@ class ReferenceDiscoveryTests(unittest.TestCase):
                     self.assertEqual(len(expected), found["total"])
                     self.assertFalse(found["execution_performed"])
 
+    def rrt_variants_catalog(self):
+        return catalog(
+            {**reference(), "id": "fixture-plain", "name": "RRT planner", "summary": "Sampling routes",
+             "aliases": ["RRT", "Rapidlyexploring random tree"]},
+            {**reference(), "id": "fixture-star", "name": "RRTStar planner", "summary": "Optimal routes",
+             "aliases": ["RRTStar", "RRT*", "Rapidlyexploring random tree star"]},
+            {**reference(), "id": "fixture-text", "name": "Query syntax notes", "summary": "Literal RRT* notation",
+             "aliases": ["RRRT", "RRT B", "2RRT", "\u00e9RRT", "\uB85C\uBD07RRT", "RRT*"]})
+
+    def test_rrt_star_queries_select_the_named_variant_without_wildcard_or_document_rewrites(self):
+        data = self.rrt_variants_catalog()
+        cases = [
+            *[(q, ["fixture-star"]) for q in ("RRT*", "rrt*", "rRt*", "!!!RRT*!!!", "(RRT*)/planner", "RRTStar", "RRT Star")],
+            *[(q, ["fixture-text"]) for q in ("RRRT*", "RRT*B", "2RRT*", "\u00e9RRT*", "\uB85C\uBD07RRT*")],
+            *[(q, ["fixture-plain", "fixture-star", "fixture-text"]) for q in ("RRT", "rr", "RRT**", "*RRT*", "_RRT*", "RRT*_", "\u0301RRT*", "RRT*\u0301")],
+            ("RRT planner", ["fixture-plain", "fixture-star"]), ("RRT* sampling", []), ("RRT* impossible", []), ("RRT* OR sampling", [])]
+        for query, expected in cases:
+            with self.subTest(query=query):
+                found = find(data, query, {}, 50)
+                self.assertEqual(expected, [row["id"] for row in found["results"]])
+                self.assertEqual(len(expected), found["total"])
+                self.assertEqual("all_terms_word_prefix", found["search_semantics"])
+                self.assertFalse(found["execution_performed"])
+        self.assertEqual(0, find(data, "RRT*", {"runtime": "unknown-framework"})["total"])
+        self.assertEqual(["fixture-star"], [row["id"] for row in find(data, "rrtstar", {})["results"]],
+                         "Literal-only RRT* text never becomes an RRTStar document word")
+
+    def test_real_offline_cli_distinguishes_rrt_star_from_plain_and_embedded_queries(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            path.write_text(json.dumps(self.rrt_variants_catalog()), encoding="utf-8")
+            for query, expected in (("RRT*", ["fixture-star"]), ("rRt* planner", ["fixture-star"]),
+                                    ("RRT", ["fixture-plain", "fixture-star", "fixture-text"]),
+                                    ("RRT**", ["fixture-plain", "fixture-star", "fixture-text"]),
+                                    ("RRRT*", ["fixture-text"]), ("RRT*B", ["fixture-text"]), ("\u00e9RRT*", ["fixture-text"])):
+                with self.subTest(query=query):
+                    command = [sys.executable, str(SCRIPTS / "rsh.py"), "--catalog", str(path), "--offline", "--json", "find", query]
+                    result = subprocess.run(command, capture_output=True, text=True, env={**os.environ, "RSH_TELEMETRY": "off"})
+                    self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+                    found = json.loads(result.stdout)
+                    self.assertEqual(expected, [row["id"] for row in found["results"]])
+                    self.assertEqual(len(expected), found["total"])
+                    self.assertFalse(found["execution_performed"])
+
     def test_punctuation_does_not_become_catalog_browsing_and_unicode_words_remain_terms(self):
         accented = {**reference(), "id": "fixture-accent", "name": "Caf\u00e9 control"}
         data = catalog(reference(), accented)

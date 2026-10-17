@@ -4652,6 +4652,12 @@
       "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
     },
     {
+      "id": "pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+      "record_version": "source-fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e"
+    },
+    {
       "id": "pythonrobotics-pathplanning-astar-a-star-py",
       "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
       "source_sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
@@ -4676,10 +4682,46 @@
       "record_version": "source-c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70"
     },
     {
+      "id": "pythonrobotics-pathplanning-rrt-rrt-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+      "record_version": "source-ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e"
+    },
+    {
+      "id": "pythonrobotics-pathplanning-rrtstar-rrt-star-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+      "record_version": "source-6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25"
+    },
+    {
       "id": "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc",
       "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
       "source_sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
       "record_version": "source-5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1"
+    },
+    {
+      "id": "pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb",
+      "record_version": "source-d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb"
+    },
+    {
+      "id": "pythonrobotics-pathtracking-stanley-control-stanley-control-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+      "record_version": "source-ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0"
+    },
+    {
+      "id": "pythonrobotics-slam-ekfslam-ekf-slam-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+      "record_version": "source-8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575"
+    },
+    {
+      "id": "pythonrobotics-slam-fastslam1-fast-slam1-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",
+      "record_version": "source-d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d"
     },
     {
       "id": "rai-examples-agents-react-ros2-py",

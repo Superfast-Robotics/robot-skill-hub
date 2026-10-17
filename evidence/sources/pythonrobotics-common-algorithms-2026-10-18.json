@@ -1,0 +1,264 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_first_party_algorithm_source_review",
+  "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+  "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "scope": "Seven distinct source-only localization, SLAM, planning and tracking demonstration entrypoints. Helpers, tests, assets and generated plots are not counted as additional skills. Coverage is finite; no per-file usage ranking or exhaustive inventory is claimed.",
+  "source_count": 7,
+  "source_bytes": 56763,
+  "tree": {
+    "url": "https://api.github.com/repos/AtsushiSakai/PythonRobotics/git/trees/cdd0cc888802b584c2d654ca85e3c5460973487d?recursive=1",
+    "sha256": "8ca640d42124b80d3f6192ffa5893046db4683cdbb5740d3053e212e30ce0f4d",
+    "truncated": false
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+    "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+    "bytes": 1170,
+    "git_blob_sha1": "1c9b928b54376c99c467dd3b1bb6f2f0855ed53b",
+    "basis": "Exact pinned LICENSE text, preserving its attribution and each selected file's author notices; no separate per-file terms found in the seven complete selected sources. Dependencies and external assets retain separate terms. GitHub's NOASSERTION classifier is not the license basis."
+  },
+  "sources": [
+    {
+      "path": "SLAM/EKFSLAM/ekf_slam.py",
+      "sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+      "bytes": 6924,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "EKF SLAM",
+        "Extended Kalman Filter SLAM"
+      ],
+      "authors": [
+        "Atsushi Sakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/EKFSLAM/ekf_slam.py",
+      "git_blob_sha1": "5c4417d7c34223b5e2408bd97b29a7068ad46a03",
+      "main_guard_line": 262,
+      "operation": "ekf_slam",
+      "operation_lines": [
+        227
+      ]
+    },
+    {
+      "path": "SLAM/FastSLAM1/fast_slam1.py",
+      "sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",
+      "bytes": 10321,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "FastSLAM",
+        "FastSLAM 1.0",
+        "feature based SLAM"
+      ],
+      "authors": [
+        "Atsushi Sakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/FastSLAM1/fast_slam1.py",
+      "git_blob_sha1": "98f8a664177053214c5029addcbc28a9468f9ba5",
+      "main_guard_line": 393,
+      "operation": "fast_slam1",
+      "operation_lines": [
+        361
+      ]
+    },
+    {
+      "path": "Localization/extended_kalman_filter/extended_kalman_filter.py",
+      "sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+      "bytes": 4279,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "EKF localization",
+        "Extended Kalman Filter localization"
+      ],
+      "authors": [
+        "Atsushi Sakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/Localization/extended_kalman_filter/extended_kalman_filter.py",
+      "git_blob_sha1": "d9ece6c6f38e2567deced3658f18973a82d18ad1",
+      "main_guard_line": 189,
+      "operation": "ekf_estimation",
+      "operation_lines": [
+        163
+      ]
+    },
+    {
+      "path": "PathPlanning/RRT/rrt.py",
+      "sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+      "bytes": 9047,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "RRT",
+        "Rapidly-Exploring Random Trees"
+      ],
+      "authors": [
+        "AtsushiSakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRT/rrt.py",
+      "git_blob_sha1": "e6dd9b648b57b52d4b6bce030499495f25f6592c",
+      "main_guard_line": 290,
+      "operation": "rrt.planning",
+      "operation_lines": [
+        274
+      ]
+    },
+    {
+      "path": "PathPlanning/RRTStar/rrt_star.py",
+      "sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+      "bytes": 9512,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "RRTStar",
+        "RRT*",
+        "RRT Star"
+      ],
+      "authors": [
+        "Atsushi Sakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRTStar/rrt_star.py",
+      "git_blob_sha1": "dcb1a066eb3c9625f915d37c910106448962c781",
+      "main_guard_line": 288,
+      "operation": "rrt_star.planning",
+      "operation_lines": [
+        273
+      ]
+    },
+    {
+      "path": "PathTracking/pure_pursuit/pure_pursuit.py",
+      "sha256": "d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb",
+      "bytes": 10821,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "pure pursuit",
+        "pure pursuit steering",
+        "proportional speed control",
+        "path tracking"
+      ],
+      "authors": [
+        "Atsushi Sakai",
+        "Guillaume Jacquenot"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/pure_pursuit/pure_pursuit.py",
+      "git_blob_sha1": "48453927ab2d2699f70c12e1988ed78d0c822081",
+      "main_guard_line": 347,
+      "operation": "pure_pursuit_steer_control",
+      "operation_lines": [
+        292
+      ]
+    },
+    {
+      "path": "PathTracking/stanley_control/stanley_control.py",
+      "sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+      "bytes": 5859,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "Stanley steering control",
+        "Stanley control",
+        "proportional speed control",
+        "path tracking"
+      ],
+      "authors": [
+        "Atsushi Sakai"
+      ],
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/stanley_control/stanley_control.py",
+      "git_blob_sha1": "01c2ec022908eac9243f5d970a4ec019539c4c34",
+      "main_guard_line": 211,
+      "operation": "stanley_control",
+      "operation_lines": [
+        167
+      ]
+    }
+  ],
+  "static_review": {
+    "guarded_python_main_and_operational_calls_checked": true,
+    "pinned_byte_counts_and_git_blob_sha1_checked": true,
+    "authors_and_aliases_preserved_in_manifest_inputs": true,
+    "upstream_imports_or_execution": false,
+    "runtime_verification": "not_run",
+    "adapter": "none",
+    "compatibility_inferred": false
+  },
+  "requirements": {
+    "python": "Pinned README and requirements/environment.yml declare Python 3.13; no runtime or package combination was installed or tested.",
+    "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md",
+    "source_file_is_complete_bundle": false,
+    "environment": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested."
+  },
+  "speed_control_terminology": {
+    "pure_pursuit_function": "proportional_control, lines 82-85",
+    "stanley_function": "pid_control, lines 66-74",
+    "implementation": "Kp * (target - current) only. Headers and the Stanley README call it PID speed control; the reviewed functions have no integral or derivative term. No PID alias or full PID capability is asserted."
+  },
+  "acquisition": {
+    "official_raw_source_gets": 7,
+    "source_bytes": 56763,
+    "per_file_limit_bytes": 131072,
+    "total_limit_bytes": 524288,
+    "redirects": "forbidden",
+    "proxy": "disabled",
+    "authentication": "none",
+    "automatic_retries": 0,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off"
+  },
+  "offline_intake_validation": {
+    "actual_first_party_importer_build": "passed",
+    "actual_first_party_importer_check_with_private_and_tracked_source_indexes": "passed",
+    "baseline_official_records": 1253,
+    "candidate_official_records": 1260,
+    "separately_reviewed_intake_records": 2,
+    "candidate_combined_source_references": 1262,
+    "new_unique_records": 7,
+    "existing_non_pythonrobotics_records_unchanged": 1247,
+    "existing_pythonrobotics_source_license_pins_and_aliases_unchanged": 5,
+    "existing_pythonrobotics_descriptive_fields_updated": [
+      "invocation.notes",
+      "requirements.display",
+      "requirements.packages"
+    ],
+    "network_requests_during_offline_intake": 0,
+    "existing_alias_only_exception": "pyrobosim-pyrobosim-examples-demo-rrt-py"
+  },
+  "additional_existing_record_alias_review": {
+    "id": "pyrobosim-pyrobosim-examples-demo-rrt-py",
+    "alias_added": "RRTStar configuration",
+    "prior_alias_retained": "Rapidly exploring random tree",
+    "scope": "Discovery of an option explicitly enabled in this existing demo; no runtime success, full standalone bundle or additional skill record is asserted. All source/license pins, requirements and runtime status remain unchanged. No RRTConnect alias is added.",
+    "demo": {
+      "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/pyrobosim/examples/demo_rrt.py",
+      "sha256": "49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
+      "bytes": 912,
+      "git_blob_sha1": "96e69d629cd2d931817913ead99cb055a742fbca",
+      "quote": "\"rrt_star\": True",
+      "line": 19
+    },
+    "same_commit_module": {
+      "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/pyrobosim/pyrobosim/navigation/rrt.py",
+      "path": "pyrobosim/pyrobosim/navigation/rrt.py",
+      "commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "sha256": "750f7cfae51f693efb8e726d3361fdebc3d37668637c41b747375435df2e8a2b",
+      "bytes": 15757,
+      "git_blob_sha1": "e1a9284173c66293b2c689e99eb3d119125aad28",
+      "option_definition_lines": [
+        42,
+        43
+      ],
+      "assignment_line": 56,
+      "conditional_rewiring_lines": [
+        166,
+        167,
+        168,
+        169,
+        170,
+        171
+      ]
+    },
+    "license": {
+      "spdx": "MIT",
+      "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/LICENSE.md",
+      "sha256": "d828fdce4df8520bdbecd1ccd9e5f0c7a2c29e076db3d702930e6d59ac1eae36"
+    },
+    "additional_network_requests": 0,
+    "upstream_import_or_execution": false
+  }
+}

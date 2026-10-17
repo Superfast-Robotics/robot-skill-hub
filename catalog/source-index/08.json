@@ -12,6 +12,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "fa6d736f76e27de5aba22b96e0c98655ae6a0ad36f6ece52a915bf71b460c66c",
       "record_version": "source-fa6d736f76e27de5aba22b96e0c98655ae6a0ad36f6ece52a915bf71b460c66c"
+    },
+    {
+      "id": "pythonrobotics-slam-ekfslam-ekf-slam-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+      "record_version": "source-8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575"
     }
   ]
 }

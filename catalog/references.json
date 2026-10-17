@@ -69873,7 +69873,8 @@
         "inspection_method": "automated_static"
       },
       "aliases": [
-        "Rapidly exploring random tree"
+        "Rapidly exploring random tree",
+        "RRTStar configuration"
       ]
     },
     {
@@ -70406,6 +70407,90 @@
       }
     },
     {
+      "id": "pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py",
+      "name": "PythonRobotics: extended kalman filter",
+      "summary": "Official PythonRobotics python main example for extended kalman filter. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "Localization/extended_kalman_filter/extended_kalman_filter.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/Localization/extended_kalman_filter/extended_kalman_filter.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/Localization/extended_kalman_filter/extended_kalman_filter.py",
+        "sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+        "bytes": 4279,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "pathlib",
+          "sys",
+          "utils.plot"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python Localization/extended_kalman_filter/extended_kalman_filter.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "EKF localization",
+        "Extended Kalman Filter localization"
+      ]
+    },
+    {
       "id": "pythonrobotics-pathplanning-astar-a-star-py",
       "name": "PythonRobotics: a star",
       "summary": "Official PythonRobotics python main example for a star. Inspect the pinned source and upstream setup before use.",
@@ -70449,14 +70534,14 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
         "execution_domain": "computation-or-algorithm-simulation",
         "source_imports": [
           "math",
@@ -70465,7 +70550,7 @@
       },
       "invocation": {
         "entrypoint": "python PathPlanning/AStar/a_star.py",
-        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
       },
       "popularity": {
         "metric": "github_stars",
@@ -70530,14 +70615,14 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
         "execution_domain": "computation-or-algorithm-simulation",
         "source_imports": [
           "math",
@@ -70548,7 +70633,7 @@
       },
       "invocation": {
         "entrypoint": "python PathPlanning/DStarLite/d_star_lite.py",
-        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
       },
       "popularity": {
         "metric": "github_stars",
@@ -70614,14 +70699,14 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
         "execution_domain": "computation-or-algorithm-simulation",
         "source_imports": [
           "enum",
@@ -70632,7 +70717,7 @@
       },
       "invocation": {
         "entrypoint": "python PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
-        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
       },
       "popularity": {
         "metric": "github_stars",
@@ -70696,14 +70781,14 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
         "execution_domain": "computation-or-algorithm-simulation",
         "source_imports": [
           "ReedsSheppPath",
@@ -70720,7 +70805,7 @@
       },
       "invocation": {
         "entrypoint": "python PathPlanning/HybridAStar/hybrid_a_star.py",
-        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
       },
       "popularity": {
         "metric": "github_stars",
@@ -70740,6 +70825,172 @@
         "HybridAStar",
         "Hybrid A*",
         "Hybrid AStar path planning"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathplanning-rrt-rrt-py",
+      "name": "PythonRobotics: rrt",
+      "summary": "Official PythonRobotics python main example for rrt. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/RRT/rrt.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRT/rrt.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRT/rrt.py",
+        "sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+        "bytes": 9047,
+        "authors": [
+          "AtsushiSakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "random"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/RRT/rrt.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "RRT",
+        "Rapidly-Exploring Random Trees"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathplanning-rrtstar-rrt-star-py",
+      "name": "PythonRobotics: rrt star",
+      "summary": "Official PythonRobotics python main example for rrt star. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/RRTStar/rrt_star.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRTStar/rrt_star.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/RRTStar/rrt_star.py",
+        "sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+        "bytes": 9512,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "RRT.rrt",
+          "math",
+          "matplotlib.pyplot",
+          "pathlib",
+          "sys"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/RRTStar/rrt_star.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "RRTStar",
+        "RRT*",
+        "RRT Star"
       ]
     },
     {
@@ -70785,14 +71036,14 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
         "execution_domain": "computation-or-algorithm-simulation",
         "source_imports": [
           "PathPlanning.CubicSpline",
@@ -70808,7 +71059,7 @@
       },
       "invocation": {
         "entrypoint": "python PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
-        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
       },
       "popularity": {
         "metric": "github_stars",
@@ -70829,6 +71080,344 @@
         "model predictive control",
         "steering control",
         "path tracking"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py",
+      "name": "PythonRobotics: pure pursuit",
+      "summary": "Official PythonRobotics python main example for pure pursuit. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathTracking/pure_pursuit/pure_pursuit.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/pure_pursuit/pure_pursuit.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/pure_pursuit/pure_pursuit.py",
+        "sha256": "d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb",
+        "bytes": 10821,
+        "authors": [
+          "Atsushi Sakai",
+          "Guillaume Jacquenot"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "pathlib",
+          "sys",
+          "utils.angle"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathTracking/pure_pursuit/pure_pursuit.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "pure pursuit",
+        "pure pursuit steering",
+        "proportional speed control",
+        "path tracking"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathtracking-stanley-control-stanley-control-py",
+      "name": "PythonRobotics: stanley control",
+      "summary": "Official PythonRobotics python main example for stanley control. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathTracking/stanley_control/stanley_control.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/stanley_control/stanley_control.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/stanley_control/stanley_control.py",
+        "sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+        "bytes": 5859,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "PathPlanning.CubicSpline",
+          "matplotlib.pyplot",
+          "numpy",
+          "pathlib",
+          "sys",
+          "utils.angle"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathTracking/stanley_control/stanley_control.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "Stanley steering control",
+        "Stanley control",
+        "proportional speed control",
+        "path tracking"
+      ]
+    },
+    {
+      "id": "pythonrobotics-slam-ekfslam-ekf-slam-py",
+      "name": "PythonRobotics: ekf slam",
+      "summary": "Official PythonRobotics python main example for ekf slam. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "SLAM/EKFSLAM/ekf_slam.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/EKFSLAM/ekf_slam.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/EKFSLAM/ekf_slam.py",
+        "sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+        "bytes": 6924,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "utils.angle"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python SLAM/EKFSLAM/ekf_slam.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "EKF SLAM",
+        "Extended Kalman Filter SLAM"
+      ]
+    },
+    {
+      "id": "pythonrobotics-slam-fastslam1-fast-slam1-py",
+      "name": "PythonRobotics: fast slam1",
+      "summary": "Official PythonRobotics python main example for fast slam1. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "SLAM/FastSLAM1/fast_slam1.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/FastSLAM1/fast_slam1.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/SLAM/FastSLAM1/fast_slam1.py",
+        "sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",
+        "bytes": 10321,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
+        ],
+        "display": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "utils.angle"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python SLAM/FastSLAM1/fast_slam1.py",
+        "notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "FastSLAM",
+        "FastSLAM 1.0",
+        "feature based SLAM"
       ]
     },
     {

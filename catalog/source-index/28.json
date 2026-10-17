@@ -20,6 +20,12 @@
       "record_version": "source-042e40b420a1435aa7019dceed9a5ef4b102b1e7981cd72033db64e24d1ed17a"
     },
     {
+      "id": "pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+      "record_version": "source-fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e"
+    },
+    {
       "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-036c51922260",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "1baa2292abd5c44e33aa734351a7e6ec5b220eb6bb308b2097c8511e3b734c94",
