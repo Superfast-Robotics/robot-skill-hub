@@ -15,5 +15,5 @@ or camera output is requested by the wrapper. Graphics examples
 and other observation modes require their own compatibility checks. Preserve the
 upstream Apache-2.0 license and original author notices in the downloaded source.
 
-Runtime status: **not_run (미검증)**. Installation, import and simulation task
-completion have not been verified by the hub.
+The canonical JSON keeps source inspection and simulator execution evidence in
+separate fields. Consult those fields for the exact recorded environment.

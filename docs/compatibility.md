@@ -1,9 +1,11 @@
-# Preview compatibility
+# Compatibility
 
-The first two recipes wrap the official ManiSkill 3.0.0b22 Panda motion planners for PickCube-v1 and StackCube-v1. The catalog pins a full upstream commit and archive SHA-256. All requirements are recorded as combinations, not independent robot/runtime lists.
+The catalog wraps official ManiSkill 3.0.0b22 motion planners for Panda variants (`panda`, `panda_wristcam`), Panda Stick (`panda_stick`), xArm6 Robotiq (`xarm6_robotiq`) and SO100. Each recipe pins a full upstream commit and archive SHA-256. Requirements are recorded as complete combinations of task, robot, controller and runtime.
 
-Intended combination: Linux x86_64, Python 3.10, `maniskill` 3.0.0b22, Panda, `pd_joint_pos`, simulator state observations, one CPU simulation environment. Consult each record for package versions and command arguments. A state-based planner has privileged simulator information and is not comparable to an RGB-only controller under equal observation conditions.
+The preparation target is Linux x86_64, Python 3.10, `maniskill` 3.0.0b22, simulator state observations and one CPU simulation environment with rendering disabled. Consult each record for its exact robot, controller, package versions and command arguments. A state-based planner uses privileged simulator information; evaluate it separately from an RGB-only controller.
 
-Runtime execution has not been verified on this Windows development host. Source review and structural tests do not establish installation, import, success rate, physical robot safety, performance improvement or compatibility with other ManiSkill releases. Video rendering and real hardware control are outside this preview.
+Records distinguish source review from runtime results. Task execution has not been demonstrated on this Windows development host; current recipes retain their recorded evidence levels. Source review and structural tests do not establish installation, import, success rate, hardware safety, performance improvement or compatibility with other ManiSkill releases. Video rendering and real hardware control are outside the current preparation scope.
 
 Windows/macOS can read the public catalog. The local tool reports unsupported simulator OS rather than treating it as compatible. Unknown requirements remain unknown. Existing research locks remain unchanged until an explicit new preparation is requested.
+
+The separate [official source example index](https://hub.superfastrobotics.com/catalog/v1/references.json) covers additional frameworks. Those entries support source browsing only. They are not preparation records, compatibility claims or local execution results; see [source selection notes](sample-sources.md).

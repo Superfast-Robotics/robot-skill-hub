@@ -8,7 +8,7 @@
   "routes": [{ "pattern": "api.superfastrobotics.com", "custom_domain": true }],
   "observability": { "enabled": false },
   "vars": {
-    "PUBLICATION_URL": "https://superfastrobotics.com/catalog/v1/publication.json"
+    "PUBLICATION_URL": "https://hub.superfastrobotics.com/catalog/v1/publication.json"
   },
   "ratelimits": [
     { "name": "SUBMIT_LIMITER", "namespace_id": "78345101", "simple": { "limit": 10, "period": 60 } },

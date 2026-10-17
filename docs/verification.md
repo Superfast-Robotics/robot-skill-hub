@@ -2,9 +2,13 @@
 
 ## Confirmed locally
 
-- Python CLI and adapter tests: **22 passed**.
-- Catalog integrity/publication tests: **6 passed**.
-- Worker contract tests: **20 passed**; real workerd transport tests: **3 passed**; TypeScript check passed. All 51 automated tests passed across Python, catalog and API checks.
+- Python CLI and adapter tests: **26 passed**.
+- Catalog integrity/publication tests: **9 passed**.
+- Worker contract tests: **24 passed**; real workerd transport tests: **3 passed**; TypeScript check passed. All 62 automated tests passed across Python, catalog and API checks.
+- Agent-first update: 17 preparation recipes and 40 official source references pass validation. All generated HTML has no CSS or client-side JavaScript; JSON, Markdown, robots, sitemap and full-text discovery files are generated together.
+- The 15 added adapters preserve exact robot/task/controller contracts in dependency-mocked tests. DrawSVG source-only preparation in another clean Windows project verified the real pinned archive, recipe files and lock without creating an environment, installing dependencies or executing a simulator.
+- Official MuJoCo, Bullet and robosuite reference files were fetched at exact release commits and hashed; entrypoints, imports and licenses were inspected. They are discovery references without Hub preparation adapters. Repository stars are a dated interest proxy, not usage counts.
+- The earlier live publication manifest was captured before English documentation edits, and every original contribution-path hash matched the deployed Git commit. Its original receipt and archived record stay immutable. Historical status tests require the exact original receipt, hashes, version, source and both merge/deployment ancestry links.
 - Skill frontmatter validator and Python compile checks passed.
 - Wrangler production dry-run passed; bundle about 34 KiB (10 KiB gzip).
 - Exact upstream archive `33967b9e3ead1f841eec57cc9f31d0d8b8cf0907` downloaded, SHA-256 `d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4` verified and 1,824 members extracted safely.
@@ -27,7 +31,7 @@
 
 ## Live contribution and domain verification
 
-- Canonical catalog https://superfastrobotics.com/ and API https://api.superfastrobotics.com/healthz both returned HTTP 200 with valid HTTPS. GitHub Pages HTTPS enforcement is enabled; the old github.io project URL redirects to the custom domain.
+- At the initial deployment, the catalog at its then-canonical apex domain, `superfastrobotics.com`, and API https://api.superfastrobotics.com/healthz both returned HTTP 200 with valid HTTPS. GitHub Pages HTTPS enforcement was enabled and the old github.io project URL redirected to that catalog domain. The catalog's new deployment target is https://hub.superfastrobotics.com/; the apex is reserved for the company website.
 - Real `POST /v1/submissions` returned **201** and created exactly one internal draft [PR #1](https://github.com/Superfast-Robotics/robot-skill-hub/pull/1). The change documents the actually verified Windows source-only preparation command and its non-execution outcome.
 - Two concurrent replays returned **200**, the same submission ID and the same PR. A changed body using the same key returned **409 idempotency_key_conflict**. Missing authentication returned **401 invalid_token**. Status returned **pending_review** after CI.
 - Independent review confirmed exactly three changed files (recipe documentation, server-generated record and receipt), preserved upstream source/license/attribution, matching content hashes, and no promotion of runtime evidence. The operator marked the draft ready and merged after successful checks. The Worker never merges automatically.
@@ -38,7 +42,7 @@
 
 ## Pending / unverified
 
-- ManiSkill dependency installation, successful ManiSkill import and PickCube/StackCube task completion on Linux are **not_run / 미검증**. This Windows host is not a supported simulator environment; Docker's engine was unavailable and no general WSL Linux distribution was installed. No GPU or paid execution service was provisioned.
+- ManiSkill dependency installation, successful ManiSkill import and PickCube/StackCube task completion on Linux remain `not_run`. This Windows host is not a supported simulator environment; Docker's engine was unavailable and no general WSL Linux distribution was installed. No GPU or paid execution service was provisioned.
 - Unbranded agent discovery, automatic skill selection by a fresh agent, external search indexing, skills.sh search inclusion and Context7 indexing are **unverified**. A repository install test does not establish them.
 
 The original supplied planning documents remain local and were not published. No tokens, private datasets, session transcripts or full project logs were uploaded.

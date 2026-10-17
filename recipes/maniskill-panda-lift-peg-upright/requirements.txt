@@ -1,0 +1,8 @@
+# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.
+# Install the SHA256-checked upstream source separately as documented.
+torch==2.5.1
+numpy==1.26.4
+sapien==3.0.0
+mplib==0.1.1
+fast_kinematics==0.2.2
+# Transitive dependencies are resolved by pip; this is not a full lockfile.

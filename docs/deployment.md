@@ -1,11 +1,15 @@
 # Deployment and operations
 
-Repository: https://github.com/Superfast-Robotics/robot-skill-hub  
-Catalog: https://superfastrobotics.com/  
-Worker: `robot-skill-hub-api`  
-Cloudflare account: `8df378989a27166c1180b588582573df`  
-API custom domain: https://api.superfastrobotics.com  
-API fallback: https://robot-skill-hub-api.superfast-robotics.workers.dev
+| Component | Location |
+| :--- | :--- |
+| Hub repository | https://github.com/Superfast-Robotics/robot-skill-hub |
+| Company website | https://superfastrobotics.com/ |
+| Company website repository | https://github.com/Superfast-Robotics/superfast-robotics.github.io |
+| Catalog | https://hub.superfastrobotics.com/ |
+| Worker | `robot-skill-hub-api` |
+| Cloudflare account | `8df378989a27166c1180b588582573df` |
+| API custom domain | https://api.superfastrobotics.com |
+| API fallback | https://robot-skill-hub-api.superfast-robotics.workers.dev |
 
 These are deployment targets. See `docs/verification.md` for what was actually confirmed.
 
@@ -14,7 +18,7 @@ These are deployment targets. See `docs/verification.md` for what was actually c
 Use Python 3.10 and Node 24. On Windows with restricted PowerShell scripts use `npm.cmd`/`npx.cmd`.
 
 ```powershell
-python tools/build_catalog.py --hub-commit (git rev-parse HEAD) --base-url https://superfastrobotics.com
+python tools/build_catalog.py --hub-commit (git rev-parse HEAD) --base-url https://hub.superfastrobotics.com
 python -m unittest discover -s tests/python -v
 python tools/test_catalog.py -v
 npm.cmd --prefix api ci
@@ -70,16 +74,16 @@ Each caller needs a distinct principal. Set `disabled:true` on a configured toke
 
 `api/wrangler.jsonc` attaches `api.superfastrobotics.com` as a Worker custom domain. Cloudflare manages its DNS record and certificate when the authenticated account has Worker routing permission.
 
-The catalog is configured to use the apex domain. For a fresh setup, add in Cloudflare → superfastrobotics.com → DNS → Records:
+The catalog uses `hub.superfastrobotics.com`; the apex `superfastrobotics.com` belongs to the company website, hosted from the separate `superfast-robotics.github.io` repository. For a fresh catalog setup, add in Cloudflare → superfastrobotics.com → DNS → Records:
 
 ```text
 Type: CNAME
-Name: @
+Name: hub
 Target: superfast-robotics.github.io
 Proxy status: DNS only
 ```
 
-Do not replace unrelated existing DNS records. Then set repository Settings → Pages → Custom domain to `superfastrobotics.com`, and enable **Enforce HTTPS** after GitHub issues the certificate. Set repository Settings → Secrets and variables → Actions → Variables → `SITE_BASE_URL=https://superfastrobotics.com`. Re-run `Publish catalog`. Update `PUBLICATION_URL` in the Worker config to `https://superfastrobotics.com/catalog/v1/publication.json`, redeploy and verify it. After enabling the custom domain, GitHub redirects the old github.io project URL to the canonical domain. The Worker uses the canonical manifest URL directly.
+Do not replace the company site's apex records or unrelated DNS records. Set repository Settings → Pages → Custom domain to `hub.superfastrobotics.com`, and enable **Enforce HTTPS** after GitHub issues the certificate. Set repository Settings → Secrets and variables → Actions → Variables → `SITE_BASE_URL=https://hub.superfastrobotics.com`. Re-run `Publish catalog`. Update `PUBLICATION_URL` in the Worker config to `https://hub.superfastrobotics.com/catalog/v1/publication.json`, redeploy and verify it. GitHub redirects the old github.io project URL to the catalog's canonical domain. The Worker uses the catalog manifest URL directly.
 
 ## Review and publication
 

@@ -173,6 +173,14 @@ export async function submit(request: Request, principal: string, adapter: GitHu
   return { status: replay ? 200 : 201, response: { submission_id: id, status: 'submitted', status_path: `/v1/submissions/${id}`, pr_url: pull.html_url, published_version: null, next_action: 'continue_user_task', replay } };
 }
 
+function matchingPublication(records: unknown, receipt: Receipt): JsonObject | undefined {
+  if (!Array.isArray(records) || !object(receipt.patch_hashes) || Object.keys(receipt.patch_hashes).length === 0) return;
+  return records.find(r => object(r) && r.id === receipt.skill_id && r.record_version === receipt.new_record_version &&
+    r.source_commit === receipt.base.source_commit && Array.isArray(r.submission_ids) && r.submission_ids.includes(receipt.submission_id) &&
+    object(r.contribution_path_hashes) && Object.entries(receipt.patch_hashes).every(([path, hash]) =>
+      typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash) && r.contribution_path_hashes[path] === hash));
+}
+
 export async function getStatus(id: string, principal: string, adapter: GitHubAdapter, publication: () => Promise<any>): Promise<JsonObject> {
   const pull = await adapter.findPull(id); assert(pull, 'submission_not_found', 'Submission not found.', 404);
   const receipt = readReceipt(pull.body); owned(receipt, id, principal);
@@ -191,12 +199,26 @@ export async function getStatus(id: string, principal: string, adapter: GitHubAd
     result.status = 'merged';
     try {
       const manifest = await publication();
-      const deployed = manifest?.records?.find((r: any) => r.id === receipt.skill_id && r.record_version === receipt.new_record_version && r.source_commit === receipt.base.source_commit);
-      const proof = manifest?.schema_version === '1' && SHA.test(manifest.hub_commit) && pull.merge_commit_sha &&
-        deployed && (deployed.submission_ids || []).includes(id) &&
-        Object.entries(receipt.patch_hashes).every(([path, hash]) => deployed.contribution_path_hashes?.[path] === hash);
-      if (proof && await adapter.isAncestor(pull.merge_commit_sha!, manifest.hub_commit)) {
-        return { ...result, status: 'published', published_version: deployed.record_version, source_commit: deployed.source_commit, compatibility: deployed.compatibility, recipe_url: deployed.recipe_url, published_hub_commit: manifest.hub_commit };
+      if (object(manifest) && manifest.schema_version === '1' && typeof manifest.hub_commit === 'string' && SHA.test(manifest.hub_commit) &&
+        pull.merge_commit_sha && SHA.test(pull.merge_commit_sha)) {
+        const published = (record: JsonObject, commit: string, scope: 'current' | 'historical'): JsonObject => ({
+          ...result, status: 'published', published_version: record.record_version, source_commit: record.source_commit,
+          compatibility: record.compatibility, recipe_url: record.recipe_url, published_hub_commit: commit, publication_scope: scope
+        });
+        const deployed = matchingPublication(manifest.records, receipt);
+        if (deployed && await adapter.isAncestor(pull.merge_commit_sha, manifest.hub_commit)) {
+          return published(deployed, manifest.hub_commit, 'current');
+        }
+        // History contains operator-preserved, actually deployed proofs. Never
+        // relabel changed current bytes with an old receipt's accepted hashes.
+        for (const release of Array.isArray(manifest.history) ? manifest.history : []) {
+          if (!object(release) || typeof release.hub_commit !== 'string' || !SHA.test(release.hub_commit)) continue;
+          const archived = matchingPublication(release.records, receipt);
+          if (archived && await adapter.isAncestor(pull.merge_commit_sha, release.hub_commit) &&
+            await adapter.isAncestor(release.hub_commit, manifest.hub_commit)) {
+            return published(archived, release.hub_commit, 'historical');
+          }
+        }
       }
       result.reason_code = 'publication_not_confirmed';
     } catch { result.reason_code = 'publication_unavailable'; }

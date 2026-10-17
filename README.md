@@ -1,21 +1,15 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="web/brand/wordmark-dark.png">
-  <img src="web/brand/wordmark-light.png" alt="Superfast Robotics" width="340">
+  <img src="web/brand/wordmark-light.png" alt="Superfast Robotics" width="260">
 </picture>
 
-<br><br>
-
-![Robot Skill Hub. Discover, inspect and prepare reusable robot code.](web/github/robot-skill-hub.svg)
+# Robot Skill Hub
 
 **Reusable robot code, with the context to use it.** Find skills for your environment, inspect pinned sources and evidence, and prepare a reproducible starting point for your next experiment.
 
-[**Explore the catalog →**](https://superfastrobotics.com/) · [Agent quickstart](docs/agent-quickstart.md) · [Contribution guide](docs/contributing.md) · [API](api/README.md)
+[**Catalog: hub.superfastrobotics.com →**](https://hub.superfastrobotics.com/) · [API: api.superfastrobotics.com](https://api.superfastrobotics.com/healthz)
 
-## From discovery to preparation
-
-| Find | Inspect | Prepare |
-| :--- | :--- | :--- |
-| Search by task, runtime and robot. | Check source pins, requirements, licenses and actual evidence. | Download verified sources and preserve a project lock. |
+## Use with your agent
 
 Install the self-contained discovery skill for your agent:
 
@@ -37,18 +31,19 @@ python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pick-cube
 
 Use the exact ID returned by `find`. The last command previews source-only preparation without writing files, installing dependencies or running a simulator. Follow the [quickstart](docs/agent-quickstart.md) to prepare the source in a project.
 
-## The first environment
+| Find | Inspect | Prepare |
+| :--- | :--- | :--- |
+| Search by task, runtime and robot. | Check source pins, requirements, licenses and evidence. | Download verified sources and preserve a project lock. |
 
-This public preview starts with the official ManiSkill Panda **PickCube-v1** and **StackCube-v1** motion planning recipes. Every record pins its upstream source and recipe version.
+## Choose a ManiSkill recipe
 
-| Target | Preview support |
-| :--- | :--- |
-| Simulator | Linux x86_64 · Python 3.10 · ManiSkill 3.0.0b22 |
-| Robot and control | Panda · `pd_joint_pos` · simulator state observations · CPU simulation |
-| Windows | Catalog search, inspection and source-only preparation |
-| Robot task execution | **`not_run` / 미검증** — Linux installation and actual task completion remain unverified |
+Browse official ManiSkill motion planning recipes for **Panda**, **Panda Stick**, **xArm6 Robotiq** and **SO100**. Start with Panda **PickCube-v1** or **StackCube-v1**, then search the catalog for your task and exact robot variant.
 
-Preparation does not execute the robot task. Source review, successful installation and task completion are separate evidence levels. See [compatibility](docs/compatibility.md) and the [verification record](docs/verification.md) before choosing a recipe.
+The preparation target is Linux x86_64, Python 3.10 and ManiSkill 3.0.0b22 with state observations and CPU simulation. Each recipe specifies its robot and controller. Windows supports catalog search, inspection and source-only preparation.
+
+Every record pins its source and recipe version. Preparation and task execution are separate steps; see [compatibility](docs/compatibility.md) for requirements and [execution evidence](docs/verification.md) for the current results.
+
+For other runtimes, browse the [official source examples](https://hub.superfastrobotics.com/catalog/v1/references.json) and [source selection notes](docs/sample-sources.md). These references point to pinned upstream code; they are separate from the preparation recipes.
 
 ## Useful fixes, reviewed before publication
 
@@ -63,7 +58,7 @@ Submission and status endpoint: [`api.superfastrobotics.com`](https://api.superf
 ## Develop and validate
 
 ```sh
-python tools/build_catalog.py --base-url https://superfastrobotics.com
+python tools/build_catalog.py --base-url https://hub.superfastrobotics.com
 python -m unittest discover -s tests/python -v
 python tools/test_catalog.py -v
 npm --prefix api ci
@@ -71,12 +66,10 @@ npm --prefix api run check
 npm --prefix api test
 ```
 
-GitHub hosts source, catalog records and internal PRs. GitHub Pages serves the public catalog. Cloudflare Workers handles authenticated submissions and status queries. The preview has no hosted simulator, model service, database, account UI or payment flow; deployment does not upgrade any plan.
-
-Publishing this repository does not establish search indexing, automatic agent selection or simulator success. The [verification record](docs/verification.md) distinguishes completed checks from remaining work.
+GitHub hosts source, catalog records and internal PRs. GitHub Pages serves the public catalog. Cloudflare Workers handles authenticated submissions and status queries. Robot code runs in your own environment.
 
 ---
 
-[Superfast Robotics](https://github.com/Superfast-Robotics) · Building toward a **Super Fast Robot Agent OS**.
+[Superfast Robotics](https://superfastrobotics.com/) · Building toward a **Super Fast Robot Agent OS**.
 
 Hub code is [MIT licensed](LICENSE). Upstream ManiSkill is Apache-2.0; its authorship and license references remain in every record and recipe.

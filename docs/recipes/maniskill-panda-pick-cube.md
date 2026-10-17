@@ -17,8 +17,8 @@ retain them in prepared projects. Follow the original repository's contribution
 rules for changes to upstream code. The hub API accepts only its own wrapper,
 dependency metadata and documentation paths.
 
-Runtime status: **not_run (미검증)**. A source review and checksum verification do
-not prove dependency installation, imports or task completion on Linux.
+The canonical JSON keeps source inspection and simulator execution evidence in
+separate fields. Consult those fields for the exact recorded environment.
 
 ## Prepare the source from Windows
 
@@ -27,7 +27,7 @@ is Linux. To preserve the pinned source and adapter without attempting an
 unsupported simulation environment, use the installed skill directory:
 
 ```sh
-python /PATH_TO_SKILL/scripts/rsh.py --catalog https://superfastrobotics.com/catalog/v1/index.json prepare maniskill-panda-pick-cube --project ./pick-cube-source --download-only --json
+python /PATH_TO_SKILL/scripts/rsh.py --catalog https://hub.superfastrobotics.com/catalog/v1/index.json prepare maniskill-panda-pick-cube --project ./pick-cube-source --download-only --json
 ```
 
 The expected result is `needs_configuration` with

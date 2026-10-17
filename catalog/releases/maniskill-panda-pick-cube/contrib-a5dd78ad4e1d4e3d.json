@@ -1,0 +1,192 @@
+{
+  "schema_version": "1",
+  "id": "maniskill-panda-pick-cube",
+  "name": "ManiSkill Panda PickCube Python recipe",
+  "summary": "Grasp a cube and move it to a target with the official Panda motion planner.",
+  "capabilities": [
+    "grasping",
+    "pick",
+    "pick-and-place",
+    "motion-planning"
+  ],
+  "aliases": [
+    "PickCube-v1",
+    "Panda",
+    "Franka",
+    "robot manipulation",
+    "reusable Python code",
+    "pick_cube",
+    "object manipulation"
+  ],
+  "source": {
+    "repository": "https://github.com/haosulab/ManiSkill",
+    "commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "tag": "v3.0.0b22",
+    "paths": [
+      "mani_skill/examples/motionplanning/panda/run.py",
+      "mani_skill/examples/motionplanning/panda/solutions/pick_cube.py",
+      "LICENSE"
+    ],
+    "archive_url": "https://codeload.github.com/haosulab/ManiSkill/tar.gz/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+    "archive_bytes": 243636110,
+    "authors": [
+      "ManiSkill contributors"
+    ],
+    "contributing_url": "https://github.com/haosulab/ManiSkill/tree/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907"
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/haosulab/ManiSkill/blob/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907/LICENSE",
+    "verified": true,
+    "scope": "Upstream ManiSkill code; hub wrapper and metadata use the hub LICENSE."
+  },
+  "compatibility": [
+    {
+      "runtime": "maniskill",
+      "runtime_version": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "contributor_reported"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Reads ground-truth object poses, collision geometry and robot state directly from the simulator. Not an RGB-only policy."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "torch==2.5.1",
+      "numpy==1.26.4",
+      "sapien==3.0.0",
+      "mplib==0.1.1",
+      "fast_kinematics==0.2.2"
+    ],
+    "hardware": [
+      "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
+    ],
+    "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+    "api_keys": [],
+    "network": [
+      "GitHub source archive (~233 MiB)",
+      "PyPI and dependency distributions; source package build hooks may execute"
+    ],
+    "dependency_lock": "Direct dependencies pinned; transitive dependencies resolved by pip and captured in the prepared project. No bit-for-bit environment guarantee."
+  },
+  "invocation": {
+    "entrypoint": "mani_skill.examples.motionplanning.panda.solutions.pick_cube:solve",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--seed",
+      "0"
+    ],
+    "inputs": {
+      "task": "PickCube-v1",
+      "seed": 0,
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "obs_mode": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none"
+    },
+    "outputs": {
+      "format": "last stdout line JSON",
+      "fields": [
+        "status",
+        "success",
+        "elapsed_steps",
+        "task",
+        "seed",
+        "runtime",
+        "robot",
+        "controller",
+        "observation",
+        "sim_backend",
+        "render_backend"
+      ],
+      "error_fields": [
+        "status",
+        "reason_code",
+        "error_type",
+        "message"
+      ]
+    },
+    "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pick-cube --project ./experiment --json"
+  },
+  "completion": {
+    "success_condition": "PickCube-v1 env info.success is true after upstream solver finishes; adapter exit 0 only when success is true.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Dependency installation unavailable or incompatible",
+      "Required Linux mplib wheels unavailable on host OS",
+      "Motion planning reports failure or env info.success is false",
+      "Runtime exception or asset download failure"
+    ],
+    "stop_condition": "Stop after one seed; no retries to conceal failures. Use an external 180-second process timeout."
+  },
+  "preparation": {
+    "recipe_path": "recipes/maniskill-panda-pick-cube",
+    "requirements_file": "recipes/maniskill-panda-pick-cube/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt",
+      "{source_dir}"
+    ],
+    "execution_separate": true,
+    "files": {
+      "run.py": "\"\"\"CPU/state adapter around the pinned upstream ManiSkill PickCube solver.\n\nThe solver is authored by ManiSkill contributors (Apache-2.0); this hub wrapper\ndoes not contain upstream solver code. It never renders or controls hardware.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs  # registers simulation tasks\n    from mani_skill.examples.motionplanning.panda.solutions.pick_cube import solve\n\n    env = gym.make(\"PickCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None)\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PickCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        # Keep the invocation contract even if an optional dependency is absent\n        # or the simulator cannot initialize. Do not report this as task success.\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+      "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
+    }
+  },
+  "evidence": {
+    "level": "not_run",
+    "verified_by": "Robot Skill Hub API structural intake",
+    "date": "2026-10-17",
+    "environment": {
+      "runtime": "not_run"
+    },
+    "commands": [
+      "API schema, exact base/source pin, allowlist and strict unified diff checks"
+    ],
+    "result": "Intake structure checks only. Changed recipe runtime, dependency installation, imports and robot tasks were not run by the hub.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": {
+      "command": "rsh.py prepare maniskill-panda-pick-cube --project CLEAN_PROJECT --download-only --json",
+      "level": "contributor_reported",
+      "reported_by": "submitter",
+      "result": "Pinned 243636110-byte upstream archive SHA-256 and extracted paths verified in two clean Windows projects; corrected render_backend=none adapter preserved. Source-only preparation reports needs_configuration with no venv or dependency install. ManiSkill imports and robot task execution: not_run."
+    },
+    "hub_verification": {
+      "level": "structure_checked",
+      "runtime": "not_run"
+    }
+  },
+  "maintenance": {
+    "record_version": "contrib-a5dd78ad4e1d4e3d",
+    "last_checked": "2026-10-17",
+    "upstream_status": "pinned_release; no automatic update"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/maniskill-panda-pick-cube.json",
+      "docs/recipes/maniskill-panda-pick-cube.md",
+      "recipes/maniskill-panda-pick-cube/requirements.txt",
+      "recipes/maniskill-panda-pick-cube/run.py"
+    ],
+    "instructions": "Only actual reusable fixes. Public submission permission and a scoped pilot token are separate requirements. Submission opens a public internal draft PR; it is not publication."
+  }
+}

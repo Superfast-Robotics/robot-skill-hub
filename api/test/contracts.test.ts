@@ -33,6 +33,7 @@ class FakeGitHub implements GitHubAdapter {
   branches = new Map<string, { sha: string; files: Record<string, string> }>();
   pulls = new Map<string, Pull>();
   branchCreates = 0; prCreates = 0; failPR = 0; headReads = 0; ancestor = true;
+  ancestry = new Map<string, boolean>(); ancestorChecks: [string, string][] = [];
   checks: Checks = { state: 'pending', reasons: [], completed: 0 };
   async findPull(id: string) { return this.pulls.get(id) || null; }
   async getBranch(id: string) { return this.branches.get(id)?.sha || null; }
@@ -57,7 +58,10 @@ class FakeGitHub implements GitHubAdapter {
     this.pulls.set(receipt.submission_id, pull); return pull;
   }
   async getChecks() { return this.checks; }
-  async isAncestor() { return this.ancestor; }
+  async isAncestor(ancestor: string, descendant: string) {
+    this.ancestorChecks.push([ancestor, descendant]);
+    return this.ancestry.get(`${ancestor}...${descendant}`) ?? this.ancestor;
+  }
   async closeSuperseded(old: Pull, next: Pull, id: string) { old.body += `\n<!-- rsh-superseded-by:${id} -->`; old.state = 'closed'; }
   async findSuperseding(id: string) { return this.pulls.get(id)?.body?.match(/rsh-superseded-by:(sub_[a-f0-9]{64})/)?.[1] || null; }
 }
@@ -174,7 +178,86 @@ test('merged is never published without deployed version, content, receipt and a
   ]) { s.setManifest(bad); assert.equal((await state()).status, 'merged'); }
   s.setManifest(good); s.github.ancestor = false; assert.equal((await state()).status, 'merged');
   s.github.ancestor = true; const published = await state(); assert.equal(published.status, 'published'); assert.equal(published.published_version, receipt.new_record_version); assert.equal(published.source_commit, SOURCE);
+  assert.equal(published.publication_scope, 'current'); assert.equal(published.published_hub_commit, good.hub_commit);
   assert.equal((await s.post()).status, 200); assert.equal(s.github.prCreates, 1);
+});
+
+async function historicalPublication() {
+  const s = await setup(); const { submission_id: id }: any = await (await s.post()).json();
+  const pull = s.github.pulls.get(id)!; const receipt = readReceipt(pull.body)!;
+  const merge = 'c'.repeat(40); const originalDeployment = 'd'.repeat(40); const currentDeployment = 'f'.repeat(40);
+  pull.merged_at = '2026-10-17T00:00:00Z'; pull.merge_commit_sha = merge; pull.state = 'closed';
+  s.github.checks = { state: 'success', reasons: [], completed: 1 };
+  const archived = { id: ID, record_version: receipt.new_record_version, source_commit: SOURCE,
+    contribution_path_hashes: { ...receipt.patch_hashes }, compatibility: baseRecord.compatibility,
+    recipe_url: `https://example.invalid/releases/${ID}/${receipt.new_record_version}/`, submission_ids: [id] };
+  const manifest: any = { schema_version: '1', hub_commit: currentDeployment,
+    // A maintainer's later documentation edit no longer has the accepted bytes.
+    records: [{ ...archived, recipe_url: 'https://example.invalid/current', submission_ids: [],
+      contribution_path_hashes: { ...receipt.patch_hashes, [DOC]: '0'.repeat(64) } }],
+    history: [{ hub_commit: originalDeployment, records: [archived] }] };
+  s.setManifest(manifest);
+  return { ...s, id, pull, receipt, merge, originalDeployment, currentDeployment, archived, manifest,
+    async state() { return await (await s.status(id)).json() as any; } };
+}
+
+test('later documentation edits preserve the exact previously published version through archived proof', async () => {
+  const s = await historicalPublication();
+  for (const records of [s.manifest.records, [], [{ ...s.archived,
+    contribution_path_hashes: { ...s.receipt.patch_hashes, [DOC]: '0'.repeat(64) } }]]) {
+    s.setManifest({ ...s.manifest, records }); s.github.ancestorChecks = [];
+    const state = await s.state();
+    assert.equal(state.status, 'published'); assert.equal(state.publication_scope, 'historical');
+    assert.equal(state.published_version, s.receipt.new_record_version); assert.equal(state.source_commit, SOURCE);
+    assert.equal(state.recipe_url, s.archived.recipe_url); assert.equal(state.published_hub_commit, s.originalDeployment);
+    assert.deepEqual(state.compatibility, s.archived.compatibility);
+    assert.deepEqual(s.github.ancestorChecks, [[s.merge, s.originalDeployment], [s.originalDeployment, s.currentDeployment]]);
+  }
+  assert.deepEqual(readReceipt(s.pull.body)!.patch_hashes, s.receipt.patch_hashes, 'Original receipt hashes must remain unchanged');
+});
+
+test('current exact deployment takes precedence over a matching historical deployment', async () => {
+  const s = await historicalPublication();
+  s.manifest.records = [{ ...s.archived, recipe_url: 'https://example.invalid/current' }]; s.setManifest(s.manifest);
+  const state = await s.state();
+  assert.equal(state.status, 'published'); assert.equal(state.publication_scope, 'current');
+  assert.equal(state.recipe_url, 'https://example.invalid/current'); assert.equal(state.published_hub_commit, s.currentDeployment);
+  assert.deepEqual(s.github.ancestorChecks, [[s.merge, s.currentDeployment]]);
+});
+
+test('history rejects foreign versions, sources, receipts and incorrect or incomplete accepted hashes', async () => {
+  const s = await historicalPublication();
+  const wrongRecords = [
+    { ...s.archived, id: 'another-skill' },
+    { ...s.archived, record_version: 'a-different-version' },
+    { ...s.archived, source_commit: '1'.repeat(40) },
+    { ...s.archived, submission_ids: [] },
+    { ...s.archived, contribution_path_hashes: { ...s.archived.contribution_path_hashes, [DOC]: '0'.repeat(64) } },
+    { ...s.archived, contribution_path_hashes: { [DOC]: s.receipt.patch_hashes[DOC] } }
+  ];
+  for (const record of wrongRecords) {
+    s.setManifest({ ...s.manifest, history: [{ hub_commit: s.originalDeployment, records: [record] }] });
+    const state = await s.state(); assert.equal(state.status, 'merged'); assert.equal(state.reason_code, 'publication_not_confirmed');
+  }
+  for (const history of [null, {}, [{ hub_commit: 'main', records: [s.archived] }], [{ hub_commit: s.originalDeployment, records: {} }]]) {
+    s.setManifest({ ...s.manifest, history }); const state = await s.state();
+    assert.equal(state.status, 'merged'); assert.equal(state.reason_code, 'publication_not_confirmed');
+  }
+  assert.equal(s.github.ancestorChecks.length, 0, 'Invalid proof contents must not reach ancestry checks');
+});
+
+test('historical publication requires merge-to-history and history-to-current ancestry', async () => {
+  const s = await historicalPublication();
+  s.github.ancestry.set(`${s.merge}...${s.originalDeployment}`, false);
+  let state = await s.state(); assert.equal(state.status, 'merged'); assert.equal(state.reason_code, 'publication_not_confirmed');
+  assert.deepEqual(s.github.ancestorChecks, [[s.merge, s.originalDeployment]]);
+  s.github.ancestry.set(`${s.merge}...${s.originalDeployment}`, true);
+  s.github.ancestry.set(`${s.originalDeployment}...${s.currentDeployment}`, false); s.github.ancestorChecks = [];
+  state = await s.state(); assert.equal(state.status, 'merged'); assert.equal(state.reason_code, 'publication_not_confirmed');
+  assert.deepEqual(s.github.ancestorChecks, [[s.merge, s.originalDeployment], [s.originalDeployment, s.currentDeployment]]);
+  s.pull.merged_at = null; s.pull.state = 'open'; s.github.ancestorChecks = [];
+  state = await s.state(); assert.equal(state.status, 'pending_review'); assert.equal(state.published_version, null);
+  assert.equal(s.github.ancestorChecks.length, 0, 'An unmerged PR cannot use historical publication proof');
 });
 
 test('failed publication remains explicit and does not duplicate PR on retry', async () => {

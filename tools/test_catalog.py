@@ -90,6 +90,35 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('Compatibility status: contributor_reported', page)
         self.assertIn('Runtime: not_run / not_run', page)
 
+    def test_past_publication_keeps_original_hashes_after_notes_change(self):
+        self.build()
+        manifest = json.loads((self.root / "site/catalog/v1/publication.json").read_text(encoding="utf-8"))
+        proof = manifest['history'][0]['records'][0]
+        note = 'docs/recipes/maniskill-panda-pick-cube.md'
+        self.assertNotEqual(proof['contribution_path_hashes'][note], hashlib.sha256((self.root / note).read_bytes()).hexdigest())
+        self.assertTrue(proof['submission_ids'])
+        archived = self.root / 'site/releases' / proof['id'] / proof['record_version']
+        record = json.loads((archived / 'skill.json').read_text(encoding='utf-8'))
+        self.assertEqual(record['source']['commit'], proof['source_commit'])
+        self.assertIn('Pinned record JSON', (archived / 'index.html').read_text(encoding='utf-8'))
+
+    def test_rejects_tampered_historical_record(self):
+        archive = next((self.root / 'catalog/releases').glob('*/*.json'))
+        archive.write_text('{}', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'archive checksum mismatch'):
+            self.build()
+
+    def test_all_agent_pages_are_plain_html(self):
+        self.build()
+        for path in (self.root / 'site').rglob('*.html'):
+            page = path.read_text(encoding='utf-8')
+            self.assertNotIn('<style', page)
+            self.assertNotIn('<script', page)
+            self.assertNotIn('rel="stylesheet"', page)
+            self.assertNotIn(' style=', page)
+        for relative in ('llms.txt','llms-full.txt','robots.txt','catalog/v1/references.json'):
+            self.assertTrue((self.root / 'site' / relative).is_file(), relative)
+
 
 if __name__ == '__main__':
     unittest.main()

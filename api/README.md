@@ -10,7 +10,7 @@ npm.cmd run check
 npm.cmd run dev
 ```
 
-`test` runs 20 contract tests with a fake GitHub adapter plus three tests in the real workerd runtime. The runtime tests intercept every outbound request locally with dummy credentials; they check native fetch behavior, redirect rejection and publication proof. These tests do not themselves prove live GitHub PR creation or robot execution. See [verification](../docs/verification.md) for separate live results.
+`test` runs contract tests with a fake GitHub adapter plus tests in the real workerd runtime. The contract tests include later documentation edits, exact historical publication proofs and both required commit ancestry links. The runtime tests intercept every outbound request locally with dummy credentials; they check native fetch behavior, redirect rejection and publication proof. These tests do not themselves prove live GitHub PR creation or robot execution. See [verification](../docs/verification.md) for separate live results.
 
 ## Secrets and permission boundary
 
@@ -21,7 +21,7 @@ Set these under Cloudflare dashboard → Workers & Pages → robot-skill-hub-api
 
 The Bearer credential is separate from project sharing policy. `publication.public_submission_allowed: true` is mandatory and acknowledges that the patch, environment, evidence and attribution may be publicly visible immediately in GitHub. Only submit a minimal patch after local policy allows public contribution. This assertion is not verified identity or robot verification.
 
-`wrangler.jsonc` fixes the account, Worker and `api.superfastrobotics.com` custom domain. Wrangler login needs that account's Workers Scripts edit and zone/domain management permissions to create the custom domain; no paid upgrade is required by this design. Run `npm.cmd run deploy`. The public manifest URL is the canonical custom-domain URL `https://superfastrobotics.com/catalog/v1/publication.json`; keep `PUBLICATION_URL` in sync with Pages because redirects are deliberately rejected.
+`wrangler.jsonc` fixes the account, Worker and `api.superfastrobotics.com` custom domain. Wrangler login needs that account's Workers Scripts edit and zone/domain management permissions to create the custom domain; no paid upgrade is required by this design. Run `npm.cmd run deploy`. The public manifest URL is `https://hub.superfastrobotics.com/catalog/v1/publication.json`; keep `PUBLICATION_URL` in sync with Pages because redirects are deliberately rejected. The company holding page is a separate site at `https://superfastrobotics.com/`.
 
 ## Contract
 
@@ -43,7 +43,11 @@ Maintainers can apply `rsh:checking`, `rsh:needs_changes`, `rsh:rejected`, or `r
 
 Check runs are read without an Authorization header from the fixed **public** repository and a full commit SHA. [GitHub documents unauthenticated access to public check runs](https://docs.github.com/en/rest/checks/runs#list-check-runs-for-a-git-reference), so the dedicated token needs no Checks permission. All other GitHub operations retain the dedicated token; failed writes are never retried anonymously. Public reads share [GitHub's 60 requests/hour unauthenticated rate limit per originating IP](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api#primary-rate-limit-for-unauthenticated-users), so exhausted quota returns a retryable 503 rather than treating checks as successful. This public-read approach depends on the repository remaining public.
 
-Merge alone yields `merged`. `published` requires the actually served public manifest to contain the receipt ID, exact new record/source versions and SHA-256 hashes of every changed file, plus proof that the PR merge commit is an ancestor of the manifest's deployed hub commit. Publication failure yields `publish_failed` when checks or the maintainer label show failure. Unreachable or stale manifests cannot yield `published`.
+Merge alone yields `merged`. `published` requires the actually served public manifest to contain the receipt ID, exact new record/source versions and SHA-256 hashes of every changed file, plus proof that the PR merge commit is an ancestor of the manifest's deployed hub commit. A matching current record returns `publication_scope: current`.
+
+Later maintainer edits can change the current recipe without rewriting the original submission receipt. To preserve publication history, maintainers archive proofs from previously served manifests in `catalog/publication-history.json`; the builder publishes these releases under `manifest.history`. Git history alone is not evidence of an earlier deployment. An archived proof must retain the original skill ID, record/source versions, receipt ID and every accepted path hash. Status accepts it only after verifying both ancestry links: PR merge commit → original deployed commit → current manifest commit. It returns `publication_scope: historical`, the original `published_hub_commit` and the archived, version-specific `recipe_url`. This records that the accepted version was published; it does not claim its bytes still match the current recipe. Current exact proof takes precedence over historical proof.
+
+Publication failure yields `publish_failed` when checks or the maintainer label show failure. An unreachable manifest or mismatched proof does not yield `published`. Existing receipt hashes and contributor evidence are never rewritten to match later edits.
 
 A new key and `supersedes_submission_id` can supplement the same principal's open `needs_changes` request. The old PR is closed and linked only after the replacement PR is durable. A failed replacement keeps the old request. Retry repairs an interrupted close/link step. Manual final code review and merge remain necessary; merging and deployment are not automatic approval of agent code.
 

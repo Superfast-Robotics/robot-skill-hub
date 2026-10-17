@@ -1,0 +1,2528 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-17",
+  "description": "Pinned official examples for source discovery. These entries are separate from Hub preparation recipes.",
+  "selection": "Official examples from widely followed simulator repositories. GitHub stars are a dated repository interest proxy, not a ranking of actual usage.",
+  "records": [
+    {
+      "id": "mujoco-basic",
+      "name": "MuJoCo minimal interactive simulator",
+      "summary": "Build the official minimal C++ simulator with GLFW camera interaction.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "simulation",
+        "cpp",
+        "viewer"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "sample/basic.cc",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/sample/basic.cc",
+        "sha256": "ca585c99ca6eede2b2d15fb28b6d63b7c822d4a5e8ea7e031865682a700abddc",
+        "bytes": 5646
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "GLFW/glfw3.h",
+          "cstdio",
+          "cstdlib",
+          "cstring",
+          "mujoco/mujoco.h"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "C++ main: sample/basic.cc (build with upstream CMake)",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-compile",
+      "name": "MuJoCo model format conversion",
+      "summary": "Convert MJCF, URDF, and binary model formats with the official compiler sample.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "model-conversion",
+        "mjcf",
+        "urdf"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "sample/compile.cc",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/sample/compile.cc",
+        "sha256": "61b4e5d60decb2667ba3e0394503e3188bb7dccb59dec836021272cf5ef08d28",
+        "bytes": 4305
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "cctype",
+          "chrono",
+          "cstddef",
+          "cstdio",
+          "cstdlib",
+          "cstring",
+          "iostream",
+          "mujoco/mujoco.h"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "C++ main: sample/compile.cc (build with upstream CMake)",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-mjx-tutorial",
+      "name": "MuJoCo MJX tutorial",
+      "summary": "Use the official notebook to explore JAX-based accelerated MuJoCo simulation.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "jax",
+        "accelerated-simulation",
+        "reinforcement-learning"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "mjx/tutorial.ipynb",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/mjx/tutorial.ipynb",
+        "sha256": "9f9512ce0651b90443528553c617852a81ba0886d1267f1a0635bb4c73a68432",
+        "bytes": 59067
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco-mjx (follow pinned tutorial install cells)",
+          "jax and accelerator-compatible jaxlib",
+          "notebook dependencies listed in source_imports"
+        ],
+        "display": "The upstream notebook requires a GPU-accelerated Colab runtime and JAX/MJX setup. Inspect notebook install cells before running.",
+        "source_imports": [
+          "IPython.display",
+          "brax",
+          "brax.base",
+          "brax.envs.base",
+          "brax.io",
+          "brax.mjx.base",
+          "brax.training.agents.ppo",
+          "datetime",
+          "distutils.util",
+          "etils",
+          "flax",
+          "flax.training",
+          "functools",
+          "google.colab",
+          "itertools",
+          "jax",
+          "matplotlib",
+          "matplotlib.pyplot",
+          "mediapy",
+          "ml_collections",
+          "mujoco",
+          "numpy",
+          "orbax",
+          "os",
+          "subprocess",
+          "time",
+          "typing"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Notebook: mjx/tutorial.ipynb",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-record",
+      "name": "MuJoCo offscreen trajectory recording",
+      "summary": "Render passive model dynamics offscreen and write raw frame data.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "offscreen-rendering",
+        "video",
+        "simulation"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "sample/record.cc",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/sample/record.cc",
+        "sha256": "6c751d365ebf823970ababffaef1e38e59fb82ee00ab6351fa5057f6460fd967",
+        "bytes": 8653
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "array_safety.h",
+          "cstdio",
+          "cstdlib",
+          "cstring",
+          "mujoco/mujoco.h"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "C++ main: sample/record.cc (build with upstream CMake)",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-simulate",
+      "name": "MuJoCo full interactive simulator",
+      "summary": "Build and run the official simulator with model inspection, profiling, and sensor plots.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "simulation",
+        "viewer",
+        "profiling"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "simulate/main.cc",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/simulate/main.cc",
+        "sha256": "7659d8b4b8f298c141ce92ffc867a3e48f0b65a45f5a995fb0e0840c9d3d13bb",
+        "bytes": 16024
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "array_safety.h",
+          "cerrno",
+          "chrono",
+          "cstdint",
+          "cstdio",
+          "cstdlib",
+          "cstring",
+          "glfw_adapter.h",
+          "iostream",
+          "memory",
+          "mujoco/experimental/usd/usd.h",
+          "mujoco/mujoco.h",
+          "mutex",
+          "new",
+          "simulate.h",
+          "string",
+          "thread"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "C++ main: simulate/main.cc (build with upstream CMake)",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-testspeed",
+      "name": "MuJoCo simulation benchmark sample",
+      "summary": "Time model rollouts and inspect contact, constraint, and CPU statistics.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "benchmark",
+        "simulation",
+        "rollout"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "sample/testspeed.cc",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/sample/testspeed.cc",
+        "sha256": "47402cbcc448e93e3b218e74084ad0c91a90a19780e4eaa113b634fc44bdf8b1",
+        "bytes": 11521
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "chrono",
+          "cstdio",
+          "cstdlib",
+          "cstring",
+          "mujoco/mujoco.h",
+          "ratio",
+          "string",
+          "thread",
+          "vector"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "C++ main: sample/testspeed.cc (build with upstream CMake)",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-tutorial",
+      "name": "MuJoCo Python tutorial",
+      "summary": "Work through official model loading, simulation, rendering, and control examples.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "simulation",
+        "python",
+        "control",
+        "quickstart"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "python/tutorial.ipynb",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/python/tutorial.ipynb",
+        "sha256": "eb5b33305e9317c194b4adf529d1d71e81d0b251325a779f9b5112d25587743e",
+        "bytes": 75215
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "IPython.display",
+          "distutils.util",
+          "google.colab",
+          "itertools",
+          "matplotlib.pyplot",
+          "mediapy",
+          "mujoco",
+          "numpy",
+          "os",
+          "subprocess",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Notebook: python/tutorial.ipynb",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "mujoco-viewer",
+      "name": "MuJoCo Python interactive viewer",
+      "summary": "Launch the official Python viewer and inspect its passive and managed simulation interfaces.",
+      "framework": "mujoco",
+      "kind": "official_example",
+      "capabilities": [
+        "viewer",
+        "simulation",
+        "python"
+      ],
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco",
+        "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+        "tag": "3.3.7",
+        "path": "python/mujoco/viewer.py",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/python/mujoco/viewer.py",
+        "sha256": "8954ad166e1865c9844ae6566ebde5aab91376ba514b9406b9f9f7e8f7e4afd8",
+        "bytes": 18520
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/google-deepmind/mujoco/blob/f1d45bd5422c74beddfb0d1deb590a02583d21de/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"
+      },
+      "requirements": {
+        "python": "Python examples follow upstream package constraints; native samples use C++",
+        "packages": [
+          "mujoco==3.3.7 (Python)",
+          "MuJoCo 3.3.7 and CMake toolchain (native samples)"
+        ],
+        "display": "Upstream example controls rendering; inspect source before use. GUI, device, model or dataset setup may be required.",
+        "source_imports": [
+          "abc",
+          "absl",
+          "atexit",
+          "contextlib",
+          "glfw",
+          "math",
+          "mujoco",
+          "numpy",
+          "os",
+          "queue",
+          "sys",
+          "threading",
+          "time",
+          "typing",
+          "weakref"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python -m mujoco.viewer --mjcf=/path/to/model.xml",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 15726,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-batchraycast",
+      "name": "PyBullet batch ray casting",
+      "summary": "Cast batches of rays around a simulated scene and visualize intersections.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "ray-casting",
+        "sensing",
+        "collision"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/batchRayCast.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/batchRayCast.py",
+        "sha256": "d5331351922f6679d724a6c618827c60d127ae7dad14d239cf6064892cfc262e",
+        "bytes": 1672
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/batchRayCast.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-collisionfilter",
+      "name": "PyBullet collision filtering",
+      "summary": "Configure collision groups and masks between simulated bodies.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "collision",
+        "filtering"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/collisionFilter.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/collisionFilter.py",
+        "sha256": "7b7f881a26b5180db0526502ca5342ca04b9c36267b8f641c0b0396005d79ed9",
+        "bytes": 630
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/collisionFilter.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-constraint",
+      "name": "PyBullet articulated constraints",
+      "summary": "Create and change constraints between robot links and other bodies.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "constraints",
+        "articulation"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/constraint.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/constraint.py",
+        "sha256": "d7ca6ba3ef98bffc6247f7a6b29eea38204a8a15d5698e38c430888d689ba0a3",
+        "bytes": 687
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/constraint.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-contactfriction",
+      "name": "PyBullet contact friction",
+      "summary": "Inspect contact behavior under different friction settings.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "contact",
+        "friction",
+        "physics"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/contactFriction.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/contactFriction.py",
+        "sha256": "46e104d83310a2fb72847ac05d60c905094292ac83f8bfd16d8189cad921ba59",
+        "bytes": 1172
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/contactFriction.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-forcetorquesensor",
+      "name": "PyBullet force torque sensing",
+      "summary": "Enable joint force torque sensing and inspect the sensor readings.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "force-torque",
+        "sensing"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/forcetorquesensor.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/forcetorquesensor.py",
+        "sha256": "6b3dc989cf80fdd5388dc2db1caa46e6e74b8d73ed3cd32b5b778a88c2378f33",
+        "bytes": 794
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/forcetorquesensor.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-hello-pybullet",
+      "name": "PyBullet simulation quickstart",
+      "summary": "Load a plane and R2D2 model, step simulation, and inspect the base pose.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "simulation",
+        "urdf",
+        "quickstart"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/hello_pybullet.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/hello_pybullet.py",
+        "sha256": "7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d",
+        "bytes": 646
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/hello_pybullet.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-humanoid-knee-position-control",
+      "name": "PyBullet humanoid knee control",
+      "summary": "Explore position control on the knees of a simulated humanoid.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "humanoid",
+        "position-control",
+        "motor-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/humanoid_knee_position_control.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/humanoid_knee_position_control.py",
+        "sha256": "ce03f4cfc807ed2ad237397df3552e24a80ec9c6b66f2b018fec896d8aaadcd2",
+        "bytes": 1596
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/humanoid_knee_position_control.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-ik-end-effector-orientation",
+      "name": "PyBullet end-effector orientation IK",
+      "summary": "Control KUKA end-effector position and orientation toward a fixed pose.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "inverse-kinematics",
+        "orientation",
+        "kuka"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/ik_end_effector_orientation.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/ik_end_effector_orientation.py",
+        "sha256": "875fe8ec522764166a29655044c98a8fd3f3410d36442efe52a737b378cde080",
+        "bytes": 1453
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "datetime",
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/ik_end_effector_orientation.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-inverse-dynamics",
+      "name": "PyBullet inverse dynamics",
+      "summary": "Compute inverse dynamics and use torque control in a simulated articulated model.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "inverse-dynamics",
+        "torque-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/inverse_dynamics.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/inverse_dynamics.py",
+        "sha256": "279dc137017b83f4cfde56df2907076e88182278daab7293c32b5f07425973d0",
+        "bytes": 5133
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "pybullet",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/inverse_dynamics.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-inverse-kinematics",
+      "name": "PyBullet KUKA inverse kinematics",
+      "summary": "Move a KUKA end effector along target positions using inverse kinematics and joint motors.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "inverse-kinematics",
+        "kuka",
+        "arm-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/inverse_kinematics.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/inverse_kinematics.py",
+        "sha256": "b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed",
+        "bytes": 4504
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "datetime",
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/inverse_kinematics.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-jacobian",
+      "name": "PyBullet Jacobian computation",
+      "summary": "Compute a robot Jacobian and compare Cartesian velocity calculations.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "jacobian",
+        "kinematics"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/jacobian.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/jacobian.py",
+        "sha256": "2b6430a1063ad0ff0717296e29067da594afaeb5ccdaa790f27b001de07a88a0",
+        "bytes": 3805
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/jacobian.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-kuka-grasp-block-playback",
+      "name": "PyBullet KUKA grasp log playback",
+      "summary": "Replay a recorded KUKA grasp trajectory from the upstream state log.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "grasping",
+        "trajectory-playback",
+        "kuka"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/kuka_grasp_block_playback.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/kuka_grasp_block_playback.py",
+        "sha256": "4b8ada60d08b4a3a735fbcc7588323c6acb5b581286d7676f5c68cb7c148a554",
+        "bytes": 2019
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data",
+          "struct"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/kuka_grasp_block_playback.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-kuka-with-cube",
+      "name": "PyBullet KUKA and cube interaction",
+      "summary": "Run a KUKA arm along an IK trajectory in a cube scene and record state/contact logs.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "kuka",
+        "manipulation",
+        "joint-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/kuka_with_cube.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/kuka_with_cube.py",
+        "sha256": "96814d2cabec8d0d410ff61e5ef68283b202156b90d70d06cca125614daa84e7",
+        "bytes": 4115
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "datetime",
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/kuka_with_cube.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-pdcontrol",
+      "name": "PyBullet PD control comparison",
+      "summary": "Compare proportional-derivative controllers on an articulated robot.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "pd-control",
+        "joint-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/pdControl.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/pdControl.py",
+        "sha256": "1506818d6b5c47ed3eb55dee4531694e2a72612646223caf2d3c7a3c378607da",
+        "bytes": 6426
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pdControllerExplicit",
+          "pdControllerStable",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/pdControl.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-pointcloudfromcameraimage",
+      "name": "PyBullet depth to point cloud",
+      "summary": "Convert rendered camera depth samples into a world-space point cloud.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "point-cloud",
+        "camera",
+        "depth"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/pointCloudFromCameraImage.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/pointCloudFromCameraImage.py",
+        "sha256": "6391077f0e1e8290a9f231efa68b84c0831561b3333feab9ddd09d1f87391d16",
+        "bytes": 5639
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "math",
+          "numpy",
+          "pybullet",
+          "pybullet_data"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/pointCloudFromCameraImage.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-quadruped",
+      "name": "PyBullet quadruped simulation",
+      "summary": "Load and control a quadruped model using the upstream interactive example.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "quadruped",
+        "joint-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/quadruped.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/quadruped.py",
+        "sha256": "1efbeaf03bdd5d2511f545829620491c419eb73984bbc7d4ef067061c496bc53",
+        "bytes": 20411
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/quadruped.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-racecar",
+      "name": "PyBullet racecar control",
+      "summary": "Drive the simulated racecar using upstream motor and steering controls.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "mobile-robot",
+        "steering",
+        "vehicle-control"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/racecar.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/racecar.py",
+        "sha256": "5dc233309afa9086f343c1a91ec909ce62d4af46ba937ce6a790cae08c797e8d",
+        "bytes": 1893
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "inspect",
+          "os",
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/racecar.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-racecar-differential",
+      "name": "PyBullet differential racecar",
+      "summary": "Control a racecar model with differential drivetrain constraints.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "mobile-robot",
+        "differential-drive",
+        "constraints"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/racecar_differential.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/racecar_differential.py",
+        "sha256": "a0790d6d0b8ce3797abd8b8964042050ed4897bcf931cd26d22419ad4839f8e5",
+        "bytes": 4711
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/racecar_differential.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-robotcontrol",
+      "name": "PyBullet interactive robot joint control",
+      "summary": "Inspect a robot's joints and drive them with GUI control parameters.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "joint-control",
+        "robot-model"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/robotcontrol.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/robotcontrol.py",
+        "sha256": "f0112cb3d835e5b110bb17df69b7b912d0a76d5bdb7d42f252faf2a979914186",
+        "bytes": 780
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "pybullet",
+          "pybullet_data"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/robotcontrol.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "pybullet-saverestorestate",
+      "name": "PyBullet save and restore state",
+      "summary": "Save and restore simulation states for repeatable experiments.",
+      "framework": "pybullet",
+      "kind": "official_example",
+      "capabilities": [
+        "state",
+        "replay",
+        "simulation"
+      ],
+      "source": {
+        "repository": "https://github.com/bulletphysics/bullet3",
+        "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+        "tag": "3.25",
+        "path": "examples/pybullet/examples/saveRestoreState.py",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/examples/pybullet/examples/saveRestoreState.py",
+        "sha256": "9eb0c993428d2589486ed0ee1c2d5af21dd9ec15ca8cf3a26e261382fafde7c6",
+        "bytes": 3323
+      },
+      "license": {
+        "spdx": "Zlib",
+        "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined",
+        "packages": [
+          "pybullet (build matching the pinned upstream source)"
+        ],
+        "display": "Most examples connect to a PyBullet GUI or shared-memory server. Upstream pybullet_data models and adjacent helper files may be required.",
+        "source_imports": [
+          "difflib",
+          "math",
+          "pybullet",
+          "pybullet_data",
+          "sys",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/pybullet/examples/saveRestoreState.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 14800,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-collect-and-playback-data",
+      "name": "robosuite collect and replay data",
+      "summary": "Collect state and action data, then replay it in the upstream demonstration workflow.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "demonstrations",
+        "data-collection",
+        "trajectory-playback"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_collect_and_playback_data.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_collect_and_playback_data.py",
+        "sha256": "6661bb80943eab70af753bab1bda2ace2be57679a21b2f4d26c1700e5fc9fe82",
+        "bytes": 4003
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "argparse",
+          "glob",
+          "numpy",
+          "os",
+          "robosuite",
+          "robosuite.wrappers",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_collect_and_playback_data.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-composite-robot",
+      "name": "robosuite composite robot",
+      "summary": "Instantiate a composed robot and exercise its action space in a manipulation task.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "robot-composition",
+        "controllers"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_composite_robot.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_composite_robot.py",
+        "sha256": "15b959be2ceb693ad69b3076c3ccfd59981423b62f86ed45f770035b87296ac5",
+        "bytes": 2497
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "argparse",
+          "numpy",
+          "robosuite",
+          "robosuite.controllers",
+          "robosuite.robots",
+          "robosuite.utils.robot_composition_utils",
+          "time",
+          "typing"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_composite_robot.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-control",
+      "name": "robosuite controller demonstration",
+      "summary": "Compare controller behavior with prescribed action sequences.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "controllers",
+        "manipulation"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_control.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_control.py",
+        "sha256": "c09ee40659987d0c0d7cefa8e291bb0f921a676187884aa63a8950849dd6e822",
+        "bytes": 8672
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "robosuite",
+          "robosuite.controllers.composite.composite_controller_factory",
+          "robosuite.utils.input_utils",
+          "time",
+          "typing"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_control.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-device-control",
+      "name": "robosuite device teleoperation",
+      "summary": "Teleoperate a simulated robot with an upstream supported input device.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "teleoperation",
+        "device-control"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_device_control.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_device_control.py",
+        "sha256": "9085aa5dcc0119a13b8b1f4c49632a14201519d669cdeed3231656519b68e4cc",
+        "bytes": 10844
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "argparse",
+          "copy",
+          "numpy",
+          "robosuite",
+          "robosuite.controllers.composite.composite_controller",
+          "robosuite.devices",
+          "robosuite.devices.mjgui",
+          "robosuite.wrappers",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_device_control.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-domain-randomization",
+      "name": "robosuite domain randomization",
+      "summary": "Apply upstream domain randomization to visual and physical environment properties.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "domain-randomization",
+        "simulation"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_domain_randomization.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_domain_randomization.py",
+        "sha256": "adb60909d959f5f2dff10bd4f078348118f5816bc326ab325442d7cce784f821",
+        "bytes": 2573
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "mujoco",
+          "robosuite.macros",
+          "robosuite.utils.input_utils",
+          "robosuite.wrappers"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_domain_randomization.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-gripper-interaction",
+      "name": "robosuite gripper interaction",
+      "summary": "Run an upstream gripper interaction test scene.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "gripper",
+        "contact"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_gripper_interaction.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_gripper_interaction.py",
+        "sha256": "5c8005d1c24d1c09219147c95da4af9d3c15163eb21c80af65f0365ca54b909e",
+        "bytes": 5007
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "robosuite.models",
+          "robosuite.models.arenas.table_arena",
+          "robosuite.models.grippers",
+          "robosuite.models.objects",
+          "robosuite.utils",
+          "robosuite.utils.binding_utils",
+          "robosuite.utils.mjcf_utils",
+          "xml.etree.ElementTree"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_gripper_interaction.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-gripper-selection",
+      "name": "robosuite gripper selection",
+      "summary": "Select robot and gripper models and simulate an upstream manipulation environment.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "gripper",
+        "robot-model",
+        "manipulation"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_gripper_selection.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_gripper_selection.py",
+        "sha256": "acb722b947a495256304e683de2cca8dbb56bf27a377a8b216fd99080a1edd34",
+        "bytes": 1663
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "numpy",
+          "robosuite",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_gripper_selection.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-gym-functionality",
+      "name": "robosuite Gym wrapper",
+      "summary": "Use the upstream GymWrapper interface around a manipulation environment.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "gym",
+        "environment",
+        "reinforcement-learning"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_gym_functionality.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_gym_functionality.py",
+        "sha256": "150c7e7217be2ec220430a5b091da37ed4f2280e2fc8611e37a44b7287e15bcf",
+        "bytes": 2168
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "robosuite",
+          "robosuite.wrappers"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_gym_functionality.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-random-action",
+      "name": "robosuite random action environment",
+      "summary": "Create an upstream robot manipulation environment and step random actions.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "environment",
+        "manipulation",
+        "quickstart"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_random_action.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_random_action.py",
+        "sha256": "1b9e5a0407b26410d907e7d52a52c60e429e1f289b0d334c262c64bd14cec8f8",
+        "bytes": 2284
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "robosuite.utils.input_utils",
+          "time"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_random_action.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-segmentation",
+      "name": "robosuite segmentation observations",
+      "summary": "Render and inspect instance, class, or element segmentation observations.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "segmentation",
+        "camera",
+        "perception"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_segmentation.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_segmentation.py",
+        "sha256": "f0985b450ded3b90d5a6343e5d3311adf4d952e36776fb6fb91be42b443e0a40",
+        "bytes": 3616
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "PIL",
+          "argparse",
+          "colorsys",
+          "imageio",
+          "json",
+          "matplotlib.cm",
+          "numpy",
+          "random",
+          "robosuite"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_segmentation.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-sensor-corruption",
+      "name": "robosuite sensor corruption",
+      "summary": "Add upstream sensor noise, delay, and corruption to observations.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "sensing",
+        "domain-randomization",
+        "robustness"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_sensor_corruption.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_sensor_corruption.py",
+        "sha256": "9f6828fd293279fc86e61898867fca4823fc42192ac2670009dbd3d36a141f0e",
+        "bytes": 10298
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "argparse",
+          "copy",
+          "cv2",
+          "numpy",
+          "robosuite",
+          "robosuite.controllers.composite.composite_controller",
+          "robosuite.devices",
+          "robosuite.utils.observables",
+          "robosuite.wrappers",
+          "sys"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_sensor_corruption.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    },
+    {
+      "id": "robosuite-demo-video-recording",
+      "name": "robosuite video recording",
+      "summary": "Record a manipulation environment's camera frames to video.",
+      "framework": "robosuite",
+      "kind": "official_example",
+      "capabilities": [
+        "video",
+        "camera",
+        "simulation"
+      ],
+      "source": {
+        "repository": "https://github.com/ARISE-Initiative/robosuite",
+        "commit": "a071383d53568ab798eb315c0e95357911be922d",
+        "tag": "v1.5.1",
+        "path": "robosuite/demos/demo_video_recording.py",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/robosuite/demos/demo_video_recording.py",
+        "sha256": "f430c3f2d925cf47302ca23611f34e612060259fe40f0fcfb63c535843220765",
+        "bytes": 2176
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/LICENSE",
+        "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
+        "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"
+      },
+      "requirements": {
+        "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints",
+        "packages": [
+          "robosuite==1.5.1"
+        ],
+        "display": "OpenGL/MuJoCo rendering and upstream robot assets are required; teleoperation demos also need an input device.",
+        "source_imports": [
+          "argparse",
+          "imageio",
+          "numpy",
+          "robosuite",
+          "robosuite.macros"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python robosuite/demos/demo_video_recording.py",
+        "notes": "Inspect source arguments and local paths first. Run from the pinned upstream checkout as documented; examples may open a window, run continuously, or expect existing data. No success-rate or task-completion guarantee is attached."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 2666,
+        "checked_at": "2026-10-17",
+        "meaning": "Repository interest proxy, not example usage or install count."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."
+      }
+    }
+  ]
+}

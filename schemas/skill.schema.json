@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://superfastrobotics.com/schemas/skill.schema.json",
+  "$id": "https://hub.superfastrobotics.com/schemas/skill.schema.json",
   "title": "Robot Skill Hub canonical record v1",
   "type": "object",
   "required": ["schema_version", "id", "name", "summary", "capabilities", "aliases", "source", "license", "compatibility", "observation", "requirements", "invocation", "completion", "preparation", "evidence", "maintenance", "contribution"],

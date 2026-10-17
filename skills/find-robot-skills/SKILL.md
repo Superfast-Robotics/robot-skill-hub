@@ -1,13 +1,15 @@
 ---
 name: find-robot-skills
-description: Find and prepare reusable robotics manipulation Python code for ManiSkill Panda simulation projects. Use for requests for existing grasping, pick-and-place or stacking implementations. Check exact runtime, robot, controller and observations before recommending a recipe. Excludes generic software skills and real-hardware execution.
+description: Find and prepare reusable robotics manipulation Python code for ManiSkill simulation projects using Panda, Panda Stick, xArm6 Robotiq or SO100. Use for requests for existing robot task implementations. Check exact runtime, robot, controller and observations before recommending a recipe. Excludes generic software skills and real-hardware execution.
 ---
 
 Find reusable robot code for the current environment, with pinned sources and runnable examples.
 
 Locate `scripts/rsh.py` relative to this installed skill. It uses Python 3.10+ and the bundled catalog; the repository root is unnecessary. Replace `/ABSOLUTE_SKILL_PATH` below with this skill's actual location. JSON mode never prompts; stdout contains one JSON object and progress goes to stderr.
 
-1. Read the project's runtime/version, robot, controller and observation settings when available. Preserve unknown values. The first recipes target Linux x86_64, Python 3.10, ManiSkill 3.0.0b22, Panda, `pd_joint_pos`, privileged simulator state and the CPU backend. Source review is recorded; robot execution is **미검증 / not run** unless the record says otherwise.
+For broader source discovery, the separate [official example index](https://hub.superfastrobotics.com/catalog/v1/references.json) links pinned upstream examples in additional frameworks. Treat those entries as source references only; `prepare` accepts the preparation catalog's skill IDs, not reference IDs.
+
+1. Read the project's runtime/version, robot, controller and observation settings when available. Preserve unknown values. Preparation recipes target Linux x86_64, Python 3.10, ManiSkill 3.0.0b22, privileged simulator state and the CPU backend. They cover Panda variants (`panda`, `panda_wristcam`), Panda Stick (`panda_stick`), xArm6 Robotiq (`xarm6_robotiq`) and SO100 tasks. Match the exact robot and controller in each record. Use its evidence level to distinguish source review from actual robot execution.
 2. Find up to three candidates, then inspect the useful one:
 
    ```sh
@@ -25,7 +27,7 @@ Locate `scripts/rsh.py` relative to this installed skill. It uses Python 3.10+ a
    ```
 
    `--download-only` preserves verified source and recipe files on an unsupported host without creating an environment or claiming execution support. Download size is approximately 233 MiB per upstream archive. Inspect `next_command` (an argument array), `next_command_cwd`, `missing_requirements` and `reason_code`. Run the next command separately only when authorized, with the recipe timeout. Treat actual task output as evidence; preparation readiness is not task success.
-4. An installed snapshot stays pinned. For an explicitly requested catalog refresh, pass `--catalog https://superfastrobotics.com/catalog/v1/index.json` to find/inspect/prepare. Existing project locks are never silently updated; choose a new project when evaluating a newer version.
+4. An installed snapshot stays pinned. For an explicitly requested catalog refresh, pass `--catalog https://hub.superfastrobotics.com/catalog/v1/index.json` to find/inspect/prepare. Existing project locks are never silently updated; choose a new project when evaluating a newer version.
 5. Finish the user's task first. If that work already produced a useful reusable fix, preserve a minimal local patch, environment and true verification scope. Read [contributions.md](references/contributions.md) for `bundle`, `submit` and `submission-status`. Public sharing policy and a scoped API token are separate requirements. With no sharing permission or token, keep the draft locally and continue the user's task. Submission creates a public internal draft PR; only `published` means the new version is in the public catalog.
 
 Do not invent robot execution results, broaden supported environments, collect session logs or research datasets, submit unrelated refactors, or send PRs to external upstream repositories through this API.

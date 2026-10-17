@@ -1,0 +1,42 @@
+{
+  "schema_version": "1",
+  "captured_from": "https://superfastrobotics.com/catalog/v1/publication.json",
+  "captured_at": "2026-10-17",
+  "releases": [
+    {
+      "hub_commit": "c3af074790ef1306ebd96f59ca965382a46d8e26",
+      "records": [
+        {
+          "id": "maniskill-panda-pick-cube",
+          "record_version": "contrib-a5dd78ad4e1d4e3d",
+          "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+          "recipe_url": "https://superfastrobotics.com/skills/maniskill-panda-pick-cube/",
+          "compatibility": [
+            {
+              "runtime": "maniskill",
+              "runtime_version": "3.0.0b22",
+              "robot": "panda",
+              "controller": "pd_joint_pos",
+              "observation": "state",
+              "os": "linux",
+              "architecture": "x86_64",
+              "python": "3.10",
+              "status": "contributor_reported"
+            }
+          ],
+          "contribution_path_hashes": {
+            "catalog/records/maniskill-panda-pick-cube.json": "3e4812f9119e9f1f02b99649ac97de5620dc7776105c2e0921639c0f43c8803c",
+            "docs/recipes/maniskill-panda-pick-cube.md": "028a606e4146e63217d9ed5a9cd50d1dbcbcae62c6663630328f903530c1f24f",
+            "recipes/maniskill-panda-pick-cube/requirements.txt": "aa1f08204cd7a31d2fd4d12da768262bfba4fb667dd25119b140eaf022436dbc",
+            "recipes/maniskill-panda-pick-cube/run.py": "2f4b49f8c2060488ff2a1c07bb946e622f45b399ce7cd9f9db8bf31bf562431c"
+          },
+          "submission_ids": [
+            "sub_a5dd78ad4e1d4e3dccfa55eaa179f942bf40fb9b33f0449cc1adc6964234211d"
+          ],
+          "archive_path": "catalog/releases/maniskill-panda-pick-cube/contrib-a5dd78ad4e1d4e3d.json",
+          "archive_sha256": "2a85d8959c93928b8490590da2d566bfe5be36471a0046fe17a45d24ba371f66"
+        }
+      ]
+    }
+  ]
+}
