@@ -13,6 +13,15 @@ SPEC.loader.exec_module(VERIFIER)
 
 
 class RuntimeEvidenceTests(unittest.TestCase):
+    def test_runtime_catalog_embeds_the_exact_preparation_files(self):
+        records = VERIFIER.load_runtime_records()
+        self.assertEqual([record["id"] for record in records], list(VERIFIER.SKILLS))
+        for record in records:
+            files = record["preparation"]["files"]
+            self.assertEqual(set(files), {"run.py", "requirements.txt"})
+            for name, content in files.items():
+                self.assertEqual(content, (ROOT / record["preparation"]["recipe_path"] / name).read_text(encoding="utf-8"))
+
     def setUp(self):
         self.record = {"invocation": {"inputs": {"task": "PickCube-v1"}}}
         self.execution = {"started": True, "exit_code": 0, "timed_out": False}

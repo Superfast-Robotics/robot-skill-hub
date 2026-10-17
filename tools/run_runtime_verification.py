@@ -21,6 +21,15 @@ SKILLS = ("maniskill-panda-pick-cube", "maniskill-panda-stack-cube")
 TASK_TIMEOUT = 180
 
 
+def load_runtime_records():
+    # Use the publisher's validated, self-contained records, including the
+    # reviewed recipe files that the installed preparation CLI consumes.
+    sys.path.insert(0, str(ROOT / "tools"))
+    from build_catalog import load_records
+    records = {record["id"]: record for record in load_records()}
+    return [records[skill_id] for skill_id in SKILLS]
+
+
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -164,7 +173,7 @@ def main():
         report["hub_commit"] = sha
         report["workflow_run_url"] = ("https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" +
                                       os.environ["GITHUB_RUN_ID"]) if os.environ.get("GITHUB_RUN_ID") else None
-        records = [json.loads((ROOT / "catalog/records" / (skill + ".json")).read_text(encoding="utf-8")) for skill in SKILLS]
+        records = load_runtime_records()
         catalog_path = output / "catalog.json"
         write_json(catalog_path, {"schema_version": "1", "hub_commit": sha, "records": records})
         source = records[0]["source"]
