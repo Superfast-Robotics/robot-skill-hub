@@ -1,0 +1,17 @@
+node_modules/
+.wrangler/
+api/dist/
+site/
+output/
+.local/
+.venv/
+__pycache__/
+*.pyc
+.dev.vars*
+.env*
+!.env.example
+*.secret
+.playwright-cli/
+/robot_skill_hub_extend_contribution.md
+/robot_skill_hub_launch_guide.md
+

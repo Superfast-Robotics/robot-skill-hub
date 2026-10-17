@@ -1,0 +1,38 @@
+name: Checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: Structure and contract tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+      - run: python tools/build_catalog.py --hub-commit "$GITHUB_SHA" --base-url https://superfast-robotics.github.io/robot-skill-hub
+      - run: python -m unittest discover -s tests/python -v
+      - run: python tools/test_catalog.py -v
+      - run: npm ci
+        working-directory: api
+      - run: npm run check && npm test
+        working-directory: api
+      - name: Compile recipes without importing simulator dependencies
+        run: python -m compileall -q recipes skills/find-robot-skills/scripts
+      - name: Record runtime scope
+        run: echo 'Robot simulator execution is not_run. Structure and API contract tests do not establish task completion.'
