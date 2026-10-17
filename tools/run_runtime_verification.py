@@ -108,7 +108,14 @@ def verify_recipe(record, catalog_path, archive_path, output, work):
             raise RuntimeError("Expected a fresh isolated preparation requiring dependency installation")
         write_json(evidence / "preparation.before.json", prepared)
         isolated_python = Path(prepared["environment_dir"]) / "bin/python"
-        torch_install, _ = run_command([isolated_python, "-m", "pip", "install", "torch==2.5.1",
+        pip_install, _ = run_command([isolated_python, "-m", "pip", "install", "--upgrade", "pip"],
+                                     evidence / "upgrade-pip", timeout=180)
+        if pip_install["exit_code"] != 0 or pip_install["timed_out"]:
+            raise RuntimeError("pip bootstrap failed; see preserved logs")
+        # Fetch only the CPU wheel here; normal PyPI resolves its dependencies in
+        # the subsequent recipe install, including build dependencies absent
+        # from the specialized PyTorch wheel index.
+        torch_install, _ = run_command([isolated_python, "-m", "pip", "install", "torch==2.5.1+cpu", "--no-deps",
                                         "--index-url", "https://download.pytorch.org/whl/cpu"],
                                        evidence / "install-cpu-torch", timeout=600)
         if torch_install["exit_code"] != 0 or torch_install["timed_out"]:
