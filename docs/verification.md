@@ -38,7 +38,6 @@
 
 ## Pending / unverified
 
-- Repository-scoped Worker GitHub credential and pilot credential must be configured. Consequently **live API submission, internal PR creation, real PR merge→publication status and API-mediated corrected-version reuse are unverified**. See [deployment instructions](deployment.md) for exact permissions and input locations.
 - ManiSkill dependency installation, successful ManiSkill import and PickCube/StackCube task completion on Linux are **not_run / 미검증**. This Windows host is not a supported simulator environment; Docker's engine was unavailable and no general WSL Linux distribution was installed. No GPU or paid execution service was provisioned.
 - Unbranded agent discovery, automatic skill selection by a fresh agent, external search indexing, skills.sh search inclusion and Context7 indexing are **unverified**. A repository install test does not establish them.
 
