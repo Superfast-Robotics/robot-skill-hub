@@ -1,0 +1,240 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-17T23:02:45.789802+00:00",
+  "scope": "Unpublished local discovery repair and source metadata review; no production, outside-adoption or robot-task verification.",
+  "baseline": {
+    "catalog_commit": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+    "API_candidate": "3f64a17b524334131b24e53755c9ec908b1a8fd8",
+    "documentation_candidate": "9b2e955e54d6a1fe364dfbe8db8cc36b4f39edcc",
+    "API_MCP_version_under_test": "0.3.3"
+  },
+  "query_policy": {
+    "rewrite_query_only": {
+      "A*": "astar",
+      "D*": "dstar"
+    },
+    "boundaries": "Immediate Unicode letter, number, mark, underscore or star prevents rewriting. Case-insensitive ASCII A/D literals only.",
+    "document_tokenization_changed": false,
+    "ordinary_word_prefix_behavior_preserved": true
+  },
+  "reviewed_metadata": {
+    "records_changed": 8,
+    "source_pins_compatibility_requirements_and_runtime_unchanged": true,
+    "review": "../../sources/robotics-query-aliases-2026-10-18.json",
+    "review_sha256": "09177515f3c4cb36612ce77f2abe9a78ef975880f1d0414d07619e2cca40beb5"
+  },
+  "queries": [
+    {
+      "q": "A*",
+      "before_total": 1267,
+      "after_total": 3
+    },
+    {
+      "q": "D*",
+      "before_total": 945,
+      "after_total": 1
+    },
+    {
+      "q": "D* Lite",
+      "before_total": 1,
+      "after_total": 1
+    },
+    {
+      "q": "Hybrid A*",
+      "before_total": 2,
+      "after_total": 1
+    },
+    {
+      "q": "hybrid astar",
+      "before_total": 0,
+      "after_total": 1
+    },
+    {
+      "q": "A* path planning",
+      "before_total": 0,
+      "after_total": 2
+    },
+    {
+      "q": "rapidly exploring random tree",
+      "before_total": 0,
+      "after_total": 1
+    }
+  ],
+  "current_fixture": {
+    "hub_commit": "0000000000000000000000000000000000000000",
+    "unpublished_synthetic_commit": true,
+    "counts": {
+      "recipes": 17,
+      "references": 1255,
+      "memories": 3
+    },
+    "all_catalog_records_ingested": true,
+    "compact_CLI_invocations": 14,
+    "queries": [
+      {
+        "query": "A*",
+        "total": 3,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-astar-py",
+          "pythonrobotics-pathplanning-astar-a-star-py",
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "D*",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "D* Lite",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "Hybrid A*",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "A* path planning",
+        "total": 2,
+        "ids": [
+          "pythonrobotics-pathplanning-astar-a-star-py",
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "hybrid astar",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "rapidly exploring random tree",
+        "total": 1,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-rrt-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "IK pinocchio",
+        "total": 4,
+        "ids": [
+          "pinocchio-examples-inverse-kinematics-3d-cpp",
+          "pinocchio-examples-inverse-kinematics-3d-py",
+          "pinocchio-examples-inverse-kinematics-cpp",
+          "pinocchio-examples-inverse-kinematics-py"
+        ],
+        "pages": 2
+      },
+      {
+        "query": "MPC path tracking",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "DWA",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py"
+        ],
+        "pages": 1
+      },
+      {
+        "query": "---",
+        "total": 0,
+        "ids": [],
+        "pages": 1
+      },
+      {
+        "query": "PID",
+        "total": 0,
+        "ids": [],
+        "pages": 1
+      },
+      {
+        "query": "SLAM",
+        "total": 0,
+        "ids": [],
+        "pages": 1
+      }
+    ],
+    "native_test": {
+      "exit_code": 0,
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "stdout_sha256": "33ab9b7f5fe48507b555a122ad7e41c0922913dafc57415273d8dba79b6587ea",
+      "scope": "All1272searchand3findingrecords ingested; five algorithm-query groups assert exact totals and ID sets."
+    },
+    "receipt_sha256": "220493dae91c073217091a639d76e9279a855accc035c3c121911810bb07d5b8",
+    "input_file_sha256": {
+      "api/src/search.ts": "432dc1090a5e9725fead914deaf8733290b1d808ef958df50c13c23b28aaea14",
+      "api/src/catalog.ts": "292eb3859323cddbc1e1d29161ff3bd29b2d210cb249a578b79bf66bc281910d",
+      "api/src/public.ts": "8b54695e25001ba1ca7d105c811c60a32beee58ff8182a075a2f4fff1b5a5c4d",
+      "api/test/workerd/catalog.test.ts": "e5d618bf32f8eff81d1cd7b5b0b9b015c7ccf17b3fcd1b173f6adf0a3e7c37e2",
+      "catalog/references.json": "f00feb224baf5be3c3c60c7790f63eec1b988dffbf0b662ea1e431a6a186c22c",
+      "skills/find-robot-skills/scripts/rshlib/core.py": "ca8b0ccb7d1204f66d9017aa76a2fe90b429565bf8e52e592d8eb76829de8704",
+      "docs/agent-quickstart.md": "2dfce2f6358ff19e43ba312b0f6da4b8100dcc5844acb8ee126565c938e12177",
+      "docs/public-api.openapi.json": "44b8786ff2c4bacd210eb93986e3138531fc9ccc241ffffb6771a2e2a0ff5e6f",
+      "skills/find-robot-skills/SKILL.md": "c9d764a1a6eab5915c550610b8dcd25b91521ac097bb06469c245c3eaf1a0e67"
+    },
+    "typescript": {
+      "exit_code": 0,
+      "stdout_sha256": "d88bd5dd02823eeb6e8d3efb38fcc6797f82c599692dd1828db0b0bb9b77f92e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "separate_full_suite": {
+    "API_unit": {
+      "run": 96,
+      "passed": 96
+    },
+    "native_workerd": {
+      "run": 40,
+      "passed": 40,
+      "skipped": 0
+    },
+    "native_fixture": "Earlier complete17/1255/3 publisher output; newly changed aliases were validated separately in current_fixture.",
+    "Python": {
+      "run": 253,
+      "passed": 249,
+      "skipped": 4,
+      "skip_reason": "Existing Windows symlink checks"
+    },
+    "receipt_sha256": "4867eaa6010d8c5920daefedc0fa8b0ecec83b0371f7ce149a1bd66b1a464f99"
+  },
+  "guards": {
+    "external_HTTP_requests_during_fixture_validation": 0,
+    "upstream_source_imports": 0,
+    "upstream_execution": false,
+    "package_installs": 0,
+    "simulator_or_robot_execution": false,
+    "maintainer_accesses_counted_as_adoption": false
+  },
+  "limits": [
+    "The fixture uses an explicit unpublished commit; this is not a hosted generation or source archive receipt.",
+    "Three tracked offline snapshots remain at the actual earlier850eb9b publication during preparation. Refresh them only from a genuinely published follow-up generation before the final source release.",
+    "No dedicated FK, PID or SLAM target was established by this bounded metadata audit. Their zero results were not repaired with invented compatibility or entries.",
+    "Unicode/accent behavior outside the tested boundary and basic grammar can differ with native SQLite unicode61.",
+    "Earlier local harness argument and reporter-format errors are preserved separately; passing checks do not imply robot execution."
+  ]
+}

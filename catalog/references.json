@@ -65124,7 +65124,10 @@
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "native_main",
         "inspection_method": "automated_static"
-      }
+      },
+      "aliases": [
+        "IK"
+      ]
     },
     {
       "id": "pinocchio-examples-inverse-kinematics-3d-py",
@@ -65196,7 +65199,10 @@
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "python_script",
         "inspection_method": "automated_static"
-      }
+      },
+      "aliases": [
+        "IK"
+      ]
     },
     {
       "id": "pinocchio-examples-inverse-kinematics-cpp",
@@ -65286,7 +65292,10 @@
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "native_main",
         "inspection_method": "automated_static"
-      }
+      },
+      "aliases": [
+        "IK"
+      ]
     },
     {
       "id": "pinocchio-examples-inverse-kinematics-py",
@@ -65358,7 +65367,10 @@
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "python_script",
         "inspection_method": "automated_static"
-      }
+      },
+      "aliases": [
+        "IK"
+      ]
     },
     {
       "id": "pinocchio-examples-kinematics-derivatives-cpp",
@@ -69859,7 +69871,10 @@
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "python_main",
         "inspection_method": "automated_static"
-      }
+      },
+      "aliases": [
+        "Rapidly exploring random tree"
+      ]
     },
     {
       "id": "pyrobosim-pyrobosim-examples-demo-world-save-py",
@@ -70468,7 +70483,8 @@
       },
       "aliases": [
         "AStar",
-        "A*"
+        "A*",
+        "AStar path planning"
       ]
     },
     {
@@ -70550,7 +70566,8 @@
       },
       "aliases": [
         "DStarLite",
-        "D* Lite"
+        "D* Lite",
+        "DStar Lite path planning"
       ]
     },
     {
@@ -70721,7 +70738,8 @@
       },
       "aliases": [
         "HybridAStar",
-        "Hybrid A*"
+        "Hybrid A*",
+        "Hybrid AStar path planning"
       ]
     },
     {

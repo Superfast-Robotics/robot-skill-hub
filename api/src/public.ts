@@ -2,7 +2,7 @@
 import { capabilities } from './memories.ts';
 import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
 import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings } from './catalog.ts';
-import { containsWordPrefixes, wordTerms } from './search.ts';
+import { containsWordPrefixes, queryTerms } from './search.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
@@ -46,7 +46,7 @@ async function digest(bytes: Uint8Array): Promise<string> {
 
 export const MCP_TOOLS = [
   { name: 'find_robot_skills', description: 'Search pinned robot code across robots and runtimes. Results distinguish prepared recipes from upstream references; source discovery is not runtime verification.',
-    inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240 }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
+    inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240, description: 'All query terms must match word prefixes. Standalone A* and D* are read as astar and dstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference, provenance, license, access instructions and exact evidence. No installation or execution is performed.',
     inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120, description: 'Copy record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.' } }, required: ['skill_id'], additionalProperties: false },
@@ -94,7 +94,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   async function searchRows(index: Snapshot, input: Row) {
     const { limit, offset } = validateSearch(input, index.hub_commit);
-    const query = String(input.q || ''), terms = wordTerms(query);
+    const query = String(input.q || ''), terms = queryTerms(query);
     const matches = index.records.filter(row => {
       if (query.trim() && !terms.length) return false;
       if (input.kind && row.kind !== input.kind) return false;

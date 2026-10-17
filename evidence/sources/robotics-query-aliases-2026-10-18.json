@@ -1,0 +1,177 @@
+{
+  "schema_version": "1",
+  "reviewed_at": "2026-10-17T22:54:27.887033+00:00",
+  "classification": "Source-reviewed discovery metadata; not runtime verification",
+  "baseline_commit": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+  "catalog_sha256_before": "9395f403ba0ec1202f64de5601f77f5ac70fb060daf53ba799b941c1c3e0846a",
+  "catalog_sha256_after": "f00feb224baf5be3c3c60c7790f63eec1b988dffbf0b662ea1e431a6a186c22c",
+  "records_changed": 8,
+  "changes": [
+    {
+      "id": "pythonrobotics-pathplanning-astar-a-star-py",
+      "aliases_before": [
+        "AStar",
+        "A*"
+      ],
+      "aliases_after": [
+        "AStar",
+        "A*",
+        "AStar path planning"
+      ],
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "path": "PathPlanning/AStar/a_star.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/AStar/a_star.py",
+        "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+        "bytes": 8717
+      },
+      "source_bytes_verified": true,
+      "reason": "Pinned algorithm header and PathPlanning source path; preserves the named algorithm and supplies separate path/planning words."
+    },
+    {
+      "id": "pythonrobotics-pathplanning-dstarlite-d-star-lite-py",
+      "aliases_before": [
+        "DStarLite",
+        "D* Lite"
+      ],
+      "aliases_after": [
+        "DStarLite",
+        "D* Lite",
+        "DStar Lite path planning"
+      ],
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "path": "PathPlanning/DStarLite/d_star_lite.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/DStarLite/d_star_lite.py",
+        "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+        "bytes": 16563
+      },
+      "source_bytes_verified": true,
+      "reason": "Pinned algorithm header and PathPlanning source path; preserves the named algorithm and supplies separate path/planning words."
+    },
+    {
+      "id": "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py",
+      "aliases_before": [
+        "HybridAStar",
+        "Hybrid A*"
+      ],
+      "aliases_after": [
+        "HybridAStar",
+        "Hybrid A*",
+        "Hybrid AStar path planning"
+      ],
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/HybridAStar/hybrid_a_star.py",
+        "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+        "bytes": 12978
+      },
+      "source_bytes_verified": true,
+      "reason": "Pinned algorithm header and PathPlanning source path; preserves the named algorithm and supplies separate path/planning words."
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-3d-cpp",
+      "aliases_before": [],
+      "aliases_after": [
+        "IK"
+      ],
+      "source": {
+        "repository": "https://github.com/stack-of-tasks/pinocchio",
+        "commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+        "path": "examples/inverse-kinematics-3d.cpp",
+        "url": "https://github.com/stack-of-tasks/pinocchio/blob/2ae77666e894a39127b283dcce3e2399ec19242d/examples/inverse-kinematics-3d.cpp",
+        "sha256": "8a103e867556989b1a66eb679b4becdbb129610d9938313fbcc6cf624dc573a4",
+        "bytes": 2531
+      },
+      "source_bytes_verified": true,
+      "reason": "Exact inverse-kinematics example filename and iterative Jacobian solver body; IK is a discovery abbreviation only."
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-3d-py",
+      "aliases_before": [],
+      "aliases_after": [
+        "IK"
+      ],
+      "source": {
+        "repository": "https://github.com/stack-of-tasks/pinocchio",
+        "commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+        "path": "examples/inverse-kinematics-3d.py",
+        "url": "https://github.com/stack-of-tasks/pinocchio/blob/2ae77666e894a39127b283dcce3e2399ec19242d/examples/inverse-kinematics-3d.py",
+        "sha256": "1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",
+        "bytes": 1124
+      },
+      "source_bytes_verified": true,
+      "reason": "Exact inverse-kinematics example filename and iterative Jacobian solver body; IK is a discovery abbreviation only."
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-cpp",
+      "aliases_before": [],
+      "aliases_after": [
+        "IK"
+      ],
+      "source": {
+        "repository": "https://github.com/stack-of-tasks/pinocchio",
+        "commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+        "path": "examples/inverse-kinematics.cpp",
+        "url": "https://github.com/stack-of-tasks/pinocchio/blob/2ae77666e894a39127b283dcce3e2399ec19242d/examples/inverse-kinematics.cpp",
+        "sha256": "598306f3807ec03d7ca360c38365a3af3af5792880a6815bac7a1875b696baff",
+        "bytes": 2544
+      },
+      "source_bytes_verified": true,
+      "reason": "Exact inverse-kinematics example filename and iterative Jacobian solver body; IK is a discovery abbreviation only."
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-py",
+      "aliases_before": [],
+      "aliases_after": [
+        "IK"
+      ],
+      "source": {
+        "repository": "https://github.com/stack-of-tasks/pinocchio",
+        "commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+        "path": "examples/inverse-kinematics.py",
+        "url": "https://github.com/stack-of-tasks/pinocchio/blob/2ae77666e894a39127b283dcce3e2399ec19242d/examples/inverse-kinematics.py",
+        "sha256": "2369f306f4b838693eefcbbcef6dd02e9cab6ad725e33969b06648db3349ceb8",
+        "bytes": 1160
+      },
+      "source_bytes_verified": true,
+      "reason": "Exact inverse-kinematics example filename and iterative Jacobian solver body; IK is a discovery abbreviation only."
+    },
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-rrt-py",
+      "aliases_before": [],
+      "aliases_after": [
+        "Rapidly exploring random tree"
+      ],
+      "source": {
+        "repository": "https://github.com/sea-bass/pyrobosim",
+        "commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+        "path": "pyrobosim/examples/demo_rrt.py",
+        "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/pyrobosim/examples/demo_rrt.py",
+        "sha256": "49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
+        "bytes": 912
+      },
+      "source_bytes_verified": true,
+      "reason": "Selected demo imports RRTPlanner; the pinned implementation defines the expanded algorithm name."
+    }
+  ],
+  "RRT_expansion_definition": {
+    "path": "pyrobosim/pyrobosim/navigation/rrt.py",
+    "commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+    "html_url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/pyrobosim/pyrobosim/navigation/rrt.py",
+    "git_blob_sha1": "e1a9284173c66293b2c689e99eb3d119125aad28",
+    "sha256": "750f7cfae51f693efb8e726d3361fdebc3d37668637c41b747375435df2e8a2b",
+    "bytes": 15757,
+    "exact_git_blob_verified": true
+  },
+  "limits": [
+    "Only aliases changed; source pins, compatibility, requirements and runtime evidence are unchanged.",
+    "Source files and the RRT implementation were read as inert text; no source imports, installs, execution or simulator/robot run.",
+    "No dedicated FK, PID or SLAM target was established by this bounded audit; no entries or aliases were invented for them.",
+    "This isolated change is not deployed or included in the pending 0.3.3 native rollout."
+  ]
+}

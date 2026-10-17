@@ -477,6 +477,50 @@ test('native and static MCP/search agree on basic word prefixes, strict filters,
   } finally { await s.mf.dispose(); }
 });
 
+test('native FTS and static/MCP agree on query-only A*/D* literals and rejected embedded spellings', async () => {
+  const current = publication('a'.repeat(40), { rowOverrides: [
+    { name: 'Hybrid AStar grid planner', summary: 'Grid route', aliases: ['AStar', 'A*', 'Hybrid AStar'] },
+    { name: 'DStarLite incremental planner', summary: 'Incremental route', aliases: ['DStarLite', 'D* Lite'] },
+    { name: 'Algebra dynamics', summary: 'Ordinary algorithm terms and literal A* D* text',
+      aliases: ['RA', 'A B', 'D B', 'A variable', '\u00e9A', '\uB85C\uBD07A', 'A*', 'D*'] }
+  ] });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 2, memories: 1 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) }; current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const cases: [string, string[]][] = [
+    ...['A*', 'a*', '!!!A*!!!', '(A*)/grid', 'AStar grid', 'Hybrid A*'].map(q => [q, ['maniskill-panda-pick-cube']] as [string, string[]]),
+    ...['D*', 'd* lite', '(D*)/incremental', 'DStarLite'].map(q => [q, ['kuka-grasp']] as [string, string[]]),
+    ...['RA*', 'A*B', 'D*B', 'a_variable*', '\u00e9A*', '\uB85C\uBD07A*', 'algebra dynamics'].map(q => [q, ['source-2']] as [string, string[]]),
+    ...['A**', '*A*', '_A*', 'A*_', '\u0301A*', 'A*\u0301', 'a'].map(q => [q, ['maniskill-panda-pick-cube', 'source-2']] as [string, string[]]),
+    ['D**', ['kuka-grasp', 'source-2']], ['A* impossible', []], ['A* OR dynamics', []]
+  ];
+  const s = await runtime(current); try {
+    const outputs = new Map<string, any>();
+    const mcp = async (q: string) => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { q } } }) });
+      assert.equal(response.status, 200); const body = await response.json() as any; assert.equal(body.result.isError, false); return body.result.structuredContent;
+    };
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'static_v1_fallback');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Static ' + q);
+      outputs.set(q, result.body);
+    }
+    const staticMcp = await mcp('D* Lite'); assert.equal(staticMcp.backend, 'static_v1_fallback'); assert.deepEqual(staticMcp.results.map((row: any) => row.id), ['kuka-grasp']);
+    await s.complete();
+    const withoutBackend = ({ backend, ...body }: any) => body;
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'd1_fts5');
+      assert.equal(result.body.search_semantics, 'all_terms_word_prefix');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Native ' + q);
+      assert.deepEqual(withoutBackend(result.body), withoutBackend(outputs.get(q)), q);
+    }
+    const nativeMcp = await mcp('D* Lite'); assert.equal(nativeMcp.backend, 'd1_fts5'); assert.deepEqual(withoutBackend(nativeMcp), withoutBackend(staticMcp));
+    const literalOnly = await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'astar*'").first<any>();
+    assert.equal(literalOnly.total, 1, 'Document A* literals remain ordinary a tokens; only a declared AStar word matches');
+  } finally { await s.mf.dispose(); }
+});
+
 test('native mirror accepts the complete current publisher output', { skip: !process.env.RSH_CATALOG_NATIVE_FIXTURE }, async () => {
   const directory = process.env.RSH_CATALOG_NATIVE_FIXTURE!;
   const current = publication('a'.repeat(40)); current.resources.clear();
@@ -490,6 +534,19 @@ test('native mirror accepts the complete current publisher output', { skip: !pro
     const pick = await s.read('/v1/search?q=PickCube'); const recipe = pick.body.results.find((row: any) => row.id === 'maniskill-panda-pick-cube'); assert.ok(recipe);
     assert.ok(recipe.python_requirement); assert.match(recipe.source_url, /^https:\/\//);
     const kuka = await s.read('/v1/search?q=kuka'); assert.ok(kuka.body.total > 0);
+    const algorithmQueries: Array<[string, string[]]> = [
+      ['A*', ['pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py']],
+      ['D* Lite', ['pythonrobotics-pathplanning-dstarlite-d-star-lite-py']],
+      ['Hybrid A* path planning', ['pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py']],
+      ['rapidly exploring random tree', ['pyrobosim-pyrobosim-examples-demo-rrt-py']],
+      ['IK pinocchio', ['pinocchio-examples-inverse-kinematics-3d-cpp', 'pinocchio-examples-inverse-kinematics-3d-py', 'pinocchio-examples-inverse-kinematics-cpp', 'pinocchio-examples-inverse-kinematics-py']],
+    ];
+    for (const [query, expectedIds] of algorithmQueries) {
+      const result = await s.read('/v1/search?' + new URLSearchParams({ q: query, limit: '50' }));
+      assert.equal(result.body.backend, 'd1_fts5', query);
+      assert.equal(result.body.total, expectedIds.length, query);
+      assert.deepEqual(result.body.results.map((row: any) => row.id).sort(), [...expectedIds].sort(), query);
+    }
     const docs = await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>(); assert.equal(docs.total, manifest.records);
     assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_memory_documents').first<any>()).total, memories.records);
   } finally { await s.mf.dispose(); }

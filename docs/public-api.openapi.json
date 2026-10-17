@@ -192,7 +192,7 @@
             }
           }
         },
-        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
+        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A* and D* algorithm symbols become astar and dstar before matching; other terms remain required. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
       }
     },
     "/v1/skills/{skill_id}": {
