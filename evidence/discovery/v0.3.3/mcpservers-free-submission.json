@@ -1,0 +1,44 @@
+{
+  "schema_version": "1",
+  "provider": "mcpservers.org",
+  "method": "Official published browser submission form",
+  "form_url": "https://mcpservers.org/ko/submit",
+  "submitted_at_UTC": "2026-10-17T23:41:01.644Z",
+  "observed_at_UTC": "2026-10-17T23:42:16.094718+00:00",
+  "status": "submitted_pending_provider_review",
+  "submission": {
+    "id": 11865,
+    "provider_status": "pending",
+    "plan": "free",
+    "payment_status": "not_required",
+    "subscription_id": null
+  },
+  "server": {
+    "name": "Robot Skill Hub",
+    "repository": "https://github.com/Superfast-Robotics/robot-skill-hub",
+    "registry_name": "io.github.Superfast-Robotics/robot-skill-hub",
+    "remote_url": "https://api.superfastrobotics.com/mcp",
+    "remote_authentication": "none",
+    "category": "search",
+    "affiliation_and_Codex_assistance_disclosed": true
+  },
+  "confirmation": {
+    "HTTP_status": 200,
+    "success_UI_observed": true,
+    "review_window": "Up to two weeks",
+    "provider_notification": "Email upon approval"
+  },
+  "submit_clicks": 1,
+  "automatic_retries": 0,
+  "raw_response_sha256": "0c5493e227142d7ae8b1f120a0f9776ebd941457a2de1f0c084b773268451ab5",
+  "no_account_key_payment_or_plan_upgrade": true,
+  "not_established": [
+    "provider_acceptance",
+    "published_listing",
+    "search_inclusion",
+    "email_delivery",
+    "external_agent_use",
+    "campaign_accesses"
+  ],
+  "scope": "Submission receipt only. Pending provider review is not acceptance, a published or searchable listing, external use or traffic. No synthetic visits were generated."
+}
