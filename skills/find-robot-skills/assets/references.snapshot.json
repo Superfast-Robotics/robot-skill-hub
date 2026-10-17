@@ -48686,5 +48686,6 @@
       }
     }
   ],
-  "source_manifest": "source-projects.json"
+  "source_manifest": "source-projects.json",
+  "hub_commit": "3e3dc0421f8f2fbc5f6d06b2bd9dee8482728bab"
 }
