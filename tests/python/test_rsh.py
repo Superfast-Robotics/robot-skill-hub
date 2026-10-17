@@ -111,7 +111,10 @@ class CatalogTests(unittest.TestCase):
         self.assertGreaterEqual(len(catalog["records"]), 2)
         for record in catalog["records"]:
             self.assertTrue(record["preparation"]["files"])
-            self.assertNotEqual(record["evidence"]["level"], "task_complete")
+            if record["evidence"]["level"] == "task_complete":
+                self.assertEqual(record["evidence"]["runtime_verification"], "task_complete")
+                self.assertTrue(record["evidence"]["artifacts"])
+                self.assertEqual(record["evidence"]["hub_verification"]["runtime"], "task_complete")
 
     def test_verified_evidence_levels_match_the_canonical_contract(self):
         for level in ("install_verified", "import_verified", "task_complete"):

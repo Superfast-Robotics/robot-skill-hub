@@ -2,6 +2,8 @@
 
 Use Python 3.10+ and the self-contained `find-robot-skills` directory. The installed skill includes the CLI, recipe and reference snapshots, and task-memory guidance.
 
+Hub installation, discovery and task-memory operations need no GPU, simulator or additional Python packages. Robot simulation has separate, recipe-specific dependencies and device requirements.
+
 Machine entry: https://hub.superfastrobotics.com/agent.json
 
 ```sh

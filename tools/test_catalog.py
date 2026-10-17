@@ -112,7 +112,7 @@ class CatalogTests(unittest.TestCase):
             builder.load_records()
 
     def test_rejects_runtime_success_without_artifacts(self):
-        self.mutate(lambda r: r['evidence'].update(level='task_complete', runtime_verification='task_complete'))
+        self.mutate(lambda r: r['evidence'].update(level='task_complete', runtime_verification='task_complete', artifacts=[]))
         with self.assertRaisesRegex(ValueError, "actual runtime evidence"):
             builder.load_records()
 

@@ -51,7 +51,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "contributor_reported"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -71,13 +71,15 @@
       "fast_kinematics==0.2.2"
     ],
     "hardware": [
-      "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
+      "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28",
+      "Tested on Ubuntu 22.04 without a physical GPU, using Mesa 23.2.1 lavapipe Vulkan ICD for scene/material initialization"
     ],
-    "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization still needs a usable Vulkan ICD; verified CPU-only with Mesa lavapipe. Camera/graphics modes remain separate and unverified.",
     "api_keys": [],
     "network": [
       "GitHub source archive (~233 MiB)",
-      "PyPI and dependency distributions; source package build hooks may execute"
+      "PyPI and dependency distributions; source package build hooks may execute",
+      "Official PyTorch CPU wheel index for the verified CPU-only setup"
     ],
     "dependency_lock": "Direct dependencies pinned; transitive dependencies resolved by pip and captured in the prepared project. No bit-for-bit environment guarantee."
   },
@@ -148,18 +150,44 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "not_run",
-    "verified_by": "Robot Skill Hub API structural intake",
+    "level": "task_complete",
+    "verified_by": "Robot Skill Hub maintainer review of exact GitHub Actions execution artifacts",
     "date": "2026-10-17",
     "environment": {
-      "runtime": "not_run"
+      "os": "linux",
+      "distribution": "Ubuntu 22.04",
+      "architecture": "x86_64",
+      "python": "3.10.22",
+      "packages": {
+        "mani_skill": "3.0.0b22",
+        "torch": "2.5.1+cpu",
+        "numpy": "1.26.4",
+        "sapien": "3.0.0",
+        "mplib": "0.1.1",
+        "fast_kinematics": "0.2.2"
+      },
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
+      "physical_gpu_used": false
     },
     "commands": [
-      "API schema, exact base/source pin, allowlist and strict unified diff checks"
+      "python tools/run_runtime_verification.py --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/environments/maniskill-panda-pick-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/recipes/maniskill-panda-pick-cube/run.py --seed 0"
     ],
-    "result": "Intake structure checks only. Changed recipe runtime, dependency installation, imports and robot tasks were not run by the hub.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "PickCube-v1 seed 0 completed with success=true, elapsed_steps=74, exit=0 and no timeout. One invocation was made for this task in the successful recorded run; earlier failed environment attempts remain recorded separately. This verifies only the recorded CPU/state configuration and one seed; no hardware or camera-mode claim.",
+    "artifacts": [
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/manifest.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/report.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/task.stdout.txt",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/environment.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/vulkan-summary.txt",
+      "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39042625468"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": {
       "command": "rsh.py prepare maniskill-panda-pick-cube --project CLEAN_PROJECT --download-only --json",
       "level": "contributor_reported",
@@ -167,8 +195,15 @@
       "result": "Pinned 243636110-byte upstream archive SHA-256 and extracted paths verified in two clean Windows projects; corrected render_backend=none adapter preserved. Source-only preparation reports needs_configuration with no venv or dependency install. ManiSkill imports and robot task execution: not_run."
     },
     "hub_verification": {
-      "level": "structure_checked",
-      "runtime": "not_run"
+      "level": "task_complete",
+      "runtime": "task_complete",
+      "workflow_run_id": "39042625468",
+      "verified_hub_commit": "73d2b037c18cac5eb36c769af6616e9565e14923",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "adapter_sha256": "2f4b49f8c2060488ff2a1c07bb946e622f45b399ce7cd9f9db8bf31bf562431c",
+      "record_version": "contrib-a5dd78ad4e1d4e3d",
+      "seed": 0,
+      "physical_gpu_used": false
     }
   },
   "maintenance": {

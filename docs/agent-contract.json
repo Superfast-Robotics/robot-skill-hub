@@ -179,6 +179,12 @@
       "token_file": "one_line_utf8_operator_issued_scoped_token",
       "policy_stores_credentials": false,
       "token_possession_grants_project_sharing": false
+    },
+    "installation_requirements": {
+      "python": ">=3.10",
+      "additional_python_packages": [],
+      "gpu_required": false,
+      "simulator_required": false
     }
   },
   "memory": {
@@ -314,11 +320,12 @@
     "session": {
       "method": "GET",
       "url": "https://api.superfastrobotics.com/v1/session",
-      "authentication": "Bearer RSH_SUBMISSION_TOKEN_or_RSH_SUBMISSION_TOKEN_FILE",
+      "authentication": "Bearer scoped_token",
       "side_effects": "none",
       "github_requests": 0,
       "rate_limit": "status",
-      "project_memory_scope": "client_policy_required"
+      "project_memory_scope": "client_policy_required",
+      "credential_source": "RSH_SUBMISSION_TOKEN or the file named by RSH_SUBMISSION_TOKEN_FILE"
     }
   },
   "preparation": {

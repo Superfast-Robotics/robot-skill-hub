@@ -51,7 +51,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -71,13 +71,15 @@
       "fast_kinematics==0.2.2"
     ],
     "hardware": [
-      "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
+      "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28",
+      "Tested on Ubuntu 22.04 without a physical GPU, using Mesa 23.2.1 lavapipe Vulkan ICD for scene/material initialization"
     ],
-    "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization still needs a usable Vulkan ICD; verified CPU-only with Mesa lavapipe. Camera/graphics modes remain separate and unverified.",
     "api_keys": [],
     "network": [
       "GitHub source archive (~233 MiB)",
-      "PyPI and dependency distributions; source package build hooks may execute"
+      "PyPI and dependency distributions; source package build hooks may execute",
+      "Official PyTorch CPU wheel index for the verified CPU-only setup"
     ],
     "dependency_lock": "Direct dependencies pinned; transitive dependencies resolved by pip and captured in the prepared project. No bit-for-bit environment guarantee."
   },
@@ -148,26 +150,55 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Robot Skill Hub source review",
+    "level": "task_complete",
+    "verified_by": "Robot Skill Hub maintainer review of exact GitHub Actions execution artifacts",
     "date": "2026-10-17",
     "environment": {
-      "host_os": "windows",
-      "python": "3.10.11",
-      "runtime": "not_installed"
+      "os": "linux",
+      "distribution": "Ubuntu 22.04",
+      "architecture": "x86_64",
+      "python": "3.10.22",
+      "packages": {
+        "mani_skill": "3.0.0b22",
+        "torch": "2.5.1+cpu",
+        "numpy": "1.26.4",
+        "sapien": "3.0.0",
+        "mplib": "0.1.1",
+        "fast_kinematics": "0.2.2"
+      },
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
+      "physical_gpu_used": false
     },
     "commands": [
-      "git ls-remote https://github.com/haosulab/ManiSkill.git refs/tags/v3.0.0b22",
-      "Download exact commit archive; SHA256 checked",
-      "Review pinned setup.py, LICENSE, upstream run.py and task solver"
+      "python tools/run_runtime_verification.py --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/environments/maniskill-panda-stack-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/recipes/maniskill-panda-stack-cube/run.py --seed 0"
     ],
-    "result": "Source and license verified. Linux execution, dependency installation, imports and task completion have NOT been run by the hub (not_run).",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "StackCube-v1 seed 0 completed with success=true, elapsed_steps=107, exit=0 and no timeout. One invocation was made for this task in the successful recorded run; earlier failed environment attempts remain recorded separately. This verifies only the recorded CPU/state configuration and one seed; no hardware or camera-mode claim.",
+    "artifacts": [
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/manifest.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/report.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/task.stdout.txt",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/environment.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/vulkan-summary.txt",
+      "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39042625468"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "level": "source_reviewed",
-      "runtime": "not_run"
+      "level": "task_complete",
+      "runtime": "task_complete",
+      "workflow_run_id": "39042625468",
+      "verified_hub_commit": "73d2b037c18cac5eb36c769af6616e9565e14923",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "adapter_sha256": "57d8fa401f70364fb2ed54e7c6b797f01445f65734d8cbe80aa35c8c5aa6fd37",
+      "record_version": "1.0.0",
+      "seed": 0,
+      "physical_gpu_used": false
     }
   },
   "maintenance": {

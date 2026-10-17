@@ -386,8 +386,15 @@ test('actual catalog record accepts a docs patch and invalidates inherited execu
 test('actual catalog evidence and compatibility verification cannot be escalated by submitter', async () => {
   for (const field of ['evidence', 'compatibility']) {
     const s = await setup();
-    const raw = (await readFile(new URL('../../catalog/records/maniskill-panda-pick-cube.json', import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
-    const actual = JSON.parse(raw); const path = `catalog/records/${actual.id}.json`; s.github.files = { [path]: raw };
+    const actual = JSON.parse(await readFile(new URL('../../catalog/records/maniskill-panda-pick-cube.json', import.meta.url), 'utf8'));
+    // Keep the escalation fixture unverified independently of later maintainer
+    // execution evidence in the real record.
+    actual.evidence = { ...actual.evidence, level: 'not_run', runtime_verification: 'not_run', artifacts: [],
+      verified_by: 'Local test fixture', result: 'No runtime verification in this test fixture.',
+      hub_verification: { level: 'structure_checked', runtime: 'not_run' } };
+    actual.compatibility[0].status = 'contributor_reported';
+    const raw = JSON.stringify(actual, null, 2) + '\n';
+    const path = `catalog/records/${actual.id}.json`; s.github.files = { [path]: raw };
     const changed = structuredClone(actual);
     if (field === 'evidence') changed.evidence.runtime_verification = 'task_complete';
     else changed.compatibility[0].status = 'hub_verified';

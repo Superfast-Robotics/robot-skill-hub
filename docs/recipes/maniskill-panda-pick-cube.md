@@ -20,6 +20,36 @@ dependency metadata and documentation paths.
 The canonical JSON keeps source inspection and simulator execution evidence in
 separate fields. Consult those fields for the exact recorded environment.
 
+## Verified CPU-only execution
+
+The exact wrapper completed PickCube-v1 seed 0 on Ubuntu 22.04 / Python 3.10.22:
+`success=true`, 74 steps, exit 0. The physical device was CPU llvmpipe, not a GPU.
+See the record's immutable artifact URLs for package versions, hashes and output.
+
+Although output rendering is disabled, pinned SAPIEN creates a Vulkan device for
+material initialization. On the verified CPU-only host, the required setup was:
+
+```sh
+sudo apt-get install --no-install-recommends libgl1 libegl1 libxext6 libglib2.0-0 libvulkan1 mesa-vulkan-drivers
+export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+```
+
+First prepare the project without `--install-deps` to create its isolated Python
+environment. For the tested CPU package variant, use that environment's Python:
+
+```sh
+/PATH_TO_ENV/bin/python -m pip install --upgrade pip
+/PATH_TO_ENV/bin/python -m pip install torch==2.5.1+cpu --no-deps --index-url https://download.pytorch.org/whl/cpu
+```
+
+Then repeat the same pinned preparation with `--install-deps`; its normal PyPI
+installation resolves the remaining dependencies. Execute the returned
+`next_command` separately, using the returned working directory and a 180-second
+external timeout. The complete reproducible procedure is
+`tools/run_runtime_verification.py`; it is maintainer-run, never triggered by a
+submitted patch or memory. One successful seed does not establish other seeds,
+robots, observation modes or physical hardware.
+
 ## Prepare the source from Windows
 
 Search and source preparation work on Windows even though the simulator target
