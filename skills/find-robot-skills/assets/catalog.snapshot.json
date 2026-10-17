@@ -1,10 +1,10 @@
 {
   "schema_version": "1",
-  "hub_commit": "3e3dc0421f8f2fbc5f6d06b2bd9dee8482728bab",
+  "hub_commit": "6e6746a6090fc89e876bff80afb76fcca5149be1",
   "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
   "references_url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
   "memories_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
-  "search_url": "https://hub.superfastrobotics.com/catalog/v1/search.json",
+  "search_manifest_url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
   "records": [
     {
       "schema_version": "1",
@@ -3399,5 +3399,6 @@
         "instructions": "Only actual reusable fixes. Public submission permission and a scoped pilot token are separate requirements. Submission opens a public internal draft PR; it is not publication."
       }
     }
-  ]
+  ],
+  "search_url": "https://hub.superfastrobotics.com/catalog/v1/search.json"
 }
