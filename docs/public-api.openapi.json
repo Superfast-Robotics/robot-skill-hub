@@ -212,6 +212,7 @@
           {
             "name": "record_version",
             "in": "query",
+            "description": "Optional exact record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.",
             "schema": {
               "type": "string",
               "maxLength": 120
