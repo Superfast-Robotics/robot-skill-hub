@@ -12,7 +12,7 @@ import urllib.error
 import urllib.parse
 
 from . import contributions
-from .core import COMMIT, ENVIRONMENT_FIELDS, SOURCE_REVISION, IDENTIFIER, RshError, lookup, read_json, selection_base, write_json
+from .core import COMMIT, ENVIRONMENT_FIELDS, SOURCE_REVISION, IDENTIFIER, RshError, lookup, read_json, require_url, selection_base, write_json
 from . import discovery
 from .discovery import fetch_public, index_data, public_index
 
@@ -144,13 +144,14 @@ def outbox_root(project):
     return root
 
 
-def entry_result(entry, path, *, reason=None, network=False):
+def entry_result(entry, path, *, reason=None, network=False, recovery=None):
     delivery = entry.get("delivery", {})
     response = delivery.get("response", {})
     return {"status": "stored" if delivery.get("status") == "stored" else "local_saved",
             "reason_code": reason or delivery.get("reason_code", "finding_saved_locally"),
             "fingerprint": entry["fingerprint"], "finding_path": str(path.resolve()),
             "network_performed": network, "next_action": "continue_user_task",
+            **({"delivery_recovery": recovery} if recovery else {}),
             **({"delivery_error": delivery["api_error"]} if delivery.get("api_error") else {}),
             **{key: response[key] for key in ("memory_id", "status_path", "pr_url", "content_sha256") if key in response}}
 
@@ -170,6 +171,37 @@ def safe_api_error(error):
             continue
         result[key] = value
     return result
+
+
+def missing_token_recovery(project, *, policy_path=None, api_url=None):
+    """Static credential guidance and an explicit retry; never copy error text or tokens."""
+    recovery = {
+        "credential_setup": {
+            "issuer": "Hub operator",
+            "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
+            "token_environment": "RSH_SUBMISSION_TOKEN",
+            "message": "Use an operator-issued scoped Hub token. Set RSH_SUBMISSION_TOKEN_FILE to the path of its private one-line UTF-8 file, or set RSH_SUBMISSION_TOKEN in the process environment. No GitHub token is needed; credentials do not grant project sharing permission.",
+        },
+        "documentation_url": "https://hub.superfastrobotics.com/memory.md",
+        "automatic_retry": False,
+    }
+    base = api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com"
+    try:
+        require_url(base, local_http=True)
+        if urllib.parse.urlsplit(base).query:
+            raise RshError("invalid_api_url", "API base URL cannot contain a query.")
+        reject_secrets(base)
+    except (RshError, TypeError, ValueError):
+        # Missing credentials are checked before API configuration; do not echo an
+        # unsafe endpoint or silently replace an explicitly selected destination.
+        recovery["api_configuration_required"] = True
+        return recovery
+    args = ["flush", "--project", str(Path(project).expanduser().resolve()), "--limit", "1",
+            "--api-url", base.rstrip("/")]
+    if policy_path:
+        args.extend(["--policy", str(Path(policy_path).resolve())])
+    recovery["flush_args"] = args + ["--json"]
+    return recovery
 
 
 def deliver(entry, path, project, *, policy_path=None, api_url=None):
@@ -208,7 +240,8 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
             entry["delivery"]["api_error"] = details
         write_json(path, entry)
         # No automatic retry here. An explicit flush reuses the exact same wire bytes.
-        return entry_result(entry, path, reason=reason, network=entry["delivery"].get("attempted", False))
+        recovery = missing_token_recovery(project, policy_path=policy_path, api_url=api_url) if reason == "missing_submission_token" else None
+        return entry_result(entry, path, reason=reason, network=entry["delivery"].get("attempted", False), recovery=recovery)
 
 
 def save(catalog, skill_id, project, finding_file, *, policy_path=None, api_url=None, offline=False):
@@ -229,7 +262,13 @@ def save(catalog, skill_id, project, finding_file, *, policy_path=None, api_url=
         existing = read_json(target)
         if existing.get("fingerprint") != digest or fingerprint(existing.get("payload", {})) != digest:
             raise RshError("invalid_local_memory", "Existing local memory does not match its content identity.")
-        return entry_result(existing, target, reason="unchanged_finding_already_saved")
+        delivery = existing.get("delivery", {})
+        recovery = None
+        if (not offline and delivery.get("status") != "stored" and delivery.get("reason_code") == "missing_submission_token"
+                and allowed(policy_for(project, policy_path), skill_id, finding["kind"])):
+            # A duplicate remains read-only even after credentials become available.
+            recovery = missing_token_recovery(project, policy_path=policy_path, api_url=api_url)
+        return entry_result(existing, target, reason="unchanged_finding_already_saved", recovery=recovery)
     entry = {"schema_version": "1", "fingerprint": digest, "payload": payload,
              "created_at": datetime.now(timezone.utc).isoformat(),
              "delivery": {"status": "local_saved", "attempted": False}}

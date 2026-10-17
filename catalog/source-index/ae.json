@@ -18,6 +18,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6",
       "record_version": "source-fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6"
+    },
+    {
+      "id": "spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "5ae1cf29bfaa81099d8fa9c0d066726eac92b4b80c77d33a4cedd88410f0567b",
+      "record_version": "source-5ae1cf29bfaa81099d8fa9c0d066726eac92b4b80c77d33a4cedd88410f0567b"
     }
   ]
 }

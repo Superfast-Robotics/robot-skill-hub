@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mavsdk-python-examples-camera-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "3a5f6b13bad109ff0490f4c00868d811baff497f35bb29def2f57842afb07726",
+      "record_version": "source-3a5f6b13bad109ff0490f4c00868d811baff497f35bb29def2f57842afb07726"
+    },
+    {
       "id": "openpi-examples-libero-convert-libero-data-to-lerobot-py",
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602",

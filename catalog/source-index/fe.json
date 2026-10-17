@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mavsdk-python-examples-follow-me-example-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d",
+      "record_version": "source-27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d"
+    },
+    {
       "id": "mujoco-menagerie-artifact-unitree-go1-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "eceb4231bf2a3b0a190296963b38b904ed77dc14f5770bbcdd67fb0be8c49374",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mavsdk-python-examples-offboard-position-ned-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "9cdd7ac8efcb6543bb452fd69b6ce3866b0edf5beb865411ace69ca3ac183aeb",
+      "record_version": "source-9cdd7ac8efcb6543bb452fd69b6ce3866b0edf5beb865411ace69ca3ac183aeb"
+    },
+    {
       "id": "moveit2-doc-tutorials-visualizing-in-rviz-hello-moveit-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "c096a0c8da91786c6e0aa36ba165023c8890b2a00a301c562c93af42c584401f",

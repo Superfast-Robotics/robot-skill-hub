@@ -20,6 +20,12 @@
       "record_version": "source-7dfaa7568027ee58dc68058676718f67f8043991ffd210b7beb3a99759f15715"
     },
     {
+      "id": "spot-sdk-python-examples-get-image-get-image-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "87d3b238f62b2fef2ae93eb5b858070c358853773ec10e156b0378cd24db2a03",
+      "record_version": "source-87d3b238f62b2fef2ae93eb5b858070c358853773ec10e156b0378cd24db2a03"
+    },
+    {
       "id": "ur-description-artifact-config-ur5-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "279609c61e61c2097d3d7f47cc7fca1bfe66c939f1dc096eff8d140f9ec0e22f",

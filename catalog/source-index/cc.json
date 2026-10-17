@@ -38,6 +38,12 @@
       "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
     },
     {
+      "id": "spot-sdk-python-examples-hello-spot-hello-spot-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+      "record_version": "source-e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43"
+    },
+    {
       "id": "webots-projects-robots-robotis-bioloid-controllers-bioloid-dog-bioloid-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "3235fdb2277604333a14d327bb5e94c4fa0a26be8a0412b0c96f22069e170b23",

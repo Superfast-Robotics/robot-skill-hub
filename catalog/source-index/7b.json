@@ -14,6 +14,12 @@
       "record_version": "source-19a9a41d1fc8b42766e9931698ec438e276bc2036ea6a676cf8d8fd7cd0517ba"
     },
     {
+      "id": "spot-sdk-python-examples-arm-simple-arm-simple-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6",
+      "record_version": "source-98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-altimeter-altimeter-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "66a4321ccfb73ae6b6b1c147dd27f81048550614d76131a46306c0b3f3d48c14",

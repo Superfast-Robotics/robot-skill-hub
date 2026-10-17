@@ -8,6 +8,12 @@
       "record_version": "source-f26c4982de0d0f6a28695e71bdfa9b3c4e5595e853882f1218daf012c3af308c"
     },
     {
+      "id": "mavsdk-python-examples-takeoff-and-land-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1",
+      "record_version": "source-441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1"
+    },
+    {
       "id": "openpi-scripts-serve-policy-py",
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "eccc0448b4873fd30a1fff3355c5de7a7c227138e6db04b7dcaa5bb38a6a5809",

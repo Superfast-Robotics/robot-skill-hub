@@ -18,6 +18,18 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "1f46d55f04daf043bfd99bb8a03dae5d9ab9251caa2977561ee20808e896f194",
       "record_version": "source-1f46d55f04daf043bfd99bb8a03dae5d9ab9251caa2977561ee20808e896f194"
+    },
+    {
+      "id": "mavsdk-python-examples-geofence-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "b6e65e37a5b930ec15cb76a1644733d604d685619f2f05fe6e234a4a524c7a8d",
+      "record_version": "source-b6e65e37a5b930ec15cb76a1644733d604d685619f2f05fe6e234a4a524c7a8d"
+    },
+    {
+      "id": "spot-sdk-python-examples-get-robot-state-get-robot-state-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675",
+      "record_version": "source-a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675"
     }
   ]
 }

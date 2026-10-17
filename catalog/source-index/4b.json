@@ -14,6 +14,12 @@
       "record_version": "source-6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b"
     },
     {
+      "id": "mavsdk-python-examples-telemetry-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657",
+      "record_version": "source-7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-gyro-gyro-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "172aaee820e19b0ae587a7ec31876b83c5a2745caffb672ee73e8df090c8b59c",

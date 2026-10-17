@@ -5796,6 +5796,2582 @@
           }
         }
       ]
+    },
+    {
+      "id": "mavsdk-python",
+      "name": "MAVSDK-Python gRPC examples",
+      "repository": "https://github.com/mavlink/MAVSDK-Python",
+      "ref": "main",
+      "commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "stars": 455,
+      "authors": [
+        "MAVSDK Development Team",
+        "Jonas Vautherin",
+        "Julian Oes"
+      ],
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "91b743b172ca9ae1fdf09137a66e106b76962a75034807f244e2c344d85efae8",
+          "bytes": 7585,
+          "purpose": "Wrapper/import rename and setup",
+          "contains": [
+            "mavsdk-grpc",
+            "mavsdk_grpc",
+            "Python 3.7+"
+          ]
+        },
+        {
+          "path": "setup.py",
+          "sha256": "5aed957f828c4a0769b08b45dc43a187487196a2035a5425641b6de61c5d7f56",
+          "bytes": 10879,
+          "purpose": "Maintainer, Python and binary build declarations",
+          "contains": [
+            "Jonas Vautherin, Julian Oes",
+            "python_requires=\">=3.7\""
+          ]
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+          "bytes": 32,
+          "purpose": "Declared dependencies",
+          "contains": [
+            "protobuf>=6.32.1",
+            "grpcio>=1.64.1"
+          ]
+        },
+        {
+          "path": "MAVSDK_SERVER_VERSION",
+          "sha256": "d14fb8c93c85dcffcb1e04b4268226d056a2f56841bfe33578d316955d337116",
+          "bytes": 7,
+          "purpose": "Separate server binary version",
+          "contains": [
+            "v4.0.5"
+          ]
+        }
+      ],
+      "execution_domain": "hardware-or-upstream-simulation",
+      "setup_url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/README.md",
+      "requirements": {
+        "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+        "packages": [
+          "mavsdk-grpc (import mavsdk_grpc)",
+          "protobuf>=6.32.1",
+          "grpcio>=1.64.1"
+        ],
+        "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown."
+      },
+      "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+      "license": {
+        "path": "LICENSE.txt",
+        "sha256": "2e373f427edf94ffd33fdda4d055989605257c6880026496b06d04890394bd12",
+        "bytes": 1494,
+        "spdx": "BSD-3-Clause",
+        "scope": "Selected first-party Python example source under the MAVSDK Development Team BSD-3-Clause notice. Retain copyright, conditions and disclaimers. This source identity does not establish terms for separately obtained server binaries, autopilot firmware, hardware, payloads, maps, dependencies or services."
+      },
+      "checked_at": "2026-10-18",
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "selection": {
+        "include": [
+          "examples/takeoff_and_land.py",
+          "examples/telemetry.py",
+          "examples/telemetry_flight_mode.py",
+          "examples/mission.py",
+          "examples/mission_raw.py",
+          "examples/offboard_position_ned.py",
+          "examples/offboard_velocity_body.py",
+          "examples/goto.py",
+          "examples/geofence.py",
+          "examples/camera.py",
+          "examples/gimbal.py",
+          "examples/follow_me_example.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "examples/takeoff_and_land.py",
+          "sha256": "441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1",
+          "bytes": 1367,
+          "entrypoint_kind": "python_main",
+          "role": "flight-control",
+          "name": "Takeoff and landing",
+          "summary": "Connect, wait for readiness, arm, take off and land. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "takeoff",
+            "landing",
+            "flight-control"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/takeoff_and_land.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/telemetry.py",
+          "sha256": "7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657",
+          "bytes": 1260,
+          "entrypoint_kind": "python_main",
+          "role": "telemetry",
+          "name": "Telemetry streams",
+          "summary": "Subscribe to battery, GPS, in-air and position telemetry. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "telemetry",
+            "robot-state-inspection"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/telemetry.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/telemetry_flight_mode.py",
+          "sha256": "ec69b8d4e90b5cdded319cc56acc17a3209511f9dcfefc64e2dd993ebaa98a67",
+          "bytes": 580,
+          "entrypoint_kind": "python_main",
+          "role": "telemetry",
+          "name": "Flight-mode telemetry",
+          "summary": "Print the connected vehicle flight-mode stream. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "telemetry",
+            "flight-mode"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/telemetry_flight_mode.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/mission.py",
+          "sha256": "891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee",
+          "bytes": 3626,
+          "entrypoint_kind": "python_main",
+          "role": "mission-control",
+          "name": "Mission upload and execution",
+          "summary": "Construct, upload and start a mission with progress monitoring. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "mission-control",
+            "mission-upload"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/mission.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/mission_raw.py",
+          "sha256": "cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2",
+          "bytes": 1941,
+          "entrypoint_kind": "python_main",
+          "role": "mission-control",
+          "name": "Raw mission upload",
+          "summary": "Construct and upload two raw MAVLink mission items. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "mission-control",
+            "mission-upload"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/mission_raw.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run.",
+            "Uploads raw mission items only; no mission-start call is present."
+          ]
+        },
+        {
+          "path": "examples/offboard_position_ned.py",
+          "sha256": "9cdd7ac8efcb6543bb452fd69b6ce3866b0edf5beb865411ace69ca3ac183aeb",
+          "bytes": 2857,
+          "entrypoint_kind": "python_main",
+          "role": "flight-control",
+          "name": "Offboard NED position control",
+          "summary": "Issue offboard position/yaw setpoints in NED coordinates. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "offboard-control",
+            "position-control"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/offboard_position_ned.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run.",
+            "Source documents offboard.stop() COMMAND_DENIED in non-GPS environments because HOLD transition is unavailable."
+          ]
+        },
+        {
+          "path": "examples/offboard_velocity_body.py",
+          "sha256": "ed69f54c33f178946565bb42e48620420d9a361fbab7ba6406e7f3d6a2110f30",
+          "bytes": 2632,
+          "entrypoint_kind": "python_main",
+          "role": "flight-control",
+          "name": "Offboard body velocity control",
+          "summary": "Issue body-frame velocity and yaw-rate setpoints. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "offboard-control",
+            "velocity-control"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/offboard_velocity_body.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/goto.py",
+          "sha256": "030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b",
+          "bytes": 1501,
+          "entrypoint_kind": "python_main",
+          "role": "navigation-control",
+          "name": "Global position command",
+          "summary": "Arm, take off and issue a configured global position command. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "navigation-control",
+            "global-position-command"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/goto.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        },
+        {
+          "path": "examples/geofence.py",
+          "sha256": "b6e65e37a5b930ec15cb76a1644733d604d685619f2f05fe6e234a4a524c7a8d",
+          "bytes": 2066,
+          "entrypoint_kind": "python_main",
+          "role": "geofencing",
+          "name": "Geofence upload",
+          "summary": "Construct polygon/circle geofence data and upload it. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "geofencing",
+            "geofence-upload"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/geofence.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run.",
+            "Source explicitly leaves behavior upon reaching the fence unconfigured."
+          ]
+        },
+        {
+          "path": "examples/camera.py",
+          "sha256": "3a5f6b13bad109ff0490f4c00868d811baff497f35bb29def2f57842afb07726",
+          "bytes": 2173,
+          "entrypoint_kind": "python_main",
+          "role": "camera-control",
+          "name": "Camera modes and capture",
+          "summary": "Select camera photo/video modes and issue capture/recording commands. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "camera-control",
+            "image-acquisition",
+            "video-recording"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/camera.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run.",
+            "The corresponding configured payload/plugin is required; none is identified or tested here."
+          ]
+        },
+        {
+          "path": "examples/gimbal.py",
+          "sha256": "168127cf925582f4b7554f736e210707161c3455714596e98e9236465d657e8e",
+          "bytes": 4995,
+          "entrypoint_kind": "python_main",
+          "role": "gimbal-control",
+          "name": "Gimbal control",
+          "summary": "Discover gimbals and issue attitude, rate and ROI commands. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "gimbal-control",
+            "payload-control"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/gimbal.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run.",
+            "The corresponding configured payload/plugin is required; none is identified or tested here."
+          ]
+        },
+        {
+          "path": "examples/follow_me_example.py",
+          "sha256": "27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d",
+          "bytes": 2710,
+          "entrypoint_kind": "python_main",
+          "role": "target-following",
+          "name": "Follow-me target control",
+          "summary": "Configure follow-me behavior and send synthetic target locations. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "target-following",
+            "follow-me",
+            "flight-control"
+          ],
+          "robot_types": [
+            "aerial"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "environment": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+            },
+            "dependency_file": {
+              "path": "requirements.txt",
+              "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+              "bytes": 32,
+              "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+              "literal_lines": [
+                "protobuf>=6.32.1",
+                "grpcio>=1.64.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "server_binary_version": {
+              "value": "v4.0.5",
+              "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+              "meaning": "Server binary only, not Python distribution or autopilot firmware."
+            },
+            "vehicle_model": "unknown",
+            "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+          },
+          "entrypoint": "python examples/follow_me_example.py",
+          "invocation_notes": "Use the pinned gRPC-wrapper setup: current sources import mavsdk_grpc, not the unrelated native mavsdk v4 binding. Upstream build may download mavsdk_server and connect() may launch it. Review selected connection addresses and motion/mission values. No installation, server, simulator or vehicle was run or contacted.",
+          "limitations": [
+            "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spot-sdk",
+      "name": "Boston Dynamics Spot SDK",
+      "repository": "https://github.com/boston-dynamics/spot-sdk",
+      "ref": "master",
+      "commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "stars": 2506,
+      "authors": [
+        "Boston Dynamics, Inc."
+      ],
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "3ac44aefe8906d1e4445bc3fa733df3f594bf894a9516ecb781d09c14ad5aa59",
+          "bytes": 1966,
+          "purpose": "Author, project and SDK release",
+          "contains": [
+            "Boston Dynamics, Inc.",
+            "version 5.2.0"
+          ]
+        },
+        {
+          "path": "python/README.md",
+          "sha256": "981346201e4c7fbbc44819b8b375e3303da758e6ce46780e1e7942d9bfa85587",
+          "bytes": 938,
+          "purpose": "Python library setup",
+          "contains": [
+            "Boston Dynamics Python Reference Guide"
+          ]
+        },
+        {
+          "path": "python/bosdyn-client/setup.py",
+          "sha256": "8e686364ccff8e578d8c86c7062249c92bcc8c3b16fc2141e9fabd3b67a68ebd",
+          "bytes": 1905,
+          "purpose": "Author, Python and SDK-package declarations",
+          "contains": [
+            "author=\"Boston Dynamics\"",
+            "python_requires=\">=3.7\""
+          ]
+        },
+        {
+          "path": "docs/python/quickstart.md",
+          "sha256": "1b88173e97239b7e539af1df3b9b63aeffd411527f6115b3275cccbef3fbc2c1",
+          "bytes": 15955,
+          "purpose": "Python, robot software alignment and access setup",
+          "contains": [
+            "Spot Python SDK works with Python 3.7+",
+            "A Spot robot on the same version as your packages"
+          ]
+        },
+        {
+          "path": "VERSION",
+          "sha256": "e791457c25b99d69f3d5ca028f6a7f6d88f7e2d85af5162a92a8c5f3aecf59b0",
+          "bytes": 6,
+          "purpose": "SDK version, not connected robot firmware",
+          "contains": [
+            "5.2.0"
+          ]
+        },
+        {
+          "path": "python/examples/arm_gaze/README.md",
+          "sha256": "b4b530f096d7a6b401a941b0e51ecb6fafb90c223b398b49e2993f61eac9e106",
+          "bytes": 1341,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Arm Gaze Command"
+          ]
+        },
+        {
+          "path": "python/examples/arm_gaze/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/arm_grasp/README.md",
+          "sha256": "46359d58295ec3f3bf112dbb5e9f8f70deee635d1d36560867868724f48d2c9a",
+          "bytes": 1745,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Grasping"
+          ]
+        },
+        {
+          "path": "python/examples/arm_grasp/requirements.txt",
+          "sha256": "f3d88d0e53dfd58452c096037cf67c32b761ff7f4ab0186dd4df5dd31ddc327f",
+          "bytes": 63,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/arm_joint_move/README.md",
+          "sha256": "7742747eeadf15fb964aeaa88e1ed060f1448b75f36cbd0a40f58a79278c17ca",
+          "bytes": 1614,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Arm JointMove Command"
+          ]
+        },
+        {
+          "path": "python/examples/arm_joint_move/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/arm_simple/README.md",
+          "sha256": "e142f5a6adebee760ffd7529203f07e3d4abd799eeba3b45582e2072710bf9ca",
+          "bytes": 1402,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Arm Simple"
+          ]
+        },
+        {
+          "path": "python/examples/arm_simple/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/arm_trajectory/README.md",
+          "sha256": "eb1ec4ed53a2104e6beabaf70484831032e59e9941ed4fdfd4156eb7c19a24d4",
+          "bytes": 1843,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Arm Trajectory"
+          ]
+        },
+        {
+          "path": "python/examples/arm_trajectory/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/arm_walk_to_object/README.md",
+          "sha256": "3258a4b06692c05445b98ae8a8adeda79477511f3ec98a3d4959686fab6761b9",
+          "bytes": 1698,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Walking to an Object"
+          ]
+        },
+        {
+          "path": "python/examples/arm_walk_to_object/requirements.txt",
+          "sha256": "8599b298a5bc4d9706599cf1b6bd89cf1981a12991c7dda63ef2004b68d4bce6",
+          "bytes": 63,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/docking/README.md",
+          "sha256": "457fd47f92c2f9af3aceb661fe9900f15676e6cdd54da2090777975221fbf57a",
+          "bytes": 1529,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Robot Docking"
+          ]
+        },
+        {
+          "path": "python/examples/docking/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/estop/README.md",
+          "sha256": "a38b11daf129789e045c851b43df8f8692adcbf4538b62c5c6086be1c2eaadc3",
+          "bytes": 2084,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Creating an E-Stop endpoint"
+          ]
+        },
+        {
+          "path": "python/examples/estop/requirements.txt",
+          "sha256": "c728cb2b026ee2c6037d34739cc6ddb2628036f4e8eb07d2d0c90d1d6e67e926",
+          "bytes": 94,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/frame_trajectory_command/README.md",
+          "sha256": "7c18189abd25e9e565a177e015a9accd69fa423f282dbd8b068350aa20f3b875",
+          "bytes": 1346,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Frame Trajectory Commands"
+          ]
+        },
+        {
+          "path": "python/examples/frame_trajectory_command/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/get_image/README.md",
+          "sha256": "ee70211f70e3d0114e31e10013d748e7f89d05c110c4febdeb6859ced4ed22eb",
+          "bytes": 4515,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Using the Image Service"
+          ]
+        },
+        {
+          "path": "python/examples/get_image/requirements.txt",
+          "sha256": "5bc4d191f14f902ba746d72d9091711e35393757ebe5e6563bbdf9e394c192b0",
+          "bytes": 69,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/get_robot_state/README.md",
+          "sha256": "6051a43b551db18e591206229e0610178e550572245ec027cf8ebae51bc8aa19",
+          "bytes": 1025,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Using the Robot State Service"
+          ]
+        },
+        {
+          "path": "python/examples/get_robot_state/requirements.txt",
+          "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/get_world_objects/README.md",
+          "sha256": "dc938323f55391fba8c4dfa81c5752c159d32311a1e5172808ec50c4bf106a20",
+          "bytes": 836,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Using the World Object Service"
+          ]
+        },
+        {
+          "path": "python/examples/get_world_objects/requirements.txt",
+          "sha256": "460f1bdc6e23dd1eb2e1877a57bf76f555495247f7a728f7405b71f28c8d1458",
+          "bytes": 46,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 5.0.1.2"
+          ]
+        },
+        {
+          "path": "python/examples/graph_nav_command_line/README.md",
+          "sha256": "48517ee0435b846b84053713362585219dec399a49cd8b52a5e46e96d125d2f2",
+          "bytes": 11543,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# GraphNav and Recording Service Command Line Interfaces"
+          ]
+        },
+        {
+          "path": "python/examples/graph_nav_command_line/requirements.txt",
+          "sha256": "ab41584318f4fa08377824ff9f1fc2a2c05ec54f3fd9ed52837696b5b5661553",
+          "bytes": 42,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 4.0"
+          ]
+        },
+        {
+          "path": "python/examples/hello_spot/README.md",
+          "sha256": "6d5b22bff94bfbfae87f64b3cd0a38d402d0595d07a06710fd5daf7d10fcc758",
+          "bytes": 1735,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Hello Spot"
+          ]
+        },
+        {
+          "path": "python/examples/hello_spot/requirements.txt",
+          "sha256": "0c001224efd6125dee94b521e3686523c53ddff8b5bff67c10d3731381bc63fb",
+          "bytes": 50,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/inverse_kinematics/README.md",
+          "sha256": "bdbd1066365a1af8a928b292175342e00bfa1e6e7120e78b1c9885aee13c5c02",
+          "bytes": 1697,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Inverse Kinematics Service"
+          ]
+        },
+        {
+          "path": "python/examples/inverse_kinematics/requirements.txt",
+          "sha256": "629aabd338def189bc0d5c9a868169a91c538454497ea83c43cab2092a061189",
+          "bytes": 60,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.3"
+          ]
+        },
+        {
+          "path": "python/examples/record_autowalk/README.md",
+          "sha256": "9299a6ce99743d9b16423aaf0f01d55a8376c4f0e365f0cb88bbe6b1bac15b85",
+          "bytes": 2571,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Recording an Autowalk with a Keyboard"
+          ]
+        },
+        {
+          "path": "python/examples/record_autowalk/requirements.txt",
+          "sha256": "d140e06f7c382a1d00d9575cd314082a13c446e7a29db440f2aa45d7d7250126",
+          "bytes": 59,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        },
+        {
+          "path": "python/examples/replay_mission/README.md",
+          "sha256": "b896fd6c99c52ea161767ebb201dd2e1538b6090790664b5df51d7db085a9862",
+          "bytes": 1930,
+          "purpose": "Selected workflow setup and invocation",
+          "contains": [
+            "# Replaying a Mission"
+          ]
+        },
+        {
+          "path": "python/examples/replay_mission/requirements.txt",
+          "sha256": "6f7bee90b40321b1da4d7c8989aaca50ee6990d1f59a17738f2065ad6796fc5f",
+          "bytes": 64,
+          "purpose": "Per-workflow SDK floor and optional dependencies",
+          "contains": [
+            "bosdyn-client >= 3.1"
+          ]
+        }
+      ],
+      "execution_domain": "hardware",
+      "setup_url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+      "requirements": {
+        "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+        "packages": [
+          "Matching-version bosdyn-client, bosdyn-api and bosdyn-core",
+          "Selected folder requirements.txt; per-workflow floors and optional packages differ"
+        ],
+        "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow."
+      },
+      "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+        "bytes": 3920,
+        "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+        "verified": false,
+        "review_status": "nonstandard_upstream_terms",
+        "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+        "source_terms": {
+          "identifier": "20191101-BDSDK-SL",
+          "marker": "(20191101-BDSDK-SL)",
+          "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+        }
+      },
+      "checked_at": "2026-10-18",
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "selection": {
+        "include": [
+          "python/examples/hello_spot/hello_spot.py",
+          "python/examples/get_robot_state/get_robot_state.py",
+          "python/examples/get_image/get_image.py",
+          "python/examples/get_world_objects/get_world_objects.py",
+          "python/examples/arm_simple/arm_simple.py",
+          "python/examples/arm_joint_move/arm_joint_move.py",
+          "python/examples/arm_trajectory/arm_trajectory.py",
+          "python/examples/arm_gaze/arm_gaze.py",
+          "python/examples/arm_grasp/arm_grasp.py",
+          "python/examples/arm_walk_to_object/arm_walk_to_object.py",
+          "python/examples/frame_trajectory_command/frame_trajectory_command.py",
+          "python/examples/docking/dock_my_robot.py",
+          "python/examples/graph_nav_command_line/graph_nav_command_line.py",
+          "python/examples/graph_nav_command_line/recording_command_line.py",
+          "python/examples/record_autowalk/record_autowalk.py",
+          "python/examples/replay_mission/replay_mission.py",
+          "python/examples/inverse_kinematics/reachability.py",
+          "python/examples/estop/estop_nogui.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "python/examples/hello_spot/hello_spot.py",
+          "sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+          "bytes": 12333,
+          "entrypoint_kind": "python_main",
+          "role": "locomotion",
+          "name": "Hello Spot posture and image demo",
+          "summary": "Initialize robot access, change body postures and capture an image. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "locomotion",
+            "posture-control",
+            "image-acquisition"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "Pillow"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/hello_spot/requirements.txt",
+              "sha256": "0c001224efd6125dee94b521e3686523c53ddff8b5bff67c10d3731381bc63fb",
+              "bytes": 50,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "",
+                "Pillow"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/hello_spot/hello_spot.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/hello_spot/hello_spot.py",
+                "sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+                "bytes": 12333,
+                "quote": "spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/get_robot_state/get_robot_state.py",
+          "sha256": "a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675",
+          "bytes": 1750,
+          "entrypoint_kind": "python_main",
+          "role": "robot-state-inspection",
+          "name": "Robot state and hardware inspection",
+          "summary": "Read robot state, metrics and hardware configuration. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "robot-state-inspection",
+            "telemetry"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/get_robot_state/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_robot_state/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/get_robot_state/get_robot_state.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+          ]
+        },
+        {
+          "path": "python/examples/get_image/get_image.py",
+          "sha256": "87d3b238f62b2fef2ae93eb5b858070c358853773ec10e156b0378cd24db2a03",
+          "bytes": 4934,
+          "entrypoint_kind": "python_main",
+          "role": "image-acquisition",
+          "name": "Camera image acquisition",
+          "summary": "Request camera images and save or display returned data. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "image-acquisition",
+            "camera-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "numpy",
+              "opencv-python",
+              "scipy"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/get_image/requirements.txt",
+              "sha256": "5bc4d191f14f902ba746d72d9091711e35393757ebe5e6563bbdf9e394c192b0",
+              "bytes": 69,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_image/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "",
+                "numpy",
+                "opencv-python",
+                "scipy"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/get_image/get_image.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/get_image/README.md",
+                "sha256": "ee70211f70e3d0114e31e10013d748e7f89d05c110c4febdeb6859ced4ed22eb",
+                "bytes": 4515,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/get_world_objects/get_world_objects.py",
+          "sha256": "bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869",
+          "bytes": 3194,
+          "entrypoint_kind": "python_main",
+          "role": "world-object-inspection",
+          "name": "World-object inspection",
+          "summary": "Query world objects, fiducials, entities and recent-object filters. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "world-object-inspection",
+            "perception"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 5.0.1.2"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/get_world_objects/requirements.txt",
+              "sha256": "460f1bdc6e23dd1eb2e1877a57bf76f555495247f7a728f7405b71f28c8d1458",
+              "bytes": 46,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_world_objects/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 5.0.1.2"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/get_world_objects/get_world_objects.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/get_world_objects/README.md",
+                "sha256": "dc938323f55391fba8c4dfa81c5752c159d32311a1e5172808ec50c4bf106a20",
+                "bytes": 836,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_simple/arm_simple.py",
+          "sha256": "98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6",
+          "bytes": 8078,
+          "entrypoint_kind": "python_main",
+          "role": "arm-control",
+          "name": "Arm Cartesian pose command",
+          "summary": "Command an arm pose and inspect command feedback. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "arm-control",
+            "cartesian-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_simple/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_simple/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_simple/arm_simple.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_simple/arm_simple.py",
+                "sha256": "98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6",
+                "bytes": 8078,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_joint_move/arm_joint_move.py",
+          "sha256": "bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84",
+          "bytes": 12498,
+          "entrypoint_kind": "python_main",
+          "role": "joint-control",
+          "name": "Arm joint commands",
+          "summary": "Build joint trajectories and send arm joint motion commands. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "joint-control",
+            "arm-control",
+            "trajectory-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_joint_move/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_joint_move/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_joint_move/arm_joint_move.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_joint_move/arm_joint_move.py",
+                "sha256": "bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84",
+                "bytes": 12498,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_trajectory/arm_trajectory.py",
+          "sha256": "ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c",
+          "bytes": 7238,
+          "entrypoint_kind": "python_main",
+          "role": "arm-control",
+          "name": "Arm Cartesian trajectory",
+          "summary": "Build and send a configured Cartesian arm trajectory. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "arm-control",
+            "trajectory-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_trajectory/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_trajectory/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_trajectory/arm_trajectory.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_trajectory/arm_trajectory.py",
+                "sha256": "ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c",
+                "bytes": 7238,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_gaze/arm_gaze.py",
+          "sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+          "bytes": 11433,
+          "entrypoint_kind": "python_main",
+          "role": "arm-control",
+          "name": "Arm gaze commands",
+          "summary": "Send arm gaze targets and trajectories. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "arm-control",
+            "gaze-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_gaze/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_gaze/arm_gaze.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_gaze/arm_gaze.py",
+                "sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+                "bytes": 11433,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_grasp/arm_grasp.py",
+          "sha256": "fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622",
+          "bytes": 13402,
+          "entrypoint_kind": "python_main",
+          "role": "arm-control",
+          "name": "Image-selected grasp",
+          "summary": "Request an arm grasp from a clicked image point and constraints. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "arm-control",
+            "grasping",
+            "image-acquisition"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "numpy",
+              "opencv-python"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_grasp/requirements.txt",
+              "sha256": "f3d88d0e53dfd58452c096037cf67c32b761ff7f4ab0186dd4df5dd31ddc327f",
+              "bytes": 63,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_grasp/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "",
+                "numpy",
+                "opencv-python"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_grasp/arm_grasp.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_grasp/arm_grasp.py",
+                "sha256": "fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622",
+                "bytes": 13402,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/arm_walk_to_object/arm_walk_to_object.py",
+          "sha256": "d98ff4c115da151f91a1a0d92d54da184b9a7a5e807fc34d6795bcf051dbc4c1",
+          "bytes": 8431,
+          "entrypoint_kind": "python_main",
+          "role": "navigation-control",
+          "name": "Walk to an image-selected object",
+          "summary": "Select an image point and request walking toward the object. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "navigation-control",
+            "image-guided-motion"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "opencv-python",
+              "numpy"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/arm_walk_to_object/requirements.txt",
+              "sha256": "8599b298a5bc4d9706599cf1b6bd89cf1981a12991c7dda63ef2004b68d4bce6",
+              "bytes": 63,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_walk_to_object/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "",
+                "opencv-python",
+                "numpy"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/arm_walk_to_object/arm_walk_to_object.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/arm_walk_to_object/README.md",
+                "sha256": "3258a4b06692c05445b98ae8a8adeda79477511f3ec98a3d4959686fab6761b9",
+                "bytes": 1698,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/frame_trajectory_command/frame_trajectory_command.py",
+          "sha256": "9ef2afda8bfe0a37e9601a7ac39a04db9717999da320d30ebafb95d2b4b41a5b",
+          "bytes": 5504,
+          "entrypoint_kind": "python_main",
+          "role": "locomotion",
+          "name": "Frame-relative trajectory command",
+          "summary": "Send a frame-relative SE2 trajectory and monitor feedback. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "locomotion",
+            "trajectory-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/frame_trajectory_command/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/frame_trajectory_command/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/frame_trajectory_command/frame_trajectory_command.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/frame_trajectory_command/README.md",
+                "sha256": "7c18189abd25e9e565a177e015a9accd69fa423f282dbd8b068350aa20f3b875",
+                "bytes": 1346,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/docking/dock_my_robot.py",
+          "sha256": "df4d85b68d2fe309f1211893b7f32d8d93d1e0f44e006fdc9cd409fd78a44879",
+          "bytes": 2764,
+          "entrypoint_kind": "python_main",
+          "role": "docking",
+          "name": "Licensed docking and undocking",
+          "summary": "Check docking feature entitlement and request docking or undocking. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "docking",
+            "navigation-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/docking/requirements.txt",
+              "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/docking/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/docking/dock_my_robot.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Source checks docking entitlement; dock/fiducial, external E-Stop and robot state must be configured upstream."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/docking/README.md",
+                "sha256": "457fd47f92c2f9af3aceb661fe9900f15676e6cdd54da2090777975221fbf57a",
+                "bytes": 1529,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/graph_nav_command_line/graph_nav_command_line.py",
+          "sha256": "b1190bf07706ae4be93068ebb8188563291aca064fc3ebb1041b9dee54bba085",
+          "bytes": 32511,
+          "entrypoint_kind": "python_main",
+          "role": "navigation-control",
+          "name": "GraphNav command-line navigation",
+          "summary": "Manage navigation maps, localize and issue graph navigation requests. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "navigation-control",
+            "graph-navigation",
+            "map-management"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 4.0"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/graph_nav_command_line/requirements.txt",
+              "sha256": "ab41584318f4fa08377824ff9f1fc2a2c05ec54f3fd9ed52837696b5b5661553",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 4.0"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/graph_nav_command_line/graph_nav_command_line.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Maps/missions, localization and robot control prerequisites are not supplied or verified by this source reference."
+          ]
+        },
+        {
+          "path": "python/examples/graph_nav_command_line/recording_command_line.py",
+          "sha256": "5ae1cf29bfaa81099d8fa9c0d066726eac92b4b80c77d33a4cedd88410f0567b",
+          "bytes": 19789,
+          "entrypoint_kind": "python_main",
+          "role": "robot-navigation-data-collection",
+          "name": "GraphNav map recording",
+          "summary": "Record navigation maps, waypoints and edges. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "robot-navigation-data-collection",
+            "map-recording"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 4.0"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/graph_nav_command_line/requirements.txt",
+              "sha256": "ab41584318f4fa08377824ff9f1fc2a2c05ec54f3fd9ed52837696b5b5661553",
+              "bytes": 42,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 4.0"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/graph_nav_command_line/recording_command_line.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Maps/missions, localization and robot control prerequisites are not supplied or verified by this source reference."
+          ]
+        },
+        {
+          "path": "python/examples/record_autowalk/record_autowalk.py",
+          "sha256": "e20dfe315bb5e1b162a8f578ca5e8b2323134b86746c7ecde3bf539cca22c395",
+          "bytes": 42145,
+          "entrypoint_kind": "python_main",
+          "role": "robot-navigation-data-collection",
+          "name": "Autowalk recording GUI",
+          "summary": "Use a Qt interface to teleoperate and record Autowalk actions. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "robot-navigation-data-collection",
+            "mission-recording",
+            "teleoperation"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "numpy",
+              "qtpy",
+              "PyQt6"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/record_autowalk/requirements.txt",
+              "sha256": "d140e06f7c382a1d00d9575cd314082a13c446e7a29db440f2aa45d7d7250126",
+              "bytes": 59,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/record_autowalk/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "",
+                "numpy",
+                "qtpy",
+                "PyQt6"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/record_autowalk/record_autowalk.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Maps/missions, localization and robot control prerequisites are not supplied or verified by this source reference."
+          ]
+        },
+        {
+          "path": "python/examples/replay_mission/replay_mission.py",
+          "sha256": "a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401",
+          "bytes": 18647,
+          "entrypoint_kind": "python_main",
+          "role": "mission-replay",
+          "name": "Stored mission replay",
+          "summary": "Load and replay stored Autowalk or simple mission artifacts. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "mission-replay",
+            "graph-navigation"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "bosdyn-mission >= 3.1"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/replay_mission/requirements.txt",
+              "sha256": "6f7bee90b40321b1da4d7c8989aaca50ee6990d1f59a17738f2065ad6796fc5f",
+              "bytes": 64,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/replay_mission/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "bosdyn-mission >= 3.1"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/replay_mission/replay_mission.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Maps/missions, localization and robot control prerequisites are not supplied or verified by this source reference."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/replay_mission/README.md",
+                "sha256": "b896fd6c99c52ea161767ebb201dd2e1538b6090790664b5df51d7db085a9862",
+                "bytes": 1930,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/inverse_kinematics/reachability.py",
+          "sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+          "bytes": 13750,
+          "entrypoint_kind": "python_main",
+          "role": "inverse-kinematics",
+          "name": "Arm reachability queries and commands",
+          "summary": "Query IK reachability and issue Cartesian arm commands. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "inverse-kinematics",
+            "reachability",
+            "arm-control"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.3",
+              "matplotlib",
+              "numpy"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/inverse_kinematics/requirements.txt",
+              "sha256": "629aabd338def189bc0d5c9a868169a91c538454497ea83c43cab2092a061189",
+              "bytes": 60,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.3",
+                "",
+                "matplotlib",
+                "numpy"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/inverse_kinematics/reachability.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Selected source requires an arm; configured arm/camera input is an operator prerequisite.",
+            "Reachability example also sends physical Cartesian arm commands; not an offline numerical-only solver."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/inverse_kinematics/reachability.py",
+                "sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+                "bytes": 13750,
+                "quote": "spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "path": "python/examples/estop/estop_nogui.py",
+          "sha256": "d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9",
+          "bytes": 6835,
+          "entrypoint_kind": "python_main",
+          "role": "emergency-stop",
+          "name": "Programmatic E-Stop interface",
+          "summary": "Maintain a programmatic E-Stop endpoint with terminal controls. Inspect exact upstream setup and terms before use.",
+          "capabilities": [
+            "emergency-stop",
+            "robot-stop"
+          ],
+          "robot_types": [
+            "quadruped"
+          ],
+          "robot_scope": "Protocol/example discovery classification only; exact model revision, firmware, payload, feature and runtime environment compatibility remain unknown.",
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "qtpy",
+              "PyQt6",
+              "windows-curses ; sys_platform == 'win32'"
+            ],
+            "environment": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment."
+          },
+          "declared_requirements": {
+            "python": {
+              "value": ">=3.7",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+            },
+            "dependency_file": {
+              "path": "python/examples/estop/requirements.txt",
+              "sha256": "c728cb2b026ee2c6037d34739cc6ddb2628036f4e8eb07d2d0c90d1d6e67e926",
+              "bytes": 94,
+              "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/estop/requirements.txt",
+              "literal_lines": [
+                "-f ../../../prebuilt",
+                "bosdyn-client >= 3.1",
+                "qtpy",
+                "PyQt6",
+                "windows-curses ; sys_platform == 'win32'"
+              ]
+            },
+            "firmware": "unknown",
+            "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+            "sdk_checkout_version": {
+              "value": "5.2.0",
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+            },
+            "robot_software_alignment": {
+              "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+              "declaration": "Robot software should match Python package versions; actual firmware unknown."
+            },
+            "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+            "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+            "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+          },
+          "entrypoint": "python python/examples/estop/estop_nogui.py",
+          "invocation_notes": "Use the selected pinned folder README and requirements. Robot address/credentials, feature entitlement, stored assets and SDK/robot-software alignment must be supplied upstream. This reference establishes no robot contact, license entitlement, firmware compatibility or execution result.",
+          "limitations": [
+            "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+            "Folder requirements include shared GUI packages, while this entrypoint uses terminal/curses controls. No E-Stop endpoint was registered."
+          ],
+          "robot_discovery": {
+            "labels": [
+              "spot"
+            ],
+            "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+            "evidence": [
+              {
+                "path": "python/examples/estop/README.md",
+                "sha256": "a38b11daf129789e045c851b43df8f8692adcbf4538b62c5c6086be1c2eaadc3",
+                "bytes": 2084,
+                "quote": "Spot",
+                "labels": [
+                  "spot"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

@@ -14,6 +14,12 @@
       "record_version": "source-2c847930dbcf2d2f600317ade2946ac514df46c48d45807d27815e8654976a5c"
     },
     {
+      "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-brake-brake-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "73a1799df2372983af6ffe471ef567d52e268a6f1345bfd6cba35bdc7133f557",

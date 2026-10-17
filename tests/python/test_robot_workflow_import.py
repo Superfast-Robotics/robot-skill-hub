@@ -58,6 +58,20 @@ class RobotWorkflowImportTests(unittest.TestCase):
             self.assertEqual({"records": [record], "workflow_manifest": "workflow-projects.json"},
                              importer.build(manifest, cache, {"records": [record]}))
 
+    def test_new_bounded_workflow_role_is_metadata_without_compatibility_inference(self):
+        manifest, files = self.fixture()
+        artifact = manifest["projects"][0]["artifacts"][0]
+        artifact["role"] = "underwater-inspection"
+        build_fixture = RobotWorkflowExtensionTests().build_fixture
+        record = build_fixture(manifest, files)
+        self.assertEqual("underwater-inspection", record["artifact"]["workflow_role"])
+        self.assertFalse(record["access"]["hub_prepare"])
+        self.assertNotIn("compatibility", record)
+        for role in ("", "Aerial-control", "camera/control", "x" * 81, "flight--control", "control\nrun"):
+            artifact["role"] = role
+            with self.subTest(role=role), self.assertRaisesRegex(ValueError, "workflow role"):
+                build_fixture(manifest, files)
+
     def test_tampered_source_license_or_author_setup_document_is_rejected(self):
         for path in ["scripts/train.py", "LICENSE", "README.md"]:
             with self.subTest(path=path), tempfile.TemporaryDirectory() as directory:
@@ -122,6 +136,43 @@ class RobotWorkflowImportTests(unittest.TestCase):
 
 
 class RobotWorkflowExtensionTests(unittest.TestCase):
+    def nonstandard_project_license(self, manifest, files):
+        text = b"Fixture SDK License (FIXTURE-2026)\nVendor product conditions apply.\n"
+        files["LICENSE"] = text
+        manifest["projects"][0]["license"] = {"path": "LICENSE", "sha256": importer.examples.digest(text),
+            "bytes": len(text), "spdx": "LicenseRef-Fixture-FIXTURE-2026", "scope": "Source links under vendor terms.",
+            "verified": False, "review_status": "nonstandard_upstream_terms",
+            "source_terms": {"identifier": "FIXTURE-2026", "marker": "Fixture SDK License", "notes": "Vendor conditions apply."}}
+
+    def test_nonstandard_project_terms_survive_console_entrypoint(self):
+        manifest, files = self.console_fixture()
+        self.nonstandard_project_license(manifest, files)
+        record = self.build_fixture(manifest, files)
+        self.assertEqual("python_console_script", record["evidence"]["entrypoint_kind"])
+        self.assertEqual("LicenseRef-Fixture-FIXTURE-2026", record["license"]["spdx"])
+        self.assertFalse(record["license"]["verified"])
+        self.assertEqual("FIXTURE-2026", record["license"]["source_terms"]["identifier"])
+        self.assertEqual("nonstandard_upstream_terms", record["license"]["review_status"])
+        self.assertFalse(record["access"]["hub_prepare"])
+
+    def test_scoped_file_notice_does_not_clear_nonstandard_project_terms(self):
+        manifest, files = RobotWorkflowImportTests().fixture()
+        self.nonstandard_project_license(manifest, files)
+        notice = b"MIT License\nPermission is hereby granted, free of charge\n"
+        files["THIRD_PARTY_LICENSE"] = notice
+        artifact = manifest["projects"][0]["artifacts"][0]
+        artifact["license_review"] = {"spdx": "MIT", "verified": True, "review_status": "source_notice_reviewed",
+            "scope": "Selected file's separate declaration; project terms remain separate.",
+            "declarations": [{"spdx": "MIT", "path": "THIRD_PARTY_LICENSE", "sha256": importer.examples.digest(notice),
+                              "bytes": len(notice), "scope": "Pinned separate file notice.",
+                              "contains": ["Permission is hereby granted"]}]}
+        record = self.build_fixture(manifest, files)
+        self.assertEqual("MIT", record["license"]["spdx"])
+        self.assertFalse(record["license"]["verified"])
+        self.assertEqual("FIXTURE-2026", record["license"]["source_terms"]["identifier"])
+        self.assertEqual("LicenseRef-Fixture-FIXTURE-2026", record["license"]["upstream_project_license"]["spdx"])
+        self.assertFalse(record["license"]["upstream_project_license"]["verified"])
+
     def console_fixture(self, mixed=False):
         manifest, files = RobotWorkflowImportTests().fixture()
         project = manifest["projects"][0]

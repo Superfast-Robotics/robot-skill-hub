@@ -8,6 +8,12 @@
       "record_version": "source-c8ec1535e586ebd8544fb671b162f8d63a04a74e173ac6902bdf2e0d0843342f"
     },
     {
+      "id": "mavsdk-python-examples-gimbal-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "168127cf925582f4b7554f736e210707161c3455714596e98e9236465d657e8e",
+      "record_version": "source-168127cf925582f4b7554f736e210707161c3455714596e98e9236465d657e8e"
+    },
+    {
       "id": "mujoco-menagerie-artifact-universal-robots-ur5e-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e877852d40095926ff7db9cfb85e595b550e03da398bd6f6f58885d39038d1b6",

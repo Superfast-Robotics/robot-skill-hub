@@ -44,6 +44,12 @@
       "record_version": "source-e1535aa6fdcaa385cd527f596423af84266a71f141df43002d14530c224acb0b"
     },
     {
+      "id": "spot-sdk-python-examples-arm-grasp-arm-grasp-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622",
+      "record_version": "source-fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622"
+    },
+    {
       "id": "webots-projects-robots-softbank-nao-controllers-nao-soccer-supervis-6d6163c19fd3",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "de2e69c8a626afd4c16de6293504fb1337c741dba888d2ccc365f1825b8336c2",

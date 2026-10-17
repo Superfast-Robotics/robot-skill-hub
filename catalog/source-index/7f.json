@@ -12,6 +12,12 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "99b5723321a993d793bddfdadf61234cf4c1c90ca912457d6fa3067465c58a38",
       "record_version": "source-99b5723321a993d793bddfdadf61234cf4c1c90ca912457d6fa3067465c58a38"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "d98ff4c115da151f91a1a0d92d54da184b9a7a5e807fc34d6795bcf051dbc4c1",
+      "record_version": "source-d98ff4c115da151f91a1a0d92d54da184b9a7a5e807fc34d6795bcf051dbc4c1"
     }
   ]
 }

@@ -5,7 +5,7 @@ import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeC
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.3.2';
+const VERSION = '0.3.3';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;

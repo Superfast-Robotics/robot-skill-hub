@@ -69,6 +69,8 @@ python /PATH_TO_SKILL/scripts/rsh.py save SKILL_ID --project ./experiment --find
 
 The CLI copies pins from the project lock when present, otherwise the selected catalog, and writes a local outbox first. A preparation lock or code patch is not required. It attempts one API submission only when the project already permits public saving for that skill and finding kind and a scoped token is available. Existing authorized scope does not need another question for each finding. Missing scope or credentials leaves the finding local without interrupting the task. Patch sharing permission does not authorize memory sharing.
 
+If that scope is authorized but the token is missing, `delivery_recovery` names the credential environment/file options and gives bounded `flush_args` for the same project and selected API. Supply the operator-issued token privately, then use those arguments with `rsh.py` for an explicit delivery. Repeating the identical `save` does not send the retained finding. Continue the user's task while credentials or review remain unavailable.
+
 Do not run extra experiments to produce findings, save private project material, or let delivery/review block the user's work. See [memory.md](memory.md) for the finding format and policy. For a code patch already needed by the task, follow [contributing.md](contributing.md).
 
 ## Direct data access

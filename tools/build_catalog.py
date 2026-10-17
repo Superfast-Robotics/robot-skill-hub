@@ -863,11 +863,11 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "verification.md"):
+            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"

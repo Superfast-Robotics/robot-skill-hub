@@ -26,6 +26,12 @@
       "record_version": "source-5cb3fca8a787189d682811c3fc260e815a0ff48295e57aaeceb7fca79b4a5258"
     },
     {
+      "id": "spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "9ef2afda8bfe0a37e9601a7ac39a04db9717999da320d30ebafb95d2b4b41a5b",
+      "record_version": "source-9ef2afda8bfe0a37e9601a7ac39a04db9717999da320d30ebafb95d2b4b41a5b"
+    },
+    {
       "id": "webots-projects-robots-robotis-turtlebot-controllers-turtlebot3-ost-9fc9d0d19902",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "cf39efbc615dbd64c8e26e77c1ba8163155d10d94e6a8b9ffe30cd3a28bb01d1",

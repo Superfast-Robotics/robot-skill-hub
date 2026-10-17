@@ -14,6 +14,12 @@
       "record_version": "source-fc7fb8bf774e9fed9621593f36b239ed66a06ed6e8811132c08344d95df2563e"
     },
     {
+      "id": "spot-sdk-python-examples-estop-estop-nogui-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9",
+      "record_version": "source-d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-force3d-sensor-force3d-sensor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "e000c9815c9137ef065d26832e31c844fd1445c00ebb66d9ec99a53b5b88514e",

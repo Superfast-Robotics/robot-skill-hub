@@ -18,6 +18,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "182a2b704ab70c91e665864ef58396e5f7cd14fd85a6f32a9cf0ba171adb08a9",
       "record_version": "source-182a2b704ab70c91e665864ef58396e5f7cd14fd85a6f32a9cf0ba171adb08a9"
+    },
+    {
+      "id": "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+      "record_version": "source-148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912"
     }
   ]
 }

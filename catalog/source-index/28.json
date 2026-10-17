@@ -32,6 +32,12 @@
       "record_version": "source-446aa5a250c919ae6a82da763e127c13ae67e5b2e997c631f84bf97ab348bc76"
     },
     {
+      "id": "spot-sdk-python-examples-replay-mission-replay-mission-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401",
+      "record_version": "source-a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-distance-sensor-distance-sensor-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "00a56f968b357d4eac7c09ad552db710dcfb037dd3cae417d630ab47612546b9",

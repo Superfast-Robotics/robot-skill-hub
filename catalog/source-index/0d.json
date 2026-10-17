@@ -32,6 +32,12 @@
       "record_version": "source-ee04c6ff3c0326ece94f118bda062ecaee8912ef660dea627e1810b625c3fa77"
     },
     {
+      "id": "spot-sdk-python-examples-get-world-objects-get-world-objects-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869",
+      "record_version": "source-bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869"
+    },
+    {
       "id": "ur-description-artifact-config-ur10e-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "de6b27680ef8ca8930d1902fc6869f49b9295dabbb40048eaa538f9d4796bc4b",

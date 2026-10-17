@@ -1862,6 +1862,78 @@
       "record_version": "source-059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec"
     },
     {
+      "id": "mavsdk-python-examples-camera-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "3a5f6b13bad109ff0490f4c00868d811baff497f35bb29def2f57842afb07726",
+      "record_version": "source-3a5f6b13bad109ff0490f4c00868d811baff497f35bb29def2f57842afb07726"
+    },
+    {
+      "id": "mavsdk-python-examples-follow-me-example-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d",
+      "record_version": "source-27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d"
+    },
+    {
+      "id": "mavsdk-python-examples-geofence-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "b6e65e37a5b930ec15cb76a1644733d604d685619f2f05fe6e234a4a524c7a8d",
+      "record_version": "source-b6e65e37a5b930ec15cb76a1644733d604d685619f2f05fe6e234a4a524c7a8d"
+    },
+    {
+      "id": "mavsdk-python-examples-gimbal-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "168127cf925582f4b7554f736e210707161c3455714596e98e9236465d657e8e",
+      "record_version": "source-168127cf925582f4b7554f736e210707161c3455714596e98e9236465d657e8e"
+    },
+    {
+      "id": "mavsdk-python-examples-goto-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b",
+      "record_version": "source-030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b"
+    },
+    {
+      "id": "mavsdk-python-examples-mission-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee",
+      "record_version": "source-891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee"
+    },
+    {
+      "id": "mavsdk-python-examples-mission-raw-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2",
+      "record_version": "source-cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2"
+    },
+    {
+      "id": "mavsdk-python-examples-offboard-position-ned-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "9cdd7ac8efcb6543bb452fd69b6ce3866b0edf5beb865411ace69ca3ac183aeb",
+      "record_version": "source-9cdd7ac8efcb6543bb452fd69b6ce3866b0edf5beb865411ace69ca3ac183aeb"
+    },
+    {
+      "id": "mavsdk-python-examples-offboard-velocity-body-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "ed69f54c33f178946565bb42e48620420d9a361fbab7ba6406e7f3d6a2110f30",
+      "record_version": "source-ed69f54c33f178946565bb42e48620420d9a361fbab7ba6406e7f3d6a2110f30"
+    },
+    {
+      "id": "mavsdk-python-examples-takeoff-and-land-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1",
+      "record_version": "source-441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1"
+    },
+    {
+      "id": "mavsdk-python-examples-telemetry-flight-mode-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "ec69b8d4e90b5cdded319cc56acc17a3209511f9dcfefc64e2dd993ebaa98a67",
+      "record_version": "source-ec69b8d4e90b5cdded319cc56acc17a3209511f9dcfefc64e2dd993ebaa98a67"
+    },
+    {
+      "id": "mavsdk-python-examples-telemetry-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657",
+      "record_version": "source-7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657"
+    },
+    {
       "id": "moveit2-doc-examples-bullet-collision-checker-src-bullet-collision-1e25216dcd47",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "1b78adcd57ef41778ce712772d53a1205600f946b706e2f30754f3bd92205767",
@@ -5580,6 +5652,114 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c",
       "record_version": "source-d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-grasp-arm-grasp-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622",
+      "record_version": "source-fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-joint-move-arm-joint-move-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84",
+      "record_version": "source-bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-simple-arm-simple-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6",
+      "record_version": "source-98d6b75957699b3502b35d5b9779fe3094b0b6a21a4fd3b70893f7f2934f80f6"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-trajectory-arm-trajectory-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c",
+      "record_version": "source-ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c"
+    },
+    {
+      "id": "spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "d98ff4c115da151f91a1a0d92d54da184b9a7a5e807fc34d6795bcf051dbc4c1",
+      "record_version": "source-d98ff4c115da151f91a1a0d92d54da184b9a7a5e807fc34d6795bcf051dbc4c1"
+    },
+    {
+      "id": "spot-sdk-python-examples-docking-dock-my-robot-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "df4d85b68d2fe309f1211893b7f32d8d93d1e0f44e006fdc9cd409fd78a44879",
+      "record_version": "source-df4d85b68d2fe309f1211893b7f32d8d93d1e0f44e006fdc9cd409fd78a44879"
+    },
+    {
+      "id": "spot-sdk-python-examples-estop-estop-nogui-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9",
+      "record_version": "source-d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9"
+    },
+    {
+      "id": "spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "9ef2afda8bfe0a37e9601a7ac39a04db9717999da320d30ebafb95d2b4b41a5b",
+      "record_version": "source-9ef2afda8bfe0a37e9601a7ac39a04db9717999da320d30ebafb95d2b4b41a5b"
+    },
+    {
+      "id": "spot-sdk-python-examples-get-image-get-image-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "87d3b238f62b2fef2ae93eb5b858070c358853773ec10e156b0378cd24db2a03",
+      "record_version": "source-87d3b238f62b2fef2ae93eb5b858070c358853773ec10e156b0378cd24db2a03"
+    },
+    {
+      "id": "spot-sdk-python-examples-get-robot-state-get-robot-state-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675",
+      "record_version": "source-a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675"
+    },
+    {
+      "id": "spot-sdk-python-examples-get-world-objects-get-world-objects-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869",
+      "record_version": "source-bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869"
+    },
+    {
+      "id": "spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "b1190bf07706ae4be93068ebb8188563291aca064fc3ebb1041b9dee54bba085",
+      "record_version": "source-b1190bf07706ae4be93068ebb8188563291aca064fc3ebb1041b9dee54bba085"
+    },
+    {
+      "id": "spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "5ae1cf29bfaa81099d8fa9c0d066726eac92b4b80c77d33a4cedd88410f0567b",
+      "record_version": "source-5ae1cf29bfaa81099d8fa9c0d066726eac92b4b80c77d33a4cedd88410f0567b"
+    },
+    {
+      "id": "spot-sdk-python-examples-hello-spot-hello-spot-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+      "record_version": "source-e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43"
+    },
+    {
+      "id": "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+      "record_version": "source-148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912"
+    },
+    {
+      "id": "spot-sdk-python-examples-record-autowalk-record-autowalk-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "e20dfe315bb5e1b162a8f578ca5e8b2323134b86746c7ecde3bf539cca22c395",
+      "record_version": "source-e20dfe315bb5e1b162a8f578ca5e8b2323134b86746c7ecde3bf539cca22c395"
+    },
+    {
+      "id": "spot-sdk-python-examples-replay-mission-replay-mission-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401",
+      "record_version": "source-a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401"
     },
     {
       "id": "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",

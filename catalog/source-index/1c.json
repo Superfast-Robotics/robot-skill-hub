@@ -8,6 +8,12 @@
       "record_version": "source-2061b0dc1a95189a733a9533e2e7e42fa352cfd477d99c2ad557ba1da52c6880"
     },
     {
+      "id": "spot-sdk-python-examples-arm-trajectory-arm-trajectory-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c",
+      "record_version": "source-ffbe19d4333411b923f9dd8e0f6d640f53803634fab3b57bacc6f9ba7159fd5c"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-connector-connector-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "4b594d715e7508fad878c712f9eb0282f7d1a8f26a85d355ff7f364f77f6a28b",

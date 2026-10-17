@@ -20,6 +20,7 @@
     "workflow-sources.md",
     "agent-skill-sources.md",
     "robot-agent-policy-sources.md",
-    "canonical-policy-sources.md"
+    "canonical-policy-sources.md",
+    "platform-sources-review.md"
   ]
 }

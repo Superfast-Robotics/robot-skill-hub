@@ -8,6 +8,12 @@
       "record_version": "source-34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c"
     },
     {
+      "id": "mavsdk-python-examples-mission-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee",
+      "record_version": "source-891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "2d48d996caa63373d6252a56fa9a2d1a3c9a2a967bc8ac2389c516c9de36f32f",

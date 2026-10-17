@@ -18,6 +18,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "2b404c4470c7998003f573cfc90c4fb513ef1b4d34b2fddccecbd3ef4a0e91a2",
       "record_version": "source-2b404c4470c7998003f573cfc90c4fb513ef1b4d34b2fddccecbd3ef4a0e91a2"
+    },
+    {
+      "id": "spot-sdk-python-examples-record-autowalk-record-autowalk-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "e20dfe315bb5e1b162a8f578ca5e8b2323134b86746c7ecde3bf539cca22c395",
+      "record_version": "source-e20dfe315bb5e1b162a8f578ca5e8b2323134b86746c7ecde3bf539cca22c395"
     }
   ]
 }

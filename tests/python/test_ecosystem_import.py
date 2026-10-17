@@ -221,6 +221,51 @@ class EcosystemImportTests(unittest.TestCase):
         self.assertFalse(importer.compatible_file_license(project, "# GNU General Public License\n"))
         self.assertTrue(importer.compatible_file_license(project, "# SPDX-License-Identifier: MIT\n"))
 
+    def test_nonstandard_license_ref_remains_unverified_source_metadata(self):
+        project, artifact, source, _ = self.fixture()
+        terms = {"identifier": "FIXTURE-2026", "marker": "Fixture SDK License",
+                 "notes": "Vendor terms apply to the linked source; no usage grant is inferred."}
+        license_text = b"Fixture SDK License (FIXTURE-2026)\nVendor product conditions apply.\n"
+        project["license"] = {"path": "LICENSE", "sha256": importer.digest(license_text),
+            "spdx": "LicenseRef-Fixture-FIXTURE-2026", "scope": "Linked SDK source under pinned vendor terms.",
+            "verified": False, "review_status": "nonstandard_upstream_terms", "source_terms": terms}
+        project["artifacts"] = [artifact]
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            for path, body in {"LICENSE": license_text, artifact["path"]: source}.items():
+                target = importer.cache_path(cache, project, path)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(body)
+            with mock.patch.object(importer, "download", side_effect=AssertionError("offline")):
+                result = importer.build({"projects": [project]}, cache, {"records": []})
+            record = result["records"][0]
+            self.assertEqual(terms, record["license"]["source_terms"])
+            self.assertFalse(record["license"]["verified"])
+            self.assertEqual("LicenseRef-Fixture-FIXTURE-2026", record["license"]["spdx"])
+            self.assertEqual("nonstandard_upstream_terms", record["license"]["review_status"])
+            self.assertFalse(record["access"]["hub_prepare"])
+            self.assertEqual("not_run", record["evidence"]["runtime_verification"])
+            self.assertNotIn("compatibility", record)
+            for field in ("marker", "identifier"):
+                project["license"]["source_terms"] = {**terms, field: "absent-from-pinned-text"}
+                with self.subTest(field=field), self.assertRaisesRegex(ValueError, "identity or text marker"):
+                    importer.build({"projects": [project]}, cache, {"records": []})
+
+    def test_nonstandard_terms_cannot_be_asserted_as_verified_or_standard_license(self):
+        project, *_ = self.fixture()
+        base = {**project["license"], "spdx": "LicenseRef-Fixture-FIXTURE-2026", "verified": False,
+                "review_status": "nonstandard_upstream_terms",
+                "source_terms": {"identifier": "FIXTURE-2026", "marker": "Fixture SDK License", "notes": "Vendor terms."}}
+        cases = [{"verified": True}, {"verified": None}, {"review_status": "approved"},
+                 {"spdx": "MIT"}, {"source_terms": {**base["source_terms"], "marker": "x" + " " * 240}},
+                 {"source_terms": {**base["source_terms"], "notes": "x" + " " * 2000}},
+                 {"source_terms": {**base["source_terms"], "identifier": "bad\nidentifier"}},
+                 {"source_terms": {**base["source_terms"], "permission_granted": True}}]
+        for change in cases:
+            project["license"] = {**base, **change}
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                importer.validate_project(project)
+
     def test_additive_refresh_preserves_other_registries_and_detects_duplicates(self):
         project, artifact, *_ = self.fixture()
         foreign = {"id": "foreign", "framework": "outside", "source": {"repository": "https://github.com/other/repo", "commit": "2" * 40, "path": "sample.py", "sha256": "a" * 64}, "popularity": {"repository_stars": 0}}

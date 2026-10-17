@@ -21,14 +21,7 @@ from reference_index import check_source_index, write_source_index
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = "official-robot-workflows-v1"
-ROLES = {"policy-serving", "policy-training", "policy-evaluation", "policy-deployment",
-         "dataset-conversion", "dataset-inspection", "dataset-preparation", "data-collection",
-         "trajectory-playback", "teleoperation", "calibration", "motor-configuration",
-         "joint-limits", "locomotion", "joint-control", "arm-control", "obstacle-avoidance",
-         "controller-input", "robot-agent", "robot-agent-evaluation", "speech-inference",
-         "human-robot-interaction", "navigation-policy-inference", "perception-inference",
-         "semantic-mapping", "robot-navigation-data-collection", "robot-embodiment-preparation",
-         "robot-embodiment-serving", "robot-document-retrieval-serving"}
+ROLE = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
 
 
 def validate_pin(pin):
@@ -112,7 +105,8 @@ def validate_project(project):
             if (not pin.get("quote") or not pin.get("capabilities") or set(pin["capabilities"]) - set(artifact["capabilities"])
                     or any(not label_named_by_quote(value, pin["quote"]) for value in pin["capabilities"])):
                 raise ValueError("Added capability terms need literal pinned source-text evidence")
-        if artifact.get("role") not in ROLES or not artifact.get("summary") or not artifact.get("name"):
+        if (not isinstance(artifact.get("role"), str) or len(artifact["role"]) > 80
+                or not ROLE.fullmatch(artifact["role"]) or not artifact.get("summary") or not artifact.get("name")):
             raise ValueError("A reviewed workflow role, name and description are required")
         if not artifact.get("capabilities") or not artifact.get("robot_types") or not artifact.get("robot_scope"):
             raise ValueError("Per-entrypoint discovery labels and their limited scope are required")
@@ -346,8 +340,7 @@ def static_source_record(project, artifact, inspection):
             "source": {"repository": project["repository"], "commit": project["commit"], "tag": project["ref"], "path": path,
                        "url": file_url(project, path), "raw_url": project["repository"].replace("https://github.com/", "https://raw.githubusercontent.com/")
                        + "/" + project["commit"] + "/" + urllib.parse.quote(path, safe="/"), "sha256": artifact["sha256"], "bytes": artifact["bytes"]},
-            "license": {"spdx": project["license"]["spdx"], "url": file_url(project, project["license"]["path"]),
-                        "sha256": project["license"]["sha256"], "scope": project["license"]["scope"]},
+            "license": examples.source_license_record(project),
             "access": {"mode": "source_reference", "hub_prepare": False,
                        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
                        "setup_url": project["setup_url"]},
@@ -379,6 +372,13 @@ def make_record(project, artifact, cache):
         record["license"]["scope"] = artifact["license_scope"]
     if license_info:
         record["license"] = license_info
+    terms = examples.reviewed_source_terms(project["license"])
+    if terms:
+        record["license"].update(verified=False, review_status="nonstandard_upstream_terms", source_terms=dict(terms))
+        if license_info:
+            record["license"]["upstream_project_license"] = {
+                **examples.source_license_record(project), "bytes": project["license"]["bytes"]}
+        record["access"]["instructions"] = "Inspect the pinned source, nonstandard upstream terms and setup requirements. The Hub supplies a source link, not license clearance, installation or execution."
     record["access"]["setup_evidence"] = [
         {"path": pin["path"], "url": file_url(project, pin["path"]), "sha256": pin["sha256"],
          "bytes": pin["bytes"], "purpose": pin["purpose"]} for pin in project["evidence_files"]]

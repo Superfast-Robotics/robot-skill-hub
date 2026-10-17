@@ -20,6 +20,12 @@
       "record_version": "source-a4c9b1f80a6ccd3350a587ec0f72cc08e01e91b30acac6aab7bf052c51d12c1c"
     },
     {
+      "id": "mavsdk-python-examples-telemetry-flight-mode-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "ec69b8d4e90b5cdded319cc56acc17a3209511f9dcfefc64e2dd993ebaa98a67",
+      "record_version": "source-ec69b8d4e90b5cdded319cc56acc17a3209511f9dcfefc64e2dd993ebaa98a67"
+    },
+    {
       "id": "mujoco-menagerie-artifact-sharpa-wave-left-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a21550d231816e45a7e4ac2b91f288d9cd47f4feb8126ca8cf893dcaa1ef3dcd",

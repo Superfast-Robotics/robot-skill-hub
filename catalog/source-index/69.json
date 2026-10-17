@@ -14,6 +14,12 @@
       "record_version": "source-8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f"
     },
     {
+      "id": "mavsdk-python-examples-mission-raw-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2",
+      "record_version": "source-cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-parallel-planning-src-parallel-planning-main-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14",

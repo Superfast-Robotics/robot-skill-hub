@@ -77,6 +77,7 @@ class MemoryTests(unittest.TestCase):
             result = self.save()
         self.assertEqual(result["status"], "local_saved")
         self.assertFalse(result["network_performed"])
+        self.assertNotIn("delivery_recovery", result)
         network.assert_not_called()
         payload = Path(result["finding_path"]).read_text()
         self.assertNotIn("private research data", payload)
@@ -89,6 +90,7 @@ class MemoryTests(unittest.TestCase):
                 with mock.patch.object(contributions, "request_json") as network:
                     result = self.save()
                 self.assertEqual(result["status"], "local_saved")
+                self.assertNotIn("delivery_recovery", result)
                 network.assert_not_called()
         self.policy()
         with mock.patch.dict(os.environ, {}, clear=True), mock.patch.object(contributions, "request_json") as network:
@@ -96,6 +98,95 @@ class MemoryTests(unittest.TestCase):
         self.assertFalse(result["network_performed"])
         network.assert_not_called()
         self.assertFalse(memories.allowed({"memory": {"public_save_allowed": True}}, "fixture-pick", "missing_requirement"))
+
+    def test_missing_token_recovery_preserves_local_finding_and_requires_explicit_flush(self):
+        self.policy()
+        with mock.patch.dict(os.environ, {"RSH_TELEMETRY": "off"}, clear=True), mock.patch.object(contributions, "request_json") as network:
+            first = self.save()
+            path = Path(first["finding_path"])
+            original = path.read_bytes()
+            self.assertEqual(first["status"], "local_saved")
+            self.assertEqual(first["reason_code"], "missing_submission_token")
+            self.assertEqual(first["next_action"], "continue_user_task")
+            self.assertFalse(first["network_performed"])
+            recovery = first["delivery_recovery"]
+            self.assertEqual(recovery["credential_setup"]["token_file_environment"], "RSH_SUBMISSION_TOKEN_FILE")
+            self.assertEqual(recovery["credential_setup"]["token_environment"], "RSH_SUBMISSION_TOKEN")
+            self.assertIn("operator-issued scoped Hub token", recovery["credential_setup"]["message"])
+            self.assertIn("private one-line UTF-8 file", recovery["credential_setup"]["message"])
+            self.assertEqual(recovery["documentation_url"], "https://hub.superfastrobotics.com/memory.md")
+            self.assertFalse(recovery["automatic_retry"])
+            self.assertEqual(recovery["flush_args"], ["flush", "--project", str(self.project.resolve()), "--limit", "1",
+                                                      "--api-url", "https://api.superfastrobotics.com", "--json"])
+            with mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-scoped-token-0123456789-abcdef"}), mock.patch.object(
+                    contributions, "submission_token", side_effect=AssertionError("Duplicate save must not read a token")):
+                second = self.save()
+                self.policy(public_save_allowed=False)
+                revoked = self.save()
+            self.assertEqual(second["reason_code"], "unchanged_finding_already_saved")
+            self.assertEqual(second["fingerprint"], first["fingerprint"])
+            self.assertEqual(second["delivery_recovery"], recovery)
+            self.assertNotIn("delivery_recovery", revoked)
+            self.assertEqual(path.read_bytes(), original)
+            network.assert_not_called()
+        self.policy()
+        with mock.patch.object(contributions, "request_json", side_effect=self.response) as network:
+            flushed = memories.flush(self.project)
+        self.assertEqual(flushed["results"][0]["status"], "stored")
+        self.assertEqual(network.call_count, 1)
+        self.assertEqual(network.call_args.kwargs["idempotency_key"], first["fingerprint"])
+        self.assertEqual(json.loads(network.call_args.kwargs["payload"])["base"], json.loads(original)["payload"]["base"])
+
+    def test_missing_token_recovery_keeps_explicit_policy_and_selected_api(self):
+        self.policy()
+        policy = self.root / "separate policy.json"
+        (self.project / ".robot-skill-hub.json").replace(policy)
+        with mock.patch.dict(os.environ, {"RSH_API_URL": "https://environment.example.test"}, clear=True), mock.patch.object(contributions, "request_json") as network:
+            result = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input,
+                                   policy_path=policy, api_url="https://selected.example.test/pilot/")
+        self.assertEqual(result["delivery_recovery"]["flush_args"], [
+            "flush", "--project", str(self.project.resolve()), "--limit", "1", "--api-url", "https://selected.example.test/pilot",
+            "--policy", str(policy.resolve()), "--json"])
+        network.assert_not_called()
+        with mock.patch.dict(os.environ, {"RSH_API_URL": "https://environment.example.test"}, clear=True):
+            recovery = memories.missing_token_recovery(self.project)
+        self.assertIn("https://environment.example.test", recovery["flush_args"])
+
+    def test_cli_missing_token_save_returns_recovery_without_prompts(self):
+        self.policy()
+        catalog = self.root / "catalog.json"
+        catalog.write_text(json.dumps(fixture_catalog()), encoding="utf-8")
+        environment = {key: value for key, value in os.environ.items()
+                       if key not in {"RSH_SUBMISSION_TOKEN", "RSH_SUBMISSION_TOKEN_FILE", "RSH_API_URL"}}
+        environment.update(RSH_TELEMETRY="off", PYTHONDONTWRITEBYTECODE="1")
+        executed = subprocess.run([
+            sys.executable, "-B", str(SKILL / "scripts/rsh.py"), "save", "fixture-pick", "--project", str(self.project),
+            "--finding", str(self.input), "--catalog", str(catalog), "--json"],
+            env=environment, input="", capture_output=True, text=True, timeout=10)
+        self.assertEqual(executed.returncode, 0, executed.stderr)
+        result = json.loads(executed.stdout)
+        self.assertEqual(result["status"], "local_saved")
+        self.assertEqual(result["reason_code"], "missing_submission_token")
+        self.assertEqual(result["next_action"], "continue_user_task")
+        self.assertFalse(result["network_performed"])
+        self.assertEqual(result["delivery_recovery"]["flush_args"], [
+            "flush", "--project", str(self.project.resolve()), "--limit", "1", "--api-url", "https://api.superfastrobotics.com", "--json"])
+        self.assertTrue(Path(result["finding_path"]).is_file())
+
+    def test_missing_token_recovery_does_not_echo_unsafe_endpoint_or_error_text(self):
+        self.policy()
+        secret = "Bearer " + "x" * 40
+        error = RshError("missing_submission_token", secret, next_action=secret)
+        with mock.patch.object(contributions, "api_configuration", side_effect=error), mock.patch.object(contributions, "request_json") as network:
+            result = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input,
+                                   api_url="https://operator:do-not-echo@example.test")
+        recovery = result["delivery_recovery"]
+        self.assertTrue(recovery["api_configuration_required"])
+        self.assertNotIn("flush_args", recovery)
+        self.assertNotIn("do-not-echo", json.dumps(result))
+        self.assertNotIn(secret, json.dumps(result))
+        self.assertEqual(result["next_action"], "continue_user_task")
+        network.assert_not_called()
 
     def test_authorized_save_once_then_unchanged_head_or_label_writes_nothing(self):
         self.policy()

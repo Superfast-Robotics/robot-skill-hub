@@ -18,6 +18,12 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "a284a5420e3027811ff438968e51dc70a8735b7e980d11827b1c6614b33dc99f",
       "record_version": "source-a284a5420e3027811ff438968e51dc70a8735b7e980d11827b1c6614b33dc99f"
+    },
+    {
+      "id": "spot-sdk-python-examples-docking-dock-my-robot-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "df4d85b68d2fe309f1211893b7f32d8d93d1e0f44e006fdc9cd409fd78a44879",
+      "record_version": "source-df4d85b68d2fe309f1211893b7f32d8d93d1e0f44e006fdc9cd409fd78a44879"
     }
   ]
 }

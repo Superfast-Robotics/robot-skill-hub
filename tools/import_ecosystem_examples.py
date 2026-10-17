@@ -35,6 +35,40 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def reviewed_source_terms(license_info):
+    """A local LicenseRef identifies pinned nonstandard terms, never a grant."""
+    spdx = license_info["spdx"]
+    terms = license_info.get("source_terms")
+    if not isinstance(spdx, str):
+        raise ValueError("License identity must be explicit text")
+    if spdx in SPDX_MARKERS:
+        if terms is not None:
+            raise ValueError("Nonstandard source terms require an explicit local LicenseRef")
+        return None
+    if (not re.fullmatch(r"LicenseRef-[A-Za-z0-9][A-Za-z0-9.-]{0,119}", spdx)
+            or license_info.get("verified") is not False
+            or license_info.get("review_status") != "nonstandard_upstream_terms"
+            or not isinstance(terms, dict) or set(terms) != {"identifier", "marker", "notes"}
+            or not isinstance(terms.get("identifier"), str)
+            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,119}", terms["identifier"])
+            or not isinstance(terms.get("marker"), str) or not terms["marker"].strip() or len(terms["marker"]) > 240
+            or any(ord(char) < 32 for char in terms["marker"])
+            or not isinstance(terms.get("notes"), str) or not terms["notes"].strip() or len(terms["notes"]) > 2000
+            or license_info.get("package_declaration") is not None):
+        raise ValueError("Nonstandard licenses need reviewed unverified source-only LicenseRef identity and terms")
+    return terms
+
+
+def source_license_record(project):
+    info = project["license"]
+    record = {"spdx": info["spdx"], "url": f"{project['repository']}/blob/{project['commit']}/{info['path']}",
+              "sha256": info["sha256"], "scope": info["scope"]}
+    terms = reviewed_source_terms(info)
+    if terms:
+        record.update(verified=False, review_status="nonstandard_upstream_terms", source_terms=dict(terms))
+    return record
+
+
 def safe_relative(value):
     path = PurePosixPath(value)
     if (not value or path.is_absolute() or "\\" in value or ":" in value or any(ord(c) < 32 for c in value)
@@ -53,8 +87,7 @@ def validate_project(project):
     safe_relative(project["license"]["path"])
     if not re.fullmatch(r"[a-f0-9]{64}", project["license"]["sha256"]):
         raise ValueError("A reviewed license checksum is required")
-    if project["license"]["spdx"] not in SPDX_MARKERS:
-        raise ValueError("License needs an explicit importer review policy")
+    reviewed_source_terms(project["license"])
     if not project.get("selection", {}).get("include"):
         raise ValueError("Explicit source selection roots are required")
 
@@ -226,8 +259,13 @@ def checked_license(project, cache, fetch=False):
     data = source_bytes(cache, project, project["license"]["path"], fetch)
     if digest(data) != project["license"]["sha256"]:
         raise ValueError(f"{project['id']}: license checksum changed; explicit review required")
+    terms = reviewed_source_terms(project["license"])
     declaration = project["license"].get("package_declaration")
-    if declaration:
+    if terms:
+        text = data.decode("utf-8-sig")
+        if terms["identifier"] not in text or terms["marker"] not in text:
+            raise ValueError("Pinned nonstandard license identity or text marker is absent")
+    elif declaration:
         package = source_bytes(cache, project, declaration["path"], fetch)
         if digest(package) != declaration["sha256"] or f"<license>{project['license']['spdx']}</license>" not in package.decode("utf-8-sig"):
             raise ValueError("Selected package license declaration did not match its reviewed pin")
@@ -353,8 +391,7 @@ def make_record(project, artifact, cache):
             "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
             "source": {"repository": project["repository"], "commit": project["commit"], "tag": project["ref"],
                        "path": path, "url": source_url, "raw_url": raw_url, "sha256": artifact["sha256"], "bytes": artifact["bytes"]},
-            "license": {"spdx": project["license"]["spdx"], "url": f"{project['repository']}/blob/{project['commit']}/{project['license']['path']}",
-                        "sha256": project["license"]["sha256"], "scope": project["license"]["scope"]},
+            "license": source_license_record(project),
             "access": {"mode": "source_reference", "hub_prepare": False, "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.", "setup_url": project["setup_url"]},
             "requirements": {"python": project["requirements"]["python"], "packages": project["requirements"]["packages"],
                              "display": project["requirements"]["environment"], "execution_domain": project["execution_domain"], "source_imports": inspection["imports"]},
@@ -363,6 +400,9 @@ def make_record(project, artifact, cache):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": project["checked_at"],
                          "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
                          "entrypoint_kind": inspection["kind"], "inspection_method": "automated_static"}}
+    terms = reviewed_source_terms(project["license"])
+    if terms:
+        record["access"]["instructions"] = "Inspect the pinned source, nonstandard upstream terms and setup requirements. The Hub supplies a source link, not license clearance, installation or execution."
     discovery = reviewed_robot_discovery(project, artifact, cache)
     if discovery:
         record["robots"] = discovery.pop("labels")

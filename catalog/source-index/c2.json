@@ -8,6 +8,12 @@
       "record_version": "source-d6d249c7ec2345a3e3d52010a7fba667d028a8355db6f4edb9b81b5abf99f3a9"
     },
     {
+      "id": "mavsdk-python-examples-offboard-velocity-body-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "ed69f54c33f178946565bb42e48620420d9a361fbab7ba6406e7f3d6a2110f30",
+      "record_version": "source-ed69f54c33f178946565bb42e48620420d9a361fbab7ba6406e7f3d6a2110f30"
+    },
+    {
       "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1m-1-2-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "103c64d9c05de57bed67cbdc6950ceb0e739a3fde7937f368816f2bbf4b99333",

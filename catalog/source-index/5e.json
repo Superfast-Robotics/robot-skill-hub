@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mavsdk-python-examples-goto-py",
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "source_sha256": "030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b",
+      "record_version": "source-030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-trajectory-cache-src-trajectory-cache-demo-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "59b5a242d3eb9f9ccd1d875c2af3499d2d26a99a3eed9fa2d496e298f98f7033",

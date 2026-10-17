@@ -20,6 +20,12 @@
       "record_version": "source-584d5f7e59b12894b63c952f593b56bf1bedf4c3047424faa720d318dbaea9bf"
     },
     {
+      "id": "spot-sdk-python-examples-arm-joint-move-arm-joint-move-py",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "source_sha256": "bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84",
+      "record_version": "source-bae2cf8e2ee5f320af56cdad0be1f12b39c899f8e81cd031d7a0a6bd56ef7a84"
+    },
+    {
       "id": "ur-description-artifact-config-ur16e-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "2d3a9bfff28749b5a2a5517eeaa8f86557981166414be0d34d521061187e587e",
