@@ -266,7 +266,10 @@ class CatalogTests(unittest.TestCase):
             text = (site / name).read_text(encoding="utf-8")
             self.assertIn("/privacy.md", text)
             self.assertIn("/discovery.md", text)
+            limit = builder.LLMS_TEXT_MAX_BYTES if name == "llms.txt" else builder.LLMS_FULL_TEXT_MAX_BYTES
+            self.assertLessEqual(len(text.encode("utf-8")), limit)
         full = (site / "llms-full.txt").read_text(encoding="utf-8")
+        self.assertTrue(full.startswith((self.root / "docs/agent-quickstart.md").read_text(encoding="utf-8")))
         self.assertIn("# Access measurement and privacy", full)
         self.assertIn("# Agent discovery", full)
 
@@ -753,6 +756,89 @@ class PublicationBudgetTests(unittest.TestCase):
             self.assertEqual(path.read_bytes(), b"existing index remains unchanged\n")
             self.assertFalse((path.parent / "source-index-manifest.json").exists())
             self.assertFalse((path.parent / "source-index").exists())
+
+
+class AgentEntryTextTests(unittest.TestCase):
+    """Agent entry text stays bounded independently of catalog inventory size."""
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.docs = self.root / "docs"
+        self.docs.mkdir()
+        self.quickstart = "# Agent quickstart\n\nFIRST_ACTION: find, inspect and check existing authorization.\n"
+        guides = {"agent-quickstart.md": self.quickstart, "memory.md": "# Shared findings\n\nExact-source observations only.\n",
+                  "new-skills.md": "# New skills\n\nPinned metadata and reviewed intake.\n",
+                  "contributing.md": "# Contributions\n\nScoped existing Hub paths.\n",
+                  "compatibility.md": "# Compatibility\n\nLONG_METADATA: unknown remains unknown.\n" * 100,
+                  "privacy.md": "# Access measurement and privacy\n\nSet RSH_TELEMETRY=off.\n"}
+        for name, text in guides.items():
+            (self.docs / name).write_text(text, encoding="utf-8")
+        source = self.root / "skills/find-robot-skills/references/source-files.md"
+        source.parent.mkdir(parents=True)
+        source.write_text("# Source-file retrieval\n\nInert bytes; no installation or execution.\n", encoding="utf-8")
+        patched = mock.patch.object(builder, "ROOT", self.root)
+        patched.start()
+        self.addCleanup(patched.stop)
+
+    def test_large_inventory_does_not_expand_entry_documents_or_precede_quickstart(self):
+        small_recipes = [{"id": "private-recipe-sentinel", "name": "RECIPE_MUST_NOT_BE_ENUMERATED"}]
+        small_references = {"records": [{"id": "private-reference-sentinel", "name": "REFERENCE_MUST_NOT_BE_ENUMERATED"}]}
+        recipes = [{"id": f"synthetic-recipe-{i}", "name": "RECIPE_MUST_NOT_BE_ENUMERATED"} for i in range(10000)]
+        references = {"records": [{"id": f"synthetic-reference-{i}", "name": "REFERENCE_MUST_NOT_BE_ENUMERATED",
+                                   "source": {"private_fixture_marker": "FULL_RECORD_JSON_MUST_NOT_BE_EMBEDDED"}} for i in range(25000)]}
+        base, hub = "https://example.test/hub", "1" * 40
+        with mock.patch.object(builder, "build", side_effect=AssertionError("No catalog build")), mock.patch.object(
+                builder, "markdown", side_effect=AssertionError("Do not render each recipe")), mock.patch.object(
+                socket, "getaddrinfo", side_effect=AssertionError("No network")):
+            small = (builder.discovery_text(small_recipes, base, small_references, memory_count=7),
+                     builder.full_text(small_recipes, base, hub, small_references, memory_count=7))
+            large = (builder.discovery_text(recipes, base, references, memory_count=7),
+                     builder.full_text(recipes, base, hub, references, memory_count=7))
+        normalize = lambda text: re.sub(r"\d+ preparation recipes and \d+ source references; \d+ published findings", "COUNTS", text)
+        for minimal, expanded in zip(small, large):
+            self.assertEqual(normalize(minimal), normalize(expanded))
+            self.assertIn("10000 preparation recipes and 25000 source references; 7 published findings", expanded)
+            for marker in ("RECIPE_MUST_NOT_BE_ENUMERATED", "REFERENCE_MUST_NOT_BE_ENUMERATED", "FULL_RECORD_JSON_MUST_NOT_BE_EMBEDDED"):
+                self.assertNotIn(marker, expanded)
+            for route in (builder.API + "/v1/search", builder.API + "/v1/skills/{skill_id}", builder.API + "/v1/findings", builder.API + "/mcp",
+                          "/catalog/v2/search-manifest.json", "/catalog/v2/memory-manifest.json", "/catalog/v1/version.json",
+                          "/schemas/skill.schema.json", "/schemas/memory.schema.json", "/schemas/intake.schema.json",
+                          "/source-files.md", "/memory.md", "/new-skills.md", "/contributing.md", "/references/{skill_id}/"):
+                self.assertIn(route, expanded)
+        self.assertLessEqual(len(large[0].encode("utf-8")), builder.LLMS_TEXT_MAX_BYTES)
+        self.assertLessEqual(len(large[1].encode("utf-8")), builder.LLMS_FULL_TEXT_MAX_BYTES)
+        self.assertTrue(large[1].startswith(self.quickstart))
+        self.assertLess(large[1].index("FIRST_ACTION"), large[1].index("LONG_METADATA"))
+        self.assertLess(large[1].index("FIRST_ACTION"), large[1].index("# Discovery resources and publication"))
+        self.assertIn("# Source-file retrieval", large[1])
+        self.assertIn("# Shared findings", large[1])
+        self.assertIn("# New skills", large[1])
+        self.assertIn("# Contributions", large[1])
+
+    def test_oversized_public_guide_fails_before_replacing_full_entry_file(self):
+        output = self.root / "site"
+        output.mkdir()
+        destination = output / "llms-full.txt"
+        previous = b"keep the prior full usage guide\n"
+        destination.write_bytes(previous)
+        (self.docs / "memory.md").write_text("# Shared findings\n\n" + "\u20ac" * (builder.LLMS_FULL_TEXT_MAX_BYTES // 3 + 1), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, r"llms-full.txt.*UTF-8 budget"):
+            builder.publish_agent_entry_texts(output, [], "https://example.test/hub", "1" * 40, {"records": []}, memory_count=0)
+        self.assertEqual(destination.read_bytes(), previous)
+        self.assertLessEqual((output / "llms.txt").stat().st_size, builder.LLMS_TEXT_MAX_BYTES)
+
+    def test_directory_budget_is_also_enforced_before_any_entry_file_replacement(self):
+        output = self.root / "site"
+        output.mkdir()
+        directory = output / "llms.txt"
+        previous = b"keep the prior directory\n"
+        directory.write_bytes(previous)
+        base = "https://example.test/" + "x" * builder.LLMS_TEXT_MAX_BYTES
+        with self.assertRaisesRegex(ValueError, r"llms.txt.*UTF-8 budget"):
+            builder.publish_agent_entry_texts(output, [], base, "1" * 40, {"records": []})
+        self.assertEqual(directory.read_bytes(), previous)
+        self.assertFalse((output / "llms-full.txt").exists())
 
 
 class ReferenceAcquisitionGuidanceTests(unittest.TestCase):

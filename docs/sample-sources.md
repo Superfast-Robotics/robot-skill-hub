@@ -10,7 +10,7 @@ The Hub contains two kinds of entries:
   409 robot model, description and configuration text artifacts across 19
   official robotics repositories. They expose immutable source and applicable license
   hashes, setup links and exact inspection limits. They have no Hub preparation
-  adapter. The published catalog also contains one separately reviewed intake.
+  adapter. The catalog also accepts separately reviewed intake references.
 
 Later finite selections add **56 policy and hardware workflow entrypoints** and
 **43 robot-agent instruction documents**. Their source-review notes below preserve

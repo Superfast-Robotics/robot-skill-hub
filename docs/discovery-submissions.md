@@ -177,6 +177,16 @@ checks are in the [readiness receipt](../evidence/discovery/v0.3.0/provider-read
 
 ## Additional channel review, 2026-10-18
 
+The skills.sh detail page and its generated repository installation command are
+available, but two anonymous searches at 20:58 UTC did not return this skill.
+The current public frontmatter and supported directory layout passed the
+documented CLI checks; no local metadata defect or provider eligibility rule
+was established. One affiliated, Codex-disclosed reproduction was added to the
+[existing upstream search-index issue](https://github.com/vercel-labs/skills/issues/1402#issuecomment-6241074238)
+and anonymously read back. The [search and publication receipt](../evidence/discovery/v0.3.3/skills-sh-search.json)
+preserves the observations. No installation telemetry was generated, and a
+provider fix or resulting adoption has not been verified.
+
 MCP.so's [remote-server submission form](https://mcp.so/submit?type=remote-server) displayed a $39 one-time publishing payment when reviewed at 2026-10-17 19:23 UTC. No free route was established and no submission, signup or payment was made. This channel is deferred under the free-first deployment constraint.
 
 Composio's Claude skills directory requires an actual Claude-platform test under its [pinned contribution rules](https://github.com/ComposioHQ/awesome-claude-skills/blob/be2a406907dbc61b73e6827ded415c96139d13a2/CONTRIBUTING.md). Existing Python, Codex and Hermes evidence does not establish that test. No submission or claim of Claude validation was made.

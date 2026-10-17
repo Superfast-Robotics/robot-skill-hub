@@ -4977,6 +4977,127 @@
           }
         ]
       }
+    },
+    {
+      "id": "pythonrobotics",
+      "name": "PythonRobotics",
+      "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+      "ref": "master",
+      "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "stars": 30720,
+      "checked_at": "2026-10-18",
+      "authors": [
+        "Atsushi Sakai and other contributors"
+      ],
+      "license": {
+        "path": "LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "bytes": 1170,
+        "spdx": "MIT",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "selection": {
+        "include": [
+          "PathPlanning/AStar/a_star.py",
+          "PathPlanning/DStarLite/d_star_lite.py",
+          "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+          "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py"
+        ],
+        "exclude": [],
+        "allow_straightline_scripts": false
+      },
+      "capabilities": [
+        "navigation",
+        "classical-robotics-algorithm"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "computation-or-algorithm-simulation",
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "environment": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility."
+      },
+      "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md",
+      "invocation_notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted.",
+      "artifacts": [
+        {
+          "path": "PathPlanning/AStar/a_star.py",
+          "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+          "bytes": 8717,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "AStar",
+            "A*"
+          ],
+          "authors": [
+            "Atsushi Sakai",
+            "Nikos Kanargias"
+          ]
+        },
+        {
+          "path": "PathPlanning/DStarLite/d_star_lite.py",
+          "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+          "bytes": 16563,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "DStarLite",
+            "D* Lite"
+          ],
+          "authors": [
+            "vss2sn"
+          ]
+        },
+        {
+          "path": "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+          "sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+          "bytes": 10138,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "DWA",
+            "dynamic window approach"
+          ],
+          "authors": [
+            "Atsushi Sakai",
+            "Göktuğ Karakaşlı"
+          ]
+        },
+        {
+          "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+          "bytes": 12978,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "HybridAStar",
+            "Hybrid A*"
+          ],
+          "authors": [
+            "Zheng Zh"
+          ]
+        },
+        {
+          "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+          "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+          "bytes": 16795,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "MPC",
+            "model predictive control"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        }
+      ]
     }
   ]
 }

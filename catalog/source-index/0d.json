@@ -20,6 +20,12 @@
       "record_version": "source-ab8c5838878f9cb81422039632f3571690b7a6726d31bdaa586eef608a1d464b"
     },
     {
+      "id": "pythonrobotics-pathplanning-astar-a-star-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+      "record_version": "source-387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a"
+    },
+    {
       "id": "ros2-examples-rclpy-actions-minimal-action-client-examples-rclpy-mi-1237ea3c2983",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "7a1096fb8f18f9883a6ce497775250c14bce3ab53adb47005e0a93e879660701",

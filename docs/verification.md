@@ -1,8 +1,16 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Compact agent entry and classical planning sources
+
+The catalog contains 17 preparation recipes, 1,255 source references and 3 findings. Five [PythonRobotics algorithm demonstrations](../evidence/sources/pythonrobotics-classical-planning-2026-10-18.json) add A*, D* Lite, Dynamic Window Approach, Hybrid A* and MPC path tracking. The offline importer preserved all 1,248 earlier official records exactly. Each new record retains reviewed file-specific aliases and header authors; no robot model, compatible runtime or execution result is inferred. Dependencies, plotting and local helpers still require upstream setup.
+
+The earlier agent directory rendered 414,007 bytes before usage, and its full-text route rendered 7,312,527 bytes by repeating the catalog. The entry routes now publish a 4,249-byte directory and a 42,264-byte usage guide with the quickstart first. Complete catalog records remain accessible through the same checksum-bound paginated manifests and per-ID pages. Explicit 16 KiB/128 KiB publication budgets reject oversized entry documents without truncation. A synthetic 10,000-recipe/25,000-reference regression verifies that document size grows only with the count text, while real UTF-8 overflow preserves the previous affected file.
+
+Local checks passed: 247 Python tests with four Windows symlink-privilege skips, all 39 publication tests, and the offline 14-project importer rebuild. No upstream package, algorithm, simulator or hardware was executed in this follow-up.
+
 ## Standalone policy reference intake
 
-The catalog now contains 17 preparation recipes, 1,250 source references and 3 findings. The additional [SmolVLA base checkpoint](https://hub.superfastrobotics.com/references/lerobot-smolvla-base-policy-weights/) exercises the existing submission API with a non-GitHub source and a `sha256:` revision. One real registration created [internal PR 6](https://github.com/Superfast-Robotics/robot-skill-hub/pull/6). Review checked the API-generated record against the frozen candidate, provider metadata and model card; the updated branch passed [CI](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39067937599) before merge.
+The policy intake brought the catalog to 17 preparation recipes, 1,250 source references and 3 findings. The additional [SmolVLA base checkpoint](https://hub.superfastrobotics.com/references/lerobot-smolvla-base-policy-weights/) exercises the existing submission API with a non-GitHub source and a `sha256:` revision. One real registration created [internal PR 6](https://github.com/Superfast-Robotics/robot-skill-hub/pull/6). Review checked the API-generated record against the frozen candidate, provider metadata and model card; the updated branch passed [CI](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39067937599) before merge.
 
 The [source-review receipt](../evidence/sources/smolvla-policy-2026-10-18.json) preserves the provider-attested SHA-256 and declared 906,712,520 bytes. No weight payload was downloaded, locally rehashed or executed. The model-card license declaration retains `verified: false`, and robot/runtime compatibility remains unknown. The generated page explicitly reports the 8 MiB acquisition limit and directs acquisition to the pinned upstream source. This is source metadata publication, not a Hub model runner or robot-task validation.
 

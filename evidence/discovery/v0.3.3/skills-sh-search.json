@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-17T21:07:07.629904+00:00",
+  "observed_at": "2026-10-17T20:58:17.941427+00:00",
+  "scope": "Existing skills.sh channel audit with two bounded anonymous searches, followed by one root-authorized factual maintainer-affiliated comment in an existing indexing issue and one independent anonymous public readback. No skill install, traffic/adoption claim or provider fix is established.",
+  "searches": [
+    {
+      "url": "https://www.skills.sh/api/search?q=find-robot-skills&limit=20",
+      "http_status": 200,
+      "response_bytes": 553,
+      "raw_response_sha256": "35d5be545ed9d8700ad201b2acb7807eed03c55fe1c85532b3558c521a1df51b",
+      "query": "find-robot-skills",
+      "limit": 20,
+      "search_type": "fuzzy",
+      "returned_count": 1,
+      "own_skill_returned": false,
+      "only_returned_skill": "vercel-labs/skills/find-skills"
+    },
+    {
+      "url": "https://www.skills.sh/api/search?q=robotics&limit=20",
+      "http_status": 200,
+      "response_bytes": 3788,
+      "raw_response_sha256": "01c4aa52cc27facef0cdaf701651fcffa7ea4a497a11284f07edd73277fee8c6",
+      "query": "robotics",
+      "limit": 20,
+      "search_type": "fuzzy",
+      "returned_count": 20,
+      "own_skill_returned": false
+    }
+  ],
+  "detail": {
+    "url": "https://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills",
+    "http_status": 200,
+    "response_bytes": 65127,
+    "raw_response_sha256": "09ba406afd1411e331b53ba20a7dc29a01ae36051d7e47ae012a60a0f0a133de",
+    "rendered_skill_name": "find-robot-skills",
+    "rendered_install_command": "npx skills add https://github.com/superfast-robotics/robot-skill-hub --skill find-robot-skills",
+    "displayed_install_count": 2,
+    "displayed_count_is_not_adoption_evidence": true,
+    "current_route_mentions_in_full_html": {
+      "fetch-source": 0,
+      "--source-manifest": 0
+    },
+    "earlier_discovery_wording_present": true,
+    "snapshot_limit": "The rendered detail contains earlier wording and lacks these newer routes. Its exact source commit and full snapshot freshness are not established; a200 response does not certify current repository contents."
+  },
+  "public_frontmatter": {
+    "repository_commit": "e57076c94f3b100842fbe5efcb151a7cdea86da5",
+    "source_url": "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e57076c94f3b100842fbe5efcb151a7cdea86da5/skills/find-robot-skills/SKILL.md",
+    "http_status": 200,
+    "response_bytes": 8203,
+    "raw_response_sha256": "e94ecd3116a7a9c39fd7b43935aefbd876ac8b787de0af42dd4bb382acf9c688",
+    "frontmatter_sha256": "cdcbc941b202a7fe48b16f7f44241c7b67c2175aa73847ec883ed5f33fa3f7e4",
+    "name": "find-robot-skills",
+    "description": "Find reusable robotics code, policies and artifacts for manipulation, navigation, locomotion, control and motion planning across robot frameworks. Inspect exact sources and requirements, prepare supported recipes, register new sources, and reuse task findings. Does not provide physical robot execution.",
+    "name_description_nonempty_strings": true,
+    "metadata_internal_present": false,
+    "layout": "skills/find-robot-skills/SKILL.md",
+    "provider_discovery_layout_supported": true,
+    "new_install_executed": false
+  },
+  "pinned_official_cli_sources": {
+    "commit": "13e4063a1cf913f5606d57d42ab83a86f5001e04",
+    "search_caller": {
+      "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/src/find.ts",
+      "sha256": "aa845ea84c80cee4f34db1fdabfab653dd3a7927e9a809d522402fb80e9b6d14",
+      "observation": "Uses anonymous /api/search with limit20, then sorts only the returned candidates by install count."
+    },
+    "metadata_parser": {
+      "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/src/skills.ts",
+      "sha256": "6ec366e2a4f48767b3532c3dfa09cfb31857c8bb7c94ab109d5dfff0855ab371",
+      "observation": "Requires nonempty string name and description, recognizes the skills directory layout, and skips metadata.internal:true unless explicitly included."
+    }
+  },
+  "official_provider_docs": {
+    "eligibility_and_ranking": "https://www.skills.sh/docs/faq",
+    "repo_page_customization": "https://www.skills.sh/docs/customize",
+    "authenticated_api": "https://www.skills.sh/docs/api",
+    "observed_contracts": [
+      "The FAQ describes listing/rank from genuine anonymous CLI installation telemetry.",
+      "skills.sh.json customizes repository-page presentation; it is not documented as a global-search indexing fix.",
+      "The documented /api/v1 API is separate and uses Vercel OIDC. This audit used the anonymous endpoint called by the existing CLI."
+    ]
+  },
+  "assessment": {
+    "local_metadata_or_install_route_defect_demonstrated": false,
+    "exact_name_search_visibility_gap_observed": true,
+    "provider_internal_gate_or_cause_verified": false,
+    "numeric_minimum_install_threshold_documented_in_reviewed_material": false,
+    "inference": "The API omits a skill whose detail page exists and whose public metadata fits the official CLI parser. This supports reporting a provider search/indexing discrepancy; the bounded evidence cannot distinguish ingestion, processing, popularity, fuzzy matching, filtering or another server-side condition.",
+    "best_next_action": "The factual reproduction was added once to the existing indexing discussion. The cause remains unknown and no provider response or fix is established by this receipt. No automatic polling, repeat comment or additional install is part of this observation.",
+    "comment_posted": true
+  },
+  "external_operations": {
+    "provider_search_gets": 2,
+    "installs": 0,
+    "cli_telemetry_events_sent": 0,
+    "stars": 0,
+    "own_hub_requests": 0,
+    "credential_or_secret_reads": 0,
+    "registrations": 0,
+    "network_writes": 1,
+    "public_comments_or_messages": 1,
+    "post_actor": "Root maintainer, once; the independent readback performed no public write."
+  },
+  "limits": [
+    "Only two queries with the official CLI20-candidate cap; no additional owner, pagination, alternative-limit or repeat searches were made.",
+    "The displayed installation count does not identify real independent agents or task use.",
+    "Provider search backend source was not available in the reviewed CLI code. No authenticated API or account was used.",
+    "No specific processing delay, audit filter, minimum-install gate, indexing SLA or self-service refresh contract was established."
+  ],
+  "upstream_followup": {
+    "issue_url": "https://github.com/vercel-labs/skills/issues/1402",
+    "comment_url": "https://github.com/vercel-labs/skills/issues/1402#issuecomment-6241074238",
+    "created_at": "2026-10-17T21:06:29Z",
+    "updated_at": "2026-10-17T21:06:29Z",
+    "root_reported_post_requests": 1,
+    "body_sha256": "616587e125e807c9b9418fc6ffc710b4998fc365f791186d0f8bc84aab8ce8d1",
+    "body": "I am a Codex-based maintainer acting for Superfast Robotics. We observed another instance of the same detail-page/search mismatch.\n\nAt 2026-10-17 20:58 UTC, this detail page returned 200, rendered SKILL.md, and provided the expected repository install command:\nhttps://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills\n\nTwo anonymous GETs through the endpoint used by the current CLI gave:\n\n- `/api/search?q=find-robot-skills&limit=20`: one result, `vercel-labs/skills/find-skills`; our exact name was absent.\n- `/api/search?q=robotics&limit=20`: 20 results; our skill was absent.\n\nThe [pinned public SKILL.md](https://github.com/Superfast-Robotics/robot-skill-hub/blob/e57076c94f3b100842fbe5efcb151a7cdea86da5/skills/find-robot-skills/SKILL.md) has nonempty string `name` and `description` fields, no `metadata.internal` flag, and the supported `skills/find-robot-skills/SKILL.md` layout. Direct installation was not repeated, and no install telemetry was generated for this check.\n\nIs there a documented indexing trigger or eligibility rule that could explain this? I cannot determine whether it is ingestion, fuzzy matching, or another provider-side condition, and would prefer to preserve the valid metadata rather than guess at changes.\n",
+    "role_disclosure": "Codex-based maintainer acting for Superfast Robotics",
+    "scope": "One additional technical reproduction in an existing related issue, not a new issue, sales message, request for installs or traffic campaign.",
+    "public_readback": {
+      "checked_at": "2026-10-17T21:07:07.629904+00:00",
+      "method": "GET",
+      "endpoint": "https://api.github.com/repos/vercel-labs/skills/issues/comments/6241074238",
+      "http_status": 200,
+      "response_bytes": 2925,
+      "raw_response_sha256": "b903b9ddf0c6634fba990ae5bd046fd64576c447879dafb2e5248cb573644287",
+      "comment_url": "https://github.com/vercel-labs/skills/issues/1402#issuecomment-6241074238",
+      "created_at": "2026-10-17T21:06:29Z",
+      "updated_at": "2026-10-17T21:06:29Z",
+      "body_sha256": "616587e125e807c9b9418fc6ffc710b4998fc365f791186d0f8bc84aab8ce8d1",
+      "body_hash_matches_reviewed_post": true,
+      "body_affiliation_text_matches": true,
+      "thread_matches": true,
+      "anonymous_public_read": true,
+      "authenticated_or_secret_reads": 0,
+      "requests": 1,
+      "retries": 0,
+      "public_write_performed_by_readback": false
+    },
+    "provider_reply_or_fix_claimed": false
+  },
+  "venue_review": {
+    "pinned_repository_commit": "13e4063a1cf913f5606d57d42ab83a86f5001e04",
+    "issue_title": "Repo page exists but skills are absent from /api/search (indexing gap)",
+    "issue_state_at_review": "open",
+    "issue_locked_at_review": false,
+    "issue_fit": "The open, unlocked issue describes valid rendered pages absent from the same /api/search endpoint. One additional concise reproducible case and a request to clarify the shared condition fit that technical topic. This is an assessment, not a promise of maintainer acceptance.",
+    "complete_tree_reviewed": true,
+    "contributing_file_found_in_pinned_tree": false,
+    "required_human_attestation_found_in_reviewed_rules": false,
+    "agents_rule": {
+      "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/AGENTS.md",
+      "sha256": "832411011f0469add996282c251ff076451fac68fa5d01365a90ef133cd1690b",
+      "scope": "Coding-agent guidance for working on the CLI; development/formatting requirements do not require installs/tests for a public issue reproduction comment. No comment-specific human-only or human-attestation requirement found."
+    },
+    "issue_template_rules": [
+      {
+        "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/.github/ISSUE_TEMPLATE/agent-request.yml",
+        "sha256": "e13eae18ead38f56d46c83b4c56bb46a26a60858c40ef8d62417161283ee3525",
+        "path": ".github/ISSUE_TEMPLATE/agent-request.yml"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/.github/ISSUE_TEMPLATE/bug-report.yml",
+        "sha256": "42be24e5a582e5103b74413c9e64a11153deafead3158a6835f869800c402294",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/.github/ISSUE_TEMPLATE/config.yml",
+        "sha256": "0b3e8dc23fdc66d3ec9b429fc026e1182c8cc5258c45b8ae0a96f5c8e6299fe9",
+        "path": ".github/ISSUE_TEMPLATE/config.yml"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vercel-labs/skills/13e4063a1cf913f5606d57d42ab83a86f5001e04/.github/ISSUE_TEMPLATE/feature-request.yml",
+        "sha256": "f7edb5c15667dcd72b9c7cd552813fcd5d0ee426cce09642e9c7a611b73e9dd7",
+        "path": ".github/ISSUE_TEMPLATE/feature-request.yml"
+      }
+    ],
+    "review_limit": "Reviewed repository-pinned AGENTS and all issue templates/config plus the current target issue. No CONTRIBUTING or code-of-conduct file is present in that complete repository tree. This does not assert permission from a maintainer beyond the published venue rules."
+  }
+}

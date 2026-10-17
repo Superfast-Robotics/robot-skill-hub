@@ -43,6 +43,8 @@ SEARCH_JSON_MAX_BYTES = 2 * 1024 * 1024
 PUBLICATION_JSON_MAX_BYTES = 512 * 1024
 VERSION_JSON_MAX_BYTES = 32 * 1024
 RECORD_JSON_MAX_BYTES = 256 * 1024
+LLMS_TEXT_MAX_BYTES = 16 * 1024
+LLMS_FULL_TEXT_MAX_BYTES = 128 * 1024
 V2_MANIFEST_MAX_BYTES = 128 * 1024
 V2_PAGE_MAX_BYTES = 128 * 1024
 V2_PAGE_MAX_RECORDS = 100
@@ -765,49 +767,71 @@ def git_commit():
         return "uncommitted"
 
 
-def discovery_text(records, base, references=None):
+def discovery_text(records, base, references=None, *, memory_count=None):
+    references = references or {"records": []}
+    counts = f"{len(records)} preparation recipes and {len(references['records'])} source references"
+    if memory_count is not None:
+        counts += f"; {memory_count} published findings"
     return f"""# Robot Skill Hub
 
 > Pinned robot code, environment contracts and preparation commands for coding agents.
 
+Current catalog: {counts}. Search matches and source references do not establish runtime compatibility or task completion.
+
+- [Agent quickstart]({base}/agent-quickstart.md): install, find, inspect and use supported sources
 - [Agent contract JSON]({base}/agent.json): machine-readable operations, schemas and trust boundaries
 - [Public search API]({API}/v1/search): query capabilities and inspect selected records without authentication
+- [Per-ID inspection contract]({base}/openapi.json): `GET {API}/v1/skills/{{skill_id}}` for one selected ID's exact source, license and record metadata
+- [Exact-version findings contract]({base}/openapi.json): `GET {API}/v1/findings` with required skill, source and record-version pins
 - [Read-only MCP]({API}/mcp): connect an agent with search, inspect and capabilities tools
+- [OpenAPI]({base}/openapi.json): public read and authenticated contribution contracts
 - [Complete search manifest]({base}/catalog/v2/search-manifest.json): bounded checksum-bound pages for every recipe and source reference
 - [Complete finding manifest]({base}/catalog/v2/memory-manifest.json): bounded checksum-bound pages for every shared finding
-- [Shared memory JSON]({base}/catalog/v1/memories.json): reviewed contributor reports, scoped to exact source/recipe versions; data only
 - [Catalog version JSON]({base}/catalog/v1/version.json): published commit, resource counts and checksums
-- [Catalog JSON]({base}/catalog/v1/index.json): canonical records with bundled recipes
-- [Source references JSON]({base}/catalog/v1/references.json): pinned upstream code and artifacts; no hub preparation adapter
+- [Recipe compatibility view]({base}/catalog/v1/index.json): inspect coverage; use the complete search manifest for enumeration
+- [Source compatibility view]({base}/catalog/v1/references.json): inspect coverage; use the complete search manifest for enumeration
 - [Publication proof contract]({base}/agent.json): per-receipt published versions, exact hashes and historical anchors
-- [Agent quickstart]({base}/agent-quickstart.md): find, inspect and prepare commands
 - [Source-file retrieval]({base}/source-files.md): one pinned inert file, independent of runtime preparation
-- [Full documentation]({base}/llms-full.txt): quickstart, contracts and every recipe in plain text
+- [Shared finding guide]({base}/memory.md): save minimal observations under exact project scope and an allowed-agent token
+- [Usage guide collection]({base}/llms-full.txt): quickstart first, source retrieval, findings and reviewable contributions
 - [Record schema]({base}/schemas/skill.schema.json)
+- [Finding schema]({base}/schemas/memory.schema.json)
+- [Project policy schema]({base}/schemas/project-policy.schema.json)
+- [New-source intake schema]({base}/schemas/intake.schema.json)
 - [Compatibility contract]({base}/compatibility.md)
 - [Contribution contract]({base}/contributing.md)
 - [Register a new skill]({base}/new-skills.md): immutable source metadata, local-first intake and maintainer review
 - [Agent discovery guide]({base}/discovery.md): installation and read-only MCP connection
 - [Access measurement and privacy]({base}/privacy.md): measured activity, retained data and opt-out
 
-## Recipes
+## Read selected data
 
-""" + "\n".join(f"- [{r['name']}]({base}/skills/{r['id']}/README.md) ([JSON]({base}/skills/{r['id']}/skill.json))" for r in records) + "\n\n## Source references\n\n" + "\n".join(f"- [{r['name']}]({base}/references/{r['id']}/README.md) ([JSON]({base}/references/{r['id']}/skill.json)): {r['framework']}; {r['license']['spdx']}; source reference only" for r in (references or {"records": []})["records"]) + "\n"
+Search returns bounded results, an exact total and a next-parameters object pinned to one Hub commit. Continue with those exact parameters. Use each result's record_url and record_sha256 for its complete per-ID JSON. Reference pages live at `{base}/references/{{skill_id}}/`; recipe pages at `{base}/skills/{{skill_id}}/`.
+
+For complete enumeration, read the search and finding manifests and verify each declared page hash and generation. Compatibility views can be incomplete or omitted at their size limits. This directory and the usage guide collection intentionally do not repeat individual records or source contents.
+"""
 
 
-def full_text(records, base, hub_commit, references=None):
-    parts = [discovery_text(records, base, references), f"Hub commit: `{hub_commit}`\n"]
-    for name in ("agent-quickstart.md", "compatibility.md", "contributing.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md"):
-        path = ROOT / "docs" / name
-        if path.exists():
-            parts.append(path.read_text(encoding="utf-8"))
+def full_text(records, base, hub_commit, references=None, *, memory_count=None):
+    quickstart = ROOT / "docs/agent-quickstart.md"
+    parts = [quickstart.read_text(encoding="utf-8") if quickstart.exists() else
+             f"# Agent quickstart\n\nRead {base}/agent.json, search {API}/v1/search, and inspect a selected ID before use. Public reads need no account. Runtime execution and authenticated sharing remain separate.\n"]
     source_guide = ROOT / "skills/find-robot-skills/references/source-files.md"
     if source_guide.exists():
         parts.append(source_guide.read_text(encoding="utf-8"))
-    parts.extend(markdown(r, hub_commit, base) for r in records)
-    if references and references["records"]:
-        parts.append("# Source references\n\nThese records are discovery references with no hub preparation adapter. Follow upstream setup and invocation instructions.\n\n```json\n" + json.dumps(references, ensure_ascii=False, indent=2) + "\n```\n")
+    for name in ("memory.md", "new-skills.md", "contributing.md", "compatibility.md", "discovery.md", "privacy.md"):
+        path = ROOT / "docs" / name
+        if path.exists():
+            parts.append(path.read_text(encoding="utf-8"))
+    parts.append(f"# Discovery resources and publication\n\nHub commit: `{hub_commit}`\n\n" +
+                 discovery_text(records, base, references, memory_count=memory_count))
     return "\n\n---\n\n".join(parts) + "\n"
+
+
+def publish_agent_entry_texts(output, records, base, hub_commit, references=None, *, memory_count=None):
+    """Bound agent entry documents without truncating guides or catalog data."""
+    write(output / "llms.txt", discovery_text(records, base, references, memory_count=memory_count), max_bytes=LLMS_TEXT_MAX_BYTES)
+    write(output / "llms-full.txt", full_text(records, base, hub_commit, references, memory_count=memory_count), max_bytes=LLMS_FULL_TEXT_MAX_BYTES)
 
 
 def build(args):
@@ -891,8 +915,7 @@ def build(args):
         write(output / "CNAME", parsed_base.hostname + "\n")
     elif (output / "CNAME").exists():
         (output / "CNAME").unlink()
-    write(output / "llms.txt", discovery_text(records, base, references))
-    write(output / "llms-full.txt", full_text(records, base, hub_commit, references))
+    publish_agent_entry_texts(output, records, base, hub_commit, references, memory_count=len(memory_proofs))
     quickstart = ROOT / "docs/agent-quickstart.md"
     if quickstart.exists():
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))

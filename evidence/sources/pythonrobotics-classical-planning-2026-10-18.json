@@ -1,0 +1,550 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_first_party_algorithm_source_review",
+  "scope": "Exactly five PythonRobotics classical navigation/planning/tracking algorithm demonstrations. No helpers, tests, configuration files or assets are counted as additional skills.",
+  "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+  "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "repository_stars_snapshot": 30720,
+  "popularity_meaning": "Dated repository interest, not evidence of skill use or task success.",
+  "binding": {
+    "reviewed_project_object": {
+      "id": "pythonrobotics",
+      "name": "PythonRobotics",
+      "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+      "ref": "master",
+      "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "stars": 30720,
+      "checked_at": "2026-10-18",
+      "authors": [
+        "Atsushi Sakai and other contributors"
+      ],
+      "license": {
+        "path": "LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "bytes": 1170,
+        "spdx": "MIT",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "selection": {
+        "include": [
+          "PathPlanning/AStar/a_star.py",
+          "PathPlanning/DStarLite/d_star_lite.py",
+          "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+          "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py"
+        ],
+        "exclude": [],
+        "allow_straightline_scripts": false
+      },
+      "capabilities": [
+        "navigation",
+        "classical-robotics-algorithm"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "computation-or-algorithm-simulation",
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "environment": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility."
+      },
+      "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md",
+      "invocation_notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted.",
+      "artifacts": [
+        {
+          "path": "PathPlanning/AStar/a_star.py",
+          "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+          "bytes": 8717,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "AStar",
+            "A*"
+          ],
+          "authors": [
+            "Atsushi Sakai",
+            "Nikos Kanargias"
+          ]
+        },
+        {
+          "path": "PathPlanning/DStarLite/d_star_lite.py",
+          "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+          "bytes": 16563,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "DStarLite",
+            "D* Lite"
+          ],
+          "authors": [
+            "vss2sn"
+          ]
+        },
+        {
+          "path": "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+          "sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+          "bytes": 10138,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "DWA",
+            "dynamic window approach"
+          ],
+          "authors": [
+            "Atsushi Sakai",
+            "Göktuğ Karakaşlı"
+          ]
+        },
+        {
+          "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+          "bytes": 12978,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "HybridAStar",
+            "Hybrid A*"
+          ],
+          "authors": [
+            "Zheng Zh"
+          ]
+        },
+        {
+          "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+          "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+          "bytes": 16795,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "MPC",
+            "model predictive control"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        }
+      ]
+    },
+    "reviewed_project_object_sha256": "6b8eb699a446168fc779d634589021eb0b6c75319a983666e22ab420fb9f5036",
+    "project_hash_encoding": "SHA256 of UTF-8 JSON with sorted keys/compact separators/no final LF",
+    "full_registry_hash_included": false
+  },
+  "counts": {
+    "entrypoints": 5,
+    "source_bytes": 65191,
+    "license_documents": 1,
+    "supporting_setup_documents": 3,
+    "all_reviewed_texts": 9,
+    "all_reviewed_text_bytes": 92382
+  },
+  "source_reviews": [
+    {
+      "path": "PathPlanning/AStar/a_star.py",
+      "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+      "bytes": 8717,
+      "purpose": "A* grid planning",
+      "source_header_authors": [
+        "Atsushi Sakai",
+        "Nikos Kanargias"
+      ],
+      "reviewed_algorithm_aliases": [
+        "AStar",
+        "A*"
+      ],
+      "alias_basis": [
+        {
+          "path": "PathPlanning/AStar/a_star.py",
+          "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+          "bytes": 8717,
+          "match_in": "source_path",
+          "quote": "PathPlanning/AStar/a_star.py"
+        },
+        {
+          "path": "PathPlanning/AStar/a_star.py",
+          "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+          "bytes": 8717,
+          "match_in": "text",
+          "quote": "A* grid planning"
+        }
+      ],
+      "alias_review_scope": "Per-file algorithm name/path and conventional acronym declarations only; no project-wide or runtime/model aliases inferred.",
+      "main_line": 233,
+      "main_guard_line": 281,
+      "operational_call": "a_star.planning",
+      "operational_call_lines": [
+        273
+      ],
+      "source_imports": [
+        "math",
+        "matplotlib.pyplot"
+      ],
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "PathPlanning/DStarLite/d_star_lite.py",
+      "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+      "bytes": 16563,
+      "purpose": "D* Lite incremental grid planning",
+      "source_header_authors": [
+        "vss2sn"
+      ],
+      "reviewed_algorithm_aliases": [
+        "DStarLite",
+        "D* Lite"
+      ],
+      "alias_basis": [
+        {
+          "path": "PathPlanning/DStarLite/d_star_lite.py",
+          "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+          "bytes": 16563,
+          "match_in": "text",
+          "quote": "class DStarLite:"
+        },
+        {
+          "path": "PathPlanning/DStarLite/d_star_lite.py",
+          "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+          "bytes": 16563,
+          "match_in": "text",
+          "quote": "D* Lite grid planning"
+        }
+      ],
+      "alias_review_scope": "Per-file algorithm name/path and conventional acronym declarations only; no project-wide or runtime/model aliases inferred.",
+      "main_line": 331,
+      "main_guard_line": 404,
+      "operational_call": "dstarlite.main",
+      "operational_call_lines": [
+        400
+      ],
+      "source_imports": [
+        "math",
+        "matplotlib.pyplot",
+        "numpy",
+        "random"
+      ],
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+      "sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+      "bytes": 10138,
+      "purpose": "Dynamic Window Approach numerical mobile-navigation simulation",
+      "source_header_authors": [
+        "Atsushi Sakai",
+        "Göktuğ Karakaşlı"
+      ],
+      "reviewed_algorithm_aliases": [
+        "DWA",
+        "dynamic window approach"
+      ],
+      "alias_basis": [
+        {
+          "path": "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+          "sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+          "bytes": 10138,
+          "match_in": "text",
+          "quote": "Mobile robot motion planning sample with Dynamic Window Approach"
+        }
+      ],
+      "alias_review_scope": "Per-file algorithm name/path and conventional acronym declarations only; no project-wide or runtime/model aliases inferred.",
+      "main_line": 260,
+      "main_guard_line": 306,
+      "operational_call": "dwa_control",
+      "operational_call_lines": [
+        273
+      ],
+      "source_imports": [
+        "enum",
+        "math",
+        "matplotlib.pyplot",
+        "numpy"
+      ],
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+      "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+      "bytes": 12978,
+      "purpose": "Hybrid A* nonholonomic path planning",
+      "source_header_authors": [
+        "Zheng Zh"
+      ],
+      "reviewed_algorithm_aliases": [
+        "HybridAStar",
+        "Hybrid A*"
+      ],
+      "alias_basis": [
+        {
+          "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+          "bytes": 12978,
+          "match_in": "source_path",
+          "quote": "PathPlanning/HybridAStar/hybrid_a_star.py"
+        },
+        {
+          "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+          "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+          "bytes": 12978,
+          "match_in": "text",
+          "quote": "Hybrid A* path planning"
+        }
+      ],
+      "alias_review_scope": "Per-file algorithm name/path and conventional acronym declarations only; no project-wide or runtime/model aliases inferred.",
+      "main_line": 381,
+      "main_guard_line": 440,
+      "operational_call": "hybrid_a_star_planning",
+      "operational_call_lines": [
+        420
+      ],
+      "source_imports": [
+        "ReedsSheppPath",
+        "car",
+        "dynamic_programming_heuristic",
+        "heapq",
+        "math",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "scipy.spatial",
+        "sys"
+      ],
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+      "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+      "bytes": 16795,
+      "purpose": "Iterative linear MPC speed/steering path-tracking simulation",
+      "source_header_authors": [
+        "Atsushi Sakai"
+      ],
+      "reviewed_algorithm_aliases": [
+        "MPC",
+        "model predictive control"
+      ],
+      "alias_basis": [
+        {
+          "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+          "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+          "bytes": 16795,
+          "match_in": "text",
+          "quote": "Path tracking simulation with iterative linear model predictive control for speed and steer control"
+        },
+        {
+          "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+          "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+          "bytes": 16795,
+          "match_in": "text",
+          "quote": "# mpc parameters"
+        }
+      ],
+      "alias_review_scope": "Per-file algorithm name/path and conventional acronym declarations only; no project-wide or runtime/model aliases inferred.",
+      "main_line": 548,
+      "main_guard_line": 626,
+      "operational_call": "do_simulation",
+      "operational_call_lines": [
+        563
+      ],
+      "source_imports": [
+        "PathPlanning.CubicSpline",
+        "cvxpy",
+        "math",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "utils.angle"
+      ],
+      "runtime_verification": "not_run"
+    }
+  ],
+  "supporting_pins": [
+    {
+      "path": "LICENSE",
+      "bytes": 1170,
+      "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+      "git_blob_sha1": "1c9b928b54376c99c467dd3b1bb6f2f0855ed53b",
+      "mode": "100644",
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "bytes": 25677,
+      "sha256": "97d04bf1a938b849e43235e48a476968a2ce6d85ca10c47060ec91a2c539c9e8",
+      "git_blob_sha1": "1a5c07f2909712d9493ab9520b2114c7e096b65e",
+      "mode": "100644",
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+    },
+    {
+      "path": "requirements/environment.yml",
+      "bytes": 131,
+      "sha256": "9c291fc9acc134e881963d491cb6a62d3fdc1d1de7e2b82499bc0f3e388ac734",
+      "git_blob_sha1": "023a3d75bf66e6c95448ff9a7061813532b2167b",
+      "mode": "100644",
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/requirements/environment.yml"
+    },
+    {
+      "path": "requirements/requirements.txt",
+      "bytes": 213,
+      "sha256": "a09587e653c89b2bdd8a12be98e17e9a0f9a64560775103b173dd7a7e5afdb8f",
+      "git_blob_sha1": "0345a64e12c129de633e3b2cad5053bd391adff7",
+      "mode": "100644",
+      "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/requirements/requirements.txt"
+    }
+  ],
+  "license_review": {
+    "GitHub_automated_classifier": "NOASSERTION",
+    "actual_pinned_license_text": "MIT",
+    "reviewed_literal_markers": [
+      "The MIT License (MIT)",
+      "Permission is hereby granted",
+      "Atsushi Sakai and other contributors"
+    ],
+    "classification_is_not_the_license_text": true,
+    "source_headers_preserved_in_original_files": true,
+    "meaning": "The MIT identity is supported by the exact LICENSE bytes and no conflicting identifiers were observed in selected headers. This does not clear dependency/asset terms or runtime/hardware use."
+  },
+  "requirements": {
+    "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+    "declarations": {
+      "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+      "packages": [
+        "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+        "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+        "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+        "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+        "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+        "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+      ],
+      "environment": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility."
+    },
+    "helper_files_required_by_imports_not_counted_or_acquired": [
+      "PathPlanning/HybridAStar/dynamic_programming_heuristic.py",
+      "PathPlanning/HybridAStar/car.py",
+      "PathPlanning/ReedsSheppPath/reeds_shepp_path_planning.py",
+      "utils/angle.py",
+      "PathPlanning/CubicSpline/cubic_spline_planner.py"
+    ],
+    "matplotlib_animation_enabled_in_source": true,
+    "runtime_compatibility_or_robot_model_inferred": false
+  },
+  "validation": {
+    "all_nine_text_sha256_sizes_git_blob_SHA1_modes_checked": true,
+    "all_five_real_guarded_main_and_operational_calls_reviewed": true,
+    "copied_existing_importer_offline_build": true,
+    "all_1248_prior_official_records_preserved_exactly": true,
+    "five_unique_additions": true,
+    "optional_metadata_contract": "Importer supports bounded reviewed per-artifact aliases/authors; these optional fields preserve literal per-file algorithm names/acronyms and header attribution. Absent fields preserve existing record output.",
+    "importer_sha256": "ae3c871168b8b885a781f658e7631820fb97f3faafba083718faf2f953475949",
+    "per_file_authors_emitted_from_exact_reviewed_headers": true,
+    "actual_core_find_results_in_full_candidate_catalog": {
+      "MPC": {
+        "full_candidate_catalog_with_runtime_filter": {
+          "runtime": "pythonrobotics",
+          "total": 1,
+          "ids": [
+            "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+          ]
+        },
+        "candidate_project_without_filter": {
+          "total": 1,
+          "ids": [
+            "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+          ]
+        },
+        "full_candidate_catalog_without_filter": {
+          "total": 1,
+          "ids": [
+            "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+          ]
+        },
+        "runtime_compatibility_inferred": false
+      },
+      "DWA": {
+        "full_candidate_catalog_with_runtime_filter": {
+          "runtime": "pythonrobotics",
+          "total": 1,
+          "ids": [
+            "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py"
+          ]
+        },
+        "candidate_project_without_filter": {
+          "total": 1,
+          "ids": [
+            "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py"
+          ]
+        },
+        "full_candidate_catalog_without_filter": {
+          "total": 40,
+          "ids": [
+            "drake-examples-hardware-sim-hardware-sim-cc",
+            "drake-examples-hardware-sim-hardware-sim-py",
+            "drake-examples-hardware-sim-robot-commander-py",
+            "openpi-simple-client",
+            "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py",
+            "ros2-control-example-1-bringup-launch-rrbot-launch-py",
+            "ros2-control-example-10-bringup-launch-rrbot-launch-py",
+            "ros2-control-example-11-bringup-launch-carlikebot-launch-py",
+            "ros2-control-example-12-bringup-launch-launch-chained-controllers-launch-py",
+            "ros2-control-example-12-bringup-launch-rrbot-launch-py",
+            "ros2-control-example-13-bringup-launch-three-robots-launch-py",
+            "ros2-control-example-14-bringup-launch-rrbot-modular-actuators-with-0a4ca142b078",
+            "ros2-control-example-15-bringup-launch-multi-controller-manager-exa-773f065ca4cd",
+            "ros2-control-example-15-bringup-launch-rrbot-base-launch-py",
+            "ros2-control-example-15-bringup-launch-rrbot-namespace-launch-py",
+            "ros2-control-example-16-bringup-launch-diffbot-launch-py",
+            "ros2-control-example-2-bringup-launch-diffbot-launch-py",
+            "ros2-control-example-3-bringup-launch-rrbot-system-multi-interface-launch-py",
+            "ros2-control-example-4-bringup-launch-rrbot-system-with-sensor-launch-py",
+            "ros2-control-example-5-bringup-launch-rrbot-system-with-external-se-6ec430ebb400",
+            "ros2-control-example-6-bringup-launch-rrbot-modular-actuators-launch-py",
+            "ros2-control-example-7-bringup-launch-r6bot-controller-launch-py",
+            "ros2-control-example-7-bringup-launch-send-trajectory-launch-py",
+            "ros2-control-example-8-bringup-launch-rrbot-transmissions-system-po-44512ae664d5",
+            "ros2-control-example-9-bringup-launch-rrbot-gazebo-launch-py",
+            "ros2-control-example-9-bringup-launch-rrbot-launch-py",
+            "spot-sdk-python-examples-get-robot-state-get-robot-state-py",
+            "ur-description-artifact-urdf-ros2-control-mock-hardware-xacro",
+            "xarm-python-sdk-example-wrapper-common-0002-get-property-py",
+            "xarm-python-sdk-example-wrapper-common-0003-api-get-py",
+            "xarm-python-sdk-example-wrapper-common-1001-move-line-py",
+            "xarm-python-sdk-example-wrapper-common-1009-cartesian-velocity-control-py",
+            "xarm-python-sdk-example-wrapper-common-2000-joint-velocity-control-py",
+            "xarm-python-sdk-example-wrapper-common-3002-record-trajectory-py",
+            "xarm-python-sdk-example-wrapper-common-5004-set-gripper-py",
+            "xarm-python-sdk-example-wrapper-common-5008-get-cgpio-state-py",
+            "xarm-python-sdk-example-wrapper-common-7001-servo-j-py",
+            "xarm-python-sdk-example-wrapper-xarm5-2001-move-joint-py",
+            "xarm-python-sdk-example-wrapper-xarm6-2001-move-joint-py",
+            "xarm-python-sdk-example-wrapper-xarm7-2001-move-joint-py"
+          ]
+        },
+        "runtime_compatibility_inferred": false
+      }
+    },
+    "deterministic_second_build": true,
+    "private_source_index_checks_pass": true,
+    "five_pure_source_plans_ready_below_8MiB": true,
+    "runtime_verification": "not_run",
+    "source_only_no_adapter": true
+  },
+  "actions": {
+    "new_network_requests_for_this_proposal": 0,
+    "original_audit_fetches_public_read_only": true,
+    "DNT": "1",
+    "X_RSH_Telemetry": "off",
+    "upstream_import_execution_or_installation": false,
+    "weights_assets_simulator_hardware_or_paid_service_used": false,
+    "public_or_canonical_writes": false
+  },
+  "limits": [
+    "Individual source files are not complete dependency bundles; use the matching upstream checkout for local helpers.",
+    "Matplotlib animations, numerical solvers, source dependency versions and Python3.13 are declarations, not executed combinations.",
+    "No exact hardware model, controller/runtime compatibility, planning success, collision safety or measured performance is inferred.",
+    "This proposal has not been accepted into or published from the canonical catalog."
+  ]
+}

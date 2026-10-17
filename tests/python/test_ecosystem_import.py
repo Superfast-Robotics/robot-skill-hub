@@ -109,6 +109,98 @@ class EcosystemImportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "license checksum"):
                 importer.checked_license(project, cache)
 
+    def test_reviewed_per_artifact_aliases_enable_exact_entry_retrieval_and_keep_header_credit(self):
+        project, _, _, license_text = self.fixture()
+        project.update(capabilities=["planning"], aliases=["MPC", "DWA"], authors=["Project-wide credit must not be broadcast"])
+        specifications = [
+            ("examples/model_predictive_speed_and_steer_control.py", "Fixture Control Author", ["MPC"], ["Fixture Control Author"]),
+            ("examples/dynamic_window_approach.py", "Fixture Local Planner Author", ["DWA"], ["Fixture Local Planner Author"]),
+            ("examples/pure_pursuit.py", "Unselected Header Author", None, None),
+        ]
+        bodies, artifacts = {}, []
+        for path, header_author, aliases, authors in specifications:
+            body = (f"# Author: {header_author}\nraise RuntimeError('fixture source must never execute')\n"
+                    "if __name__ == '__main__':\n    main()\n").encode()
+            bodies[path] = body
+            artifact = {"path": path, "sha256": importer.digest(body), "bytes": len(body), "entrypoint_kind": "python_main"}
+            if aliases is not None:
+                artifact["aliases"] = aliases
+            if authors is not None:
+                artifact["authors"] = authors
+            artifacts.append(artifact)
+        project["artifacts"] = artifacts
+        absent = copy.deepcopy(project)
+        for artifact in absent["artifacts"]:
+            artifact.pop("aliases", None)
+            artifact.pop("authors", None)
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            for path, body in {"LICENSE": license_text, **bodies}.items():
+                destination = importer.cache_path(cache, project, path)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes(body)
+            with mock.patch.object(importer, "download", side_effect=AssertionError("Offline fixture only")):
+                baseline = importer.build({"projects": [absent]}, cache, {"records": []})
+                result = importer.build({"projects": [project]}, cache, {"records": []})
+        sys.path.insert(0, str(ROOT / "skills/find-robot-skills/scripts"))
+        from rshlib.core import find
+        before = {"records": [], "references": {"records": baseline["records"]}}
+        after = {"records": [], "references": {"records": result["records"]}}
+        self.assertEqual(0, find(before, "MPC", {})["total"])
+        self.assertEqual(0, find(before, "DWA", {})["total"])
+        by_path = {record["source"]["path"]: record for record in result["records"]}
+        for query, path in (("MPC", specifications[0][0]), ("DWA", specifications[1][0])):
+            matches = find(after, query, {})
+            self.assertEqual(1, matches["total"])
+            self.assertEqual(by_path[path]["id"], matches["results"][0]["id"])
+            self.assertEqual("unknown", matches["results"][0]["compatibility_status"])
+        for artifact in artifacts:
+            record = by_path[artifact["path"]]
+            self.assertEqual(artifact["sha256"], record["source"]["sha256"])
+            self.assertEqual(artifact["bytes"], record["source"]["bytes"])
+            self.assertFalse(record["access"]["hub_prepare"])
+            self.assertEqual("not_run", record["evidence"]["runtime_verification"])
+            self.assertNotIn("compatibility", record)
+            if "authors" in artifact:
+                self.assertEqual(artifact["authors"], record["source"]["authors"])
+                self.assertIsNot(artifact["authors"], record["source"]["authors"])
+                self.assertTrue(all(author.encode() in bodies[artifact["path"]] for author in record["source"]["authors"]))
+            else:
+                self.assertNotIn("authors", record["source"])
+                self.assertNotIn("aliases", record)
+        # Absent optional declarations retain every previous record field.
+        stripped = copy.deepcopy(result)
+        for record in stripped["records"]:
+            record.pop("aliases", None)
+            record["source"].pop("authors", None)
+        self.assertEqual(baseline, stripped)
+
+    def test_malformed_per_artifact_aliases_and_authors_fail_before_source_read_or_fetch(self):
+        for field, maximum in (("aliases", 120), ("authors", 240)):
+            invalid = [None, "MPC", [], [None], [True], [{}], [[]], [""], [" "], [" leading"], ["trailing "],
+                       ["line\nbreak"], ["tab\tname"], ["nul\0name"], ["delete\x7f"], ["control\x85"],
+                       ["same", "same"], ["x" * (maximum + 1)], [str(number) for number in range(21)]]
+            for value in invalid:
+                project, artifact, *_ = self.fixture()
+                artifact[field] = value
+                project["artifacts"] = [artifact]
+                with self.subTest(field=field, value=value), mock.patch.object(importer, "source_bytes") as source, mock.patch.object(importer, "download") as fetch:
+                    with self.assertRaisesRegex(ValueError, "Reviewed artifact " + field):
+                        importer.make_record(project, artifact, Path("unused-cache"))
+                    with self.assertRaisesRegex(ValueError, "Reviewed artifact " + field):
+                        importer.build({"projects": [project]}, Path("unused-cache"), {"records": []}, fetch=True)
+                source.assert_not_called()
+                fetch.assert_not_called()
+
+    def test_reviewed_metadata_accepts_exact_bounds_and_copies_only_supplied_fields(self):
+        artifact = {"aliases": ["x" * 120] + [f"alias-{number}" for number in range(19)],
+                    "authors": ["y" * 240] + [f"Author {number}" for number in range(19)]}
+        result = importer.reviewed_artifact_metadata(artifact)
+        self.assertEqual(artifact, result)
+        self.assertIsNot(artifact["aliases"], result["aliases"])
+        self.assertIsNot(artifact["authors"], result["authors"])
+        self.assertEqual({}, importer.reviewed_artifact_metadata({"path": "example.py"}))
+
     def test_library_and_commented_main_are_not_examples(self):
         for name, data in [("helper.py", b"import pinocchio\ndef helper():\n    return pinocchio.Model()\n"),
                            ("helper.cpp", b"// int main() { return 0; }\nvoid helper() {}\n")]:

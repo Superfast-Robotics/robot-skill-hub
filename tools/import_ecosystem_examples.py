@@ -77,6 +77,22 @@ def safe_relative(value):
     return path
 
 
+def reviewed_artifact_metadata(artifact):
+    """Copy explicit per-file discovery/credit labels; never infer or broadcast."""
+    reviewed = {}
+    for field, maximum in (("aliases", 120), ("authors", 240)):
+        if field not in artifact:
+            continue
+        values = artifact[field]
+        if (not isinstance(values, list) or not 1 <= len(values) <= 20
+                or any(not isinstance(value, str) or not 0 < len(value) <= maximum
+                       or value != value.strip() or re.search(r"[\x00-\x1f\x7f-\x9f]", value) for value in values)
+                or len(values) != len(set(values))):
+            raise ValueError(f"Reviewed artifact {field} must contain 1..20 unique trimmed control-free strings, each at most {maximum} characters")
+        reviewed[field] = list(values)
+    return reviewed
+
+
 def validate_project(project):
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", project["id"]):
         raise ValueError("Project id must be a stable lowercase identifier")
@@ -90,6 +106,8 @@ def validate_project(project):
     reviewed_source_terms(project["license"])
     if not project.get("selection", {}).get("include"):
         raise ValueError("Explicit source selection roots are required")
+    for artifact in project.get("artifacts", []):
+        reviewed_artifact_metadata(artifact)
 
 
 def cache_path(cache, project, path):
@@ -369,6 +387,7 @@ def invocation(project, path, kind):
 
 
 def make_record(project, artifact, cache):
+    reviewed = reviewed_artifact_metadata(artifact)
     path = artifact["path"]
     data = source_bytes(cache, project, path)
     if digest(data) != artifact["sha256"] or len(data) != artifact["bytes"]:
@@ -400,6 +419,10 @@ def make_record(project, artifact, cache):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": project["checked_at"],
                          "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
                          "entrypoint_kind": inspection["kind"], "inspection_method": "automated_static"}}
+    if "aliases" in reviewed:
+        record["aliases"] = reviewed["aliases"]
+    if "authors" in reviewed:
+        record["source"]["authors"] = reviewed["authors"]
     terms = reviewed_source_terms(project["license"])
     if terms:
         record["access"]["instructions"] = "Inspect the pinned source, nonstandard upstream terms and setup requirements. The Hub supplies a source link, not license clearance, installation or execution."

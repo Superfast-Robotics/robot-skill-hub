@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+      "record_version": "source-5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1"
+    },
+    {
       "id": "ur-description-artifact-config-ur15-default-kinematics-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "5f3d566874194178e7aa153a99b622ca7c19f18866a8379d0ac3ccf4706aed8f",

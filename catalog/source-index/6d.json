@@ -12,6 +12,12 @@
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7",
       "record_version": "source-91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7"
+    },
+    {
+      "id": "pythonrobotics-pathplanning-dstarlite-d-star-lite-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+      "record_version": "source-6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c"
     }
   ]
 }

@@ -18,6 +18,12 @@
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "e7aa524234f01131c2d68a28f8c0c54c2959106d315802c9a97e32a7fdbc7da1",
       "record_version": "source-e7aa524234f01131c2d68a28f8c0c54c2959106d315802c9a97e32a7fdbc7da1"
+    },
+    {
+      "id": "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+      "record_version": "source-985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471"
     }
   ]
 }
