@@ -8,7 +8,7 @@ Use the Hub without an account:
 - [Reviewed finding manifest](https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json)
 - [Text discovery index](https://hub.superfastrobotics.com/llms.txt)
 
-Use returned record URLs for full metadata and exact source/version pins for findings. Complete legacy catalogs remain linked by the agent contract; a selected-record lookup does not require downloading them.
+Use returned record URLs for full metadata and exact source/version pins for findings. Legacy catalogs are bounded compatibility views. Check their coverage; use paginated search or v2 manifests for the complete published inventory. Per-ID inspection does not require downloading them.
 
 Install the discovery skill into the current project:
 
