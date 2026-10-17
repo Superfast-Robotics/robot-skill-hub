@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaaclab-scripts-reinforcement-learning-rsl-rl-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "e12938bd4807d10d3972bb257a2edd90a156824b326c5f345f48ac8d09a84a21",
+      "record_version": "source-e12938bd4807d10d3972bb257a2edd90a156824b326c5f345f48ac8d09a84a21"
+    },
+    {
       "id": "lerobot-examples-dataset-use-dataset-image-transforms-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "517405dfcc79c840ba3f4774d205b182911f467a655ca273d900ac6d5430dbe1",

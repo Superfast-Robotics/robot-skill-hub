@@ -26,6 +26,12 @@
       "record_version": "source-34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c"
     },
     {
+      "id": "gap-bundle-perceiving-object-parts",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c4410d4a3a15b7f6e419bf44ee9a58a5d3ed376415dd61fd3665606c26801b64",
+      "record_version": "source-c4410d4a3a15b7f6e419bf44ee9a58a5d3ed376415dd61fd3665606c26801b64"
+    },
+    {
       "id": "lerobot-examples-phone-to-so100-rollout-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba",

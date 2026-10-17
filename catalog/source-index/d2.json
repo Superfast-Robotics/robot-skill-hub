@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-perceiving-sorting-pairs",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "6e837296dc7cb2536cd346bddc877a065261992c782916b5b77dae4ee033fefa",
+      "record_version": "source-6e837296dc7cb2536cd346bddc877a065261992c782916b5b77dae4ee033fefa"
+    },
+    {
       "id": "mujoco-menagerie-artifact-leap-hand-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "9d8f25c38bdb60617f378c07b7e71f97306471353c81bf281eb9943f3f2340d8",
       "record_version": "source-9d8f25c38bdb60617f378c07b7e71f97306471353c81bf281eb9943f3f2340d8"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-get-dataset-info-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b",
+      "record_version": "source-dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b"
     },
     {
       "id": "ros2-control-example-2-bringup-launch-diffbot-launch-py",

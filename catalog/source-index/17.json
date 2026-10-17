@@ -8,6 +8,12 @@
       "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
     },
     {
+      "id": "gap-bundle-executing-held-object-motion",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "43c57906389b9f3d217b38355c07ff5797cb67d6c5f2327fb1a23d8c580069d4",
+      "record_version": "source-43c57906389b9f3d217b38355c07ff5797cb67d6c5f2327fb1a23d8c580069d4"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-04-sensors-run-ray-caster-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466",

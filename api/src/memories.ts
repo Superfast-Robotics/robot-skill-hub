@@ -163,6 +163,7 @@ export function capabilities(): JsonObject {
       exact_catalog_base_required: true, public_review_required: true, append_only: true, idempotency: 'principal_and_finding_fingerprint',
       client_policy: 'Require explicit memory.public_save_allowed, allowed skills/kinds, scoped token and a minimal redacted finding. Never infer sharing permission.',
       schema_url: 'https://hub.superfastrobotics.com/schemas/memory.schema.json', published_index: 'https://hub.superfastrobotics.com/catalog/v1/memories.json',
+      published_query: 'https://api.superfastrobotics.com/v1/findings', complete_manifest: 'https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json',
       states: ['stored', 'checking', 'pending_review', 'rejected', 'merged', 'published'] },
     execution: 'The API stores findings for review. It never executes robot code or promotes contributor evidence to runtime verification.' };
 }

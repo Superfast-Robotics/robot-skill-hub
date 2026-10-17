@@ -229,17 +229,24 @@ test('native memory save stores one bounded finding and confirms its exact merge
   } finally { await mf.dispose(); }
 });
 
-test('native new-skill intake stores data only, creates an internal draft PR and replays it', async () => {
+for (const artifactKind of ['code', 'dataset', 'model']) test(`native ${artifactKind} intake stores data only, creates an internal draft PR and replays it`, async () => {
   const hub = 'a'.repeat(40), source = 'b'.repeat(40), digest = 'c'.repeat(64), skill = 'ros2-panda-grasp';
   let pull: any; let receipt: any; let reference: any; let treeWrites = 0; let prWrites = 0;
-  const input = { schema_version: '1', base: { hub_commit: hub }, skill: {
+  const input: any = { schema_version: '1', base: { hub_commit: hub }, skill: {
     id: skill, name: 'Panda grasp action', summary: 'Pinned ROS 2 source for a Panda grasp action.', framework: 'ros2', kind: 'community_skill', capabilities: ['grasp'], aliases: [], robots: ['panda'],
     source: { repository: 'https://github.com/upstream/robot', commit: source, path: 'grasp.cpp', url: `https://github.com/upstream/robot/blob/${source}/grasp.cpp`, sha256: digest, bytes: 2000, authors: ['Upstream authors'] },
     license: { spdx: 'Apache-2.0', url: `https://github.com/upstream/robot/blob/${source}/LICENSE`, scope: 'Source code only.' }, artifact: { kind: 'code', format: 'cpp' },
     requirements: { python: null, packages: [], hardware: ['panda'], system: ['ROS 2'], notes: 'Inspect upstream setup before hardware use.' },
     invocation: { entrypoint: 'ROS 2 action client', notes: 'Hardware execution needs project authorization.' }, setup_url: 'https://docs.ros.org/en/rolling/',
-    compatibility: [{ runtime: 'ros2', runtime_version: 'unknown', robot: 'panda', controller: 'unknown', observation: 'unknown', os: 'linux' }] },
+    compatibility: [{ runtime: 'ros2', runtime_version: 'unknown', robot: 'panda', controller: 'unknown', observation: 'unknown', os: 'linux', python: '3.11', architecture: 'arm64' }] },
     attribution: { contributor_label: 'Runtime intake test', preserve_upstream_attribution: true }, publication: { public_submission_allowed: true } };
+  if (artifactKind !== 'code') {
+    const format = artifactKind === 'dataset' ? 'parquet' : 'safetensors';
+    input.skill.framework = 'unfamiliar-runtime'; input.skill.robots = ['custom-humanoid'];
+    input.skill.artifact = { kind: artifactKind, format }; delete input.skill.source.commit;
+    input.skill.source = { ...input.skill.source, repository: 'https://artifacts.robotics.org/custom-humanoid', revision: 'sha256:' + digest, path: `artifacts/${artifactKind}.${format}`, url: `https://artifacts.robotics.org/sha256/${digest}/${artifactKind}.${format}`, bytes: (artifactKind === 'dataset' ? 100 : 64) * 1024 ** 3 };
+    Object.assign(input.skill.compatibility[0], { runtime: 'unfamiliar-runtime', robot: 'custom-humanoid' });
+  }
   const mf = await runtime(async request => {
     assert.ok(request.url.startsWith(API + '/'), 'Submitted source URLs must never be fetched by intake');
     assert.equal(request.headers.get('Authorization'), `Bearer ${GITHUB_TOKEN}`);
@@ -276,5 +283,8 @@ test('native new-skill intake stores data only, creates an internal draft PR and
     const first = await post(); assert.equal(first.status, 201); const saved: any = await first.json();
     const repeated = await post(); assert.equal(repeated.status, 200); assert.equal((await repeated.json() as any).submission_id, saved.submission_id);
     assert.equal(treeWrites, 1); assert.equal(prWrites, 1); assert.equal(reference.requirements.python, null);
+    assert.equal(reference.compatibility[0].python, '3.11'); assert.equal(reference.compatibility[0].architecture, 'arm64'); assert.equal(reference.compatibility[0].status, 'contributor_reported');
+    assert.equal(reference.source.bytes, input.skill.source.bytes); assert.deepEqual(reference.artifact, input.skill.artifact);
+    assert.equal(receipt.base.source_commit, input.skill.source.commit || input.skill.source.revision);
   } finally { await mf.dispose(); }
 });

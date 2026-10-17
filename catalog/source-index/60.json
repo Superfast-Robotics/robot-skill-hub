@@ -20,6 +20,12 @@
       "record_version": "source-f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b"
     },
     {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a",
+      "record_version": "source-7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a"
+    },
+    {
       "id": "ur-description-artifact-config-ur10e-default-kinematics-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "4bf9a0dfdeb73d7a8b43171fd8a2cedffa9eaf6e342857df44229380e4ad2e49",

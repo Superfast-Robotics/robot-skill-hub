@@ -14,6 +14,12 @@
       "record_version": "source-ab95e61a02931c6635e0615bc5607443b49a09e3ae7df5e5ec09fe3fc7a2c8bb"
     },
     {
+      "id": "openpi-examples-libero-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "d53748c95804ada559e3ca867305b8f755d8651c4c7f4e2723ef80aea55a3943",
+      "record_version": "source-d53748c95804ada559e3ca867305b8f755d8651c4c7f4e2723ef80aea55a3943"
+    },
+    {
       "id": "pinocchio-examples-static-contact-dynamics-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "94bf9a2e866069a05c470162edb28ac173d6b8c7ff3c85f8ebce8ee04b9b485f",

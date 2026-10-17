@@ -8,6 +8,12 @@
       "record_version": "source-447383a28f3183b04278a624c961a15df627dd6df485c599b12f921f21af3458"
     },
     {
+      "id": "gap-bundle-molmoact-libero",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "b245d2a94d6f6dc072e0a073e67c30b381e995998d505fc406eb2a3c2069f2c3",
+      "record_version": "source-b245d2a94d6f6dc072e0a073e67c30b381e995998d505fc406eb2a3c2069f2c3"
+    },
+    {
       "id": "mujoco-menagerie-artifact-arx-l5-arx-l5-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "5d83116bda7378b6c247f3f93a0b27d6174057fcb86ce37418d1bee60bde735c",

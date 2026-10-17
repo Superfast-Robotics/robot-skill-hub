@@ -14,6 +14,7 @@ from .core import COMMIT, RshError, read_json
 
 SOURCE_REVISION = re.compile(r"(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})")
 ARTIFACT_KINDS = {"code", "policy", "model", "dataset", "workflow", "robot_description", "documentation", "tool", "other"}
+MAX_SOURCE_BYTES = 2 ** 53 - 1  # Preserve exact JSON integer identity in the Worker.
 
 
 def source_revision(record):
@@ -63,8 +64,8 @@ def validate_skill(record):
     _need(public_url(source.get("repository")) and public_url(source.get("url")) and _text(source.get("path"), 500)
           and "\\" not in source["path"] and not any(part in ("", ".", "..") for part in source["path"].split("/"))
           and isinstance(source.get("sha256"), str) and re.fullmatch(r"[a-f0-9]{64}", source["sha256"])
-          and type(source.get("bytes")) is int and 0 < source["bytes"] <= 50 * 1024 ** 3 and _strings(source.get("authors")),
-          "invalid_source", "Supply a public pinned source, safe path, SHA-256, byte count and upstream authors.")
+          and type(source.get("bytes")) is int and 0 < source["bytes"] <= MAX_SOURCE_BYTES and _strings(source.get("authors")),
+          "invalid_source", "Supply a public pinned source, safe path, SHA-256, positive safe-integer byte count and upstream authors.")
     if source.get("commit"):
         _need(bool(COMMIT.fullmatch(str(source["commit"]))) and "revision" not in source
               and source["commit"] in urllib.parse.urlsplit(source["url"]).path.split("/"), "invalid_source", "A Git URL must contain its exact commit as a path segment.")
@@ -83,10 +84,11 @@ def validate_skill(record):
     invoke = record.get("invocation")
     _need(_object(invoke, ["entrypoint", "notes"]) and _text(invoke.get("entrypoint"), 500) and _text(invoke.get("notes"), 2000)
           and public_url(record.get("setup_url")), "invalid_invocation", "Provide an upstream entrypoint, limitations and setup URL.")
-    fields = {"runtime", "runtime_version", "robot", "controller", "observation", "os"}
+    required = {"runtime", "runtime_version", "robot", "controller", "observation", "os"}
+    optional = {"python", "architecture"}
     combos = record.get("compatibility")
-    _need(isinstance(combos, list) and 0 < len(combos) <= 20 and all(_object(c, fields) and set(c) == fields
-          and all(_text(c[k], 120) for k in fields) for c in combos), "invalid_compatibility", "Explicit compatibility combinations are required; use unknown for unobserved values.")
+    _need(isinstance(combos, list) and 0 < len(combos) <= 20 and all(_object(c, required | optional) and required <= set(c)
+          and all(_text(value, 120) for value in c.values()) for c in combos), "invalid_compatibility", "Explicit compatibility combinations are required; Python and architecture may be omitted when unknown.")
 
 
 def validate_bundle(value):

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "openpi-examples-libero-convert-libero-data-to-lerobot-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602",
+      "record_version": "source-199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-pddl-goal-publisher-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "975f01aacf78e3836553b5dacae86fa5eb4bdab31c2d0addc47d98417d73f6fb",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grasping-concave-contour",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "24c40b77ba5321eca10b41e3d8887fd4ac6c0191d1c5e9ef39a58c573b9765ed",
+      "record_version": "source-24c40b77ba5321eca10b41e3d8887fd4ac6c0191d1c5e9ef39a58c573b9765ed"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-tacsl-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9",

@@ -8,6 +8,12 @@
       "record_version": "source-eae4ee1b985e4636524fd3ba2110e85dc815b98af03d84d97977d49ce46328a6"
     },
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-find-joint-limits-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51",
+      "record_version": "source-84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-tiago-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4dcfd84865552744418af57c5a420c80062b661f4d1279615fc1dc4b3f4029df",

@@ -5,7 +5,7 @@ import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeC
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.3.0';
+const VERSION = '0.3.1';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -126,7 +126,9 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   async function describe(env: PublicEnv, refresh = false) {
     const index = refresh ? await snapshot(env) : cached?.value;
     return { ...capabilities(), server_version: VERSION, catalog_hub_commit: index?.hub_commit ?? null, counts: index?.counts ?? null,
-      public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
+      public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', findings: API + '/v1/findings',
+        search_manifest: ORIGIN + '/catalog/v2/search-manifest.json', memory_manifest: ORIGIN + '/catalog/v2/memory-manifest.json',
+        catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
       new_skill_submission: { method: 'POST', url: API + '/v1/skills', authentication: 'allowed_agent_Bearer_token', publication: 'internal_draft_PR_then_maintainer_review' },
       execution: 'Public tools return discovery data and preparation instructions. CLI preparation and robot execution run separately in the caller environment. Submission APIs store data and open internal draft PRs for maintainer review.' };
   }

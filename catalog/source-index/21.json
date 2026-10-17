@@ -14,6 +14,12 @@
       "record_version": "source-ab0e935f17c12b40cc32ce1c02c73707368be3f0e4102b48046f7c65432c3ff2"
     },
     {
+      "id": "gap-bundle-sam3",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "08e1d9f1a0e91a180b9d9e51c5dadcd27e1ecd90c873e20403b704a2f48c29c2",
+      "record_version": "source-08e1d9f1a0e91a180b9d9e51c5dadcd27e1ecd90c873e20403b704a2f48c29c2"
+    },
+    {
       "id": "mujoco-menagerie-artifact-boston-dynamics-spot-scene-arm-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "950b25f9dd4756458fdad475c98221e836422208ad280326e63afcb3ce98bdcb",

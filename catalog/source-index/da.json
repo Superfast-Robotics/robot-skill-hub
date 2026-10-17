@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grasping-with-planner",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b",
+      "record_version": "source-c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-train-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec",
+      "record_version": "source-059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec"
+    },
+    {
       "id": "mujoco-menagerie-artifact-robotiq-2f85-2f85-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "d48aca5f9151798ffd38111ce4e8b2081f3ec2d4f525161b33643451580010de",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grounding-dino",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "de0c5fe59200146c7d8e4c6844e888cd3f0724ee0ddb5bfe3de6d804fb8e14cf",
+      "record_version": "source-de0c5fe59200146c7d8e4c6844e888cd3f0724ee0ddb5bfe3de6d804fb8e14cf"
+    },
+    {
+      "id": "gap-bundle-seating-a-cable-crossing",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "2eea39e467f8a14a23ac454e397acd63ef0a8bae033725280bf1fd38a57baa0c",
+      "record_version": "source-2eea39e467f8a14a23ac454e397acd63ef0a8bae033725280bf1fd38a57baa0c"
+    },
+    {
       "id": "mujoco-menagerie-artifact-franka-fr3-v2-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "55dbf0364c1b8887c455ac10103b3d4f498971358d65b0b5c4113b055c4c6530",
@@ -12,6 +24,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "63ae697fd249f3aca6b0428579b1df10735df505ebe36a6e6aba2c5313f11c7f",
       "record_version": "source-63ae697fd249f3aca6b0428579b1df10735df505ebe36a6e6aba2c5313f11c7f"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "80bfcaa9c073965f9abc3cd47273c1933fe0c625b4c4fd15a32c50b6f0a9a6e9",
+      "record_version": "source-80bfcaa9c073965f9abc3cd47273c1933fe0c625b4c4fd15a32c50b6f0a9a6e9"
     },
     {
       "id": "webots-projects-samples-devices-controllers-speaker-speaker-py",

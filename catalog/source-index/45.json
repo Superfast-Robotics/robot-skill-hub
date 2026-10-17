@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-rollout-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075",
+      "record_version": "source-40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075"
+    },
+    {
       "id": "mujoco-menagerie-artifact-sharpa-wave-scene-right-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e79d911711db2164a2199b25ddf3a8704a785a377e4370ce18f9298d1e5d83f6",

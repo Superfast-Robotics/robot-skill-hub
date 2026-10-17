@@ -6,6 +6,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "f3cefd987102a5879cc6241fa603d553905e8a583b80ffc3b0c016405d190359",
       "record_version": "source-f3cefd987102a5879cc6241fa603d553905e8a583b80ffc3b0c016405d190359"
+    },
+    {
+      "id": "openpi-examples-aloha-sim-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7",
+      "record_version": "source-91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7"
     }
   ]
 }

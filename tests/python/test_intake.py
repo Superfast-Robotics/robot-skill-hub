@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "skills/find-robot-skills/scripts"))
 from rshlib import intake, memories
 from rshlib.core import RshError, find, inspect
+from tools.build_catalog import validate_schema
 
 HUB, PIN, DIGEST = "a" * 40, "b" * 40, "c" * 64
 
@@ -101,6 +102,66 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(base, {"hub_commit": HUB, "record_version": "source-" + DIGEST, "source_commit": "sha256:" + DIGEST})
         self.assertEqual(memories.base_for(catalog, record["id"])[0], base)
 
+    def test_unfamiliar_artifact_intake_preserves_optional_python_and_architecture(self):
+        for kind, format_name in (("policy", "onnx"), ("model", "safetensors"), ("dataset", "parquet"), ("workflow", "yaml")):
+            with self.subTest(kind=kind):
+                record = skill()
+                record["framework"], record["robots"] = "unfamiliar-runtime", ["custom-humanoid"]
+                record["artifact"] = {"kind": kind, "format": format_name}
+                del record["source"]["commit"]
+                record["source"].update(repository="https://artifacts.robotics.org/custom-humanoid", revision="sha256:" + DIGEST,
+                                        path=f"artifacts/{kind}.{format_name}", url=f"https://artifacts.robotics.org/sha256/{DIGEST}/{kind}.{format_name}")
+                if kind in ("dataset", "model"):
+                    record["source"]["bytes"] = (100 if kind == "dataset" else 64) * 1024 ** 3
+                record["compatibility"] = [
+                    {"runtime": "unfamiliar-runtime", "runtime_version": "1.2", "robot": "custom-humanoid", "controller": "joint-target", "observation": "depth", "os": "linux", "python": "3.11", "architecture": "arm64"},
+                    {"runtime": "another-runtime", "runtime_version": "2", "robot": "custom-quadruped", "controller": "torque", "observation": "state", "os": "linux", "python": "3.10", "architecture": "x86_64"}]
+                self.file.write_text(json.dumps(record), encoding="utf-8")
+                with mock.patch.object(intake.contributions, "api_configuration", side_effect=AssertionError("Drafts require no credential")):
+                    saved = self.register(draft=True)
+                stored = json.loads(Path(saved["bundle_path"]).read_text())
+                self.assertEqual(stored["skill"], record)
+                self.assertFalse(saved["network_performed"])
+                catalog = {**self.catalog, "references": {"records": [record]}}
+                exact = {"runtime": "unfamiliar-runtime", "robot": "custom-humanoid", "python": "3.11", "architecture": "arm64"}
+                found = find(catalog, "grasp", exact)
+                self.assertEqual(found["total"], 1)
+                self.assertFalse(found["results"][0]["hub_prepare"])
+                self.assertEqual(find(catalog, "grasp", {**exact, "architecture": "x86_64"})["total"], 0)
+                self.assertEqual(find(catalog, "grasp", {**exact, "python": "3.10"})["total"], 0)
+                self.assertEqual(inspect(catalog, record["id"])["memory_base"]["source_commit"], "sha256:" + DIGEST)
+
+    def test_declared_source_size_is_a_positive_exact_json_integer(self):
+        record = skill()
+        record["source"]["bytes"] = 2 ** 53 - 1
+        intake.validate_skill(record)
+        for count in (0, True, 1.5, 2 ** 53):
+            record["source"]["bytes"] = count
+            with self.subTest(count=count), self.assertRaises(RshError) as raised:
+                intake.validate_skill(record)
+            self.assertEqual(raised.exception.result["reason_code"], "invalid_source")
+
+    def test_optional_compatibility_fields_retain_unknowns_without_relaxing_structure(self):
+        schema = json.loads((ROOT / "schemas/intake.schema.json").read_text(encoding="utf-8"))
+        for extra in ({"python": "3.11"}, {"architecture": "arm64"}, {"python": "unknown", "architecture": "unknown"}):
+            record = skill()
+            record["compatibility"][0].update(extra)
+            intake.validate_skill(record)
+            validate_schema(record["compatibility"][0], schema["$defs"]["compatibility"], schema)
+            catalog = {**self.catalog, "references": {"records": [record]}}
+            if extra.get("python") == "unknown":
+                self.assertEqual(find(catalog, "grasp", {"python": "3.11"})["total"], 0)
+        for field, value in (("python", None), ("architecture", []), ("python", ""), ("architecture", " "), ("python", "3.11\n"), ("architecture", "x" * 121)):
+            record = skill()
+            record["compatibility"][0][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(RshError):
+                intake.validate_skill(record)
+        record = skill()
+        record["compatibility"][0].update(python="3.11", architecture="arm64")
+        del record["compatibility"][0]["runtime"]
+        with self.assertRaises(RshError):
+            intake.validate_skill(record)
+
     def test_explicit_refresh_base_changes_identity_after_inspection(self):
         self.policy()
         self.register(draft=True)
@@ -110,6 +171,7 @@ class IntakeTests(unittest.TestCase):
 
     def test_generated_reference_cannot_smuggle_a_runtime_or_file_write_claim(self):
         record = skill()
+        record["compatibility"][0].update(python="3.11", architecture="arm64")
         setup_url = record.pop("setup_url")
         record["license"]["verified"] = False
         record["compatibility"][0]["status"] = "contributor_reported"
@@ -117,6 +179,8 @@ class IntakeTests(unittest.TestCase):
                       evidence={"level": "contributor_reported", "runtime_verification": "not_run", "checked_at": "2026-10-18", "inspection": "Only data structure checked."},
                       maintenance={"record_version": "intake-123", "last_checked": "2026-10-18", "upstream_status": "contributor_reported"})
         intake.validate_published_reference(record)
+        self.assertEqual(record["compatibility"][0]["python"], "3.11")
+        self.assertEqual(record["compatibility"][0]["architecture"], "arm64")
         record["evidence"]["runtime_verification"] = "task_complete"
         with self.assertRaises(RshError):
             intake.validate_published_reference(record)

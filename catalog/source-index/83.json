@@ -26,6 +26,12 @@
       "record_version": "source-5020ab18fc82812be7513f3f8cf6231d182d91a368dc1c461e00e5e719c95fd5"
     },
     {
+      "id": "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914",
+      "record_version": "source-0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914"
+    },
+    {
       "id": "webots-projects-robots-clearpath-moose-controllers-moose-path-follo-ae6dfab8b66d",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "dea21d774177c2f4de689786c7602b4151e97a08a8060523048adb7f7ec14e53",

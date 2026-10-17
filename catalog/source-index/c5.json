@@ -8,6 +8,12 @@
       "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
     },
     {
+      "id": "gap-bundle-verifying-grasps",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "d64675921fc8151424e2458a76488504943d0949557d7e80084cae3fad25bb58",
+      "record_version": "source-d64675921fc8151424e2458a76488504943d0949557d7e80084cae3fad25bb58"
+    },
+    {
       "id": "lerobot-examples-lekiwi-evaluate-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "24d04a08393de4ab46c170a2e1c7d8818d2259d349b6aaacccb1176d2ebdf2fb",

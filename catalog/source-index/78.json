@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaaclab-scripts-reinforcement-learning-rl-games-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "bbf33d2fb56417f7e754dd89075e61502593ff0bad7b2df547ea9d60700e4718",
+      "record_version": "source-bbf33d2fb56417f7e754dd89075e61502593ff0bad7b2df547ea9d60700e4718"
+    },
+    {
       "id": "pinocchio-examples-rviz-viewer-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "e75a07c576ebe515f6e50ec6bee2364058cf386d4c0eb7d24bbb38e1666ee8f5",
       "record_version": "source-e75a07c576ebe515f6e50ec6bee2364058cf386d4c0eb7d24bbb38e1666ee8f5"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-dataset-states-to-obs-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "dc55c8b64784871980ab33b4c7a84701e892389154c209c5c60ad44273d57e28",
+      "record_version": "source-dc55c8b64784871980ab33b4c7a84701e892389154c209c5c60ad44273d57e28"
     }
   ]
 }

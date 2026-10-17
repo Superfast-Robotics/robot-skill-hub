@@ -8,6 +8,12 @@
       "record_version": "source-d430ddc679f887d458375079f0300e0fa10ac3d20f741a53bb424c1802877eeb"
     },
     {
+      "id": "gap-bundle-gemini-er",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "391731d845f16be7d3de3288f4d38a25acdc92c649d371a933d3588aea12e65c",
+      "record_version": "source-391731d845f16be7d3de3288f4d38a25acdc92c649d371a933d3588aea12e65c"
+    },
+    {
       "id": "mujoco-menagerie-artifact-iit-softfoot-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7b48f0231522c7a4fd936abdd02665f4cd133e9eed178386461f40602cbfafc6",

@@ -32,6 +32,12 @@
       "record_version": "source-179425be68425fb5bc564a33357258b0a71cfd4667176482728e9be698e09389"
     },
     {
+      "id": "unitree-sdk2-python-example-wireless-controller-wireless-controller-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a",
+      "record_version": "source-8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-light-sensor-light-sensor-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "4346d0c4b036d1b002e046b70db6bc2b21e60c2ec5d97e085225c8fb88b24711",

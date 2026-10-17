@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaaclab-scripts-reinforcement-learning-rsl-rl-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81",
+      "record_version": "source-8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-skrl-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f",
+      "record_version": "source-8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-parallel-planning-src-parallel-planning-main-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14",

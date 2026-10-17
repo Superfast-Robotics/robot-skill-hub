@@ -944,6 +944,264 @@
       "record_version": "source-14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c"
     },
     {
+      "id": "gap-bundle-anchoring-a-free-end",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "ab58865dd1f5a0ce7921c0d82a082779ee617e93d985352b293a9b1029603324",
+      "record_version": "source-ab58865dd1f5a0ce7921c0d82a082779ee617e93d985352b293a9b1029603324"
+    },
+    {
+      "id": "gap-bundle-computing-feature-mating-poses",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "24c836a8495060f0632e1087d0ea3d960469cea80af24f1979253964137d3d32",
+      "record_version": "source-24c836a8495060f0632e1087d0ea3d960469cea80af24f1979253964137d3d32"
+    },
+    {
+      "id": "gap-bundle-curobo",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+      "record_version": "source-4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4"
+    },
+    {
+      "id": "gap-bundle-curve",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "49c952d4e72464f42457fde53eb1a9f98568bf2f0dea58870172b3ab8885467f",
+      "record_version": "source-49c952d4e72464f42457fde53eb1a9f98568bf2f0dea58870172b3ab8885467f"
+    },
+    {
+      "id": "gap-bundle-executing-feature-mating",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "58370b13ac1fa2b3e8d1080239abb9a516a625ab243fdc5e1993be1189ab71e0",
+      "record_version": "source-58370b13ac1fa2b3e8d1080239abb9a516a625ab243fdc5e1993be1189ab71e0"
+    },
+    {
+      "id": "gap-bundle-executing-held-object-motion",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "43c57906389b9f3d217b38355c07ff5797cb67d6c5f2327fb1a23d8c580069d4",
+      "record_version": "source-43c57906389b9f3d217b38355c07ff5797cb67d6c5f2327fb1a23d8c580069d4"
+    },
+    {
+      "id": "gap-bundle-gemini-er",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "391731d845f16be7d3de3288f4d38a25acdc92c649d371a933d3588aea12e65c",
+      "record_version": "source-391731d845f16be7d3de3288f4d38a25acdc92c649d371a933d3588aea12e65c"
+    },
+    {
+      "id": "gap-bundle-geometry",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "b8cb9b8ba62fdb1a0198556c36ec8baf794e77203888a546a44e0feb898f05e4",
+      "record_version": "source-b8cb9b8ba62fdb1a0198556c36ec8baf794e77203888a546a44e0feb898f05e4"
+    },
+    {
+      "id": "gap-bundle-grasping-concave-contour",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "24c40b77ba5321eca10b41e3d8887fd4ac6c0191d1c5e9ef39a58c573b9765ed",
+      "record_version": "source-24c40b77ba5321eca10b41e3d8887fd4ac6c0191d1c5e9ef39a58c573b9765ed"
+    },
+    {
+      "id": "gap-bundle-grasping-direct-ik",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "8da12c9c156c03f21970fab330d7359e5426f3a11307d36d79e4b4e5fb2e1712",
+      "record_version": "source-8da12c9c156c03f21970fab330d7359e5426f3a11307d36d79e4b4e5fb2e1712"
+    },
+    {
+      "id": "gap-bundle-grasping-linear-feature",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "4c1dc33c85cd7cf1a26e576c42fcd7bedbd77745fd158738a0d3c364c1a7c069",
+      "record_version": "source-4c1dc33c85cd7cf1a26e576c42fcd7bedbd77745fd158738a0d3c364c1a7c069"
+    },
+    {
+      "id": "gap-bundle-grasping-short-axis",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "941e585611b9f1c2e2ef656226cbc951408c837e8f27710668cfdc222be09a08",
+      "record_version": "source-941e585611b9f1c2e2ef656226cbc951408c837e8f27710668cfdc222be09a08"
+    },
+    {
+      "id": "gap-bundle-grasping-with-planner",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b",
+      "record_version": "source-c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b"
+    },
+    {
+      "id": "gap-bundle-grounding-dino",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "de0c5fe59200146c7d8e4c6844e888cd3f0724ee0ddb5bfe3de6d804fb8e14cf",
+      "record_version": "source-de0c5fe59200146c7d8e4c6844e888cd3f0724ee0ddb5bfe3de6d804fb8e14cf"
+    },
+    {
+      "id": "gap-bundle-molmo",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "95bc78f64c9495a5e269fb49a64c84717680eae9e3ed6799e25e3c5458cdcc4e",
+      "record_version": "source-95bc78f64c9495a5e269fb49a64c84717680eae9e3ed6799e25e3c5458cdcc4e"
+    },
+    {
+      "id": "gap-bundle-molmoact-libero",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "b245d2a94d6f6dc072e0a073e67c30b381e995998d505fc406eb2a3c2069f2c3",
+      "record_version": "source-b245d2a94d6f6dc072e0a073e67c30b381e995998d505fc406eb2a3c2069f2c3"
+    },
+    {
+      "id": "gap-bundle-perceiving-deformable-linear-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "68910b6c7d5ee63cc03f9dcbfe3e308755c8538dd35ae4f354eb7b092ab6ebe0",
+      "record_version": "source-68910b6c7d5ee63cc03f9dcbfe3e308755c8538dd35ae4f354eb7b092ab6ebe0"
+    },
+    {
+      "id": "gap-bundle-perceiving-functional-features",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "938b9477f3424e9e8e0aca24d566dbfe2df71968b48028f5d6753d3a7430f8e8",
+      "record_version": "source-938b9477f3424e9e8e0aca24d566dbfe2df71968b48028f5d6753d3a7430f8e8"
+    },
+    {
+      "id": "gap-bundle-perceiving-next-item",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "51b3e7f045f142d5cc98b5ef783086aa159a9d7ff48c0307a0523fc9dfe4df27",
+      "record_version": "source-51b3e7f045f142d5cc98b5ef783086aa159a9d7ff48c0307a0523fc9dfe4df27"
+    },
+    {
+      "id": "gap-bundle-perceiving-object-parts",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c4410d4a3a15b7f6e419bf44ee9a58a5d3ed376415dd61fd3665606c26801b64",
+      "record_version": "source-c4410d4a3a15b7f6e419bf44ee9a58a5d3ed376415dd61fd3665606c26801b64"
+    },
+    {
+      "id": "gap-bundle-perceiving-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "5a9951245abf1b598eb16bb1389646aa12a404a835b27ab6e1918331525d4fd7",
+      "record_version": "source-5a9951245abf1b598eb16bb1389646aa12a404a835b27ab6e1918331525d4fd7"
+    },
+    {
+      "id": "gap-bundle-perceiving-objects-oneshot",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "1862a6bb19d796fef2e8065fa59d9bb6a4070dc270e6ed3b7bb1588306a9ca07",
+      "record_version": "source-1862a6bb19d796fef2e8065fa59d9bb6a4070dc270e6ed3b7bb1588306a9ca07"
+    },
+    {
+      "id": "gap-bundle-perceiving-relational-correspondences",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "aee8beaaa4e15fd75f8975458e58701fda7a212094c9ff1bff0505617e3cd645",
+      "record_version": "source-aee8beaaa4e15fd75f8975458e58701fda7a212094c9ff1bff0505617e3cd645"
+    },
+    {
+      "id": "gap-bundle-perceiving-routing-fixtures",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6",
+      "record_version": "source-a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6"
+    },
+    {
+      "id": "gap-bundle-perceiving-sorting-pairs",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "6e837296dc7cb2536cd346bddc877a065261992c782916b5b77dae4ee033fefa",
+      "record_version": "source-6e837296dc7cb2536cd346bddc877a065261992c782916b5b77dae4ee033fefa"
+    },
+    {
+      "id": "gap-bundle-pi05-libero",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c59136b82f8356e6ebd53a4d530bea3a4f54d07de3deeb95987aff846eee14de",
+      "record_version": "source-c59136b82f8356e6ebd53a4d530bea3a4f54d07de3deeb95987aff846eee14de"
+    },
+    {
+      "id": "gap-bundle-placing-held-feature",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "7f1328c0baeab74441d26af376cd52f92107e569bd2e0fe463056f05a57fb797",
+      "record_version": "source-7f1328c0baeab74441d26af376cd52f92107e569bd2e0fe463056f05a57fb797"
+    },
+    {
+      "id": "gap-bundle-planning-held-object-motion",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e",
+      "record_version": "source-cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e"
+    },
+    {
+      "id": "gap-bundle-plugging-a-cable-end",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29",
+      "record_version": "source-8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29"
+    },
+    {
+      "id": "gap-bundle-proposing-short-axis-grasps",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "73e244260fd140754c60b734b28380162c88c25d862518446a518a819c90b69d",
+      "record_version": "source-73e244260fd140754c60b734b28380162c88c25d862518446a518a819c90b69d"
+    },
+    {
+      "id": "gap-bundle-proposing-side-grasps",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a3327fcd24527f7ee9299f1992cb177839b289fe3455f1e7c9e884e6096e11b8",
+      "record_version": "source-a3327fcd24527f7ee9299f1992cb177839b289fe3455f1e7c9e884e6096e11b8"
+    },
+    {
+      "id": "gap-bundle-reconstructing-collision-worlds",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "eca0916eb2a206f2581d6dadf9421ff4109d70f1cc1cd27c39d71541d313e7cb",
+      "record_version": "source-eca0916eb2a206f2581d6dadf9421ff4109d70f1cc1cd27c39d71541d313e7cb"
+    },
+    {
+      "id": "gap-bundle-registering-held-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "04e5f0ecc9fedd882d81c50f2e3a65f31939e9a6a9ec432e49cd333ae1e4bc81",
+      "record_version": "source-04e5f0ecc9fedd882d81c50f2e3a65f31939e9a6a9ec432e49cd333ae1e4bc81"
+    },
+    {
+      "id": "gap-bundle-sam3",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "08e1d9f1a0e91a180b9d9e51c5dadcd27e1ecd90c873e20403b704a2f48c29c2",
+      "record_version": "source-08e1d9f1a0e91a180b9d9e51c5dadcd27e1ecd90c873e20403b704a2f48c29c2"
+    },
+    {
+      "id": "gap-bundle-seating-a-cable-crossing",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "2eea39e467f8a14a23ac454e397acd63ef0a8bae033725280bf1fd38a57baa0c",
+      "record_version": "source-2eea39e467f8a14a23ac454e397acd63ef0a8bae033725280bf1fd38a57baa0c"
+    },
+    {
+      "id": "gap-bundle-selecting-reachable-grasp",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "486f8e5ae06dd9649be3671405e12ef47e2cd5fb9db1ede603ef35c4bdc5813e",
+      "record_version": "source-486f8e5ae06dd9649be3671405e12ef47e2cd5fb9db1ede603ef35c4bdc5813e"
+    },
+    {
+      "id": "gap-bundle-tipping-over-a-surface-edge",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b",
+      "record_version": "source-6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b"
+    },
+    {
+      "id": "gap-bundle-tracking-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "f26c4982de0d0f6a28695e71bdfa9b3c4e5595e853882f1218daf012c3af308c",
+      "record_version": "source-f26c4982de0d0f6a28695e71bdfa9b3c4e5595e853882f1218daf012c3af308c"
+    },
+    {
+      "id": "gap-bundle-transporting-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "705953899e77ec9641e28fbbf0ff6dce75b4240bedd5702277266c4a9fc49a65",
+      "record_version": "source-705953899e77ec9641e28fbbf0ff6dce75b4240bedd5702277266c4a9fc49a65"
+    },
+    {
+      "id": "gap-bundle-verifying-a-cable-route",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "e7cacccd684f4fdf2e62cf1adf4db8ce3f0fbe64436ba87ca9bc6bad26de9cc2",
+      "record_version": "source-e7cacccd684f4fdf2e62cf1adf4db8ce3f0fbe64436ba87ca9bc6bad26de9cc2"
+    },
+    {
+      "id": "gap-bundle-verifying-grasps",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "d64675921fc8151424e2458a76488504943d0949557d7e80084cae3fad25bb58",
+      "record_version": "source-d64675921fc8151424e2458a76488504943d0949557d7e80084cae3fad25bb58"
+    },
+    {
+      "id": "gap-bundle-verifying-placement",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a1143fe591cdd8101d6ce90011318f24871549c8879f4c1fd8c4d2b5ee34290a",
+      "record_version": "source-a1143fe591cdd8101d6ce90011318f24871549c8879f4c1fd8c4d2b5ee34290a"
+    },
+    {
+      "id": "gap-bundle-vlm",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41",
+      "record_version": "source-34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41"
+    },
+    {
       "id": "isaaclab-scripts-demos-arms-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "b783b65552f52ae7f9a18d7feea261a12a4469ca5a077ae6861f9e2f3b2ad6af",
@@ -1068,6 +1326,54 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9",
       "record_version": "source-caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-rl-games-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "bbf33d2fb56417f7e754dd89075e61502593ff0bad7b2df547ea9d60700e4718",
+      "record_version": "source-bbf33d2fb56417f7e754dd89075e61502593ff0bad7b2df547ea9d60700e4718"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-rl-games-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "ac18801d64e3d7be968dadc6822e08bb43a2fe4cd8e84fd6a6b84554c080d514",
+      "record_version": "source-ac18801d64e3d7be968dadc6822e08bb43a2fe4cd8e84fd6a6b84554c080d514"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-rsl-rl-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81",
+      "record_version": "source-8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-rsl-rl-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "e12938bd4807d10d3972bb257a2edd90a156824b326c5f345f48ac8d09a84a21",
+      "record_version": "source-e12938bd4807d10d3972bb257a2edd90a156824b326c5f345f48ac8d09a84a21"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-sb3-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "ceef93f5f4c20b7229b935bf6df956b56ff13dc6c8489c3459d3d06065724e14",
+      "record_version": "source-ceef93f5f4c20b7229b935bf6df956b56ff13dc6c8489c3459d3d06065724e14"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-sb3-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912",
+      "record_version": "source-a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-skrl-play-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f",
+      "record_version": "source-8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f"
+    },
+    {
+      "id": "isaaclab-scripts-reinforcement-learning-skrl-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0",
+      "record_version": "source-54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0"
     },
     {
       "id": "isaaclab-scripts-tutorials-00-sim-create-empty-py",
@@ -1404,6 +1710,60 @@
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "1576d9394f5755f61dfed9330821ccef82bb803b41a17eff455e9cf28a7cf9e4",
       "record_version": "source-1576d9394f5755f61dfed9330821ccef82bb803b41a17eff455e9cf28a7cf9e4"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-calibrate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "390e3c411b5fd8362fc32d9320bb0eed84d102501de616f85b03c38c7eb11553",
+      "record_version": "source-390e3c411b5fd8362fc32d9320bb0eed84d102501de616f85b03c38c7eb11553"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-eval-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "fddec10c709401dd863814091d525fcd54d41cc6ccf51f7ef8300459cf69b873",
+      "record_version": "source-fddec10c709401dd863814091d525fcd54d41cc6ccf51f7ef8300459cf69b873"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-find-joint-limits-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51",
+      "record_version": "source-84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c",
+      "record_version": "source-ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-replay-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1",
+      "record_version": "source-cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-rollout-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075",
+      "record_version": "source-40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-setup-motors-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "65b6a1e4797eb639bb858f0c6efaedc0e6615d3067fc06db851465337c7a2461",
+      "record_version": "source-65b6a1e4797eb639bb858f0c6efaedc0e6615d3067fc06db851465337c7a2461"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-teleoperate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "2f2b2a9bb822d1b33b0033e9a2b0664649f959ef7da45d48629368a63ff9cf1a",
+      "record_version": "source-2f2b2a9bb822d1b33b0033e9a2b0664649f959ef7da45d48629368a63ff9cf1a"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-train-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec",
+      "record_version": "source-059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec"
     },
     {
       "id": "moveit2-doc-examples-bullet-collision-checker-src-bullet-collision-1e25216dcd47",
@@ -3332,6 +3692,72 @@
       "record_version": "source-10dde08564fd27ff473451529b775182acce5726c749f9867368427f4048265e"
     },
     {
+      "id": "openpi-examples-aloha-real-convert-aloha-data-to-lerobot-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "5380876e2bd9e2b4294ebf818f7d18378090291cf4aae3481f08e0ed254a3284",
+      "record_version": "source-5380876e2bd9e2b4294ebf818f7d18378090291cf4aae3481f08e0ed254a3284"
+    },
+    {
+      "id": "openpi-examples-aloha-real-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "a6195287f804015d928793bcbfab427e21933745ce1d53224671c9e501182d14",
+      "record_version": "source-a6195287f804015d928793bcbfab427e21933745ce1d53224671c9e501182d14"
+    },
+    {
+      "id": "openpi-examples-aloha-sim-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7",
+      "record_version": "source-91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7"
+    },
+    {
+      "id": "openpi-examples-droid-convert-droid-data-to-lerobot-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9",
+      "record_version": "source-35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9"
+    },
+    {
+      "id": "openpi-examples-droid-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "4bdbdbdde068ebb30ba90d62bf8c51df156b4baae5c5ac5870c08f7b03d4afc2",
+      "record_version": "source-4bdbdbdde068ebb30ba90d62bf8c51df156b4baae5c5ac5870c08f7b03d4afc2"
+    },
+    {
+      "id": "openpi-examples-libero-convert-libero-data-to-lerobot-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602",
+      "record_version": "source-199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602"
+    },
+    {
+      "id": "openpi-examples-libero-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "d53748c95804ada559e3ca867305b8f755d8651c4c7f4e2723ef80aea55a3943",
+      "record_version": "source-d53748c95804ada559e3ca867305b8f755d8651c4c7f4e2723ef80aea55a3943"
+    },
+    {
+      "id": "openpi-scripts-compute-norm-stats-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "8a64773495b714d6b18eded99d7cf87eb19d1bb3dd4a9fb47172b03de5d56a38",
+      "record_version": "source-8a64773495b714d6b18eded99d7cf87eb19d1bb3dd4a9fb47172b03de5d56a38"
+    },
+    {
+      "id": "openpi-scripts-serve-policy-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "eccc0448b4873fd30a1fff3355c5de7a7c227138e6db04b7dcaa5bb38a6a5809",
+      "record_version": "source-eccc0448b4873fd30a1fff3355c5de7a7c227138e6db04b7dcaa5bb38a6a5809"
+    },
+    {
+      "id": "openpi-scripts-train-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
+      "record_version": "source-22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf"
+    },
+    {
+      "id": "openpi-scripts-train-pytorch-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "baa66f1642e955d5cc2ec3f54d9495035df61d71b028b98ab4ebb1e240548311",
+      "record_version": "source-baa66f1642e955d5cc2ec3f54d9495035df61d71b028b98ab4ebb1e240548311"
+    },
+    {
       "id": "pinocchio-examples-admm-constraint-solver-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "d60ab4ae8fe8a4f161e8a8377c44d9f8959744b43a9d5ea1a496efef9401af7a",
@@ -3996,6 +4422,66 @@
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652",
       "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
+    },
+    {
+      "id": "robomimic-examples-simple-train-loop-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "79cebf377c7385dfb849f7e0650880f8747c48337bb2ca580d9ea5be7e05b0de",
+      "record_version": "source-79cebf377c7385dfb849f7e0650880f8747c48337bb2ca580d9ea5be7e05b0de"
+    },
+    {
+      "id": "robomimic-examples-train-bc-rnn-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743",
+      "record_version": "source-9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-conversion-convert-robosuite-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "d4be7c09c326e78f0130f8a5000b9bd1aab4aaa4a374c9ad5cf696f638b7f6a5",
+      "record_version": "source-d4be7c09c326e78f0130f8a5000b9bd1aab4aaa4a374c9ad5cf696f638b7f6a5"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-conversion-robosuite-add-absolute-actions-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0",
+      "record_version": "source-3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-dataset-states-to-obs-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "dc55c8b64784871980ab33b4c7a84701e892389154c209c5c60ad44273d57e28",
+      "record_version": "source-dc55c8b64784871980ab33b4c7a84701e892389154c209c5c60ad44273d57e28"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-get-dataset-info-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b",
+      "record_version": "source-dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-playback-dataset-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce",
+      "record_version": "source-3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-run-trained-agent-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3d36889844a2cf3cd16cd5e58ec1bb998a504f9267b0338d730e9985025063c0",
+      "record_version": "source-3d36889844a2cf3cd16cd5e58ec1bb998a504f9267b0338d730e9985025063c0"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-split-train-val-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "8e5cc64eed375b20991e5261901638415f44868a4fad124ebb318d39c7c16a5a",
+      "record_version": "source-8e5cc64eed375b20991e5261901638415f44868a4fad124ebb318d39c7c16a5a"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-train-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3830b87dc246d2df2edadef73f03b64384d45a39f21ba1c952390cb05353f8c8",
+      "record_version": "source-3830b87dc246d2df2edadef73f03b64384d45a39f21ba1c952390cb05353f8c8"
     },
     {
       "id": "robosuite-demo-collect-and-playback-data",
@@ -4812,6 +5298,114 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c",
       "record_version": "source-d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c"
+    },
+    {
+      "id": "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd",
+      "record_version": "source-d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd"
+    },
+    {
+      "id": "unitree-sdk2-python-example-b2w-high-level-b2w-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "a2a2fad4bd964a5ec815605837f3d3e165aec7f3c861fd0d41495c9645da5abb",
+      "record_version": "source-a2a2fad4bd964a5ec815605837f3d3e165aec7f3c861fd0d41495c9645da5abb"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "5fc4089b9de9a51a6e01fdf558a840ab7ec063d38411f4be8f51a9334f3b81a3",
+      "record_version": "source-5fc4089b9de9a51a6e01fdf558a840ab7ec063d38411f4be8f51a9334f3b81a3"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4",
+      "record_version": "source-cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a",
+      "record_version": "source-7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "80bfcaa9c073965f9abc3cd47273c1933fe0c625b4c4fd15a32c50b6f0a9a6e9",
+      "record_version": "source-80bfcaa9c073965f9abc3cd47273c1933fe0c625b4c4fd15a32c50b6f0a9a6e9"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-low-level-g1-low-level-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "044dc6f9f132ec4ddcdef7f6eda0fc74118dc21abc50e64de441179a748d1984",
+      "record_version": "source-044dc6f9f132ec4ddcdef7f6eda0fc74118dc21abc50e64de441179a748d1984"
+    },
+    {
+      "id": "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914",
+      "record_version": "source-0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914"
+    },
+    {
+      "id": "unitree-sdk2-python-example-go2-low-level-go2-stand-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896",
+      "record_version": "source-0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896"
+    },
+    {
+      "id": "unitree-sdk2-python-example-go2w-high-level-go2w-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "4afe93629b7cec97d3c4830ff33f8e2e251c49fd7b361bcd746420aadf1c8d5a",
+      "record_version": "source-4afe93629b7cec97d3c4830ff33f8e2e251c49fd7b361bcd746420aadf1c8d5a"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h1-2-low-level-h1-2-low-level-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "d17bc442d7f4f17b9085ea4f11ce22e7ef9b182ebc9114d359716e0116672ea8",
+      "record_version": "source-d17bc442d7f4f17b9085ea4f11ce22e7ef9b182ebc9114d359716e0116672ea8"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4",
+      "record_version": "source-124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h1-low-level-h1-low-level-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "e70fb2e56c15b4629ee33b02603f6438eb0abd1e1951a5c6f13cd9d660e01cc4",
+      "record_version": "source-e70fb2e56c15b4629ee33b02603f6438eb0abd1e1951a5c6f13cd9d660e01cc4"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8",
+      "record_version": "source-f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f",
+      "record_version": "source-fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f"
+    },
+    {
+      "id": "unitree-sdk2-python-example-obstacles-avoid-obstacles-avoid-move-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "79697b82289389ffc99bb3cab9956c6a52452e80b1a898951d230a0adc899f6d",
+      "record_version": "source-79697b82289389ffc99bb3cab9956c6a52452e80b1a898951d230a0adc899f6d"
+    },
+    {
+      "id": "unitree-sdk2-python-example-r1-high-level-r1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "b8f8319656f24477a1f82dfd17464080cc71d8c78e05653d8bc614c3d0579714",
+      "record_version": "source-b8f8319656f24477a1f82dfd17464080cc71d8c78e05653d8bc614c3d0579714"
+    },
+    {
+      "id": "unitree-sdk2-python-example-wireless-controller-wireless-controller-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a",
+      "record_version": "source-8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a"
     },
     {
       "id": "ur-description-artifact-config-initial-positions-yaml",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-pi05-libero",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "c59136b82f8356e6ebd53a4d530bea3a4f54d07de3deeb95987aff846eee14de",
+      "record_version": "source-c59136b82f8356e6ebd53a4d530bea3a4f54d07de3deeb95987aff846eee14de"
+    },
+    {
       "id": "mujoco-menagerie-artifact-tetheria-aero-hand-open-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "f9e136acec1c5e51265bd2d6f21f346449dc7506bb293ee5ebf698d16d4e9692",

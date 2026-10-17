@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-curobo",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+      "record_version": "source-4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-03-envs-create-cartpole-base-env-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "c6dd23ac07ad2a091b05ee443ee6cf38b378e74eb6766b9600776d02d5ce3046",

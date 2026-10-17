@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f",
+      "record_version": "source-fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f"
+    },
+    {
       "id": "webots-projects-robots-mobsya-thymio-controllers-thymio2-demo-thymio2-demo-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "8f7e5d7ab4f91d08d13078e8d9d5cafa7abfddff49252fb321330611606d0ece",

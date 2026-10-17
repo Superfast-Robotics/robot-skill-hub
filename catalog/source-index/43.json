@@ -8,6 +8,12 @@
       "record_version": "source-1b73b4fb524dce8d29aa1b43389f8b8725d19fed40eff3905db1099e66f4d350"
     },
     {
+      "id": "gap-bundle-vlm",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41",
+      "record_version": "source-34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3",

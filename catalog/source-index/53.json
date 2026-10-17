@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-selecting-reachable-grasp",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "486f8e5ae06dd9649be3671405e12ef47e2cd5fb9db1ede603ef35c4bdc5813e",
+      "record_version": "source-486f8e5ae06dd9649be3671405e12ef47e2cd5fb9db1ede603ef35c4bdc5813e"
+    },
+    {
       "id": "ompl-demos-rigidbodyplanning-py",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "d50471be3b859c1fb0707bfd4a735486e946743e25825af4d72e3421321e9e53",

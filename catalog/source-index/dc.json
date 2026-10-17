@@ -14,6 +14,12 @@
       "record_version": "source-5a8c3957a2a9622df0c6116126450e69f3b769a336392a226049196ab19173ca"
     },
     {
+      "id": "gap-bundle-perceiving-functional-features",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "938b9477f3424e9e8e0aca24d566dbfe2df71968b48028f5d6753d3a7430f8e8",
+      "record_version": "source-938b9477f3424e9e8e0aca24d566dbfe2df71968b48028f5d6753d3a7430f8e8"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-imu-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "8ce9e0d092dba0416869c27a72748f108c2db0928c4cd1300957039e3f32a344",

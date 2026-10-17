@@ -1,0 +1,1530 @@
+{
+  "schema_version": "1",
+  "description": "Finite official policy serving/deployment, training/evaluation, demonstration-data and hardware-control workflow entrypoints. Python source is statically reviewed, referenced and never executed by the Hub. This is not an exhaustive project or internet inventory.",
+  "refresh_policy": "Review every changed commit, source byte pin, license scope, author/setup document and per-entrypoint label manually. The importer performs offline rebuilds by default; --fetch explicitly verifies only the existing frozen text pins. Do not install upstream packages or download checkpoints/meshes to refresh this registry.",
+  "projects": [
+    {
+      "id": "openpi",
+      "repository": "https://github.com/Physical-Intelligence/openpi",
+      "ref": "main",
+      "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "stars": 14274,
+      "name": "OpenPI",
+      "checked_at": "2026-10-18",
+      "authors": [
+        "Physical Intelligence team"
+      ],
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "computation-or-hardware",
+      "requirements": {
+        "python": "Python >=3.11 as declared by the pinned pyproject.toml",
+        "packages": [
+          "Pinned OpenPI checkout and openpi-client",
+          "Upstream uv environment; JAX/CUDA or PyTorch backend as selected",
+          "Environment-specific ALOHA, DROID or LIBERO dependencies when selected"
+        ],
+        "environment": "Upstream supports Ubuntu 22.04. Policy inference/training requires suitable NVIDIA GPU memory and separately obtained checkpoints/data; real robot clients additionally require the exact upstream robot setup and a configured policy server."
+      },
+      "setup_url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+      "invocation_notes": "Use the pinned upstream environment and CLI configuration, dataset/checkpoint paths and platform-specific README. Some upstream workflows can download assets or publish datasets; inspect flags before use. No checkpoint licensing, robot compatibility or runtime success is established by this source reference.",
+      "license": {
+        "spdx": "Apache-2.0",
+        "path": "LICENSE",
+        "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+        "bytes": 11356,
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "567fc57766bd736664f50126cab8145af4071ca16cc5e238f2b11e369169c3b5",
+          "bytes": 23254,
+          "purpose": "upstream author and setup",
+          "contains": [
+            "Physical Intelligence team"
+          ]
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "e1f457bd81622a47a4c4de17b92815977ac5fcd40116bec92398eb400bf76483",
+          "bytes": 3110,
+          "purpose": "Python/package declaration",
+          "contains": [
+            "requires-python = \">=3.11\""
+          ]
+        },
+        {
+          "path": "examples/aloha_real/README.md",
+          "sha256": "cd56d8224ee9500837fd83a00ffe7cc1c96008558a4a81fabaf96cdccf9a9a24",
+          "bytes": 6440,
+          "purpose": "ALOHA hardware setup",
+          "contains": [
+            "# Run Aloha (Real Robot)"
+          ]
+        },
+        {
+          "path": "examples/aloha_sim/README.md",
+          "sha256": "3e25e00b1fb746176cfab0b74e8edad4a2c182f6fe1145f57d68bb67b38e5609",
+          "bytes": 732,
+          "purpose": "ALOHA simulation setup",
+          "contains": [
+            "# Run Aloha Sim"
+          ]
+        },
+        {
+          "path": "examples/droid/README.md",
+          "sha256": "6f64c246a78a5c203b4b032db9b6b6daea33e98d91ecdac1a3da30a9863290d0",
+          "bytes": 6870,
+          "purpose": "DROID hardware setup",
+          "contains": [
+            "# DROID Policies in openpi"
+          ]
+        },
+        {
+          "path": "examples/libero/README.md",
+          "sha256": "a2caaf5459c4b01837b73aa93a6f69e8cdf10385b39c34eba36afa85f83fafe9",
+          "bytes": 2551,
+          "purpose": "LIBERO evaluation setup",
+          "contains": [
+            "# LIBERO Benchmark"
+          ]
+        }
+      ],
+      "selection": {
+        "include": [
+          "scripts/serve_policy.py",
+          "scripts/train.py",
+          "scripts/train_pytorch.py",
+          "scripts/compute_norm_stats.py",
+          "examples/aloha_real/main.py",
+          "examples/aloha_sim/main.py",
+          "examples/droid/main.py",
+          "examples/libero/main.py",
+          "examples/aloha_real/convert_aloha_data_to_lerobot.py",
+          "examples/droid/convert_droid_data_to_lerobot.py",
+          "examples/libero/convert_libero_data_to_lerobot.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "scripts/serve_policy.py",
+          "sha256": "eccc0448b4873fd30a1fff3355c5de7a7c227138e6db04b7dcaa5bb38a6a5809",
+          "bytes": 3687,
+          "entrypoint_kind": "python_main",
+          "name": "WebSocket policy server",
+          "role": "policy-serving",
+          "summary": "Serve a configured OpenPI policy over the upstream WebSocket server; checkpoint, observation/action schema and environment mode are selected upstream. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-serving",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run scripts/serve_policy.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "scripts/train.py",
+          "sha256": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
+          "bytes": 10488,
+          "entrypoint_kind": "python_main",
+          "name": "JAX policy training",
+          "role": "policy-training",
+          "summary": "Train or fine-tune an OpenPI policy with the JAX training pipeline and an explicit upstream training/data configuration. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run scripts/train.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "scripts/train_pytorch.py",
+          "sha256": "baa66f1642e955d5cc2ec3f54d9495035df61d71b028b98ab4ebb1e240548311",
+          "bytes": 25938,
+          "entrypoint_kind": "python_main",
+          "name": "PyTorch policy training",
+          "role": "policy-training",
+          "summary": "Train an OpenPI policy with the PyTorch entrypoint, including its upstream distributed-training options. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run scripts/train_pytorch.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "scripts/compute_norm_stats.py",
+          "sha256": "8a64773495b714d6b18eded99d7cf87eb19d1bb3dd4a9fb47172b03de5d56a38",
+          "bytes": 4042,
+          "entrypoint_kind": "python_main",
+          "name": "Dataset normalization statistics",
+          "role": "dataset-preparation",
+          "summary": "Compute dataset mean and standard deviation for an OpenPI training configuration and save normalization assets. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-preparation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run scripts/compute_norm_stats.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "examples/aloha_real/main.py",
+          "sha256": "a6195287f804015d928793bcbfab427e21933745ce1d53224671c9e501182d14",
+          "bytes": 1408,
+          "entrypoint_kind": "python_main",
+          "name": "ALOHA real robot policy client",
+          "role": "policy-deployment",
+          "summary": "Run the upstream ALOHA real-robot environment through an OpenPI policy server and action-chunk runtime. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-deployment",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "arm"
+          ],
+          "robot_scope": "The pinned source names ALOHA for this workflow. Hardware and observation/action configuration must match its upstream setup; source labels do not establish compatibility.",
+          "entrypoint": "uv run examples/aloha_real/main.py",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "examples/aloha_sim/main.py",
+          "sha256": "91b27ce04c741bb07355dcf650371caffa95e2d08fae2c089b3cbf899c8385f7",
+          "bytes": 1370,
+          "entrypoint_kind": "python_main",
+          "name": "ALOHA simulation policy client",
+          "role": "policy-evaluation",
+          "summary": "Run the upstream ALOHA simulation task through an OpenPI policy server and save rollout video. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "arm"
+          ],
+          "robot_scope": "The pinned source names ALOHA for this workflow. Hardware and observation/action configuration must match its upstream setup; source labels do not establish compatibility.",
+          "entrypoint": "uv run examples/aloha_sim/main.py",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "examples/droid/main.py",
+          "sha256": "4bdbdbdde068ebb30ba90d62bf8c51df156b4baae5c5ac5870c08f7b03d4afc2",
+          "bytes": 9825,
+          "entrypoint_kind": "python_main",
+          "name": "DROID policy client",
+          "role": "policy-deployment",
+          "summary": "Run policy-server actions through the upstream DROID robot environment and its configured observation/control loop. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-deployment",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "arm"
+          ],
+          "robot_scope": "The pinned source names DROID for this workflow. Hardware and observation/action configuration must match its upstream setup; source labels do not establish compatibility.",
+          "entrypoint": "uv run examples/droid/main.py",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "examples/libero/main.py",
+          "sha256": "d53748c95804ada559e3ca867305b8f755d8651c4c7f4e2723ef80aea55a3943",
+          "bytes": 9194,
+          "entrypoint_kind": "python_main",
+          "name": "LIBERO policy evaluation",
+          "role": "policy-evaluation",
+          "summary": "Evaluate policy-server actions across an explicitly selected LIBERO benchmark task suite and record rollouts. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run examples/libero/main.py",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "examples/aloha_real/convert_aloha_data_to_lerobot.py",
+          "sha256": "5380876e2bd9e2b4294ebf818f7d18378090291cf4aae3481f08e0ed254a3284",
+          "bytes": 7515,
+          "entrypoint_kind": "python_main",
+          "name": "ALOHA dataset conversion",
+          "role": "dataset-conversion",
+          "summary": "Convert upstream ALOHA HDF5 demonstrations to the LeRobot dataset format used by this OpenPI revision. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-conversion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "arm"
+          ],
+          "robot_scope": "The pinned source names ALOHA for this workflow. Hardware and observation/action configuration must match its upstream setup; source labels do not establish compatibility.",
+          "entrypoint": "uv run examples/aloha_real/convert_aloha_data_to_lerobot.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "examples/droid/convert_droid_data_to_lerobot.py",
+          "sha256": "35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9",
+          "bytes": 17080,
+          "entrypoint_kind": "python_main",
+          "name": "DROID dataset conversion",
+          "role": "dataset-conversion",
+          "summary": "Convert locally collected DROID demonstrations into the LeRobot format used by this OpenPI revision. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-conversion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "arm"
+          ],
+          "robot_scope": "The pinned source names DROID for this workflow. Hardware and observation/action configuration must match its upstream setup; source labels do not establish compatibility.",
+          "entrypoint": "uv run examples/droid/convert_droid_data_to_lerobot.py",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "examples/libero/convert_libero_data_to_lerobot.py",
+          "sha256": "199c309a601f23fa120e0c9ca3d8f7f2dba525924a60e79906fca4c6b9f03602",
+          "bytes": 3766,
+          "entrypoint_kind": "python_main",
+          "name": "LIBERO dataset conversion",
+          "role": "dataset-conversion",
+          "summary": "Convert LIBERO RLDS demonstrations into the LeRobot format used by this OpenPI revision. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-conversion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "uv run examples/libero/convert_libero_data_to_lerobot.py",
+          "execution_domain": "computation"
+        }
+      ],
+      "selection_report": {
+        "candidate_files": 11,
+        "accepted_files": 11,
+        "excluded_files": [],
+        "method": "Explicit maintainer-reviewed operational entrypoints only. Helper modules, config-count expansion, download-only tools and tests were not selected. OpenPI examples/simple_client/main.py is already owned by the existing intake reference and is deliberately excluded."
+      }
+    },
+    {
+      "id": "robomimic",
+      "repository": "https://github.com/ARISE-Initiative/robomimic",
+      "ref": "master",
+      "commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "stars": 1587,
+      "name": "robomimic",
+      "checked_at": "2026-10-18",
+      "authors": [
+        "Ajay Mandlekar",
+        "Danfei Xu",
+        "Josiah Wong",
+        "Soroush Nasiriany",
+        "Chen Wang",
+        "Matthew Bronars",
+        "Vaibhav Saxena"
+      ],
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "computation-or-hardware",
+      "requirements": {
+        "python": "Python >=3 as declared by pinned setup.py; follow the pinned installation guide for its supported environment",
+        "packages": [
+          "Pinned robomimic checkout",
+          "PyTorch, h5py and dependencies declared by pinned setup.py",
+          "Matching robosuite/MuJoCo environment when the selected workflow uses simulation"
+        ],
+        "environment": "Training/evaluation requires an explicitly selected policy configuration, compatible HDF5 demonstration dataset and, for rollout evaluation, the matching simulator and checkpoint. Dataset tools may modify HDF5 files in place."
+      },
+      "setup_url": "https://github.com/ARISE-Initiative/robomimic/blob/d309eaecc18acf4152a830a895a6984b8ac71b05/README.md",
+      "invocation_notes": "Follow pinned robomimic setup and provide the required --config/--algo, dataset, checkpoint and environment options for this script. Conversion and split tools may modify the input dataset; review their source first. The example training loops are instructional; no policy performance or robot compatibility has been measured.",
+      "license": {
+        "spdx": "MIT",
+        "path": "LICENSE",
+        "sha256": "7cdbfab482b23a4d925d59ff169ab0bc5f8c97ceb0db79f9fd5bf46ef8aa1556",
+        "bytes": 1089,
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "edb7d231bfcfec74559cec7e2c950b32317f1488d8898b27798ac7b155f5aec9",
+          "bytes": 5448,
+          "purpose": "project overview and setup",
+          "contains": [
+            "robomimic"
+          ]
+        },
+        {
+          "path": "setup.py",
+          "sha256": "3495ce04ea1e12a389fcafc889c1fc00b5940bc3001e02b92d1e6df05dd2cd8c",
+          "bytes": 1435,
+          "purpose": "author and package declarations",
+          "contains": [
+            "author=\"Ajay Mandlekar, Danfei Xu, Josiah Wong, Soroush Nasiriany, Chen Wang, Matthew Bronars, Vaibhav Saxena\""
+          ]
+        },
+        {
+          "path": "docs/introduction/installation.md",
+          "sha256": "c7c3f494c74ec05ad70e35ccff9092cef7d1be916db7ec1bc48534380494df18",
+          "bytes": 5091,
+          "purpose": "installation requirements",
+          "contains": [
+            "# Installation"
+          ]
+        }
+      ],
+      "selection": {
+        "include": [
+          "robomimic/scripts/train.py",
+          "robomimic/scripts/run_trained_agent.py",
+          "robomimic/scripts/playback_dataset.py",
+          "robomimic/scripts/dataset_states_to_obs.py",
+          "robomimic/scripts/split_train_val.py",
+          "robomimic/scripts/get_dataset_info.py",
+          "robomimic/scripts/conversion/convert_robosuite.py",
+          "robomimic/scripts/conversion/robosuite_add_absolute_actions.py",
+          "examples/simple_train_loop.py",
+          "examples/train_bc_rnn.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "robomimic/scripts/train.py",
+          "sha256": "3830b87dc246d2df2edadef73f03b64384d45a39f21ba1c952390cb05353f8c8",
+          "bytes": 23846,
+          "entrypoint_kind": "python_main",
+          "name": "Configured imitation policy training",
+          "role": "policy-training",
+          "summary": "Train a robomimic policy from an explicit algorithm/configuration and demonstration dataset. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "robomimic/scripts/run_trained_agent.py",
+          "sha256": "3d36889844a2cf3cd16cd5e58ec1bb998a504f9267b0338d730e9985025063c0",
+          "bytes": 13270,
+          "entrypoint_kind": "python_main",
+          "name": "Checkpoint rollout evaluation",
+          "role": "policy-evaluation",
+          "summary": "Evaluate a saved robomimic policy checkpoint in its configured environment, optionally recording video and rollout data. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "robomimic/scripts/playback_dataset.py",
+          "sha256": "3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce",
+          "bytes": 14743,
+          "entrypoint_kind": "python_main",
+          "name": "Demonstration playback",
+          "role": "trajectory-playback",
+          "summary": "Visualize demonstration trajectories from simulator states, open-loop actions or dataset image observations. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "robot-workflow",
+            "trajectory-playback"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "robomimic/scripts/dataset_states_to_obs.py",
+          "sha256": "dc55c8b64784871980ab33b4c7a84701e892389154c209c5c60ad44273d57e28",
+          "bytes": 17012,
+          "entrypoint_kind": "python_main",
+          "name": "Simulation state observation extraction",
+          "role": "dataset-preparation",
+          "summary": "Extract configured observations and rewards from low-dimensional simulation states in a robosuite demonstration dataset. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-preparation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "robomimic/scripts/split_train_val.py",
+          "sha256": "8e5cc64eed375b20991e5261901638415f44868a4fad124ebb318d39c7c16a5a",
+          "bytes": 3566,
+          "entrypoint_kind": "python_main",
+          "name": "Demonstration train-validation split",
+          "role": "dataset-preparation",
+          "summary": "Add training and validation trajectory filter keys to a selected HDF5 demonstration dataset. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-preparation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "robomimic/scripts/get_dataset_info.py",
+          "sha256": "dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b",
+          "bytes": 5188,
+          "entrypoint_kind": "python_main",
+          "name": "Demonstration dataset inspection",
+          "role": "dataset-inspection",
+          "summary": "Inspect HDF5 trajectory lengths, action bounds, filter keys, environment metadata and demonstration structure. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-inspection",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "robomimic/scripts/conversion/convert_robosuite.py",
+          "sha256": "d4be7c09c326e78f0130f8a5000b9bd1aab4aaa4a374c9ad5cf696f638b7f6a5",
+          "bytes": 4068,
+          "entrypoint_kind": "python_main",
+          "name": "Robosuite dataset conversion",
+          "role": "dataset-conversion",
+          "summary": "Convert a collected robosuite demonstration dataset in place to robomimic-compatible HDF5 metadata and splits. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-conversion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "robomimic/scripts/conversion/robosuite_add_absolute_actions.py",
+          "sha256": "3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0",
+          "bytes": 7867,
+          "entrypoint_kind": "python_main",
+          "name": "Absolute action dataset conversion",
+          "role": "dataset-conversion",
+          "summary": "Convert robosuite delta-action demonstrations to absolute actions and add the actions_abs dataset key. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "dataset-conversion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "examples/simple_train_loop.py",
+          "sha256": "79cebf377c7385dfb849f7e0650880f8747c48337bb2ca580d9ea5be7e05b0de",
+          "bytes": 6440,
+          "entrypoint_kind": "python_main",
+          "name": "Instructional sequence training loop",
+          "role": "policy-training",
+          "summary": "Demonstrate how a robomimic SequenceDataset and a policy training loop interact; this instructional example omits logging and rollout evaluation. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "examples/train_bc_rnn.py",
+          "sha256": "9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743",
+          "bytes": 24605,
+          "entrypoint_kind": "python_main",
+          "name": "Instructional BC-RNN training",
+          "role": "policy-training",
+          "summary": "Train a BC-RNN policy using an instructional script that sets portions of the configuration directly in Python. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "computation"
+        }
+      ],
+      "selection_report": {
+        "candidate_files": 10,
+        "accepted_files": 10,
+        "excluded_files": [],
+        "method": "Explicit maintainer-reviewed operational entrypoints only. Helper modules, config-count expansion, download-only tools and tests were not selected."
+      }
+    },
+    {
+      "id": "unitree-sdk2-python",
+      "repository": "https://github.com/unitreerobotics/unitree_sdk2_python",
+      "ref": "master",
+      "commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "stars": 825,
+      "name": "Unitree SDK2 Python",
+      "checked_at": "2026-10-18",
+      "authors": [
+        "Unitree Robotics"
+      ],
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "hardware",
+      "requirements": {
+        "python": "Python >=3.8 as declared by pinned setup.py",
+        "packages": [
+          "Pinned unitree_sdk2py checkout",
+          "cyclonedds==0.10.2",
+          "numpy",
+          "opencv-python"
+        ],
+        "environment": "Physical Unitree robot matching the selected source path, compatible firmware/SDK message type, CycloneDDS setup and correct network interface are required. High-level motion, direct joint and arm examples can issue real actuator commands."
+      },
+      "setup_url": "https://github.com/unitreerobotics/unitree_sdk2_python/blob/814556d15970dd2ecf1c9984e845ca02ab07e206/README.md",
+      "invocation_notes": "Use the exact robot model and firmware expected by the selected upstream source, read its operator prompts and motion prerequisites, and pass the appropriate network interface as its positional argument when required. Direct joint examples may change robot control mode. Hub has not installed the SDK, connected to a robot or verified execution.",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "path": "LICENSE",
+        "sha256": "a5d73fc4aca9074e3e6fe0b1a0ba763cf9514b2249b7390ed20fe8d53630bf25",
+        "bytes": 1559,
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "0fa9e0fb386718da0619c6ddbf29b0ae01bfd49a61f36cb1c14000e4c4a7fe3d",
+          "bytes": 5550,
+          "purpose": "DDS installation and hardware/network setup",
+          "contains": [
+            "# Installation"
+          ]
+        },
+        {
+          "path": "setup.py",
+          "sha256": "f2c73b2981ee918dd8b3810267691d0294ebedf86d7897330819e8a5fefb19b5",
+          "bytes": 711,
+          "purpose": "author, Python and package declarations",
+          "contains": [
+            "author='UnitreeRobotics'"
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "a5d73fc4aca9074e3e6fe0b1a0ba763cf9514b2249b7390ed20fe8d53630bf25",
+          "bytes": 1559,
+          "purpose": "upstream attribution",
+          "contains": [
+            "Unitree Robotics"
+          ]
+        }
+      ],
+      "selection": {
+        "include": [
+          "example/go2/high_level/go2_sport_client.py",
+          "example/go2/low_level/go2_stand_example.py",
+          "example/b2/high_level/b2_sport_client.py",
+          "example/b2w/high_level/b2w_sport_client.py",
+          "example/go2w/high_level/go2w_sport_client.py",
+          "example/g1/high_level/g1_loco_client_example.py",
+          "example/g1/high_level/g1_arm5_sdk_dds_example.py",
+          "example/g1/high_level/g1_arm7_sdk_dds_example.py",
+          "example/g1/high_level/g1_arm_action_example.py",
+          "example/g1/low_level/g1_low_level_example.py",
+          "example/h1/high_level/h1_loco_client_example.py",
+          "example/h1/low_level/h1_low_level_example.py",
+          "example/h1_2/low_level/h1_2_low_level_example.py",
+          "example/h2/high_level/h2_loco_client_example.py",
+          "example/h2/high_level/h2_arm_sdk_dds_example.py",
+          "example/r1/high_level/r1_loco_client_example.py",
+          "example/obstacles_avoid/obstacles_avoid_move.py",
+          "example/wireless_controller/wireless_controller.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "example/go2/high_level/go2_sport_client.py",
+          "sha256": "0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914",
+          "bytes": 5141,
+          "entrypoint_kind": "python_main",
+          "name": "GO2 locomotion client",
+          "role": "locomotion",
+          "summary": "Select GO2 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree GO2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/go2/low_level/go2_stand_example.py",
+          "sha256": "0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896",
+          "bytes": 6601,
+          "entrypoint_kind": "python_main",
+          "name": "GO2 direct joint control",
+          "role": "joint-control",
+          "summary": "Run the selected GO2 low-level joint command example through the upstream SDK2 DDS interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "joint-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree GO2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/b2/high_level/b2_sport_client.py",
+          "sha256": "d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd",
+          "bytes": 3623,
+          "entrypoint_kind": "python_main",
+          "name": "B2 locomotion client",
+          "role": "locomotion",
+          "summary": "Select B2 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree B2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/b2w/high_level/b2w_sport_client.py",
+          "sha256": "a2a2fad4bd964a5ec815605837f3d3e165aec7f3c861fd0d41495c9645da5abb",
+          "bytes": 3171,
+          "entrypoint_kind": "python_main",
+          "name": "B2W locomotion client",
+          "role": "locomotion",
+          "summary": "Select B2W high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged",
+            "wheeled"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree B2W; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/go2w/high_level/go2w_sport_client.py",
+          "sha256": "4afe93629b7cec97d3c4830ff33f8e2e251c49fd7b361bcd746420aadf1c8d5a",
+          "bytes": 3163,
+          "entrypoint_kind": "python_main",
+          "name": "GO2W locomotion client",
+          "role": "locomotion",
+          "summary": "Select GO2W high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged",
+            "wheeled"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree GO2W; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/g1/high_level/g1_loco_client_example.py",
+          "sha256": "80bfcaa9c073965f9abc3cd47273c1933fe0c625b4c4fd15a32c50b6f0a9a6e9",
+          "bytes": 4018,
+          "entrypoint_kind": "python_main",
+          "name": "G1 locomotion client",
+          "role": "locomotion",
+          "summary": "Select G1 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree G1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/g1/high_level/g1_arm5_sdk_dds_example.py",
+          "sha256": "cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4",
+          "bytes": 6840,
+          "entrypoint_kind": "python_main",
+          "name": "G1 arm DDS control",
+          "role": "arm-control",
+          "summary": "Run the selected G1 arm-control example through the upstream DDS command and state interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "arm-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree G1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/g1/high_level/g1_arm7_sdk_dds_example.py",
+          "sha256": "7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a",
+          "bytes": 6961,
+          "entrypoint_kind": "python_main",
+          "name": "G1 arm DDS control",
+          "role": "arm-control",
+          "summary": "Run the selected G1 arm-control example through the upstream DDS command and state interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "arm-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree G1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/g1/high_level/g1_arm_action_example.py",
+          "sha256": "5fc4089b9de9a51a6e01fdf558a840ab7ec063d38411f4be8f51a9334f3b81a3",
+          "bytes": 5417,
+          "entrypoint_kind": "python_main",
+          "name": "G1 arm action client",
+          "role": "arm-control",
+          "summary": "Select and execute the upstream G1 arm-action client gestures through SDK2. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "arm-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree G1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/g1/low_level/g1_low_level_example.py",
+          "sha256": "044dc6f9f132ec4ddcdef7f6eda0fc74118dc21abc50e64de441179a748d1984",
+          "bytes": 7366,
+          "entrypoint_kind": "python_main",
+          "name": "G1 direct joint control",
+          "role": "joint-control",
+          "summary": "Run the selected G1 low-level joint command example through the upstream SDK2 DDS interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "joint-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree G1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/h1/high_level/h1_loco_client_example.py",
+          "sha256": "124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4",
+          "bytes": 2971,
+          "entrypoint_kind": "python_main",
+          "name": "H1 locomotion client",
+          "role": "locomotion",
+          "summary": "Select H1 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree H1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/h1/low_level/h1_low_level_example.py",
+          "sha256": "e70fb2e56c15b4629ee33b02603f6438eb0abd1e1951a5c6f13cd9d660e01cc4",
+          "bytes": 5322,
+          "entrypoint_kind": "python_main",
+          "name": "H1 direct joint control",
+          "role": "joint-control",
+          "summary": "Run the selected H1 low-level joint command example through the upstream SDK2 DDS interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "joint-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree H1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/h1_2/low_level/h1_2_low_level_example.py",
+          "sha256": "d17bc442d7f4f17b9085ea4f11ce22e7ef9b182ebc9114d359716e0116672ea8",
+          "bytes": 7653,
+          "entrypoint_kind": "python_main",
+          "name": "H1-2 direct joint control",
+          "role": "joint-control",
+          "summary": "Run the selected H1-2 low-level joint command example through the upstream SDK2 DDS interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "joint-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree H1-2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/h2/high_level/h2_loco_client_example.py",
+          "sha256": "fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f",
+          "bytes": 3423,
+          "entrypoint_kind": "python_main",
+          "name": "H2 locomotion client",
+          "role": "locomotion",
+          "summary": "Select H2 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree H2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/h2/high_level/h2_arm_sdk_dds_example.py",
+          "sha256": "f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8",
+          "bytes": 7260,
+          "entrypoint_kind": "python_main",
+          "name": "H2 arm DDS control",
+          "role": "arm-control",
+          "summary": "Run the selected H2 arm-control example through the upstream DDS command and state interfaces. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "arm-control",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree H2; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/r1/high_level/r1_loco_client_example.py",
+          "sha256": "b8f8319656f24477a1f82dfd17464080cc71d8c78e05653d8bc614c3d0579714",
+          "bytes": 3776,
+          "entrypoint_kind": "python_main",
+          "name": "R1 locomotion client",
+          "role": "locomotion",
+          "summary": "Select R1 high-level locomotion operations through the upstream SDK2 client. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "locomotion",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned source path explicitly targets Unitree R1; firmware, message schema, control mode and mechanical configuration must match upstream. Runtime compatibility was not tested.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/obstacles_avoid/obstacles_avoid_move.py",
+          "sha256": "79697b82289389ffc99bb3cab9956c6a52452e80b1a898951d230a0adc899f6d",
+          "bytes": 1074,
+          "entrypoint_kind": "python_main",
+          "name": "Go2 obstacle avoidance motion",
+          "role": "obstacle-avoidance",
+          "summary": "Enable the upstream Go2 obstacle-avoidance client and issue its example motion commands. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "obstacle-avoidance",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "legged"
+          ],
+          "robot_scope": "Pinned source targets Unitree Go2 obstacle-avoidance APIs; inspect model/firmware and hardware setup before use.",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "example/wireless_controller/wireless_controller.py",
+          "sha256": "8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a",
+          "bytes": 3917,
+          "entrypoint_kind": "python_main",
+          "name": "Wireless controller input decoding",
+          "role": "controller-input",
+          "summary": "Subscribe to low-state messages and decode wireless-controller input; the selected imports target the G1/H1-2 message schema. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "controller-input",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "humanoid"
+          ],
+          "robot_scope": "Pinned imports select the Unitree G1/H1-2 low-state schema. Other model schemas require upstream source changes; compatibility was not tested.",
+          "execution_domain": "hardware"
+        }
+      ],
+      "selection_report": {
+        "candidate_files": 18,
+        "accepted_files": 18,
+        "excluded_files": [],
+        "method": "Explicit maintainer-reviewed operational entrypoints only. Helper modules, config-count expansion, download-only tools and tests were not selected."
+      }
+    },
+    {
+      "id": "lerobot",
+      "repository": "https://github.com/huggingface/lerobot",
+      "ref": "v0.6.1",
+      "commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "stars": 28250,
+      "name": "LeRobot",
+      "checked_at": "2026-10-18",
+      "authors": [
+        "The Hugging Face team"
+      ],
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "computation-or-hardware",
+      "requirements": {
+        "python": "Python >=3.12 as declared by pinned pyproject.toml",
+        "packages": [
+          "Pinned LeRobot checkout",
+          "Upstream training/evaluation/core_scripts/hardware and policy/environment extras required by the selected CLI"
+        ],
+        "environment": "Select the specific upstream robot/teleoperator, port, camera, calibration, policy and dataset configuration. Generic CLI entrypoints do not establish support for any particular robot. Hardware commands can record, replay or change motor/calibration state."
+      },
+      "setup_url": "https://github.com/huggingface/lerobot/blob/7e241bd630a3719a56157a497ce5d08f244784f1/README.md",
+      "invocation_notes": "Install the pinned upstream extras for this CLI and select its required robot/teleoperator/environment, policy, dataset, port and calibration arguments. Recording is data collection in this revision; policy deployment uses lerobot-rollout. No Hub installation, robot command or runtime compatibility has been verified.",
+      "license": {
+        "spdx": "Apache-2.0",
+        "path": "LICENSE",
+        "sha256": "0583375a0ec642ec79c447781f34322b0cfa66baff31258214d040f1f6d86d7c",
+        "bytes": 27627,
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "1292b3b1af5573c1f626ae3c1315ef47e9ea6c131e3224540f090c72553ab538",
+          "bytes": 12118,
+          "purpose": "project and setup",
+          "contains": [
+            "LeRobot"
+          ]
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "3c2ce5b32fe48ef3c8c879c38e27fa52555074003957c9913d6b071a68f9eee2",
+          "bytes": 21952,
+          "purpose": "author, Python, CLI and dependency declarations",
+          "contains": [
+            "requires-python = \">=3.12\""
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "0583375a0ec642ec79c447781f34322b0cfa66baff31258214d040f1f6d86d7c",
+          "bytes": 27627,
+          "purpose": "upstream attribution",
+          "contains": [
+            "Copyright 2024 The Hugging Face team."
+          ]
+        }
+      ],
+      "selection": {
+        "include": [
+          "src/lerobot/scripts/lerobot_train.py",
+          "src/lerobot/scripts/lerobot_eval.py",
+          "src/lerobot/scripts/lerobot_rollout.py",
+          "src/lerobot/scripts/lerobot_record.py",
+          "src/lerobot/scripts/lerobot_replay.py",
+          "src/lerobot/scripts/lerobot_teleoperate.py",
+          "src/lerobot/scripts/lerobot_calibrate.py",
+          "src/lerobot/scripts/lerobot_setup_motors.py",
+          "src/lerobot/scripts/lerobot_find_joint_limits.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "src/lerobot/scripts/lerobot_train.py",
+          "sha256": "059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec",
+          "bytes": 36453,
+          "entrypoint_kind": "python_main",
+          "name": "Policy training CLI",
+          "role": "policy-training",
+          "summary": "Train a LeRobot policy using the selected policy and dataset configuration. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-train",
+          "execution_domain": "computation"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_eval.py",
+          "sha256": "fddec10c709401dd863814091d525fcd54d41cc6ccf51f7ef8300459cf69b873",
+          "bytes": 45974,
+          "entrypoint_kind": "python_main",
+          "name": "Policy evaluation CLI",
+          "role": "policy-evaluation",
+          "summary": "Evaluate a LeRobot policy through environment rollouts and aggregate rollout metrics. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-eval",
+          "execution_domain": "simulation-or-hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_rollout.py",
+          "sha256": "40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075",
+          "bytes": 8569,
+          "entrypoint_kind": "python_main",
+          "name": "Real robot policy rollout CLI",
+          "role": "policy-deployment",
+          "summary": "Deploy a trained policy through the configured LeRobot real-robot rollout strategy and robot interface. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-deployment",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-rollout",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_record.py",
+          "sha256": "ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c",
+          "bytes": 21851,
+          "entrypoint_kind": "python_main",
+          "name": "Teleoperation dataset recording CLI",
+          "role": "data-collection",
+          "summary": "Record a demonstration dataset through teleoperation; this revision directs policy inference to the separate rollout CLI. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "data-collection",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-record",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_replay.py",
+          "sha256": "cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1",
+          "bytes": 3989,
+          "entrypoint_kind": "python_main",
+          "name": "Robot dataset action replay CLI",
+          "role": "trajectory-playback",
+          "summary": "Replay the actions from a selected dataset episode on an explicitly configured robot. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "robot-workflow",
+            "trajectory-playback"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-replay",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_teleoperate.py",
+          "sha256": "2f2b2a9bb822d1b33b0033e9a2b0664649f959ef7da45d48629368a63ff9cf1a",
+          "bytes": 10377,
+          "entrypoint_kind": "python_main",
+          "name": "Robot teleoperation CLI",
+          "role": "teleoperation",
+          "summary": "Control an explicitly configured LeRobot robot from a selected teleoperator. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "robot-workflow",
+            "teleoperation"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-teleoperate",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_calibrate.py",
+          "sha256": "390e3c411b5fd8362fc32d9320bb0eed84d102501de616f85b03c38c7eb11553",
+          "bytes": 2754,
+          "entrypoint_kind": "python_main",
+          "name": "Robot or teleoperator calibration CLI",
+          "role": "calibration",
+          "summary": "Recalibrate a selected robot or teleoperator through its upstream device implementation. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "calibration",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-calibrate",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_setup_motors.py",
+          "sha256": "65b6a1e4797eb639bb858f0c6efaedc0e6615d3067fc06db851465337c7a2461",
+          "bytes": 2241,
+          "entrypoint_kind": "python_main",
+          "name": "Motor ID and baud-rate setup CLI",
+          "role": "motor-configuration",
+          "summary": "Set motor identifiers and baud rate for a selected device that implements the upstream motor setup interface. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "motor-configuration",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-setup-motors",
+          "execution_domain": "hardware"
+        },
+        {
+          "path": "src/lerobot/scripts/lerobot_find_joint_limits.py",
+          "sha256": "84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51",
+          "bytes": 6846,
+          "entrypoint_kind": "python_main",
+          "name": "Joint and end-effector bounds collection CLI",
+          "role": "joint-limits",
+          "summary": "Collect joint limits and end-effector bounds through configured robot teleoperation. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "joint-limits",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "entrypoint": "lerobot-find-joint-limits",
+          "execution_domain": "hardware"
+        }
+      ],
+      "selection_report": {
+        "candidate_files": 9,
+        "accepted_files": 9,
+        "excluded_files": [],
+        "method": "Explicit maintainer-reviewed operational entrypoints only. Helper modules, config-count expansion, download-only tools and tests were not selected."
+      }
+    },
+    {
+      "id": "isaaclab",
+      "repository": "https://github.com/isaac-sim/IsaacLab",
+      "ref": "v2.3.2",
+      "commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "stars": 8372,
+      "name": "Isaac Lab",
+      "checked_at": "2026-10-18",
+      "authors": [
+        "The Isaac Lab Project Developers"
+      ],
+      "capabilities": [
+        "robot-workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "execution_domain": "simulation",
+      "requirements": {
+        "python": "Use the Python environment required by the pinned Isaac Lab and matching Isaac Sim installation",
+        "packages": [
+          "Pinned Isaac Lab checkout",
+          "Compatible Isaac Sim installation",
+          "Selected RL-Games, RSL-RL, Stable Baselines3 or skrl backend"
+        ],
+        "environment": "A supported NVIDIA GPU, matching Isaac Sim/Isaac Lab environment and explicitly selected --task configuration are required. Play scripts also require a matching trained checkpoint; robot morphology and assets are determined by that task."
+      },
+      "setup_url": "https://github.com/isaac-sim/IsaacLab/blob/37ddf626871758333d6ed89cf64ad702aef127d0/README.md",
+      "invocation_notes": "Use the pinned upstream Isaac Lab launcher with the selected --task and RL backend configuration; play requires a compatible checkpoint. Simulator assets and third-party components retain their own terms. No simulator, package, robot model or checkpoint was loaded during source indexing.",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "path": "LICENSE",
+        "sha256": "df351ebfa8af317bf5a9ad83df63a8b68e4f5c04b71f30767cdb27aa434eac62",
+        "bytes": 1630,
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "sha256": "fa7bc112d6d65a4e156f444281e0b18579575ddddb8aa9c9e11d89b194ed45c5",
+          "bytes": 9951,
+          "purpose": "project overview and setup",
+          "contains": [
+            "Isaac Lab"
+          ]
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "e6a44ab2957336047e988aab5004dbba6374d3fcc072e6f1e2228927a58cf1d1",
+          "bytes": 3906,
+          "purpose": "project development environment",
+          "contains": [
+            "Isaac Lab Project Developers"
+          ]
+        },
+        {
+          "path": "CONTRIBUTORS.md",
+          "sha256": "4fa533c33ea3cb8c6ad86b87fb6fe738d2d888c620e040dc059fc5fc01915dda",
+          "bytes": 3132,
+          "purpose": "upstream contributors",
+          "contains": [
+            "# Isaac Lab Developers and Contributors"
+          ]
+        },
+        {
+          "path": "docs/source/setup/installation/pip_installation.rst",
+          "sha256": "16b97f540028510a5fb574249c30ba7403a5dfaef9494fc7111b3da0ca330932",
+          "bytes": 3853,
+          "purpose": "Isaac Sim/Isaac Lab installation",
+          "contains": [
+            ".. _isaaclab-pip-installation:"
+          ]
+        }
+      ],
+      "selection": {
+        "include": [
+          "scripts/reinforcement_learning/rl_games/train.py",
+          "scripts/reinforcement_learning/rl_games/play.py",
+          "scripts/reinforcement_learning/rsl_rl/train.py",
+          "scripts/reinforcement_learning/rsl_rl/play.py",
+          "scripts/reinforcement_learning/sb3/train.py",
+          "scripts/reinforcement_learning/sb3/play.py",
+          "scripts/reinforcement_learning/skrl/train.py",
+          "scripts/reinforcement_learning/skrl/play.py"
+        ],
+        "exclude": []
+      },
+      "artifacts": [
+        {
+          "path": "scripts/reinforcement_learning/rl_games/train.py",
+          "sha256": "ac18801d64e3d7be968dadc6822e08bb43a2fe4cd8e84fd6a6b84554c080d514",
+          "bytes": 11236,
+          "entrypoint_kind": "python_main",
+          "name": "RL-Games policy training",
+          "role": "policy-training",
+          "summary": "Train an RL policy with the RL-Games backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/rl_games/play.py",
+          "sha256": "bbf33d2fb56417f7e754dd89075e61502593ff0bad7b2df547ea9d60700e4718",
+          "bytes": 9628,
+          "entrypoint_kind": "python_main",
+          "name": "RL-Games checkpoint playback",
+          "role": "policy-evaluation",
+          "summary": "Play a trained policy checkpoint with the RL-Games backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/rsl_rl/train.py",
+          "sha256": "e12938bd4807d10d3972bb257a2edd90a156824b326c5f345f48ac8d09a84a21",
+          "bytes": 9112,
+          "entrypoint_kind": "python_main",
+          "name": "RSL-RL policy training",
+          "role": "policy-training",
+          "summary": "Train an RL policy with the RSL-RL backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/rsl_rl/play.py",
+          "sha256": "8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81",
+          "bytes": 8010,
+          "entrypoint_kind": "python_main",
+          "name": "RSL-RL checkpoint playback",
+          "role": "policy-evaluation",
+          "summary": "Play a trained policy checkpoint with the RSL-RL backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/sb3/train.py",
+          "sha256": "a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912",
+          "bytes": 9061,
+          "entrypoint_kind": "python_main",
+          "name": "Stable Baselines3 policy training",
+          "role": "policy-training",
+          "summary": "Train an RL policy with the Stable Baselines3 backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/sb3/play.py",
+          "sha256": "ceef93f5f4c20b7229b935bf6df956b56ff13dc6c8489c3459d3d06065724e14",
+          "bytes": 8044,
+          "entrypoint_kind": "python_main",
+          "name": "Stable Baselines3 checkpoint playback",
+          "role": "policy-evaluation",
+          "summary": "Play a trained policy checkpoint with the Stable Baselines3 backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/skrl/train.py",
+          "sha256": "54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0",
+          "bytes": 9555,
+          "entrypoint_kind": "python_main",
+          "name": "skrl policy training",
+          "role": "policy-training",
+          "summary": "Train an RL policy with the skrl backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-training",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        },
+        {
+          "path": "scripts/reinforcement_learning/skrl/play.py",
+          "sha256": "8a90dc75c221966f1a93f333516fc62265cea202bf49a4338f0b4fc83b34b49f",
+          "bytes": 9365,
+          "entrypoint_kind": "python_main",
+          "name": "skrl checkpoint playback",
+          "role": "policy-evaluation",
+          "summary": "Play a trained policy checkpoint with the skrl backend and an explicitly selected Isaac Lab task. Inspect the pinned source and setup before use.",
+          "capabilities": [
+            "policy-evaluation",
+            "robot-workflow"
+          ],
+          "robot_types": [
+            "source-defined"
+          ],
+          "robot_scope": "Generic workflow entrypoint. The explicitly chosen dataset, policy, environment or device configuration determines robot compatibility; no supported-robot list or runtime result is inferred.",
+          "execution_domain": "simulation"
+        }
+      ],
+      "selection_report": {
+        "candidate_files": 8,
+        "accepted_files": 8,
+        "excluded_files": [],
+        "method": "Explicit maintainer-reviewed operational entrypoints only. Helper modules, config-count expansion, download-only tools and tests were not selected."
+      }
+    }
+  ]
+}

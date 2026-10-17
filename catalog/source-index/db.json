@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-plugging-a-cable-end",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29",
+      "record_version": "source-8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-scene-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "c46bb3b82883cade4ce41ed99d61538c2a45468de0af097d3865ce00c6e0413b",

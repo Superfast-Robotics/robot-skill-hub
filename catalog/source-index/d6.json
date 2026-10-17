@@ -8,6 +8,12 @@
       "record_version": "source-3431cf4e34af6d7c326192c6cab92711a0897243a27d7f1d674db8929dca9d9c"
     },
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-setup-motors-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "65b6a1e4797eb639bb858f0c6efaedc0e6615d3067fc06db851465337c7a2461",
+      "record_version": "source-65b6a1e4797eb639bb858f0c6efaedc0e6615d3067fc06db851465337c7a2461"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-velocity-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "ad1602c9d3cc565b6f60b9dd41225281f88582a46de2d40569a54740ea786d72",

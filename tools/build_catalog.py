@@ -683,7 +683,7 @@ python /PATH_TO_SKILL/scripts/rsh.py prepare {r['id']} --project ./experiment --
 <h1>{esc(r['name'])}</h1>
 <p>{esc(r['summary'])}</p>
 <p><code>{esc(r['id'])}</code> | Record version: <code>{esc(r['maintenance']['record_version'])}</code></p>
-<p><a href="skill.json">Record JSON</a> | <a href="README.md">Markdown recipe</a> | <a href="{esc(base)}/#catalog">All records</a></p>
+<p><a href="skill.json">Record JSON</a> | <a href="README.md">Markdown recipe</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a></p>
 <h2>Fetch and prepare</h2>
 <pre><code>{esc(commands)}</code></pre>
 <p>Inspect the requirements, then remove <code>--plan</code> to prepare a project. Preparation verifies the archive SHA256 and preserves exact source pins. <code>--install-deps</code> explicitly installs dependencies. Run the returned simulation command separately.</p>
@@ -808,6 +808,13 @@ def build(args):
     source_projects = ROOT / "catalog/source-projects.json"
     if source_projects.exists():
         write(output / "catalog/v1/source-projects.json", canonical(read_json(source_projects)) + "\n")
+    registry_manifests = {}
+    for name in ("artifact-projects.json", "workflow-projects.json", "agent-skill-projects.json"):
+        manifest_path = ROOT / "catalog" / name
+        if manifest_path.exists():
+            relative = "catalog/v1/" + name
+            write(output / relative, canonical(read_json(manifest_path)) + "\n", max_bytes=2 * 1024 * 1024)
+            registry_manifests[name.removesuffix(".json")] = base + "/" + relative
     memory_proofs, memory_index = publish_memories(memories, output, base, hub_commit, return_index=True)
     contract_path = ROOT / "docs/agent-contract.json"
     contract = read_json(contract_path) if contract_path.exists() else {"schema_version": "1", "name": "Robot Skill Hub"}
@@ -832,6 +839,8 @@ def build(args):
         contract["resources"]["source_index_manifest_url"] = base+"/catalog/v1/source-index-manifest.json"
     if source_projects.exists():
         contract["resources"]["source_projects_url"] = base+"/catalog/v1/source-projects.json"
+    if registry_manifests:
+        contract["resources"]["source_registry_manifests"] = registry_manifests
     write(output / "index.html", home(records, base, references))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
@@ -847,10 +856,13 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md"):
         document = ROOT / "docs" / name
         if document.exists():
-            write(output / name, document.read_text(encoding="utf-8"))
+            text = document.read_text(encoding="utf-8")
+            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "verification.md"):
+                text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
+            write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"
     if openapi.exists():
         read_json(openapi)

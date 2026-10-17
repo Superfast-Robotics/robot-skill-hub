@@ -26,6 +26,12 @@
       "record_version": "source-0176c7cfd7f569052d3208d82a9aa765ded740db08b2bfc57f75f571ccb7c2e9"
     },
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-teleoperate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "2f2b2a9bb822d1b33b0033e9a2b0664649f959ef7da45d48629368a63ff9cf1a",
+      "record_version": "source-2f2b2a9bb822d1b33b0033e9a2b0664649f959ef7da45d48629368a63ff9cf1a"
+    },
+    {
       "id": "ompl-demos-bouncingballplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "b08019faacad973ae9121d70ab5e352e62fa84e8019c230703fd377977e64033",

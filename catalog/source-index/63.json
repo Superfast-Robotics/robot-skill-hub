@@ -14,6 +14,12 @@
       "record_version": "source-2446971c045b8af60043b02c3d9bd59c41b3704c269b96f5bedc82614e56917f"
     },
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-eval-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "fddec10c709401dd863814091d525fcd54d41cc6ccf51f7ef8300459cf69b873",
+      "record_version": "source-fddec10c709401dd863814091d525fcd54d41cc6ccf51f7ef8300459cf69b873"
+    },
+    {
       "id": "ompl-demos-hybridsystemplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "5d3269294f114e2f10dd5013abab5f9e4bf7b9c67d6d4192da4ded341eeb50b6",
@@ -36,6 +42,12 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2",
       "record_version": "source-4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2"
+    },
+    {
+      "id": "unitree-sdk2-python-example-r1-high-level-r1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "b8f8319656f24477a1f82dfd17464080cc71d8c78e05653d8bc614c3d0579714",
+      "record_version": "source-b8f8319656f24477a1f82dfd17464080cc71d8c78e05653d8bc614c3d0579714"
     },
     {
       "id": "ur-description-artifact-config-ur16e-physical-parameters-yaml",

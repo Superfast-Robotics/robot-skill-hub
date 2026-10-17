@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaaclab-scripts-reinforcement-learning-skrl-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0",
+      "record_version": "source-54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-force-sensor-force-sensor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "fd7a0075190bec096da7285492b0ab2901bb94fce24ebd346aa3a5f04bc84206",

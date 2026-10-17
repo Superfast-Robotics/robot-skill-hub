@@ -6,6 +6,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "78fb41f893dd8381cb089eb6588fa557d187a27f9485d2132a843647c96eb708",
       "record_version": "source-78fb41f893dd8381cb089eb6588fa557d187a27f9485d2132a843647c96eb708"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4",
+      "record_version": "source-cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4"
     }
   ]
 }

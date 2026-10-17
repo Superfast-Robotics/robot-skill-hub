@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grasping-direct-ik",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "8da12c9c156c03f21970fab330d7359e5426f3a11307d36d79e4b4e5fb2e1712",
+      "record_version": "source-8da12c9c156c03f21970fab330d7359e5426f3a11307d36d79e4b4e5fb2e1712"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-03-envs-create-cube-base-env-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "62761fd6d3f942bde2f8b334ece9aebc8d6fcb77e13d92ac12b39e7bd3cb117f",

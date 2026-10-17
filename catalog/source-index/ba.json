@@ -26,6 +26,12 @@
       "record_version": "source-a74bd0c06c6a1456d1f9b995d83529b2e9cda3daf08fcf652125578b601c0be0"
     },
     {
+      "id": "openpi-examples-droid-convert-droid-data-to-lerobot-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9",
+      "record_version": "source-35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9"
+    },
+    {
       "id": "webots-projects-robots-neuronics-ipr-controllers-ipr1-collaboration-93f470ee5064",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "210c977f33ddf4698b947933e549cac688213376292eb012cd5b35f2d47033c3",

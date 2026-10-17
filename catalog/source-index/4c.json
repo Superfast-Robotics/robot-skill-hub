@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-perceiving-objects-oneshot",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "1862a6bb19d796fef2e8065fa59d9bb6a4070dc270e6ed3b7bb1588306a9ca07",
+      "record_version": "source-1862a6bb19d796fef2e8065fa59d9bb6a4070dc270e6ed3b7bb1588306a9ca07"
+    },
+    {
       "id": "mujoco-menagerie-artifact-boston-dynamics-spot-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "3e2094dcba90cd5662efff12e252c6806e8de1317d20d3f2bbd3c54c885a6c68",

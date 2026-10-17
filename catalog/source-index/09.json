@@ -14,6 +14,18 @@
       "record_version": "source-4cb7a66d7c0e786076c671e15393395710924e0dab26831d4d01d34eca6b4847"
     },
     {
+      "id": "gap-bundle-executing-feature-mating",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "58370b13ac1fa2b3e8d1080239abb9a516a625ab243fdc5e1993be1189ab71e0",
+      "record_version": "source-58370b13ac1fa2b3e8d1080239abb9a516a625ab243fdc5e1993be1189ab71e0"
+    },
+    {
+      "id": "gap-bundle-reconstructing-collision-worlds",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "eca0916eb2a206f2581d6dadf9421ff4109d70f1cc1cd27c39d71541d313e7cb",
+      "record_version": "source-eca0916eb2a206f2581d6dadf9421ff4109d70f1cc1cd27c39d71541d313e7cb"
+    },
+    {
       "id": "mujoco-menagerie-artifact-sharpa-wave-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "22208af2ee00bcb62a197dbba8e5ed6577ec41f30ba1fa13fdee375a299ab27e",

@@ -8,10 +8,28 @@
       "record_version": "source-3e32f6c48e5c563943686bc8ac3b5f52c69eb2f883724234f5ab80817272d9e6"
     },
     {
+      "id": "isaaclab-scripts-reinforcement-learning-sb3-train-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912",
+      "record_version": "source-a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912"
+    },
+    {
       "id": "mujoco-menagerie-artifact-agilex-piper-piper-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a7b5b5d3b2a68d5c553b2ee9665d54a422bd8bf1fa6f3251bc11834993d37098",
       "record_version": "source-a7b5b5d3b2a68d5c553b2ee9665d54a422bd8bf1fa6f3251bc11834993d37098"
+    },
+    {
+      "id": "openpi-scripts-compute-norm-stats-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "8a64773495b714d6b18eded99d7cf87eb19d1bb3dd4a9fb47172b03de5d56a38",
+      "record_version": "source-8a64773495b714d6b18eded99d7cf87eb19d1bb3dd4a9fb47172b03de5d56a38"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-conversion-convert-robosuite-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "d4be7c09c326e78f0130f8a5000b9bd1aab4aaa4a374c9ad5cf696f638b7f6a5",
+      "record_version": "source-d4be7c09c326e78f0130f8a5000b9bd1aab4aaa4a374c9ad5cf696f638b7f6a5"
     },
     {
       "id": "ros2-control-artifact-example-3-description-urdf-rrbot-system-multi-31a36c102f3c",

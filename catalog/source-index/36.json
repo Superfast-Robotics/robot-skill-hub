@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-verifying-placement",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a1143fe591cdd8101d6ce90011318f24871549c8879f4c1fd8c4d2b5ee34290a",
+      "record_version": "source-a1143fe591cdd8101d6ce90011318f24871549c8879f4c1fd8c4d2b5ee34290a"
+    },
+    {
       "id": "isaaclab-scripts-demos-deformables-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "f95d18faea55acb1dddaf29fb68db41624c1d2e6ca7c542c8c553cbd7d648e97",

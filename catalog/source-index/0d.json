@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-molmo",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "95bc78f64c9495a5e269fb49a64c84717680eae9e3ed6799e25e3c5458cdcc4e",
+      "record_version": "source-95bc78f64c9495a5e269fb49a64c84717680eae9e3ed6799e25e3c5458cdcc4e"
+    },
+    {
       "id": "mujoco-menagerie-artifact-flexiv-rizon4-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "71f2ffd596009dd1b8b063f1897ea838840e3d555d998f5125bfec6cad10fb4b",

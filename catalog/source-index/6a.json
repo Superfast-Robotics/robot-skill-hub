@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grasping-short-axis",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "941e585611b9f1c2e2ef656226cbc951408c837e8f27710668cfdc222be09a08",
+      "record_version": "source-941e585611b9f1c2e2ef656226cbc951408c837e8f27710668cfdc222be09a08"
+    },
+    {
       "id": "pinocchio-examples-ellipsoid-joint-kinematics-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "a13b1b178040608064113be546951e837534c081378ad29d671143d9bb224c96",

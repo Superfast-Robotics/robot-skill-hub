@@ -18,6 +18,12 @@
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6",
       "record_version": "source-4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6"
+    },
+    {
+      "id": "unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4",
+      "record_version": "source-124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4"
     }
   ]
 }

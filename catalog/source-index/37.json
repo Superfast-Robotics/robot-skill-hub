@@ -8,6 +8,12 @@
       "record_version": "source-bffe99e543ea6803dfbade0eeaf49524b3bf02efbcf9cdd297ba13a0a3907ae3"
     },
     {
+      "id": "unitree-sdk2-python-example-go2-low-level-go2-stand-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896",
+      "record_version": "source-0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896"
+    },
+    {
       "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3dx-collis-b44794b69ee0",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "abc7f79e2c732fda982e4fd25a17d271c3f3e7f4ae69d9adbaaf8ea488ae9571",

@@ -44,6 +44,12 @@
       "record_version": "source-aaf9e1a115bf3de26980c8e0d908151b054685c8cd9410e6e757c446ff16dd37"
     },
     {
+      "id": "openpi-examples-droid-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "4bdbdbdde068ebb30ba90d62bf8c51df156b4baae5c5ac5870c08f7b03d4afc2",
+      "record_version": "source-4bdbdbdde068ebb30ba90d62bf8c51df156b4baae5c5ac5870c08f7b03d4afc2"
+    },
+    {
       "id": "ros2-control-artifact-example-5-description-urdf-rrbot-system-with-f4aa0d661026",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "0cfff31c1cf853fce100ad5e0634b60a705afb6ed24c06da17739014526f3d71",

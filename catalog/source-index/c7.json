@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-computing-feature-mating-poses",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "24c836a8495060f0632e1087d0ea3d960469cea80af24f1979253964137d3d32",
+      "record_version": "source-24c836a8495060f0632e1087d0ea3d960469cea80af24f1979253964137d3d32"
+    },
+    {
       "id": "ompl-demos-multilevel-multilevelplanningrigidbody3d-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "bea4dd0de21b83184ab05de0b3d8e5cb8d21b338d2ab5b1946ce6a8440e7b742",

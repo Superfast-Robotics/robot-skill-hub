@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-perceiving-next-item",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "51b3e7f045f142d5cc98b5ef783086aa159a9d7ff48c0307a0523fc9dfe4df27",
+      "record_version": "source-51b3e7f045f142d5cc98b5ef783086aa159a9d7ff48c0307a0523fc9dfe4df27"
+    },
+    {
       "id": "moveit2-doc-tutorials-pick-and-place-with-moveit-task-constructor-s-18895035ed7f",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "491a45679eedb01741be0908646b082654aba4124232056bd3c14eb7138c4e00",

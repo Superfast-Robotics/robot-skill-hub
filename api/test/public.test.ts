@@ -56,6 +56,18 @@ test('public search and inspect need no credentials and preserve recipe/referenc
   assert.ok(s.calls.every(call => !call.url.startsWith('https://attacker.example.org')));
 });
 
+test('capabilities expose bounded finding and complete manifest discovery without credentials', async () => {
+  const s = fixture();
+  const response = await s.request('/v1/capabilities');
+  assert.equal(response!.status, 200);
+  const body: any = await response!.json();
+  assert.equal(body.public_discovery.findings, 'https://api.superfastrobotics.com/v1/findings');
+  assert.equal(body.public_discovery.search_manifest, ORIGIN + '/catalog/v2/search-manifest.json');
+  assert.equal(body.memories.complete_manifest, ORIGIN + '/catalog/v2/memory-manifest.json');
+  assert.equal(body.public_discovery.authentication_required, false);
+  assert.ok(s.calls.every(call => !new Headers(call.init?.headers).has('Authorization')));
+});
+
 test('environment filters match one compatibility combination and never combine unrelated observations', async () => {
   const s = fixture();
   const exact: any = await (await s.request('/v1/search?runtime=maniskill&robot=panda&controller=pd_joint_pos&os=linux'))!.json();

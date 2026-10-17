@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-geometry",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "b8cb9b8ba62fdb1a0198556c36ec8baf794e77203888a546a44e0feb898f05e4",
+      "record_version": "source-b8cb9b8ba62fdb1a0198556c36ec8baf794e77203888a546a44e0feb898f05e4"
+    },
+    {
+      "id": "gap-bundle-placing-held-feature",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "7f1328c0baeab74441d26af376cd52f92107e569bd2e0fe463056f05a57fb797",
+      "record_version": "source-7f1328c0baeab74441d26af376cd52f92107e569bd2e0fe463056f05a57fb797"
+    },
+    {
       "id": "ompl-demos-geometriccarplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "3fe3176b406880e3d730c5871523eda7b0b7779d660e2a7eaa55a2e8acb43e83",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-grasping-linear-feature",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "4c1dc33c85cd7cf1a26e576c42fcd7bedbd77745fd158738a0d3c364c1a7c069",
+      "record_version": "source-4c1dc33c85cd7cf1a26e576c42fcd7bedbd77745fd158738a0d3c364c1a7c069"
+    },
+    {
       "id": "pinocchio-examples-model-configuration-converter-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "9574a15f124c5b1117e5671e54578aea13345b59a863e2503c6e83f176f3a31e",

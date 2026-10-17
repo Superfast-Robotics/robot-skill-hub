@@ -6,6 +6,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "3911984ad1c0659c7f461324d4ced1742a30f77c3b2d58ddb09d6ab15d1d6790",
       "record_version": "source-3911984ad1c0659c7f461324d4ced1742a30f77c3b2d58ddb09d6ab15d1d6790"
+    },
+    {
+      "id": "robomimic-examples-train-bc-rnn-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743",
+      "record_version": "source-9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743"
     }
   ]
 }

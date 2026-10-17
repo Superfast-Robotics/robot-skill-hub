@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "robomimic-robomimic-scripts-conversion-robosuite-add-absolute-actions-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0",
+      "record_version": "source-3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0"
+    }
+  ]
+}

@@ -30,6 +30,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "dbd02ea3f7ad42459410898a27ce4bf8d651638f2924a81edd8f6d95350cfc0d",
       "record_version": "source-dbd02ea3f7ad42459410898a27ce4bf8d651638f2924a81edd8f6d95350cfc0d"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-low-level-g1-low-level-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "044dc6f9f132ec4ddcdef7f6eda0fc74118dc21abc50e64de441179a748d1984",
+      "record_version": "source-044dc6f9f132ec4ddcdef7f6eda0fc74118dc21abc50e64de441179a748d1984"
     }
   ]
 }

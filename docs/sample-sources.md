@@ -5,11 +5,16 @@ The Hub contains two kinds of entries:
 - **17 preparation recipes** wrap actual official ManiSkill motion-planning
   solvers with a pinned source archive, dependency recipe, isolated preparation,
   and a final JSON result contract.
-- **1,060 official source references** cover 651 runnable-source examples and
+- **The earlier baseline of 1,060 official source references** covers 651
+  runnable-source examples and
   409 robot model, description and configuration text artifacts across 19
   official robotics repositories. They expose immutable source and applicable license
   hashes, setup links and exact inspection limits. They have no Hub preparation
   adapter. The published catalog also contains one separately reviewed intake.
+
+Later finite selections add **56 policy and hardware workflow entrypoints** and
+**43 robot-agent instruction documents**. Their source-review notes below preserve
+the baseline counts and evidence separately.
 
 Read the [preparation catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
 and [source example index](https://hub.superfastrobotics.com/catalog/v1/references.json)
@@ -47,7 +52,7 @@ Source inspection, archive extraction and adapter contract tests are recorded
 separately from simulator execution. The evidence fields retain the precise
 runtime level; none of the additions claims a measured task success rate.
 
-## Broader source examples
+## Broader source examples (baseline selection)
 
 The source index covers manipulation, navigation, inverse kinematics, dynamics,
 joint control, robot learning, teleoperation, sensing, flight and legged robots.
@@ -141,6 +146,28 @@ datasets, policy weights, commercial simulator runtimes and dependencies retain
 their separate upstream licenses; indexing a source reference does not copy
 those artifacts or grant additional rights.
 
+## Policy and hardware workflows
+
+The [workflow source review](workflow-sources.md) documents **56 additional
+operational Python entrypoints**: 11 OpenPI, 10 robomimic, 18 Unitree SDK2 Python,
+9 LeRobot CLIs and 8 Isaac Lab RL train/play scripts. The
+[frozen workflow manifest](../catalog/workflow-projects.json) pins source,
+applicable license, author and setup evidence. These are source references with
+no Hub preparation adapter; policy performance and hardware compatibility were
+not tested. The earlier 1,060 records remain unchanged.
+
+## Robot-agent instruction sources
+
+The [agent instruction source review](agent-skill-sources.md) documents **43
+GaP bundle entry documents** from `graph-robots/open-robot-skills`: 33 skill,
+8 tool and 2 policy contracts. The [frozen manifest](../catalog/agent-skill-projects.json)
+and [sanitized receipt](../evidence/sources/agent-instructions-2026-10-18.json)
+record exact source hashes and scope. Eleven MIT frontmatter declarations differ
+from the repository's Apache-2.0 declaration and remain `NOASSERTION` with
+`verified: false`. Requirements and behavior descriptions are upstream text
+declarations; the Hub followed no bundle instructions and verified no runtime
+or robot compatibility. All entries remain `not_run` and have no Hub adapter.
+
 ## Reproduce the index
 
 ```sh
@@ -164,6 +191,12 @@ python tools/import_robot_artifacts.py --fetch --check
 
 # Check those artifacts and the additive source indexes from local cached text.
 python tools/import_robot_artifacts.py --check
+
+# Validate frozen workflow source, license and author/setup text offline.
+python tools/import_robot_workflows.py --check
+
+# Validate frozen agent instruction/provenance text as inert data offline.
+python tools/import_agent_skill_sources.py --check
 
 # After reviewing a manifest commit/license change, explicitly inspect its tree.
 python tools/import_ecosystem_examples.py --discover --project nav2 --fetch

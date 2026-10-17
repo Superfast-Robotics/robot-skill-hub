@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c",
+      "record_version": "source-ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c"
+    },
+    {
       "id": "mujoco-menagerie-artifact-agility-cassie-cassie-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "92ec84d23a0f62a848b4d646fc9197cad3b0c518bb6cb1aafe241b3db88dd885",
@@ -18,6 +24,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "875fe8ec522764166a29655044c98a8fd3f3410d36442efe52a737b378cde080",
       "record_version": "source-875fe8ec522764166a29655044c98a8fd3f3410d36442efe52a737b378cde080"
+    },
+    {
+      "id": "robomimic-robomimic-scripts-train-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3830b87dc246d2df2edadef73f03b64384d45a39f21ba1c952390cb05353f8c8",
+      "record_version": "source-3830b87dc246d2df2edadef73f03b64384d45a39f21ba1c952390cb05353f8c8"
     },
     {
       "id": "ros2-control-artifact-example-1-description-urdf-rrbot-urdf-xacro",

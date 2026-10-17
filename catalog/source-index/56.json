@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-perceiving-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "5a9951245abf1b598eb16bb1389646aa12a404a835b27ab6e1918331525d4fd7",
+      "record_version": "source-5a9951245abf1b598eb16bb1389646aa12a404a835b27ab6e1918331525d4fd7"
+    },
+    {
       "id": "mujoco-menagerie-artifact-fourier-n1-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "1b6753840d9ffe4daf23549cd6d3348197124e6eecd1df2da4497f3d2d11fe7e",
@@ -24,6 +30,12 @@
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "a5ad5f41c44e833f755e7b18823ef9debe636327afe78635e7280bdb1605cd55",
       "record_version": "source-a5ad5f41c44e833f755e7b18823ef9debe636327afe78635e7280bdb1605cd55"
+    },
+    {
+      "id": "unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "5fc4089b9de9a51a6e01fdf558a840ab7ec063d38411f4be8f51a9334f3b81a3",
+      "record_version": "source-5fc4089b9de9a51a6e01fdf558a840ab7ec063d38411f4be8f51a9334f3b81a3"
     },
     {
       "id": "webots-projects-robots-robotis-darwin-op-controllers-visual-tracking-main-cpp",

@@ -27,13 +27,14 @@
         "revision": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "Standalone artifact revision. Its digest must equal sha256; omit commit."},
         "path": {"type": "string", "minLength": 1, "maxLength": 500, "description": "Safe relative upstream path, never a local write destination."},
         "url": {"$ref": "#/$defs/url"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-        "bytes": {"type": "integer", "minimum": 1, "maximum": 53687091200}, "authors": {"$ref": "#/$defs/nonemptyStrings"}
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991, "description": "Declared artifact size, not an upload allowance. Source-only intake never downloads these bytes; the metadata request remains limited to 16 KiB."}, "authors": {"$ref": "#/$defs/nonemptyStrings"}
       },
       "oneOf": [{"required": ["commit"], "not": {"required": ["revision"]}}, {"required": ["revision"], "not": {"required": ["commit"]}}]
     },
     "compatibility": {
       "type": "object", "additionalProperties": false, "required": ["runtime", "runtime_version", "robot", "controller", "observation", "os"],
-      "properties": {"runtime": {"$ref": "#/$defs/text"}, "runtime_version": {"$ref": "#/$defs/text"}, "robot": {"$ref": "#/$defs/text"}, "controller": {"$ref": "#/$defs/text"}, "observation": {"$ref": "#/$defs/text"}, "os": {"$ref": "#/$defs/text"}}
+      "description": "One declared environment combination. Runtime and robot names are open labels. Python and architecture are optional exact source-reference discovery values; omission leaves them unknown, never unrestricted compatibility.",
+      "properties": {"runtime": {"$ref": "#/$defs/text"}, "runtime_version": {"$ref": "#/$defs/text"}, "robot": {"$ref": "#/$defs/text"}, "controller": {"$ref": "#/$defs/text"}, "observation": {"$ref": "#/$defs/text"}, "os": {"$ref": "#/$defs/text"}, "python": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "^[^\\u0000-\\u001f]+$"}, "architecture": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "^[^\\u0000-\\u001f]+$"}}
     },
     "skill": {
       "type": "object", "additionalProperties": false,

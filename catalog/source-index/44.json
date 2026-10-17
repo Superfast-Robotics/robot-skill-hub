@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-proposing-side-grasps",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a3327fcd24527f7ee9299f1992cb177839b289fe3455f1e7c9e884e6096e11b8",
+      "record_version": "source-a3327fcd24527f7ee9299f1992cb177839b289fe3455f1e7c9e884e6096e11b8"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-record-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "9daafbc8d075a60fa6189e76306f462538103f2200320aa68514e15c69623d99",

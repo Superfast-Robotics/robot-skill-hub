@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8",
+      "record_version": "source-f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-camera-recognition-came-35025fbc2580",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "82e7ed90d705242738db7b90cf7991026685da5897fcbdcdb26ad79269763ccd",

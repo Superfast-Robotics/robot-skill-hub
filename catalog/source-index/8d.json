@@ -8,10 +8,22 @@
       "record_version": "source-40fb78a7082e4fb7fc565b5ee3f3be15a4db4a07895cdbadda46c251980320ab"
     },
     {
+      "id": "gap-bundle-planning-held-object-motion",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e",
+      "record_version": "source-cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-robot-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4e0e048dd9a039a22df26fcac42e5e469dbe984e96ff7b720c47ebb2413ad7ba",
       "record_version": "source-4e0e048dd9a039a22df26fcac42e5e469dbe984e96ff7b720c47ebb2413ad7ba"
+    },
+    {
+      "id": "openpi-examples-aloha-real-main-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "a6195287f804015d928793bcbfab427e21933745ce1d53224671c9e501182d14",
+      "record_version": "source-a6195287f804015d928793bcbfab427e21933745ce1d53224671c9e501182d14"
     },
     {
       "id": "ros2-control-artifact-example-7-bringup-config-r6bot-controller-yaml",

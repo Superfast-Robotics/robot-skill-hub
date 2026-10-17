@@ -8,6 +8,12 @@
       "record_version": "source-833fa7867303ddfa47edc298a129af4172fa6f0d4851504448dc357315cc5bb9"
     },
     {
+      "id": "gap-bundle-tipping-over-a-surface-edge",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b",
+      "record_version": "source-6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-gyro-gyro-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "172aaee820e19b0ae587a7ec31876b83c5a2745caffb672ee73e8df090c8b59c",

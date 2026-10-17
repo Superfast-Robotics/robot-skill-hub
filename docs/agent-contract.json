@@ -383,21 +383,56 @@
       "parameters": [
         "q",
         "runtime",
+        "runtime_version",
         "robot",
         "controller",
         "observation",
         "os",
+        "python",
+        "architecture",
         "kind",
         "limit",
         "offset",
         "hub_commit"
       ],
       "limit_maximum": 50,
-      "pagination": "Preserve hub_commit when following next."
+      "pagination": "Preserve hub_commit when following next.",
+      "search_semantics": "all_terms_word_prefix_with_d1_backend",
+      "coverage": "complete_query_total",
+      "legacy_views": "bounded_compatibility_views_with_explicit_coverage"
     },
     "inspect": {
       "method": "GET",
       "url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}",
+      "execution_performed": false
+    },
+    "findings": {
+      "method": "GET",
+      "url": "https://api.superfastrobotics.com/v1/findings",
+      "required_parameters": [
+        "skill_id",
+        "record_version",
+        "source_commit"
+      ],
+      "environment_parameters": [
+        "runtime",
+        "runtime_version",
+        "robot",
+        "controller",
+        "observation",
+        "os",
+        "python",
+        "architecture"
+      ],
+      "pagination_parameters": [
+        "limit",
+        "offset",
+        "hub_commit"
+      ],
+      "limit_maximum": 50,
+      "interpretation": "data_only",
+      "trust": "contributor_reported",
+      "pagination": "Preserve the returned publication hub_commit; keep original source and record pins.",
       "execution_performed": false
     }
   },

@@ -14,6 +14,12 @@
       "record_version": "source-4e3aaa324d1ecce761a77c570c13a1259c88fd605d248cd26b2800532f804450"
     },
     {
+      "id": "robomimic-robomimic-scripts-playback-dataset-py",
+      "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "source_sha256": "3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce",
+      "record_version": "source-3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce"
+    },
+    {
       "id": "ur-description-artifact-config-ur20-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "a43b2b1acf30e60763fd4ef268cbedf20423f81cd83596ed26f7043050fcc81e",

@@ -26,6 +26,12 @@
       "record_version": "source-ab3f228f781fdfc3f90581cf30de141ceac5e1734d7dbab18352761843a9156b"
     },
     {
+      "id": "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_sha256": "d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd",
+      "record_version": "source-d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-axial-rotor-axial-rotor-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "6c223d03e7c1a5991d72dbfd01bad41f078f2b58116abf42bab1a9bd461c62c5",

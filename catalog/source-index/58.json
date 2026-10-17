@@ -20,6 +20,18 @@
       "record_version": "source-99d3205bd545d3afd3da8033c6b5994b0b6f462deea321d4a1e73c26e3977394"
     },
     {
+      "id": "gap-bundle-transporting-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "705953899e77ec9641e28fbbf0ff6dce75b4240bedd5702277266c4a9fc49a65",
+      "record_version": "source-705953899e77ec9641e28fbbf0ff6dce75b4240bedd5702277266c4a9fc49a65"
+    },
+    {
+      "id": "lerobot-src-lerobot-scripts-lerobot-calibrate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "390e3c411b5fd8362fc32d9320bb0eed84d102501de616f85b03c38c7eb11553",
+      "record_version": "source-390e3c411b5fd8362fc32d9320bb0eed84d102501de616f85b03c38c7eb11553"
+    },
+    {
       "id": "mujoco-menagerie-artifact-unitree-h1-h1-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4d15bc381ee8113722fe514a6fc0059988cd114c2bedfadf2e6279b41ef0810d",

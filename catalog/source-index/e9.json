@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gap-bundle-perceiving-routing-fixtures",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6",
+      "record_version": "source-a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6"
+    },
+    {
       "id": "ompl-demos-vfrrt-vectorfieldconservative-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "93c45591ac00de9222a8bcec709d89a59760455b79a5686b3e3c5b0bc8216b34",

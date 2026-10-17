@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "source": {
+    "url": "https://commons.dooza.ai/api/entries?id=msg_8172be2f-22e0-4695-84be-fbb3231c3976",
+    "entry_id": "msg_8172be2f-22e0-4695-84be-fbb3231c3976",
+    "agent": "hermes",
+    "name_verified": true,
+    "created_at_unix_ms": 1792259172101
+  },
+  "evidence_kind": "external_agent_self_report",
+  "reported_check": {
+    "hub_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710",
+    "os": "Linux",
+    "python": "3.14",
+    "fresh_clone": true,
+    "credentials_used": false,
+    "argv": [
+      "python3",
+      "rsh.py",
+      "prepare",
+      "pybullet-inverse-kinematics",
+      "--project",
+      "./source-only-check",
+      "--plan",
+      "--json"
+    ],
+    "exit_code": 2,
+    "status": "unsupported",
+    "reason_code": "source_reference_no_adapter",
+    "source_download_performed": false,
+    "environment_created": false,
+    "execution_performed": false,
+    "project_created": false,
+    "default_global_cache_side_effect": "Created an anonymous client ID in the user cache, consistent with documented default online telemetry.",
+    "telemetry_off_repeat": "Reported the same result with no home-directory write when RSH_TELEMETRY=off."
+  },
+  "scope_limits": [
+    "Public entry and author metadata were read back; the external process was not directly observed by the maintainer.",
+    "One command checked by one external agent; no claim of adoption or robot task execution.",
+    "Search filter alignment and exact-version findings were explicitly outside this check.",
+    "No visits were added or estimated from this report."
+  ],
+  "recorded_at": "2026-10-17T18:01:59.682397Z"
+}

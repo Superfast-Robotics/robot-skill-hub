@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "lerobot-src-lerobot-scripts-lerobot-replay-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1",
+      "record_version": "source-cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1"
+    },
+    {
       "id": "mujoco-menagerie-artifact-hello-robot-stretch-3-stretch-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "154088989df3b3d01a184b8e2df7cb82481efcd532f2498719acf1d77f001a6d",
@@ -12,6 +18,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0",
       "record_version": "source-ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0"
+    },
+    {
+      "id": "openpi-scripts-train-py",
+      "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "source_sha256": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
+      "record_version": "source-22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf"
     },
     {
       "id": "webots-projects-robots-universal-robots-controllers-ure-can-grasper-7f8e2ee7fd58",

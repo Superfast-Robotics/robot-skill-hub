@@ -14,6 +14,12 @@
       "record_version": "source-1b417777982a40ee058a4b9ae5d1a1de2f5c079e96dc4fe730b80eda71bdfbc6"
     },
     {
+      "id": "gap-bundle-registering-held-objects",
+      "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+      "source_sha256": "04e5f0ecc9fedd882d81c50f2e3a65f31939e9a6a9ec432e49cd333ae1e4bc81",
+      "record_version": "source-04e5f0ecc9fedd882d81c50f2e3a65f31939e9a6a9ec432e49cd333ae1e4bc81"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-talos-talos-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "d6f83a3eacdf0470e34d7292e2087ac067fdbd6201044a200cf1babdff487904",

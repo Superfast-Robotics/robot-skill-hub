@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-17T17:54:21.428203+00:00",
+  "reviewed_repo_commit": "9bfb430348d4016d0bfb4c66da99c1be1309b70c",
+  "scope": "Primary provider documentation, public read-only lookup, and concrete prepared metadata. Nothing was submitted or installed.",
+  "actions": {
+    "provider_write_requests": 0,
+    "accounts_created": 0,
+    "plans_changed": 0,
+    "provider_keys_used": false,
+    "github_token_sent_to_providers": false,
+    "hub_api_requests": 0,
+    "own_requests_telemetry_opt_out": true,
+    "browser_form_verified": false,
+    "browser_blocker": "No browser surface or in-app browser is available in this session."
+  },
+  "context7": {
+    "state": "prepared_not_submitted_authentication_required_by_documented_api",
+    "official_sources": [
+      "https://context7.com/docs/adding-libraries",
+      "https://context7.com/docs/api-reference/add-library/add-a-github-repository",
+      "https://context7.com/docs/library-owners",
+      "https://context7.com/docs/howto/api-keys"
+    ],
+    "search": {
+      "url": "https://context7.com/api/v2/libs/search?libraryName=robot-skill-hub&query=robotics%20skill%20discovery",
+      "http_status": 200,
+      "matching_hub_result_observed": false,
+      "returned_ids": [
+        "/ziniao-open/skill-hub",
+        "/binance/binance-skills-hub"
+      ]
+    },
+    "expected_detail": {
+      "url": "https://context7.com/superfast-robotics/robot-skill-hub",
+      "http_status": 404
+    },
+    "prepared_request": {
+      "method": "POST",
+      "url": "https://context7.com/api/v2/add/repo/github",
+      "authorization": "Context7 API key in Authorization: Bearer header; never a GitHub token for this public repository",
+      "json": {
+        "docsRepoUrl": "https://github.com/Superfast-Robotics/robot-skill-hub",
+        "private": false
+      }
+    },
+    "optional_repository_configuration_not_applied": {
+      "$schema": "https://context7.com/schema/context7.json",
+      "projectTitle": "Robot Skill Hub",
+      "description": "Agent-first robotics discovery documentation for pinned Python robot-manipulation recipes, robot model/configuration references and source/version-scoped findings. Includes ManiSkill Panda CPU/state examples, source/license pins, compatibility limits, a local preparation CLI and three read-only MCP discovery tools.",
+      "folders": [
+        "docs",
+        "skills/find-robot-skills"
+      ],
+      "excludeFiles": [
+        "growth-status.md",
+        "deployment.md"
+      ]
+    },
+    "optional_configuration_validation": {
+      "official_schema_url": "https://context7.com/schema/context7.json",
+      "schema_sha256": "be8d88d8c4c53c4c0e51e0312d7635ef12d5dfe7e16cce22edaaf5e2f39cc506",
+      "validator": "Existing api/node_modules/ajv; draft-07",
+      "valid": true
+    },
+    "auth_input_position": {
+      "url": "https://context7.com/dashboard",
+      "control_path": [
+        "API Keys",
+        "Create API Key"
+      ],
+      "key_format_prefix": "ctx7sk-",
+      "runtime_input": "CONTEXT7_API_KEY",
+      "repository_access": "Public repository; no gitToken or private GitHub repository permission is needed"
+    },
+    "submission_ui": "https://context7.com/add-library -> GitHub tab -> repository URL -> Submit; UI behavior unverified in this session",
+    "completion_not_yet_checked": [
+      "Submission accepted",
+      "Indexing finalized",
+      "Documentation query returns actual Hub usage instructions and source links"
+    ],
+    "github_issue_route": "Reviewed official bug/documentation/feature templates; no dedicated library-registration template was present. No issue was filed."
+  },
+  "smithery": {
+    "state": "prepared_not_submitted_provider_auth_and_namespace_ownership_required",
+    "official_sources": [
+      "https://smithery.ai/docs/build/publish",
+      "https://smithery.ai/docs/api-reference/servers/create-a-server",
+      "https://smithery.ai/docs/api-reference/servers/publish-a-server",
+      "https://smithery.ai/docs/concepts/cli",
+      "https://smithery.ai/docs/concepts/namespaces"
+    ],
+    "public_server_search": {
+      "url": "https://api.smithery.ai/servers?q=robot-skill-hub&pageSize=10",
+      "http_status": 200,
+      "matching_hub_result_in_returned_candidates": false,
+      "returned_candidates": 10
+    },
+    "public_skill_search": {
+      "url": "https://api.smithery.ai/skills?q=robot-skill-hub&pageSize=10",
+      "http_status": 200,
+      "matching_hub_result_in_returned_candidates": false
+    },
+    "candidate_server_detail": {
+      "url": "https://api.smithery.ai/servers/superfast-robotics%2Frobot-skill-hub",
+      "http_status": 404,
+      "note": "Only this candidate qualified name was checked; it is not reserved or ownership-verified."
+    },
+    "own_namespace_read_without_auth": {
+      "url": "https://api.smithery.ai/namespaces",
+      "http_status": 401,
+      "message": "Missing authentication token. Provide an API key or session token in the Authorization header."
+    },
+    "prepared_create_request": {
+      "method": "PUT",
+      "url": "https://api.smithery.ai/servers/superfast-robotics%2Frobot-skill-hub",
+      "json": {
+        "displayName": "Robot Skill Hub",
+        "description": "Public read-only MCP tools to find and inspect pinned robotics source, compatibility and execution evidence. Local preparation uses the separate Hub CLI. Maintained by Superfast Robotics."
+      }
+    },
+    "prepared_publish_command": "smithery mcp publish \"https://api.superfastrobotics.com/mcp\" -n superfast-robotics/robot-skill-hub",
+    "auth_input_position": {
+      "commands": [
+        "smithery auth login",
+        "smithery auth whoami"
+      ],
+      "alternative_runtime_input": "SMITHERY_API_KEY",
+      "authorization": "Use the provider URL printed by auth login. The selected identity must own the namespace and be authorized to create/update the server and publish its external-URL release. No GitHub PAT was sent or requested."
+    },
+    "free_plan_documentation": {
+      "hobby_namespace_limit": 3,
+      "paid_plan_selected": false
+    },
+    "completion_not_yet_checked": [
+      "Namespace authorization",
+      "External-URL release accepted",
+      "Release scan/publication succeeded",
+      "Public server/tool record and search readback"
+    ]
+  },
+  "clawhub": {
+    "state": "not_ready_provider_auth_and_license_distribution_review_required",
+    "official_sources": [
+      "https://docs.openclaw.ai/clawhub/auth",
+      "https://docs.openclaw.ai/clawhub/publishing",
+      "https://docs.openclaw.ai/clawhub/skill-format",
+      "https://docs.openclaw.ai/clawhub/http-api"
+    ],
+    "searches": [
+      {
+        "url": "https://clawhub.ai/api/v1/search?q=robot-skill-hub&limit=10",
+        "http_status": 200,
+        "returned_results": 0
+      },
+      {
+        "url": "https://clawhub.ai/api/v1/search?q=find-robot-skills&limit=10",
+        "http_status": 200,
+        "returned_results": 0
+      }
+    ],
+    "public_discovery": {
+      "url": "https://clawhub.ai/.well-known/clawhub.json",
+      "http_status": 200,
+      "registry": "https://clawhub.ai",
+      "min_cli_version": "0.1.0"
+    },
+    "native_hosted_skill_license_requirement": "MIT-0; provider documentation disallows per-skill overrides",
+    "current_repository_license": "MIT",
+    "license_changed": false,
+    "bundle_uploaded": false,
+    "auth_input_position": {
+      "device_login_command": "clawhub login",
+      "headless_token_location": "ClawHub Settings -> API tokens",
+      "authorization": "GitHub-linked ClawHub account, provider token and applicable publisher rights. Authentication alone does not resolve the current hosted-skill license mismatch."
+    },
+    "additional_publication_gates": [
+      "GitHub account-age upload gate",
+      "Automated security checks before public search/install availability"
+    ],
+    "no_mirror_or_listing_claimed": true
+  },
+  "interpretation": "Search observations and prepared metadata are not submission receipts, completed listings, independent agents, installation success or robot task execution."
+}

@@ -70,6 +70,58 @@ test('standalone policy artifact uses content revision without pretending to be 
   assert.equal(JSON.parse(s.github.branches.get(body.submission_id)!.files[PATH]).source.commit, undefined);
 });
 
+test('unfamiliar robots and frameworks retain eight-field combinations for standalone artifact intake', async () => {
+  for (const [kind, format] of [['policy', 'onnx'], ['model', 'safetensors'], ['dataset', 'parquet'], ['workflow', 'yaml']]) {
+    const s = await setup(); const value = bundle();
+    value.skill.framework = 'unfamiliar-runtime'; value.skill.robots = ['custom-humanoid'];
+    value.skill.artifact = { kind, format }; delete value.skill.source.commit;
+    value.skill.source = { ...value.skill.source, repository: 'https://artifacts.robotics.org/custom-humanoid', revision: 'sha256:' + DIGEST, path: `artifacts/${kind}.${format}`, url: `https://artifacts.robotics.org/sha256/${DIGEST}/${kind}.${format}` };
+    if (kind === 'dataset' || kind === 'model') value.skill.source.bytes = (kind === 'dataset' ? 100 : 64) * 1024 ** 3;
+    value.skill.compatibility = [
+      { runtime: 'unfamiliar-runtime', runtime_version: '1.2', robot: 'custom-humanoid', controller: 'joint-target', observation: 'depth', os: 'linux', python: '3.11', architecture: 'arm64' },
+      { runtime: 'another-runtime', runtime_version: '2', robot: 'custom-quadruped', controller: 'torque', observation: 'state', os: 'linux', python: '3.10', architecture: 'x86_64' }
+    ];
+    const response = await s.post(value); assert.equal(response.status, 201, kind);
+    const body: any = await response.json(); const record = JSON.parse(s.github.branches.get(body.submission_id)!.files[PATH]);
+    assert.equal(record.framework, 'unfamiliar-runtime'); assert.deepEqual(record.robots, ['custom-humanoid']);
+    assert.deepEqual(record.artifact, { kind, format }); assert.equal(record.source.revision, 'sha256:' + DIGEST); assert.equal(record.source.commit, undefined);
+    assert.equal(record.source.bytes, value.skill.source.bytes);
+    assert.deepEqual(record.compatibility, value.skill.compatibility.map((combo: any) => ({ ...combo, status: 'contributor_reported' })));
+    assert.equal(record.access.hub_prepare, false); assert.equal(record.evidence.runtime_verification, 'not_run'); assert.equal(record.license.verified, false);
+    assert.equal(s.github.creates, 1); assert.equal(s.github.prCreates, 1);
+  }
+});
+
+test('source-only intake keeps declared large sizes exact without increasing metadata bounds', async () => {
+  const valid = await setup(); const value = bundle(); value.skill.source.bytes = Number.MAX_SAFE_INTEGER;
+  const response = await valid.post(value); assert.equal(response.status, 201);
+  const id = (await response.json() as any).submission_id;
+  assert.equal(JSON.parse(valid.github.branches.get(id)!.files[PATH]).source.bytes, Number.MAX_SAFE_INTEGER);
+  for (const bytes of [0, true, 1.5, Number.MAX_SAFE_INTEGER + 1]) {
+    const s = await setup(); const invalid = bundle(); invalid.skill.source.bytes = bytes;
+    const denied = await s.post(invalid); assert.equal(denied.status, 422);
+    assert.equal((await denied.json() as any).reason_code, 'invalid_source'); assert.equal(s.github.creates, 0);
+  }
+});
+
+test('optional compatibility fields accept exact declarations and reject malformed constraints before writes', async () => {
+  for (const extra of [{ python: '3.11' }, { architecture: 'arm64' }, { python: 'unknown', architecture: 'unknown' }]) {
+    const s = await setup(); const value = bundle(); Object.assign(value.skill.compatibility[0], extra);
+    assert.equal((await s.post(value)).status, 201);
+  }
+  const mutations: ((combo: any) => void)[] = [
+    combo => { combo.python = null; }, combo => { combo.architecture = ['arm64']; },
+    combo => { combo.python = ''; }, combo => { combo.architecture = ' '; },
+    combo => { combo.python = '3.11\n'; }, combo => { combo.architecture = 'x'.repeat(121); },
+    combo => { combo.python = '3.11'; delete combo.runtime; }, combo => { combo.python = '3.11'; combo.verified = true; }
+  ];
+  for (const mutate of mutations) {
+    const s = await setup(); const value = bundle(); mutate(value.skill.compatibility[0]);
+    const response = await s.post(value); assert.equal(response.status, 422);
+    assert.equal((await response.json() as any).reason_code, 'invalid_compatibility'); assert.equal(s.github.creates, 0); assert.equal(s.github.prCreates, 0);
+  }
+});
+
 test('concurrent intake, changed main, lost response and deleted branch replay one durable PR', async () => {
   const s = await setup(); const replies = await Promise.all(Array.from({ length: 8 }, () => s.post()));
   const values = await Promise.all(replies.map(r => r.json() as Promise<any>)); assert.equal(new Set(values.map(v => v.submission_id)).size, 1);
