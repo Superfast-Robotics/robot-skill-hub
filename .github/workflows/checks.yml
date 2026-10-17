@@ -36,6 +36,8 @@ jobs:
         working-directory: api
       - run: npm run check && npm test
         working-directory: api
+        env:
+          RSH_CATALOG_NATIVE_FIXTURE: ${{ github.workspace }}/site
       - name: Compile recipes without importing simulator dependencies
         run: python -m compileall -q recipes skills/find-robot-skills/scripts
       - name: Record runtime scope

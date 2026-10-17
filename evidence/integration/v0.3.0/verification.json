@@ -1,0 +1,459 @@
+{
+  "schema_version": "1",
+  "collected_at": "2026-10-17T17:33:52.623681+00:00",
+  "scope": "Maintainer public integration checks; no additional robot, model, policy, Xacro or YAML execution.",
+  "source_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710",
+  "worker_version_id": "acd5938c-e5f3-452a-824e-4e1a1cf88a2c",
+  "public_http": {
+    "observed_at": "2026-10-17T17:28:42Z",
+    "checks": [
+      {
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db",
+        "bytes": 97
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "sha256": "672c943e541479a7292529fe40f111db08bed2837c8091c02e83764ee8869ce1",
+        "bytes": 1906
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/search.json",
+        "status": 200,
+        "sha256": "819e4152ad5f90bbc502821ce2186eb2975fb17546263b76574b49c662c60cd4",
+        "bytes": 1590004
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
+        "status": 200,
+        "sha256": "536a8c9960112c64d5b797cb298cf39a246c426e925ae93985274bd56caac85b",
+        "bytes": 199434
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
+        "status": 200,
+        "sha256": "a0c720d8dadd4d1b6d307f489e985a1f63bf591298e3675bf47b23691b24a32f",
+        "bytes": 4661037
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/source-index-manifest.json",
+        "status": 200,
+        "sha256": "e5159c9d8cba7d20afe110075fd9e805041c2709d0dd159d41e3fd6a1e9e44d6",
+        "bytes": 53212
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
+        "status": 200,
+        "sha256": "b234812b889fcf4785cd1046a70e33b0ee94a5321e828b436056f3eb52412052",
+        "bytes": 2893
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json",
+        "status": 200,
+        "sha256": "4fd98432025acb03d1623af96f36e5e50be4a6fec7559291cee0849f731ed591",
+        "bytes": 298
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/privacy.md",
+        "status": 200,
+        "sha256": "99799818193e04a943cec85cb6086f6682fb14632e84d408dafb1521c6517075",
+        "bytes": 1728
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/discovery.md",
+        "status": 200,
+        "sha256": "6559d8876db7661f952c61a4b2ca3e67c7850977badaff462eaeb59943dae251",
+        "bytes": 2985
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/new-skills.md",
+        "status": 200,
+        "sha256": "a35b1473ec67cde8fee616273014d3fcb2c82f4fde972fe9d294d80699c86edc",
+        "bytes": 3347
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms.txt",
+        "status": 200,
+        "sha256": "1ab192d2f2e29690ecee04344d507a5992d23a11822651aa9f6330c450446af2",
+        "bytes": 354770
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms-full.txt",
+        "status": 200,
+        "sha256": "500e962497ec8915d64adb5b398b5846a21c37064b600f04a5260e923fabe218",
+        "bytes": 5187728
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/agent.json",
+        "status": 200,
+        "sha256": "559e3adbe30abf97dcf162a2423e517bb54f710e657f204575149722a9a92f3f",
+        "bytes": 16126
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/openapi.json",
+        "status": 200,
+        "sha256": "9586a7cd57269374528960bbf3f303620603308207eaf0f96dd45e4a7dbba90e",
+        "bytes": 38508
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+        "status": 200,
+        "sha256": "30c0e301afc0b0a5819f6ee0fa24da5f316604efc121a54da986de2a0e6dc871",
+        "bytes": 5547
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/",
+        "status": 200,
+        "sha256": "eeafb1d64f5cbac25af8d97722858aad804e1a65f2292985948ef6d7adf1159a",
+        "bytes": 3932
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/capabilities",
+        "status": 200,
+        "sha256": "b23a19090518c1ecd1937519c7f423e3061533250ce9e4049fd73ac3999d65f6",
+        "bytes": 2579
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=pick%20cube&limit=2",
+        "status": 200,
+        "sha256": "60bec9c940b66327d00e0ee1e09b9792c3d39da468d009be82b867d33494e3e9",
+        "bytes": 3508
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/maniskill-panda-pick-cube",
+        "status": 200,
+        "sha256": "345c20c93921bab27cfb3c10db343c2736125c2e82d5f3d7c3e628ca7939b34d",
+        "bytes": 12208
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/pybullet-inverse-kinematics",
+        "status": 200,
+        "sha256": "56d248577b0068e59f80d7885b7e23bca9945d38f4fe7472d724cdef6906c178",
+        "bytes": 2743
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/catalog",
+        "status": 200,
+        "sha256": "536a8c9960112c64d5b797cb298cf39a246c426e925ae93985274bd56caac85b",
+        "bytes": 199434
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/references",
+        "status": 200,
+        "sha256": "a0c720d8dadd4d1b6d307f489e985a1f63bf591298e3675bf47b23691b24a32f",
+        "bytes": 4661037
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?hub_commit=0000000000000000000000000000000000000000",
+        "status": 409,
+        "sha256": "031c0df89da243ce049fe4b7e42eb02319db2b8374fef014de080942abfa69ca",
+        "bytes": 252
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/no-such-published-skill",
+        "status": 404,
+        "sha256": "4a42d687d935edb6043010e7f7fb38a7eab874bd3ce7e802a091cac1ad2b7ef2",
+        "bytes": 212
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/session",
+        "status": 401,
+        "sha256": "fc7aabea8300e9c070d097c9fac8b1a2b97b62961934d49291e293d2cc6db6ee",
+        "bytes": 151
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/metrics",
+        "status": 200,
+        "sha256": "f3445a9495fba10453bc7857826b84d9e3bf42a4d9e1e13fbc158d85a51561d5",
+        "bytes": 1348
+      }
+    ],
+    "hub_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710",
+    "counts": {
+      "recipes": 17,
+      "references": 1061,
+      "memories": 3
+    },
+    "metrics": {
+      "schema_version": "1",
+      "interpretation": "data_only",
+      "measurement_configured": true,
+      "observed_at": "2026-10-17T17:28:56.257Z",
+      "window_start": "2026-10-17T15:47:38.000Z",
+      "window_end": "2026-10-18T15:47:38.000Z",
+      "window_closed": false,
+      "target_agent_accesses": 100,
+      "observed_agent_accesses": 8,
+      "target_reached": false,
+      "groups": [
+        {
+          "family": "crawler",
+          "requests": 1,
+          "identified_client_days": 0
+        },
+        {
+          "family": "mcp_tool",
+          "requests": 1,
+          "identified_client_days": 0
+        },
+        {
+          "family": "rsh_cli",
+          "requests": 7,
+          "identified_client_days": 1
+        },
+        {
+          "family": "unclassified",
+          "requests": 2,
+          "identified_client_days": 0
+        }
+      ],
+      "counting_rule": "Successful public discovery/record reads from the Hub CLI or recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count toward the target.",
+      "limitations": [
+        "Client identity is self-reported; CLI use can be initiated by a person. Counts do not prove distinct autonomous agents.",
+        "Direct GitHub Pages reads and offline uses are not measured. Anonymous clients have no installation identifier.",
+        "Optional installation IDs are HMAC hashed per UTC day; identified_client_days is not a unique-agent count."
+      ],
+      "privacy": {
+        "raw_ip_stored": false,
+        "raw_client_id_stored": false,
+        "query_or_conversation_stored": false,
+        "retention_days": 30,
+        "opt_out": "DNT: 1 or X-RSH-Telemetry: off"
+      }
+    },
+    "internal_checks_excluded_from_metrics": true
+  },
+  "official_mcp_sdk": {
+    "version": "1.32.1",
+    "result": {
+      "observed_at": "2026-10-17T17:28:44.710Z",
+      "server": {
+        "name": "robot-skill-hub",
+        "version": "0.3.0"
+      },
+      "tools": [
+        "find_robot_skills",
+        "inspect_robot_skill",
+        "get_hub_capabilities"
+      ],
+      "search": {
+        "schema_version": "1",
+        "interpretation": "data_only",
+        "hub_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710",
+        "counts": {
+          "memories": 3,
+          "recipes": 17,
+          "references": 1061
+        },
+        "backend": "d1_fts5",
+        "coverage": {
+          "complete": true
+        },
+        "search_semantics": "all_terms_word_prefix",
+        "results": [
+          {
+            "aliases": [
+              "PickCube-v1",
+              "Panda",
+              "Franka",
+              "robot manipulation",
+              "reusable Python code",
+              "pick_cube",
+              "object manipulation"
+            ],
+            "capabilities": [
+              "grasping",
+              "pick",
+              "pick-and-carry",
+              "motion-planning"
+            ],
+            "compatibility": [
+              {
+                "architecture": "x86_64",
+                "controller": "pd_joint_pos",
+                "observation": "state",
+                "os": "linux",
+                "python": "3.10",
+                "robot": "panda",
+                "runtime": "maniskill",
+                "runtime_version": "3.0.0b22",
+                "status": "hub_verified"
+              }
+            ],
+            "evidence_level": "task_complete",
+            "framework": "maniskill",
+            "hub_prepare": true,
+            "id": "maniskill-panda-pick-cube",
+            "kind": "preparation_recipe",
+            "license": {
+              "scope": "Upstream ManiSkill code; hub wrapper and metadata use the hub LICENSE.",
+              "spdx": "Apache-2.0",
+              "url": "https://github.com/haosulab/ManiSkill/blob/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907/LICENSE",
+              "verified": true
+            },
+            "name": "ManiSkill Panda PickCube Python recipe",
+            "python_requirement": ">=3.10,<3.11",
+            "record_sha256": "c1bae2b3cb534dac23d991dd76829122d1374820e746212a14df927a62010034",
+            "record_url": "https://hub.superfastrobotics.com/skills/maniskill-panda-pick-cube/skill.json",
+            "record_version": "1.1.0",
+            "robots": [
+              "panda"
+            ],
+            "runtime": "maniskill",
+            "runtime_verification": "task_complete",
+            "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+            "source_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+            "source_url": "https://github.com/haosulab/ManiSkill/tree/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+            "summary": "Grasp a cube and move it to a target with the official Panda motion planner."
+          },
+          {
+            "aliases": [
+              "StackCube-v1",
+              "Panda",
+              "Franka",
+              "robot manipulation",
+              "reusable Python code",
+              "stack_cube",
+              "object manipulation"
+            ],
+            "capabilities": [
+              "grasping",
+              "stacking",
+              "pick-and-place",
+              "motion-planning"
+            ],
+            "compatibility": [
+              {
+                "architecture": "x86_64",
+                "controller": "pd_joint_pos",
+                "observation": "state",
+                "os": "linux",
+                "python": "3.10",
+                "robot": "panda",
+                "runtime": "maniskill",
+                "runtime_version": "3.0.0b22",
+                "status": "hub_verified"
+              }
+            ],
+            "evidence_level": "task_complete",
+            "framework": "maniskill",
+            "hub_prepare": true,
+            "id": "maniskill-panda-stack-cube",
+            "kind": "preparation_recipe",
+            "license": {
+              "scope": "Upstream ManiSkill code; hub wrapper and metadata use the hub LICENSE.",
+              "spdx": "Apache-2.0",
+              "url": "https://github.com/haosulab/ManiSkill/blob/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907/LICENSE",
+              "verified": true
+            },
+            "name": "ManiSkill Panda StackCube Python recipe",
+            "python_requirement": ">=3.10,<3.11",
+            "record_sha256": "4c282202e92b0edaf7d0a259dc7283cd79baa14b0a25845e4cb8992e208af30e",
+            "record_url": "https://hub.superfastrobotics.com/skills/maniskill-panda-stack-cube/skill.json",
+            "record_version": "1.1.0",
+            "robots": [
+              "panda"
+            ],
+            "runtime": "maniskill",
+            "runtime_verification": "task_complete",
+            "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+            "source_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+            "source_url": "https://github.com/haosulab/ManiSkill/tree/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+            "summary": "Grasp one cube and stack it on another with the official Panda motion planner."
+          }
+        ],
+        "total": 6,
+        "limit": 2,
+        "offset": 0,
+        "next": {
+          "q": "pick cube",
+          "limit": 2,
+          "offset": 2,
+          "hub_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710"
+        },
+        "execution_performed": false,
+        "next_action": "inspect_selected_record",
+        "evidence_rule": "A search match does not establish runtime compatibility or task completion."
+      },
+      "inspect_id": "maniskill-panda-pick-cube",
+      "counts": {
+        "memories": 3,
+        "recipes": 17,
+        "references": 1061
+      },
+      "internal_checks_excluded_from_metrics": true
+    }
+  },
+  "owned_submission_status": [
+    {
+      "identity": "owner",
+      "http_status": 200,
+      "status": "published",
+      "publication_scope": "current",
+      "reason_code": null
+    },
+    {
+      "identity": "other",
+      "http_status": 404,
+      "status": "blocked",
+      "publication_scope": null,
+      "reason_code": "submission_not_found"
+    },
+    {
+      "identity": "anonymous",
+      "http_status": 401,
+      "status": "blocked",
+      "publication_scope": null,
+      "reason_code": "invalid_token"
+    }
+  ],
+  "catalog_database": [
+    {
+      "hub_commit": "0132a0fa02c7f4324ffe4992fc644df4d611e710",
+      "next_page": 14,
+      "total_pages": 14,
+      "total_records": 1078,
+      "documents": 1078,
+      "findings": 3
+    }
+  ],
+  "github_checks": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39053828641",
+  "pages_and_index_sync": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39053828665",
+  "registry_publication": {
+    "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.0",
+    "workflow": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39054023215",
+    "record": {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "io.github.Superfast-Robotics/robot-skill-hub",
+        "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
+        "title": "Robot Skill Hub",
+        "repository": {
+          "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+          "source": "github"
+        },
+        "version": "0.3.0",
+        "websiteUrl": "https://hub.superfastrobotics.com/",
+        "remotes": [
+          {
+            "type": "streamable-http",
+            "url": "https://api.superfastrobotics.com/mcp"
+          }
+        ]
+      },
+      "_meta": {
+        "io.modelcontextprotocol.registry/official": {
+          "status": "active",
+          "statusChangedAt": "2026-10-17T17:30:13.37686Z",
+          "publishedAt": "2026-10-17T17:30:13.37686Z",
+          "updatedAt": "2026-10-17T17:30:13.37686Z",
+          "isLatest": true
+        }
+      }
+    }
+  },
+  "release": "https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.0",
+  "internal_checks_excluded_from_metrics": true
+}

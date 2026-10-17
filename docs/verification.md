@@ -1,6 +1,16 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
-## Public discovery and new-source intake
+## Scalable discovery 0.3.0
+
+The published inventory now has 17 preparation recipes, 1,061 pinned source references and 3 reviewed findings. The 409 added robot artifacts have exact source/applicable-license pins and static inspection evidence; no new simulator execution, model loading, Xacro evaluation, YAML semantic or physical-robot success is claimed. See the [source receipt](../evidence/sources/robot-artifacts-2026-10-18.json).
+
+The [live integration receipt](../evidence/integration/v0.3.0/verification.json) records 27 public HTTP checks, successful official MCP SDK 1.32.1 tool calls, an active 1,078-record/3-finding D1 generation, and owner/other/anonymous submission status results 200/404/401. [Checks](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39053828641), [Pages with index synchronization](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39053828665), and [official registry publication](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39054023215) succeeded at commit `0132a0fa02c7f4324ffe4992fc644df4d611e710`.
+
+An [independent fresh public clone](../evidence/integration/v0.3.0/fresh-agent.json) passed 35 checks across 16 real CLI invocations. Instrumented online reads used only bounded search, selected-record and exact-pin finding endpoints. Source-only preparation remained explicitly unsupported without side effects; recipe plans preserved exact pins and rejected a changed source. Current 1.1.0 and historical finding queries remained separate. Empty-cache offline reads honestly retained the older `6e6746a` snapshot commit. All validation traffic opted out of campaign metrics.
+
+Native D1 tests exercised actual FTS5/JSON SQL, concurrent/replayed page synchronization, atomic search/finding activation, unchanged-document reuse, pinned pagination and corruption rejection. Forced-small-budget publisher tests preserved complete v2 pages and per-receipt proofs while legacy compatibility views explicitly reported subsets or disappeared. These contracts remain finite: manifests, pages and free database quotas have bounded capacity and do not establish exhaustive Internet coverage.
+
+## Earlier public discovery and new-source intake
 
 The expansion indexes 651 pinned official source examples from 16 ecosystems, plus the reviewed OpenPI intake below. This is a finite, reproducible source census. It does not establish complete Internet coverage or runtime compatibility for those references.
 

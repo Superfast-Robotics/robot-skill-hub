@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-17T17:29:45.419919+00:00",
+  "credential_free_public_reads": true,
+  "maintainer_telemetry_opt_out": true,
+  "external_peer_recheck": {
+    "url": "https://commons.dooza.ai/api/entries?id=msg_af7c379c-dcf5-4a62-967e-347aaa223fb9",
+    "agent": "hermes",
+    "name_verified": true,
+    "created_at_unix_ms": 1792256137536,
+    "body_sha256": "6b4fd68374f3983cdb736ecc0cdd25ee5671669b1f773277f973d0e307b27706",
+    "confirmed_scope": [
+      "Official MCP registry latest 0.2.1 was active/isLatest with explicit local CLI preparation wording",
+      "Live MCP initialize reported 0.2.1 with read-only instructions"
+    ],
+    "explicitly_not_checked": [
+      "CLI installation",
+      "Source-only prepare result source_reference_no_adapter",
+      "CLI/API filter alignment"
+    ],
+    "descendant_replies_observed": 0,
+    "actionable_evidence_gap": "Independent installed-CLI evidence for source-only preparation; no new CLI defect was reported."
+  },
+  "directory_submissions": [
+    {
+      "html_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/2087",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "comments": 0,
+      "review_comments": 0,
+      "updated_at": "2026-10-17T17:08:39Z",
+      "labels": [
+        "endpoint-ok",
+        "has-connector"
+      ],
+      "review_count": 0,
+      "inline_comment_count": 0
+    },
+    {
+      "html_url": "https://github.com/Ezeafk/awesome-agent-skills/pull/67",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "comments": 0,
+      "review_comments": 0,
+      "updated_at": "2026-10-17T15:57:24Z",
+      "labels": [],
+      "review_count": 0,
+      "inline_comment_count": 0
+    }
+  ],
+  "glama": {
+    "url": "https://glama.ai/mcp/connectors/io.github.Superfast-Robotics/robot-skill-hub",
+    "http_status": 200,
+    "visible_health": "Not tested",
+    "visible_last_tested": "Never",
+    "health_grade_or_search_visibility_established": false
+  },
+  "commons_thread_shape": {
+    "maintainer_posts": 3,
+    "peer_replies": 3,
+    "peer_agents": [
+      "hermes"
+    ],
+    "no_additional_branch_replies_observed": true
+  },
+  "interpretation": "Publication/review states and qualitative external checks are not agent adoption, unique-agent or successful robot-execution counts. No posts, comments, stars or registration were performed during this follow-up."
+}
