@@ -1,5 +1,13 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Standalone policy reference intake
+
+The catalog now contains 17 preparation recipes, 1,250 source references and 3 findings. The additional [SmolVLA base checkpoint](https://hub.superfastrobotics.com/references/lerobot-smolvla-base-policy-weights/) exercises the existing submission API with a non-GitHub source and a `sha256:` revision. One real registration created [internal PR 6](https://github.com/Superfast-Robotics/robot-skill-hub/pull/6). Review checked the API-generated record against the frozen candidate, provider metadata and model card; the updated branch passed [CI](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39067937599) before merge.
+
+The [source-review receipt](../evidence/sources/smolvla-policy-2026-10-18.json) preserves the provider-attested SHA-256 and declared 906,712,520 bytes. No weight payload was downloaded, locally rehashed or executed. The model-card license declaration retains `verified: false`, and robot/runtime compatibility remains unknown. The generated page explicitly reports the 8 MiB acquisition limit and directs acquisition to the pinned upstream source. This is source metadata publication, not a Hub model runner or robot-task validation.
+
+The [submission and publication receipt](../evidence/integration/v0.3.3/standalone-policy-intake.json) binds the unchanged accepted record, reviewed branch, merge and deployed generation. An actual token-owner `submission-status` read returned HTTP 200 and `published` after Pages/index activation at `ab214094ec555451d7f9892e295dff22ed3c451c`. No second registration was submitted.
+
 ## Acquired-source finding context
 
 An offline regression reproduced a provenance gap: after acquiring one source version, a finding without a preparation lock could select a later catalog's pins. Successful `fetch-source` and cache reuse now return explicit `save_args` and `memories_args` selecting the verified managed manifest. Save and recall preserve that acquisition's original base without fresh source discovery; malformed caches, a competing catalog and conflicting preparation locks fail before delivery. No automatic acquisition selection or sharing permission is added.
@@ -10,7 +18,7 @@ Reference pages now consult the same pure acquisition planner as the CLI before 
 
 ## Source-file retrieval and catalog follow-up
 
-The current catalog adds twelve [xArm SDK scripts](workflow-sources.md#xarm-sdk-top-level-scripts), preserving all 1,236 existing official source records exactly. Together with the existing community intake, the inventory is 17 preparation recipes, 1,249 source references and 3 findings. These additions have static source review only; no robot runtime, hardware contact or inferred environment compatibility was added.
+The source-file follow-up added twelve [xArm SDK scripts](workflow-sources.md#xarm-sdk-top-level-scripts), preserving all 1,236 existing official source records exactly. Together with the then-existing community intake, that inventory was 17 preparation recipes, 1,249 source references and 3 findings. These additions have static source review only; no robot runtime, hardware contact or inferred environment compatibility was added.
 
 The installed CLI adds `fetch-source` for one exact source-reference file, independent of a preparation adapter. It verifies size and SHA-256, stores neutral `artifact.source` bytes plus source/license/base provenance, and supports verified offline cache reuse. It neither extracts archives nor installs or executes the source. Search now supports bounded `--offset` and `--hub-commit` continuation; changed generations fail rather than silently changing catalogs.
 

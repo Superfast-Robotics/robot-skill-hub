@@ -123688,6 +123688,90 @@
     },
     {
       "aliases": [
+        "SmolVLA",
+        "smolvla_base"
+      ],
+      "artifact": {
+        "format": "safetensors",
+        "kind": "policy"
+      },
+      "capabilities": [
+        "vision-language-action",
+        "continuous-action-policy",
+        "policy-fine-tuning"
+      ],
+      "compatibility": [
+        {
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "robot": "unknown",
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "status": "contributor_reported"
+        }
+      ],
+      "framework": "lerobot",
+      "id": "lerobot-smolvla-base-policy-weights",
+      "invocation": {
+        "entrypoint": "SmolVLAPolicy.from_pretrained(model_id) with model_id = 'lerobot/smolvla_base' (pinned card example; not executed)",
+        "notes": "Use the upstream pinned model-card setup and compatible reviewed LeRobot code after independent authorization. The card's loading snippet names the moving model ID and does not pass a revision, so reproduce with an explicitly selected provider revision and all required config/processor files rather than assuming this example pins them. This 906712520-byte artifact exceeds the Hub single-file 8 MiB acquisition limit. Hugging Face resolve issues a signed CDN redirect; no redirect, tensor transfer, package install, model/dataset load, GPU/cloud operation or robot contact was performed. No Hub adapter or runtime success is claimed."
+      },
+      "kind": "community_skill",
+      "license": {
+        "scope": "The pinned model repository card declares apache-2.0. No separate LICENSE file is present; config.license is null. This retains the model-card declaration without independently clearing tensor-payload rights. The external SmolVLM2 base, training/evaluation datasets, dependencies, hardware and task-specific derivatives require separate terms and provenance review.",
+        "spdx": "Apache-2.0",
+        "url": "https://huggingface.co/lerobot/smolvla_base/blob/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/README.md",
+        "verified": false
+      },
+      "name": "SmolVLA base policy checkpoint",
+      "requirements": {
+        "hardware": [],
+        "notes": "Model-card declarations only; no Python/package/GPU-memory/OS combination was pinned or tested. Intended for fine-tuning on a user-selected dataset. Config expects six-state/six-action features, image inputs, preprocessing/postprocessing and separate normalization-state safetensors. Config/card reference unpinned HuggingFaceTB/SmolVLM2-500M-Video-Instruct; tokenizer/base weights and dataset terms remain separate. Card inference:false is provider metadata, not proof that inference is impossible. SO100 and lego-box tasks belong to an example using a user's fine-tuned checkpoint, not a compatibility claim for these base weights.",
+        "packages": [
+          "lerobot[smolvla]",
+          "torch"
+        ],
+        "python": null,
+        "system": [
+          "Pinned config defaults to CUDA; model-card example selects CPU if CUDA is unavailable"
+        ]
+      },
+      "robots": [
+        "unknown"
+      ],
+      "source": {
+        "authors": [
+          "lerobot"
+        ],
+        "bytes": 906712520,
+        "path": "model.safetensors",
+        "repository": "https://huggingface.co/lerobot/smolvla_base",
+        "revision": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+        "sha256": "7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+        "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/model.safetensors"
+      },
+      "summary": "LeRobot's SmolVLA learned vision-language-action base checkpoint, intended for task-specific fine-tuning. This reference describes provider-pinned safetensors weights; it does not supply a ready robot policy or execute inference.",
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect the exact pinned upstream artifact and setup instructions. This record has no Hub runtime adapter.",
+        "setup_url": "https://huggingface.co/lerobot/smolvla_base/blob/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/README.md"
+      },
+      "evidence": {
+        "level": "contributor_reported",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-17",
+        "inspection": "Data-only intake structure checked. Source content, checksum, license and runtime claims require maintainer review; no submitted code was executed."
+      },
+      "maintenance": {
+        "record_version": "intake-5ab7ca393f32b62f",
+        "last_checked": "2026-10-17",
+        "upstream_status": "contributor_reported"
+      }
+    },
+    {
+      "aliases": [
         "OpenPI",
         "Physical Intelligence",
         "simple_client",
@@ -123806,5 +123890,5 @@
   "artifact_manifest": "artifact-projects.json",
   "agent_skill_manifest": "agent-skill-projects.json",
   "workflow_manifest": "workflow-projects.json",
-  "hub_commit": "5f51d88b3c6dacdc3f5095b3955ee5be0006bd86"
+  "hub_commit": "ab214094ec555451d7f9892e295dff22ed3c451c"
 }

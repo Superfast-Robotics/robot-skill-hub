@@ -55,6 +55,16 @@ Registration, finalized library search and actual documentation retrieval are
 confirmed. These checks do not establish automatic client activation, agent
 adoption or successful robot tasks.
 
+At 20:44 UTC, one documented manual refresh after the source-file and
+source-manifest CLI follow-up returned HTTP 400, `too-early`: the live provider
+requires at least 10 days between updates for this library. No retry,
+re-registration or paid upgrade followed. The [refresh receipt](../evidence/discovery/v0.3.3/context7-refresh.json)
+preserves that response. Indexing of the newer `fetch-source` and
+`--source-manifest` instructions remains unverified; use the current installed
+skill or public Hub documentation for those commands. See the provider's
+[manual refresh API](https://context7.com/docs/api-reference/refresh/refresh-a-library)
+and [refresh policy](https://context7.com/docs/library-updates).
+
 ## Smithery remote MCP
 
 Smithery's [URL publishing](https://smithery.ai/docs/build/publish) accepts a

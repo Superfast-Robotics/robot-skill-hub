@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-17T20:44:42.698143+00:00",
+  "source_main_commit": "66a13cd6ae8ab828219a4916587fb83d6dc71809",
+  "operation": "refresh",
+  "url": "https://context7.com/api/v1/refresh",
+  "method": "POST",
+  "request_body": {
+    "libraryName": "/superfast-robotics/robot-skill-hub"
+  },
+  "http_status": 400,
+  "response_bytes": 137,
+  "response_sha256": "f724880cea8dc01eac201256ec961ad06959877651240e3478402dd0edc601e5",
+  "response_keys": [
+    "error",
+    "message"
+  ],
+  "rate_limit_headers": {},
+  "message": "Too early to refresh the project. Last update was 0 days ago. Minimum 10 days required between updates.",
+  "error": "too-early",
+  "github_credentials_sent": false,
+  "redirects_followed": false,
+  "registration_repeated": false,
+  "paid_upgrade_performed": false,
+  "refresh_completion_claimed": false,
+  "new_instruction_terms_present": null,
+  "scope": "One manual refresh of the already registered public documentation library after the source-file and source-manifest CLI follow-up was published. No re-registration or paid-plan change.",
+  "official_route_documentation": "https://context7.com/docs/api-reference/refresh/refresh-a-library",
+  "official_refresh_policy": "https://context7.com/docs/library-updates",
+  "attempts": 1,
+  "follow_up_retry_performed": false,
+  "provider_runtime_constraint": "The provider rejected this refresh because a minimum of 10 days between updates had not elapsed.",
+  "new_source_commands_indexing_verified": false,
+  "existing_library_retrieval_receipt": "context7-registration.json",
+  "interpretation": "The earlier finalized library and documentation retrieval remain verified only for their recorded scope. This rejection does not establish indexing of the newer fetch-source or --source-manifest instructions."
+}

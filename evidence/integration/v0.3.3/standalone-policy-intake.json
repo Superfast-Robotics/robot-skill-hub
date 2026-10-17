@@ -1,0 +1,96 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T20:48:25.836178+00:00",
+  "scope": "One real authorized source addition through the existing submission API, internal PR review and public catalog. Maintainer validation, not external-agent adoption.",
+  "skill_id": "lerobot-smolvla-base-policy-weights",
+  "submission_id": "sub_5ab7ca393f32b62fbadee154c92330979a583062dd27f44081f714e43ec7d273",
+  "pr_url": "https://github.com/Superfast-Robotics/robot-skill-hub/pull/6",
+  "source": {
+    "revision": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+    "sha256": "7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+    "bytes": 906712520,
+    "hash_basis": "Provider-attested LFS metadata; no Hub tensor payload download or rehash."
+  },
+  "submission": {
+    "installed_cli_source_commit": "703369d7a095afb46da723634a9d983d2eda3054",
+    "register_posts": 1,
+    "http_status": 201,
+    "outcome": "submitted",
+    "public_project_scope": "Exact new source ID and server-selected catalog intake path; no project scan.",
+    "credentials_published": false
+  },
+  "review": {
+    "initial_record_commit": "e045f771f707a06062194531f209c98631dd5a12",
+    "updated_head": "bd8c84fc762a6bc1e9c3b8efe6221dd969a370ac",
+    "base": "66a13cd6ae8ab828219a4916587fb83d6dc71809",
+    "changed_files": [
+      {
+        "path": "catalog/intake/lerobot-smolvla-base-policy-weights.json",
+        "bytes": 4442,
+        "sha256": "b4248da12e1dcd29c10fe743a8086606a1ba9ef83ee559bc757fc5a13e4301f3",
+        "unchanged_from_review": true
+      },
+      {
+        "path": ".hub/submissions/sub_5ab7ca393f32b62fbadee154c92330979a583062dd27f44081f714e43ec7d273.json",
+        "bytes": 1872,
+        "sha256": "5839190a45c802ef3000b908056c8a393c14bd480bacf6597514317270a2f5f4",
+        "unchanged_from_review": true
+      }
+    ],
+    "checks": [
+      {
+        "name": "Structure and contract tests",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39067937599/job/117499374485"
+      }
+    ],
+    "source_metadata_evidence": "../../sources/smolvla-policy-2026-10-18.json",
+    "ci_failure_before_test_correction": "The earlier inventory test assumed every reference could fit the acquisition limit. A valid oversized reference returned source_too_large. The test now checks bounded plans and explicit oversize refusal separately; the 8 MiB limit was not raised."
+  },
+  "merge": {
+    "commit": "ab214094ec555451d7f9892e295dff22ed3c451c",
+    "merged": true,
+    "catalog_pages_and_index_sync_run": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39068113818",
+    "deployment_conclusion": "success"
+  },
+  "owned_status_readback": {
+    "http_status": 200,
+    "status": "published",
+    "published_version": "intake-5ab7ca393f32b62f",
+    "published_hub_commit": "ab214094ec555451d7f9892e295dff22ed3c451c",
+    "publication_scope": "current",
+    "source_commit": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+    "recipe_url": "https://hub.superfastrobotics.com/references/lerobot-smolvla-base-policy-weights/",
+    "compatibility": [
+      {
+        "controller": "unknown",
+        "observation": "unknown",
+        "os": "unknown",
+        "robot": "unknown",
+        "runtime": "unknown",
+        "runtime_version": "unknown",
+        "status": "contributor_reported"
+      }
+    ]
+  },
+  "accepted_record_sha256": "b4248da12e1dcd29c10fe743a8086606a1ba9ef83ee559bc757fc5a13e4301f3",
+  "runtime_verification": "not_run",
+  "license_verified": false,
+  "acquisition": {
+    "scope": "Pure Hub plan and generated guidance; provider metadata and HEAD review are recorded separately in the source-review receipt.",
+    "declared_bytes": 906712520,
+    "maximum_hub_source_bytes": 8388608,
+    "reason_code": "source_too_large",
+    "hub_file_fetch_requests": 0,
+    "binary_downloads": 0,
+    "execution_performed": false
+  },
+  "maintainer_requests_counted_as_adoption": false,
+  "paid_resources_created": false,
+  "limits": [
+    "A published source reference is metadata; it has no Hub runtime adapter.",
+    "No model inference, fine-tuning, simulator or physical robot was executed.",
+    "The original model card license declaration is retained without independent clearance or compatibility claims."
+  ]
+}
