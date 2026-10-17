@@ -1,0 +1,235 @@
+{
+  "schema_version": "1",
+  "recorded_at": "2026-10-17T19:43:08.761463+00:00",
+  "scope": "CLI-only follow-up after the 0.3.3 preview. Maintainer local validation and a separate agent-authored guarded rsh.main harness; not a fresh anonymous clone, real delivery, robot execution or external adoption. API version, Worker deployment and canonical catalog data are unchanged.",
+  "baseline_commit": "bc3e9b72c9117bc282abdf8399eb6f1412d09418",
+  "baseline_reproduction": {
+    "scope": "Two private synthetic cases: denied kind first, and denied skill/kind first.",
+    "cases": 2,
+    "consecutive_default_flushes_per_case": 2,
+    "permitted_later_entry_attempted": false,
+    "credential_provider_calls": 0,
+    "mock_POST_calls": 0,
+    "production_policy_changes": 0,
+    "cause": "flush counts a denied deliver result against limit before reaching a later currently permitted finding; repeated calls select the same denied lexicographically first file."
+  },
+  "change": {
+    "exact_selector": "flush --fingerprint",
+    "selection": "Validate lowercase 64-hex; read one fixed outbox file, validate its content identity, recheck its current skill/kind permission. Never scan or substitute another finding.",
+    "recovery": "Missing-token save and unchanged authorized save supply their own saved fingerprint in flush_args, with existing project/policy/API.",
+    "default_queue": "Unselected bounded-prefix behavior remains explicit; a denied pending entry consumes a checked slot. This patch does not claim generic queue fairness.",
+    "delivery_accuracy": "Track this invocation immediately before calling the submission transport, retain known true/false during optional-task normalization, and preserve null when transport state is unknown. Receipt persistence failures do not cause automatic retry."
+  },
+  "source_bindings": {
+    "skills/find-robot-skills/scripts/rsh.py": {
+      "sha256": "ce9538d9acbc82bc89c8eb220877233b47de45be492832fc958866a9741a8f0f",
+      "bytes": 16539
+    },
+    "skills/find-robot-skills/scripts/rshlib/memories.py": {
+      "sha256": "86cc57a54129428a3816dd1cb21b8a28f2eea86c05ab938f557ed8331ba1e233",
+      "bytes": 31415
+    },
+    "skills/find-robot-skills/scripts/rshlib/contributions.py": {
+      "sha256": "734f1e64b14d730d1de1f0f8292134be0e521766d0f0fd17c6a50e444125829e",
+      "bytes": 15880
+    },
+    "skills/find-robot-skills/scripts/rshlib/core.py": {
+      "sha256": "56b805ba10b24e1a713a12b074d0fb544357aeb03a16b1dc64d4c4c139e05725",
+      "bytes": 20564
+    }
+  },
+  "focused_tests": {
+    "module": "tests/python/test_memory_cli.py",
+    "tests_run": 32,
+    "tests_passed": 32,
+    "external_HTTP": "blocked",
+    "loopback_HTTP_fixture_count": 1
+  },
+  "full_python_suite": {
+    "tests_run": 199,
+    "tests_passed": 197,
+    "skipped": 2,
+    "skip_reason": "Existing Windows symlink privilege limitations",
+    "result": "pass",
+    "log_sha256": "7ceb965b092c6181a64bcd2322f1a49a543b48f1039d29bdd7ba6b3b45b68d47"
+  },
+  "independent_audit": {
+    "started_at": "2026-10-17T19:41:43.561984+00:00",
+    "completed_at": "2026-10-17T19:41:43.715240+00:00",
+    "checks": {
+      "two_entries_saved_with_denied_entry_lexically_first": true,
+      "denied_save_never_exposes_public_retry": true,
+      "recovery_command_selects_exact_saved_second_hash": true,
+      "duplicate_pending_save_is_read_only_and_preserves_exact_recovery": true,
+      "explicit_denied_hash_does_not_fall_through_to_allowed": true,
+      "malformed_short_hash_zero_reads_credentials_posts_or_fallback": true,
+      "malformed_uppercase_hash_zero_reads_credentials_posts_or_fallback": true,
+      "path_traversal_selector_zero_reads_credentials_posts_or_fallback": true,
+      "absolute_path_selector_zero_reads_credentials_posts_or_fallback": true,
+      "nonexistent_exact_hash_zero_reads_credentials_posts_or_fallback": true,
+      "corrupt_selected_json_no_fallback": true,
+      "mismatched_selected_identity_no_fallback": true,
+      "exact_second_recovery_bypasses_denied_first_and_invalid_neighbors": true,
+      "only_selected_allowed_entry_changes_on_mock_delivery": true,
+      "stored_exact_selection_never_reposts": true,
+      "stored_duplicate_save_remains_read_only": true,
+      "all_http_and_socket_connections_blocked_with_zero_attempts": true,
+      "one_mock_post_before_persistence_failure_injection": true,
+      "post_mock_POST_persist_failure_preserves_known_network_true": true,
+      "post_failure_does_not_retry_or_modify_neighbors": true,
+      "preflight_persist_failure_is_known_false_without_POST": true,
+      "CLI_does_not_rewrite_known_true_error_to_false": true,
+      "CLI_does_not_invent_false_for_unknown_network_error": true,
+      "all_external_network_remains_blocked_after_error_cases": true,
+      "exactly_two_mock_POSTs_including_persistence_failure_case": true,
+      "reviewed_source_files_stable_during_audit": true
+    },
+    "cli_cases": [
+      {
+        "label": "save_denied_first_no_credential",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "save_allowed_second_missing_token",
+        "returncode": 0,
+        "credential_provider_calls": 1,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "duplicate_pending_save_no_current_credential_read",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "explicit_denied_hash_no_credential_or_post",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "malformed_short_hash",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "malformed_uppercase_hash",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "path_traversal_selector",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "absolute_path_selector",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "nonexistent_exact_hash",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "corrupt_selected_json_no_fallback",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "mismatched_selected_identity_no_fallback",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "exact_allowed_second_recovery_one_mock_post",
+        "returncode": 0,
+        "credential_provider_calls": 1,
+        "mock_POST_calls": 1,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "already_mock_stored_exact_hash_no_credential_or_post",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "duplicate_mock_stored_save_no_current_credential_read",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "post_mock_POST_all_receipt_persistence_writes_fail",
+        "returncode": 0,
+        "credential_provider_calls": 1,
+        "mock_POST_calls": 1,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "pre_POST_sending_persistence_failure_no_mock_post",
+        "returncode": 0,
+        "credential_provider_calls": 1,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "synthetic_known_network_error_preserved_by_CLI",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      },
+      {
+        "label": "synthetic_unknown_network_error_not_claimed_false",
+        "returncode": 0,
+        "credential_provider_calls": 0,
+        "mock_POST_calls": 0,
+        "external_HTTP_requests": 0
+      }
+    ],
+    "rsh_main_calls": 18,
+    "in_memory_mock_POSTs": 2,
+    "external_HTTP_requests": 0,
+    "external_socket_attempts": 0,
+    "real_credential_reads": 0,
+    "real_or_dummy_token_strings_created": false,
+    "live_flush_executed": false,
+    "public_findings_or_campaign_rows_created": 0,
+    "all_passed": true,
+    "private_capture_sha256": "0f281fabd02b80d3c3ae8c120432e531bfb5b5adee25f4ac0e5199839d02afa9"
+  },
+  "test_file": {
+    "path": "tests/python/test_memory_cli.py",
+    "sha256": "b94d4cacc24ad5540614678a12a1d3000d9008f79115efd4c0fc228aa2755611"
+  },
+  "limits": [
+    "The 0.3.3 fresh-agent receipt remains scoped to its earlier immutable release source. This guarded worktree harness separately covers the later CLI fix.",
+    "No robot, simulator, model, package installation or hardware endpoint was executed.",
+    "In-memory mock POST counts are test events, not real Hub requests or campaign access."
+  ]
+}

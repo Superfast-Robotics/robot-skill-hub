@@ -1,5 +1,13 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## CLI follow-up: exact finding recovery
+
+After the 0.3.3 preview, the CLI adds `flush --fingerprint` and returns the saved finding's exact fingerprint in recovery arguments. This addresses a denied entry sorting before the intended permitted entry. Selected recovery reads one fixed file without scanning or falling back, and retains the current policy gate. Unselected bounded-prefix behavior remains documented; generic queue fairness is not claimed.
+
+The [targeted recovery receipt](../evidence/integration/v0.3.3/targeted-recovery.json) binds the exact source files. All 32 memory CLI tests passed; the full Python suite ran 199 tests with 197 passes and two existing Windows privilege skips. A separate guarded `rsh.main` harness passed 26 checks and 18 CLI cases, including pre-POST and post-POST persistence failures and known/unknown transport flags. Its two transport calls were in-memory mocks: zero external HTTP/socket attempts, real credential reads, live flushes or public findings. Delivery is explicit and does not retry automatically.
+
+This is a CLI-only follow-up on main. The API version and catalog data remain 0.3.3 and 17/1,237/3. Earlier production and fresh-clone receipts below keep their original immutable release scope; their 128 requests are not presented as verification of this later patch.
+
 ## Platform discovery and finding recovery 0.3.3
 
 The inventory is 17 preparation recipes, 1,237 pinned source references and 3 reviewed findings. This release adds [12 MAVSDK and 18 Spot SDK sources](platform-sources-review.md), preserving all 1,206 previous official records exactly. The [source receipt](../evidence/integration/v0.3.3/source-review.json) checks 75 frozen text files. All additions remain source-only, without a Hub adapter, runtime execution or inferred compatibility. Eighteen Spot custom-license identities retain `verified: false` and their upstream terms; the 12 existing unresolved license records are unchanged.

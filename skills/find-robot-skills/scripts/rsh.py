@@ -99,6 +99,7 @@ def build_parser():
     flush.add_argument("--policy")
     flush.add_argument("--api-url")
     flush.add_argument("--limit", type=int, choices=(1, 2, 3), default=1)
+    flush.add_argument("--fingerprint", dest="selected_fingerprint", help="Retry only the exact saved finding fingerprint; never scan the queue")
     recall = sub.add_parser("memories", help="Read published observations for the exact skill/source version and environment")
     recall.add_argument("skill_id")
     recall.add_argument("--project")
@@ -147,7 +148,8 @@ def execute(args, catalog_location):
             raise RshError("offline_status_unavailable", "Memory status requires an explicit online request.")
         return memories.status(args.memory_id, api_url=args.api_url)
     if args.command == "flush":
-        return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline)
+        return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline,
+                              selected_fingerprint=args.selected_fingerprint)
     environment = {}
     if getattr(args, "environment", None):
         environment = read_json(args.environment)
@@ -242,10 +244,11 @@ def main(argv=None):
         # Stable user-facing contract, no tracebacks or accidental environment values.
         result = {"status": "failed", "reason_code": "unexpected_local_error",
                   "message": f"Local operation failed ({type(exc).__name__}).",
+                  "network_performed": None,
                   "next_action": "check_files_and_report_reproduction"}
     # Saving a reusable observation is optional and must not fail the user's task.
     if command in ("save", "flush") and result.get("status") not in ("ready", "stored", "local_saved"):
-        result = {**result, "status": "skipped", "network_performed": False, "next_action": "continue_user_task"}
+        result = {**result, "status": "skipped", "network_performed": result.get("network_performed"), "next_action": "continue_user_task"}
     rendered = json.dumps(result, ensure_ascii=False, indent=2)
     if json_mode:
         print(rendered)

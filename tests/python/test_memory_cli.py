@@ -1,9 +1,12 @@
 """Local-first memory delivery and public discovery contracts, without live writes."""
 import copy
+from contextlib import redirect_stdout
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
+import runpy
 import subprocess
 import sys
 import tempfile
@@ -69,6 +72,13 @@ class MemoryTests(unittest.TestCase):
     def save(self, catalog=None):
         return memories.save(catalog or fixture_catalog(), "fixture-pick", self.project, self.input)
 
+    def cli_result(self, args, cli=None):
+        cli = cli or runpy.run_path(str(SKILL / "scripts/rsh.py"), run_name="rsh_memory_test")
+        output = io.StringIO()
+        with redirect_stdout(output):
+            code = cli["main"](args)
+        return code, json.loads(output.getvalue())
+
     def test_patch_permission_and_token_do_not_grant_memory_sharing(self):
         (self.project / ".robot-skill-hub.json").write_text(json.dumps({"publication": {"public_submission_allowed": True}}))
         # This file is deliberately outside the explicit finding; the command must not scan it.
@@ -116,7 +126,7 @@ class MemoryTests(unittest.TestCase):
             self.assertIn("private one-line UTF-8 file", recovery["credential_setup"]["message"])
             self.assertEqual(recovery["documentation_url"], "https://hub.superfastrobotics.com/memory.md")
             self.assertFalse(recovery["automatic_retry"])
-            self.assertEqual(recovery["flush_args"], ["flush", "--project", str(self.project.resolve()), "--limit", "1",
+            self.assertEqual(recovery["flush_args"], ["flush", "--project", str(self.project.resolve()), "--fingerprint", first["fingerprint"], "--limit", "1",
                                                       "--api-url", "https://api.superfastrobotics.com", "--json"])
             with mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-scoped-token-0123456789-abcdef"}), mock.patch.object(
                     contributions, "submission_token", side_effect=AssertionError("Duplicate save must not read a token")):
@@ -145,11 +155,11 @@ class MemoryTests(unittest.TestCase):
             result = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input,
                                    policy_path=policy, api_url="https://selected.example.test/pilot/")
         self.assertEqual(result["delivery_recovery"]["flush_args"], [
-            "flush", "--project", str(self.project.resolve()), "--limit", "1", "--api-url", "https://selected.example.test/pilot",
+            "flush", "--project", str(self.project.resolve()), "--fingerprint", result["fingerprint"], "--limit", "1", "--api-url", "https://selected.example.test/pilot",
             "--policy", str(policy.resolve()), "--json"])
         network.assert_not_called()
         with mock.patch.dict(os.environ, {"RSH_API_URL": "https://environment.example.test"}, clear=True):
-            recovery = memories.missing_token_recovery(self.project)
+            recovery = memories.missing_token_recovery(self.project, result["fingerprint"])
         self.assertIn("https://environment.example.test", recovery["flush_args"])
 
     def test_cli_missing_token_save_returns_recovery_without_prompts(self):
@@ -170,7 +180,7 @@ class MemoryTests(unittest.TestCase):
         self.assertEqual(result["next_action"], "continue_user_task")
         self.assertFalse(result["network_performed"])
         self.assertEqual(result["delivery_recovery"]["flush_args"], [
-            "flush", "--project", str(self.project.resolve()), "--limit", "1", "--api-url", "https://api.superfastrobotics.com", "--json"])
+            "flush", "--project", str(self.project.resolve()), "--fingerprint", result["fingerprint"], "--limit", "1", "--api-url", "https://api.superfastrobotics.com", "--json"])
         self.assertTrue(Path(result["finding_path"]).is_file())
 
     def test_missing_token_recovery_does_not_echo_unsafe_endpoint_or_error_text(self):
@@ -290,6 +300,217 @@ class MemoryTests(unittest.TestCase):
             result = memories.flush(self.project, limit=2)
         self.assertEqual(network.call_count, 2)
         self.assertEqual(result["processed"], 2)
+
+    def test_recovery_selects_allowed_finding_behind_denied_queue_entry_without_glob(self):
+        self.policy()
+        with mock.patch.dict(os.environ, {"RSH_TELEMETRY": "off"}, clear=True), mock.patch.object(contributions, "request_json") as network:
+            saved = self.save()
+            network.assert_not_called()
+        saved_path = Path(saved["finding_path"])
+        payload = json.loads(saved_path.read_text(encoding="utf-8"))["payload"]
+        for number in range(256):
+            denied_finding = finding(kind="failure_observation", summary=f"A separate synthetic failure observation {number}")
+            denied_payload = {**payload, **memories.normalize_finding(denied_finding)}
+            if memories.fingerprint(denied_payload) < saved["fingerprint"]:
+                break
+        else:
+            self.fail("Could not construct a lexicographically first denied fixture")
+        self.write_finding(denied_finding)
+        denied = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        denied_path = Path(denied["finding_path"])
+        denied_bytes = denied_path.read_bytes()
+        self.assertLess(denied["fingerprint"], saved["fingerprint"])
+        cli = runpy.run_path(str(SKILL / "scripts/rsh.py"), run_name="rsh_memory_test")
+        remaining, json_mode, catalog = cli["extract_global"](saved["delivery_recovery"]["flush_args"])
+        args = cli["build_parser"]().parse_args(remaining)
+        self.assertTrue(json_mode)
+        self.assertEqual(args.selected_fingerprint, saved["fingerprint"])
+        with mock.patch.object(Path, "glob", side_effect=AssertionError("Selected flush must not enumerate the queue")), mock.patch.object(
+                memories, "read_json", wraps=memories.read_json) as reads, mock.patch.object(
+                contributions, "api_configuration", return_value=("https://api.superfastrobotics.com", "synthetic-credential")) as credential, mock.patch.object(
+                contributions, "request_json", side_effect=self.response) as network:
+            result = cli["execute"](args, catalog)
+            already_stored = cli["execute"](args, catalog)
+        self.assertEqual(result["processed"], 1)
+        self.assertEqual(result["results"][0]["fingerprint"], saved["fingerprint"])
+        self.assertEqual(result["results"][0]["status"], "stored")
+        self.assertEqual(already_stored["results"][0]["reason_code"], "finding_already_stored")
+        self.assertFalse(already_stored["network_performed"])
+        self.assertEqual(network.call_count, 1)
+        self.assertEqual(credential.call_count, 1)
+        self.assertEqual(network.call_args.kwargs["idempotency_key"], saved["fingerprint"])
+        self.assertEqual(json.loads(network.call_args.kwargs["payload"])["base"], payload["base"])
+        self.assertEqual([Path(call.args[0]) for call in reads.call_args_list], [saved_path, saved_path])
+        self.assertEqual(denied_path.read_bytes(), denied_bytes)
+        with mock.patch.object(Path, "glob", side_effect=AssertionError("Selected flush must not enumerate the queue")), mock.patch.object(
+                contributions, "api_configuration", side_effect=AssertionError("Denied target must not read credentials")), mock.patch.object(
+                contributions, "request_json") as network:
+            blocked = memories.flush(self.project, selected_fingerprint=denied["fingerprint"])
+        self.assertEqual(blocked["results"][0]["reason_code"], "memory_sharing_not_allowed")
+        self.assertFalse(blocked["network_performed"])
+        self.assertNotIn("delivery_recovery", blocked["results"][0])
+        network.assert_not_called()
+
+    def test_selected_flush_rejects_invalid_selectors_before_any_outbox_read(self):
+        for selector in ("", "A" * 64, "a" * 63, "a" * 65, "../private", "a" * 64 + ".json", True, 1):
+            with self.subTest(selector=selector), mock.patch.object(memories, "outbox_root") as outbox, mock.patch.object(
+                    memories, "read_json") as reads, mock.patch.object(contributions, "api_configuration") as credential, mock.patch.object(
+                    contributions, "request_json") as network:
+                with self.assertRaises(RshError) as error:
+                    memories.flush(self.project, selected_fingerprint=selector)
+                self.assertEqual(error.exception.result["reason_code"], "invalid_memory_fingerprint")
+                self.assertFalse(error.exception.result["network_performed"])
+                outbox.assert_not_called()
+                reads.assert_not_called()
+                credential.assert_not_called()
+                network.assert_not_called()
+
+    def test_selected_flush_missing_target_never_reads_or_falls_back_to_pending_entry(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        self.policy()
+        with mock.patch.object(Path, "glob", side_effect=AssertionError("Selected flush must not enumerate the queue")), mock.patch.object(
+                memories, "read_json") as reads, mock.patch.object(contributions, "api_configuration") as credential, mock.patch.object(
+                contributions, "request_json") as network:
+            with self.assertRaises(RshError) as error:
+                memories.flush(self.project, selected_fingerprint="0" * 64)
+        self.assertNotEqual(saved["fingerprint"], "0" * 64)
+        self.assertEqual(error.exception.result["reason_code"], "memory_finding_not_found")
+        self.assertFalse(error.exception.result["network_performed"])
+        reads.assert_not_called()
+        credential.assert_not_called()
+        network.assert_not_called()
+
+    def test_selected_flush_invalid_content_or_identity_cannot_deliver(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        self.policy()
+        path = Path(saved["finding_path"])
+        entry = json.loads(path.read_text(encoding="utf-8"))
+        changed = copy.deepcopy(entry)
+        changed["payload"]["summary"] = "A tampered synthetic summary"
+        wrong_fingerprint = {**entry, "fingerprint": "f" * 64}
+        for content in ("private malformed JSON", "[]", json.dumps(changed), json.dumps(wrong_fingerprint)):
+            path.write_text(content, encoding="utf-8")
+            with self.subTest(content=content[:30]), mock.patch.object(Path, "glob", side_effect=AssertionError("No queue scan")), mock.patch.object(
+                    contributions, "api_configuration") as credential, mock.patch.object(contributions, "request_json") as network:
+                with self.assertRaises(RshError) as error:
+                    memories.flush(self.project, selected_fingerprint=saved["fingerprint"])
+                self.assertEqual(error.exception.result["reason_code"], "invalid_local_memory")
+                self.assertFalse(error.exception.result["network_performed"])
+                self.assertNotIn("private malformed", error.exception.result["message"])
+                credential.assert_not_called()
+                network.assert_not_called()
+
+    def test_cli_post_response_receipt_failures_preserve_network_state_and_retry_identity(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        self.policy()
+        path = Path(saved["finding_path"])
+        original = path.read_bytes()
+        real_write = memories.write_json
+        for fail_pending in (False, True):
+            path.write_bytes(original)
+            writes = []
+            def fail_receipt(target, entry):
+                state = entry["delivery"]["status"]
+                writes.append(state)
+                if state == "stored" or fail_pending and state == "pending":
+                    raise OSError("private receipt error must not appear")
+                return real_write(target, entry)
+            with self.subTest(fail_pending=fail_pending), mock.patch.object(Path, "glob", side_effect=AssertionError("No queue scan")), mock.patch.object(
+                    memories, "write_json", side_effect=fail_receipt), mock.patch.object(
+                    contributions, "api_configuration", return_value=("https://api.example.test", "synthetic-credential")), mock.patch.object(
+                    contributions, "request_json", side_effect=self.response) as network:
+                code, result = self.cli_result(["flush", "--project", str(self.project), "--fingerprint", saved["fingerprint"], "--json"])
+            self.assertEqual(code, 0)
+            self.assertTrue(result["network_performed"])
+            delivered = result["results"][0]
+            self.assertEqual(delivered["status"], "local_saved")
+            self.assertEqual(delivered["reason_code"], "memory_receipt_persistence_failed")
+            self.assertTrue(delivered["network_performed"])
+            self.assertEqual(delivered["next_action"], "continue_user_task")
+            self.assertEqual(writes, ["sending", "stored", "pending"])
+            self.assertEqual(network.call_count, 1)
+            self.assertEqual(network.call_args.kwargs["idempotency_key"], saved["fingerprint"])
+            persisted = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(memories.fingerprint(persisted["payload"]), saved["fingerprint"])
+            self.assertEqual(contributions.canonical_bytes(persisted["wire_payload"]), network.call_args.kwargs["payload"])
+            self.assertEqual(persisted["delivery"]["status"], "sending" if fail_pending else "pending")
+            if fail_pending:
+                self.assertIs(delivered["local_receipt_persisted"], False)
+            self.assertNotIn("private receipt error", json.dumps(result))
+            self.assertNotIn("synthetic-credential", json.dumps(result))
+
+    def test_cli_preflight_receipt_failure_performs_no_post(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        self.policy()
+        original = Path(saved["finding_path"]).read_bytes()
+        with mock.patch.object(memories, "write_json", side_effect=OSError("private preflight error")), mock.patch.object(
+                contributions, "api_configuration", return_value=("https://api.example.test", "synthetic-credential")), mock.patch.object(
+                contributions, "request_json") as network:
+            code, result = self.cli_result(["flush", "--project", str(self.project), "--fingerprint", saved["fingerprint"], "--json"])
+        self.assertEqual(code, 0)
+        self.assertIs(result["network_performed"], False)
+        self.assertIs(result["results"][0]["network_performed"], False)
+        self.assertIs(result["results"][0]["local_receipt_persisted"], False)
+        self.assertEqual(result["results"][0]["reason_code"], "memory_delivery_failed")
+        self.assertEqual(Path(saved["finding_path"]).read_bytes(), original)
+        self.assertNotIn("private preflight", json.dumps(result))
+        network.assert_not_called()
+
+    def test_cli_old_attempted_state_does_not_claim_current_post_without_token(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        self.policy()
+        path = Path(saved["finding_path"])
+        entry = json.loads(path.read_text(encoding="utf-8"))
+        entry["delivery"] = {"status": "pending", "attempted": True}
+        path.write_text(json.dumps(entry), encoding="utf-8")
+        with mock.patch.dict(os.environ, {"RSH_TELEMETRY": "off"}, clear=True), mock.patch.object(contributions, "request_json") as network:
+            code, result = self.cli_result(["flush", "--project", str(self.project), "--fingerprint", saved["fingerprint"], "--json"])
+        self.assertEqual(code, 0)
+        self.assertIs(result["network_performed"], False)
+        delivered = result["results"][0]
+        self.assertEqual(delivered["reason_code"], "missing_submission_token")
+        self.assertIs(delivered["network_performed"], False)
+        self.assertTrue(json.loads(path.read_text(encoding="utf-8"))["delivery"]["attempted"])
+        self.assertIn(saved["fingerprint"], delivered["delivery_recovery"]["flush_args"])
+        network.assert_not_called()
+
+    def test_selected_policy_failure_is_not_reclassified_as_invalid_finding(self):
+        saved = memories.save(fixture_catalog(), "fixture-pick", self.project, self.input, offline=True)
+        (self.project / ".robot-skill-hub.json").write_text('{"memory":', encoding="utf-8")
+        with mock.patch.object(contributions, "api_configuration") as credential, mock.patch.object(contributions, "request_json") as network:
+            code, result = self.cli_result(["flush", "--project", str(self.project), "--fingerprint", saved["fingerprint"], "--json"])
+        self.assertEqual(code, 0)
+        self.assertEqual(result["results"][0]["reason_code"], "memory_sharing_not_allowed")
+        self.assertIs(result["network_performed"], False)
+        credential.assert_not_called()
+        network.assert_not_called()
+        error = RshError("invalid_project_policy", "The project policy is unavailable.", network_performed=False)
+        with mock.patch.object(memories, "policy_for", side_effect=error), mock.patch.object(contributions, "request_json") as network:
+            code, result = self.cli_result(["flush", "--project", str(self.project), "--fingerprint", saved["fingerprint"], "--json"])
+        self.assertEqual(code, 0)
+        self.assertEqual(result["status"], "skipped")
+        self.assertEqual(result["reason_code"], "invalid_project_policy")
+        self.assertIs(result["network_performed"], False)
+        network.assert_not_called()
+
+    def test_main_optional_error_keeps_known_network_and_marks_unknown_state(self):
+        cli = runpy.run_path(str(SKILL / "scripts/rsh.py"), run_name="rsh_memory_test")
+        cases = [(RshError("delivery_state_unavailable", "Delivery state is unavailable.", network_performed=True), True),
+                 (OSError("private unexpected error must not appear"), None)]
+        for error, expected_network in cases:
+            def unexpected(args, location):
+                contributions.request_json("POST", "https://fixture.invalid/v1/memories", "synthetic-credential",
+                                           payload=b"{}", idempotency_key="a" * 64)
+                raise error
+            with self.subTest(error=type(error).__name__), mock.patch.dict(cli["main"].__globals__, {"execute": unexpected}), mock.patch.object(
+                    contributions, "request_json", return_value={}) as network:
+                code, result = self.cli_result(["flush", "--project", str(self.project), "--json"], cli=cli)
+            self.assertEqual(code, 0)
+            self.assertEqual(result["status"], "skipped")
+            self.assertIs(result["network_performed"], expected_network)
+            self.assertEqual(network.call_count, 1)
+            self.assertNotIn("private unexpected", json.dumps(result))
+            self.assertNotIn("synthetic-credential", json.dumps(result))
 
     def test_recall_requires_exact_source_record_and_known_environment_match(self):
         base = {"hub_commit": HUB, "record_version": "1.0.0", "source_commit": PIN}

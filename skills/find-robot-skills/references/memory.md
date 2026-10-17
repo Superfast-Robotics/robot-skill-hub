@@ -96,8 +96,14 @@ The wire request contains `publication.public_submission_allowed: true` only aft
 `save` attempts at most one POST when authorized. Repeated findings retain a stable content identity. An unchanged `save` never delivers or retries, even if permission or a token became available since the first save. A transport failure leaves the local entry available and does not block the main task. Use `flush` for that retained entry after authorization becomes available or an explicit retry is useful:
 
 ```sh
-python /ABSOLUTE_SKILL_PATH/scripts/rsh.py flush --project ./experiment --limit 1 --json
+python /ABSOLUTE_SKILL_PATH/scripts/rsh.py flush --project ./experiment --fingerprint FINGERPRINT_FROM_SAVE --limit 1 --json
 ```
+
+For one particular finding, pass `--fingerprint FINGERPRINT_FROM_SAVE` using the 64 lowercase hexadecimal characters returned by `save`. This reads only the selected outbox file, validates its content identity and rechecks its current skill/kind sharing scope. Missing or blocked selection never falls back to another entry. Without this selector, `flush` checks a bounded sorted pending prefix; a denied entry consumes a checked slot and can remain first on the next call.
+
+An already-authorized save without a token returns `delivery_recovery` with private credential environment/file options and `flush_args` for its exact fingerprint, same project, explicit policy and selected API. Supply an operator-issued token privately, then use those arguments with `rsh.py` only when explicit delivery is wanted. A duplicate save may repeat static guidance while its current scope is still authorized; it never reads credentials or sends a request. An unsafe selected API is omitted and reported as requiring configuration. Missing sharing scope provides no recovery instructions. Keep solving the user's task; this guidance issues no token, permission or automatic retry.
+
+Memory delivery reports the current invocation's submission POST attempt. `network_performed: true` is retained if its POST began, even when the local delivery receipt could not be saved; `local_receipt_persisted: false` identifies that persistence failure. `network_performed: null` means the operation did not establish its transport state and must not be treated as zero attempts. Keep the stable finding fingerprint for any explicit retry; no automatic retry is introduced.
 
 The API accepts `POST /v1/memories` with a Bearer token and Idempotency-Key, creates an internal draft PR, and does not execute memory text. Local persistence, server storage and publication are separate outcomes. A maintainer merges the reviewed data; the public memory index and publication proof then make it discoverable. Do not poll in the background or report a stored entry as published.
 

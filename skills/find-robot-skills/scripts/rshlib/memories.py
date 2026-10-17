@@ -173,7 +173,7 @@ def safe_api_error(error):
     return result
 
 
-def missing_token_recovery(project, *, policy_path=None, api_url=None):
+def missing_token_recovery(project, finding_fingerprint, *, policy_path=None, api_url=None):
     """Static credential guidance and an explicit retry; never copy error text or tokens."""
     recovery = {
         "credential_setup": {
@@ -196,7 +196,7 @@ def missing_token_recovery(project, *, policy_path=None, api_url=None):
         # unsafe endpoint or silently replace an explicitly selected destination.
         recovery["api_configuration_required"] = True
         return recovery
-    args = ["flush", "--project", str(Path(project).expanduser().resolve()), "--limit", "1",
+    args = ["flush", "--project", str(Path(project).expanduser().resolve()), "--fingerprint", finding_fingerprint, "--limit", "1",
             "--api-url", base.rstrip("/")]
     if policy_path:
         args.extend(["--policy", str(Path(policy_path).resolve())])
@@ -209,6 +209,8 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
     policy = policy_for(project, policy_path)
     if not allowed(policy, payload["skill_id"], payload["kind"]):
         return entry_result(entry, path, reason="memory_sharing_not_allowed")
+    post_started = False
+    response_confirmed = False
     try:
         base, token = contributions.api_configuration(api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com")
         # The exact permitted bytes are recorded before transmission for explicit retries.
@@ -218,89 +220,127 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
         validate_payload(wire)
         if fingerprint(wire) != entry["fingerprint"]:
             raise RshError("invalid_local_memory", "The local finding fingerprint differs from its delivery payload.")
+        wire_bytes = contributions.canonical_bytes(wire)
         entry["delivery"] = {"status": "sending", "attempted": True, "api_url": base}
         write_json(path, entry)
+        post_started = True
         response = contributions.request_json("POST", base + "/v1/memories", token,
-                                               payload=contributions.canonical_bytes(wire),
+                                                payload=wire_bytes,
                                                idempotency_key=entry["fingerprint"], timeout=SEND_TIMEOUT)
         if (response.get("status") != "stored" or response.get("fingerprint") != entry["fingerprint"]
                 or not re.fullmatch(r"mem_[a-f0-9]{64}", str(response.get("memory_id", "")))
                 or not re.fullmatch(r"[a-f0-9]{64}", str(response.get("content_sha256", "")))):
             raise RshError("invalid_api_response", "Memory API did not confirm this exact finding.")
+        response_confirmed = True
         entry["delivery"] = {"status": "stored", "attempted": True, "api_url": base,
                              "response": {key: value for key, value in response.items() if key in
                                           ("memory_id", "status", "status_path", "pr_url", "fingerprint", "content_sha256", "base", "replay")}}
         write_json(path, entry)
         return entry_result(entry, path, reason="finding_stored_for_review", network=True)
     except (RshError, OSError, ValueError, TypeError) as error:
-        reason = error.result["reason_code"] if isinstance(error, RshError) else "memory_delivery_failed"
+        reason = error.result["reason_code"] if isinstance(error, RshError) else (
+            "memory_receipt_persistence_failed" if response_confirmed else "memory_delivery_failed")
         entry["delivery"] = {**entry.get("delivery", {}), "status": "pending", "reason_code": reason}
         details = safe_api_error(error.result.get("api_error")) if isinstance(error, RshError) else {}
         if details:
             entry["delivery"]["api_error"] = details
-        write_json(path, entry)
+        receipt_persisted = True
+        try:
+            write_json(path, entry)
+        except (RshError, OSError, ValueError, TypeError):
+            receipt_persisted = False
         # No automatic retry here. An explicit flush reuses the exact same wire bytes.
-        recovery = missing_token_recovery(project, policy_path=policy_path, api_url=api_url) if reason == "missing_submission_token" else None
-        return entry_result(entry, path, reason=reason, network=entry["delivery"].get("attempted", False), recovery=recovery)
+        recovery = missing_token_recovery(project, entry["fingerprint"], policy_path=policy_path, api_url=api_url) if reason == "missing_submission_token" else None
+        result = entry_result(entry, path, reason=reason, network=post_started, recovery=recovery)
+        if not receipt_persisted:
+            result["local_receipt_persisted"] = False
+            result["delivery_error"] = {"reason_code": "memory_receipt_persistence_failed",
+                "message": "The local delivery receipt could not be saved. Keep the original finding and its stable fingerprint; no automatic retry was performed."}
+        return result
 
 
 def save(catalog, skill_id, project, finding_file, *, policy_path=None, api_url=None, offline=False):
-    path = Path(finding_file)
-    if path.stat().st_size > MAX_BYTES:
-        raise RshError("finding_too_large", "Finding input exceeds 16 KiB; keep only the minimal reusable observation.")
-    finding = normalize_finding(read_json(path))
-    base, _ = base_for(catalog, skill_id, project)
-    payload = {"schema_version": "1", "skill_id": skill_id, "base": base, **finding,
-               "publication": {"public_submission_allowed": False}}
-    if len(contributions.canonical_bytes(payload)) > MAX_BYTES:
-        raise RshError("finding_too_large", "Finding exceeds the 16 KiB wire limit.")
-    digest = fingerprint(payload)
-    target = outbox_root(project) / (digest + ".json")
-    if not target.resolve().is_relative_to(Path(project).expanduser().resolve()):
-        raise RshError("memory_path_escape", "The local finding path resolves outside this project.")
-    if target.exists():
-        existing = read_json(target)
-        if existing.get("fingerprint") != digest or fingerprint(existing.get("payload", {})) != digest:
-            raise RshError("invalid_local_memory", "Existing local memory does not match its content identity.")
-        delivery = existing.get("delivery", {})
-        recovery = None
-        if (not offline and delivery.get("status") != "stored" and delivery.get("reason_code") == "missing_submission_token"
-                and allowed(policy_for(project, policy_path), skill_id, finding["kind"])):
-            # A duplicate remains read-only even after credentials become available.
-            recovery = missing_token_recovery(project, policy_path=policy_path, api_url=api_url)
-        return entry_result(existing, target, reason="unchanged_finding_already_saved", recovery=recovery)
-    entry = {"schema_version": "1", "fingerprint": digest, "payload": payload,
-             "created_at": datetime.now(timezone.utc).isoformat(),
-             "delivery": {"status": "local_saved", "attempted": False}}
-    write_json(target, entry)
-    if offline:
-        return entry_result(entry, target, reason="offline_local_save")
+    try:
+        path = Path(finding_file)
+        if path.stat().st_size > MAX_BYTES:
+            raise RshError("finding_too_large", "Finding input exceeds 16 KiB; keep only the minimal reusable observation.")
+        finding = normalize_finding(read_json(path))
+        base, _ = base_for(catalog, skill_id, project)
+        payload = {"schema_version": "1", "skill_id": skill_id, "base": base, **finding,
+                   "publication": {"public_submission_allowed": False}}
+        if len(contributions.canonical_bytes(payload)) > MAX_BYTES:
+            raise RshError("finding_too_large", "Finding exceeds the 16 KiB wire limit.")
+        digest = fingerprint(payload)
+        target = outbox_root(project) / (digest + ".json")
+        if not target.resolve().is_relative_to(Path(project).expanduser().resolve()):
+            raise RshError("memory_path_escape", "The local finding path resolves outside this project.")
+        if target.exists():
+            existing = read_json(target)
+            if existing.get("fingerprint") != digest or fingerprint(existing.get("payload", {})) != digest:
+                raise RshError("invalid_local_memory", "Existing local memory does not match its content identity.")
+            delivery = existing.get("delivery", {})
+            recovery = None
+            if (not offline and delivery.get("status") != "stored" and delivery.get("reason_code") == "missing_submission_token"
+                    and allowed(policy_for(project, policy_path), skill_id, finding["kind"])):
+                # A duplicate remains read-only even after credentials become available.
+                recovery = missing_token_recovery(project, digest, policy_path=policy_path, api_url=api_url)
+            return entry_result(existing, target, reason="unchanged_finding_already_saved", recovery=recovery)
+        entry = {"schema_version": "1", "fingerprint": digest, "payload": payload,
+                 "created_at": datetime.now(timezone.utc).isoformat(),
+                 "delivery": {"status": "local_saved", "attempted": False}}
+        write_json(target, entry)
+        if offline:
+            return entry_result(entry, target, reason="offline_local_save")
+    except RshError as error:
+        error.result.setdefault("network_performed", False)
+        raise
     return deliver(entry, target, project, policy_path=policy_path, api_url=api_url)
 
 
-def flush(project, *, policy_path=None, api_url=None, limit=1, offline=False):
+def flush(project, *, policy_path=None, api_url=None, limit=1, offline=False, selected_fingerprint=None):
     if not isinstance(limit, int) or not 1 <= limit <= 3:
         raise RshError("invalid_limit", "Flush limit must be 1 to 3 findings.")
+    selected = selected_fingerprint is not None
+    if selected and (not isinstance(selected_fingerprint, str) or not re.fullmatch(r"[a-f0-9]{64}", selected_fingerprint)):
+        raise RshError("invalid_memory_fingerprint", "Use the lowercase 64-character finding fingerprint returned by save.", network_performed=False)
     root = outbox_root(project)
+    if selected:
+        target = root / (selected_fingerprint + ".json")
+        if not target.resolve().is_relative_to(root.resolve()):
+            raise RshError("memory_path_escape", "The selected local finding resolves outside the project outbox.", network_performed=False)
+        if not target.is_file():
+            raise RshError("memory_finding_not_found", "The selected local finding is unavailable; no other finding was selected.", network_performed=False)
+        paths = [target]
+    else:
+        paths = sorted(root.glob("*.json")) if root.is_dir() else []
     results = []
-    if root.is_dir():
-        for path in sorted(root.glob("*.json")):
-            if len(results) >= limit:
-                break
-            if not path.resolve().is_relative_to(Path(project).expanduser().resolve()):
+    for path in paths:
+        if len(results) >= limit:
+            break
+        if not path.resolve().is_relative_to(Path(project).expanduser().resolve()):
+            if selected:
+                raise RshError("memory_path_escape", "The selected local finding resolves outside the project.", network_performed=False)
+            continue
+        try:
+            entry = read_json(path)
+            if not isinstance(entry, dict) or not isinstance(entry.get("delivery", {}), dict):
+                raise RshError("invalid_local_memory", "Local finding metadata is invalid.")
+            if not selected and entry.get("delivery", {}).get("status") == "stored":
                 continue
-            try:
-                entry = read_json(path)
-                if entry.get("delivery", {}).get("status") == "stored":
-                    continue
-                payload = entry["payload"]
-                validate_payload(payload)
-                if fingerprint(payload) != entry.get("fingerprint") or path.stem != entry["fingerprint"]:
-                    continue
-                results.append(entry_result(entry, path, reason="offline_local_save") if offline else
-                               deliver(entry, path, project, policy_path=policy_path, api_url=api_url))
-            except (RshError, OSError, KeyError, TypeError):
-                continue
+            payload = entry["payload"]
+            validate_payload(payload)
+            if fingerprint(payload) != entry.get("fingerprint") or path.stem != entry["fingerprint"]:
+                raise RshError("invalid_local_memory", "Local finding content does not match its fingerprint.")
+        except (RshError, OSError, KeyError, TypeError) as error:
+            if selected:
+                raise RshError("invalid_local_memory", "The selected local finding is invalid; preserve it for inspection. No other finding was selected.", network_performed=False) from error
+            continue
+        # Delivery and policy failures are not local parse/identity failures.
+        if entry.get("delivery", {}).get("status") == "stored":
+            results.append(entry_result(entry, path, reason="finding_already_stored"))
+        else:
+            results.append(entry_result(entry, path, reason="offline_local_save") if offline else
+                           deliver(entry, path, project, policy_path=policy_path, api_url=api_url))
     return {"status": "ready", "results": results, "processed": len(results),
             "network_performed": any(result["network_performed"] for result in results), "next_action": "continue_user_task"}
 
