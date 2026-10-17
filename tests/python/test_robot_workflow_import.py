@@ -55,7 +55,8 @@ class RobotWorkflowImportTests(unittest.TestCase):
             self.assertEqual(len(files["LICENSE"]), record["license"]["bytes"])
             self.assertEqual("workflow", record["artifact"]["kind"])
             self.assertEqual(project["evidence_files"][0]["sha256"], record["access"]["setup_evidence"][0]["sha256"])
-            self.assertEqual({"records": [record]}, importer.build(manifest, cache, {"records": [record]}))
+            self.assertEqual({"records": [record], "workflow_manifest": "workflow-projects.json"},
+                             importer.build(manifest, cache, {"records": [record]}))
 
     def test_tampered_source_license_or_author_setup_document_is_rejected(self):
         for path in ["scripts/train.py", "LICENSE", "README.md"]:
