@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "robot-skill-hub-api",
+  "account_id": "8df378989a27166c1180b588582573df",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": true,
+  "routes": [{ "pattern": "api.superfastrobotics.com", "custom_domain": true }],
+  "observability": { "enabled": false },
+  "vars": {
+    "PUBLICATION_URL": "https://superfast-robotics.github.io/robot-skill-hub/catalog/v1/publication.json"
+  },
+  "ratelimits": [
+    { "name": "SUBMIT_LIMITER", "namespace_id": "78345101", "simple": { "limit": 10, "period": 60 } },
+    { "name": "STATUS_LIMITER", "namespace_id": "78345102", "simple": { "limit": 60, "period": 60 } }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://superfastrobotics.com/schemas/skill.schema.json",
+  "title": "Robot Skill Hub canonical record v1",
+  "type": "object",
+  "required": ["schema_version", "id", "name", "summary", "capabilities", "aliases", "source", "license", "compatibility", "observation", "requirements", "invocation", "completion", "preparation", "evidence", "maintenance", "contribution"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1},
+    "capabilities": {"$ref": "#/$defs/stringArray"},
+    "aliases": {"$ref": "#/$defs/stringArray"},
+    "source": {
+      "type": "object", "required": ["repository", "commit", "paths", "archive_url", "archive_sha256", "authors"],
+      "properties": {
+        "repository": {"type": "string", "pattern": "^https://github.com/[^/]+/[^/]+$"},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "paths": {"$ref": "#/$defs/stringArray"},
+        "archive_url": {"type": "string", "pattern": "^https://codeload.github.com/"},
+        "archive_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "authors": {"$ref": "#/$defs/stringArray"},
+        "tag": {"type": "string"}, "archive_bytes": {"type": "integer", "minimum": 1},
+        "contributing_url": {"type": "string"}
+      }, "additionalProperties": false
+    },
+    "license": {
+      "type": "object", "required": ["spdx", "url", "verified"],
+      "properties": {"spdx": {"type": "string"}, "url": {"type": "string"}, "verified": {"type": "boolean"}, "scope": {"type": "string"}}, "additionalProperties": false
+    },
+    "compatibility": {
+      "type": "array", "minItems": 1,
+      "items": {"type": "object", "required": ["runtime", "runtime_version", "robot", "controller", "observation", "os", "status"],
+        "properties": {
+          "runtime": {"type": "string"}, "runtime_version": {"type": "string"}, "robot": {"type": "string"},
+          "controller": {"type": "string"}, "observation": {"type": "string"}, "os": {"type": "string"},
+          "python": {"type": "string"}, "architecture": {"type": "string"},
+          "status": {"enum": ["unknown", "source_reviewed", "contributor_reported", "hub_verified"]}
+        }, "additionalProperties": false}
+    },
+    "observation": {"type": "object", "required": ["required", "privileged_state", "description"], "properties": {"required": {"$ref": "#/$defs/stringArray"}, "privileged_state": {"type": "boolean"}, "description": {"type": "string"}}, "additionalProperties": false},
+    "requirements": {"type": "object", "required": ["python", "packages", "hardware", "rendering", "api_keys", "network", "dependency_lock"], "properties": {"python": {"type": "string"}, "packages": {"$ref": "#/$defs/stringArray"}, "hardware": {"$ref": "#/$defs/stringArray"}, "rendering": {"type": "string"}, "api_keys": {"type": "array", "items": {"type": "string"}}, "network": {"$ref": "#/$defs/stringArray"}, "dependency_lock": {"type": "string"}}, "additionalProperties": false},
+    "invocation": {"type": "object", "required": ["entrypoint", "argv", "inputs", "outputs", "example"], "properties": {"entrypoint": {"type": "string"}, "argv": {"$ref": "#/$defs/stringArray"}, "inputs": {"type": "object"}, "outputs": {"type": "object"}, "example": {"type": "string"}}, "additionalProperties": false},
+    "completion": {"type": "object", "required": ["success_condition", "timeout_seconds", "failure_modes", "stop_condition"], "properties": {"success_condition": {"type": "string"}, "timeout_seconds": {"type": "integer", "minimum": 1}, "failure_modes": {"$ref": "#/$defs/stringArray"}, "stop_condition": {"type": "string"}}, "additionalProperties": false},
+    "preparation": {"type": "object", "required": ["recipe_path", "requirements_file", "install_argv", "execution_separate"], "properties": {"recipe_path": {"type": "string"}, "requirements_file": {"type": "string"}, "install_argv": {"$ref": "#/$defs/stringArray"}, "execution_separate": {"const": true}, "files": {"type": "object", "additionalProperties": {"type": "string"}}}, "additionalProperties": false},
+    "evidence": {"type": "object", "required": ["level", "verified_by", "date", "environment", "commands", "result", "artifacts", "runtime_verification", "contributor_reported", "hub_verification"], "properties": {"level": {"enum": ["not_run", "source_reviewed", "install_verified", "import_verified", "task_complete", "contributor_reported"]}, "verified_by": {"type": "string"}, "date": {"type": "string"}, "environment": {"type": "object"}, "commands": {"$ref": "#/$defs/stringArray"}, "result": {"type": "string"}, "artifacts": {"type": "array", "items": {"type": "string"}}, "runtime_verification": {"enum": ["not_run", "install_verified", "import_verified", "task_complete"]}, "contributor_reported": {"type": ["object", "null"]}, "hub_verification": {"type": "object"}}, "additionalProperties": false},
+    "maintenance": {"type": "object", "required": ["record_version", "last_checked", "upstream_status"], "properties": {"record_version": {"type": "string", "minLength": 1}, "last_checked": {"type": "string"}, "upstream_status": {"type": "string"}}, "additionalProperties": false},
+    "contribution": {"type": "object", "required": ["allowed_paths", "instructions"], "properties": {"allowed_paths": {"$ref": "#/$defs/stringArray"}, "instructions": {"type": "string"}}, "additionalProperties": false}
+  },
+  "$defs": {"stringArray": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}}
+}
