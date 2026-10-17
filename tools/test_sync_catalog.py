@@ -4,6 +4,8 @@ import io
 import json
 import os
 from pathlib import Path
+import tempfile
+import textwrap
 import threading
 import unittest
 from unittest import mock
@@ -125,6 +127,22 @@ class SyncTests(unittest.TestCase):
             with self.assertRaisesRegex(sync.SyncFailure, "call limit"):
                 self.run_sync(mock.Mock(return_value=(200, progress(1), None)))
 
+    def test_daily_write_limit_stops_without_retry_or_switch_after_preserving_progress(self):
+        quota = (503, {"reason_code": "catalog_write_limit"}, "18000")
+        for prefix in ([], [(200, progress(1), None)]):
+            with self.subTest(progress=bool(prefix)):
+                request = mock.Mock(side_effect=prefix + [quota])
+                with self.assertRaises(sync.SyncFailure) as failure:
+                    self.run_sync(request)
+                self.assertEqual(failure.exception.code, "catalog_write_limit")
+                self.assertEqual(request.call_count, len(prefix) + 1)
+                self.assertEqual(self.clock.sleeps, [])
+        stderr = io.StringIO()
+        with mock.patch.object(sync, "sync_catalog", side_effect=sync.SyncFailure("catalog_write_limit", KEY)), contextlib.redirect_stderr(stderr):
+            self.assertEqual(sync.main(["--hub-commit", HUB]), 75)
+        self.assertEqual(json.loads(stderr.getvalue()), {"status": "deferred", "reason_code": "catalog_write_limit"})
+        self.assertNotIn(KEY, stderr.getvalue())
+
     def test_cli_never_logs_exception_headers_body_or_unknown_argument_secret(self):
         for failure in (RuntimeError("Authorization: Bearer " + KEY), sync.SyncFailure(KEY, KEY), sync.SyncFailure([KEY], KEY)):
             stdout, stderr = io.StringIO(), io.StringIO()
@@ -165,9 +183,13 @@ class TransportTests(unittest.TestCase):
                     raw = b'"' + b'x' * sync.MAX_RESPONSE_BYTES + b'"'
                 elif self.path == "/malformed":
                     raw = ("not-json " + KEY).encode()
+                elif self.path == "/quota":
+                    raw = json.dumps({"reason_code": "catalog_write_limit", "message": KEY}).encode()
+                elif self.path == "/unknown-503":
+                    raw = ("provider-html " + KEY).encode()
                 else:
                     raw = json.dumps(progress(3)).encode()
-                self.send_response(200)
+                self.send_response(503 if self.path in ("/quota", "/unknown-503") else 200)
                 self.send_header("Content-Type", "application/json")
                 if self.path != "/oversize":
                     self.send_header("Content-Length", str(len(raw)))
@@ -207,8 +229,37 @@ class TransportTests(unittest.TestCase):
                 self.local_post(route)
             self.assertNotIn(KEY, str(failure.exception))
 
+    def test_transport_retains_only_known_quota_code_and_discards_provider_text(self):
+        self.assertEqual(self.local_post("/quota"), (503, {"reason_code": "catalog_write_limit"}, None))
+        self.assertEqual(self.local_post("/unknown-503"), (503, None, None))
+
 
 class WorkflowTests(unittest.TestCase):
+    def test_scheduled_resume_pins_served_commit_even_when_main_differs_without_sending_credentials(self):
+        workflow = (Path(__file__).resolve().parents[1] / ".github/workflows/resume-catalog.yml").read_text(encoding="utf-8")
+        script = textwrap.dedent(workflow.split("python - <<'PY'\n", 1)[1].split("\n          PY", 1)[0])
+        requests = []
+        class Opener:
+            def open(self, request, timeout):
+                requests.append(request)
+                self_test.assertEqual(timeout, 20)
+                return io.BytesIO(json.dumps({"hub_commit": HUB}).encode())
+        self_test = self
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "outputs"
+            with mock.patch.dict(os.environ, {"GITHUB_SHA": OTHER, "GITHUB_OUTPUT": str(output)}), mock.patch.object(urllib.request, "build_opener", return_value=Opener()):
+                exec(compile(script, "scheduled-publication-pin", "exec"), {})
+            self.assertEqual(output.read_text(encoding="utf-8"), "hub_commit=" + HUB + "\n")
+        self.assertEqual(len(requests), 1)
+        request = requests[0]
+        self.assertEqual(request.full_url, "https://hub.superfastrobotics.com/catalog/v1/version.json")
+        headers = {key.lower(): value for key, value in request.header_items()}
+        self.assertEqual(headers["dnt"], "1")
+        self.assertEqual(headers["x-rsh-telemetry"], "off")
+        self.assertNotIn("authorization", headers)
+        self.assertIn('sync_catalog.py --hub-commit "$HUB_COMMIT"', workflow)
+        self.assertIn("HUB_COMMIT: ${{ steps.publication.outputs.hub_commit }}", workflow)
+
     def test_sync_runs_only_after_main_deploy_with_read_only_checkout_and_step_scoped_secret(self):
         workflow = (Path(__file__).resolve().parents[1] / ".github/workflows/pages.yml").read_text(encoding="utf-8")
         job = workflow.split("\n  sync:\n", 1)[1]

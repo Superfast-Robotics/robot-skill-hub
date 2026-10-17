@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { build } from 'esbuild';
 import { Miniflare, Request as RuntimeRequest, Response as RuntimeResponse } from 'miniflare';
+import { createCatalogSync, pruneCatalog, type CatalogDatabase } from '../../src/catalog.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com', API = 'https://api.example.invalid';
 const KEY = 'local-native-catalog-sync-credential';
@@ -105,8 +106,64 @@ test('native D1 concurrent sync retries reuse documents/FTS and stale or partial
     assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_memory_documents').first<any>()).total, 1);
     assert.equal((await s.read('/v1/search')).body.hub_commit, 'c'.repeat(40));
     s.set(publication('d'.repeat(40))); await s.complete();
-    await s.sync();
+    await pruneCatalog({ CATALOG: s.db as unknown as CatalogDatabase });
     assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_generations').first<any>()).total, 2);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native D1 quota failure rolls back one page, preserves the active generation and resumes at the same cursor', async () => {
+  const s = await runtime(); try {
+    await s.complete();
+    s.set(publication('c'.repeat(40), { records: 4 }));
+    const start = await s.sync(); assert.equal(start.status, 200); assert.equal((await start.json() as any).next_page, 1);
+    const before = async () => ({
+      generation: await s.db.prepare('SELECT next_page,total_pages FROM catalog_generations WHERE hub_commit=?').bind('c'.repeat(40)).first(),
+      active: await s.db.prepare('SELECT hub_commit FROM catalog_active').first(),
+      members: await s.db.prepare('SELECT count(*) total FROM catalog_members WHERE hub_commit=?').bind('c'.repeat(40)).first(),
+      pages: await s.db.prepare('SELECT count(*) total FROM catalog_pages WHERE hub_commit=?').bind('c'.repeat(40)).first(),
+      documents: await s.db.prepare('SELECT count(*) total FROM catalog_documents').first(),
+      fts: await s.db.prepare('SELECT count(*) total FROM catalog_fts').first()
+    });
+    const snapshot = await before();
+    assert.deepEqual(snapshot.generation, { next_page: 1, total_pages: 3 });
+    assert.deepEqual(snapshot.active, { hub_commit: 'a'.repeat(40) });
+    const quota = "Your account has exceeded D1's free tier daily row write limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. private-provider-detail";
+    await s.db.exec("CREATE TRIGGER test_write_quota BEFORE INSERT ON catalog_members BEGIN SELECT RAISE(ABORT, '" + quota.replaceAll("'", "''") + "'); END;");
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const response = await s.sync(); assert.equal(response.status, 503);
+      const seconds = Number(response.headers.get('Retry-After'));
+      assert.ok(Number.isInteger(seconds) && seconds >= 1 && seconds <= 86400);
+      const instant = Date.now(), midnight = (Math.floor(instant / 86400000) + 1) * 86400000;
+      assert.ok(Math.abs(instant + seconds * 1000 - midnight) < 2000, 'Retry-After is next midnight UTC');
+      const value = await response.json() as any;
+      assert.equal(value.reason_code, 'catalog_write_limit');
+      assert.doesNotMatch(JSON.stringify(value), /Upgrade|private-provider-detail|D1_ERROR|test_write_quota/);
+      assert.deepEqual(await before(), snapshot, 'Failed native D1 batch cannot advance the cursor, add documents/FTS or replace the active generation');
+    }
+    await s.db.exec('DROP TRIGGER test_write_quota;');
+    const done = await s.complete(); assert.equal(done.next_page, 3); assert.equal(done.status, 'active');
+    assert.equal((await s.read('/v1/search')).body.total, 4);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>()).total, 4);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native exact active generation sync performs only reads and leaves retirement to explicit pruning', async () => {
+  const current = publication('a'.repeat(40)), s = await runtime(current); try {
+    const done = await s.complete(); const statements: string[] = [];
+    const db: CatalogDatabase = {
+      prepare(sql) { statements.push(sql); assert.match(sql, /^\s*SELECT\b/i, 'Active-generation retry cannot even prepare INSERT OR IGNORE, UPDATE or cleanup'); return s.db.prepare(sql) as any; },
+      async batch() { assert.fail('Active-generation retry cannot submit a write batch'); }
+    };
+    const fetcher: typeof fetch = async (input, init) => {
+      const url = new URL(String(input)); assert.equal(url.origin, ORIGIN);
+      assert.equal(new Headers(init?.headers).get('DNT'), '1'); assert.equal(new Headers(init?.headers).get('X-RSH-Telemetry'), 'off');
+      const body = current.resources.get(url.pathname); assert.notEqual(body, undefined); return new Response(body);
+    };
+    const handler = createCatalogSync(fetcher);
+    const response = await handler(new Request(API + '/internal/catalog-sync', { method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ hub_commit: current.version.hub_commit }) }), { CATALOG: db, CATALOG_SYNC_KEY: KEY });
+    assert.equal(response.status, 200); assert.deepEqual(await response.json(), done);
+    assert.equal(statements.length, 1, 'Only the real SQLite generation/active-state lookup is needed');
+    assert.equal(response.headers.has('Retry-After'), false);
   } finally { await s.mf.dispose(); }
 });
 

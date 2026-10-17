@@ -1,0 +1,58 @@
+name: Resume reviewed catalog index
+on:
+  schedule:
+    - cron: '15 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: catalog-index
+  cancel-in-progress: false
+jobs:
+  resume:
+    if: github.ref == 'refs/heads/main' && github.repository == 'Superfast-Robotics/robot-skill-hub'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Pin the actually published generation without credentials
+        id: publication
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.request
+
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, *args):
+                  return None
+
+          request = urllib.request.Request('https://hub.superfastrobotics.com/catalog/v1/version.json', headers={
+              'Accept': 'application/json', 'DNT': '1', 'X-RSH-Telemetry': 'off',
+              'User-Agent': 'robot-skill-hub-catalog-resume/1',
+          })
+          with urllib.request.build_opener(NoRedirect()).open(request, timeout=20) as response:
+              raw = response.read(32769)
+          if len(raw) > 32768:
+              raise SystemExit('Published version exceeds its bound')
+          version = json.loads(raw.decode('utf-8'))
+          commit = version.get('hub_commit') if isinstance(version, dict) else None
+          if not isinstance(commit, str) or not re.fullmatch('[a-f0-9]{40}', commit):
+              raise SystemExit('Published version has an invalid commit')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write('hub_commit=' + commit + '\n')
+          PY
+      - name: Resume the current reviewed generation after the free daily quota resets
+        run: python tools/sync_catalog.py --hub-commit "$HUB_COMMIT" --timeout-seconds 540
+        env:
+          HUB_COMMIT: ${{ steps.publication.outputs.hub_commit }}
+          CATALOG_SYNC_KEY: ${{ secrets.CATALOG_SYNC_KEY }}
+          RSH_TELEMETRY: 'off'

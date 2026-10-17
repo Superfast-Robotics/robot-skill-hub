@@ -64,6 +64,7 @@ export async function measurementReport(env: MetricsEnv, now = Date.now()) {
     counting_rule: 'Successful public discovery/record reads from the Hub CLI or recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count toward the target.',
     limitations: ['Client identity is self-reported; CLI use can be initiated by a person. Counts do not prove distinct autonomous agents.',
       'Direct GitHub Pages reads and offline uses are not measured. Anonymous clients have no installation identifier.',
+      'Recording is best-effort. Storage failures, including free-tier write limits, can drop accesses; missing events are not estimated or backfilled.',
       'Optional installation IDs are HMAC hashed per UTC day; identified_client_days is not a unique-agent count.'],
     privacy: { raw_ip_stored: false, raw_client_id_stored: false, query_or_conversation_stored: false, retention_days: 30, opt_out: 'DNT: 1 or X-RSH-Telemetry: off' }
   };

@@ -8,6 +8,18 @@ The earlier agent directory rendered 414,007 bytes before usage, and its full-te
 
 Local checks passed: 247 Python tests with four Windows symlink-privilege skips, all 39 publication tests, and the offline 14-project importer rebuild. No upstream package, algorithm, simulator or hardware was executed in this follow-up.
 
+A separate internal maintainer agent used the installed skill and bundled snapshot at `f02a4c11fe4b912a775b13637159e18b1dadeca5` for a natural MPC discovery task. All five offline CLI calls succeeded: two longer queries returned no matches, `mpc` returned one candidate, inspection retained its exact source/author/license/setup, and a source-only plan returned ready. Guards observed zero network/DNS events, credential inputs, auxiliary subprocesses or CLI file writes. This verifies offline discovery and planning; it is not outside adoption or runtime execution.
+
+## Free-tier index write limit
+
+Pages published the compact entry and all 1,255 references at `f02a4c11fe4b912a775b13637159e18b1dadeca5`. The subsequent [index activation job](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39070191396) failed. An administrative diagnostic returned Cloudflare D1 error 7500 with the explicit free-tier daily row write limit message. The staging generation remained at page 0 of 16; no cursor or limit was reset and no paid plan was selected.
+
+At 2026-10-17T21:23:07Z, an actual opted-out API search returned all five PythonRobotics records from the complete, checksum-bound current static fallback (`static_v1_fallback`, substring search). The native D1 index was not yet active for that generation. The stored eligible-access count was 13, but account-wide write exhaustion can drop measurement events. This is a stored lower bound, not a complete traffic total; missing accesses will not be inferred or backfilled.
+
+The sync client now stops immediately on the explicit quota classification instead of repeatedly attempting writes. A daily workflow at 00:15 UTC resumes the current reviewed generation after the daily reset, using the existing secret and cursor. Its first successful production run remains pending. The API's already-active sync path is read-only. These changes retain the free plan.
+
+TypeScript checking, all 93 Worker unit tests, all 29 native workerd tests with the current publisher fixture, and all 14 sync-client tests passed. A local native D1 trigger simulated the explicit quota failure and verified atomic rollback, unchanged staging cursor and previous active generation, followed by successful resume after removing the trigger. Another native test rejected every attempted non-SELECT statement on an already-active sync. The scheduled version-pin regression verified selection of the served commit when main differs, with no credential sent. These local regressions do not establish recovery of the production quota.
+
 ## Standalone policy reference intake
 
 The policy intake brought the catalog to 17 preparation recipes, 1,250 source references and 3 findings. The additional [SmolVLA base checkpoint](https://hub.superfastrobotics.com/references/lerobot-smolvla-base-policy-weights/) exercises the existing submission API with a non-GitHub source and a `sha256:` revision. One real registration created [internal PR 6](https://github.com/Superfast-Robotics/robot-skill-hub/pull/6). Review checked the API-generated record against the frozen candidate, provider metadata and model card; the updated branch passed [CI](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39067937599) before merge.

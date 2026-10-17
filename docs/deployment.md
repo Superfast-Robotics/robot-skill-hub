@@ -38,6 +38,8 @@ Worker deployment is intentionally an explicit local operation. Catalog changes 
 
 After Pages deploys, a read-only checkout job calls `tools/sync_catalog.py --hub-commit "$GITHUB_SHA"`. Its separate `CATALOG_SYNC_KEY` secret authorizes only the Worker's fixed `/internal/catalog-sync` endpoint. The helper advances bounded pages until the exact search and finding generation is active. It retries brief propagation failures without changing the expected commit; a superseded deployment cannot replace a newer generation. PR workflows receive no sync credential. For manual operation, supply the secret through the process environment rather than a command argument.
 
+An explicit D1 daily row-write limit returns `catalog_write_limit` with a bounded `Retry-After` until the next UTC midnight. The client exits 75 as deferred without retrying or resetting staging. `Resume reviewed catalog index` runs daily at 00:15 UTC and supports manual dispatch; it shares the index concurrency group with Pages synchronization. It first pins the actually published version through a bounded credential-free read, which can differ from main after a failed deployment. Already-active matching generations require no writes. Scheduled Actions can start late. While staging, public discovery uses the complete checksum-bound static search view if it fits 2 MiB; otherwise it reports `catalog_sync_required`. Static substring matching differs from native word-prefix matching, as each response declares. A deferred sync does not establish native activation.
+
 ## Scoped GitHub bot credential
 
 Create a fine-grained token at https://github.com/settings/personal-access-tokens/new:
@@ -124,6 +126,8 @@ The catalog generator embeds merged submission IDs, exact record versions, upstr
 ## Free operation
 
 Keep the Cloudflare account on the existing free plan and the GitHub repository public. This project uses no paid GPU, model API, database, queue or hosted simulator. The Worker rate limits submission to 10/minute and status reads to 60/minute per principal, caps payloads at 64 KiB, and disables application observability logs. Provider free limits still apply; exceeding them should fail rather than trigger a plan upgrade. No automatic paid plan conversion is configured.
+
+[D1 free quotas](https://developers.cloudflare.com/d1/platform/pricing/) include 100,000 written rows per day and reset at 00:00 UTC. They apply across the account, including catalog indexing and access measurements. Measurements are best-effort and may lose events during storage failures. Stored counts are lower bounds during a known interruption; do not estimate missing accesses, reclassify unrelated traffic or replay requests to fill the gap. Reduce unnecessary catalog publications and resume the existing generation after the quota resets. No paid fallback is configured.
 
 ## Task-memory operations
 

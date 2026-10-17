@@ -41,6 +41,9 @@ jobs:
         uses: actions/deploy-pages@v4
   sync:
     name: Activate reviewed catalog index
+    concurrency:
+      group: catalog-index
+      cancel-in-progress: false
     needs: deploy
     if: github.ref == 'refs/heads/main' && github.repository == 'Superfast-Robotics/robot-skill-hub'
     runs-on: ubuntu-latest

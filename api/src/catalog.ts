@@ -212,9 +212,21 @@ export async function pruneCatalog(env: CatalogEnv): Promise<void> {
     || await first(env.CATALOG, 'SELECT hub_commit FROM catalog_active WHERE singleton=1');
   if (generation) await cleanupCatalog(env.CATALOG, generation.hub_commit);
 }
-export function createCatalogSync(fetcher: typeof fetch = fetch) {
+function isDailyWriteLimit(error: unknown) {
+  // D1 bindings can wrap the provider message in Error.cause. Code 7500 also
+  // covers unrelated failures, so only recognize the explicit quota wording.
+  const seen = new Set<unknown>();
+  for (let depth = 0; depth < 6 && error && typeof error === 'object' && !seen.has(error); depth++) {
+    seen.add(error);
+    const value = error as { message?: unknown; cause?: unknown };
+    if (typeof value.message === 'string' && /\bYour account has exceeded D1's free tier daily row write limit\b/i.test(value.message.slice(0, 4096))) return true;
+    error = value.cause;
+  }
+  return false;
+}
+export function createCatalogSync(fetcher: typeof fetch = fetch, now: () => number = Date.now) {
   return async function sync(request: Request, env: CatalogEnv): Promise<Response> {
-    const response = (value: unknown, status = 200) => Response.json(value, { status, headers: { 'Cache-Control': 'no-store' } });
+    const response = (value: unknown, status = 200, headers: Record<string, string> = {}) => Response.json(value, { status, headers: { 'Cache-Control': 'no-store', ...headers } });
     try {
       if (request.method !== 'POST') return response({ reason_code: 'method_not_allowed' }, 405);
       // Hash both operands before comparing: fixed-length work and no secret output.
@@ -252,8 +264,15 @@ export function createCatalogSync(fetcher: typeof fetch = fetch) {
       });
       if (memoryCount !== memory.records || memory.pages.length > 999999) reject(503, 'invalid_publication', 'The memory record count is invalid.');
       const allPages = [...manifest.pages, ...memory.pages];
-      await db.prepare(`INSERT OR IGNORE INTO catalog_generations(hub_commit,manifest_sha256,manifest_json,total_pages,total_records,created_at) VALUES(?,?,?,?,?,?)`).bind(commit, resource.sha256, JSON.stringify(manifest), allPages.length, manifest.records, Date.now()).run();
-      const generation = await first(db, 'SELECT * FROM catalog_generations WHERE hub_commit=?', commit);
+      let generation = await first(db, 'SELECT g.*,a.hub_commit active_hub_commit FROM catalog_generations g LEFT JOIN catalog_active a ON a.singleton=1 WHERE g.hub_commit=?', commit);
+      if (generation && generation.manifest_sha256 !== resource.sha256) reject(503, 'invalid_publication', 'A catalog commit cannot change its manifest.');
+      if (generation?.active_hub_commit === commit && generation.next_page === generation.total_pages && generation.total_pages === allPages.length && generation.total_records === manifest.records) {
+        return response({ hub_commit: commit, status: 'active', next_page: generation.next_page, total_pages: generation.total_pages, records: generation.total_records, memories: memory.records });
+      }
+      if (!generation) {
+        await db.prepare(`INSERT OR IGNORE INTO catalog_generations(hub_commit,manifest_sha256,manifest_json,total_pages,total_records,created_at) VALUES(?,?,?,?,?,?)`).bind(commit, resource.sha256, JSON.stringify(manifest), allPages.length, manifest.records, now()).run();
+        generation = await first(db, 'SELECT * FROM catalog_generations WHERE hub_commit=?', commit);
+      }
       if (generation.manifest_sha256 !== resource.sha256) reject(503, 'invalid_publication', 'A catalog commit cannot change its manifest.');
       const pageIndex = Number(generation.next_page);
       if (pageIndex < allPages.length) {
@@ -287,7 +306,13 @@ export function createCatalogSync(fetcher: typeof fetch = fetch) {
       // on the hourly cron if a post-deploy caller stops immediately after activation.
       await cleanupCatalog(db, commit);
       return response({ hub_commit: commit, status: progress.next_page === progress.total_pages ? 'active' : 'syncing', next_page: progress.next_page, total_pages: progress.total_pages, records: progress.total_records, memories: memory.records });
-    } catch (error) { return response({ reason_code: error instanceof CatalogError ? error.code : 'catalog_unavailable', message: error instanceof CatalogError ? error.message : 'Catalog synchronization failed; retry the same commit.' }, error instanceof CatalogError ? error.status : 503); }
+    } catch (error) {
+      if (isDailyWriteLimit(error)) {
+        const instant = now(), midnight = (Math.floor(instant / 86400000) + 1) * 86400000;
+        return response({ reason_code: 'catalog_write_limit', message: 'The daily catalog write limit was reached. Retry the same commit after midnight UTC; staging progress is preserved.' }, 503, { 'Retry-After': String(Math.max(1, Math.ceil((midnight - instant) / 1000))) });
+      }
+      return response({ reason_code: error instanceof CatalogError ? error.code : 'catalog_unavailable', message: error instanceof CatalogError ? error.message : 'Catalog synchronization failed; retry the same commit.' }, error instanceof CatalogError ? error.status : 503);
+    }
   };
 }
 export const handleCatalogSync = createCatalogSync();

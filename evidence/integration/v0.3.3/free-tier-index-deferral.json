@@ -1,0 +1,50 @@
+{
+  "schema_version": "1",
+  "classification": "internal maintainer production diagnostic",
+  "publication_commit": "f02a4c11fe4b912a775b13637159e18b1dadeca5",
+  "pages": {
+    "build": "success",
+    "deploy": "success",
+    "native_index_activation": "failed",
+    "workflow": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39070191396"
+  },
+  "diagnostic": {
+    "provider": "Cloudflare D1",
+    "provider_error_code": 7500,
+    "explicit_error": "free-tier daily row write limit exceeded",
+    "staging_next_page": 0,
+    "staging_total_pages": 16,
+    "staging_records": 1272,
+    "last_complete_native_generation": "e57076c94f3b100842fbe5efcb151a7cdea86da5",
+    "paid_plan_selected": false,
+    "cursor_reset": false
+  },
+  "public_readback": {
+    "observed_at": "2026-10-17T21:23:07Z",
+    "request": "GET https://api.superfastrobotics.com/v1/search?runtime=pythonrobotics&limit=5",
+    "http_status": 200,
+    "backend": "static_v1_fallback",
+    "search_semantics": "all_terms_substring",
+    "complete_coverage": true,
+    "counts": {"recipes": 17, "references": 1255, "memories": 3},
+    "total": 5,
+    "next": null,
+    "execution_performed": false,
+    "telemetry_opt_out": true
+  },
+  "measurement": {
+    "stored_eligible_accesses": 13,
+    "target": 100,
+    "target_reached": false,
+    "window_start": "2026-10-17T15:47:38Z",
+    "window_end": "2026-10-18T15:47:38Z",
+    "known_storage_interruption": true,
+    "exact_interruption_start": null,
+    "missing_events_estimated_or_backfilled": false,
+    "interpretation": "stored lower bound, not complete traffic or distinct-agent count"
+  },
+  "remaining_verification": [
+    "successful scheduled resume after the daily UTC reset",
+    "native activation and word-prefix retrieval of the new generation"
+  ]
+}

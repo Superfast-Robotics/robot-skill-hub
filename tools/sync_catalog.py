@@ -25,7 +25,7 @@ COMMIT = re.compile(r"[a-f0-9]{40}")
 RETRY_STATUSES = {408, 429, 500, 502, 503, 504}
 FAILURE_CODES = {"invalid_commit", "invalid_timeout", "missing_sync_key", "invalid_response", "invalid_progress",
                  "invalid_conflict", "progress_changed", "sync_stalled", "sync_rejected", "retry_exhausted",
-                 "sync_timeout", "call_limit"}
+                 "sync_timeout", "call_limit", "catalog_write_limit"}
 
 
 class SyncFailure(Exception):
@@ -52,8 +52,18 @@ def _post(expected_commit, key, timeout):
     try:
         status = response.code
         retry_after = response.headers.get("Retry-After")
-        # Error bodies can be provider HTML or reflect request fields. They are
-        # neither needed nor read, except for the bounded 409 generation wire.
+        # Read only a bounded JSON quota classification on 503. Never retain or
+        # report arbitrary provider text or reflected request fields.
+        if status == 503 and response.headers.get("Content-Type", "").split(";", 1)[0].strip().lower() == "application/json":
+            raw = response.read(MAX_RESPONSE_BYTES + 1)
+            if len(raw) <= MAX_RESPONSE_BYTES:
+                try:
+                    value = json.loads(raw.decode("utf-8"))
+                    if isinstance(value, dict) and value.get("reason_code") == "catalog_write_limit":
+                        return status, {"reason_code": "catalog_write_limit"}, retry_after
+                except (ValueError, UnicodeError):
+                    pass
+            return status, None, retry_after
         if status not in (200, 409):
             return status, None, retry_after
         declared = response.headers.get("Content-Length")
@@ -126,6 +136,10 @@ def sync_catalog(expected_commit, *, timeout_seconds=MAX_TIMEOUT_SECONDS, reques
             status, value, retry_after = request_fn(expected_commit, key, request_timeout)
         except (urllib.error.URLError, TimeoutError, OSError):
             status, value = 0, None
+        if status == 503 and isinstance(value, dict) and value.get("reason_code") == "catalog_write_limit":
+            # Daily free-tier limits cannot recover within this short job.
+            # Preserve the same server cursor for the scheduled resume.
+            raise SyncFailure("catalog_write_limit", "The free daily write limit was reached; resume after UTC midnight.")
         if status == 409:
             if (not isinstance(value, dict) or value.get("reason_code") != "catalog_changed"
                     or not isinstance(value.get("hub_commit"), str) or not COMMIT.fullmatch(value["hub_commit"])
@@ -188,7 +202,9 @@ def main(argv=None):
         return 0
     except SyncFailure as error:
         code = error.code if isinstance(error.code, str) and error.code in FAILURE_CODES else "sync_failed"
-        print(json.dumps({"status": "failed", "reason_code": code}), file=sys.stderr)
+        print(json.dumps({"status": "deferred" if code == "catalog_write_limit" else "failed", "reason_code": code}), file=sys.stderr)
+        if code == "catalog_write_limit":
+            return 75
     except Exception:
         # Never print raw exceptions: transports can include request headers.
         print(json.dumps({"status": "failed", "reason_code": "unexpected_sync_failure"}), file=sys.stderr)

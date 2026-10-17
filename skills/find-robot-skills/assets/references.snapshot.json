@@ -70391,6 +70391,427 @@
       }
     },
     {
+      "id": "pythonrobotics-pathplanning-astar-a-star-py",
+      "name": "PythonRobotics: a star",
+      "summary": "Official PythonRobotics python main example for a star. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/AStar/a_star.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/AStar/a_star.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/AStar/a_star.py",
+        "sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+        "bytes": 8717,
+        "authors": [
+          "Atsushi Sakai",
+          "Nikos Kanargias"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/AStar/a_star.py",
+        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "AStar",
+        "A*"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathplanning-dstarlite-d-star-lite-py",
+      "name": "PythonRobotics: d star lite",
+      "summary": "Official PythonRobotics python main example for d star lite. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/DStarLite/d_star_lite.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/DStarLite/d_star_lite.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/DStarLite/d_star_lite.py",
+        "sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+        "bytes": 16563,
+        "authors": [
+          "vss2sn"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "random"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/DStarLite/d_star_lite.py",
+        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "DStarLite",
+        "D* Lite"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py",
+      "name": "PythonRobotics: dynamic window approach",
+      "summary": "Official PythonRobotics python main example for dynamic window approach. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+        "sha256": "985aa9acb1e6de234fa15ec9c83d5a7435ce2d9e22c6f6e308e1ab038141c471",
+        "bytes": 10138,
+        "authors": [
+          "Atsushi Sakai",
+          "Göktuğ Karakaşlı"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "enum",
+          "math",
+          "matplotlib.pyplot",
+          "numpy"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "DWA",
+        "dynamic window approach"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py",
+      "name": "PythonRobotics: hybrid a star",
+      "summary": "Official PythonRobotics python main example for hybrid a star. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/HybridAStar/hybrid_a_star.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathPlanning/HybridAStar/hybrid_a_star.py",
+        "sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+        "bytes": 12978,
+        "authors": [
+          "Zheng Zh"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "ReedsSheppPath",
+          "car",
+          "dynamic_programming_heuristic",
+          "heapq",
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "pathlib",
+          "scipy.spatial",
+          "sys"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathPlanning/HybridAStar/hybrid_a_star.py",
+        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "HybridAStar",
+        "Hybrid A*"
+      ]
+    },
+    {
+      "id": "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc",
+      "name": "PythonRobotics: model predictive speed and steer control",
+      "summary": "Official PythonRobotics python main example for model predictive speed and steer control. Inspect the pinned source and upstream setup before use.",
+      "framework": "pythonrobotics",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "classical-robotics-algorithm",
+        "navigation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+        "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+        "tag": "master",
+        "path": "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+        "raw_url": "https://raw.githubusercontent.com/AtsushiSakai/PythonRobotics/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+        "sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+        "bytes": 16795,
+        "authors": [
+          "Atsushi Sakai"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md"
+      },
+      "requirements": {
+        "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
+        "packages": [
+          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
+          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
+          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
+          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+        ],
+        "display": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility.",
+        "execution_domain": "computation-or-algorithm-simulation",
+        "source_imports": [
+          "PathPlanning.CubicSpline",
+          "cvxpy",
+          "math",
+          "matplotlib.pyplot",
+          "numpy",
+          "pathlib",
+          "sys",
+          "time",
+          "utils.angle"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+        "notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 30720,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "MPC",
+        "model predictive control"
+      ]
+    },
+    {
       "id": "rai-examples-agents-react-ros2-py",
       "name": "RAI: ROS 2 ReAct robot agent",
       "summary": "Receive HRI messages and run a ReAct agent with the generic ROS 2 toolkit.",
@@ -123890,5 +124311,5 @@
   "artifact_manifest": "artifact-projects.json",
   "agent_skill_manifest": "agent-skill-projects.json",
   "workflow_manifest": "workflow-projects.json",
-  "hub_commit": "ab214094ec555451d7f9892e295dff22ed3c451c"
+  "hub_commit": "f02a4c11fe4b912a775b13637159e18b1dadeca5"
 }
