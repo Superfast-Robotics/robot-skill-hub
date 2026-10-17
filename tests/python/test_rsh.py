@@ -265,7 +265,7 @@ class ContributionTests(unittest.TestCase):
             root = Path(temporary)
             (root / "bundle.json").write_text(json.dumps(bundle()))
             (root / ".robot-skill-hub.json").write_text(json.dumps({"publication": {"public_submission_allowed": True}}))
-            with mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-local-token", "RSH_API_URL": "https://api.example.org"}), mock.patch("rshlib.contributions.request_json", side_effect=fake_request):
+            with mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-local-token-0123456789-abcdef", "RSH_API_URL": "https://api.example.org"}), mock.patch("rshlib.contributions.request_json", side_effect=fake_request):
                 first = contributions.submit(fixture_catalog(), root / "bundle.json", root)
                 contributions.submit(fixture_catalog(), root / "bundle.json", root)
             self.assertEqual(calls[0], calls[1])

@@ -39,6 +39,7 @@ def reject_secrets(value):
     contributions.reject_obvious_secrets(value)
     serialized = json.dumps(value, ensure_ascii=False)
     if (re.search(r"-----BEGIN [A-Z ]*PRIVATE KEY-----", serialized) or
+            re.search(r"\brsh_[A-Za-z0-9_-]{43}\b", serialized) or
             re.search(r"\bBearer\s+[A-Za-z0-9._~+/-]{16,}=*", serialized, re.IGNORECASE) or re.search(
             r"https?://[^\s/@:]+:[^\s/@]+@", serialized, re.IGNORECASE)):
         raise RshError("potential_secret", "Finding contains recognizable credentials; omit them from the minimal observation.")
@@ -172,8 +173,6 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
     policy = policy_for(project, policy_path)
     if not allowed(policy, payload["skill_id"], payload["kind"]):
         return entry_result(entry, path, reason="memory_sharing_not_allowed")
-    if not os.environ.get("RSH_SUBMISSION_TOKEN"):
-        return entry_result(entry, path, reason="missing_submission_token")
     try:
         base, token = contributions.api_configuration(api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com")
         # The exact permitted bytes are recorded before transmission for explicit retries.

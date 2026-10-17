@@ -51,7 +51,7 @@ This API deliberately has no permission to change workflow files. Save the token
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\configure-secrets.ps1
 ```
 
-The script validates access, uploads `GITHUB_TOKEN` into Cloudflare Worker encrypted secrets, generates a random pilot token and uploads only its SHA-256 hash in `SUBMISSION_TOKENS_JSON`. It saves the limited client token in `.local/pilot-token.secret` and writes `.local/pilot-env.ps1`. It never prints either token. The pilot token has no GitHub permission.
+Use this script only for the first deployment: it stops when a local pilot token or caller registry already exists. The script validates access, uploads `GITHUB_TOKEN` into Cloudflare Worker encrypted secrets, generates a random pilot token and uploads only its SHA-256 hash in `SUBMISSION_TOKENS_JSON`. It saves the limited client token in `.local/pilot-token.secret` and writes `.local/pilot-env.ps1`. It never prints either token. The pilot token has no GitHub permission.
 
 Load the client environment from the project directory without executing another
 PowerShell script (this also works when the default script policy is restricted):
@@ -68,7 +68,35 @@ GITHUB_TOKEN = the repository-scoped fine-grained token
 SUBMISSION_TOKENS_JSON = [{"principal_id":"pilot-1","sha256":"SHA256_OF_RANDOM_CLIENT_TOKEN"}]
 ```
 
-Each caller needs a distinct principal. Set `disabled:true` on a configured token entry to revoke it. Keeping the same principal during rotation preserves ownership of its prior submissions. Preserve existing entries when adding another caller; the setup script replaces the pilot configuration. Keep raw tokens in private local configuration only.
+Each caller needs a distinct principal. Set `disabled:true` on a configured token entry to revoke it. Keeping the same principal during rotation preserves ownership of its prior submissions. Keep raw tokens in private local configuration only.
+
+### Add, rotate or revoke an allowed agent
+
+Use `tools/manage_agent_tokens.py` for subsequent caller changes. It only changes local files, keeps all existing entries, generates a separate random 256-bit token for each caller, refuses duplicate principals unless rotating, and never prints tokens or token hashes. Registry, export and token files must remain under Git-ignored `.local/`. File permissions are owner-only on POSIX; on Windows they inherit the private workspace directory's ACL. Do not copy the directory into a public artifact.
+
+Cloudflare cannot return an existing secret value. Establish a complete operator-held registry before adding callers. If the existing deployment has exactly the single original `pilot-1`, first verify that the pilot token still authenticates and that its principal matches a previously verified server receipt. Then adopt that known complete baseline:
+
+```powershell
+python tools/manage_agent_tokens.py adopt-pilot --receipt-file .local/live-memory-proof/stored-memory.json --confirm-complete-registry
+```
+
+The adoption command checks the receipt's hashed principal and refuses to overwrite an existing registry. The confirmation explicitly asserts that there are no other configured callers; the command cannot discover omitted callers. For an existing multi-caller deployment, obtain the complete hashed JSON array from its operator instead, save it privately, and use `import --input-json .local/complete-callers.json --confirm-complete-registry`. Do not reconstruct a partial list from the callers currently in use.
+
+Create the next caller and a separate, immutable deployment snapshot:
+
+```powershell
+python tools/manage_agent_tokens.py add agent-2 --token-file .local/agent-2-token.secret
+python tools/manage_agent_tokens.py list
+python tools/manage_agent_tokens.py export --output-json .local/callers-deploy-2.json
+Push-Location api
+Get-Content -LiteralPath ..\.local\callers-deploy-2.json -Raw | npx.cmd wrangler secret put SUBMISSION_TOKENS_JSON
+if ($LASTEXITCODE -ne 0) { throw 'Caller registry upload failed; do not distribute the new token.' }
+Pop-Location
+```
+
+Use a new snapshot filename for each deployment. Verify both an existing caller and the new caller after upload, then distribute only the new caller's token through private project configuration. An upload replaces the whole secret, which is why the complete registry must be preserved. The helper does not upload anything or change `GITHUB_TOKEN`.
+
+For rotation, run `rotate agent-2 --token-file .local/agent-2-rotated.secret`; it disables prior tokens while retaining the same principal and previous submission ownership. For revocation, run `revoke agent-2`; it disables every token for that principal. Both operations remain local until you export a new complete snapshot and upload it. Preserve the previous snapshot for rollback if a deployment fails; raw tokens are not included in the registry or snapshots. A new caller still needs explicit project sharing policy; authentication never grants public-sharing consent.
 
 ## Custom domain
 

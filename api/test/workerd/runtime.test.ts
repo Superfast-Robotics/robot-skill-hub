@@ -44,6 +44,20 @@ async function status(mf: Miniflare) {
   });
 }
 
+test('native session authentication makes no outbound calls and exposes no token', async () => {
+  let calls = 0;
+  const mf = await runtime(() => { calls++; throw Error('Session must not call outbound services'); });
+  try {
+    const response = await mf.dispatchFetch('https://api.example.invalid/v1/session', {
+      headers: { Authorization: `Bearer ${TOKEN}` }
+    });
+    assert.equal(response.status, 200); const body: any = await response.json();
+    assert.equal(body.authenticated, true); assert.equal(body.principal_id, hash('rsh-principal-v1\0' + PRINCIPAL));
+    assert.equal(body.authorization.project_memory_scope, 'client_policy_required');
+    assert.ok(!JSON.stringify(body).includes(TOKEN)); assert.equal(calls, 0);
+  } finally { await mf.dispose(); }
+});
+
 test('native Workers fetch reaches GitHub and returns the structured upstream error', async () => {
   let calls = 0;
   const mf = await runtime(request => {

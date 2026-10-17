@@ -29,6 +29,15 @@ The preparation recipes target the Linux/Python/ManiSkill environment recorded i
 
 ## Remember a useful finding
 
+An operator can configure an already-authorized project scope once, without interactive prompts:
+
+```sh
+python /PATH_TO_SKILL/scripts/rsh.py setup --project ./experiment --allow-public-memory --skill SKILL_ID --kind working_workaround --json
+python /PATH_TO_SKILL/scripts/rsh.py setup-check --project ./experiment --check-api --json
+```
+
+Repeat `--skill` and `--kind` for the exact authorized allowlists. Setup replaces only the memory scope and preserves unrelated project policy. For local-only use, choose `setup --project ./experiment --local-only --json`. Keep the operator-issued token in a private one-line UTF-8 file and set `RSH_SUBMISSION_TOKEN_FILE` to its absolute path; `RSH_SUBMISSION_TOKEN` takes precedence if both are set. Neither setup nor policy files store credentials. `setup-check` makes no network call unless `--check-api` is given; that option performs one authenticated `GET /v1/session` and creates no PR. A valid token does not grant public sharing scope.
+
 When the work already reveals a reusable fact, preserve the minimal observation, optional confirmed resolution, environment and actual evidence in a finding file:
 
 ```sh

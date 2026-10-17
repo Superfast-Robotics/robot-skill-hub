@@ -6,7 +6,7 @@ import argparse
 import json
 import sys
 
-from rshlib import contributions, memories
+from rshlib import contributions, memories, setup
 from rshlib.core import RshError, find, inspect, load_catalog, lookup, read_json
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
@@ -32,6 +32,17 @@ def build_parser():
     parser.add_argument("--refresh", action="store_true", help="Refresh the public discovery index within a short timeout")
     parser.add_argument("--json", action="store_true", help="JSON only on stdout, no prompts (accepted anywhere)")
     sub = parser.add_subparsers(dest="command", required=True, parser_class=Parser)
+    configure = sub.add_parser("setup", help="Configure explicit project memory scope without prompts or network access")
+    configure.add_argument("--project", required=True)
+    mode = configure.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--local-only", action="store_true", help="Preserve findings locally without public memory permission")
+    mode.add_argument("--allow-public-memory", action="store_true", help="Record public scope already authorized by the user")
+    configure.add_argument("--skill", action="append", default=[], help="Explicit allowed skill ID; repeat for each authorized skill")
+    configure.add_argument("--kind", action="append", default=[], choices=sorted(memories.KINDS), help="Explicit allowed finding kind; repeat as needed")
+    check = sub.add_parser("setup-check", help="Read project scope and local credentials; network access requires --check-api")
+    check.add_argument("--project", required=True)
+    check.add_argument("--check-api", action="store_true", help="Perform one authenticated, read-only API session request")
+    check.add_argument("--api-url")
     search = sub.add_parser("find", help="Find at most three candidate recipes without running their code")
     search.add_argument("query")
     search.add_argument("--limit", type=int, default=3, choices=(1, 2, 3))
@@ -112,6 +123,11 @@ def extract_global(argv):
 
 
 def execute(args, catalog_location):
+    if args.command == "setup":
+        return setup.configure(args.project, allow_public_memory=args.allow_public_memory, local_only=args.local_only,
+                               skill_ids=args.skill, kinds=args.kind)
+    if args.command == "setup-check":
+        return setup.check(args.project, api_url=args.api_url, check_api=args.check_api, offline=args.offline)
     if args.command == "submission-status":
         return contributions.submission_status(args.submission_id, api_url=args.api_url)
     if args.command == "memory-status":

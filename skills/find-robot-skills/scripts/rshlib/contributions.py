@@ -200,11 +200,34 @@ def request_json(method, url, token, *, payload=None, idempotency_key=None, time
     return {**parsed, "http_status": code}
 
 
-def api_configuration(api_url):
+def submission_token():
+    """Load a scoped credential without putting it in policy, argv or diagnostics."""
     token = os.environ.get("RSH_SUBMISSION_TOKEN")
+    source = "environment"
     if not token:
-        raise RshError("missing_submission_token", "Set RSH_SUBMISSION_TOKEN to an operator-issued pilot token.",
-                       status="blocked", next_action="keep_local_draft_and_configure_pilot_token", network_performed=False)
+        path = os.environ.get("RSH_SUBMISSION_TOKEN_FILE")
+        if not path:
+            raise RshError("missing_submission_token", "Set RSH_SUBMISSION_TOKEN or RSH_SUBMISSION_TOKEN_FILE to an operator-issued scoped token.",
+                           status="blocked", next_action="keep_local_draft_and_configure_pilot_token", network_performed=False)
+        source = "file"
+        try:
+            # Bound reads before decoding. A token file contains one line, not JSON.
+            with Path(path).expanduser().open("rb") as stream:
+                raw = stream.read(4097)
+            if len(raw) > 4096:
+                raise ValueError()
+            token = raw.decode("utf-8-sig").rstrip("\r\n")
+        except (OSError, UnicodeError, ValueError) as exc:
+            raise RshError("submission_token_file_unavailable", "Cannot read the bounded UTF-8 scoped-token file.",
+                           status="blocked", next_action="check_local_token_file", network_performed=False) from exc
+    if not re.fullmatch(r"[A-Za-z0-9_.~-]{32,256}", token):
+        raise RshError("invalid_submission_token_format", "Scoped token must be one line of 32 to 256 URL-safe characters.",
+                       status="blocked", next_action="check_operator_issued_token", network_performed=False)
+    return token, source
+
+
+def api_configuration(api_url):
+    token, _ = submission_token()
     api_url = api_url or os.environ.get("RSH_API_URL")
     if not api_url:
         raise RshError("missing_api_url", "Set RSH_API_URL or pass --api-url.", status="blocked",

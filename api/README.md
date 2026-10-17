@@ -27,13 +27,14 @@ The Bearer credential is separate from project sharing policy. `publication.publ
 
 ## Contract
 
-Direct clients should send `User-Agent: robot-skill-hub/1` on API requests. The CLI includes this header; the current Cloudflare edge rejects the default Python urllib user agent with HTTP 403 / error 1010 before the Worker runs.
+Direct clients should send `User-Agent: robot-skill-hub/1` on API requests. The CLI includes this header. An API-host-only configuration rule removed the former Cloudflare error 1010 block for ordinary Python urllib requests.
 
 * `POST /v1/submissions`: `Authorization: Bearer <pilot token>`, `Idempotency-Key: <8–128 ASCII chars>`, `Content-Type: application/json`. Body is the contribution bundle from the installed CLI. Maximum 64 KiB, streamed and enforced even without Content-Length. The server receipt's metadata must fit 24 KiB (a larger environment/evidence block yields 422 before a branch is created). Up to eight existing text files, each up to 128 KiB after applying the patch.
 * `GET /v1/submissions/<submission_id>`: same principal token required. Other principals receive 404.
 * `POST /v1/memories`: same scoped Bearer token and sharing assertion, with a structured finding instead of a patch. Maximum 16 KiB UTF-8 body. Identity derives from the principal and finding fingerprint; a caller-supplied Idempotency-Key is optional and does not change identity.
 * `GET /v1/memories/<memory_id>`: owned memory status. Other principals receive 404.
 * `GET /v1/capabilities`: public agent-readable endpoint, schema, policy and limit metadata. This does not grant public sharing permission.
+* `GET /v1/session`: authenticated, read-only credential check returning a hashed principal identity. It uses the status rate limit, contacts no GitHub API and grants no project sharing scope.
 * `GET /healthz`: public liveness only; does not imply configured secrets or a successful GitHub connection.
 
 The repository and `main` base branch are compiled constants. For patch submissions, a catalog record maps its skill to exact paths via `contribution.allowed_paths`; only that record, its `docs/recipes/<id>.md`, and files under `recipes/<id>/` can be allowlisted. Workflow, credentials, installation skill code and upstream repository changes are rejected. Patch submissions accept only existing UTF-8 text-file edits. Renames, symlinks, deletion, binary diffs and new recipe files require manual maintainer contribution. The separate memory endpoint creates only its server-owned append-only entry. The API performs no evaluation, imports, shell calls or dependency installation.

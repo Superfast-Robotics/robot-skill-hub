@@ -72,7 +72,20 @@ Read `.robot-skill-hub.json` in the project or the explicit `--policy FILE`. Pub
 
 The user must already have authorized these public skill/kind scopes. Both allowlists must contain the current values. A token, existing `publication.public_submission_allowed`, or permission to complete the task does not grant this separate public memory scope.
 
-When the scope is already authorized, proceed without another question for each finding. If permission, scope or a token is unavailable, preserve the local outbox entry and continue; do not interrupt the task to solicit public-sharing permission. If exact pins cannot be resolved, `save` skips before creating an outbox entry: retain the supplied finding file and continue. Set `RSH_API_URL=https://api.superfastrobotics.com` and `RSH_SUBMISSION_TOKEN` in local configuration only when an operator has provided the scoped token.
+Configure the already-authorized scope noninteractively in an existing project:
+
+```sh
+python /ABSOLUTE_SKILL_PATH/scripts/rsh.py setup --project ./experiment --allow-public-memory --skill maniskill-panda-pick-cube --kind missing_requirement --kind working_workaround --json
+python /ABSOLUTE_SKILL_PATH/scripts/rsh.py setup-check --project ./experiment --json
+```
+
+Repeat `--skill` and `--kind` to name the exact scope. `setup` replaces only the memory section, preserving unrelated policy, and never contacts the API. `setup --project ./experiment --local-only --json` disables public memory saving. Do not run the opt-in command unless the user already authorized that public scope.
+
+An operator-issued Hub token can be loaded from `RSH_SUBMISSION_TOKEN_FILE`, whose value is the path to a local one-line UTF-8 token file. Keep the file outside the repository or in an ignored secret location. `RSH_SUBMISSION_TOKEN` in the process environment takes precedence. The CLI validates the bounded token format without printing it or saving it into policy or outbox metadata. No raw-token command argument is accepted.
+
+`setup-check` reports local scope and credential availability; it does not claim the token is accepted remotely. To authenticate explicitly, use `setup-check --project ./experiment --check-api --json`. This performs one `GET /v1/session`, reports the hashed principal, and creates no PR. Set `RSH_API_URL` or pass `--api-url` for an alternate endpoint. `--check-api` cannot be combined with `--offline`.
+
+When the scope is already authorized, proceed without another question for each finding. If permission, scope or a token is unavailable, preserve the local outbox entry and continue; do not interrupt the task to solicit public-sharing permission. If exact pins cannot be resolved, `save` skips before creating an outbox entry: retain the supplied finding file and continue. Set `RSH_API_URL=https://api.superfastrobotics.com` and one of the credential environment variables only when an operator has provided the scoped token.
 
 The wire request contains `publication.public_submission_allowed: true` only after the memory policy passes. That declaration is derived from memory authorization; it does not reuse patch authorization.
 
@@ -86,6 +99,6 @@ python /ABSOLUTE_SKILL_PATH/scripts/rsh.py flush --project ./experiment --limit 
 
 The API accepts `POST /v1/memories` with a Bearer token and Idempotency-Key, creates an internal draft PR, and does not execute memory text. Local persistence, server storage and publication are separate outcomes. A maintainer merges the reviewed data; the public memory index and publication proof then make it discoverable. Do not poll in the background or report a stored entry as published.
 
-Direct HTTP clients should identify themselves with `User-Agent: robot-skill-hub/1`; the CLI includes this header. Cloudflare currently rejects the default Python urllib user agent at the API edge.
+Direct HTTP clients should identify themselves with `User-Agent: robot-skill-hub/1`; the CLI includes this header. An API-host-only Cloudflare configuration rule removed the earlier default Python urllib user-agent block; ordinary Python requests now reach the API too.
 
 The canonical machine interfaces are [memory schema](https://hub.superfastrobotics.com/schemas/memory.schema.json), [project policy schema](https://hub.superfastrobotics.com/schemas/project-policy.schema.json) and [published memory index](https://hub.superfastrobotics.com/catalog/v1/memories.json).

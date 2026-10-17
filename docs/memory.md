@@ -16,6 +16,25 @@ Use the installed skill's [memory reference](https://github.com/Superfast-Roboti
 
 This policy applies only when the user has already authorized that public scope. Both allowlists are explicit. Reuse that authorization without prompting for each finding. A token and existing patch-publication permission do not grant memory sharing permission. Without the memory scope, save locally and continue the task without a public-sharing question.
 
+For a new project, configure that already-authorized scope without editing JSON or answering prompts:
+
+```sh
+python /PATH_TO_SKILL/scripts/rsh.py setup --project ./experiment --allow-public-memory --skill maniskill-panda-pick-cube --kind missing_requirement --kind working_workaround --json
+python /PATH_TO_SKILL/scripts/rsh.py setup-check --project ./experiment --json
+```
+
+Repeat `--skill` and `--kind` for each authorized value. `setup` replaces the memory scope with exactly those lists and preserves unrelated project policy. To keep findings local, use `setup --project ./experiment --local-only --json`. Setup and its default check make no network requests or catalog reads.
+
+An operator supplies a scoped Hub submission token, not a GitHub token. Set `RSH_SUBMISSION_TOKEN_FILE` to a local UTF-8 file containing that token on one line, outside the repository or in an ignored secret location. Alternatively set `RSH_SUBMISSION_TOKEN` in the process environment; it takes precedence over the file. Neither command copies the token into project policy, command arguments or output. The file's location is the environment value, never its contents. Set `RSH_API_URL=https://api.superfastrobotics.com` for the API base.
+
+`setup-check` reports local credential availability separately from API authentication. After credentials are supplied, explicitly verify them with one read-only request:
+
+```sh
+python /PATH_TO_SKILL/scripts/rsh.py setup-check --project ./experiment --check-api --json
+```
+
+The check calls `GET /v1/session`, returns the hashed principal identity and creates no finding, branch or PR. `--offline` rejects that explicit network check. A verified token still does not authorize public sharing without the separate project policy.
+
 ```sh
 python /PATH_TO_SKILL/scripts/rsh.py memories SKILL_ID --project ./experiment --json
 python /PATH_TO_SKILL/scripts/rsh.py save SKILL_ID --project ./experiment --finding ./finding.json --json
@@ -26,7 +45,7 @@ Reading memories matches exact source and record versions plus known environment
 
 Public requests use `POST /v1/memories`, a scoped Bearer token and a stable Idempotency-Key. `save` attempts at most one POST after local persistence. An unchanged `save` never delivers or retries, including after authorization or a token becomes available; use `flush` to deliver the retained entry. `flush` explicitly retries a bounded outbox batch. Network or review failures never block the user's task. If exact pins are unavailable, retain the supplied finding file; an outbox entry cannot be constructed yet.
 
-Direct HTTP clients should send `User-Agent: robot-skill-hub/1`, as the CLI does. The current Cloudflare API edge rejects the default Python urllib user agent.
+Direct HTTP clients should send `User-Agent: robot-skill-hub/1`, as the CLI does. The earlier Cloudflare default Python urllib block was removed for the API host, and ordinary Python requests now reach the API too.
 
 The Worker validates the request and creates an internal draft PR. A stored entry is not published. A maintainer reviews and merges the data; the catalog builder publishes reviewed entries from main and records proof in the publication manifest. Duplicate requests keep the same identity. Runtime outcomes remain contributor-reported even after maintainer merge.
 

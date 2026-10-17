@@ -6,6 +6,10 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath "$PSScriptRoot\..").Path
 $localDir = Join-Path $root '.local'
 New-Item -ItemType Directory -Force -Path $localDir | Out-Null
+if ((Test-Path -LiteralPath (Join-Path $localDir 'pilot-token.secret')) -or
+    (Test-Path -LiteralPath (Join-Path $localDir 'submission-tokens.registry.json'))) {
+    throw 'Initial setup already exists. Do not replace live caller configuration. Use tools/manage_agent_tokens.py to preserve, add, rotate or revoke callers; see docs/deployment.md.'
+}
 if (Test-Path -LiteralPath $GithubTokenFile) {
     $botToken = (Get-Content -LiteralPath $GithubTokenFile -Raw).Trim()
 } else {

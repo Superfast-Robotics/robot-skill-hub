@@ -20,7 +20,8 @@
     "memory_schema_url": "https://hub.superfastrobotics.com/schemas/memory.schema.json",
     "project_policy_schema_url": "https://hub.superfastrobotics.com/schemas/project-policy.schema.json",
     "api_base_url": "https://api.superfastrobotics.com",
-    "api_capabilities_url": "https://api.superfastrobotics.com/v1/capabilities"
+    "api_capabilities_url": "https://api.superfastrobotics.com/v1/capabilities",
+    "api_session_url": "https://api.superfastrobotics.com/v1/session"
   },
   "cli": {
     "minimum_python": "3.10",
@@ -40,6 +41,43 @@
       "prepared_project_locks": "never_silently_updated"
     },
     "actions": [
+      {
+        "name": "setup",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "setup",
+          "--project",
+          "{project_dir}",
+          "--allow-public-memory",
+          "--skill",
+          "{authorized_skill_id}",
+          "--kind",
+          "{authorized_finding_kind}",
+          "--json"
+        ],
+        "purpose": "Configure only an already-authorized explicit project memory scope; replaces memory scope and preserves unrelated policy.",
+        "network_performed": false,
+        "authorization_required": "existing_explicit_user_scope",
+        "credential_persisted": false
+      },
+      {
+        "name": "setup_check",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "setup-check",
+          "--project",
+          "{project_dir}",
+          "--check-api",
+          "--json"
+        ],
+        "purpose": "Check explicit project policy and a locally configured credential; optional --check-api performs one read-only session request.",
+        "default_network_performed": false,
+        "api_check_opt_in": "--check-api",
+        "api_requests_maximum": 1,
+        "credential_persisted": false
+      },
       {
         "name": "find",
         "argv": [
@@ -132,7 +170,16 @@
         "maximum_limit": 3,
         "next_action": "continue_user_task"
       }
-    ]
+    ],
+    "credential_configuration": {
+      "api_url_environment": "RSH_API_URL",
+      "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
+      "token_environment": "RSH_SUBMISSION_TOKEN",
+      "precedence": "token_environment_before_explicit_token_file",
+      "token_file": "one_line_utf8_operator_issued_scoped_token",
+      "policy_stores_credentials": false,
+      "token_possession_grants_project_sharing": false
+    }
   },
   "memory": {
     "kinds": [
@@ -263,6 +310,15 @@
       "body_pins_from": "{project_lock_or_selected_catalog}",
       "use_cli_to_construct": true,
       "body_source": "{project_outbox_entry.wire_payload}"
+    },
+    "session": {
+      "method": "GET",
+      "url": "https://api.superfastrobotics.com/v1/session",
+      "authentication": "Bearer RSH_SUBMISSION_TOKEN_or_RSH_SUBMISSION_TOKEN_FILE",
+      "side_effects": "none",
+      "github_requests": 0,
+      "rate_limit": "status",
+      "project_memory_scope": "client_policy_required"
     }
   },
   "preparation": {

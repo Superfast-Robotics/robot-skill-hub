@@ -148,7 +148,7 @@ export async function memoryStatus(id: string, principal: string, adapter: Memor
 
 export function capabilities(): JsonObject {
   return { schema_version: '1', service: 'robot-skill-hub-api', api_version: 'v1', interpretation: 'data_only',
-    endpoints: { save_memory: '/v1/memories', memory_status: '/v1/memories/{memory_id}', submit_patch: '/v1/submissions', submission_status: '/v1/submissions/{submission_id}' },
+    endpoints: { session: '/v1/session', save_memory: '/v1/memories', memory_status: '/v1/memories/{memory_id}', submit_patch: '/v1/submissions', submission_status: '/v1/submissions/{submission_id}' },
     memories: { kinds: MEMORY_KINDS, max_body_bytes: MAX_BYTES, max_environment_fields: 16, environment_value_type: 'string',
       finding_targets: ['preparation_recipe', 'source_reference'], reference_record_version: 'source-<full source.sha256>',
       exact_catalog_base_required: true, public_review_required: true, append_only: true, idempotency: 'principal_and_finding_fingerprint',

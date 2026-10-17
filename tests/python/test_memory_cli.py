@@ -44,7 +44,7 @@ class MemoryTests(unittest.TestCase):
         self.project.mkdir()
         self.input = self.root / "finding.json"
         self.write_finding(finding())
-        self.env = mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-scoped-token", "RSH_API_URL": "https://api.example.test"})
+        self.env = mock.patch.dict(os.environ, {"RSH_SUBMISSION_TOKEN": "test-scoped-token-0123456789-abcdef", "RSH_API_URL": "https://api.example.test"})
         self.env.start()
 
     def tearDown(self):
@@ -179,6 +179,7 @@ class MemoryTests(unittest.TestCase):
 
     def test_secrets_oversized_inputs_and_arbitrary_environment_fields_are_rejected(self):
         for value in (finding(observation="Token used: ghp_" + "a" * 30),
+                      finding(observation="Token used: rsh_" + "a" * 43),
                       finding(observation="Authorization: Bearer " + "x" * 30),
                       finding(environment={"runtime": "fixture", "robot": "panda", "password": "private"}),
                       finding(observation="x" * 17000)):
@@ -266,7 +267,7 @@ class MemoryTests(unittest.TestCase):
             self.assertEqual(len(hits), 1)
             path, authorization, key, body = hits[0]
             self.assertEqual(path, "/v1/memories")
-            self.assertEqual(authorization, "Bearer test-scoped-token")
+            self.assertEqual(authorization, "Bearer test-scoped-token-0123456789-abcdef")
             self.assertEqual(key, memories.fingerprint(json.loads(body)))
         finally:
             server.shutdown()
