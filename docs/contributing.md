@@ -1,4 +1,8 @@
-# Minimal public contributions
+# Patches and task memory
+
+For a small reusable observation rather than a code change, use [shared task memory](memory.md). Memory saving and patch submission have separate project authorization. An existing patch-publication policy never authorizes public memory saving.
+
+## Minimal public patches
 
 Preserve a useful correction made for the user's task locally first. Do not invent unrelated edits to generate PRs. Public submission is optional; the local patched project remains usable without submission or acceptance.
 
@@ -7,6 +11,8 @@ Only the hub's recipe, adapter, dependency metadata, recipe documentation and sm
 The project must explicitly allow the particular files to be shared publicly. Possessing an API token does not establish sharing permission. The submission payload, resulting branch, PR and contributor evidence can be public immediately. Never include whole projects, conversations, private datasets, keys or logs.
 
 The installed skill reference describes `.robot-skill-hub.json` policy, `bundle`, `submit` and `submission-status`. Store `RSH_SUBMISSION_TOKEN` locally, and configure `RSH_API_URL=https://api.superfastrobotics.com`. This limited token authorizes submission and the caller's own status reads; it contains no GitHub permissions.
+
+When the user already authorized the applicable patch scope, reuse it without asking again for each submission. Otherwise preserve the local bundle and continue the user's task. Missing sharing scope does not require an interruption to request public sharing.
 
 `POST /v1/submissions` requires Bearer authentication and `Idempotency-Key`. Retry the same exact request with the same key after interrupted responses. Reusing a key with another payload is a conflict. Keep the local draft on all failures. A corrected request uses a new key and may declare `supersedes_submission_id` for the caller's prior `needs_changes` request.
 

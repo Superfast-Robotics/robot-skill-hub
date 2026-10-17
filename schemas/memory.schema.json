@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hub.superfastrobotics.com/schemas/memory.schema.json",
+  "title": "Robot Skill Hub memory request v1",
+  "description": "Public memory submission request. Local drafts and server-added metadata are separate objects. The transport also enforces a 16 KiB UTF-8 body limit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill_id",
+    "base",
+    "kind",
+    "summary",
+    "observation",
+    "resolution",
+    "environment",
+    "evidence",
+    "attribution",
+    "publication"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "skill_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,79}$"
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hub_commit",
+        "record_version",
+        "source_commit"
+      ],
+      "properties": {
+        "hub_commit": {
+          "$ref": "#/$defs/commit"
+        },
+        "record_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+        },
+        "source_commit": {
+          "$ref": "#/$defs/commit"
+        }
+      }
+    },
+    "kind": {
+      "enum": [
+        "failure_observation",
+        "missing_requirement",
+        "working_workaround",
+        "compatibility_note",
+        "docs_correction",
+        "successful_invocation"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 300,
+      "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S[\\s\\S]{3,}\\S\\s*$"
+    },
+    "observation": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 4000,
+      "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S[\\s\\S]{18,}\\S\\s*$"
+    },
+    "resolution": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000,
+          "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+        }
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "maxProperties": 16,
+      "required": [
+        "runtime",
+        "robot"
+      ],
+      "propertyNames": {
+        "anyOf": [
+          {
+            "enum": [
+              "runtime",
+              "runtime_version",
+              "robot",
+              "controller",
+              "observation",
+              "os",
+              "python",
+              "architecture",
+              "sim_backend",
+              "render_backend"
+            ]
+          },
+          {
+            "pattern": "^package\\.[A-Za-z_][A-Za-z0-9_]{0,79}$"
+          }
+        ]
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240,
+        "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "command",
+        "result",
+        "reported_by"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "not_run",
+            "contributor_reported"
+          ]
+        },
+        "command": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+            }
+          ]
+        },
+        "result": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000,
+          "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+        },
+        "reported_by": {
+          "const": "submitter"
+        }
+      }
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contributor_label",
+        "preserve_upstream_attribution"
+      ],
+      "properties": {
+        "contributor_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+        },
+        "preserve_upstream_attribution": {
+          "const": true
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_submission_allowed"
+      ],
+      "properties": {
+        "public_submission_allowed": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    }
+  },
+  "x-max-utf8-bytes": 16384
+}

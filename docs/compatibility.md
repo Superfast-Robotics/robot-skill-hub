@@ -9,3 +9,5 @@ Records distinguish source review from runtime results. Task execution has not b
 Windows/macOS can read the public catalog. The local tool reports unsupported simulator OS rather than treating it as compatible. Unknown requirements remain unknown. Existing research locks remain unchanged until an explicit new preparation is requested.
 
 The separate [official source example index](https://hub.superfastrobotics.com/catalog/v1/references.json) covers additional frameworks. Those entries support source browsing only. They are not preparation records, compatibility claims or local execution results; see [source selection notes](sample-sources.md).
+
+Discovery can refresh its catalog and reference cache without changing a prepared project. Existing locks pin their original record/source and environment. Published task-memory queries use those exact record/source versions and known environment fields; unrelated versions or mismatches are excluded. A maintainer-merged memory remains contributor-reported reference data, not a verified compatibility or task-success claim.

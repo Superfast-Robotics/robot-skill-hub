@@ -1,10 +1,11 @@
-import { ApiError, branchName, receiptPath, type GitHubAdapter, type Pull, type Receipt, type Checks, SID } from './types.ts';
+import { ApiError, branchName, receiptPath, memoryBranchName, memoryPath, type MemoryGitHubAdapter, type MemoryEntry, type Pull, type Receipt, type Checks, SID } from './types.ts';
 import { fromBase64, readReceipt, receiptMarker } from './util.ts';
+import { memoryContent, memoryMarker, readMemory } from './memories.ts';
 
 // Deliberately fixed: callers cannot supply a repository, host or base branch.
 export const REPOSITORY = 'Superfast-Robotics/robot-skill-hub';
 const PREFIX = `https://api.github.com/repos/${REPOSITORY}`;
-export class GitHub implements GitHubAdapter {
+export class GitHub implements MemoryGitHubAdapter {
   token: string;
   fetcher: typeof fetch;
   constructor(token: string, fetcher: typeof fetch = fetch) { this.token = token; this.fetcher = fetcher; }
@@ -48,8 +49,14 @@ export class GitHub implements GitHubAdapter {
   async getFile(path: string, ref: string): Promise<string | null> {
     const data = await this.request(`/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(ref)}`, 'GET', undefined, [404]);
     if (data._status === 404) return null;
-    if (data.type !== 'file' || data.encoding !== 'base64' || data.size > 128 * 1024 || data.submodule_git_url) throw new ApiError(422, 'unsupported_base_file', 'Only existing small UTF-8 files can be changed.');
-    try { return fromBase64(data.content.replace(/\s/g, '')); } catch { throw new ApiError(422, 'unsupported_base_file', 'The base file is not UTF-8 text.'); }
+    // This exact, read-only index is larger than an individual recipe file.
+    const limit = path === 'catalog/references.json' ? 256 * 1024 : 128 * 1024;
+    if (data.type !== 'file' || data.encoding !== 'base64' || data.size > limit || data.submodule_git_url) throw new ApiError(422, 'unsupported_base_file', 'The pinned UTF-8 file exceeds its allowed read scope or size.');
+    try {
+      const content = fromBase64(data.content.replace(/\s/g, ''));
+      if (new TextEncoder().encode(content).byteLength > limit) throw new Error('File too large');
+      return content;
+    } catch { throw new ApiError(422, 'unsupported_base_file', 'The pinned file is not bounded UTF-8 text.'); }
   }
   async createBranch(id: string, base: string, files: Record<string, string>, receipt: Receipt): Promise<boolean> {
     const commit = await this.request(`/git/commits/${base}`);
@@ -114,5 +121,38 @@ export class GitHub implements GitHubAdapter {
     const old = await this.findPull(id);
     const next = old?.body?.match(/<!-- rsh-superseded-by:(sub_[a-f0-9]{64}) -->/)?.[1];
     return next && SID.test(next) ? next : null;
+  }
+  async findMemoryPull(id: string): Promise<Pull | null> {
+    const pulls = await this.request(`/pulls?state=all&head=${encodeURIComponent('Superfast-Robotics:' + memoryBranchName(id))}&base=main&per_page=100`);
+    if (!Array.isArray(pulls)) throw new ApiError(503, 'github_unavailable', 'Unexpected GitHub response.');
+    const matches = pulls.filter(p => readMemory(p.body)?.memory_id === id);
+    if (matches.length > 1) throw new ApiError(503, 'ambiguous_receipt', 'Multiple finding receipts require operator review.');
+    return matches[0] || null;
+  }
+  async getMemoryBranch(id: string): Promise<string | null> {
+    const ref = await this.request(`/git/ref/heads/${memoryBranchName(id)}`, 'GET', undefined, [404]);
+    return ref._status === 404 ? null : ref.object.sha;
+  }
+  async createMemoryBranch(id: string, base: string, entry: MemoryEntry): Promise<boolean> {
+    const commit = await this.request(`/git/commits/${base}`);
+    const tree = await this.request('/git/trees', 'POST', { base_tree: commit.tree.sha,
+      tree: [{ path: memoryPath(id), mode: '100644', type: 'blob', content: memoryContent(entry) }] });
+    const next = await this.request('/git/commits', 'POST', { message: `Memory ${id}\n\n${entry.summary.replace(/[\r\n]/g, ' ')}`, tree: tree.sha, parents: [base] });
+    const created = await this.request('/git/refs', 'POST', { ref: `refs/heads/${memoryBranchName(id)}`, sha: next.sha }, [409, 422]);
+    if (!created._status) return true;
+    if (await this.getMemoryBranch(id)) return false;
+    throw new ApiError(503, 'github_unavailable', 'Memory branch creation failed; retry the same minimal finding.');
+  }
+  async createMemoryPull(entry: MemoryEntry): Promise<Pull> {
+    const prior = await this.findMemoryPull(entry.memory_id); if (prior) return prior;
+    const body = ['## Shared finding', entry.summary.replace(/[<>]/g, ''),
+      '', `Skill: \`${entry.skill_id}\` · Kind: \`${entry.kind}\``,
+      '', 'A minimal contributor-reported finding, stored as data for maintainer review. No project, transcript or robot execution is uploaded by this endpoint.',
+      '', 'Merge and catalog publication are separate. Hub runtime verification remains `not_run`.', '', memoryMarker(entry)].join('\n');
+    const created = await this.request('/pulls', 'POST', { title: `[memory] ${entry.skill_id}: ${entry.summary.replace(/[\r\n]/g, ' ').slice(0, 120)}`,
+      head: memoryBranchName(entry.memory_id), base: 'main', draft: true, body, maintainer_can_modify: true }, [422]);
+    if (!created._status) return created;
+    const winner = await this.findMemoryPull(entry.memory_id); if (winner) return winner;
+    throw new ApiError(503, 'github_unavailable', 'Memory PR creation did not finish; retry the same minimal finding.');
   }
 }

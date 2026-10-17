@@ -1,0 +1,5 @@
+interface:
+  display_name: "Robot Skill Hub"
+  short_description: "Find robot code and reuse task findings"
+policy:
+  allow_implicit_invocation: true

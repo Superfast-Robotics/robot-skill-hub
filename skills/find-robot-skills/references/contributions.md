@@ -1,5 +1,7 @@
 # Minimal contributions
 
+Use this workflow for an actual code or documentation patch. For a small reusable observation, read [memory.md](memory.md); its public authorization is separate from patch publication.
+
 Only preserve a reusable fix already made during the user's work. The API accepts changes to existing hub-owned recipe adapters, dependency/compatibility metadata, recipe docs and small reproduction tests within each record's `contribution.allowed_paths`. The pilot limits requests to 64 KiB and accepts text modifications only, not file creation, deletion or renaming. Upstream source changes stay local unless they can be expressed as a hub adapter. Never bundle a whole project, conversation, private research data or credentials.
 
 The project policy file is `.robot-skill-hub.json` (or explicit `--policy FILE`). The user must already have authorized this scope. A token never substitutes for public sharing permission. An allowed policy can be as narrow as:

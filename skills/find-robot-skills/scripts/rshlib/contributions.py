@@ -160,7 +160,7 @@ def create_bundle(catalog, skill_id, patch_file, metadata_file, output, project,
             "public_submission_allowed": allowed}
 
 
-def request_json(method, url, token, *, payload=None, idempotency_key=None):
+def request_json(method, url, token, *, payload=None, idempotency_key=None, timeout=60):
     require_url(url, local_http=True)
     headers = {"Accept": "application/json", "Authorization": "Bearer " + token, "User-Agent": "robot-skill-hub/1"}
     if payload is not None:
@@ -172,7 +172,7 @@ def request_json(method, url, token, *, payload=None, idempotency_key=None):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
     try:
-        with urllib.request.build_opener(NoRedirect()).open(request, timeout=60) as response:
+        with urllib.request.build_opener(NoRedirect()).open(request, timeout=timeout) as response:
             content = response.read(1024 * 1024 + 1)
             code = response.status
     except urllib.error.HTTPError as exc:

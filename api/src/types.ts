@@ -39,6 +39,27 @@ export interface Receipt {
   created_at: string;
   supersedes_submission_id?: string;
 }
+export const MEMORY_KINDS = ['failure_observation', 'missing_requirement', 'working_workaround', 'compatibility_note', 'docs_correction', 'successful_invocation'] as const;
+export interface MemoryFinding {
+  schema_version: '1';
+  skill_id: string;
+  base: Bundle['base'];
+  kind: typeof MEMORY_KINDS[number];
+  summary: string;
+  observation: string;
+  resolution: string | null;
+  environment: Record<string, string>;
+  evidence: Bundle['evidence'];
+  attribution: Bundle['attribution'];
+  publication: Bundle['publication'];
+}
+export interface MemoryEntry extends MemoryFinding {
+  memory_id: string;
+  principal_id: string;
+  fingerprint: string;
+  hub_validation: { level: 'structure_checked'; runtime: 'not_run'; result: string };
+  created_at: string;
+}
 export interface Pull {
   number: number;
   html_url: string;
@@ -66,6 +87,12 @@ export interface GitHubAdapter {
   closeSuperseded(old: Pull, newPull: Pull, id: string): Promise<void>;
   findSuperseding(id: string): Promise<string | null>;
 }
+export interface MemoryGitHubAdapter extends GitHubAdapter {
+  findMemoryPull(id: string): Promise<Pull | null>;
+  getMemoryBranch(id: string): Promise<string | null>;
+  createMemoryBranch(id: string, base: string, entry: MemoryEntry): Promise<boolean>;
+  createMemoryPull(entry: MemoryEntry): Promise<Pull>;
+}
 export class ApiError extends Error {
   status: number;
   code: string;
@@ -75,5 +102,8 @@ export class ApiError extends Error {
 }
 export const SID = /^sub_[a-f0-9]{64}$/;
 export const SHA = /^[a-f0-9]{40}$/;
+export const MID = /^mem_[a-f0-9]{64}$/;
 export const receiptPath = (id: string) => `.hub/submissions/${id}.json`;
 export const branchName = (id: string) => `submissions/${id}`;
+export const memoryPath = (id: string) => `.hub/memories/${id}.json`;
+export const memoryBranchName = (id: string) => `memories/${id}`;

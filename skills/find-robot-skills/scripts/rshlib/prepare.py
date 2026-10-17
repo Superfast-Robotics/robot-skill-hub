@@ -204,7 +204,7 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
                          "hub_commit": catalog.get("hub_commit"), "record_version": record["maintenance"]["record_version"],
                          "source_commit": record["source"]["commit"], "archive_sha256": record["source"]["archive_sha256"],
                          "source_files": hashes, "compatibility": selected, "dependencies_installed": False,
-                         "robot_execution": "not_run"}
+                         "robot_execution": "not_run", "record": record}
         recipe_files = record["preparation"].get("files", {})
         for relative, content in recipe_files.items():
             if not safe_relative(relative) or not isinstance(content, str):

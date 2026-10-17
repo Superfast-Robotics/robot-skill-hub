@@ -94,3 +94,13 @@ The catalog generator embeds merged submission IDs, exact record versions, upstr
 ## Free operation
 
 Keep the Cloudflare account on the existing free plan and the GitHub repository public. This project uses no paid GPU, model API, database, queue or hosted simulator. The Worker rate limits submission to 10/minute and status reads to 60/minute per principal, caps payloads at 64 KiB, and disables application observability logs. Provider free limits still apply; exceeding them should fail rather than trigger a plan upgrade. No automatic paid plan conversion is configured.
+
+## Task-memory operations
+
+Memory requests use the same repository-scoped Worker credential and caller token; no broader GitHub permission is required. `POST /v1/memories` accepts at most 16 KiB of structured JSON, checks exact historical catalog pins, and creates an internal draft PR. `GET /v1/memories/MEMORY_ID` is owner-scoped. Public API capabilities describe the current endpoints and limits.
+
+The caller's `.robot-skill-hub.json` must separately authorize `memory.public_save_allowed` and explicit skill/kind allowlists. Existing patch-publication permission is insufficient. A configured token alone is insufficient. Clients save to their local outbox first, make at most one automatic POST when authorized, and retain failed deliveries for an explicit bounded `flush`. No background retry or polling is required.
+
+Review a memory as contributor-reported data. Check the minimal finding, exact pins, environment, evidence and absence of private material. Do not run remembered commands as part of validation. The Worker never executes memory text. Merge only reviewed data; the publisher includes entries from main in `catalog/v1/memories.json` and records their fingerprint, exact server-file hash and pinned base in the publication manifest. `stored`, `merged` and `published` remain different states. Main publication does not promote contributor evidence to Hub runtime verification.
+
+The machine entry contract is maintained in `docs/agent-contract.json`; the builder adds current publication metadata and serves `/agent.json` and `/.well-known/robot-skill-hub.json`. Discovery indexes may refresh automatically, while prepared project locks remain fixed. See [memory.md](memory.md) for caller policy and [verification.md](verification.md) for checks actually performed.

@@ -39,6 +39,73 @@ class CatalogTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()):
             builder.build(args)
 
+    def memory(self):
+        record = json.loads(self.record_path().read_text(encoding='utf-8'))
+        payload = {'schema_version':'1', 'skill_id':record['id'],
+                   'base':{'hub_commit':'1'*40,'record_version':record['maintenance']['record_version'],'source_commit':record['source']['commit']},
+                   'kind':'compatibility_note','summary':'Preserve sources on the unsupported host',
+                   'observation':'Download-only preparation preserved the exact source and recipe without creating a simulator environment.',
+                   'resolution':'Use download-only for source preparation, and run the task on the documented host.',
+                   'environment':{'runtime':'maniskill','robot':'panda','os':'windows'},
+                   'evidence':{'level':'contributor_reported','command':'rsh.py prepare --download-only','result':'Source prepared; environment not created.','reported_by':'submitter'},
+                   'attribution':{'contributor_label':'fixture agent','preserve_upstream_attribution':True},
+                   'publication':{'public_submission_allowed':True}}
+        material = {k:v for k,v in payload.items() if k not in ('attribution','publication')}
+        material['base'] = {k:payload['base'][k] for k in ('record_version','source_commit')}
+        fingerprint = hashlib.sha256(builder.canonical(material).encode()).hexdigest()
+        principal = '2'*64
+        ident = 'mem_'+hashlib.sha256(('rsh-memory-id-v1\0'+principal+'\0'+fingerprint).encode()).hexdigest()
+        entry = {**payload,'memory_id':ident,'principal_id':principal,'fingerprint':fingerprint,
+                 'hub_validation':{'level':'structure_checked','runtime':'not_run','result':'Structural checks only.'},
+                 'created_at':'2026-10-17T00:00:00.000Z'}
+        path = self.root / '.hub/memories' / (ident+'.json')
+        path.parent.mkdir(parents=True,exist_ok=True)
+        path.write_text(json.dumps(entry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+        return path,entry
+
+    def test_published_memory_keeps_exact_immutable_bytes_and_data_only_projection(self):
+        path,entry = self.memory()
+        self.build()
+        index = json.loads((self.root/'site/catalog/v1/memories.json').read_text())
+        self.assertEqual(index['interpretation'],'data_only')
+        public = index['records'][0]
+        self.assertNotIn('principal_id', public)
+        self.assertEqual(public['curation'],'maintainer_merged')
+        self.assertEqual(public['trust'],'contributor_reported')
+        raw = (self.root/'site/memories'/path.name).read_bytes()
+        self.assertEqual(raw,path.read_bytes())
+        self.assertEqual(public['content_sha256'],hashlib.sha256(raw).hexdigest())
+        manifest = json.loads((self.root/'site/catalog/v1/publication.json').read_text())
+        self.assertEqual(manifest['memories'][0]['fingerprint'],entry['fingerprint'])
+        self.assertEqual(manifest['memories'][0]['base_hub_commit'],entry['base']['hub_commit'])
+
+    def test_memory_cannot_be_modified_without_a_new_content_identity(self):
+        path,entry = self.memory()
+        entry['observation']='This report was changed after its original intake and must fail.'
+        path.write_text(json.dumps(entry),encoding='utf-8')
+        with self.assertRaisesRegex(ValueError,'content identity'):
+            builder.load_memories()
+
+    def test_memory_cannot_escalate_verification_or_add_private_environment_fields(self):
+        path,entry = self.memory()
+        entry['evidence']['level']='task_complete'
+        path.write_text(json.dumps(entry),encoding='utf-8')
+        with self.assertRaises(ValueError):builder.load_memories()
+        path,entry = self.memory()
+        entry['environment']['api_key']='a private value'
+        path.write_text(json.dumps(entry),encoding='utf-8')
+        with self.assertRaises(ValueError):builder.load_memories()
+
+    def test_memory_nullable_fields_and_schema_bounds_are_enforced(self):
+        path,entry = self.memory()
+        entry['resolution']={'unexpected':'object'}
+        path.write_text(json.dumps(entry),encoding='utf-8')
+        with self.assertRaises(ValueError):builder.load_memories()
+        path,entry = self.memory()
+        entry['summary']='x'*301
+        path.write_text(json.dumps(entry),encoding='utf-8')
+        with self.assertRaises(ValueError):builder.load_memories()
+
     def test_rejects_non_pinned_download(self):
         self.mutate(lambda r: r['source'].update(archive_url='https://codeload.github.com/haosulab/ManiSkill/tar.gz/main'))
         with self.assertRaisesRegex(ValueError, "exact source commit"):

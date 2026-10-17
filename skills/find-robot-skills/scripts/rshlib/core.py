@@ -128,6 +128,10 @@ def load_catalog(location=None):
             raise RshError("catalog_unavailable", "Could not retrieve catalog.", next_action="use_bundled_snapshot") from exc
     else:
         catalog = read_json(location or SKILL_ROOT / "assets/catalog.snapshot.json")
+    return validate_catalog(catalog)
+
+
+def validate_catalog(catalog):
     if not isinstance(catalog, dict) or catalog.get("schema_version") != "1" or not isinstance(catalog.get("records"), list):
         raise RshError("invalid_catalog", "Expected catalog schema_version 1 and records array.")
     ids = set()
@@ -171,6 +175,24 @@ def compatibility(record, environment):
             "missing_requirements": missing, "combinations": candidates}
 
 
+def selection_base(catalog, record, *, reference=False):
+    """Memory identity for a selected entry, without claiming execution support."""
+    source = record.get("source", {})
+    if reference:
+        digest = source.get("sha256")
+        if not SHA256.fullmatch(str(digest or "")):
+            return None
+        version = "source-" + digest
+    else:
+        version = record.get("maintenance", {}).get("record_version")
+    hub = catalog.get("hub_commit")
+    commit = source.get("commit")
+    if (not isinstance(version, str) or not 1 <= len(version) <= 120
+            or not COMMIT.fullmatch(str(hub or "")) or not COMMIT.fullmatch(str(commit or ""))):
+        return None
+    return {"record_version": version, "hub_commit": hub, "source_commit": commit}
+
+
 def find(catalog, query, environment, limit=3):
     tokens = re.findall(r"[a-z0-9]+", query.lower())
     results = []
@@ -184,21 +206,59 @@ def find(catalog, query, environment, limit=3):
         if tokens and score == 0:
             continue
         results.append({"id": record["id"], "name": record["name"], "summary": record["summary"],
+                        "kind": "preparation_recipe", "hub_prepare": True, "next_action": "inspect_recipe",
+                        "source_commit": record["source"]["commit"], "record_version": record["maintenance"]["record_version"],
+                        "memory_base": selection_base(catalog, record),
+                        "prepare_args": ["prepare", record["id"], "--expected-source-commit", record["source"]["commit"],
+                                         "--expected-record-version", record["maintenance"]["record_version"]],
                         "match_reason": ["Explicit environment constraints match a documented combination."]
                         + (["Environment is incomplete; compatibility is unconfirmed."] if matched["missing_requirements"] else []),
                         "missing_requirements": matched["missing_requirements"],
                         "compatibility_status": matched["compatibility_status"],
                         "evidence_level": record["evidence"]["level"], "_score": score})
-    results.sort(key=lambda item: (-item["_score"], item["id"]))
+    for record in catalog.get("references", {}).get("records", []):
+        if not isinstance(record, dict):
+            continue
+        framework = str(record.get("framework", "")).lower()
+        runtime = str(environment.get("runtime", "unknown")).lower()
+        if runtime not in ("", "unknown", framework):
+            continue
+        if (not IDENTIFIER.fullmatch(str(record.get("id", ""))) or not isinstance(record.get("source"), dict)
+                or not COMMIT.fullmatch(str(record["source"].get("commit", "")))):
+            continue
+        words = " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
+                          framework, *record.get("capabilities", [])]).lower()
+        score = sum(token in words for token in tokens)
+        if tokens and score == 0:
+            continue
+        results.append({"id": record["id"], "name": record.get("name", record["id"]),
+                        "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,
+                        "next_action": "open_source_reference", "source_url": record["source"].get("url"),
+                        "source_commit": record["source"]["commit"], "framework": framework,
+                        "memory_base": selection_base(catalog, record, reference=True),
+                        "compatibility_status": "unknown", "missing_requirements": ["upstream_environment_review"],
+                        "match_reason": ["Pinned official source example; no Hub preparation adapter or environment compatibility claim."],
+                        "evidence_level": record.get("evidence", {}).get("level", "source_reviewed"), "_score": score})
+    results.sort(key=lambda item: (-item["_score"], not item["hub_prepare"], item["id"]))
     for item in results:
         item.pop("_score")
     return {"status": "ready", "results": results[:limit], "total": len(results),
-            "execution_performed": False, "catalog_hub_commit": catalog.get("hub_commit")}
+            "execution_performed": False, "catalog_hub_commit": catalog.get("hub_commit"),
+            "catalog_origin": catalog.get("catalog_origin", "explicit")}
 
 
 def inspect(catalog, skill_id):
+    for reference in catalog.get("references", {}).get("records", []):
+        if reference.get("id") == skill_id:
+            return {"status": "ready", **reference, "kind": "source_reference", "hub_prepare": False,
+                    "memory_base": selection_base(catalog, reference, reference=True),
+                    "next_action": "open_source_reference", "execution_performed": False}
     record = lookup(catalog, skill_id)
     return {"status": "ready", **record, "commit": record["source"]["commit"],
+            "kind": "preparation_recipe", "hub_prepare": True,
+            "memory_base": selection_base(catalog, record),
+            "prepare_args": ["prepare", record["id"], "--expected-source-commit", record["source"]["commit"],
+                             "--expected-record-version", record["maintenance"]["record_version"]],
             "entrypoint": record["invocation"]["entrypoint"], "inputs": record["invocation"].get("inputs"),
             "outputs": record["invocation"].get("outputs"), "example": record["invocation"].get("example"),
             "execution_performed": False, "catalog_hub_commit": catalog.get("hub_commit")}

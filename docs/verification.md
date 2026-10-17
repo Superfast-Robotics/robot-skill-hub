@@ -2,9 +2,9 @@
 
 ## Confirmed locally
 
-- Python CLI and adapter tests: **26 passed**.
-- Catalog integrity/publication tests: **9 passed**.
-- Worker contract tests: **24 passed**; real workerd transport tests: **3 passed**; TypeScript check passed. All 62 automated tests passed across Python, catalog and API checks.
+- Python CLI and adapter tests: **44 passed**.
+- Catalog integrity/publication tests: **13 passed**.
+- Worker contract tests: **36 passed**; real workerd transport tests: **4 passed**; TypeScript check passed. All 97 automated tests passed across Python, catalog and API checks.
 - Agent-first update: 17 preparation recipes and 40 official source references pass validation. All generated HTML has no CSS or client-side JavaScript; JSON, Markdown, robots, sitemap and full-text discovery files are generated together.
 - The 15 added adapters preserve exact robot/task/controller contracts in dependency-mocked tests. DrawSVG source-only preparation in another clean Windows project verified the real pinned archive, recipe files and lock without creating an environment, installing dependencies or executing a simulator.
 - Official MuJoCo, Bullet and robosuite reference files were fetched at exact release commits and hashed; entrypoints, imports and licenses were inspected. They are discovery references without Hub preparation adapters. Repository stars are a dated interest proxy, not usage counts.

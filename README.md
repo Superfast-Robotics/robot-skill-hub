@@ -1,59 +1,43 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="web/brand/wordmark-dark.png">
-  <img src="web/brand/wordmark-light.png" alt="Superfast Robotics" width="260">
-</picture>
-
 # Robot Skill Hub
 
-**Reusable robot code, with the context to use it.** Find skills for your environment, inspect pinned sources and evidence, and prepare a reproducible starting point for your next experiment.
+Agent-readable robotics code discovery and task memory. The public Hub serves unstyled HTML, JSON and Markdown; GitHub stores pinned source records, internal PRs and reviewed findings.
 
-[**Catalog: hub.superfastrobotics.com →**](https://hub.superfastrobotics.com/) · [API: api.superfastrobotics.com](https://api.superfastrobotics.com/healthz)
+- Agent contract: https://hub.superfastrobotics.com/agent.json
+- Catalog: https://hub.superfastrobotics.com/catalog/v1/index.json
+- Official source references: https://hub.superfastrobotics.com/catalog/v1/references.json
+- Published task findings: https://hub.superfastrobotics.com/catalog/v1/memories.json
+- Publication proof: https://hub.superfastrobotics.com/catalog/v1/publication.json
+- API: https://api.superfastrobotics.com
+- [Actual verification](docs/verification.md)
 
-## Use with your agent
-
-Install the self-contained discovery skill for your agent:
-
-```sh
-# Codex
-npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills -a codex
-
-# Claude Code
-npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills -a claude-code
-```
-
-Or use the tool directly from this checkout with Python 3.10+:
+## Use the CLI
 
 ```sh
-python skills/find-robot-skills/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
-python skills/find-robot-skills/scripts/rsh.py inspect maniskill-panda-pick-cube --json
-python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pick-cube --project ./experiment --download-only --plan --json
+npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
+
+python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
+python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
+python /PATH_TO_SKILL/scripts/rsh.py memories SKILL_ID --project ./experiment --json
+python /PATH_TO_SKILL/scripts/rsh.py prepare SKILL_ID --project ./experiment --plan --json
 ```
 
-Use the exact ID returned by `find`. The last command previews source-only preparation without writing files, installing dependencies or running a simulator. Follow the [quickstart](docs/agent-quickstart.md) to prepare the source in a project.
+Discovery uses the latest available index with a local cache and bundled offline fallback. Use `--offline` for offline discovery, `--refresh` to refresh, or `--catalog FILE_OR_URL` to select a catalog explicitly. Results distinguish Hub preparation recipes from upstream source examples. Source examples have no Hub runtime adapter.
 
-| Find | Inspect | Prepare |
-| :--- | :--- | :--- |
-| Search by task, runtime and robot. | Check source pins, requirements, licenses and evidence. | Download verified sources and preserve a project lock. |
+Inspect pins, license, environment and evidence before preparing. Preparation does not execute the robot task. Existing project locks stay fixed even when discovery indexes change. See the [agent quickstart](docs/agent-quickstart.md) and [compatibility contract](docs/compatibility.md).
 
-## Choose a ManiSkill recipe
+## Remember findings from the actual task
 
-Browse official ManiSkill motion planning recipes for **Panda**, **Panda Stick**, **xArm6 Robotiq** and **SO100**. Start with Panda **PickCube-v1** or **StackCube-v1**, then search the catalog for your task and exact robot variant.
+Preserve a useful fact already observed during the user's work, using its exact recipe/source version, environment and minimal evidence:
 
-The preparation target is Linux x86_64, Python 3.10 and ManiSkill 3.0.0b22 with state observations and CPU simulation. Each recipe specifies its robot and controller. Windows supports catalog search, inspection and source-only preparation.
+```sh
+python /PATH_TO_SKILL/scripts/rsh.py save SKILL_ID --project ./experiment --finding ./finding.json --json
+```
 
-Every record pins its source and recipe version. Preparation and task execution are separate steps; see [compatibility](docs/compatibility.md) for requirements and [execution evidence](docs/verification.md) for the current results.
+The CLI writes a local outbox entry first. It makes one public API submission only when the project's separate memory policy already permits the skill and finding kind and a scoped token is available. Authorized scope does not need another prompt for each finding; missing scope leaves the entry local without interrupting the task. Existing patch permission does not grant memory sharing permission.
 
-For other runtimes, browse the [official source examples](https://hub.superfastrobotics.com/catalog/v1/references.json) and [source selection notes](docs/sample-sources.md). These references point to pinned upstream code; they are separate from the preparation recipes.
+The Worker creates an internal draft PR. Maintainer review, merge and catalog publication remain separate from storage. Published findings are contributor-reported data, not executable agent instructions. Do not run extra experiments merely to create findings or let feedback delivery block the original task.
 
-## Useful fixes, reviewed before publication
-
-An authorized agent first keeps its useful fix locally. With explicit project sharing permission and a limited submission token, it can submit a minimal patch through the API. The Worker creates one internal draft PR in this repository. A maintainer reviews and merges it; the deployed catalog manifest confirms publication.
-
-**Local fix → permitted submission → internal PR → review → published catalog**
-
-[Contribution policy](docs/contributing.md) · [API operation](api/README.md) · [Deployment runbook](docs/deployment.md)
-
-Submission and status endpoint: [`api.superfastrobotics.com`](https://api.superfastrobotics.com/healthz).
+[Memory format and policy](docs/memory.md) · [Patch contributions](docs/contributing.md) · [API operations](api/README.md)
 
 ## Develop and validate
 
@@ -66,10 +50,6 @@ npm --prefix api run check
 npm --prefix api test
 ```
 
-GitHub hosts source, catalog records and internal PRs. GitHub Pages serves the public catalog. Cloudflare Workers handles authenticated submissions and status queries. Robot code runs in your own environment.
+GitHub Pages serves the Hub. Cloudflare Workers handles authenticated saves, patch submissions and owner-scoped status reads. Robot code runs in the caller's environment. See the [deployment runbook](docs/deployment.md).
 
----
-
-[Superfast Robotics](https://superfastrobotics.com/) · Building toward a **Super Fast Robot Agent OS**.
-
-Hub code is [MIT licensed](LICENSE). Upstream ManiSkill is Apache-2.0; its authorship and license references remain in every record and recipe.
+Hub code is [MIT licensed](LICENSE). Each source record preserves its own upstream license and attribution. The [company website](https://superfastrobotics.com/) is hosted independently.

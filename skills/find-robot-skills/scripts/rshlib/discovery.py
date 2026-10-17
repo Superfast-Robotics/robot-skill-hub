@@ -1,0 +1,136 @@
+"""Bounded public discovery, with independent offline snapshots and pinned projects."""
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+import time
+import urllib.request
+
+from .core import RshError, SKILL_ROOT, load_catalog, read_json, require_url, validate_catalog, write_json
+
+BASE = "https://hub.superfastrobotics.com/catalog/v1/"
+READ_TIMEOUT = 1.5
+CACHE_SECONDS = 300
+PUBLIC_LIMIT = 4 * 1024 * 1024
+
+
+def cache_root():
+    override = os.environ.get("RSH_CACHE_DIR")
+    if override:
+        return Path(override).expanduser()
+    base = os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_CACHE_HOME")
+    return (Path(base) if base else Path.home() / ".cache") / "robot-skill-hub"
+
+
+def fetch_public(url):
+    require_url(url, local_http=True)
+    request = urllib.request.Request(url, headers={"User-Agent": "robot-skill-hub/1", "Accept": "application/json"})
+    class NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            return None
+    with urllib.request.build_opener(NoRedirect()).open(request, timeout=READ_TIMEOUT) as response:
+        data = response.read(PUBLIC_LIMIT + 1)
+    if len(data) > PUBLIC_LIMIT:
+        raise RshError("catalog_too_large", "Public index exceeds 4 MiB.")
+    return json.loads(data)
+
+
+def index_data(value):
+    if not isinstance(value, dict) or value.get("schema_version") != "1" or not isinstance(value.get("records"), list):
+        raise RshError("invalid_index", "Expected schema_version 1 and a records array.")
+    return value
+
+
+def _read_cache(name):
+    try:
+        value = read_json(cache_root() / (name + ".json"))
+        if not isinstance(value, dict) or not isinstance(value.get("fetched_at"), (int, float)):
+            return None
+        return value
+    except (RshError, OSError, TypeError):
+        return None
+
+
+def _write_cache(name, value):
+    try:
+        write_json(cache_root() / (name + ".json"), {"fetched_at": time.time(), "data": value})
+    except OSError:
+        pass  # Read-only machines still use the retrieved data in this invocation.
+
+
+def public_index(name, *, url=None, offline=False, refresh=False):
+    """Return (index, origin); network failure is never required for discovery."""
+    cached = _read_cache(name)
+    if cached:
+        try:
+            index_data(cached["data"])
+        except (RshError, KeyError, TypeError):
+            cached = None
+    if cached and not refresh and time.time() - cached["fetched_at"] < CACHE_SECONDS:
+        return cached["data"], "cache"
+    if not offline:
+        try:
+            data = index_data(fetch_public(url or BASE + name + ".json"))
+            _write_cache(name, data)
+            return data, "remote"
+        except (OSError, ValueError, TypeError, RshError):
+            pass
+    if cached:
+        return cached["data"], "cache_fallback"
+    snapshot = SKILL_ROOT / "assets" / (name + ".snapshot.json")
+    try:
+        return index_data(read_json(snapshot)), "bundled_snapshot"
+    except (OSError, RshError, ValueError, TypeError):
+        return {"schema_version": "1", "records": []}, "empty_snapshot"
+
+
+def load_discovery(location=None, *, offline=False, refresh=False, latest=True):
+    if location:
+        # Explicit fixture/local/custom catalogs keep their original network contract.
+        if offline and str(location).startswith(("https://", "http://")):
+            raise RshError("offline_remote_catalog", "Use a local catalog file with --offline.")
+        result = load_catalog(location)
+        return {**result, "catalog_origin": "explicit"}
+    cached = _read_cache("catalog")
+    if cached:
+        try:
+            validate_catalog(cached["data"])
+        except (RshError, KeyError, TypeError):
+            cached = None
+    catalog, origin = None, None
+    if cached and (not latest or offline or (not refresh and time.time() - cached["fetched_at"] < CACHE_SECONDS)):
+        catalog, origin = cached["data"], "cache"
+    if catalog is None and latest and not offline:
+        try:
+            catalog = validate_catalog(fetch_public(BASE + "index.json"))
+            _write_cache("catalog", catalog)
+            origin = "remote"
+        except (OSError, ValueError, TypeError, RshError):
+            pass
+    if catalog is None:
+        catalog = cached["data"] if cached else load_catalog()
+        origin = "cache_fallback" if cached else "bundled_snapshot"
+    refs, refs_origin = public_index("references", url=catalog.get("references_url"),
+                                     offline=offline or not latest or origin == "bundled_snapshot",
+                                     refresh=refresh)
+    return {**catalog, "references": refs, "catalog_origin": origin, "references_origin": refs_origin}
+
+
+def pinned_project_catalog(catalog, project, skill_id):
+    """Use a previously saved project record; never refresh an existing lock."""
+    project = Path(project).expanduser().resolve()
+    path = project / ".robot-skill-hub/locks" / (skill_id + ".json")
+    if not path.resolve().is_relative_to(project):
+        raise RshError("preparation_path_escape", "Project lock resolves outside the requested project.")
+    if not path.is_file():
+        return catalog
+    lock = read_json(path)
+    record = lock.get("record")
+    if not isinstance(record, dict):
+        return catalog  # Older locks retain the existing conflict checks in prepare.
+    pinned = validate_catalog({"schema_version": "1", "hub_commit": lock.get("hub_commit"), "records": [record]})
+    if (record.get("id") != skill_id or record["source"]["commit"] != lock.get("source_commit")
+            or record["maintenance"]["record_version"] != lock.get("record_version")):
+        raise RshError("invalid_project_lock", "Project record and lock pins differ.")
+    return {**pinned, "catalog_origin": "project_lock"}

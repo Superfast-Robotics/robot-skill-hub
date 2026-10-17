@@ -129,3 +129,57 @@ for (const redirected of [true, false]) {
     } finally { await mf.dispose(); }
   });
 }
+
+test('native memory save stores one bounded finding and confirms its exact merged publication', async () => {
+  const hub = 'a'.repeat(40), head = 'c'.repeat(40), source = 'b'.repeat(40), merge = 'e'.repeat(40), deployed = 'f'.repeat(40);
+  const skill = 'maniskill-panda-pick-cube'; let pull: any; let stored = ''; let memoryId = ''; let manifest: any;
+  const finding = { schema_version: '1', skill_id: skill, base: { hub_commit: hub, source_commit: source, record_version: '1.0.0' },
+    kind: 'failure_observation', summary: 'Report a missing planner package', observation: 'The planner package was missing from the isolated source preparation environment.', resolution: null,
+    environment: { runtime: 'maniskill', robot: 'panda' }, evidence: { level: 'contributor_reported', command: null, result: 'Package missing; no robot execution.', reported_by: 'submitter' },
+    attribution: { contributor_label: 'Transport test', preserve_upstream_attribution: true }, publication: { public_submission_allowed: true } };
+  const mf = await runtime(async request => {
+    if (request.url === PUBLICATION) { assert.equal(request.headers.has('Authorization'), false); return RuntimeResponse.json(manifest); }
+    assert.ok(request.url.startsWith(API + '/'));
+    const publicChecks = request.url.includes('/check-runs');
+    assert.equal(request.headers.get('Authorization'), publicChecks ? null : `Bearer ${GITHUB_TOKEN}`);
+    if (request.url.startsWith(API + '/pulls?')) return RuntimeResponse.json(pull ? [pull] : []);
+    if (request.url.startsWith(API + '/git/ref/heads/memories/')) return new RuntimeResponse(null, { status: 404 });
+    if (request.url === API + '/git/ref/heads/main') return RuntimeResponse.json({ object: { sha: head } });
+    if (request.url === `${API}/compare/${hub}...${head}`) return RuntimeResponse.json({ status: 'ahead', merge_base_commit: { sha: hub } });
+    if (request.url === `${API}/compare/${merge}...${deployed}`) return RuntimeResponse.json({ status: 'ahead', merge_base_commit: { sha: merge } });
+    if (request.url.startsWith(`${API}/contents/catalog/records/${skill}.json?`)) {
+      assert.equal(new URL(request.url).searchParams.get('ref'), hub);
+      const raw = JSON.stringify({ id: skill, maintenance: { record_version: '1.0.0' }, source: { commit: source } });
+      return RuntimeResponse.json({ type: 'file', encoding: 'base64', size: raw.length, content: Buffer.from(raw).toString('base64') });
+    }
+    if (request.url.startsWith(API + '/contents/.hub/memories/')) return new RuntimeResponse(null, { status: 404 });
+    if (request.url === API + '/git/commits/' + head) return RuntimeResponse.json({ tree: { sha: 'base-tree' } });
+    if (request.url === API + '/git/trees') {
+      const body: any = await request.json(); assert.equal(body.tree.length, 1);
+      stored = body.tree[0].content; const entry = JSON.parse(stored); memoryId = entry.memory_id;
+      assert.equal(body.tree[0].path, `.hub/memories/${memoryId}.json`); assert.equal(entry.hub_validation.runtime, 'not_run');
+      return RuntimeResponse.json({ sha: 'new-tree' });
+    }
+    if (request.url === API + '/git/commits') return RuntimeResponse.json({ sha: '1'.repeat(40) });
+    if (request.url === API + '/git/refs') return RuntimeResponse.json({});
+    if (request.url === API + '/pulls') {
+      const body: any = await request.json(); assert.equal(body.draft, true); assert.equal(body.base, 'main'); assert.equal(body.head, 'memories/' + memoryId);
+      pull = { number: 2, html_url: 'https://github.com/Superfast-Robotics/robot-skill-hub/pull/2', body: body.body, state: 'open', merged_at: null,
+        merge_commit_sha: null, labels: [], head: { sha: '1'.repeat(40), ref: body.head } };
+      return RuntimeResponse.json(pull);
+    }
+    if (publicChecks) return RuntimeResponse.json({ check_runs: [{ name: 'Checks', status: 'completed', conclusion: 'success' }] });
+    assert.fail('Unexpected memory runtime request: ' + request.url);
+  });
+  try {
+    const response = await mf.dispatchFetch('https://api.example.invalid/v1/memories', { method: 'POST', headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(finding) });
+    assert.equal(response.status, 201); const saved: any = await response.json(); assert.equal(saved.memory_id, memoryId); assert.equal(saved.content_sha256, hash(stored));
+    const read = () => mf.dispatchFetch(`https://api.example.invalid/v1/memories/${memoryId}`, { headers: { Authorization: `Bearer ${TOKEN}` } });
+    assert.equal((await (await read()).json() as any).status, 'pending_review');
+    pull.merged_at = '2026-10-17T00:00:00Z'; pull.merge_commit_sha = merge; pull.state = 'closed';
+    manifest = { schema_version: '1', hub_commit: deployed, memories: [{ memory_id: memoryId, skill_id: skill, fingerprint: saved.fingerprint,
+      content_sha256: saved.content_sha256, record_version: '1.0.0', source_commit: source, base_hub_commit: hub, entry_url: 'https://catalog.example.invalid/memory.json' }] };
+    const published: any = await (await read()).json(); assert.equal(published.status, 'published'); assert.equal(published.hub_validation.runtime, 'not_run');
+    assert.equal(published.entry_url, manifest.memories[0].entry_url);
+  } finally { await mf.dispose(); }
+});

@@ -1,0 +1,269 @@
+{
+  "schema_version": "1",
+  "service": "robot-skill-hub",
+  "interpretation": "data_only",
+  "purpose": [
+    "discover_pinned_robot_code",
+    "inspect_environment_contracts",
+    "prepare_supported_recipes",
+    "recall_exact_version_findings",
+    "save_already_observed_reusable_findings"
+  ],
+  "resources": {
+    "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
+    "references_url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
+    "memories_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
+    "version_url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+    "publication_url": "https://hub.superfastrobotics.com/catalog/v1/publication.json",
+    "quickstart_url": "https://hub.superfastrobotics.com/agent-quickstart.md",
+    "full_text_url": "https://hub.superfastrobotics.com/llms-full.txt",
+    "memory_schema_url": "https://hub.superfastrobotics.com/schemas/memory.schema.json",
+    "project_policy_schema_url": "https://hub.superfastrobotics.com/schemas/project-policy.schema.json",
+    "api_base_url": "https://api.superfastrobotics.com",
+    "api_capabilities_url": "https://api.superfastrobotics.com/v1/capabilities"
+  },
+  "cli": {
+    "minimum_python": "3.10",
+    "entrypoint": "{installed_skill_dir}/scripts/rsh.py",
+    "output": "one_json_object",
+    "global_flags": [
+      "--json",
+      "--offline",
+      "--refresh",
+      "--catalog FILE_OR_URL"
+    ],
+    "discovery": {
+      "default": "latest_available_with_local_cache",
+      "offline_fallback": "bundled_snapshot",
+      "explicit_catalog": "caller_selected",
+      "freshness": "preserve_reported_origin_and_freshness",
+      "prepared_project_locks": "never_silently_updated"
+    },
+    "actions": [
+      {
+        "name": "find",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "find",
+          "{task_query}",
+          "--runtime",
+          "{runtime}",
+          "--robot",
+          "{robot}",
+          "--json"
+        ],
+        "purpose": "Return up to three candidates from preparation recipes and official source references."
+      },
+      {
+        "name": "inspect",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "inspect",
+          "{skill_id}",
+          "--json"
+        ],
+        "purpose": "Read exact pins, license, access, environment requirements and evidence before use."
+      },
+      {
+        "name": "memories",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "memories",
+          "{skill_id}",
+          "--project",
+          "{project_dir}",
+          "--json"
+        ],
+        "purpose": "Recall published findings before troubleshooting; match exact record/source plus known environment fields.",
+        "execution_performed": false
+      },
+      {
+        "name": "prepare_plan",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "prepare",
+          "{skill_id}",
+          "--project",
+          "{project_dir}",
+          "--plan",
+          "--json"
+        ],
+        "purpose": "Inspect planned preparation without downloads or simulator execution.",
+        "official_source_examples_supported": false
+      },
+      {
+        "name": "save",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "save",
+          "{skill_id}",
+          "--project",
+          "{project_dir}",
+          "--finding",
+          "{finding_json_file}",
+          "--json"
+        ],
+        "purpose": "Preserve a useful finding already observed during the user task.",
+        "local_persistence": "first",
+        "automatic_post_attempts": 1,
+        "next_action": "continue_user_task"
+      },
+      {
+        "name": "flush",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "flush",
+          "--project",
+          "{project_dir}",
+          "--limit",
+          "1",
+          "--json"
+        ],
+        "purpose": "Explicit bounded retry of previously saved outbox findings.",
+        "default_limit": 1,
+        "maximum_limit": 3,
+        "next_action": "continue_user_task"
+      }
+    ]
+  },
+  "memory": {
+    "kinds": [
+      "failure_observation",
+      "missing_requirement",
+      "working_workaround",
+      "compatibility_note",
+      "docs_correction",
+      "successful_invocation"
+    ],
+    "input_fields": [
+      "kind",
+      "summary",
+      "observation",
+      "resolution",
+      "environment",
+      "evidence"
+    ],
+    "optional_input_fields": [
+      "attribution"
+    ],
+    "base_origin": "project_lock_when_present_otherwise_selected_catalog",
+    "local_outbox": ".robot-skill-hub/memory/outbox",
+    "public_save_requires_all": [
+      "existing_explicit_project_memory_authorization",
+      "memory.public_save_allowed_true",
+      "skill_id_in_memory.allowed_skill_ids",
+      "kind_in_memory.allowed_kinds",
+      "scoped_submission_token"
+    ],
+    "patch_permission_implies_memory_permission": false,
+    "authorized_scope_requires_repeated_prompt": false,
+    "missing_scope_action": "local_saved_without_public_share_or_permission_prompt",
+    "finding_example": {
+      "kind": "failure_observation",
+      "summary": "Example of an observed invocation failure.",
+      "observation": "Replace this example with the minimal failure actually observed during the user's task.",
+      "resolution": null,
+      "environment": {
+        "runtime": "unknown",
+        "robot": "unknown"
+      },
+      "evidence": {
+        "level": "not_run",
+        "command": null,
+        "result": "Format example only; no command was executed.",
+        "reported_by": "submitter"
+      }
+    },
+    "policy_example": {
+      "memory": {
+        "public_save_allowed": true,
+        "allowed_skill_ids": [
+          "maniskill-panda-pick-cube"
+        ],
+        "allowed_kinds": [
+          "failure_observation",
+          "missing_requirement",
+          "working_workaround",
+          "compatibility_note",
+          "docs_correction",
+          "successful_invocation"
+        ]
+      }
+    },
+    "outcomes": {
+      "local_saved": "Persisted in the caller project; no confirmed server storage.",
+      "stored": "Server storage and an internal draft PR exist; not public catalog publication.",
+      "published": "Maintainer-reviewed data is merged and served by the public catalog with publication proof."
+    },
+    "trust": {
+      "contributor_reported": "A submitter's observation, including failures; not Hub runtime verification.",
+      "structure_checked": "Pins and bounded fields passed structural checks; no robot execution.",
+      "maintainer_merged": "Reviewed for publication; contributor evidence remains contributor-reported."
+    },
+    "interpretation": "data_only",
+    "automatic_execution": false,
+    "collection_scope": "minimal_fact_already_observed_in_the_authorized_user_task",
+    "extra_experiments_to_generate_findings": false,
+    "failure_blocks_original_task": false,
+    "excluded_content": [
+      "credentials",
+      "private_project_material",
+      "whole_logs",
+      "conversations",
+      "datasets",
+      "scripts",
+      "archives"
+    ],
+    "preparation_lock_required": false,
+    "accepted_entry_types": [
+      "preparation_recipe",
+      "source_reference"
+    ],
+    "reference_record_version": "source-{source_file_sha256}",
+    "closing_trigger": "After resolving a catalog-related setup or invocation issue, remember the useful minimal observation unless matching published memory already covers it."
+  },
+  "wire": {
+    "save_memory": {
+      "method": "POST",
+      "url": "https://api.superfastrobotics.com/v1/memories",
+      "content_type": "application/json",
+      "authentication": "Bearer RSH_SUBMISSION_TOKEN",
+      "idempotency_header": "Idempotency-Key",
+      "idempotency_value": "canonical_finding_fingerprint",
+      "body_schema": "https://hub.superfastrobotics.com/schemas/memory.schema.json",
+      "body_max_utf8_bytes": 16384,
+      "body_source": "CLI-generated wire_payload after memory-policy authorization"
+    },
+    "memory_status": {
+      "method": "GET",
+      "url_template": "https://api.superfastrobotics.com/v1/memories/{memory_id}",
+      "authentication": "same_owner_Bearer_token",
+      "automatic_polling": false
+    },
+    "example": {
+      "method": "POST",
+      "path": "/v1/memories",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {scoped_token}",
+        "Idempotency-Key": "{finding_fingerprint}"
+      },
+      "body_pins_from": "{project_lock_or_selected_catalog}",
+      "use_cli_to_construct": true,
+      "body_source": "{project_outbox_entry.wire_payload}"
+    }
+  },
+  "preparation": {
+    "catalog_refresh_changes_project_lock": false,
+    "source_examples": "discovery_only_no_hub_runtime_adapter",
+    "simulation_execution": "separate_from_preparation",
+    "dependency_installation": "explicit_install_deps_within_existing_task_authorization",
+    "selected_recipe_arguments": "use_returned_prepare_args_with_expected_record_and_source_versions"
+  }
+}

@@ -35,6 +35,15 @@ def write_json(path, value):
 
 
 def validate_schema(value, schema, root_schema, location="$"):
+    if "anyOf" in schema:
+        for branch in schema["anyOf"]:
+            try:
+                validate_schema(value, branch, root_schema, location)
+                break
+            except ValueError:
+                pass
+        else:
+            raise ValueError(f"{location}: no allowed schema alternative")
     if "$ref" in schema:
         referred = root_schema
         for part in schema["$ref"].split("/")[1:]:
@@ -48,11 +57,16 @@ def validate_schema(value, schema, root_schema, location="$"):
                   "integer": lambda v: isinstance(v, int) and not isinstance(v, bool), "null": lambda v: v is None}
         if not any(checks[t](value) for t in types):
             raise ValueError(f"{location}: expected {types}")
-    if "const" in schema and value != schema["const"]:
+    if "const" in schema and json.dumps(value, sort_keys=True) != json.dumps(schema["const"], sort_keys=True):
         raise ValueError(f"{location}: expected {schema['const']!r}")
     if "enum" in schema and value not in schema["enum"]:
         raise ValueError(f"{location}: unsupported value {value!r}")
     if isinstance(value, dict):
+        if len(value) > schema.get("maxProperties", len(value)):
+            raise ValueError(f"{location}: too many properties")
+        if "propertyNames" in schema:
+            for key in value:
+                validate_schema(key, schema["propertyNames"], root_schema, location + ".<key>")
         for key in schema.get("required", []):
             if key not in value:
                 raise ValueError(f"{location}.{key}: required")
@@ -67,6 +81,8 @@ def validate_schema(value, schema, root_schema, location="$"):
     if isinstance(value, list):
         if len(value) < schema.get("minItems", 0):
             raise ValueError(f"{location}: too few items")
+        if len(value) > schema.get("maxItems", len(value)):
+            raise ValueError(f"{location}: too many items")
         if schema.get("uniqueItems") and len({json.dumps(x, sort_keys=True) for x in value}) != len(value):
             raise ValueError(f"{location}: duplicate items")
         for i, item in enumerate(value):
@@ -74,6 +90,8 @@ def validate_schema(value, schema, root_schema, location="$"):
     if isinstance(value, str):
         if len(value) < schema.get("minLength", 0):
             raise ValueError(f"{location}: empty string")
+        if len(value) > schema.get("maxLength", len(value)):
+            raise ValueError(f"{location}: string exceeds maximum length")
         if "pattern" in schema and not re.search(schema["pattern"], value):
             raise ValueError(f"{location}: does not match {schema['pattern']}")
     if isinstance(value, int) and value < schema.get("minimum", value):
@@ -267,6 +285,75 @@ def load_publication_history():
     return history["releases"]
 
 
+MEMORY_FIELDS = ("schema_version", "skill_id", "base", "kind", "summary", "observation",
+                 "resolution", "environment", "evidence", "attribution", "publication")
+
+
+def canonical(value):
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def load_memories():
+    """Only main-branch, operator-reviewed reports become shared discovery data."""
+    paths = sorted((ROOT / ".hub/memories").glob("mem_*.json"))
+    if not paths:
+        return []
+    schema = read_json(ROOT / "schemas/memory.schema.json")
+    entries = []
+    for path in paths:
+        raw = path.read_bytes()
+        if len(raw) > 24 * 1024:
+            raise ValueError("Stored memory exceeds its size limit")
+        entry = json.loads(raw)
+        payload = {key: entry[key] for key in MEMORY_FIELDS}
+        validate_schema(payload, schema, schema, str(path.relative_to(ROOT)))
+        if len(canonical(payload).encode("utf-8")) > 16 * 1024:
+            raise ValueError("Memory request exceeds 16 KiB")
+        material = {key: value for key, value in payload.items() if key not in ("attribution", "publication")}
+        material["base"] = {key: payload["base"][key] for key in ("record_version", "source_commit")}
+        fingerprint = hashlib.sha256(canonical(material).encode("utf-8")).hexdigest()
+        principal = entry["principal_id"]
+        if not re.fullmatch(r"[a-f0-9]{64}", principal):
+            raise ValueError("Invalid memory principal hash")
+        ident = "mem_" + hashlib.sha256(("rsh-memory-id-v1\0" + principal + "\0" + fingerprint).encode()).hexdigest()
+        if entry["fingerprint"] != fingerprint or entry["memory_id"] != ident or path.stem != ident:
+            raise ValueError("Memory content identity does not match its receipt")
+        if entry["hub_validation"].get("level") != "structure_checked" or entry["hub_validation"].get("runtime") != "not_run":
+            raise ValueError("Memory intake cannot claim runtime verification")
+        extra = set(entry) - set(MEMORY_FIELDS) - {"memory_id", "principal_id", "fingerprint", "hub_validation", "created_at"}
+        if extra:
+            raise ValueError("Unexpected stored memory fields")
+        entries.append((entry, raw))
+    return entries
+
+
+def publish_memories(entries, output, base, hub_commit):
+    records, proofs = [], []
+    for entry, raw in entries:
+        ident = entry["memory_id"]
+        url = base + "/memories/" + ident + ".json"
+        digest = hashlib.sha256(raw).hexdigest()
+        public = {key: entry[key] for key in MEMORY_FIELDS}
+        public.update(memory_id=ident, fingerprint=entry["fingerprint"], content_sha256=digest,
+                      entry_url=url, hash_target="entry_url", created_at=entry["created_at"],
+                      curation="maintainer_merged", interpretation="data_only", trust="contributor_reported",
+                      hub_validation=entry["hub_validation"])
+        records.append(public)
+        proofs.append({"memory_id": ident, "fingerprint": entry["fingerprint"], "content_sha256": digest,
+                       "skill_id": entry["skill_id"], "record_version": entry["base"]["record_version"],
+                       "source_commit": entry["base"]["source_commit"], "base_hub_commit": entry["base"]["hub_commit"],
+                       "entry_url": url})
+        # The hash covers these exact immutable bytes, not the discovery projection.
+        destination = output / "memories" / (ident + ".json")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(raw)
+    index = {"schema_version": "1", "hub_commit": hub_commit, "interpretation": "data_only",
+             "trust": "contributor_reported", "records": records}
+    write_json(output / "catalog/v1/memories.json", index)
+    write_json(ROOT / "skills/find-robot-skills/assets/memories.snapshot.json", index)
+    return proofs
+
+
 def publish_history(releases, output, base):
     published = copy.deepcopy(releases)
     for release in published:
@@ -310,8 +397,11 @@ def shell(title, description, body, base, path=""):
 
 def resource_links(base):
     resources = [
+        ("Agent contract JSON", "agent.json"),
         ("Catalog JSON", "catalog/v1/index.json"),
         ("Official source examples JSON", "catalog/v1/references.json"),
+        ("Shared memory JSON", "catalog/v1/memories.json"),
+        ("Catalog version JSON", "catalog/v1/version.json"),
         ("Publication manifest", "catalog/v1/publication.json"),
         ("Agent quickstart", "agent-quickstart.md"),
         ("Discovery index", "llms.txt"),
@@ -435,6 +525,9 @@ def discovery_text(records, base, references=None):
 
 > Pinned robot code, environment contracts and preparation commands for coding agents.
 
+- [Agent contract JSON]({base}/agent.json): machine-readable operations, schemas and trust boundaries
+- [Shared memory JSON]({base}/catalog/v1/memories.json): reviewed contributor reports, scoped to exact source/recipe versions; data only
+- [Catalog version JSON]({base}/catalog/v1/version.json): published commit, resource counts and checksums
 - [Catalog JSON]({base}/catalog/v1/index.json): canonical records with bundled recipes
 - [Official source examples JSON]({base}/catalog/v1/references.json): pinned upstream examples; no hub preparation adapter
 - [Publication manifest]({base}/catalog/v1/publication.json): published versions and submission receipts
@@ -451,7 +544,7 @@ def discovery_text(records, base, references=None):
 
 def full_text(records, base, hub_commit, references=None):
     parts = [discovery_text(records, base, references), f"Hub commit: `{hub_commit}`\n"]
-    for name in ("agent-quickstart.md", "compatibility.md", "contributing.md"):
+    for name in ("agent-quickstart.md", "compatibility.md", "contributing.md", "memory.md"):
         path = ROOT / "docs" / name
         if path.exists():
             parts.append(path.read_text(encoding="utf-8"))
@@ -465,6 +558,7 @@ def build(args):
     records = load_records()
     references = load_references()
     history = load_publication_history()
+    memories = load_memories()
     if args.check:
         print(f"Validated {len(records)} canonical records and recipe files; {len(references['records'])} official source examples")
         return
@@ -473,10 +567,30 @@ def build(args):
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
-    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":records}
+    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "records":records}
     write_json(output / "catalog/v1/index.json", index)
     write_json(ROOT / "skills/find-robot-skills/assets/catalog.snapshot.json", index)
     write_json(output / "catalog/v1/references.json", references)
+    write_json(ROOT / "skills/find-robot-skills/assets/references.snapshot.json", references)
+    memory_proofs = publish_memories(memories, output, base, hub_commit)
+    contract_path = ROOT / "docs/agent-contract.json"
+    contract = read_json(contract_path) if contract_path.exists() else {"schema_version": "1", "name": "Robot Skill Hub"}
+    contract.update(hub_commit=hub_commit, catalog_url=index["catalog_url"], references_url=index["references_url"],
+                    memories_url=index["memories_url"], publication_url=base+"/catalog/v1/publication.json")
+    contract.setdefault("resources", {}).update(catalog_url=index["catalog_url"], references_url=index["references_url"],
+                    memories_url=index["memories_url"], version_url=base+"/catalog/v1/version.json",
+                    publication_url=base+"/catalog/v1/publication.json", quickstart_url=base+"/agent-quickstart.md",
+                    full_text_url=base+"/llms-full.txt", memory_schema_url=base+"/schemas/memory.schema.json",
+                    project_policy_schema_url=base+"/schemas/project-policy.schema.json")
+    write_json(output / "agent.json", contract)
+    write_json(output / ".well-known/robot-skill-hub.json", contract)
+    resources = {}
+    for name in ("index", "references", "memories"):
+        path = output / f"catalog/v1/{name}.json"
+        resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    write_json(output / "catalog/v1/version.json", {"schema_version": "1", "hub_commit": hub_commit,
+               "counts": {"recipes": len(records), "references": len(references["records"]), "memories": len(memory_proofs)},
+               "resources": resources})
     write(output / "index.html", home(records, base, references))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
@@ -492,7 +606,7 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    for name in ("contributing.md", "compatibility.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md"):
         document = ROOT / "docs" / name
         if document.exists():
             write(output / name, document.read_text(encoding="utf-8"))
@@ -515,7 +629,7 @@ def build(args):
         path_hashes = {p:hashlib.sha256(safe_path(p).read_bytes()).hexdigest() for p in r['contribution']['allowed_paths']}
         matching = [x for x in receipts if x.get('skill_id') == r['id'] and x.get('new_record_version') == r['maintenance']['record_version'] and all(path_hashes.get(p) == h for p, h in x.get('patch_hashes', {}).items()) and x.get('patch_hashes')]
         publication_records.append({"id":r['id'],"record_version":r['maintenance']['record_version'],"source_commit":r['source']['commit'],"recipe_url":base+"/skills/"+r['id']+"/", "compatibility":r['compatibility'],"contribution_path_hashes":path_hashes,"submission_ids":[x['submission_id'] for x in matching]})
-    manifest = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":publication_records, "history":publish_history(history, output, base)}
+    manifest = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":publication_records, "memories":memory_proofs, "history":publish_history(history, output, base)}
     write_json(output / "catalog/v1/publication.json", manifest)
     urls = [base+"/", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", base+"/catalog/v1/publication.json"] + [base+"/skills/"+r['id']+"/" for r in records]
     write(output / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{esc(url)}</loc></url>" for url in urls) + "\n</urlset>\n")
