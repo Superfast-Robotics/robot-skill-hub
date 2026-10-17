@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "hub_commit": "a9e7cf6d9da21e9bb583e115b1bf0b667ac4ec1e",
+  "hub_commit": "37d2029499e1eb1c9016ebd9b00ceb438863afe4",
   "catalog_url": "https://superfastrobotics.com/catalog/v1/index.json",
   "records": [
     {
@@ -56,7 +56,7 @@
           "os": "linux",
           "architecture": "x86_64",
           "python": "3.10",
-          "status": "source_reviewed"
+          "status": "contributor_reported"
         }
       ],
       "observation": {
@@ -157,30 +157,31 @@
         }
       },
       "evidence": {
-        "level": "source_reviewed",
-        "verified_by": "Robot Skill Hub source review",
+        "level": "not_run",
+        "verified_by": "Robot Skill Hub API structural intake",
         "date": "2026-10-17",
         "environment": {
-          "host_os": "windows",
-          "python": "3.10.11",
-          "runtime": "not_installed"
+          "runtime": "not_run"
         },
         "commands": [
-          "git ls-remote https://github.com/haosulab/ManiSkill.git refs/tags/v3.0.0b22",
-          "Download exact commit archive; SHA256 checked",
-          "Review pinned setup.py, LICENSE, upstream run.py and task solver"
+          "API schema, exact base/source pin, allowlist and strict unified diff checks"
         ],
-        "result": "Source and license verified. Linux execution, dependency installation, imports and task completion have NOT been run by the hub (not_run).",
+        "result": "Intake structure checks only. Changed recipe runtime, dependency installation, imports and robot tasks were not run by the hub.",
         "artifacts": [],
         "runtime_verification": "not_run",
-        "contributor_reported": null,
+        "contributor_reported": {
+          "command": "rsh.py prepare maniskill-panda-pick-cube --project CLEAN_PROJECT --download-only --json",
+          "level": "contributor_reported",
+          "reported_by": "submitter",
+          "result": "Pinned 243636110-byte upstream archive SHA-256 and extracted paths verified in two clean Windows projects; corrected render_backend=none adapter preserved. Source-only preparation reports needs_configuration with no venv or dependency install. ManiSkill imports and robot task execution: not_run."
+        },
         "hub_verification": {
-          "level": "source_reviewed",
+          "level": "structure_checked",
           "runtime": "not_run"
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
+        "record_version": "contrib-a5dd78ad4e1d4e3d",
         "last_checked": "2026-10-17",
         "upstream_status": "pinned_release; no automatic update"
       },

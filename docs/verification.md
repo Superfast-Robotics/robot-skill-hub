@@ -4,7 +4,7 @@
 
 - Python CLI and adapter tests: **22 passed**.
 - Catalog integrity/publication tests: **6 passed**.
-- Worker contract tests: **16 passed**; TypeScript check passed.
+- Worker contract tests: **20 passed**; real workerd transport tests: **3 passed**; TypeScript check passed. All 51 automated tests passed across Python, catalog and API checks.
 - Skill frontmatter validator and Python compile checks passed.
 - Wrangler production dry-run passed; bundle about 34 KiB (10 KiB gzip).
 - Exact upstream archive `33967b9e3ead1f841eec57cc9f31d0d8b8cf0907` downloaded, SHA-256 `d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4` verified and 1,824 members extracted safely.
@@ -22,13 +22,23 @@
 - The CLI fetched the live published catalog and selected StackCube for the full documented Linux/Python/architecture/runtime/robot/controller/observation combination, with no missing requirements and evidence still `source_reviewed`.
 - Cloudflare Worker `robot-skill-hub-api` deployed to the specified account without a paid-plan change.
 - HTTPS health requests returned 200 on both https://api.superfastrobotics.com/healthz and https://robot-skill-hub-api.superfast-robotics.workers.dev/healthz.
-- Live health reported `submission_configured:false`. Live POST and status requests returned 503 / `service_not_configured`, preserving a clear distinction between deployed and operational submission service.
+- A repository-scoped token with Contents/Pull requests read-write and no Checks permission was configured through Worker secrets. Live health now reports `submission_configured:true`. Public check-run reads require no additional token permission.
 - `skills` CLI **1.7.2** installed the published GitHub skill into an isolated project for both Codex and Claude Code. The installed copies successfully ran find/inspect independently of the repository tree. No global agent installation was changed.
+
+## Live contribution and domain verification
+
+- Canonical catalog https://superfastrobotics.com/ and API https://api.superfastrobotics.com/healthz both returned HTTP 200 with valid HTTPS. GitHub Pages HTTPS enforcement is enabled; the old github.io project URL redirects to the custom domain.
+- Real `POST /v1/submissions` returned **201** and created exactly one internal draft [PR #1](https://github.com/Superfast-Robotics/robot-skill-hub/pull/1). The change documents the actually verified Windows source-only preparation command and its non-execution outcome.
+- Two concurrent replays returned **200**, the same submission ID and the same PR. A changed body using the same key returned **409 idempotency_key_conflict**. Missing authentication returned **401 invalid_token**. Status returned **pending_review** after CI.
+- Independent review confirmed exactly three changed files (recipe documentation, server-generated record and receipt), preserved upstream source/license/attribution, matching content hashes, and no promotion of runtime evidence. The operator marked the draft ready and merged after successful checks. The Worker never merges automatically.
+- Live status returned **published**, version `contrib-a5dd78ad4e1d4e3d`, source commit `33967b9e3ead1f841eec57cc9f31d0d8b8cf0907` and the canonical recipe URL after the public manifest included merge commit `37d2029499e1eb1c9016ebd9b00ceb438863afe4`. The first status read immediately after merge received a transient 503; a later retry succeeded. The intermediate `merged` state was not directly observed live; its behavior is covered by contract/runtime tests.
+- After automatic branch deletion (GitHub ref returned **404**), replay of the original older-base request still returned **200** with the original ID/PR. Repository pull request count remained exactly one.
+- A third clean project fetched the published catalog and prepared that exact new version from the SHA-checked cached upstream archive. The new lock pins the published record/source/hub commit; the previous project's lock hash remained unchanged. Result: **needs_configuration**, no venv, no dependency installation, no robot execution. This verifies API-mediated publication and source preparation reuse, not robot task completion.
+- Actual workerd testing found and fixed two transport issues absent from Node-only tests: native fetch class receiver binding and unsupported redirect:error. Persistent workerd tests now cover actual fetch invocation, manual redirect rejection, and manifest-based publication using intercepted outbound calls and dummy credentials.
 
 ## Pending / unverified
 
 - Repository-scoped Worker GitHub credential and pilot credential must be configured. Consequently **live API submission, internal PR creation, real PR merge→publication status and API-mediated corrected-version reuse are unverified**. See [deployment instructions](deployment.md) for exact permissions and input locations.
-- The catalog's apex custom domain `superfastrobotics.com` needs its DNS record. The API subdomain is already connected. Until then, the catalog uses GitHub Pages' default project URL.
 - ManiSkill dependency installation, successful ManiSkill import and PickCube/StackCube task completion on Linux are **not_run / 미검증**. This Windows host is not a supported simulator environment; Docker's engine was unavailable and no general WSL Linux distribution was installed. No GPU or paid execution service was provisioned.
 - Unbranded agent discovery, automatic skill selection by a fresh agent, external search indexing, skills.sh search inclusion and Context7 indexing are **unverified**. A repository install test does not establish them.
 
