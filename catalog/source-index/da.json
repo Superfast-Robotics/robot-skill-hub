@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ompl-demos-constraint-constrainedplanningsphere-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "664fc29de94042194928fa8e63802429d6e0b93ef60af5f94cdfc930387f5163",
+      "record_version": "source-664fc29de94042194928fa8e63802429d6e0b93ef60af5f94cdfc930387f5163"
+    },
+    {
+      "id": "webots-projects-robots-k-team-khepera3-controllers-khepera3-gripper-f9ba2a8ae028",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e0fd2dc38e82483c8951bb21f7fec9b75a5f1dfee704bdaa3acaf33556dff719",
+      "record_version": "source-e0fd2dc38e82483c8951bb21f7fec9b75a5f1dfee704bdaa3acaf33556dff719"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-hokuyo-hokuyo-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "021ff6414ef68a115a7441dd36c6832996d47baf5750a704c151a80af2cb32de",
+      "record_version": "source-021ff6414ef68a115a7441dd36c6832996d47baf5750a704c151a80af2cb32de"
+    }
+  ]
+}

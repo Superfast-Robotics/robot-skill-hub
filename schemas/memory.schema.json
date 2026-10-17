@@ -45,7 +45,9 @@
           "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
         },
         "source_commit": {
-          "$ref": "#/$defs/commit"
+          "type": "string",
+          "description": "Legacy field name: exact Git commit or a standalone source artifact sha256 revision.",
+          "pattern": "^(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})$"
         }
       }
     },

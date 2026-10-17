@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-allegro-hand-joint-control-allegro-single-object-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3af780643003fb5e54d33d445371805798da6c674f885415bd67f5ee2769b248",
+      "record_version": "source-3af780643003fb5e54d33d445371805798da6c674f885415bd67f5ee2769b248"
+    },
+    {
+      "id": "drake-examples-fibonacci-run-fibonacci-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "341b60f1763dac1d1d5af98a1b7660594780279a7f401abb74f2fbfd4a426632",
+      "record_version": "source-341b60f1763dac1d1d5af98a1b7660594780279a7f401abb74f2fbfd4a426632"
+    },
+    {
+      "id": "moveit2-doc-examples-realtime-servo-src-pose-tracking-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "6e4f1e50174974ebbd4900fba9541e94dcc003b99c96efe9b9bc9d2fa1108b86",
+      "record_version": "source-6e4f1e50174974ebbd4900fba9541e94dcc003b99c96efe9b9bc9d2fa1108b86"
+    },
+    {
+      "id": "ompl-demos-pinballplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "cae2c70e4af3efa8c2608fc550176c8059f8738507be2327dade7f8d5db2b805",
+      "record_version": "source-cae2c70e4af3efa8c2608fc550176c8059f8738507be2327dade7f8d5db2b805"
+    },
+    {
+      "id": "robosuite-demo-video-recording",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "f430c3f2d925cf47302ca23611f34e612060259fe40f0fcfb63c535843220765",
+      "record_version": "source-f430c3f2d925cf47302ca23611f34e612060259fe40f0fcfb63c535843220765"
+    }
+  ]
+}

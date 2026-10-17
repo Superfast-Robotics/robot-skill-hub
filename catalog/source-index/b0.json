@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-tacsl-sensor-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9",
+      "record_version": "source-caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9"
+    },
+    {
+      "id": "ompl-demos-rigidbodyplanningwithcontrols-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "e1c219d8cc7ffc53d56b80436a88f1dcd3cd7a5c82f6be43434c49b20b5a85f7",
+      "record_version": "source-e1c219d8cc7ffc53d56b80436a88f1dcd3cd7a5c82f6be43434c49b20b5a85f7"
+    },
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-rrt-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
+      "record_version": "source-49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa"
+    }
+  ]
+}

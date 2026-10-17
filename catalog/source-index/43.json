@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-pendulum-passive-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "1b73b4fb524dce8d29aa1b43389f8b8725d19fed40eff3905db1099e66f4d350",
+      "record_version": "source-1b73b4fb524dce8d29aa1b43389f8b8725d19fed40eff3905db1099e66f4d350"
+    },
+    {
+      "id": "webots-projects-robots-neuronics-ipr-controllers-ipr-factory-ipr-factory-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "56941091407762996ac1efd4b175031fed794779104d35221c3c5f6571ca2d7a",
+      "record_version": "source-56941091407762996ac1efd4b175031fed794779104d35221c3c5f6571ca2d7a"
+    },
+    {
+      "id": "webots-projects-robots-softbank-nao-controllers-nao-soccer-player-n-b47b2fe124c4",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "d51402a5fb7572bc5874d8f89cd4a58626fc18e24939ed19e5bbd879209d93da",
+      "record_version": "source-d51402a5fb7572bc5874d8f89cd4a58626fc18e24939ed19e5bbd879209d93da"
+    }
+  ]
+}

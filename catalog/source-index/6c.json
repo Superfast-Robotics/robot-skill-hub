@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-multibody-four-bar-four-bar-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "61215a0372137aaa5b3d60d9f020509edd74bf5dd7dda0204d47c8f38bc72578",
+      "record_version": "source-61215a0372137aaa5b3d60d9f020509edd74bf5dd7dda0204d47c8f38bc72578"
+    }
+  ]
+}

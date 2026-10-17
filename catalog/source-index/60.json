@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-to-pose-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "7218fe7752d6abb5d4388a7fef583e8e10212c126c3f9028fc2bb1ce35881b5f",
+      "record_version": "source-7218fe7752d6abb5d4388a7fef583e8e10212c126c3f9028fc2bb1ce35881b5f"
+    },
+    {
+      "id": "ompl-demos-sstpinballplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b",
+      "record_version": "source-f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-radar-radar-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "fb6f033e5d62119fa2e8ff1d092e52eeef4d6fa34c3fe4e00973318d0e794306",
+      "record_version": "source-fb6f033e5d62119fa2e8ff1d092e52eeef4d6fa34c3fe4e00973318d0e794306"
+    }
+  ]
+}

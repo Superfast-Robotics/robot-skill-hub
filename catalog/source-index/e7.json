@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-tinkerbots-30c3d28e96ea",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "30d2555053e39fdf1083a00f386839bb7d74081f2d244959e42d9d316250fe38",
+      "record_version": "source-30d2555053e39fdf1083a00f386839bb7d74081f2d244959e42d9d316250fe38"
+    }
+  ]
+}

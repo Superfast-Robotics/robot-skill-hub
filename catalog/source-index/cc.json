@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-multibody-deformable-deformable-disabling-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "8f209fc20fffc124a2e774f96a7eef46c45760f5a482192e437b028830b9c7fa",
+      "record_version": "source-8f209fc20fffc124a2e774f96a7eef46c45760f5a482192e437b028830b9c7fa"
+    },
+    {
+      "id": "lerobot-examples-phone-to-so100-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "cb0a8942173f1e16bf5c5b144478ea7a5842eb40ece8511c02414c09fee456eb",
+      "record_version": "source-cb0a8942173f1e16bf5c5b144478ea7a5842eb40ece8511c02414c09fee456eb"
+    },
+    {
+      "id": "webots-projects-robots-robotis-bioloid-controllers-bioloid-dog-bioloid-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "3235fdb2277604333a14d327bb5e94c4fa0a26be8a0412b0c96f22069e170b23",
+      "record_version": "source-3235fdb2277604333a14d327bb5e94c4fa0a26be8a0412b0c96f22069e170b23"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-camera-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "151f3d1659f35e30b51ebef647d6a448287a872bfc8cd54e235bcabab7c66236",
+      "record_version": "source-151f3d1659f35e30b51ebef647d6a448287a872bfc8cd54e235bcabab7c66236"
+    }
+  ]
+}

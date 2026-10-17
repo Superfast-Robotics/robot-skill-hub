@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-kuka-iiwa-arm-kuka-plan-runner-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a90c8eb1ae7f77c3c226b683f2c50098803d7a7665595c9fa04b5a940c7452b0",
+      "record_version": "source-a90c8eb1ae7f77c3c226b683f2c50098803d7a7665595c9fa04b5a940c7452b0"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-00-sim-set-rendering-mode-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "cd5864c2fc714be584472c73f1714b8e4f2d0a4fa263fd8a26c627430084fc0c",
+      "record_version": "source-cd5864c2fc714be584472c73f1714b8e4f2d0a4fa263fd8a26c627430084fc0c"
+    }
+  ]
+}

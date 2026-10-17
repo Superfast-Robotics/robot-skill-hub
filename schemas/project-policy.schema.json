@@ -73,6 +73,12 @@
             "type": "string"
           }
         },
+        "allowed_new_skill_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "description": "Exact new source-reference IDs authorized for public onboarding. Existing patch or memory permission does not grant this scope."
+        },
         "allowed_paths": {
           "type": "array",
           "items": {

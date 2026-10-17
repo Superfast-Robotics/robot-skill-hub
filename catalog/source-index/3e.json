@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-assisted-teleop-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "c3850f078a09e26a4b279deff42b2209c1f2dca9d15c558fd3d406c8f13dcdcd",
+      "record_version": "source-c3850f078a09e26a4b279deff42b2209c1f2dca9d15c558fd3d406c8f13dcdcd"
+    },
+    {
+      "id": "webots-projects-robots-franka-emika-panda-controllers-panda-arm-dem-51fbd89214a9",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f813f1405c10c48da4e91af40bebdc6c54608d928c34b054cf20f848104ff7fe",
+      "record_version": "source-f813f1405c10c48da4e91af40bebdc6c54608d928c34b054cf20f848104ff7fe"
+    },
+    {
+      "id": "webots-projects-robots-nasa-controllers-sojourner-sojourner-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f6bde5fc52e39b34180a2e24c94a03b8fc0dcd1095802b8b33fa605376f9179b",
+      "record_version": "source-f6bde5fc52e39b34180a2e24c94a03b8fc0dcd1095802b8b33fa605376f9179b"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-display-supervisor-disp-32c25ea23767",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "7d2cb470ac9dd1a3b7d01184045de7c839f6079cd275e120cfa5a9b67ad3fd20",
+      "record_version": "source-7d2cb470ac9dd1a3b7d01184045de7c839f6079cd275e120cfa5a9b67ad3fd20"
+    }
+  ]
+}

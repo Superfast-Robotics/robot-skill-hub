@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-pendulum-print-symbolic-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "649cb86df6aa1ee79ad35ef48c51c0fd7ad5a0080a882423b5e392cd7a20c50a",
+      "record_version": "source-649cb86df6aa1ee79ad35ef48c51c0fd7ad5a0080a882423b5e392cd7a20c50a"
+    },
+    {
+      "id": "pinocchio-examples-constraint-cholesky-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "c305fbcd8c9d0a574fc853c41230934857199cbae369d331ff4206569052f9d7",
+      "record_version": "source-c305fbcd8c9d0a574fc853c41230934857199cbae369d331ff4206569052f9d7"
+    },
+    {
+      "id": "pinocchio-examples-overview-urdf-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "a014798d9beb8cd190069f8440f3aba7e24028897efd4758e129f7affd54ca0f",
+      "record_version": "source-a014798d9beb8cd190069f8440f3aba7e24028897efd4758e129f7affd54ca0f"
+    },
+    {
+      "id": "webots-projects-robots-a4-portal-controllers-portal-pe-portal-pe-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "6dc8e29d609adda65922ccb8561624ac260fe5488dbdda4668e8f1cfad72176d",
+      "record_version": "source-6dc8e29d609adda65922ccb8561624ac260fe5488dbdda4668e8f1cfad72176d"
+    },
+    {
+      "id": "webots-projects-robots-softbank-nao-controllers-nao-demo-nao-demo-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "906a1cc6bca6e238181abc033ffe6d54782670591463a3661ee7230bcfa8d450",
+      "record_version": "source-906a1cc6bca6e238181abc033ffe6d54782670591463a3661ee7230bcfa8d450"
+    }
+  ]
+}

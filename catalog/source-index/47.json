@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-cameras-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "3bb5958b6ba26cdf2801177851fe45ae8e3e368656406633829e9a0d767deceb",
+      "record_version": "source-3bb5958b6ba26cdf2801177851fe45ae8e3e368656406633829e9a0d767deceb"
+    },
+    {
+      "id": "moveit2-doc-examples-planning-scene-src-planning-scene-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "3dea967f632e968402a1032f236e663d042aba70419f355e0b600e88f966e8cc",
+      "record_version": "source-3dea967f632e968402a1032f236e663d042aba70419f355e0b600e88f966e8cc"
+    },
+    {
+      "id": "webots-projects-robots-sony-qrio-controllers-qrio-qrio-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "9b265ccaaadba054f036cc838e8727c1c9693bd0e7995b3bcf393fc27ddae7ea",
+      "record_version": "source-9b265ccaaadba054f036cc838e8727c1c9693bd0e7995b3bcf393fc27ddae7ea"
+    }
+  ]
+}

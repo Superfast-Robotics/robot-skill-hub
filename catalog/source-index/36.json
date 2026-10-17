@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-deformables-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "f95d18faea55acb1dddaf29fb68db41624c1d2e6ca7c542c8c553cbd7d648e97",
+      "record_version": "source-f95d18faea55acb1dddaf29fb68db41624c1d2e6ca7c542c8c553cbd7d648e97"
+    },
+    {
+      "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-w-9a827c1e8c23",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "745e5f5cf81840f2b1bee792de1e34a1c3a107b2d55d095a49134fc8a367964a",
+      "record_version": "source-745e5f5cf81840f2b1bee792de1e34a1c3a107b2d55d095a49134fc8a367964a"
+    },
+    {
+      "id": "webots-projects-robots-unimation-puma-controllers-puma560-puma560-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a1dcc61482b35e06fd9d904712b7c0f7ccaecca6883da301199e92786ef59f77",
+      "record_version": "source-a1dcc61482b35e06fd9d904712b7c0f7ccaecca6883da301199e92786ef59f77"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-axial-rotor-axial-rotor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "d27ce0a176cbb53f3f19ea75c272d90cddd68c9d29daeb82b39fe5d75fd72546",
+      "record_version": "source-d27ce0a176cbb53f3f19ea75c272d90cddd68c9d29daeb82b39fe5d75fd72546"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-skin-skin-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f1b1b4a0a9dc49536ed93434724c9e558c561bd7c758f497d5da8e8efa8421b8",
+      "record_version": "source-f1b1b4a0a9dc49536ed93434724c9e558c561bd7c758f497d5da8e8efa8421b8"
+    }
+  ]
+}

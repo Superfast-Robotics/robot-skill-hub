@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-lekiwi-rollout-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "d9ec12eadefd18e2f56f04cf18d3c9691cc908ada28c1a4d93ba5af73dbd7f11",
+      "record_version": "source-d9ec12eadefd18e2f56f04cf18d3c9691cc908ada28c1a4d93ba5af73dbd7f11"
+    },
+    {
+      "id": "roboticstoolbox-examples-plot-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "3d245f7adff7c505e30deb11312ff21231b9d665bf6589ac81f0b6b551919ef6",
+      "record_version": "source-3d245f7adff7c505e30deb11312ff21231b9d665bf6589ac81f0b6b551919ef6"
+    }
+  ]
+}

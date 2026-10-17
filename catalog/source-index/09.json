@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-spong-sim-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "acb93c7114b9557f64299dc6e7ec0b542d7142a648e9102e97af37ffe75947c1",
+      "record_version": "source-acb93c7114b9557f64299dc6e7ec0b542d7142a648e9102e97af37ffe75947c1"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-display-supervisor-disp-93a87b34dcf8",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "069ced004f62d9d5d735bd9880cada6e29e102613c9af902257c155aa58a3989",
+      "record_version": "source-069ced004f62d9d5d735bd9880cada6e29e102613c9af902257c155aa58a3989"
+    }
+  ]
+}

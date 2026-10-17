@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-parameters-persistent-params-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca",
+      "record_version": "source-3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca"
+    }
+  ]
+}

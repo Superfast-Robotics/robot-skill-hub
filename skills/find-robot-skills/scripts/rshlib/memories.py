@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 
 from . import contributions
-from .core import COMMIT, IDENTIFIER, RshError, lookup, read_json, selection_base, write_json
+from .core import COMMIT, SOURCE_REVISION, IDENTIFIER, RshError, lookup, read_json, selection_base, write_json
 from .discovery import fetch_public, index_data, public_index
 
 KINDS = {"failure_observation", "missing_requirement", "working_workaround", "compatibility_note",
@@ -106,7 +106,7 @@ def base_for(catalog, skill_id, project=None):
         if base is None:
             raise RshError("invalid_base", "The selected entry does not contain exact memory pins.")
     if (not text(base.get("record_version"), 1, 120) or not COMMIT.fullmatch(str(base.get("hub_commit", "")))
-            or not COMMIT.fullmatch(str(base.get("source_commit", "")))):
+            or not SOURCE_REVISION.fullmatch(str(base.get("source_commit", "")))):
         raise RshError("invalid_base", "A finding needs the exact project or selected catalog pins.")
     return base, lock.get("compatibility", {})
 
@@ -272,7 +272,7 @@ def validate_payload(payload):
     base = payload.get("base", {})
     if (not isinstance(base, dict) or set(base) != {"record_version", "hub_commit", "source_commit"}
             or not IDENTIFIER.fullmatch(str(payload.get("skill_id", ""))) or not text(base.get("record_version"), 1, 120)
-            or not COMMIT.fullmatch(str(base.get("hub_commit", ""))) or not COMMIT.fullmatch(str(base.get("source_commit", "")))):
+            or not COMMIT.fullmatch(str(base.get("hub_commit", ""))) or not SOURCE_REVISION.fullmatch(str(base.get("source_commit", "")))):
         raise RshError("invalid_base", "Local finding requires exact pins.")
     if (not isinstance(payload.get("publication"), dict) or set(payload["publication"]) != {"public_submission_allowed"}
             or not isinstance(payload["publication"]["public_submission_allowed"], bool)):

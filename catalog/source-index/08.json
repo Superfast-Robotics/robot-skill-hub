@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-pick-place-src-pick-place-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "07ff10d0185075f5cf0b882e2ee0444fe7bcb48088187695c44bb762b2888729",
+      "record_version": "source-07ff10d0185075f5cf0b882e2ee0444fe7bcb48088187695c44bb762b2888729"
+    }
+  ]
+}

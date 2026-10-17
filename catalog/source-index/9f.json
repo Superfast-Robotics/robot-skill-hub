@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-control-example-5-bringup-launch-rrbot-system-with-external-se-6ec430ebb400",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "be3bfe98a0af32bc1bdcc2ef09082b6fb987e9feedd96ab37628c79cb4660169",
+      "record_version": "source-be3bfe98a0af32bc1bdcc2ef09082b6fb987e9feedd96ab37628c79cb4660169"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-distance-sensor-distance-sensor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "8e4e565289f7ce1f4b3d3336e90830a2fb3ae5e529dce975a06c61b1e26bbf5e",
+      "record_version": "source-8e4e565289f7ce1f4b3d3336e90830a2fb3ae5e529dce975a06c61b1e26bbf5e"
+    }
+  ]
+}

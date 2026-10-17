@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-bindings-pydrake-examples-multibody-run-planar-scenegraph-visualizer-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "b9354586321182c02a60d786692bcf72faaa0f48c0a849027e29dc0ee54e5e61",
+      "record_version": "source-b9354586321182c02a60d786692bcf72faaa0f48c0a849027e29dc0ee54e5e61"
+    },
+    {
+      "id": "drake-examples-multibody-deformable-bubble-gripper-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "58bd295d69272a1e5cbbc29640f6cf0b88da7211ddc94192ab73abb4d8234ac0",
+      "record_version": "source-58bd295d69272a1e5cbbc29640f6cf0b88da7211ddc94192ab73abb4d8234ac0"
+    },
+    {
+      "id": "lerobot-examples-isaac-teleop-to-so101-teleoperate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "f2ec88613136be6a3329f6329efada33c2c7e3310b2ee4a9a2736fe6634d1266",
+      "record_version": "source-f2ec88613136be6a3329f6329efada33c2c7e3310b2ee4a9a2736fe6634d1266"
+    }
+  ]
+}

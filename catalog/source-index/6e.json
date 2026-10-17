@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-interactivity-src-interactivity-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "92bbbffbef6a6494f3f41738bb36e3f76de6126cadaec85ede25aa91f5448509",
+      "record_version": "source-92bbbffbef6a6494f3f41738bb36e3f76de6126cadaec85ede25aa91f5448509"
+    },
+    {
+      "id": "pinocchio-examples-viser-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "55f6e7e612ae1623bdb3b2f4da9bc4a6e385ca15d9fd9866314518c2c424f294",
+      "record_version": "source-55f6e7e612ae1623bdb3b2f4da9bc4a6e385ca15d9fd9866314518c2c424f294"
+    }
+  ]
+}

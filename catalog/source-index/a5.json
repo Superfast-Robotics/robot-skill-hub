@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-hydroelastic-spatula-slip-control-spatula-slip-control-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "d430ddc679f887d458375079f0300e0fa10ac3d20f741a53bb424c1802877eeb",
+      "record_version": "source-d430ddc679f887d458375079f0300e0fa10ac3d20f741a53bb424c1802877eeb"
+    },
+    {
+      "id": "pybullet-inverse-kinematics",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed",
+      "record_version": "source-b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed"
+    },
+    {
+      "id": "webots-projects-robots-pal-robotics-tiago-controllers-tiago-hey5-ha-777aa6a267b0",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a02cd66b86940a444560cb8bc559a0479906307d96076caec95e7e58b576c85b",
+      "record_version": "source-a02cd66b86940a444560cb8bc559a0479906307d96076caec95e7e58b576c85b"
+    }
+  ]
+}

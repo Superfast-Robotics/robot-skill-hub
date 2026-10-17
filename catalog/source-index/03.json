@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-gepetto-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "077cc33e4637417fd4e955a2ca65115dff3df3564e05406a4cacd5107f8e4ff3",
+      "record_version": "source-077cc33e4637417fd4e955a2ca65115dff3df3564e05406a4cacd5107f8e4ff3"
+    },
+    {
+      "id": "ros2-control-example-14-bringup-launch-rrbot-modular-actuators-with-0a4ca142b078",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "ab3f228f781fdfc3f90581cf30de141ceac5e1734d7dbab18352761843a9156b",
+      "record_version": "source-ab3f228f781fdfc3f90581cf30de141ceac5e1734d7dbab18352761843a9156b"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-axial-rotor-axial-rotor-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "6c223d03e7c1a5991d72dbfd01bad41f078f2b58116abf42bab1a9bd461c62c5",
+      "record_version": "source-6c223d03e7c1a5991d72dbfd01bad41f078f2b58116abf42bab1a9bd461c62c5"
+    }
+  ]
+}

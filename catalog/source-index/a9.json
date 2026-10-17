@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-trajopt-planner-src-trajopt-example-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "a5ad02a2b1cd9768b41d93cd45f01210e4d65f365cef99319ad25ad605f2d6cb",
+      "record_version": "source-a5ad02a2b1cd9768b41d93cd45f01210e4d65f365cef99319ad25ad605f2d6cb"
+    },
+    {
+      "id": "moveit2-doc-tutorials-quickstart-in-rviz-test-bringup-test-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "c0bf3a1f0a702770656a5c4e93bcce179f7b373c93a21b6d675438ab732bcc2c",
+      "record_version": "source-c0bf3a1f0a702770656a5c4e93bcce179f7b373c93a21b6d675438ab732bcc2c"
+    },
+    {
+      "id": "roboticstoolbox-examples-vehicle1-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "e6e34c24dbc191e1ec5062ca4505f7ee20777044dbdbae501655ebcec8f8ec6c",
+      "record_version": "source-e6e34c24dbc191e1ec5062ca4505f7ee20777044dbdbae501655ebcec8f8ec6c"
+    },
+    {
+      "id": "ros2-control-example-1-bringup-launch-rrbot-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "9e6d4d8c96079639939306305f29a5ff47fbf1590a2ed364016c853932b6a00f",
+      "record_version": "source-9e6d4d8c96079639939306305f29a5ff47fbf1590a2ed364016c853932b6a00f"
+    },
+    {
+      "id": "webots-projects-robots-pal-robotics-tiago-controllers-tiago-robotiq-0d3ebc9712f1",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "98814b49fddef9975ccfb74338dadc657e12b90b6b6cced5fa10b5f13da79545",
+      "record_version": "source-98814b49fddef9975ccfb74338dadc657e12b90b6b6cced5fa10b5f13da79545"
+    }
+  ]
+}

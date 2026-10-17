@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-gctronic-e-puck-controllers-e-puck-e-puck-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "af0b87f9c678ecc2f8f77bcc29bacc87980235ff51a2de2a4dc777e9d2816ec0",
+      "record_version": "source-af0b87f9c678ecc2f8f77bcc29bacc87980235ff51a2de2a4dc777e9d2816ec0"
+    }
+  ]
+}

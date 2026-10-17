@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Superfast-Robotics/robot-skill-hub",
+  "title": "Robot Skill Hub",
+  "description": "Discover pinned robot skills, inspect compatibility and evidence, and prepare local execution.",
+  "version": "0.2.0",
+  "repository": {
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+    "source": "github"
+  },
+  "websiteUrl": "https://hub.superfastrobotics.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.superfastrobotics.com/mcp"
+    }
+  ]
+}

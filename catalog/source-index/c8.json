@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-run-lqr-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "cd350ec9335e50e6b36d972faff1d4a2de251bae1b98d8110052bd5302953aba",
+      "record_version": "source-cd350ec9335e50e6b36d972faff1d4a2de251bae1b98d8110052bd5302953aba"
+    },
+    {
+      "id": "drake-examples-hardware-sim-hardware-sim-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "7246cbaab2681fe2fe3e920b4b184f069be664b369f5a5ef19211391461fed32",
+      "record_version": "source-7246cbaab2681fe2fe3e920b4b184f069be664b369f5a5ef19211391461fed32"
+    },
+    {
+      "id": "moveit2-doc-examples-robot-model-and-robot-state-src-robot-model-an-4f2197b5ebcf",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "0c3b7b9d4748699ba5288322ea66d88f8f21ee34b74b63a6f11d367719a61dbc",
+      "record_version": "source-0c3b7b9d4748699ba5288322ea66d88f8f21ee34b74b63a6f11d367719a61dbc"
+    },
+    {
+      "id": "webots-projects-robots-k-team-khepera1-controllers-pipe-pipe-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "40951fca82ad5ffb4b01bc69b2c41610e6bd5a05eedf4003961e2be83b68a52c",
+      "record_version": "source-40951fca82ad5ffb4b01bc69b2c41610e6bd5a05eedf4003961e2be83b68a52c"
+    }
+  ]
+}

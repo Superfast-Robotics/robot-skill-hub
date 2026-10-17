@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-ellipsoid-joint-kinematics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "a13b1b178040608064113be546951e837534c081378ad29d671143d9bb224c96",
+      "record_version": "source-a13b1b178040608064113be546951e837534c081378ad29d671143d9bb224c96"
+    },
+    {
+      "id": "pinocchio-examples-forward-dynamics-derivatives-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "39aa2b3d1cc27228825be906545224e720152b139f4223b0157302242316867f",
+      "record_version": "source-39aa2b3d1cc27228825be906545224e720152b139f4223b0157302242316867f"
+    },
+    {
+      "id": "webots-projects-robots-dji-mavic-controllers-mavic2pro-patrol-mavic-8908b0bf460a",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f8f3b9f9c7726e7c685a8ff9e342c00a9eff8074a6b4986e377e190d9186bb78",
+      "record_version": "source-f8f3b9f9c7726e7c685a8ff9e342c00a9eff8074a6b4986e377e190d9186bb78"
+    },
+    {
+      "id": "webots-projects-robots-neuronics-ipr-controllers-conveyor-belt-conveyor-belt-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "96fbd5905aa5c1a779ec2db299b23b2485cc51034d2f693eb62ee2fe5e2f1618",
+      "record_version": "source-96fbd5905aa5c1a779ec2db299b23b2485cc51034d2f693eb62ee2fe5e2f1618"
+    }
+  ]
+}

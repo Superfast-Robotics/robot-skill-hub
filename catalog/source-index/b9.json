@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-hydroelastic-python-nonconvex-mesh-drop-pepper-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "2e4b9bed7bbcdbf651eff7c1924ee604c9ee072f7eaebe7b5c00758884c3e78c",
+      "record_version": "source-2e4b9bed7bbcdbf651eff7c1924ee604c9ee072f7eaebe7b5c00758884c3e78c"
+    },
+    {
+      "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3at-obstac-eaa2d6c7c6b1",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c48f7159e3f8fffadb9efa163d92e646d43c70080d5ca3efc137d4436c952012",
+      "record_version": "source-c48f7159e3f8fffadb9efa163d92e646d43c70080d5ca3efc137d4436c952012"
+    }
+  ]
+}

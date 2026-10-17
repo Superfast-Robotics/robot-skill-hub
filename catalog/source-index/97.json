@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-simple-mixed-continuous-and-discrete-time-system-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3079be9dc80fb006adfebe32599e7c9e0d256df8f250b85cb981ac40a6d4d3c6",
+      "record_version": "source-3079be9dc80fb006adfebe32599e7c9e0d256df8f250b85cb981ac40a6d4d3c6"
+    },
+    {
+      "id": "webots-projects-robots-husarion-rosbot-controllers-rosbot-rosbot-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "8e4d4e7a20c84f2eb2d40617d7c7d9448546075f48363358231a544567e34502",
+      "record_version": "source-8e4d4e7a20c84f2eb2d40617d7c7d9448546075f48363358231a544567e34502"
+    }
+  ]
+}

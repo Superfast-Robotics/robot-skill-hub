@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-hands-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "fbf9fdd20b4d3fc49c3ded6855f6f1f81a3285894c29b2fe012650517b20fbc2",
+      "record_version": "source-fbf9fdd20b4d3fc49c3ded6855f6f1f81a3285894c29b2fe012650517b20fbc2"
+    },
+    {
+      "id": "roboticstoolbox-examples-teach-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "e1535aa6fdcaa385cd527f596423af84266a71f141df43002d14530c224acb0b",
+      "record_version": "source-e1535aa6fdcaa385cd527f596423af84266a71f141df43002d14530c224acb0b"
+    },
+    {
+      "id": "webots-projects-robots-softbank-nao-controllers-nao-soccer-supervis-6d6163c19fd3",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "de2e69c8a626afd4c16de6293504fb1337c741dba888d2ccc365f1825b8336c2",
+      "record_version": "source-de2e69c8a626afd4c16de6293504fb1337c741dba888d2ccc365f1825b8336c2"
+    }
+  ]
+}

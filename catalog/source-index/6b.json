@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-contact-sensor-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "3e32f6c48e5c563943686bc8ac3b5f52c69eb2f883724234f5ab80817272d9e6",
+      "record_version": "source-3e32f6c48e5c563943686bc8ac3b5f52c69eb2f883724234f5ab80817272d9e6"
+    },
+    {
+      "id": "webots-projects-robots-bitcraze-crazyflie-controllers-crazyflie-py-c7c06ff8b5e2",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "1dc2a3cc60aab0db87f47deafc33f3cb051065da544816f20026acc37ff730db",
+      "record_version": "source-1dc2a3cc60aab0db87f47deafc33f3cb051065da544816f20026acc37ff730db"
+    }
+  ]
+}

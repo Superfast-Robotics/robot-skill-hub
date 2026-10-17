@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-festo-robotino3-controllers-robotino3-robotino3-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "b3bf7f214df83875d966b8820f104b960bfcd62ac837b68687247d5538d49dec",
+      "record_version": "source-b3bf7f214df83875d966b8820f104b960bfcd62ac837b68687247d5538d49dec"
+    }
+  ]
+}

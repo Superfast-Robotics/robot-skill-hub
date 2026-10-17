@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-epson-scara-t6-controllers-scara-food-indust-3ea5ce9bb171",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "0cfcc948a3b72dca3585e11285d1adbc2e679b860a44390f0aba7ca44732eabd",
+      "record_version": "source-0cfcc948a3b72dca3585e11285d1adbc2e679b860a44390f0aba7ca44732eabd"
+    },
+    {
+      "id": "webots-projects-robots-rec-fabtino-controllers-keyboard-control-key-da1ca5bea487",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "017bf17bdf81c86697b40480b074aea8dcf96467853304c3ee88f10a098d846a",
+      "record_version": "source-017bf17bdf81c86697b40480b074aea8dcf96467853304c3ee88f10a098d846a"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-inertial-unit-inertial-unit-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e3f90fdf89630454eb66c43950b726a89e084e725df665eb412dea6a43c957b4",
+      "record_version": "source-e3f90fdf89630454eb66c43950b726a89e084e725df665eb412dea6a43c957b4"
+    }
+  ]
+}

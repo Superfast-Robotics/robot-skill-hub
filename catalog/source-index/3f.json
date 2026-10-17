@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-coaxial-rotors-coaxial-rotors-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "8e641b4501fcc3eb339ef71f0671a8224d757fb872dda1bf59ffc37b857ba86e",
+      "record_version": "source-8e641b4501fcc3eb339ef71f0671a8224d757fb872dda1bf59ffc37b857ba86e"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-gps-gps-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "88ee2c72d326851280ff1e5125d62db67dbe882d5a01ecaaa44d05100fa663ad",
+      "record_version": "source-88ee2c72d326851280ff1e5125d62db67dbe882d5a01ecaaa44d05100fa663ad"
+    }
+  ]
+}

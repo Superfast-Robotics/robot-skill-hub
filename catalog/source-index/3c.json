@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-grasping-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "1589a0e39a8890e4d62944b4eac7c4743bc9c9d729b85db39a83c46c8a6fe334",
+      "record_version": "source-1589a0e39a8890e4d62944b4eac7c4743bc9c9d729b85db39a83c46c8a6fe334"
+    },
+    {
+      "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-8e69932f0cde",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "1313e68a25d139663548add158260eb1b80b10cfb76125515e1b87c581f7c5c9",
+      "record_version": "source-1313e68a25d139663548add158260eb1b80b10cfb76125515e1b87c581f7c5c9"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-compass-compass-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "4dc421ae9ad917688406c2afdd3acdda3f9b015363c9994a105939f51255f3ea",
+      "record_version": "source-4dc421ae9ad917688406c2afdd3acdda3f9b015363c9994a105939f51255f3ea"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-display-display-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "1c606d7242c17a3d233f211c72ea8daff8e48b273763e47c4653d1cde87cdeec",
+      "record_version": "source-1c606d7242c17a3d233f211c72ea8daff8e48b273763e47c4653d1cde87cdeec"
+    }
+  ]
+}

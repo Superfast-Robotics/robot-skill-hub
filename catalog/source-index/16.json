@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
+      "record_version": "source-f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa"
+    },
+    {
+      "id": "pybullet-forcetorquesensor",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "6b3dc989cf80fdd5388dc2db1caa46e6e74b8d73ed3cd32b5b778a88c2378f33",
+      "record_version": "source-6b3dc989cf80fdd5388dc2db1caa46e6e74b8d73ed3cd32b5b778a88c2378f33"
+    }
+  ]
+}

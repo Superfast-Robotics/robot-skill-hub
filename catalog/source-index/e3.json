@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-gctronic-e-puck-controllers-e-puck-line-demo-30a0e0414e0c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "cd64e58eb15e5ecb5977c23073ec922757d029f5855f1e081bc3a91340458829",
+      "record_version": "source-cd64e58eb15e5ecb5977c23073ec922757d029f5855f1e081bc3a91340458829"
+    },
+    {
+      "id": "webots-projects-robots-pal-robotics-tiago-controllers-tiago-tiago-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "741093a2174da73de4c3afc993a5da1e9a3ed3935acd9caed2d9d2ad5ec0326d",
+      "record_version": "source-741093a2174da73de4c3afc993a5da1e9a3ed3935acd9caed2d9d2ad5ec0326d"
+    }
+  ]
+}

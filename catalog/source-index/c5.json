@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-lekiwi-evaluate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "24d04a08393de4ab46c170a2e1c7d8818d2259d349b6aaacccb1176d2ebdf2fb",
+      "record_version": "source-24d04a08393de4ab46c170a2e1c7d8818d2259d349b6aaacccb1176d2ebdf2fb"
+    },
+    {
+      "id": "moveit2-doc-how-to-guides-kinematics-cost-function-src-kinematics-c-d6a2e2504453",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "6450f27632d535d12d8ddfc50420545bd5e7b372b0ba567ed8b3e8d900cc5813",
+      "record_version": "source-6450f27632d535d12d8ddfc50420545bd5e7b372b0ba567ed8b3e8d900cc5813"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-gps-lat-long-gps-lat-long-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e2e51d3a7b804624e0b268152096dcec97c01e021f11832386f1ac28fe1946c3",
+      "record_version": "source-e2e51d3a7b804624e0b268152096dcec97c01e021f11832386f1ac28fe1946c3"
+    }
+  ]
+}

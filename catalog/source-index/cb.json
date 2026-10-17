@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-run-swing-up-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "5e7550aa142e00d8820a4ec5fc21b16e46e73271f5dadc87de5c5285be07fe05",
+      "record_version": "source-5e7550aa142e00d8820a4ec5fc21b16e46e73271f5dadc87de5c5285be07fe05"
+    },
+    {
+      "id": "drake-examples-kinova-jaco-arm-jaco-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "4f45d5d3196397eb1d928f5f58145dfc7fbca3a794757c80126da48eeba929ed",
+      "record_version": "source-4f45d5d3196397eb1d928f5f58145dfc7fbca3a794757c80126da48eeba929ed"
+    },
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-prm-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "2bf4e3fc13faf18c7ee386779fe87000c335a5de0074b616e4b1b79578384fee",
+      "record_version": "source-2bf4e3fc13faf18c7ee386779fe87000c335a5de0074b616e4b1b79578384fee"
+    },
+    {
+      "id": "ros2-control-example-16-bringup-launch-diffbot-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "215cb0b1fd61b9b26b4a55e6045c6cd7d281cadd920bc6a7575ff2370a380d7e",
+      "record_version": "source-215cb0b1fd61b9b26b4a55e6045c6cd7d281cadd920bc6a7575ff2370a380d7e"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-laser-pointer-laser-pointer-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a2addf50a5178f900fb484eb406310498cf795750a035e7f97d1f22fcd0de04f",
+      "record_version": "source-a2addf50a5178f900fb484eb406310498cf795750a035e7f97d1f22fcd0de04f"
+    }
+  ]
+}

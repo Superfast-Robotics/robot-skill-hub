@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-hardware-sim-hardware-sim-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "0278ec60af6deeaca47aaaf53b580b145d928ba79cf0380dfd6f2e2aca1cee64",
+      "record_version": "source-0278ec60af6deeaca47aaaf53b580b145d928ba79cf0380dfd6f2e2aca1cee64"
+    },
+    {
+      "id": "drake-examples-multibody-cart-pole-cart-pole-passive-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "27b9931c7857db47e23e6ea9bf4a43eea9c8c53a099e1bb1a87327a7399db806",
+      "record_version": "source-27b9931c7857db47e23e6ea9bf4a43eea9c8c53a099e1bb1a87327a7399db806"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-00-sim-launch-app-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "c557128b9aefe615daee45bfbaaffe6fee424a0b9b6b402132c0749c1aa71c9d",
+      "record_version": "source-c557128b9aefe615daee45bfbaaffe6fee424a0b9b6b402132c0749c1aa71c9d"
+    },
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-astar-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "32c696aa6c9f2a5c90b46fd487fb600571fe04c73f006ee548c749ddc4e9d7b2",
+      "record_version": "source-32c696aa6c9f2a5c90b46fd487fb600571fe04c73f006ee548c749ddc4e9d7b2"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-receiver-noise-receiver-noise-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "6e8bfc1ea34e18cc0792a65f6c44bdc383a2372c2831b9d7c4b2d6aca68c83f8",
+      "record_version": "source-6e8bfc1ea34e18cc0792a65f6c44bdc383a2372c2831b9d7c4b2d6aca68c83f8"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-kinova-jaco-arm-jaco-controller-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a7bf577cbd760b5a66fea6fbba912918302094c7fe95f5982b2712561903bc1e",
+      "record_version": "source-a7bf577cbd760b5a66fea6fbba912918302094c7fe95f5982b2712561903bc1e"
+    },
+    {
+      "id": "drake-examples-scene-graph-simple-contact-surface-vis-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "4e3aaa324d1ecce761a77c570c13a1259c88fd605d248cd26b2800532f804450",
+      "record_version": "source-4e3aaa324d1ecce761a77c570c13a1259c88fd605d248cd26b2800532f804450"
+    },
+    {
+      "id": "webots-projects-robots-pal-robotics-tiago-base-controllers-tiago-ba-f849615bee0e",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "21aba10cabb78065879ccd2f6aec9c1e2e12c9eef9ceddd141964f2485583213",
+      "record_version": "source-21aba10cabb78065879ccd2f6aec9c1e2e12c9eef9ceddd141964f2485583213"
+    }
+  ]
+}

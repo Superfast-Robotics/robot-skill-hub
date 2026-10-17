@@ -5,9 +5,9 @@ The Hub contains two kinds of entries:
 - **17 preparation recipes** wrap actual official ManiSkill motion-planning
   solvers with a pinned source archive, dependency recipe, isolated preparation,
   and a final JSON result contract.
-- **40 source examples** point to immutable official MuJoCo, PyBullet, and
-  robosuite files. They expose source hashes, licenses, imports, setup links and
-  entrypoints. They do not have a Hub preparation adapter.
+- **651 source examples** point to immutable official files across 16 robotics
+  ecosystems. They expose source and license hashes, imports, setup links,
+  execution domains and entrypoints. They do not have a Hub preparation adapter.
 
 Read the [preparation catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
 and [source example index](https://hub.superfastrobotics.com/catalog/v1/references.json)
@@ -47,30 +47,57 @@ runtime level; none of the additions claims a measured task success rate.
 
 ## Broader source examples
 
-The selection favors official examples in widely followed simulator repositories
-and common building blocks: inverse kinematics, inverse dynamics, Jacobians,
-joint control, manipulation environments, teleoperation, sensing, domain
-randomization, trajectory recording and replay.
+The source index covers manipulation, navigation, inverse kinematics, dynamics,
+joint control, robot learning, teleoperation, sensing, flight and legged robots.
+Selection is finite and explicit; this is not an exhaustive inventory of all
+robot skills on the internet.
 
-| Official repository | Pinned release | Source examples | GitHub stars checked 2026-10-17 |
-| --- | --- | ---: | ---: |
-| [MuJoCo](https://github.com/google-deepmind/mujoco) | `3.3.7` / `f1d45bd5422c74beddfb0d1deb590a02583d21de` | 8 | 15,726 |
-| [Bullet / PyBullet](https://github.com/bulletphysics/bullet3) | `3.25` / `2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5` | 20 | 14,800 |
-| [robosuite](https://github.com/ARISE-Initiative/robosuite) | `v1.5.1` / `a071383d53568ab798eb315c0e95357911be922d` | 12 | 2,666 |
+| Official repository | Pinned release or branch label | Source examples |
+| --- | --- | ---: |
+| [Webots](https://github.com/cyberbotics/webots) | `R2025a` | 193 |
+| [Pinocchio](https://github.com/stack-of-tasks/pinocchio) | `v4.1.0` | 76 |
+| [Drake](https://github.com/RobotLocomotion/drake) | `v1.58.0` | 73 |
+| [OMPL](https://github.com/ompl/ompl) | `2.0.2` | 47 |
+| [Isaac Lab](https://github.com/isaac-sim/IsaacLab) | `v2.3.2` | 44 |
+| [MoveIt 2 tutorials](https://github.com/moveit/moveit2_tutorials) | `main` | 36 |
+| [LeRobot](https://github.com/huggingface/lerobot) | `v0.6.1` | 33 |
+| [Robotics Toolbox for Python](https://github.com/petercorke/robotics-toolbox-python) | `v1.4.4` | 30 |
+| [ROS 2 actions and executors](https://github.com/ros2/examples) | `jazzy` | 22 |
+| [ros2_control demos](https://github.com/ros-controls/ros2_control_demos) | `jazzy` | 21 |
+| [Bullet / PyBullet](https://github.com/bulletphysics/bullet3) | `3.25` | 20 |
+| [PyRoboSim](https://github.com/sea-bass/pyrobosim) | `5.0.1` | 15 |
+| [Crazyflie Python library](https://github.com/bitcraze/crazyflie-lib-python) | `0.1.34` | 12 |
+| [robosuite](https://github.com/ARISE-Initiative/robosuite) | `v1.5.1` | 12 |
+| [Nav2 Simple Commander](https://github.com/ros-navigation/navigation2) | `jazzy` | 9 |
+| [MuJoCo](https://github.com/google-deepmind/mujoco) | `3.3.7` | 8 |
 
-Stars measure repository interest. They are not sample usage counts, install
-counts, compatibility evidence, or a ranking of successful robot policies.
-The pinned releases provide stable source links; they are not advertised as the
-latest releases.
+Every label above resolves to the full immutable commit in the source index.
+These are stable source references, not a claim to use each project's latest
+release. Repository stars, when present, are dated interest measurements rather
+than skill usage or compatibility evidence.
 
-Every example points to a real Python script, official tutorial notebook, or
-native C++ `main`. Source files were fetched at the exact commit and hashed;
-Python imports, notebook cells, native entrypoints and repository licenses were
-inspected. Read the source and upstream setup instructions before execution.
-Some examples are interactive, run continuously, require OpenGL/input devices,
-or expect adjacent assets, helper files, models or recorded logs. The MJX
-tutorial requires a GPU runtime. No automatic dependency installation or source
-execution is attached to these source references.
+The new manifest contains 611 accepted runnable source artifacts from 13
+additional projects. Static inspection rejects library-only modules, native
+files without `main`, unreviewed straight-line helper scripts and conflicting
+explicit license identifiers. All 651 source files and their license pins were
+downloaded and checked; no upstream example was executed by the importers.
+The Webots portion includes 98 robot-specific controllers across 56 model
+directories, plus device and controller examples.
+
+Robot categories inferred from source paths are discovery labels. A project
+supporting several robot families does not make every example compatible with
+all of them. The pinned source, robot configuration and execution domain remain
+the authority. The index distinguishes computation, simulation, middleware,
+training and hardware workflows. Hardware examples can contain real motion;
+they are not attached to automatic installation or execution.
+
+The [source project manifest](../catalog/source-projects.json) records selection
+roots, exact commits, license checksums, accepted source checksums and excluded
+helper reasons. The [compact source index](../catalog/source-index.json) contains
+the exact source identity used by contribution and memory APIs. Model assets,
+datasets, policy weights, commercial simulator runtimes and dependencies retain
+their separate upstream licenses; indexing a source reference does not copy
+those artifacts or grant additional rights.
 
 ## Reproduce the index
 
@@ -81,12 +108,21 @@ python tools/import_official_samples.py --archive /path/to/maniskill.tar.gz --ch
 # Rebuild only the 15 new recipes; the two existing published records are kept.
 python tools/import_official_samples.py
 
-# Fetch immutable official source files for static inspection and SHA-256.
+# Refresh the original three projects without deleting other import registries.
 python tools/import_reference_examples.py --fetch
 
-# Rebuild from the local source-inspection cache without network access.
-python tools/import_reference_examples.py
+# Verify all reviewed ecosystem source and license pins from upstream.
+python tools/import_ecosystem_examples.py --fetch --check
+
+# Rebuild/validate from the local static-inspection cache without network access.
+python tools/import_ecosystem_examples.py --check
+
+# After reviewing a manifest commit/license change, explicitly inspect its tree.
+python tools/import_ecosystem_examples.py --discover --project nav2 --fetch
 ```
 
-Import tools only generate metadata and Hub adapters. They do not execute any
-upstream module, install a simulator, download task assets or run a robot.
+Source refreshes preserve entries owned by other importers. Checksums, duplicate
+source artifacts and duplicate IDs fail closed. A discovery or source fetch
+failure stops publication; a partial tree is not accepted as complete coverage.
+Import tools do not execute upstream modules, install simulators, download task
+assets or run robots.

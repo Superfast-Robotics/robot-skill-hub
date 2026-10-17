@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-multibody-acrobot-passive-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a97d1b20351ec276750a64cbd507117805e9d8e42c735b188d52e0c8e34cadf3",
+      "record_version": "source-a97d1b20351ec276750a64cbd507117805e9d8e42c735b188d52e0c8e34cadf3"
+    },
+    {
+      "id": "ompl-demos-constraint-constrainedplanningtorus-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "69850d8b8b4900fd7d23b55897dc9f9225e69587e7c020411e214a70a63a4617",
+      "record_version": "source-69850d8b8b4900fd7d23b55897dc9f9225e69587e7c020411e214a70a63a4617"
+    },
+    {
+      "id": "pinocchio-examples-collisions-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "7ddd4d16f3d368c9698192a73c44cac21914cbe4c310750e16e03df3c7553d6e",
+      "record_version": "source-7ddd4d16f3d368c9698192a73c44cac21914cbe4c310750e16e03df3c7553d6e"
+    },
+    {
+      "id": "webots-projects-robots-neuronics-ipr-controllers-ipr-cube-ipr-cube-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "ae479ab7931dc31e2fad6f9241ecb77e9e429560526afecf889cbbf6e6fc04bc",
+      "record_version": "source-ae479ab7931dc31e2fad6f9241ecb77e9e429560526afecf889cbbf6e6fc04bc"
+    }
+  ]
+}

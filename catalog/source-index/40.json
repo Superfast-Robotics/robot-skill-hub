@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ompl-demos-planarmanipulator-planarmanipulatordemo-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "7fc69dd942c249700a55df07d0ca44f1712d614b0bde1bc3a1a607418f838f2d",
+      "record_version": "source-7fc69dd942c249700a55df07d0ca44f1712d614b0bde1bc3a1a607418f838f2d"
+    },
+    {
+      "id": "robosuite-demo-gym-functionality",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "150c7e7217be2ec220430a5b091da37ed4f2280e2fc8611e37a44b7287e15bcf",
+      "record_version": "source-150c7e7217be2ec220430a5b091da37ed4f2280e2fc8611e37a44b7287e15bcf"
+    },
+    {
+      "id": "roboticstoolbox-examples-robots-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "5ac6636249d578c1357ae3d5a5e12b8823b1b93e0553182f3711feedee1f3d15",
+      "record_version": "source-5ac6636249d578c1357ae3d5a5e12b8823b1b93e0553182f3711feedee1f3d15"
+    }
+  ]
+}

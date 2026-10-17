@@ -1,0 +1,47 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-allegro-hand-run-allegro-constant-load-demo-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "cde188684e060892b8f0494119354750c180c8eaee974344f844f50ea55f7e6b",
+      "record_version": "source-cde188684e060892b8f0494119354750c180c8eaee974344f844f50ea55f7e6b"
+    },
+    {
+      "id": "isaaclab-scripts-demos-quadrupeds-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "ab95e61a02931c6635e0615bc5607443b49a09e3ae7df5e5ec09fe3fc7a2c8bb",
+      "record_version": "source-ab95e61a02931c6635e0615bc5607443b49a09e3ae7df5e5ec09fe3fc7a2c8bb"
+    },
+    {
+      "id": "pinocchio-examples-static-contact-dynamics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "94bf9a2e866069a05c470162edb28ac173d6b8c7ff3c85f8ebce8ee04b9b485f",
+      "record_version": "source-94bf9a2e866069a05c470162edb28ac173d6b8c7ff3c85f8ebce8ee04b9b485f"
+    },
+    {
+      "id": "roboticstoolbox-examples-holistic-mm-omni-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "2056e233164776937644e4b1d284ba52ac569e5540e6cbec465a0da0b12cd62c",
+      "record_version": "source-2056e233164776937644e4b1d284ba52ac569e5540e6cbec465a0da0b12cd62c"
+    },
+    {
+      "id": "roboticstoolbox-examples-teach-swift-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "caa1ceb0f3f06366c3103f86a74bb7a8189f31071ac1ce3afa7ae1463788c41c",
+      "record_version": "source-caa1ceb0f3f06366c3103f86a74bb7a8189f31071ac1ce3afa7ae1463788c41c"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-force-sensor-force-sensor-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "51e2d117225cd4dfb1914b4046fae3bd792c8c535d9fb6e7d48016aa72d066c9",
+      "record_version": "source-51e2d117225cd4dfb1914b4046fae3bd792c8c535d9fb6e7d48016aa72d066c9"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-led-led-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2f2cc1b1bfbe23011bcef4f6c2b41fc11e81f6fbb9ad48776462f6eb0b822749",
+      "record_version": "source-2f2cc1b1bfbe23011bcef4f6c2b41fc11e81f6fbb9ad48776462f6eb0b822749"
+    }
+  ]
+}

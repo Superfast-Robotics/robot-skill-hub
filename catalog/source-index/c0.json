@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-procedural-terrain-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "841dc8392d57985d2c5d0808e990a4daef3a5d65b397e78f8b5619bd83a62148",
+      "record_version": "source-841dc8392d57985d2c5d0808e990a4daef3a5d65b397e78f8b5619bd83a62148"
+    }
+  ]
+}

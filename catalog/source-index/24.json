@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-tutorials-pick-and-place-with-moveit-task-constructor-s-18895035ed7f",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "491a45679eedb01741be0908646b082654aba4124232056bd3c14eb7138c4e00",
+      "record_version": "source-491a45679eedb01741be0908646b082654aba4124232056bd3c14eb7138c4e00"
+    },
+    {
+      "id": "robosuite-demo-collect-and-playback-data",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "6661bb80943eab70af753bab1bda2ace2be57679a21b2f4d26c1700e5fc9fe82",
+      "record_version": "source-6661bb80943eab70af753bab1bda2ace2be57679a21b2f4d26c1700e5fc9fe82"
+    },
+    {
+      "id": "webots-projects-robots-clearpath-heron-controllers-heron-usv-contro-2b1d78422950",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "cca5c21b10cf7b8eab100dc6a7d3dc6291792887f401403dd93aeb0a82b7f5d9",
+      "record_version": "source-cca5c21b10cf7b8eab100dc6a7d3dc6291792887f401403dd93aeb0a82b7f5d9"
+    },
+    {
+      "id": "webots-projects-robots-robotis-darwin-op-controllers-op3-motion-player-main-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "bc604ce9fccb1d38377578c3a28c546f0839d9842bbd1c5529530afdb19a49ff",
+      "record_version": "source-bc604ce9fccb1d38377578c3a28c546f0839d9842bbd1c5529530afdb19a49ff"
+    }
+  ]
+}

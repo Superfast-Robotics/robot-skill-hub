@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-anymal-simulation-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "20fe2ede63212b9bf958c8a6beb870d4ed70239ec9c96053c01e8499910c776e",
+      "record_version": "source-20fe2ede63212b9bf958c8a6beb870d4ed70239ec9c96053c01e8499910c776e"
+    },
+    {
+      "id": "pinocchio-examples-overview-urdf-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "3b72492eccc81b90f059880c4a58a53c84c5fa3ab91dd652a9636ca0cd684278",
+      "record_version": "source-3b72492eccc81b90f059880c4a58a53c84c5fa3ab91dd652a9636ca0cd684278"
+    },
+    {
+      "id": "webots-projects-robots-nvidia-jetbot-controllers-jetbot-basic-motio-2563fbbd7fdc",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5ca0f7a1cf4ccd36e44ad19ddcda935cfade9de39e13eded53c8dbbd0e726159",
+      "record_version": "source-5ca0f7a1cf4ccd36e44ad19ddcda935cfade9de39e13eded53c8dbbd0e726159"
+    }
+  ]
+}

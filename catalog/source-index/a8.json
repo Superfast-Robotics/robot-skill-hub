@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-25bd66787168",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "ff3c589b0cd16d75a1c6198158a51c8ac943a9fa4d9d6c45a87452aff128446d",
+      "record_version": "source-ff3c589b0cd16d75a1c6198158a51c8ac943a9fa4d9d6c45a87452aff128446d"
+    }
+  ]
+}

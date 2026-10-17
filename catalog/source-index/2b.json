@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-force-sensor-force-sensor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "fd7a0075190bec096da7285492b0ab2901bb94fce24ebd346aa3a5f04bc84206",
+      "record_version": "source-fd7a0075190bec096da7285492b0ab2901bb94fce24ebd346aa3a5f04bc84206"
+    }
+  ]
+}

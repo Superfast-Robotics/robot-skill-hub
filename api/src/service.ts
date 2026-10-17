@@ -1,5 +1,5 @@
 import { ApiError, SHA, SID, receiptPath, type Bundle, type Env, type GitHubAdapter, type JsonObject, type Pull, type Receipt } from './types.ts';
-import { assert, canonical, readReceipt, sha256 } from './util.ts';
+import { assert, canonical, readReceipt, rejectSubmissionSecrets, sha256 } from './util.ts';
 import { applyPatch, parsePatch } from './patch.ts';
 
 const MAX_BYTES = 64 * 1024;
@@ -35,9 +35,9 @@ export async function authenticate(request: Request, env: Env): Promise<string> 
   return sha256('rsh-principal-v1\0' + principal.principal_id);
 }
 
-async function readBody(request: Request): Promise<string> {
+export async function readBody(request: Request, maxBytes = MAX_BYTES): Promise<string> {
   const declared = request.headers.get('Content-Length');
-  assert(!declared || (/^\d+$/.test(declared) && +declared <= MAX_BYTES), 'payload_too_large', 'Submission limit is 64 KiB.', 413);
+  assert(!declared || (/^\d+$/.test(declared) && +declared <= maxBytes), 'payload_too_large', `Submission limit is ${maxBytes / 1024} KiB.`, 413);
   assert(request.headers.get('Content-Type')?.split(';')[0].trim().toLowerCase() === 'application/json', 'invalid_content_type', 'Content-Type must be application/json.', 415);
   assert(!request.headers.has('Content-Encoding'), 'unsupported_encoding', 'Compressed submission bodies are not accepted.', 415);
   const reader = request.body?.getReader(); assert(reader, 'invalid_schema', 'A JSON body is required.');
@@ -46,7 +46,7 @@ async function readBody(request: Request): Promise<string> {
     while (true) {
       const { value, done } = await reader.read(); if (done) break;
       size += value.byteLength;
-      if (size > MAX_BYTES) { await reader.cancel(); throw new ApiError(413, 'payload_too_large', 'Submission limit is 64 KiB.'); }
+      if (size > maxBytes) { await reader.cancel(); throw new ApiError(413, 'payload_too_large', `Submission limit is ${maxBytes / 1024} KiB.`); }
       parts.push(value);
     }
   } finally { reader.releaseLock(); }
@@ -78,6 +78,7 @@ export async function submit(request: Request, principal: string, adapter: GitHu
   const raw = await readBody(request); let bundle: Bundle;
   try { bundle = JSON.parse(raw); } catch { throw new ApiError(422, 'invalid_json', 'Invalid JSON submission.'); }
   validateBundle(bundle);
+  rejectSubmissionSecrets(bundle, request.headers.get('Authorization')?.match(/^Bearer (.+)$/)?.[1]);
   const keyHash = await sha256(key);
   const id = 'sub_' + await sha256(`rsh-submission-v1\0${principal}\0${key}`);
   const payloadHash = await sha256(canonical(bundle));

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-tutorial-diffusion-diffusion-training-example-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "a7236674dd99cf1851bfe1dd7f179618e1f04689ec77a1019c59ca9026f3c283",
+      "record_version": "source-a7236674dd99cf1851bfe1dd7f179618e1f04689ec77a1019c59ca9026f3c283"
+    },
+    {
+      "id": "ompl-demos-plannerdata-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "e7aa524234f01131c2d68a28f8c0c54c2959106d315802c9a97e32a7fdbc7da1",
+      "record_version": "source-e7aa524234f01131c2d68a28f8c0c54c2959106d315802c9a97e32a7fdbc7da1"
+    }
+  ]
+}

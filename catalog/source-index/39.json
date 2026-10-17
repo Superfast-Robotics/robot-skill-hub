@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pyrobosim-pyrobosim-ros-examples-demo-velocity-publisher-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652",
+      "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
+    },
+    {
+      "id": "webots-projects-robots-sony-aibo-controllers-ers7-ers7-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "cfb020940866ba6f2681598abb764abe7aa0eb1c0b8ed682863d4c205fb10c91",
+      "record_version": "source-cfb020940866ba6f2681598abb764abe7aa0eb1c0b8ed682863d4c205fb10c91"
+    }
+  ]
+}

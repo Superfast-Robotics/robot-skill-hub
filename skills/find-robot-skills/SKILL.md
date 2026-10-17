@@ -1,9 +1,11 @@
 ---
 name: find-robot-skills
-description: Find reusable robot code, inspect pinned environments, prepare supported recipes, and recall or save task findings. Use for simulation implementation and troubleshooting with ManiSkill, MuJoCo, Bullet or robosuite. Excludes real hardware execution.
+description: Find reusable robotics code, policies and artifacts for manipulation, navigation, locomotion, control and motion planning across robot frameworks. Inspect exact sources and requirements, prepare supported recipes, register new sources, and reuse task findings. Does not provide physical robot execution.
 ---
 
 Use the bundled Python 3.10+ CLI at `scripts/rsh.py` relative to this installed skill. Use `--json` for one JSON result without prompts. A repository checkout is unnecessary.
+
+For read-only discovery without installation, use `GET https://api.superfastrobotics.com/v1/search?q=YOUR_TASK&limit=3` and `GET /v1/skills/SKILL_ID`. An already-configured MCP client can connect to `https://api.superfastrobotics.com/mcp`; its tools only find and inspect data. Public reads require no token or GPU.
 
 Find code for the user's current task:
 
@@ -12,7 +14,7 @@ python /ABSOLUTE_SKILL_PATH/scripts/rsh.py find "pick object" --runtime maniskil
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py inspect SKILL_ID --json
 ```
 
-Discovery reads the latest available catalog with a local cache and bundled offline fallback. Preserve its reported freshness and origin. `--offline` prevents discovery network reads; `--refresh` requests a fresh index. Missing environment values remain unknown. Explicit mismatches are excluded. Results distinguish Hub preparation recipes from pinned official source examples; source examples have no Hub runtime adapter.
+Discovery reads the latest available catalog with a local cache and bundled offline fallback. Preserve its reported freshness and origin. `--offline` prevents discovery network reads; `--refresh` requests a fresh index. Missing environment values remain unknown. Explicit mismatches are excluded. Results distinguish Hub preparation recipes from pinned source references. References can cover different robots, languages, hardware integrations or model formats, but have no Hub runtime adapter. Inspect their upstream setup and exact provenance; do not infer compatibility from a framework name alone.
 
 Inspect the selected source, license, robot, runtime version, controller, observations and evidence. Before troubleshooting a selected recipe, read published findings for that exact record/source and the known project environment:
 
@@ -36,5 +38,9 @@ Read [memory.md](references/memory.md) for the finding format and policy. `save`
 For initial configuration explicitly requested by an operator, use `setup --project DIR --allow-public-memory --skill ID --kind KIND --json`, repeating the exact authorized allowlists; `--local-only` configures local use instead. Setup replaces only memory scope and never stores a token. Point `RSH_SUBMISSION_TOKEN_FILE` to the private operator-issued token file, or use `RSH_SUBMISSION_TOKEN`. `setup-check --project DIR --json` checks local configuration; add `--check-api` only for an explicit read-only authentication check. Do not create public scope merely because a token is available or the main task would benefit from memory.
 
 Solve the user's task first. Do not run extra experiments just to create findings, save routine noise, include private project material or credentials, or let memory saving, retries or review block the work. A successful save does not mean publication or verified task success.
+
+To contribute a new source already found during authorized work, read [new-skills.md](references/new-skills.md), then use `register SKILL_JSON --project DIR --json`. It preserves a local draft and submits only under the project's exact new-skill sharing scope plus an allowed-agent token. Do not replace source discovery with an invented execution adapter or runtime claim.
+
+Online discovery sends a random optional installation ID to the owned Hub API for aggregate access measurements; no project content or query text is stored in metrics. Set `RSH_TELEMETRY=off` to opt out. See the [privacy details](https://hub.superfastrobotics.com/privacy.md). Measurement and contribution delivery never gate the user's task.
 
 For an actual reusable code correction already needed by the task, read [contributions.md](references/contributions.md). Patch submissions and memory findings have separate sharing scopes. The API creates internal draft PRs; only reviewed, merged and deployed entries become publicly discoverable.

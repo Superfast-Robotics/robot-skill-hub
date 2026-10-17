@@ -50,10 +50,16 @@ export class GitHub implements MemoryGitHubAdapter {
     const data = await this.request(`/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(ref)}`, 'GET', undefined, [404]);
     if (data._status === 404) return null;
     // This exact, read-only index is larger than an individual recipe file.
-    const limit = path === 'catalog/references.json' ? 256 * 1024 : 128 * 1024;
+    const identityShard = /^catalog\/source-index\/[a-f0-9]{2}\.json$/.test(path);
+    const limit = ['catalog/references.json', 'catalog/source-index.json'].includes(path) || identityShard ? 256 * 1024 : 128 * 1024;
     if (data.type !== 'file' || data.encoding !== 'base64' || data.size > limit || data.submodule_git_url) throw new ApiError(422, 'unsupported_base_file', 'The pinned UTF-8 file exceeds its allowed read scope or size.');
     try {
-      const content = fromBase64(data.content.replace(/\s/g, ''));
+      const encoded = data.content.replace(/\s/g, '');
+      // Preserve every UTF-8 byte of checksum-bound shards, including a BOM,
+      // rather than silently normalizing it before the manifest check.
+      const content = identityShard
+        ? new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(Uint8Array.from(atob(encoded), c => c.charCodeAt(0)))
+        : fromBase64(encoded);
       if (new TextEncoder().encode(content).byteLength > limit) throw new Error('File too large');
       return content;
     } catch { throw new ApiError(422, 'unsupported_base_file', 'The pinned file is not bounded UTF-8 text.'); }
@@ -81,7 +87,9 @@ export class GitHub implements MemoryGitHubAdapter {
       '', `Skill: \`${receipt.skill_id}\` · Kind: \`${receipt.change_kind}\``,
       '', '**Contributor evidence:** self-reported; not hub runtime verification.',
       `Evidence level: \`${receipt.evidence.level}\`.`,
-      '', '**Hub checks at intake:** base/source pins, schema, exact patch context and allowlisted paths checked. Robot execution: **not_run**.',
+      '', receipt.change_kind === 'new_skill'
+        ? '**Hub checks at intake:** bounded data-only metadata, explicit sharing, unique ID, source pin and server-selected destination checked. Source bytes, license and runtime remain subject to maintainer review.'
+        : '**Hub checks at intake:** base/source pins, schema, exact patch context and allowlisted paths checked. Robot execution: **not_run**.',
       '', 'Review and merge are manual. A merged PR is not published until the deployed catalog manifest proves inclusion.',
       '', receiptMarker(receipt)
     ].join('\n');

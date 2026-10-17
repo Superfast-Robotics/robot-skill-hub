@@ -19,6 +19,16 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASE = "https://hub.superfastrobotics.com"
 REPO = "https://github.com/Superfast-Robotics/robot-skill-hub"
+API = "https://api.superfastrobotics.com"
+# Import the same intake validator used by the installed CLI. ROOT can be
+# overridden by isolated builder tests; the implementation stays in this repo.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/find-robot-skills/scripts"))
+from rshlib.intake import validate_published_reference
+from rshlib.core import RshError
+if __package__:
+    from .reference_index import check_source_index
+else:
+    from reference_index import check_source_index
 
 
 def read_json(path):
@@ -233,25 +243,57 @@ def esc(value):
     return html.escape(str(value), quote=True)
 
 
-def load_references():
+def load_references(recipe_ids=()):
     path = ROOT / "catalog/references.json"
-    if not path.exists():
-        return {"schema_version": "1", "records": []}
-    index = read_json(path)
+    index = read_json(path) if path.exists() else {"schema_version": "1", "records": []}
     if index.get("schema_version") != "1" or not isinstance(index.get("records"), list):
         raise ValueError("Invalid official source example index")
-    seen = set()
+    seen = set(recipe_ids)
     for record in index["records"]:
         ident = record["id"]
         if ident in seen:
-            raise ValueError(f"Duplicate source example id: {ident}")
+            raise ValueError(f"Duplicate catalog id: {ident}")
         seen.add(ident)
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", ident):
+            raise ValueError(f"Unsafe source reference id: {ident}")
         source = record["source"]
         expected = f"{source['repository'].rstrip('/')}/blob/{source['commit']}/{source['path']}"
         if not re.fullmatch(r"[a-f0-9]{40}", source["commit"]) or source["url"] != expected or not re.fullmatch(r"[a-f0-9]{64}", source["sha256"]):
             raise ValueError(f"{ident}: official example requires an exact source commit and checksum")
-        if record["kind"] != "official_example" or record["access"].get("hub_prepare") is not False:
+        if (record["kind"] != "official_example" or record["access"].get("mode") != "source_reference"
+                or record["access"].get("hub_prepare") is not False):
             raise ValueError(f"{ident}: official source examples cannot claim a hub preparation adapter")
+        license_info = record["license"]
+        if (not all(isinstance(license_info.get(key), str) and license_info[key].strip() for key in ("spdx", "url", "scope"))
+                or urlparse(license_info["url"]).scheme != "https"
+                or ("sha256" in license_info and not re.fullmatch(r"[a-f0-9]{64}", license_info["sha256"]))):
+            raise ValueError(f"{ident}: official source reference requires license provenance")
+        if record["evidence"].get("runtime_verification") != "not_run":
+            raise ValueError(f"{ident}: source reference cannot claim runtime verification")
+    source_index_path = ROOT / "catalog/source-index.json"
+    if source_index_path.exists():
+        expected_index = {"schema_version": "1", "records": [
+            {"id": r["id"], "source_commit": r["source"]["commit"], "source_sha256": r["source"]["sha256"],
+             "record_version": "source-" + r["source"]["sha256"]} for r in sorted(index["records"], key=lambda r: r["id"])]}
+        if read_json(source_index_path) != expected_index:
+            raise ValueError("Official source index does not match the canonical references")
+    if (ROOT / "catalog/source-index-manifest.json").exists():
+        check_source_index(index["records"], source_index_path)
+    # Only reviewed, merged canonical intake records are published. Draft
+    # bundles and submission receipts never become records on their own.
+    for path in sorted((ROOT / "catalog/intake").glob("*.json")):
+        record = read_json(path)
+        try:
+            validate_published_reference(record)
+        except RshError as error:
+            raise ValueError(f"{path.relative_to(ROOT)}: {error}") from error
+        ident = record["id"]
+        if path.stem != ident:
+            raise ValueError(f"{path}: filename and id differ")
+        if ident in seen:
+            raise ValueError(f"Duplicate catalog id: {ident}")
+        seen.add(ident)
+        index["records"].append(record)
     return index
 
 
@@ -276,8 +318,18 @@ def load_publication_history():
             if hashlib.sha256(archive.read_bytes()).hexdigest() != proof["archive_sha256"]:
                 raise ValueError("Historical record archive checksum mismatch")
             record = read_json(archive)
-            validate_schema(record, schema, schema)
-            if (record["id"] != proof["id"] or record["source"]["commit"] != proof["source_commit"]
+            kind = proof.get("kind", "preparation_recipe")
+            if kind == "source_reference":
+                try:
+                    validate_published_reference(record)
+                except RshError as error:
+                    raise ValueError(f"Historical source reference: {error}") from error
+            elif kind == "preparation_recipe":
+                validate_schema(record, schema, schema)
+            else:
+                raise ValueError("Unsupported historical record kind")
+            revision = record["source"].get("commit") or record["source"].get("revision")
+            if (record["id"] != proof["id"] or revision != proof["source_commit"]
                     or record["maintenance"]["record_version"] != proof["record_version"]):
                 raise ValueError("Historical record does not match its publication proof")
             if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._-]*", proof["record_version"]):
@@ -358,10 +410,20 @@ def publish_history(releases, output, base):
     published = copy.deepcopy(releases)
     for release in published:
         for proof in release["records"]:
-            record = read_json(safe_path(proof.pop("archive_path")))
+            archive = safe_path(proof.pop("archive_path"))
+            record = read_json(archive)
             relative = f"releases/{proof['id']}/{proof['record_version']}/"
             proof["recipe_url"] = base + "/" + relative
             folder = output / relative
+            if proof.get("kind") == "source_reference":
+                # Preserve the immutable archive bytes as well as the original
+                # accepted-path hashes. Neither is derived from today's intake.
+                folder.mkdir(parents=True, exist_ok=True)
+                (folder / "skill.json").write_bytes(archive.read_bytes())
+                write(folder / "README.md", reference_markdown(record, release["hub_commit"], publication_version=proof["record_version"]))
+                write(folder / "index.html", reference_detail(record, base, release["hub_commit"],
+                      publication_version=proof["record_version"], page_path=relative))
+                continue
             write_json(folder / "skill.json", record)
             body = f"""<main><h1>{esc(record['name'])}</h1>
 <p>Historical published record: <code>{esc(proof['record_version'])}</code>.</p>
@@ -388,7 +450,7 @@ def shell(title, description, body, base, path=""):
 </head>
 <body>
 <header><p><a href="{esc(base)}/">Robot Skill Hub</a> by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
-<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v1/index.json">Catalog JSON</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
+<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v1/search.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
 {body}
 <footer><hr><p><a href="{esc(base)}/catalog/v1/publication.json">Publication manifest</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
 </body>
@@ -420,45 +482,142 @@ def reference_list(references):
 <p>License: <a href="{esc(r['license']['url'])}">{esc(r['license']['spdx'])}</a>. Evidence: <code>{esc(r['evidence']['level'])}</code>; runtime: <code>{esc(r['evidence']['runtime_verification'])}</code>.</p></li>""" for r in references["records"]) + "</ul>"
 
 
+COMPATIBILITY_FIELDS = ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture", "status")
+# These names identify upstream runtimes, not measured compatibility. Other
+# framework labels may be arbitrary names, so they stay unknown.
+KNOWN_RUNTIMES = {"maniskill", "mujoco", "pybullet", "webots", "isaaclab", "isaacsim", "robosuite",
+                  "drake", "pinocchio", "ompl", "lerobot", "roboticstoolbox", "pyrobosim", "crazyflie",
+                  "ros", "ros2", "moveit2", "nav2"}
+
+
+def explicit_compatibility(record):
+    """Preserve explicit combinations without making a Cartesian product."""
+    raw = record.get("compatibility", [])
+    if isinstance(raw, dict):
+        raw = [raw]
+    if not isinstance(raw, list):
+        return []
+    return [{key: combo[key] for key in COMPATIBILITY_FIELDS if isinstance(combo.get(key), str)}
+            for combo in raw if isinstance(combo, dict)
+            and any(isinstance(combo.get(key), str) and combo[key] not in ("", "unknown")
+                    for key in COMPATIBILITY_FIELDS if key != "status")]
+
+
+def reference_markdown(record, hub_commit, publication_version=None):
+    source, license_info, evidence = record["source"], record["license"], record["evidence"]
+    revision = source.get("commit") or source["revision"]
+    authors = ", ".join(source.get("authors", [])) or "See pinned upstream source and license notices."
+    version = publication_version or "source-" + source["sha256"]
+    parts = [f"# {record['name']}", record["summary"],
+             f"ID: `{record['id']}`\n\nRecord version: `{version}`\n\nHub commit: `{hub_commit}`"]
+    if publication_version:
+        parts.extend(("Historical published source reference. This archive preserves the original metadata and publication; current documentation can change independently.",
+                      f"Source identity version: `source-{source['sha256']}`"))
+    parts.extend([
+             "## Access", record["access"]["instructions"],
+             f"Hub preparation adapter: **false**. Runtime verification: **{evidence['runtime_verification']}**.",
+             f"Upstream setup: {record['access'].get('setup_url', source['repository'])}",
+             "## Source and license",
+             f"- Repository: {source['repository']}\n- Pinned source: {source['url']}\n- Revision: `{revision}`\n"
+             f"- Path: `{source['path']}`\n- Source SHA256: `{source['sha256']}`\n"
+             f"- Source bytes: {source.get('bytes', 'unknown')}\n- Original authors: {authors}\n"
+             f"- License: [{license_info['spdx']}]({license_info['url']})\n- License scope: {license_info['scope']}"])
+    if license_info.get("sha256"):
+        parts.append(f"License SHA256: `{license_info['sha256']}`")
+    for label, key in (("Artifact", "artifact"), ("Requirements", "requirements"), ("Invocation", "invocation")):
+        if record.get(key):
+            parts.extend(("## " + label, "```json\n" + json.dumps(record[key], ensure_ascii=False, indent=2) + "\n```"))
+    parts.extend(("## Compatibility", "```json\n" + json.dumps(explicit_compatibility(record), ensure_ascii=False, indent=2) + "\n```",
+                  "Missing environment fields remain unknown. Source discovery labels do not establish robot compatibility.",
+                  "## Evidence", f"Level: **{evidence['level']}**. Runtime verification: **{evidence['runtime_verification']}**.",
+                  evidence.get("inspection", evidence.get("result", "No runtime execution evidence.")),
+                  "Source review and contributor reports do not establish task completion. Preserve upstream attribution and licenses."))
+    return "\n\n".join(parts) + "\n"
+
+
+def reference_detail(record, base, hub_commit, publication_version=None, page_path=None):
+    source, license_info, evidence = record["source"], record["license"], record["evidence"]
+    revision = source.get("commit") or source["revision"]
+    version = publication_version or "source-" + source["sha256"]
+    historical = ""
+    if publication_version:
+        historical = f"""<p>Historical published source reference: <code>{esc(publication_version)}</code>.</p>
+<p>Published hub commit: <code>{esc(hub_commit)}</code>. Source identity version: <code>source-{esc(source['sha256'])}</code>.</p>
+<p>This archive preserves the original metadata and publication. <a href="{esc(base)}/references/{esc(record['id'])}/">Current documentation</a> can change independently.</p>"""
+    body = f"""<main id="main-content"><h1>{esc(record['name'])}</h1>
+<p>{esc(record['summary'])}</p>
+{historical}
+<p><code>{esc(record['id'])}</code> | Record version: <code>{esc(version)}</code></p>
+<p><a href="skill.json">Record JSON</a> | <a href="README.md">Markdown</a> | <a href="{esc(source['url'])}">Pinned upstream source</a></p>
+<h2>Access</h2><p>{esc(record['access']['instructions'])}</p>
+<p>Hub preparation adapter: <code>false</code>. Follow the <a href="{esc(record['access'].get('setup_url', source['repository']))}">upstream setup</a> and invocation contract.</p>
+<h2>Source and license</h2><dl><dt>Repository</dt><dd><a href="{esc(source['repository'])}">{esc(source['repository'])}</a></dd>
+<dt>Revision</dt><dd><code>{esc(revision)}</code></dd><dt>Path</dt><dd><code>{esc(source['path'])}</code></dd>
+<dt>Source SHA256</dt><dd><code>{esc(source['sha256'])}</code></dd><dt>Original authors</dt><dd>{esc(', '.join(source.get('authors', [])) or 'See pinned upstream source and license notices.')}</dd>
+<dt>License</dt><dd><a href="{esc(license_info['url'])}">{esc(license_info['spdx'])}</a></dd>
+<dt>License scope</dt><dd>{esc(license_info['scope'])}</dd><dt>License SHA256</dt><dd><code>{esc(license_info.get('sha256', 'not independently verified'))}</code></dd>
+<dt>Hub commit</dt><dd><code>{esc(hub_commit)}</code></dd></dl>"""
+    for label, value in (("Artifact", record.get("artifact")), ("Requirements", record.get("requirements")),
+                         ("Invocation", record.get("invocation")), ("Explicit compatibility", explicit_compatibility(record))):
+        if value is not None:
+            body += f"<h2>{label}</h2><pre><code>{esc(json.dumps(value, ensure_ascii=False, indent=2))}</code></pre>\n"
+    body += f"""<p>Missing environment fields remain unknown. Discovery labels do not establish robot compatibility.</p>
+<h2>Evidence</h2><p>Level: <code>{esc(evidence['level'])}</code>; runtime verification: <code>{esc(evidence['runtime_verification'])}</code>.</p>
+<p>{esc(evidence.get('inspection', evidence.get('result', 'No runtime execution evidence.')))}</p>
+<p>Source review and contributor reports do not establish task completion. Preserve upstream attribution and licenses.</p></main>"""
+    return shell(record["name"] + " - Robot Skill Hub", record["summary"], body, base,
+                 page_path or "references/" + record["id"] + "/")
+
+
+def search_row(record, output, base, recipe=False):
+    source = record["source"]
+    relative = ("skills/" if recipe else "references/") + record["id"] + "/skill.json"
+    combinations = explicit_compatibility(record)
+    runtimes = list(dict.fromkeys(c["runtime"] for c in combinations if c.get("runtime") not in (None, "", "unknown")))
+    runtime = runtimes[0] if len(runtimes) == 1 else "unknown"
+    if not runtimes and record.get("framework") in KNOWN_RUNTIMES:
+        runtime = record["framework"]
+    row = {"id": record["id"], "name": record["name"], "summary": record["summary"],
+           "kind": "preparation_recipe" if recipe else "source_reference",
+           "capabilities": record.get("capabilities", []), "aliases": record.get("aliases", []),
+           "compatibility": combinations, "runtime": runtime,
+           "record_version": record["maintenance"]["record_version"] if recipe else "source-" + source["sha256"],
+           "source_commit": source.get("commit") or source["revision"],
+           "source_sha256": source.get("archive_sha256") if recipe else source["sha256"],
+           "license": {key: record["license"][key] for key in ("spdx", "url", "scope", "verified") if key in record["license"]},
+           "evidence_level": record["evidence"]["level"], "runtime_verification": record["evidence"]["runtime_verification"],
+           "hub_prepare": recipe, "record_url": base + "/" + relative,
+           "record_sha256": hashlib.sha256((output / relative).read_bytes()).hexdigest()}
+    robots = record.get("robots") or list(dict.fromkeys(c["robot"] for c in combinations if c.get("robot") not in (None, "", "unknown")))
+    if robots:
+        row["robots"] = robots
+    return row
+
+
 def home(records, base, references=None):
     references = references or {"records": []}
-    example = next((r for r in records if r["id"] == "maniskill-panda-pick-cube"), records[0])
-    c = example["compatibility"][0]
-    commands = f"""npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
-
-# Replace /PATH_TO_SKILL with the installed skill directory.
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json find "pick cube" --runtime {c['runtime']} --runtime-version {c['runtime_version']} --robot {c['robot']} --json
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json inspect {example['id']} --json
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json prepare {example['id']} --project ./experiment --plan --json"""
-    entries = []
-    for r in records:
-        environments = "; ".join(f"{c['runtime']} {c['runtime_version']}, {c['robot']}, {c['controller']}, {c['observation']}, {c['os']}" for c in r["compatibility"])
-        entries.append(f"""<li id="{esc(r['id'])}"><h3><a href="{esc(base)}/skills/{esc(r['id'])}/">{esc(r['name'])}</a></h3>
-<p><code>{esc(r['id'])}</code> — {esc(r['summary'])}</p>
-<p>{esc(environments)}</p>
-<p>Evidence: <code>{esc(r['evidence']['level'])}</code>; runtime: <code>{esc(r['evidence']['runtime_verification'])}</code>; record version: <code>{esc(r['maintenance']['record_version'])}</code>.</p>
-<p><a href="{esc(base)}/skills/{esc(r['id'])}/README.md">Markdown</a> | <a href="{esc(base)}/skills/{esc(r['id'])}/skill.json">JSON</a></p></li>""")
+    install = "npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills"
+    commands = f"""curl -fsSL '{API}/v1/search?q=grasp&limit=3'
+curl -fsSL {base}/agent.json
+{install}"""
+    api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub</h1>
-<p>Pinned robot code, environment requirements, preparation commands and execution evidence for coding agents.</p>
-<h2>Fetch the catalog</h2>
-<pre><code>{esc(f'curl -fsSL {base}/catalog/v1/index.json' + chr(10) + f'curl -fsSL {base}/agent-quickstart.md' + chr(10) + f'curl -fsSL {base}/llms-full.txt')}</code></pre>
-{resource_links(base)}
-<h2>Find, inspect, prepare</h2>
-<p>Use the Python CLI for environment-aware search. It returns up to three candidates as JSON. Explicit environment mismatches are excluded; missing values remain unknown.</p>
+<p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
+<p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
+<h2>Find and read</h2>
+<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v1/search.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
-<p>Inspect the selected record before preparation. <code>--plan</code> reports planned actions without downloads. Preparation and dependency installation are separate from simulation execution. Existing project locks remain pinned.</p>
-<h2 id="catalog">Hub preparation recipes ({len(records)})</h2>
-<ul>{''.join(entries)}</ul>
-<h2 id="references">Official source examples ({len(references['records'])})</h2>
-<p>These upstream examples are source references. They have no hub preparation adapter; follow the pinned upstream setup and invocation instructions. Fetch their complete metadata from <a href="{esc(base)}/catalog/v1/references.json"><code>{esc(base)}/catalog/v1/references.json</code></a>.</p>
-{reference_list(references)}
+<p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
+<h2>Connect an agent</h2>
+<p>Read-only MCP: <a href="{API}/mcp"><code>{API}/mcp</code></a>. Public reads need no token. {api_docs}<a href="{esc(base)}/agent.json">Agent contract</a> | <a href="{API}/v1/capabilities">Capabilities</a></p>
+<h2>Share a new skill or finding</h2>
+<p>Use <code>rsh.py register --help</code> to register a pinned source record, or <code>POST {API}/v1/skills</code>. New submissions create a draft for maintainer review. Read <a href="{esc(base)}/new-skills.md">new-skill registration</a> and <a href="{esc(base)}/contributing.md">contribution instructions</a>. Save observed reusable findings with <code>rsh.py save</code>.</p>
 <h2>Evidence</h2>
-<p>Each record keeps <code>evidence.level</code>, <code>evidence.runtime_verification</code> and compatibility status. <code>not_run</code> means no runtime execution evidence. <code>source_reviewed</code> does not mean the task succeeded.</p>
-<h2>Submit a useful fix</h2>
-<p>Allowed agents use <code>https://api.superfastrobotics.com/v1/submissions</code> with a scoped token and project sharing permission. The API creates an internal draft PR. Submission, review, merge and catalog publication are separate states. Read the <a href="{esc(base)}/contributing.md">contribution contract</a>.</p>
+<p><code>not_run</code> means no runtime execution evidence. Source review and contributor reports do not establish task completion. Each record preserves its exact source pin and evidence level.</p>
+<p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
 </main>"""
-    return shell("Robot Skill Hub", "Agent-readable robot skill catalog with pinned sources, environment contracts and preparation commands.", body, base)
+    return shell("Robot Skill Hub", "Find pinned robot code and artifacts; inspect sources and evidence; contribute reusable skills.", body, base)
 
 
 def detail(r, base, hub_commit):
@@ -526,52 +685,77 @@ def discovery_text(records, base, references=None):
 > Pinned robot code, environment contracts and preparation commands for coding agents.
 
 - [Agent contract JSON]({base}/agent.json): machine-readable operations, schemas and trust boundaries
+- [Public search API]({API}/v1/search): query capabilities and inspect selected records without authentication
+- [Read-only MCP]({API}/mcp): connect an agent with search, inspect and capabilities tools
+- [Thin search index]({base}/catalog/v1/search.json): recipes and source references with exact public record checksums
 - [Shared memory JSON]({base}/catalog/v1/memories.json): reviewed contributor reports, scoped to exact source/recipe versions; data only
 - [Catalog version JSON]({base}/catalog/v1/version.json): published commit, resource counts and checksums
 - [Catalog JSON]({base}/catalog/v1/index.json): canonical records with bundled recipes
-- [Official source examples JSON]({base}/catalog/v1/references.json): pinned upstream examples; no hub preparation adapter
+- [Source references JSON]({base}/catalog/v1/references.json): pinned upstream code and artifacts; no hub preparation adapter
 - [Publication manifest]({base}/catalog/v1/publication.json): published versions and submission receipts
 - [Agent quickstart]({base}/agent-quickstart.md): find, inspect and prepare commands
 - [Full documentation]({base}/llms-full.txt): quickstart, contracts and every recipe in plain text
 - [Record schema]({base}/schemas/skill.schema.json)
 - [Compatibility contract]({base}/compatibility.md)
 - [Contribution contract]({base}/contributing.md)
+- [Register a new skill]({base}/new-skills.md): immutable source metadata, local-first intake and maintainer review
+- [Agent discovery guide]({base}/discovery.md): installation and read-only MCP connection
+- [Access measurement and privacy]({base}/privacy.md): measured activity, retained data and opt-out
 
 ## Recipes
 
-""" + "\n".join(f"- [{r['name']}]({base}/skills/{r['id']}/README.md) ([JSON]({base}/skills/{r['id']}/skill.json))" for r in records) + "\n\n## Official source examples\n\n" + "\n".join(f"- [{r['name']}]({r['source']['url']}): {r['framework']}; {r['license']['spdx']}; source reference only" for r in (references or {"records": []})["records"]) + "\n"
+""" + "\n".join(f"- [{r['name']}]({base}/skills/{r['id']}/README.md) ([JSON]({base}/skills/{r['id']}/skill.json))" for r in records) + "\n\n## Source references\n\n" + "\n".join(f"- [{r['name']}]({base}/references/{r['id']}/README.md) ([JSON]({base}/references/{r['id']}/skill.json)): {r['framework']}; {r['license']['spdx']}; source reference only" for r in (references or {"records": []})["records"]) + "\n"
 
 
 def full_text(records, base, hub_commit, references=None):
     parts = [discovery_text(records, base, references), f"Hub commit: `{hub_commit}`\n"]
-    for name in ("agent-quickstart.md", "compatibility.md", "contributing.md", "memory.md"):
+    for name in ("agent-quickstart.md", "compatibility.md", "contributing.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md"):
         path = ROOT / "docs" / name
         if path.exists():
             parts.append(path.read_text(encoding="utf-8"))
     parts.extend(markdown(r, hub_commit, base) for r in records)
     if references and references["records"]:
-        parts.append("# Official source examples\n\nThese records are discovery references with no hub preparation adapter. Follow upstream setup and invocation instructions.\n\n```json\n" + json.dumps(references, ensure_ascii=False, indent=2) + "\n```\n")
+        parts.append("# Source references\n\nThese records are discovery references with no hub preparation adapter. Follow upstream setup and invocation instructions.\n\n```json\n" + json.dumps(references, ensure_ascii=False, indent=2) + "\n```\n")
     return "\n\n---\n\n".join(parts) + "\n"
 
 
 def build(args):
     records = load_records()
-    references = load_references()
+    references = load_references(r["id"] for r in records)
     history = load_publication_history()
     memories = load_memories()
     if args.check:
-        print(f"Validated {len(records)} canonical records and recipe files; {len(references['records'])} official source examples")
+        print(f"Validated {len(records)} canonical records and recipe files; {len(references['records'])} source references")
         return
     base = args.base_url.rstrip("/")
-    if urlparse(base).scheme not in ("http", "https"):
+    if urlparse(base).scheme not in ("http", "https") or not urlparse(base).hostname:
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
-    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "records":records}
+    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "search_url":base+"/catalog/v1/search.json", "records":records}
     write_json(output / "catalog/v1/index.json", index)
     write_json(ROOT / "skills/find-robot-skills/assets/catalog.snapshot.json", index)
     write_json(output / "catalog/v1/references.json", references)
     write_json(ROOT / "skills/find-robot-skills/assets/references.snapshot.json", references)
+    source_index = ROOT / "catalog/source-index.json"
+    if source_index.exists():
+        write(output / "catalog/v1/source-index.json", canonical(read_json(source_index)) + "\n")
+    source_manifest = ROOT / "catalog/source-index-manifest.json"
+    if source_manifest.exists():
+        public_manifest = read_json(source_manifest)
+        for prefix, descriptor in public_manifest["shards"].items():
+            raw = safe_path(descriptor["path"]).read_bytes()
+            # The canonical manifest addresses files in Git. Public descriptors
+            # address the mirrored bytes, without changing their checksums.
+            relative = f"catalog/v1/source-index/{prefix}.json"
+            destination = output / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(raw)
+            descriptor.update(path=relative, url=base + "/" + relative)
+        write(output / "catalog/v1/source-index-manifest.json", canonical(public_manifest) + "\n")
+    source_projects = ROOT / "catalog/source-projects.json"
+    if source_projects.exists():
+        write(output / "catalog/v1/source-projects.json", canonical(read_json(source_projects)) + "\n")
     memory_proofs = publish_memories(memories, output, base, hub_commit)
     contract_path = ROOT / "docs/agent-contract.json"
     contract = read_json(contract_path) if contract_path.exists() else {"schema_version": "1", "name": "Robot Skill Hub"}
@@ -581,16 +765,20 @@ def build(args):
                     memories_url=index["memories_url"], version_url=base+"/catalog/v1/version.json",
                     publication_url=base+"/catalog/v1/publication.json", quickstart_url=base+"/agent-quickstart.md",
                     full_text_url=base+"/llms-full.txt", memory_schema_url=base+"/schemas/memory.schema.json",
-                    project_policy_schema_url=base+"/schemas/project-policy.schema.json")
+                    project_policy_schema_url=base+"/schemas/project-policy.schema.json",
+                    search_url=API+"/v1/search", search_index_url=index["search_url"], api_search_url=API+"/v1/search", mcp_url=API+"/mcp",
+                    api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
+                    privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md")
+    if (ROOT / "docs/public-api.openapi.json").exists():
+        contract["resources"]["openapi_url"] = base+"/openapi.json"
+    if source_index.exists():
+        contract["resources"]["source_index_url"] = base+"/catalog/v1/source-index.json"
+    if source_manifest.exists():
+        contract["resources"]["source_index_manifest_url"] = base+"/catalog/v1/source-index-manifest.json"
+    if source_projects.exists():
+        contract["resources"]["source_projects_url"] = base+"/catalog/v1/source-projects.json"
     write_json(output / "agent.json", contract)
     write_json(output / ".well-known/robot-skill-hub.json", contract)
-    resources = {}
-    for name in ("index", "references", "memories"):
-        path = output / f"catalog/v1/{name}.json"
-        resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
-    write_json(output / "catalog/v1/version.json", {"schema_version": "1", "hub_commit": hub_commit,
-               "counts": {"recipes": len(records), "references": len(references["records"]), "memories": len(memory_proofs)},
-               "resources": resources})
     write(output / "index.html", home(records, base, references))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
@@ -606,10 +794,24 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    for name in ("contributing.md", "compatibility.md", "memory.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md"):
         document = ROOT / "docs" / name
         if document.exists():
             write(output / name, document.read_text(encoding="utf-8"))
+    openapi = ROOT / "docs/public-api.openapi.json"
+    if openapi.exists():
+        read_json(openapi)
+        shutil.copyfile(openapi, output / "openapi.json")
+    server_manifest = ROOT / "server.json"
+    if server_manifest.exists():
+        read_json(server_manifest)
+        shutil.copyfile(server_manifest, output / "server.json")
+    indexnow = ROOT / "docs/indexnow-key.txt"
+    if indexnow.exists():
+        key = indexnow.read_text(encoding="utf-8").strip()
+        if not re.fullmatch(r"[A-Za-z0-9_-]{8,128}", key):
+            raise ValueError("Invalid public IndexNow key")
+        write(output / (key + ".txt"), key + "\n")
     # The catalog has no CSS, images, fonts or client-side JavaScript. Remove only
     # known legacy runtime assets when rebuilding an existing local output folder.
     for name in ("style.css", "catalog.js"):
@@ -629,9 +831,47 @@ def build(args):
         path_hashes = {p:hashlib.sha256(safe_path(p).read_bytes()).hexdigest() for p in r['contribution']['allowed_paths']}
         matching = [x for x in receipts if x.get('skill_id') == r['id'] and x.get('new_record_version') == r['maintenance']['record_version'] and all(path_hashes.get(p) == h for p, h in x.get('patch_hashes', {}).items()) and x.get('patch_hashes')]
         publication_records.append({"id":r['id'],"record_version":r['maintenance']['record_version'],"source_commit":r['source']['commit'],"recipe_url":base+"/skills/"+r['id']+"/", "compatibility":r['compatibility'],"contribution_path_hashes":path_hashes,"submission_ids":[x['submission_id'] for x in matching]})
+    for r in references["records"]:
+        folder = output / "references" / r["id"]
+        write_json(folder / "skill.json", r)
+        write(folder / "README.md", reference_markdown(r, hub_commit))
+        write(folder / "index.html", reference_detail(r, base, hub_commit))
+        intake_path = ROOT / "catalog/intake" / (r["id"] + ".json")
+        if not intake_path.exists():
+            continue
+        relative = "catalog/intake/" + intake_path.name
+        path_hashes = {relative: hashlib.sha256(intake_path.read_bytes()).hexdigest()}
+        revision = r["source"].get("commit") or r["source"]["revision"]
+        matching = [x for x in receipts if x.get("skill_id") == r["id"]
+                    and x.get("change_kind") == "new_skill"
+                    and x.get("new_record_version") == r["maintenance"]["record_version"]
+                    and x.get("base", {}).get("source_commit") == revision
+                    and x.get("patch_paths") == [relative] and x.get("patch_hashes") == path_hashes]
+        publication_records.append({"id": r["id"], "kind": "source_reference", "record_version": r["maintenance"]["record_version"],
+                                    "source_commit": revision, "recipe_url": base+"/references/"+r["id"]+"/",
+                                    "compatibility": r["compatibility"], "contribution_path_hashes": path_hashes,
+                                    "submission_ids": [x["submission_id"] for x in matching]})
+    counts = {"recipes": len(records), "references": len(references["records"]), "memories": len(memory_proofs)}
+    rows = [search_row(r, output, base, recipe=True) for r in records]
+    rows.extend(search_row(r, output, base) for r in references["records"])
+    search = {"schema_version": "1", "hub_commit": hub_commit, "counts": counts, "records": rows}
+    search_bytes = (canonical(search) + "\n").encode("utf-8")
+    if len(search_bytes) > 2 * 1024 * 1024:
+        raise ValueError("Thin search index exceeds the public API's 2 MiB read limit")
+    write(output / "catalog/v1/search.json", search_bytes.decode("utf-8"))
+    resources = {}
+    for name in ("index", "references", "memories", "search", "source-index", "source-index-manifest", "source-projects"):
+        path = output / f"catalog/v1/{name}.json"
+        if path.exists():
+            resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    write_json(output / "catalog/v1/version.json", {"schema_version": "1", "hub_commit": hub_commit,
+               "counts": counts, "resources": resources})
     manifest = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":publication_records, "memories":memory_proofs, "history":publish_history(history, output, base)}
     write_json(output / "catalog/v1/publication.json", manifest)
-    urls = [base+"/", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", base+"/catalog/v1/publication.json"] + [base+"/skills/"+r['id']+"/" for r in records]
+    urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", base+"/catalog/v1/search.json", base+"/catalog/v1/publication.json"] + [base+"/skills/"+r['id']+"/" for r in records]
+    urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
+    if openapi.exists():
+        urls.append(base+"/openapi.json")
     write(output / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{esc(url)}</loc></url>" for url in urls) + "\n</urlset>\n")
     print(f"Built {len(records)} recipes and {len(references['records'])} source examples → {output}; hub_commit={hub_commit}; base={base}")
 

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-track-conveyor-belt-tra-7926b94c352f",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "36e5b01363ac590c2f602da18e78c4bf871caafe3ea0af0e91d46b8c0fb90c57",
+      "record_version": "source-36e5b01363ac590c2f602da18e78c4bf871caafe3ea0af0e91d46b8c0fb90c57"
+    }
+  ]
+}

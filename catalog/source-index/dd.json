@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-forward-dynamics-derivatives-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "2f281b5958b0403d9a2c06515f649877fa3bbedf6058c7facd7a5a7c59233248",
+      "record_version": "source-2f281b5958b0403d9a2c06515f649877fa3bbedf6058c7facd7a5a7c59233248"
+    },
+    {
+      "id": "pinocchio-examples-geometry-models-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "2ff0bef9dd18fb3843af7792e055615e1be439c69e489e4299020b2dd886d5fa",
+      "record_version": "source-2ff0bef9dd18fb3843af7792e055615e1be439c69e489e4299020b2dd886d5fa"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-receiver-noise-receiver-noise-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "6bf3d597334f6bd52ace05f483a9132571c4b949bbddf7c28de422438778f7fc",
+      "record_version": "source-6bf3d597334f6bd52ace05f483a9132571c4b949bbddf7c28de422438778f7fc"
+    }
+  ]
+}

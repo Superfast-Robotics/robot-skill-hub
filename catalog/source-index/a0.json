@@ -1,0 +1,47 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-04-sensors-run-usd-camera-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a97ea510b542c1fa70bc434482c045c7f7e099b5e6635d43f3c9b16a654bcd6f",
+      "record_version": "source-a97ea510b542c1fa70bc434482c045c7f7e099b5e6635d43f3c9b16a654bcd6f"
+    },
+    {
+      "id": "ompl-demos-constrainedplanningsphere-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "dcc2176ebeae7d850dcc754a04453b31c800da7f10917f3eafd25d8b3732dc59",
+      "record_version": "source-dcc2176ebeae7d850dcc754a04453b31c800da7f10917f3eafd25d8b3732dc59"
+    },
+    {
+      "id": "ompl-demos-rigidbodyplanningwithcontrols-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "b9b7e0de41fa6cce61049030bde6232b20b74983a254ee97a73c3d1682fe530f",
+      "record_version": "source-b9b7e0de41fa6cce61049030bde6232b20b74983a254ee97a73c3d1682fe530f"
+    },
+    {
+      "id": "roboticstoolbox-examples-ikine-evaluate2-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "e9bc538b26cdf3387088df22a104ce8403ff6d6b45153ecbfcf1bcc1677dce26",
+      "record_version": "source-e9bc538b26cdf3387088df22a104ce8403ff6d6b45153ecbfcf1bcc1677dce26"
+    },
+    {
+      "id": "webots-projects-robots-fujitsu-hoap2-controllers-hoap2-hoap2-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2428e08b1d8b5c4fb2cd5869b35c03234504fc6576991a4dbf743c733c970a61",
+      "record_version": "source-2428e08b1d8b5c4fb2cd5869b35c03234504fc6576991a4dbf743c733c970a61"
+    },
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-grabber-ba-2fd2dbc4f86c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "9bf16c038277757bc0cb2b8aa570e549b3412fe0e5aeffdc76497fe8910f89ef",
+      "record_version": "source-9bf16c038277757bc0cb2b8aa570e549b3412fe0e5aeffdc76497fe8910f89ef"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-auto-focus-camer-e3edc55175bd",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "390bfeec1bbe01fe5f1a362d506c3d608bd636ecebbf34316f3046aa66d3e746",
+      "record_version": "source-390bfeec1bbe01fe5f1a362d506c3d608bd636ecebbf34316f3046aa66d3e746"
+    }
+  ]
+}

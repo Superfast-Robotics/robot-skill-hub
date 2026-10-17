@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-h1-locomotion-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "de33abfe759765119825dd2d6c5cd549d5fc91f68c3e3abc06f3ce4842f2a7fd",
+      "record_version": "source-de33abfe759765119825dd2d6c5cd549d5fc91f68c3e3abc06f3ce4842f2a7fd"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-compass-compass-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "d0e8d215bcb40347ab7d8807430b4f629400ed5b2944f8467d052bf2890b9874",
+      "record_version": "source-d0e8d215bcb40347ab7d8807430b4f629400ed5b2944f8467d052bf2890b9874"
+    }
+  ]
+}

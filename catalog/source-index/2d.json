@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-subframes-src-subframes-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "e274b88496ec6b32f9dc7b5524b42abe6fa8370ddedaad092c45e5db94460bde",
+      "record_version": "source-e274b88496ec6b32f9dc7b5524b42abe6fa8370ddedaad092c45e5db94460bde"
+    },
+    {
+      "id": "webots-projects-robots-epfl-biorob-controllers-ghostdog-ghostdog-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5bee934c374ad155066628d1dbc8eb80ecd82e7c976f96a02cb4233ccd7b4748",
+      "record_version": "source-5bee934c374ad155066628d1dbc8eb80ecd82e7c976f96a02cb4233ccd7b4748"
+    },
+    {
+      "id": "webots-projects-robots-neuronics-ipr-controllers-ipr2-collaboration-98accb277452",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e24667df2e57fd89f56ba3aa6465c41f33b456ad32c24450920bed521ca8a223",
+      "record_version": "source-e24667df2e57fd89f56ba3aa6465c41f33b456ad32c24450920bed521ca8a223"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-motor2-motor2-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "476ad2c285235f8dd78820c47e6bf748285f16c99efb2ff8adfb2db090480b0b",
+      "record_version": "source-476ad2c285235f8dd78820c47e6bf748285f16c99efb2ff8adfb2db090480b0b"
+    }
+  ]
+}

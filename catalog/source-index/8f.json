@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-casadi-quadrotor-ocp-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "44029ad6bc88cc113893f8ba047c9b957f0206c32bb9c407c4eae56a49a95b76",
+      "record_version": "source-44029ad6bc88cc113893f8ba047c9b957f0206c32bb9c407c4eae56a49a95b76"
+    },
+    {
+      "id": "ros2-examples-rclcpp-actions-minimal-action-server-not-composable-cpp",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "2027588524fa18f2f04ebc20422787ce584c5cab0ac31f207ab168514aab6e9d",
+      "record_version": "source-2027588524fa18f2f04ebc20422787ce584c5cab0ac31f207ab168514aab6e9d"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-encoders-encoders-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "7e25e7ccc04ee64a62d691d92da93a21a6ee559c5ad569989df78ede7f384b98",
+      "record_version": "source-7e25e7ccc04ee64a62d691d92da93a21a6ee559c5ad569989df78ede7f384b98"
+    }
+  ]
+}

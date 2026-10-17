@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-multibody-pendulum-passive-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "d4850d7a10a51da3c862a7bdd56b69293336c87e608fbec042aaa8427e151476",
+      "record_version": "source-d4850d7a10a51da3c862a7bdd56b69293336c87e608fbec042aaa8427e151476"
+    },
+    {
+      "id": "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-330d5dc33df6",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "8d7e4ca9e6f4c1ec11e7fc7a0bb77eadd06806c534396814ca781ae950a2480a",
+      "record_version": "source-8d7e4ca9e6f4c1ec11e7fc7a0bb77eadd06806c534396814ca781ae950a2480a"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-lighthouse-multi-bs-geometry-estimation-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "00293e5f7c3bd61240481c9fba839dd6419108e14bb6bd4df111209f2a5395ac",
+      "record_version": "source-00293e5f7c3bd61240481c9fba839dd6419108e14bb6bd4df111209f2a5395ac"
+    },
+    {
+      "id": "moveit2-doc-how-to-guides-pilz-industrial-motion-planner-src-pilz-move-group-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "500f6435cad7de2245bc0dd9f2619e8614ee388907ae5e05513ac06f942c8bfa",
+      "record_version": "source-500f6435cad7de2245bc0dd9f2619e8614ee388907ae5e05513ac06f942c8bfa"
+    },
+    {
+      "id": "ompl-demos-rigidbodyplanningwithik-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "c3643070df4df73c939309037fcd2562d250ba4b0bbb8d36510c0b475423491d",
+      "record_version": "source-c3643070df4df73c939309037fcd2562d250ba4b0bbb8d36510c0b475423491d"
+    },
+    {
+      "id": "pinocchio-examples-cppad-autodiff-rnea-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "5cb3fca8a787189d682811c3fc260e815a0ff48295e57aaeceb7fca79b4a5258",
+      "record_version": "source-5cb3fca8a787189d682811c3fc260e815a0ff48295e57aaeceb7fca79b4a5258"
+    },
+    {
+      "id": "webots-projects-robots-robotis-turtlebot-controllers-turtlebot3-ost-9fc9d0d19902",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "cf39efbc615dbd64c8e26e77c1ba8163155d10d94e6a8b9ffe30cd3a28bb01d1",
+      "record_version": "source-cf39efbc615dbd64c8e26e77c1ba8163155d10d94e6a8b9ffe30cd3a28bb01d1"
+    }
+  ]
+}

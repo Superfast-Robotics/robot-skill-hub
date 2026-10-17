@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-crane-crane-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "414e0b2450e5438fcf05e9e845cdcff66f1a2d09b4f0cc4e01c761e9abe35b34",
+      "record_version": "source-414e0b2450e5438fcf05e9e845cdcff66f1a2d09b4f0cc4e01c761e9abe35b34"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-sample-supervisor-sampl-366e1fa62e2a",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5ea2f1c340d3eadfc037b9d8ea28990efcfcec5f6b97530f9e7df252e483d454",
+      "record_version": "source-5ea2f1c340d3eadfc037b9d8ea28990efcfcec5f6b97530f9e7df252e483d454"
+    }
+  ]
+}

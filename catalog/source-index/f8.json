@@ -1,0 +1,47 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-planar-gripper-run-planar-gripper-trajectory-publisher-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "f72f2836dcf5015cb6a8eb7f3eabb794f52eea42ff75d588be09da68573bc062",
+      "record_version": "source-f72f2836dcf5015cb6a8eb7f3eabb794f52eea42ff75d588be09da68573bc062"
+    },
+    {
+      "id": "moveit2-doc-examples-visualizing-collisions-src-visualizing-collisi-838b72c434fb",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "04a28418d0cd46a5fe810fae56ed351316dd3bf0e8ed2704fde420107b670bc6",
+      "record_version": "source-04a28418d0cd46a5fe810fae56ed351316dd3bf0e8ed2704fde420107b670bc6"
+    },
+    {
+      "id": "pinocchio-examples-geometry-models-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "1fb65c705dd8b0d92263b76e51fc4b91d9d3336575207975f96da5f7299076ca",
+      "record_version": "source-1fb65c705dd8b0d92263b76e51fc4b91d9d3336575207975f96da5f7299076ca"
+    },
+    {
+      "id": "ros2-control-example-9-bringup-launch-rrbot-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "a4c759de1177fa1e33f131b922bae33a96d124c01869f24f01ad1647658cddd2",
+      "record_version": "source-a4c759de1177fa1e33f131b922bae33a96d124c01869f24f01ad1647658cddd2"
+    },
+    {
+      "id": "webots-projects-robots-lego-mindstorms-controllers-rover-rover-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f1b8c7d12d34f4371a5538a273d7eee91c2f28c010b7b685497ef7de1596255d",
+      "record_version": "source-f1b8c7d12d34f4371a5538a273d7eee91c2f28c010b7b685497ef7de1596255d"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-linear-motor-linear-motor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c8fe0557ee626a45e6ba5ff4c9cb5fd75c9107eda52ec7246219446f0e19abe0",
+      "record_version": "source-c8fe0557ee626a45e6ba5ff4c9cb5fd75c9107eda52ec7246219446f0e19abe0"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-range-finder-range-finder-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "3c8a6840ec29d63bb1bea716e2789b5047394daabe1bb2cbbb65d27035126dc3",
+      "record_version": "source-3c8a6840ec29d63bb1bea716e2789b5047394daabe1bb2cbbb65d27035126dc3"
+    }
+  ]
+}

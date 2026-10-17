@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-so100-to-so100-ee-replay-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "b4353185a8233ab039816d179e284d82023e600604aa1f5a3b4771d7d33dff06",
+      "record_version": "source-b4353185a8233ab039816d179e284d82023e600604aa1f5a3b4771d7d33dff06"
+    },
+    {
+      "id": "moveit2-doc-tutorials-planning-around-objects-hello-moveit-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "db87875ab4050d9f6b007538503d1233eef79660cdf85b03b6994adc0489f2c8",
+      "record_version": "source-db87875ab4050d9f6b007538503d1233eef79660cdf85b03b6994adc0489f2c8"
+    },
+    {
+      "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3dx-grippe-c448e71c182b",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "006343e5f3f4567cd3d2f83324b0df676740f67afaae8800646b370eb1ece0d8",
+      "record_version": "source-006343e5f3f4567cd3d2f83324b0df676740f67afaae8800646b370eb1ece0d8"
+    }
+  ]
+}

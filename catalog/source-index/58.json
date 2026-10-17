@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-run-passive-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3c86d35a5c5a552f2e45dd6cadca23aa1384aad13987d81e84874ba5a09e82d2",
+      "record_version": "source-3c86d35a5c5a552f2e45dd6cadca23aa1384aad13987d81e84874ba5a09e82d2"
+    },
+    {
+      "id": "drake-examples-hydroelastic-python-ball-paddle-contact-sim-demo-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "7bf226253ed767ca63ecb4584936c87380768d32d2b9979d37de5cb036ad8286",
+      "record_version": "source-7bf226253ed767ca63ecb4584936c87380768d32d2b9979d37de5cb036ad8286"
+    },
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-through-poses-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "53b56acb65bd9be8bd96c393480907d1c4d024bbed46d6f4274bc15ae63c7897",
+      "record_version": "source-53b56acb65bd9be8bd96c393480907d1c4d024bbed46d6f4274bc15ae63c7897"
+    },
+    {
+      "id": "ros2-control-example-4-bringup-launch-rrbot-system-with-sensor-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "16210ab458fc094486b4256a962673ae32c5e3b86b233a927a1f4c36f765bf31",
+      "record_version": "source-16210ab458fc094486b4256a962673ae32c5e3b86b233a927a1f4c36f765bf31"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-spherical-camera-spherical-camera-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "39dda21674fcbdd139fbe4b6f46f151268522c4f49a162d71f3fbd38c8117766",
+      "record_version": "source-39dda21674fcbdd139fbe4b6f46f151268522c4f49a162d71f3fbd38c8117766"
+    }
+  ]
+}

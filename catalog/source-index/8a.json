@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "roboticstoolbox-examples-fetch-vision-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "9e9a834a368bbc55e8f524506d4840e2ec0b14f1d7697ef897c28cd57dd3a3c3",
+      "record_version": "source-9e9a834a368bbc55e8f524506d4840e2ec0b14f1d7697ef897c28cd57dd3a3c3"
+    }
+  ]
+}

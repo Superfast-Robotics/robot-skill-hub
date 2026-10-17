@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pyrobosim-pyrobosim-examples-demo-world-save-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "0e8f7880eb47b836b39b1c918d912b28bdc03f0dec23256b182862d0c42dfe0b",
+      "record_version": "source-0e8f7880eb47b836b39b1c918d912b28bdc03f0dec23256b182862d0c42dfe0b"
+    },
+    {
+      "id": "webots-projects-robots-epson-scara-t6-controllers-scara-scara-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "b4e699e32a1854aeec2e1ee1f4409ec56f526bcbcd46e6c04a34986d6979f42d",
+      "record_version": "source-b4e699e32a1854aeec2e1ee1f4409ec56f526bcbcd46e6c04a34986d6979f42d"
+    },
+    {
+      "id": "webots-projects-robots-pal-robotics-tiagopp-controllers-tiago-tiago-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "4d77b6554a5561e9caaf8807607af96c805553da6a273ddf6880d6c70e2d4aa9",
+      "record_version": "source-4d77b6554a5561e9caaf8807607af96c805553da6a273ddf6880d6c70e2d4aa9"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-lidar-lidar-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "4854a91114acf862bf21be79ed3cc637359ea51db8b3647115198651874c275c",
+      "record_version": "source-4854a91114acf862bf21be79ed3cc637359ea51db8b3647115198651874c275c"
+    }
+  ]
+}

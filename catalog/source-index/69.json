@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-how-to-guides-parallel-planning-src-parallel-planning-main-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14",
+      "record_version": "source-e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14"
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-3d-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",
+      "record_version": "source-1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-accelerometer-accelerometer-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "dfa608d1d914b6b16afb3ab41c9fe0e7a5cf92f3f4e119e88feba3bf0cf12979",
+      "record_version": "source-dfa608d1d914b6b16afb3ab41c9fe0e7a5cf92f3f4e119e88feba3bf0cf12979"
+    }
+  ]
+}

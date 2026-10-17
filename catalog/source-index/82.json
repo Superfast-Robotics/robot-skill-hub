@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-03-envs-create-cube-base-env-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "62761fd6d3f942bde2f8b334ece9aebc8d6fcb77e13d92ac12b39e7bd3cb117f",
+      "record_version": "source-62761fd6d3f942bde2f8b334ece9aebc8d6fcb77e13d92ac12b39e7bd3cb117f"
+    },
+    {
+      "id": "ompl-demos-rigidbodyplanningwithodesolverandcontrols-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "59e54d2b890710c7dd13e565903d77514f6ddf0f29453ffed5907b15eddf2518",
+      "record_version": "source-59e54d2b890710c7dd13e565903d77514f6ddf0f29453ffed5907b15eddf2518"
+    },
+    {
+      "id": "pinocchio-examples-reachable-workspace-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "cc5951773ddd85b89426799d1c4e065daac11c8a662c45edeb2701f795d9e210",
+      "record_version": "source-cc5951773ddd85b89426799d1c4e065daac11c8a662c45edeb2701f795d9e210"
+    },
+    {
+      "id": "ros2-examples-rclpy-topics-pointcloud-publisher-examples-rclpy-poin-77f3f0d4e115",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c",
+      "record_version": "source-d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-coupled-motors-coupled-motors-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c2697adbb8a7356b7b0e3f2120062480b3f95dd61cec6ecedf295d2122e08983",
+      "record_version": "source-c2697adbb8a7356b7b0e3f2120062480b3f95dd61cec6ecedf295d2122e08983"
+    }
+  ]
+}

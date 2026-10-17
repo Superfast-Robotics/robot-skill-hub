@@ -6,6 +6,17 @@ Hub installation, discovery and task-memory operations need no GPU, simulator or
 
 Machine entry: https://hub.superfastrobotics.com/agent.json
 
+## Read without installation
+
+Public search and inspection need no token:
+
+```sh
+curl "https://api.superfastrobotics.com/v1/search?q=navigation&limit=3"
+curl "https://api.superfastrobotics.com/v1/skills/SKILL_ID"
+```
+
+For a configured Streamable HTTP MCP client, use `https://api.superfastrobotics.com/mcp`. Its three tools only discover and inspect data. See [OpenAPI](openapi.json) for HTTP filters and pagination. Preserve the returned `hub_commit` while following `next`.
+
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
 python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
@@ -59,3 +70,9 @@ Do not run extra experiments to produce findings, save private project material,
 - Published findings: https://hub.superfastrobotics.com/catalog/v1/memories.json
 - Publication proof: https://hub.superfastrobotics.com/catalog/v1/publication.json
 - Full text: https://hub.superfastrobotics.com/llms-full.txt
+
+## Register a new source
+
+Use `rsh.py register SKILL_JSON --project DIR --json`. The source record can describe code, a policy, a model or another robotics artifact without a Python adapter. Exact source checksums, license and authorship remain required. Read [new-skill registration](new-skills.md) for the schema and the separate exact project sharing scope. A successful API submission is an internal draft PR; publication requires maintainer review and proof.
+
+Online discovery can send an optional random installation ID for aggregate access measurements. Set `RSH_TELEMETRY=off` to opt out; offline use is unchanged. [Privacy](privacy.md).

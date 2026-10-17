@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ompl-demos-rigidbodyplanning-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "d50471be3b859c1fb0707bfd4a735486e946743e25825af4d72e3421321e9e53",
+      "record_version": "source-d50471be3b859c1fb0707bfd4a735486e946743e25825af4d72e3421321e9e53"
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "2369f306f4b838693eefcbbcef6dd02e9cab6ad725e33969b06648db3349ceb8",
+      "record_version": "source-2369f306f4b838693eefcbbcef6dd02e9cab6ad725e33969b06648db3349ceb8"
+    }
+  ]
+}

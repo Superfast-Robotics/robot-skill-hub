@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-segmentation-cam-5b8f99a1218d",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "36cf713d7917aac7a5eadfbaec27a51d05d5b22ff27375988e1dff579792138f",
+      "record_version": "source-36cf713d7917aac7a5eadfbaec27a51d05d5b22ff27375988e1dff579792138f"
+    }
+  ]
+}

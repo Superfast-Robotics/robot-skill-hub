@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-cubic-polynomial-region-of-attraction-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3431cf4e34af6d7c326192c6cab92711a0897243a27d7f1d674db8929dca9d9c",
+      "record_version": "source-3431cf4e34af6d7c326192c6cab92711a0897243a27d7f1d674db8929dca9d9c"
+    },
+    {
+      "id": "ompl-demos-hypercubebenchmark-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "f3fc8aec931c62ce8dda8c9d1326f7ac5e213e53a3cb6390601a595f749cc956",
+      "record_version": "source-f3fc8aec931c62ce8dda8c9d1326f7ac5e213e53a3cb6390601a595f749cc956"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-position-sensor-position-sensor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "510071e845bbe1186c835306e7627fa5f435d219ca6ba182491cc517f62dbc65",
+      "record_version": "source-510071e845bbe1186c835306e7627fa5f435d219ca6ba182491cc517f62dbc65"
+    }
+  ]
+}

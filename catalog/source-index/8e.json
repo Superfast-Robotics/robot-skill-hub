@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-control-example-15-bringup-launch-rrbot-base-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "92a557a65a755c50a60989ff0b7879aaa4a5f4df857e586f730b126ff7c4f308",
+      "record_version": "source-92a557a65a755c50a60989ff0b7879aaa4a5f4df857e586f730b126ff7c4f308"
+    }
+  ]
+}

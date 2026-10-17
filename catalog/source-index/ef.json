@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-kinematics-derivatives-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "20c97df2e4b137c062315d627173e3731aa808b717b7e3e86635955ebaded7f5",
+      "record_version": "source-20c97df2e4b137c062315d627173e3731aa808b717b7e3e86635955ebaded7f5"
+    },
+    {
+      "id": "pybullet-collisionfilter",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "7b7f881a26b5180db0526502ca5342ca04b9c36267b8f641c0b0396005d79ed9",
+      "record_version": "source-7b7f881a26b5180db0526502ca5342ca04b9c36267b8f641c0b0396005d79ed9"
+    },
+    {
+      "id": "roboticstoolbox-examples-rrmc-swift-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "e162bd596f22205de60fded6a1b4739a89621514f321de3efc6250db84c0d3a7",
+      "record_version": "source-e162bd596f22205de60fded6a1b4739a89621514f321de3efc6250db84c0d3a7"
+    }
+  ]
+}

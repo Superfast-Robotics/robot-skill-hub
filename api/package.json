@@ -1,6 +1,6 @@
 {
   "name": "robot-skill-hub-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
     "@types/node": "^24.0.0",
     "esbuild": "0.28.2",
     "miniflare": "5.20261012.1-beta",

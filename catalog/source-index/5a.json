@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-mobsya-thymio-controllers-thymio2-demo-thymio2-demo-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "8f7e5d7ab4f91d08d13078e8d9d5cafa7abfddff49252fb321330611606d0ece",
+      "record_version": "source-8f7e5d7ab4f91d08d13078e8d9d5cafa7abfddff49252fb321330611606d0ece"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-battery-battery-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "81648ea6f13b281458297f8fc24ea7a90b4c8c2cd468e61c6767d12f0c9022ac",
+      "record_version": "source-81648ea6f13b281458297f8fc24ea7a90b4c8c2cd468e61c6767d12f0c9022ac"
+    }
+  ]
+}

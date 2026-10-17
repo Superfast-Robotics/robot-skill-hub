@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-kuka-iiwa-arm-move-iiwa-ee-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "803878166aee0c35e618f7feb0ed4e95e295df39a1881887176dcd75bc8a19ec",
+      "record_version": "source-803878166aee0c35e618f7feb0ed4e95e295df39a1881887176dcd75bc8a19ec"
+    },
+    {
+      "id": "drake-examples-multibody-four-bar-four-bar-auto-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "c44293935199fb3abb8fa119e5f88925999063cabe1a381f4ab13876df816973",
+      "record_version": "source-c44293935199fb3abb8fa119e5f88925999063cabe1a381f4ab13876df816973"
+    },
+    {
+      "id": "lerobot-examples-isaac-teleop-to-so101-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "b6bf6afa1c76b6abd844070ed32a0891986edc495730786b01f259b07f282640",
+      "record_version": "source-b6bf6afa1c76b6abd844070ed32a0891986edc495730786b01f259b07f282640"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",
+      "record_version": "source-8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f"
+    },
+    {
+      "id": "pinocchio-examples-meshcat-viewer-dae-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "5145ead105ebed97b41e1df96750a4ae5dc3d373f538590f7969881490899278",
+      "record_version": "source-5145ead105ebed97b41e1df96750a4ae5dc3d373f538590f7969881490899278"
+    },
+    {
+      "id": "pybullet-contactfriction",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "46e104d83310a2fb72847ac05d60c905094292ac83f8bfd16d8189cad921ba59",
+      "record_version": "source-46e104d83310a2fb72847ac05d60c905094292ac83f8bfd16d8189cad921ba59"
+    }
+  ]
+}

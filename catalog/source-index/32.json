@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-follow-path-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "a0ca1de9f0d6f2eb8ffd73e2c73cc3cd71ccfc769cd571f503c38ef196baa4b1",
+      "record_version": "source-a0ca1de9f0d6f2eb8ffd73e2c73cc3cd71ccfc769cd571f503c38ef196baa4b1"
+    },
+    {
+      "id": "pybullet-hello-pybullet",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d",
+      "record_version": "source-7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d"
+    },
+    {
+      "id": "webots-projects-robots-sony-aibo-controllers-ers7-mimic-ers7-mimic-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "50646ea2a16417b55b1f746bbee7c77e0b27150137522d6d54e4ec3095269c3f",
+      "record_version": "source-50646ea2a16417b55b1f746bbee7c77e0b27150137522d6d54e4ec3095269c3f"
+    }
+  ]
+}

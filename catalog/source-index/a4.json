@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pybullet-pointcloudfromcameraimage",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "6391077f0e1e8290a9f231efa68b84c0831561b3333feab9ddd09d1f87391d16",
+      "record_version": "source-6391077f0e1e8290a9f231efa68b84c0831561b3333feab9ddd09d1f87391d16"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-speaker-text-to-speech-42a07defe74a",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "3ec5db25e22889f4a440c1cf0493648e3bd59e72fa21ca273abae4e992cef8c7",
+      "record_version": "source-3ec5db25e22889f4a440c1cf0493648e3bd59e72fa21ca273abae4e992cef8c7"
+    }
+  ]
+}

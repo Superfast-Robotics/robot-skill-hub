@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-rviz-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "e75a07c576ebe515f6e50ec6bee2364058cf386d4c0eb7d24bbb38e1666ee8f5",
+      "record_version": "source-e75a07c576ebe515f6e50ec6bee2364058cf386d4c0eb7d24bbb38e1666ee8f5"
+    }
+  ]
+}

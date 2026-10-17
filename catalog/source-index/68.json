@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-radar-radar-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e366ad5db22f62322b3d26e378b1f084a793e49ea44472e01aaaa1673017bacc",
+      "record_version": "source-e366ad5db22f62322b3d26e378b1f084a793e49ea44472e01aaaa1673017bacc"
+    }
+  ]
+}

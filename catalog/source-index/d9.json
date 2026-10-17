@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-run-plant-w-lcm-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "7deac6eea88eb78ee7cae079ab8de112da08389210b9bdc5099c81780117d5cd",
+      "record_version": "source-7deac6eea88eb78ee7cae079ab8de112da08389210b9bdc5099c81780117d5cd"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-00-sim-create-empty-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "5e758f02eeccd8b8a77bccab15c3734253b43f4349f58c3fe7bc5366d8f8e88c",
+      "record_version": "source-5e758f02eeccd8b8a77bccab15c3734253b43f4349f58c3fe7bc5366d8f8e88c"
+    },
+    {
+      "id": "ompl-demos-ltlwithtriangulation-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "26b0e36faa2a35bff0e93fd13e030fdc6569f299f453ce1a0a95eaf9425691e7",
+      "record_version": "source-26b0e36faa2a35bff0e93fd13e030fdc6569f299f453ce1a0a95eaf9425691e7"
+    },
+    {
+      "id": "pinocchio-examples-inverse-dynamics-derivatives-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "5be3b1ff2198ed4a38d87973e79e4577d4313540d6d5fb978f91d57d6428f113",
+      "record_version": "source-5be3b1ff2198ed4a38d87973e79e4577d4313540d6d5fb978f91d57d6428f113"
+    }
+  ]
+}

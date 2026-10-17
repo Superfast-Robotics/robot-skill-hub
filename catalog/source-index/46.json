@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-pendulum-lqr-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "e89c8839505247bef46e984453404790411bb1916b12157a7148988b88ef5f86",
+      "record_version": "source-e89c8839505247bef46e984453404790411bb1916b12157a7148988b88ef5f86"
+    },
+    {
+      "id": "lerobot-examples-dataset-use-dataset-tools-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "9c5b3babc4aaa1b5243725c98a0177d4ef38b82b2fc14bf9290c6911b0c99d2a",
+      "record_version": "source-9c5b3babc4aaa1b5243725c98a0177d4ef38b82b2fc14bf9290c6911b0c99d2a"
+    },
+    {
+      "id": "webots-projects-robots-robotis-darwin-op-controllers-walk-main-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a3ba68e4f4f667dc42675a2600931e3a4a156efd8aa2daf3fb46f6d5562c961e",
+      "record_version": "source-a3ba68e4f4f667dc42675a2600931e3a4a156efd8aa2daf3fb46f6d5562c961e"
+    }
+  ]
+}

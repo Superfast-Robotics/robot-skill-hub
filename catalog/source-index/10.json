@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-conveyor-belt-conveyor-belt-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "62394dcab311e535bea5b97e43360c5e102f91125ff0a30f8d4739dde2ace7c8",
+      "record_version": "source-62394dcab311e535bea5b97e43360c5e102f91125ff0a30f8d4739dde2ace7c8"
+    }
+  ]
+}

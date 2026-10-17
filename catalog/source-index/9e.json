@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-recognition-came-35025fbc2580",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "82e7ed90d705242738db7b90cf7991026685da5897fcbdcdb26ad79269763ccd",
+      "record_version": "source-82e7ed90d705242738db7b90cf7991026685da5897fcbdcdb26ad79269763ccd"
+    }
+  ]
+}

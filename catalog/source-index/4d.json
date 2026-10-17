@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-multi-mesh-raycaster-camera-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "adfa7599b9afca3fc0e4b1df699d6953ff401e0372894e4a91a014ffd3f5cdf9",
+      "record_version": "source-adfa7599b9afca3fc0e4b1df699d6953ff401e0372894e4a91a014ffd3f5cdf9"
+    },
+    {
+      "id": "pinocchio-examples-casadi-casadi-rnea-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "17f08ff20afa24c92e61f7864fe8f22f0a57aab733b20be88115457f4e965f95",
+      "record_version": "source-17f08ff20afa24c92e61f7864fe8f22f0a57aab733b20be88115457f4e965f95"
+    },
+    {
+      "id": "pinocchio-examples-g1-constraint-simulation-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "a741d50214a1f89c44bf07b4e64bdf4521e64ca929bebe72ed4e5322cf529e55",
+      "record_version": "source-a741d50214a1f89c44bf07b4e64bdf4521e64ca929bebe72ed4e5322cf529e55"
+    },
+    {
+      "id": "pinocchio-examples-simulation-contact-dynamics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "dbd02ea3f7ad42459410898a27ce4bf8d651638f2924a81edd8f6d95350cfc0d",
+      "record_version": "source-dbd02ea3f7ad42459410898a27ce4bf8d651638f2924a81edd8f6d95350cfc0d"
+    }
+  ]
+}

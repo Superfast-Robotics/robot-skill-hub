@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-kinova-jaco-arm-move-jaco-ee-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a86f23ef00012b8b33abf05991a6be28c16de6509ef8099b90606f4fee6baae6",
+      "record_version": "source-a86f23ef00012b8b33abf05991a6be28c16de6509ef8099b90606f4fee6baae6"
+    },
+    {
+      "id": "mujoco-testspeed",
+      "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+      "source_sha256": "47402cbcc448e93e3b218e74084ad0c91a90a19780e4eaa113b634fc44bdf8b1",
+      "record_version": "source-47402cbcc448e93e3b218e74084ad0c91a90a19780e4eaa113b634fc44bdf8b1"
+    },
+    {
+      "id": "ompl-demos-multilevel-multilevelplanninghypercubebenchmark-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "042e40b420a1435aa7019dceed9a5ef4b102b1e7981cd72033db64e24d1ed17a",
+      "record_version": "source-042e40b420a1435aa7019dceed9a5ef4b102b1e7981cd72033db64e24d1ed17a"
+    },
+    {
+      "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-036c51922260",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "1baa2292abd5c44e33aa734351a7e6ec5b220eb6bb308b2097c8511e3b734c94",
+      "record_version": "source-1baa2292abd5c44e33aa734351a7e6ec5b220eb6bb308b2097c8511e3b734c94"
+    },
+    {
+      "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-3803ccd83aa4",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "446aa5a250c919ae6a82da763e127c13ae67e5b2e997c631f84bf97ab348bc76",
+      "record_version": "source-446aa5a250c919ae6a82da763e127c13ae67e5b2e997c631f84bf97ab348bc76"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-distance-sensor-distance-sensor-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "00a56f968b357d4eac7c09ad552db710dcfb037dd3cae417d630ab47612546b9",
+      "record_version": "source-00a56f968b357d4eac7c09ad552db710dcfb037dd3cae417d630ab47612546b9"
+    }
+  ]
+}

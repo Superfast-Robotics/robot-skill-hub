@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "moveit2-doc-examples-creating-moveit-plugins-lerp-motion-planner-sr-b32424adc072",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "43d1f5d5690cf31c68b053efa3860f60721ce631fa410ec31f39c2e0e7c0b9b5",
+      "record_version": "source-43d1f5d5690cf31c68b053efa3860f60721ce631fa410ec31f39c2e0e7c0b9b5"
+    },
+    {
+      "id": "ompl-demos-plannerdata-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "d9c179de8a994c0cf657d90159dac6aabdfdb2a9a694c63631376b914d0b461f",
+      "record_version": "source-d9c179de8a994c0cf657d90159dac6aabdfdb2a9a694c63631376b914d0b461f"
+    },
+    {
+      "id": "pinocchio-examples-display-shapes-meshcat-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "df81c2b433060f83bb2a5fe9c587b78bab8efbe680ab00b2f00ed2e607b5659f",
+      "record_version": "source-df81c2b433060f83bb2a5fe9c587b78bab8efbe680ab00b2f00ed2e607b5659f"
+    },
+    {
+      "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-callback-group-py",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "fada9526a884c3ebd4546a1526442f1a056f0476bc73af42872deedb4f5c4ea3",
+      "record_version": "source-fada9526a884c3ebd4546a1526442f1a056f0476bc73af42872deedb4f5c4ea3"
+    },
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-two-wheels-a8c96f9f52de",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2ea67bd0cabb2caf28597ef51cf452df32934497d1ad82b4408f3bb8703a278c",
+      "record_version": "source-2ea67bd0cabb2caf28597ef51cf452df32934497d1ad82b4408f3bb8703a278c"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-lidar-lidar-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "ad35ebe56edcb01855c5ed876ef1b9225cae10b609dd7af91094ce3e7ebeea08",
+      "record_version": "source-ad35ebe56edcb01855c5ed876ef1b9225cae10b609dd7af91094ce3e7ebeea08"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-step-by-step-sbs-swarm-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
+      "record_version": "source-3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2"
+    }
+  ]
+}

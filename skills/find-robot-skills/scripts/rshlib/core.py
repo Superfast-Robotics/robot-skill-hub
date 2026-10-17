@@ -13,6 +13,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parents[2]
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
+SOURCE_REVISION = re.compile(r"^(?:[0-9a-f]{40}|sha256:[0-9a-f]{64})$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 IDENTIFIER = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -186,9 +187,9 @@ def selection_base(catalog, record, *, reference=False):
     else:
         version = record.get("maintenance", {}).get("record_version")
     hub = catalog.get("hub_commit")
-    commit = source.get("commit")
+    commit = source.get("commit") or (source.get("revision") if reference else None)
     if (not isinstance(version, str) or not 1 <= len(version) <= 120
-            or not COMMIT.fullmatch(str(hub or "")) or not COMMIT.fullmatch(str(commit or ""))):
+            or not COMMIT.fullmatch(str(hub or "")) or not (SOURCE_REVISION if reference else COMMIT).fullmatch(str(commit or ""))):
         return None
     return {"record_version": version, "hub_commit": hub, "source_commit": commit}
 
@@ -224,20 +225,20 @@ def find(catalog, query, environment, limit=3):
         if runtime not in ("", "unknown", framework):
             continue
         if (not IDENTIFIER.fullmatch(str(record.get("id", ""))) or not isinstance(record.get("source"), dict)
-                or not COMMIT.fullmatch(str(record["source"].get("commit", "")))):
+                or not SOURCE_REVISION.fullmatch(str(record["source"].get("commit") or record["source"].get("revision", "")))):
             continue
         words = " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
-                          framework, *record.get("capabilities", [])]).lower()
+                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", [])]).lower()
         score = sum(token in words for token in tokens)
         if tokens and score == 0:
             continue
         results.append({"id": record["id"], "name": record.get("name", record["id"]),
                         "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,
                         "next_action": "open_source_reference", "source_url": record["source"].get("url"),
-                        "source_commit": record["source"]["commit"], "framework": framework,
+                        "source_commit": record["source"].get("commit") or record["source"].get("revision"), "framework": framework,
                         "memory_base": selection_base(catalog, record, reference=True),
                         "compatibility_status": "unknown", "missing_requirements": ["upstream_environment_review"],
-                        "match_reason": ["Pinned official source example; no Hub preparation adapter or environment compatibility claim."],
+                        "match_reason": ["Pinned upstream source reference; no Hub preparation adapter or environment compatibility claim."],
                         "evidence_level": record.get("evidence", {}).get("level", "source_reviewed"), "_score": score})
     results.sort(key=lambda item: (-item["_score"], not item["hub_prepare"], item["id"]))
     for item in results:

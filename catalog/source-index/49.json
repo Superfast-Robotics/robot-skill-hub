@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ompl-demos-thunderlightning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6",
+      "record_version": "source-4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6"
+    }
+  ]
+}

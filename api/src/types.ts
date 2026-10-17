@@ -1,5 +1,7 @@
+import type { MetricsEnv } from './metrics.ts';
+
 export type JsonObject = Record<string, any>;
-export interface Env {
+export interface Env extends MetricsEnv {
   GITHUB_TOKEN?: string;
   SUBMISSION_TOKENS_JSON?: string;
   PUBLICATION_URL: string;
@@ -102,6 +104,8 @@ export class ApiError extends Error {
 }
 export const SID = /^sub_[a-f0-9]{64}$/;
 export const SHA = /^[a-f0-9]{40}$/;
+// source_commit is a legacy wire name; source references may carry a content revision.
+export const SOURCE_REVISION = /^(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})$/;
 export const MID = /^mem_[a-f0-9]{64}$/;
 export const receiptPath = (id: string) => `.hub/submissions/${id}.json`;
 export const branchName = (id: string) => `submissions/${id}`;

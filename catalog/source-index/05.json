@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-compass-gait-simulate-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "ed22714ef610d33877bd6b567ebae9aaf91d9169be828981b4aeb8a8da6759b6",
+      "record_version": "source-ed22714ef610d33877bd6b567ebae9aaf91d9169be828981b4aeb8a8da6759b6"
+    },
+    {
+      "id": "ompl-demos-randomwalkplanner-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "0df5ce2157add4dc7f83cfa3c6112847c02c9f68080e5e2ec4cfc0e3860b0265",
+      "record_version": "source-0df5ce2157add4dc7f83cfa3c6112847c02c9f68080e5e2ec4cfc0e3860b0265"
+    },
+    {
+      "id": "pyrobosim-pyrobosim-ros-examples-demo-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "fda02770332cfa82dbd88d7d7e4ece0f961c910565270581da0351a2a684f90b",
+      "record_version": "source-fda02770332cfa82dbd88d7d7e4ece0f961c910565270581da0351a2a684f90b"
+    },
+    {
+      "id": "robosuite-demo-device-control",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "9085aa5dcc0119a13b8b1f4c49632a14201519d669cdeed3231656519b68e4cc",
+      "record_version": "source-9085aa5dcc0119a13b8b1f4c49632a14201519d669cdeed3231656519b68e4cc"
+    }
+  ]
+}

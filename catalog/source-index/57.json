@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-gctronic-e-puck-controllers-e-puck-avoid-obs-d98b529a1c3c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5618ec6d0a9a1185bbad1f2b485dffee311656ea5e288b339c7b032075b32a1f",
+      "record_version": "source-5618ec6d0a9a1185bbad1f2b485dffee311656ea5e288b339c7b032075b32a1f"
+    },
+    {
+      "id": "webots-projects-robots-parallax-boebot-controllers-boebot-boebot-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "747a82add032822a4f01e79cb2a0b0ecac43f0fa4bdec87ef5c78b5d381f13cd",
+      "record_version": "source-747a82add032822a4f01e79cb2a0b0ecac43f0fa4bdec87ef5c78b5d381f13cd"
+    }
+  ]
+}

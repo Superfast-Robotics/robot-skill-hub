@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-allegro-hand-joint-control-run-twisting-mug-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3d09dcac8ae38cc59234f5d7949a6c9c4ebdf29e83e5e10ab42e6ea2dd30e7d2",
+      "record_version": "source-3d09dcac8ae38cc59234f5d7949a6c9c4ebdf29e83e5e10ab42e6ea2dd30e7d2"
+    }
+  ]
+}

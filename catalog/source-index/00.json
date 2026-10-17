@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-logging-basiclog-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "a9c12faaf360ca7a5580c9b9ff53f9c1c3202c93fe4e6af8fbfb2ce0f7b243fb",
+      "record_version": "source-a9c12faaf360ca7a5580c9b9ff53f9c1c3202c93fe4e6af8fbfb2ce0f7b243fb"
+    },
+    {
+      "id": "ros2-control-example-15-bringup-launch-multi-controller-manager-exa-773f065ca4cd",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "49b6a0a7dc6950b8a3bb50382a5943e071eaa2a10c7d0e74e615c6d5538fa1f2",
+      "record_version": "source-49b6a0a7dc6950b8a3bb50382a5943e071eaa2a10c7d0e74e615c6d5538fa1f2"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-auto-focus-camer-d0f44d0addcd",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "20819b3d81199c46ef325f26735192dd4918e175ea4a5ba65a44228d0fa5bf86",
+      "record_version": "source-20819b3d81199c46ef325f26735192dd4918e175ea4a5ba65a44228d0fa5bf86"
+    }
+  ]
+}

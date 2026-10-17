@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-bitcraze-crazyflie-controllers-crazyflie-crazyflie-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c783f665fe8929a32fa1031fc0520f34dc00abaa5176efc6076551f9acf13a4d",
+      "record_version": "source-c783f665fe8929a32fa1031fc0520f34dc00abaa5176efc6076551f9acf13a4d"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-sick-sick-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e581ac51922a9bb8084d955c9191c2edffc95fb57bb45b5252f9ef15ac789e27",
+      "record_version": "source-e581ac51922a9bb8084d955c9191c2edffc95fb57bb45b5252f9ef15ac789e27"
+    }
+  ]
+}

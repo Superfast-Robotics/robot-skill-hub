@@ -10,6 +10,14 @@ export function canonical(value: any): string {
   if (value !== null && typeof value === 'object') return '{' + Object.keys(value).sort().map(k => JSON.stringify(k) + ':' + canonical(value[k])).join(',') + '}';
   return JSON.stringify(value);
 }
+export function rejectSubmissionSecrets(value: unknown, activeToken?: string): void {
+  const content = JSON.stringify(value);
+  const patterns = [/-----BEGIN (?:[A-Z ]*PRIVATE KEY)-----/, /\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})\b/,
+    /\bsk-[A-Za-z0-9_-]{24,}\b/, /\bAKIA[A-Z0-9]{16}\b/, /\brsh_[A-Za-z0-9_-]{43}\b/,
+    /\bBearer\s+[A-Za-z0-9._~+/-]{16,}=*/i, /https?:\/\/[^\s/@:]+:[^\s/@]+@/i];
+  assert(!patterns.some(pattern => pattern.test(content)) && (!activeToken || !content.includes(activeToken)),
+    'sensitive_submission', 'Remove recognizable credentials from the deliberately supplied public data.');
+}
 export function toBase64(value: string): string {
   return btoa(Array.from(new TextEncoder().encode(value), b => String.fromCharCode(b)).join(''));
 }

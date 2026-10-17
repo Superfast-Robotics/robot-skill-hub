@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-model-configuration-converter-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "9574a15f124c5b1117e5671e54578aea13345b59a863e2503c6e83f176f3a31e",
+      "record_version": "source-9574a15f124c5b1117e5671e54578aea13345b59a863e2503c6e83f176f3a31e"
+    }
+  ]
+}

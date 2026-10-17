@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-collisions-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "387076513788347deeb1b520e02400c13a4a2b3c6600fa8cd61cf4a232035de8",
+      "record_version": "source-387076513788347deeb1b520e02400c13a4a2b3c6600fa8cd61cf4a232035de8"
+    },
+    {
+      "id": "roboticstoolbox-examples-ikine-evaluate-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "4645193d208ad9016182d64f9acee0621af79dbb8fbd4fbfaa04732ddad0bd6d",
+      "record_version": "source-4645193d208ad9016182d64f9acee0621af79dbb8fbd4fbfaa04732ddad0bd6d"
+    },
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-four-wheel-695f3c8c91a1",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2111df6487eb90a10a566c15592a3c205cf5f8c6528b6b0ba675b2629096bcc9",
+      "record_version": "source-2111df6487eb90a10a566c15592a3c205cf5f8c6528b6b0ba675b2629096bcc9"
+    },
+    {
+      "id": "webots-projects-robots-softbank-nao-controllers-nao-demo-python-nao-4a8659feed68",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "1bade660b2dd54710817e6b4b90c71cf1a83b14d1847e57026fe907f492cdeb6",
+      "record_version": "source-1bade660b2dd54710817e6b4b90c71cf1a83b14d1847e57026fe907f492cdeb6"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-sick-point-cloud-sick-point-cloud-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "dfc5609c716980483aa0eecd6cc45a9f3c47944562c38bd37ad2a89fb0d60d9b",
+      "record_version": "source-dfc5609c716980483aa0eecd6cc45a9f3c47944562c38bd37ad2a89fb0d60d9b"
+    }
+  ]
+}

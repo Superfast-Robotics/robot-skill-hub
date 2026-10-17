@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-demo-recoveries-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "4b5792b2e5ede52d3af9f8eb0896fbc461571b099945bd2cb9672efe633dcefc",
+      "record_version": "source-4b5792b2e5ede52d3af9f8eb0896fbc461571b099945bd2cb9672efe633dcefc"
+    },
+    {
+      "id": "pinocchio-examples-build-reduced-model-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "209b3e56f54f4e18ec8de1c622ff2ccffa8e00ff31ff474ff7469f19be3d1c4f",
+      "record_version": "source-209b3e56f54f4e18ec8de1c622ff2ccffa8e00ff31ff474ff7469f19be3d1c4f"
+    },
+    {
+      "id": "pinocchio-examples-inverse-dynamics-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "220989aeb7e02e0c14b114e122cbf8ff0cc5f043f15eeb1e9213d0e418725d9a",
+      "record_version": "source-220989aeb7e02e0c14b114e122cbf8ff0cc5f043f15eeb1e9213d0e418725d9a"
+    }
+  ]
+}

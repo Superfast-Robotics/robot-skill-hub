@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-interpolation-se3-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "56e45a981530f540673f8fc3ddb885fa9fb6e794ab8d46a9035670b220219fda",
+      "record_version": "source-56e45a981530f540673f8fc3ddb885fa9fb6e794ab8d46a9035670b220219fda"
+    },
+    {
+      "id": "roboticstoolbox-examples-ik-exp-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "e8a7c956afa9fb3c921ed4b8705dfa9ad0970b828b51ced4be63a1633fb548f7",
+      "record_version": "source-e8a7c956afa9fb3c921ed4b8705dfa9ad0970b828b51ced4be63a1633fb548f7"
+    }
+  ]
+}

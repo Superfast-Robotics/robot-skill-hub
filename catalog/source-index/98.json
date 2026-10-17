@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-mjx-tutorial",
+      "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
+      "source_sha256": "9f9512ce0651b90443528553c617852a81ba0886d1267f1a0635bb4c73a68432",
+      "record_version": "source-9f9512ce0651b90443528553c617852a81ba0886d1267f1a0635bb4c73a68432"
+    },
+    {
+      "id": "ompl-demos-cforestcirclegridbenchmark-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "0d808a5958871d54a8e7dac9d9428389f652e179f087bd91f489449e057b4bf4",
+      "record_version": "source-0d808a5958871d54a8e7dac9d9428389f652e179f087bd91f489449e057b4bf4"
+    },
+    {
+      "id": "pinocchio-examples-casadi-casadi-crba-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "722d245d53e17f92ecbeeabb431c243d2a58f1a0c8b2765714e126d721b49241",
+      "record_version": "source-722d245d53e17f92ecbeeabb431c243d2a58f1a0c8b2765714e126d721b49241"
+    },
+    {
+      "id": "robosuite-demo-segmentation",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "f0985b450ded3b90d5a6343e5d3311adf4d952e36776fb6fb91be42b443e0a40",
+      "record_version": "source-f0985b450ded3b90d5a6343e5d3311adf4d952e36776fb6fb91be42b443e0a40"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-coaxial-rotors-coaxial-rotors-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5571483b35fb8f91ca9f19d9d067e665ca51c48245a51838c3e4fe07520000d1",
+      "record_version": "source-5571483b35fb8f91ca9f19d9d067e665ca51c48245a51838c3e4fe07520000d1"
+    }
+  ]
+}

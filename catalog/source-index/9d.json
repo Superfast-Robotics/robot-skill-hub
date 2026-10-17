@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-raycaster-sensor-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "807f1e4f3cf6071f1a18d1f000fb35b5f01215a556a0f2d3b3dc014a4634ea7e",
+      "record_version": "source-807f1e4f3cf6071f1a18d1f000fb35b5f01215a556a0f2d3b3dc014a4634ea7e"
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-3d-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "8a103e867556989b1a66eb679b4becdbb129610d9938313fbcc6cf624dc573a4",
+      "record_version": "source-8a103e867556989b1a66eb679b4becdbb129610d9938313fbcc6cf624dc573a4"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-hydroelastic-ball-plate-ball-plate-run-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "5980d7f36c1861146a558d7353ef793351e86d6828cf69f796009af6949114da",
+      "record_version": "source-5980d7f36c1861146a558d7353ef793351e86d6828cf69f796009af6949114da"
+    }
+  ]
+}

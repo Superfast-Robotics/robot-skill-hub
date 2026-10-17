@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-planar-gripper-planar-gripper-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "170b6b80a051913873a387e976d3f1647967b9cc7ae87210a328a7a70bff4555",
+      "record_version": "source-170b6b80a051913873a387e976d3f1647967b9cc7ae87210a328a7a70bff4555"
+    },
+    {
+      "id": "isaaclab-scripts-demos-pick-and-place-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a965951221b1d0f14a6f0cd4360b67e094374b6954f8e459a467be131e1ee53a",
+      "record_version": "source-a965951221b1d0f14a6f0cd4360b67e094374b6954f8e459a467be131e1ee53a"
+    }
+  ]
+}

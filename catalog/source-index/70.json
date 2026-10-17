@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-spong-sim-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "0b0fca5bd8d1807fe8127eb1d26df572267e0fc06db79cb4c6c24b24e4ff087a",
+      "record_version": "source-0b0fca5bd8d1807fe8127eb1d26df572267e0fc06db79cb4c6c24b24e4ff087a"
+    },
+    {
+      "id": "pybullet-saverestorestate",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "9eb0c993428d2589486ed0ee1c2d5af21dd9ec15ca8cf3a26e261382fafde7c6",
+      "record_version": "source-9eb0c993428d2589486ed0ee1c2d5af21dd9ec15ca8cf3a26e261382fafde7c6"
+    },
+    {
+      "id": "ros2-control-example-13-bringup-launch-three-robots-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "c2e53fee0f87e7d3db44e8a0afde6362034dd6ed8dd30830cd303ccf875d84fd",
+      "record_version": "source-c2e53fee0f87e7d3db44e8a0afde6362034dd6ed8dd30830cd303ccf875d84fd"
+    },
+    {
+      "id": "webots-projects-robots-kinematics-tinkerbots-controllers-vision-car-efe7e2a0dc79",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a6803aee9a96347e08f21bbcc96530edff8afcf7264f30051df46d7e9e0df993",
+      "record_version": "source-a6803aee9a96347e08f21bbcc96530edff8afcf7264f30051df46d7e9e0df993"
+    }
+  ]
+}

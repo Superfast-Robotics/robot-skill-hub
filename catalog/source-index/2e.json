@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-simple-continuous-time-system-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a0be002f5d47bfbbcbc23bca44d7f1c30f120d1f6d821b44a8b6307cf71e6ee7",
+      "record_version": "source-a0be002f5d47bfbbcbc23bca44d7f1c30f120d1f6d821b44a8b6307cf71e6ee7"
+    },
+    {
+      "id": "ompl-demos-optimalplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "f8c2d2801873ad99787e9645c3a8c802b8357bdd33543b19ecd5c6223585f37b",
+      "record_version": "source-f8c2d2801873ad99787e9645c3a8c802b8357bdd33543b19ecd5c6223585f37b"
+    },
+    {
+      "id": "pinocchio-examples-model-graph-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "b59820ee0daaa2dec9c165522d0ea941d4c7a53868dfa423d964181b4aedc369",
+      "record_version": "source-b59820ee0daaa2dec9c165522d0ea941d4c7a53868dfa423d964181b4aedc369"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-examples-rclpy-actions-minimal-action-client-examples-rclpy-mi-1237ea3c2983",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "7a1096fb8f18f9883a6ce497775250c14bce3ab53adb47005e0a93e879660701",
+      "record_version": "source-7a1096fb8f18f9883a6ce497775250c14bce3ab53adb47005e0a93e879660701"
+    },
+    {
+      "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-custom-executor-py",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "ee04c6ff3c0326ece94f118bda062ecaee8912ef660dea627e1810b625c3fa77",
+      "record_version": "source-ee04c6ff3c0326ece94f118bda062ecaee8912ef660dea627e1810b625c3fa77"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-battery-battery-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "81539384c276a8274e08ddf3924c7f2674fe5a4adf316c0ecadbd3b535db3571",
+      "record_version": "source-81539384c276a8274e08ddf3924c7f2674fe5a4adf316c0ecadbd3b535db3571"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-recognition-came-9cbdaab9f145",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "fadae2a72eb79839d178efd283c1530c479eaa3cb84951c2969dffe5ab02bbbd",
+      "record_version": "source-fadae2a72eb79839d178efd283c1530c479eaa3cb84951c2969dffe5ab02bbbd"
+    }
+  ]
+}

@@ -1,57 +1,33 @@
 # Robot Skill Hub
 
-Agent-readable robotics code discovery and task memory. The public Hub serves unstyled HTML, JSON and Markdown; GitHub stores pinned source records, internal PRs and reviewed findings.
+Pinned robotics code and reusable task findings for agents. Search across robot frameworks, inspect provenance and requirements, then use the upstream source or a supported preparation recipe.
 
-- Agent contract: https://hub.superfastrobotics.com/agent.json
-- Catalog: https://hub.superfastrobotics.com/catalog/v1/index.json
-- Official source references: https://hub.superfastrobotics.com/catalog/v1/references.json
-- Published task findings: https://hub.superfastrobotics.com/catalog/v1/memories.json
-- Publication proof: https://hub.superfastrobotics.com/catalog/v1/publication.json
-- API: https://api.superfastrobotics.com
-- [Actual verification](docs/verification.md)
+- [Agent contract](https://hub.superfastrobotics.com/agent.json)
+- [Search JSON](https://api.superfastrobotics.com/v1/search?q=grasp&limit=3) ? [OpenAPI](https://hub.superfastrobotics.com/openapi.json)
+- Read-only MCP: `https://api.superfastrobotics.com/mcp`
+- [Catalog and source references](https://hub.superfastrobotics.com/) ? [Published findings](https://hub.superfastrobotics.com/catalog/v1/memories.json)
 
-## Use the CLI
+Public reads need no account, GPU or simulator. Discovery never executes robot code.
 
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
-
 python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
 python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
-python /PATH_TO_SKILL/scripts/rsh.py memories SKILL_ID --project ./experiment --json
 python /PATH_TO_SKILL/scripts/rsh.py prepare SKILL_ID --project ./experiment --plan --json
 ```
 
-Discovery uses the latest available index with a local cache and bundled offline fallback. Use `--offline` for offline discovery, `--refresh` to refresh, or `--catalog FILE_OR_URL` to select a catalog explicitly. Results distinguish Hub preparation recipes from upstream source examples. Source examples have no Hub runtime adapter.
+For an MCP client supporting Streamable HTTP, use its remote-server configuration:
 
-Inspect pins, license, environment and evidence before preparing. Preparation does not execute the robot task. Existing project locks stay fixed even when discovery indexes change. See the [agent quickstart](docs/agent-quickstart.md) and [compatibility contract](docs/compatibility.md).
-
-Hub recipe version `1.1.0` uses an explicit 1000-step motion-planning budget and rejects truncated outcomes. Panda PickCube and StackCube completed seed 0 under that contract in a new CPU/state run; the other 15 recipes remain runtime-unverified. This does not establish completion within the upstream 50-step benchmark horizon. See the [verification record](docs/verification.md#bounded-hub-recipe-110-execution) for exact evidence and historical corrections.
-
-## Remember findings from the actual task
-
-Preserve a useful fact already observed during the user's work, using its exact recipe/source version, environment and minimal evidence:
-
-```sh
-python /PATH_TO_SKILL/scripts/rsh.py save SKILL_ID --project ./experiment --finding ./finding.json --json
+```json
+{"mcpServers":{"robot-skill-hub":{"url":"https://api.superfastrobotics.com/mcp"}}}
 ```
 
-The CLI writes a local outbox entry first. It makes one public API submission only when the project's separate memory policy already permits the skill and finding kind and a scoped token is available. Authorized scope does not need another prompt for each finding; missing scope leaves the entry local without interrupting the task. Existing patch permission does not grant memory sharing permission.
+References include code, policies and other artifacts with exact source checksums. A source reference has no Hub preparation adapter. Runtime evidence is limited to the exact configuration and seed recorded with each recipe; source review is not task completion. Existing project locks never silently change.
 
-The Worker creates an internal draft PR. Maintainer review, merge and catalog publication remain separate from storage. Published findings are contributor-reported data, not executable agent instructions. Do not run extra experiments merely to create findings or let feedback delivery block the original task.
+Preserve useful findings from the actual task with `rsh.py save SKILL_ID --project DIR --finding FILE --json`. Register a newly found pinned source with `rsh.py register FILE --project DIR --json`. Both keep local drafts; allowed-agent credentials and a separately authorized sharing scope enable one API submission. An internal draft PR still needs maintainer review and publication.
 
-[Memory format and policy](docs/memory.md) · [Patch contributions](docs/contributing.md) · [API operations](api/README.md)
+[Quickstart](docs/agent-quickstart.md) ? [New skills](docs/new-skills.md) ? [Task memory](docs/memory.md) ? [Patch contributions](docs/contributing.md) ? [Privacy](docs/privacy.md)
 
-## Develop and validate
+[Verification evidence](docs/verification.md) ? [Development and deployment](docs/deployment.md)
 
-```sh
-python tools/build_catalog.py --base-url https://hub.superfastrobotics.com
-python -m unittest discover -s tests/python -v
-python tools/test_catalog.py -v
-npm --prefix api ci
-npm --prefix api run check
-npm --prefix api test
-```
-
-GitHub Pages serves the Hub. Cloudflare Workers handles authenticated saves, patch submissions and owner-scoped status reads. Robot code runs in the caller's environment. See the [deployment runbook](docs/deployment.md).
-
-Hub code is [MIT licensed](LICENSE). Each source record preserves its own upstream license and attribution. The [company website](https://superfastrobotics.com/) is hosted independently.
+Hub code is [MIT licensed](LICENSE). Referenced artifacts retain their own upstream licenses. The [company website](https://superfastrobotics.com/) is separate from the Hub.

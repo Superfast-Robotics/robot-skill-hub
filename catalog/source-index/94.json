@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-casadi-cartpole-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "3911984ad1c0659c7f461324d4ced1742a30f77c3b2d58ddb09d6ab15d1d6790",
+      "record_version": "source-3911984ad1c0659c7f461324d4ced1742a30f77c3b2d58ddb09d6ab15d1d6790"
+    }
+  ]
+}

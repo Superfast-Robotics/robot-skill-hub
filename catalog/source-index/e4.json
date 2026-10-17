@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-run-lqr-w-estimator-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "1105ed8a55011071e9207d602cfc39d55dd1723ef00876cb2325a7c3dc349b44",
+      "record_version": "source-1105ed8a55011071e9207d602cfc39d55dd1723ef00876cb2325a7c3dc349b44"
+    },
+    {
+      "id": "isaaclab-scripts-demos-bipeds-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "1f46d55f04daf043bfd99bb8a03dae5d9ab9251caa2977561ee20808e896f194",
+      "record_version": "source-1f46d55f04daf043bfd99bb8a03dae5d9ab9251caa2977561ee20808e896f194"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-encoders-encoders-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c5f31ff2d7122499de42842be51a7bd088559a45b62b07c8c003544911828968",
+      "record_version": "source-c5f31ff2d7122499de42842be51a7bd088559a45b62b07c8c003544911828968"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-speaker-text-to-speech-32f17d4f8d55",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "0fa5bf33a709b56a2cdd56d0c454b2ff5d66741f9c18c80964988b7f86554204",
+      "record_version": "source-0fa5bf33a709b56a2cdd56d0c454b2ff5d66741f9c18c80964988b7f86554204"
+    }
+  ]
+}

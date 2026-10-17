@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-autonomy-autonomous-sequence-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "db2addd549eb36ef1c95159668fa769c6b5690b63fe67e6d0d24563f04aca8aa",
+      "record_version": "source-db2addd549eb36ef1c95159668fa769c6b5690b63fe67e6d0d24563f04aca8aa"
+    },
+    {
+      "id": "drake-examples-kuka-iiwa-arm-kuka-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "328c20328289f6587f01f3f0301c78670baa416800553fa77c5741260af8d0d7",
+      "record_version": "source-328c20328289f6587f01f3f0301c78670baa416800553fa77c5741260af8d0d7"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-inertial-unit-inertial-unit-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c71f119c2fcd87707d20f09a7d1c4bc4bbfd49a49089dd083703488448ca1e39",
+      "record_version": "source-c71f119c2fcd87707d20f09a7d1c4bc4bbfd49a49089dd083703488448ca1e39"
+    }
+  ]
+}

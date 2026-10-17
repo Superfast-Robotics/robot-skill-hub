@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-bindings-pydrake-examples-gym-play-cart-pole-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "742e51f3ba5ea6b99c2c1b22a9aac31a99d6d2949b9e78a6d26ab61fb5ce0dc9",
+      "record_version": "source-742e51f3ba5ea6b99c2c1b22a9aac31a99d6d2949b9e78a6d26ab61fb5ce0dc9"
+    },
+    {
+      "id": "pinocchio-examples-simulation-pendulum-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "0d4d0c9f149d0df576a9fbdff0d1d4705fddb1b32c588ec889111c2406dd9567",
+      "record_version": "source-0d4d0c9f149d0df576a9fbdff0d1d4705fddb1b32c588ec889111c2406dd9567"
+    },
+    {
+      "id": "pybullet-kuka-grasp-block-playback",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "4b8ada60d08b4a3a735fbcc7588323c6acb5b581286d7676f5c68cb7c148a554",
+      "record_version": "source-4b8ada60d08b4a3a735fbcc7588323c6acb5b581286d7676f5c68cb7c148a554"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-cubic-polynomial-backward-reachability-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "eae4ee1b985e4636524fd3ba2110e85dc815b98af03d84d97977d49ce46328a6",
+      "record_version": "source-eae4ee1b985e4636524fd3ba2110e85dc815b98af03d84d97977d49ce46328a6"
+    },
+    {
+      "id": "pinocchio-examples-meshcat-viewer-octree-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "0d032d1f8481c75c3fe91497fdd27497e2d5d78c1b5f1bda0ce975eea087adac",
+      "record_version": "source-0d032d1f8481c75c3fe91497fdd27497e2d5d78c1b5f1bda0ce975eea087adac"
+    },
+    {
+      "id": "pinocchio-examples-panda3d-viewer-play-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "61d688f3956fe194e0668b9649995b42abf1036798a8846728528e73f70d9d04",
+      "record_version": "source-61d688f3956fe194e0668b9649995b42abf1036798a8846728528e73f70d9d04"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-w-3580a4642a8c",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "37f60d84122ab7f1d7c1592c19f3f696ead70f1c8baff365aa116a3fd0e7dbee",
+      "record_version": "source-37f60d84122ab7f1d7c1592c19f3f696ead70f1c8baff365aa116a3fd0e7dbee"
+    },
+    {
+      "id": "webots-projects-robots-softbank-nao-controllers-nao-wave-hand-nao-wave-hand-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "0352b60579f73577f08f2ca960a8df4a718eb87a2bde1a259a59569fdd95cbfc",
+      "record_version": "source-0352b60579f73577f08f2ca960a8df4a718eb87a2bde1a259a59569fdd95cbfc"
+    }
+  ]
+}

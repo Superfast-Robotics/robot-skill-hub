@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-control-example-7-bringup-launch-r6bot-controller-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "0b6c2a6d7054fb173cf40244eac259324947cd78c008ee324f32f8294bf559c4",
+      "record_version": "source-0b6c2a6d7054fb173cf40244eac259324947cd78c008ee324f32f8294bf559c4"
+    },
+    {
+      "id": "webots-projects-robots-epfl-biorob-controllers-yamor-yamor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "aa71a8c69d403e3318ba72f7acd63df2d071b98c7d102dddcee36a9ebec59ef7",
+      "record_version": "source-aa71a8c69d403e3318ba72f7acd63df2d071b98c7d102dddcee36a9ebec59ef7"
+    },
+    {
+      "id": "webots-projects-robots-micromagic-mantis-controllers-mantis-mantis-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f179ab27b95e72a456421a2898852c657e9ca8c20f3f85e5741e2ae166a47d53",
+      "record_version": "source-f179ab27b95e72a456421a2898852c657e9ca8c20f3f85e5741e2ae166a47d53"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-skin-skin-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "0a48873418c4a6d1c86e66dcbef497755ee81d7f685c1711bf63db940316da04",
+      "record_version": "source-0a48873418c4a6d1c86e66dcbef497755ee81d7f685c1711bf63db940316da04"
+    }
+  ]
+}

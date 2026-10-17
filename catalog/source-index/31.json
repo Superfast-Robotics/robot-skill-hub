@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-robots-universal-robots-controllers-ure-can-grasper-7f8e2ee7fd58",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "7ca3a0c1ca970e00dff6d1a15ba0034d66ad03e41e952975ccefef74cc6d2e29",
+      "record_version": "source-7ca3a0c1ca970e00dff6d1a15ba0034d66ad03e41e952975ccefef74cc6d2e29"
+    }
+  ]
+}

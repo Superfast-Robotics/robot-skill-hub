@@ -197,3 +197,53 @@ test('native memory save stores one bounded finding and confirms its exact merge
     assert.equal(published.entry_url, manifest.memories[0].entry_url);
   } finally { await mf.dispose(); }
 });
+
+test('native new-skill intake stores data only, creates an internal draft PR and replays it', async () => {
+  const hub = 'a'.repeat(40), source = 'b'.repeat(40), digest = 'c'.repeat(64), skill = 'ros2-panda-grasp';
+  let pull: any; let receipt: any; let reference: any; let treeWrites = 0; let prWrites = 0;
+  const input = { schema_version: '1', base: { hub_commit: hub }, skill: {
+    id: skill, name: 'Panda grasp action', summary: 'Pinned ROS 2 source for a Panda grasp action.', framework: 'ros2', kind: 'community_skill', capabilities: ['grasp'], aliases: [], robots: ['panda'],
+    source: { repository: 'https://github.com/upstream/robot', commit: source, path: 'grasp.cpp', url: `https://github.com/upstream/robot/blob/${source}/grasp.cpp`, sha256: digest, bytes: 2000, authors: ['Upstream authors'] },
+    license: { spdx: 'Apache-2.0', url: `https://github.com/upstream/robot/blob/${source}/LICENSE`, scope: 'Source code only.' }, artifact: { kind: 'code', format: 'cpp' },
+    requirements: { python: null, packages: [], hardware: ['panda'], system: ['ROS 2'], notes: 'Inspect upstream setup before hardware use.' },
+    invocation: { entrypoint: 'ROS 2 action client', notes: 'Hardware execution needs project authorization.' }, setup_url: 'https://docs.ros.org/en/rolling/',
+    compatibility: [{ runtime: 'ros2', runtime_version: 'unknown', robot: 'panda', controller: 'unknown', observation: 'unknown', os: 'linux' }] },
+    attribution: { contributor_label: 'Runtime intake test', preserve_upstream_attribution: true }, publication: { public_submission_allowed: true } };
+  const mf = await runtime(async request => {
+    assert.ok(request.url.startsWith(API + '/'), 'Submitted source URLs must never be fetched by intake');
+    assert.equal(request.headers.get('Authorization'), `Bearer ${GITHUB_TOKEN}`);
+    if (request.url.startsWith(API + '/pulls?')) return RuntimeResponse.json(pull ? [pull] : []);
+    if (request.url.startsWith(API + '/git/ref/heads/submissions/')) return new RuntimeResponse(null, { status: 404 });
+    if (request.url === API + '/git/ref/heads/main') return RuntimeResponse.json({ object: { sha: hub } });
+    if (request.url.startsWith(API + '/contents/catalog/source-index-manifest.json?')) {
+      const raw = JSON.stringify({ schema_version: '1', scheme: 'sha256-id-prefix-2', records: 0, shards: {} });
+      return RuntimeResponse.json({ type: 'file', encoding: 'base64', size: raw.length, content: Buffer.from(raw).toString('base64') });
+    }
+    if (request.url.startsWith(API + '/contents/catalog/records/') || request.url.startsWith(API + '/contents/catalog/intake/')) return new RuntimeResponse(null, { status: 404 });
+    if (request.url === API + '/git/commits/' + hub) return RuntimeResponse.json({ tree: { sha: 'base-tree' } });
+    if (request.url === API + '/git/trees') {
+      treeWrites++; const body: any = await request.json(); assert.equal(body.tree.length, 2);
+      const file = body.tree.find((r: any) => r.path === `catalog/intake/${skill}.json`); assert.ok(file); reference = JSON.parse(file.content);
+      receipt = JSON.parse(body.tree.find((r: any) => r.path.startsWith('.hub/submissions/')).content);
+      assert.equal(receipt.patch_hashes[file.path], hash(file.content)); assert.equal(reference.access.hub_prepare, false);
+      assert.equal(reference.license.verified, false); assert.equal(reference.evidence.runtime_verification, 'not_run');
+      return RuntimeResponse.json({ sha: 'new-tree' });
+    }
+    if (request.url === API + '/git/commits') return RuntimeResponse.json({ sha: '1'.repeat(40) });
+    if (request.url === API + '/git/refs') return RuntimeResponse.json({});
+    if (request.url === API + '/pulls') {
+      prWrites++; const body: any = await request.json(); assert.equal(body.draft, true); assert.equal(body.base, 'main');
+      assert.equal(body.head, 'submissions/' + receipt.submission_id);
+      pull = { number: 3, html_url: 'https://github.com/Superfast-Robotics/robot-skill-hub/pull/3', body: body.body, state: 'open', merged_at: null,
+        merge_commit_sha: null, labels: [], head: { sha: '1'.repeat(40), ref: body.head } };
+      return RuntimeResponse.json(pull);
+    }
+    assert.fail('Unexpected native intake request: ' + request.url);
+  });
+  try {
+    const post = () => mf.dispatchFetch('https://api.example.invalid/v1/skills', { method: 'POST', headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', 'Idempotency-Key': 'native-new-skill-1' }, body: JSON.stringify(input) });
+    const first = await post(); assert.equal(first.status, 201); const saved: any = await first.json();
+    const repeated = await post(); assert.equal(repeated.status, 200); assert.equal((await repeated.json() as any).submission_id, saved.submission_id);
+    assert.equal(treeWrites, 1); assert.equal(prWrites, 1); assert.equal(reference.requirements.python, null);
+  } finally { await mf.dispose(); }
+});

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-pendulum-trajectory-optimization-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "99bc4b2757c7fc044b77e403c0261a60764fc55c1d48024f7ea8e6c4f99b124f",
+      "record_version": "source-99bc4b2757c7fc044b77e403c0261a60764fc55c1d48024f7ea8e6c4f99b124f"
+    },
+    {
+      "id": "lerobot-examples-tutorial-rl-reward-classifier-example-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "0c28fd1872cfadb852884ba1df09f38c460b2f8db476b278cf8c70eda04e561c",
+      "record_version": "source-0c28fd1872cfadb852884ba1df09f38c460b2f8db476b278cf8c70eda04e561c"
+    },
+    {
+      "id": "pinocchio-examples-overview-simple-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "4032a6af7250bbc79123c1eb14db768f851eb0aca1835b06e353759af636033a",
+      "record_version": "source-4032a6af7250bbc79123c1eb14db768f851eb0aca1835b06e353759af636033a"
+    },
+    {
+      "id": "webots-projects-robots-sphero-bb8-controllers-bb-8-bb-8-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c06245093b0638522e9c17a03739c98866051c6c8de274b0e0c596c4b38c1f6d",
+      "record_version": "source-c06245093b0638522e9c17a03739c98866051c6c8de274b0e0c596c4b38c1f6d"
+    }
+  ]
+}

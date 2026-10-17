@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-quadrotor-run-quadrotor-lqr-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "e76ad1f1251f48667807220ab57a30ac4d5941f114a7f85a6f25c68334378a9a",
+      "record_version": "source-e76ad1f1251f48667807220ab57a30ac4d5941f114a7f85a6f25c68334378a9a"
+    }
+  ]
+}

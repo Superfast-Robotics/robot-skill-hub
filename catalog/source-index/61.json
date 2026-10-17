@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-parameters-basicparam-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "96b34a26ff9ced56b89e9c89ff6bbe49b11b09a208af24d700db72574006aa79",
+      "record_version": "source-96b34a26ff9ced56b89e9c89ff6bbe49b11b09a208af24d700db72574006aa79"
+    },
+    {
+      "id": "drake-examples-multibody-acrobot-run-lqr-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "95f6ab1e66e017dfcd242096d833f00f389b7c486cb71e9340214bc25a6dc8fb",
+      "record_version": "source-95f6ab1e66e017dfcd242096d833f00f389b7c486cb71e9340214bc25a6dc8fb"
+    },
+    {
+      "id": "drake-examples-pendulum-energy-shaping-simulation-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a5141b079dc55bd543adce6af3cb0772a75ad0b915527233d1c2cb9bf713934d",
+      "record_version": "source-a5141b079dc55bd543adce6af3cb0772a75ad0b915527233d1c2cb9bf713934d"
+    },
+    {
+      "id": "ros2-control-example-8-bringup-launch-rrbot-transmissions-system-po-44512ae664d5",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "81c44c0ecab5f01c013cc77facb137074aa71896fc0f97eb573f021d96cf73a3",
+      "record_version": "source-81c44c0ecab5f01c013cc77facb137074aa71896fc0f97eb573f021d96cf73a3"
+    }
+  ]
+}

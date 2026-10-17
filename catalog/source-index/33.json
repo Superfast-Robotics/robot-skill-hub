@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pybullet-racecar",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "5dc233309afa9086f343c1a91ec909ce62d4af46ba937ce6a790cae08c797e8d",
+      "record_version": "source-5dc233309afa9086f343c1a91ec909ce62d4af46ba937ce6a790cae08c797e8d"
+    },
+    {
+      "id": "webots-projects-robots-nex-controllers-fire-bird-6-sensor-acquisiti-a21107f1d59a",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "fdc7288c64391fb27be2a4acefef34c7f3956173bc09a3c5c890d8c862976d48",
+      "record_version": "source-fdc7288c64391fb27be2a4acefef34c7f3956173bc09a3c5c890d8c862976d48"
+    }
+  ]
+}

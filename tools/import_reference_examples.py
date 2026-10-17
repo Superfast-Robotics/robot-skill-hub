@@ -14,22 +14,27 @@ from pathlib import Path
 import re
 import urllib.request
 
+from reference_index import write_source_index
+
 ROOT = Path(__file__).resolve().parents[1]
 CHECKED = "2026-10-17"
 PROJECTS = {
     "pybullet": {"repository": "https://github.com/bulletphysics/bullet3",
                  "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5", "tag": "3.25", "stars": 14800,
                  "license_path": "LICENSE.txt", "spdx": "Zlib", "license_marker": "This software is provided 'as-is'",
+                 "license_sha256": "885cd516a8420acb7c3e0b1a7119913b686495001ae564e3229740460e8cff59",
                  "python": "upstream-defined", "packages": ["pybullet (build matching the pinned upstream source)"],
                  "setup_url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/README.md"},
     "robosuite": {"repository": "https://github.com/ARISE-Initiative/robosuite",
                   "commit": "a071383d53568ab798eb315c0e95357911be922d", "tag": "v1.5.1", "stars": 2666,
                   "license_path": "LICENSE", "spdx": "MIT", "license_marker": "Permission is hereby granted, free of charge",
+                  "license_sha256": "177978cbece0a4c454c2aaec5b3f145b39270814874c43109da9e829c39d9cba",
                   "python": "upstream-defined; setup.py declares >=3, dependencies impose additional constraints", "packages": ["robosuite==1.5.1"],
                   "setup_url": "https://github.com/ARISE-Initiative/robosuite/blob/a071383d53568ab798eb315c0e95357911be922d/README.md"},
     "mujoco": {"repository": "https://github.com/google-deepmind/mujoco",
                "commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de", "tag": "3.3.7", "stars": 15726,
                "license_path": "LICENSE", "spdx": "Apache-2.0", "license_marker": "Apache License",
+               "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
                "python": "Python examples follow upstream package constraints; native samples use C++",
                "packages": ["mujoco==3.3.7 (Python)", "MuJoCo 3.3.7 and CMake toolchain (native samples)"],
                "setup_url": "https://mujoco.readthedocs.io/en/3.3.7/programming/samples.html"},
@@ -115,6 +120,17 @@ def source_imports(path, text):
     return sorted(set(re.findall(r"^#include\s+[<\"]([^>\"]+)", text, re.MULTILINE)))
 
 
+def merge_reference_records(existing, generated):
+    """Refreshing the original three projects must not erase other importers."""
+    project_repositories = {project["repository"] for project in PROJECTS.values()}
+    preserved = [record for record in existing if record.get("source", {}).get("repository") not in project_repositories
+                 or record.get("source_registry")]
+    records = preserved + generated
+    if len({record["id"] for record in records}) != len(records):
+        raise ValueError("Duplicate source reference id across import registries")
+    return sorted(records, key=lambda record: (record["framework"], record["id"]))
+
+
 def build(cache, fetch=False):
     sources = [(PROJECTS[framework], path) for framework, path, *_ in EXAMPLES]
     sources += [(project, project["license_path"]) for project in PROJECTS.values()]
@@ -122,8 +138,9 @@ def build(cache, fetch=False):
         with ThreadPoolExecutor(max_workers=8) as pool:
             list(pool.map(lambda item: fetch_source(*item, cache), sources))
     for project in PROJECTS.values():
-        text = read_source(project, project["license_path"], cache).decode("utf-8")
-        if project["license_marker"] not in text:
+        data = read_source(project, project["license_path"], cache)
+        text = data.decode("utf-8")
+        if project["license_marker"] not in text or hashlib.sha256(data).hexdigest() != project["license_sha256"]:
             raise ValueError(f"Unexpected license text: {project['repository']}")
     records = []
     for framework, path, title, summary, capabilities in EXAMPLES:
@@ -158,8 +175,10 @@ def build(cache, fetch=False):
             "capabilities": capabilities,
             "source": {"repository": project["repository"], "commit": project["commit"], "tag": project["tag"],
                        "path": path, "url": f"{project['repository']}/blob/{project['commit']}/{path}",
+                       "raw_url": f"{project['repository'].replace('https://github.com/', 'https://raw.githubusercontent.com/')}/{project['commit']}/{path}",
                        "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)},
             "license": {"spdx": project["spdx"], "url": f"{project['repository']}/blob/{project['commit']}/{project['license_path']}",
+                        "sha256": project["license_sha256"],
                         "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."},
             "access": {"mode": "source_reference", "hub_prepare": False,
                        "instructions": "Open the pinned source and follow upstream setup and invocation. This entry has no Hub runtime adapter.",
@@ -173,13 +192,19 @@ def build(cache, fetch=False):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": CHECKED,
                          "inspection": "Fetched the exact source file, parsed Python/imports or located its native main/notebook cells, and inspected the repository license."},
         })
-    records.sort(key=lambda record: (-record["popularity"]["repository_stars"], record["framework"], record["id"]))
-    output = {"schema_version": "1", "checked_at": CHECKED,
+    destination = ROOT / "catalog/references.json"
+    existing = json.loads(destination.read_text(encoding="utf-8")) if destination.exists() else {"records": []}
+    records = merge_reference_records(existing["records"], records)
+    output = {**existing, "schema_version": "1", "checked_at": max(CHECKED, existing.get("checked_at", CHECKED)),
               "description": "Pinned official examples for source discovery. These entries are separate from Hub preparation recipes.",
               "selection": "Official examples from widely followed simulator repositories. GitHub stars are a dated repository interest proxy, not a ranking of actual usage.",
               "records": records}
-    (ROOT / "catalog/references.json").write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8", newline="\n")
-    print(f"Indexed {len(records)} immutable official examples from {len(PROJECTS)} frameworks; no upstream code executed")
+    if len(records) > len(EXAMPLES):
+        output["description"] = existing.get("description", output["description"])
+        output["selection"] = existing.get("selection", output["selection"])
+    destination.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8", newline="\n")
+    write_source_index(records, destination.parent / "source-index.json")
+    print(f"Indexed {len(records)} immutable official examples, preserving other registries; no upstream code executed")
 
 
 if __name__ == "__main__":

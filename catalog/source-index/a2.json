@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-atlas-atlas-run-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "3106b27090ff39258f7402491decdeb4a9e29d815909768ca0348439e813adf6",
+      "record_version": "source-3106b27090ff39258f7402491decdeb4a9e29d815909768ca0348439e813adf6"
+    },
+    {
+      "id": "drake-examples-kuka-iiwa-arm-iiwa-controller-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "1c40dfb484e3e4a727310b7639f2a97238dc5e83e520006b2753954c8464c476",
+      "record_version": "source-1c40dfb484e3e4a727310b7639f2a97238dc5e83e520006b2753954c8464c476"
+    },
+    {
+      "id": "pinocchio-examples-build-reduced-model-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "25647dd409c7ccb6345e0baf7d20fee3d58e425148c270c16497c2e10bd8ae92",
+      "record_version": "source-25647dd409c7ccb6345e0baf7d20fee3d58e425148c270c16497c2e10bd8ae92"
+    }
+  ]
+}

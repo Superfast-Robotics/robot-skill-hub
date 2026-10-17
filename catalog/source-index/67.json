@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-multibody-cylinder-with-multicontact-cylinder-run-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "0716060b3513032c5db91fe5f8fbcceee03b4becc296e556f48541564c75d445",
+      "record_version": "source-0716060b3513032c5db91fe5f8fbcceee03b4becc296e556f48541564c75d445"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-axial-and-tail-rotors-a-69320200fa19",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "37d4c24cc1b864e99db4cb65b1ce5777ef7473e5f799ea30b17097c604473d7d",
+      "record_version": "source-37d4c24cc1b864e99db4cb65b1ce5777ef7473e5f799ea30b17097c604473d7d"
+    }
+  ]
+}

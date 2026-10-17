@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-tutorial-act-act-using-example-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "d6d249c7ec2345a3e3d52010a7fba667d028a8355db6f4edb9b81b5abf99f3a9",
+      "record_version": "source-d6d249c7ec2345a3e3d52010a7fba667d028a8355db6f4edb9b81b5abf99f3a9"
+    },
+    {
+      "id": "robosuite-demo-sensor-corruption",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "9f6828fd293279fc86e61898867fca4823fc42192ac2670009dbd3d36a141f0e",
+      "record_version": "source-9f6828fd293279fc86e61898867fca4823fc42192ac2670009dbd3d36a141f0e"
+    },
+    {
+      "id": "webots-projects-robots-boston-dynamics-spot-controllers-spot-moving-767e3ade7228",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "d1a7492dbfaeb30810ef5348e5e508fd791144e968343c61d7f236ce0f263976",
+      "record_version": "source-d1a7492dbfaeb30810ef5348e5e508fd791144e968343c61d7f236ce0f263976"
+    }
+  ]
+}

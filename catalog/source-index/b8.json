@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-bin-packing-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "67e5b2436ad03b8f4aeb248f5622e9418873e612c2739e31db4f5f3a36f0adcc",
+      "record_version": "source-67e5b2436ad03b8f4aeb248f5622e9418873e612c2739e31db4f5f3a36f0adcc"
+    },
+    {
+      "id": "robosuite-demo-composite-robot",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "15b959be2ceb693ad69b3076c3ccfd59981423b62f86ed45f770035b87296ac5",
+      "record_version": "source-15b959be2ceb693ad69b3076c3ccfd59981423b62f86ed45f770035b87296ac5"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-camera-camera-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "a2309d2f885dca4266aaffeb0030a40368946f9cb640f017f307cf10140226d7",
+      "record_version": "source-a2309d2f885dca4266aaffeb0030a40368946f9cb640f017f307cf10140226d7"
+    }
+  ]
+}

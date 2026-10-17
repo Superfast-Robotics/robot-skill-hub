@@ -3,13 +3,15 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 from pathlib import Path
 import time
 import urllib.request
 
-from .core import RshError, SKILL_ROOT, load_catalog, read_json, require_url, validate_catalog, write_json
+from .core import COMMIT, RshError, SKILL_ROOT, load_catalog, read_json, require_url, validate_catalog, write_json
 
 BASE = "https://hub.superfastrobotics.com/catalog/v1/"
+API_BASE = "https://api.superfastrobotics.com/v1/"
 READ_TIMEOUT = 1.5
 CACHE_SECONDS = 300
 PUBLIC_LIMIT = 4 * 1024 * 1024
@@ -23,9 +25,47 @@ def cache_root():
     return (Path(base) if base else Path.home() / ".cache") / "robot-skill-hub"
 
 
+def client_headers(url):
+    """Optional anonymous installation identity, sent only to the owned API."""
+    headers = {"User-Agent": "robot-skill-hub/1", "Accept": "application/json"}
+    if os.environ.get("RSH_TELEMETRY", "").lower() in ("off", "0", "false"):
+        return {**headers, "DNT": "1", "X-RSH-Telemetry": "off"}
+    if not url.startswith(API_BASE):
+        return headers
+    path = cache_root() / "anonymous-client-id"
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if path.is_symlink():
+            return headers
+        if path.exists():
+            if path.stat().st_nlink != 1:
+                return headers
+            with path.open(encoding="ascii") as stream:
+                stored = stream.read(96).strip()
+            value = stored.removeprefix("rsh-client-id-v1:") if stored.startswith("rsh-client-id-v1:") else ""
+        else:
+            value = secrets.token_hex(16)
+            try:
+                with path.open("x", encoding="ascii") as stream:
+                    stream.write("rsh-client-id-v1:" + value + "\n")
+            except FileExistsError:
+                if path.is_symlink():
+                    return headers
+                if path.stat().st_nlink != 1:
+                    return headers
+                with path.open(encoding="ascii") as stream:
+                    stored = stream.read(96).strip()
+                value = stored.removeprefix("rsh-client-id-v1:") if stored.startswith("rsh-client-id-v1:") else ""
+        if len(value) == 32 and all(c in "0123456789abcdef" for c in value):
+            headers["X-RSH-Client"] = value
+    except (OSError, UnicodeError):
+        pass  # Identity and measurement are optional; discovery still works.
+    return headers
+
+
 def fetch_public(url):
     require_url(url, local_http=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "robot-skill-hub/1", "Accept": "application/json"})
+    request = urllib.request.Request(url, headers=client_headers(url))
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
@@ -70,12 +110,15 @@ def public_index(name, *, url=None, offline=False, refresh=False):
     if cached and not refresh and time.time() - cached["fetched_at"] < CACHE_SECONDS:
         return cached["data"], "cache"
     if not offline:
-        try:
-            data = index_data(fetch_public(url or BASE + name + ".json"))
-            _write_cache(name, data)
-            return data, "remote"
-        except (OSError, ValueError, TypeError, RshError):
-            pass
+        target = url or BASE + name + ".json"
+        candidates = [API_BASE + "references", target] if name == "references" and target == BASE + "references.json" else [target]
+        for candidate in candidates:
+            try:
+                data = index_data(fetch_public(candidate))
+                _write_cache(name, data)
+                return data, "remote"
+            except (OSError, ValueError, TypeError, RshError):
+                pass
     if cached:
         return cached["data"], "cache_fallback"
     snapshot = SKILL_ROOT / "assets" / (name + ".snapshot.json")
@@ -96,18 +139,25 @@ def load_discovery(location=None, *, offline=False, refresh=False, latest=True):
     if cached:
         try:
             validate_catalog(cached["data"])
+            if not COMMIT.fullmatch(str(cached["data"].get("hub_commit", ""))):
+                raise RshError("invalid_catalog", "A published catalog needs an exact Hub commit.")
         except (RshError, KeyError, TypeError):
             cached = None
     catalog, origin = None, None
     if cached and (not latest or offline or (not refresh and time.time() - cached["fetched_at"] < CACHE_SECONDS)):
         catalog, origin = cached["data"], "cache"
     if catalog is None and latest and not offline:
-        try:
-            catalog = validate_catalog(fetch_public(BASE + "index.json"))
-            _write_cache("catalog", catalog)
-            origin = "remote"
-        except (OSError, ValueError, TypeError, RshError):
-            pass
+        for url in (API_BASE + "catalog", BASE + "index.json"):
+            try:
+                candidate = validate_catalog(fetch_public(url))
+                if not COMMIT.fullmatch(str(candidate.get("hub_commit", ""))):
+                    raise RshError("invalid_catalog", "A published catalog needs an exact Hub commit.")
+                catalog = candidate
+                _write_cache("catalog", catalog)
+                origin = "remote"
+                break
+            except (OSError, ValueError, TypeError, RshError):
+                pass
     if catalog is None:
         catalog = cached["data"] if cached else load_catalog()
         origin = "cache_fallback" if cached else "bundled_snapshot"

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-light-sensor-light-sensor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "90115a8ee15d183be2164e04bea58cce0b7f1118478ea7be671ae66c8182b90c",
+      "record_version": "source-90115a8ee15d183be2164e04bea58cce0b7f1118478ea7be671ae66c8182b90c"
+    }
+  ]
+}

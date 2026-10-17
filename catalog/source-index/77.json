@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-phone-to-so100-replay-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "f47a8ec69e5bb2ece0cab05b0fcd285a4e56f9177e995eb639c654cc30a6072c",
+      "record_version": "source-f47a8ec69e5bb2ece0cab05b0fcd285a4e56f9177e995eb639c654cc30a6072c"
+    },
+    {
+      "id": "moveit2-doc-examples-collision-environments-src-collision-scene-example-cpp",
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_sha256": "bb39c25fbe2dcb75dcc609c92b56fb66e7deba2f6b8d8189f7f2c31d4da6ce3a",
+      "record_version": "source-bb39c25fbe2dcb75dcc609c92b56fb66e7deba2f6b8d8189f7f2c31d4da6ce3a"
+    },
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-waypoint-follower-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "5a3bca76f5b4574a94d18f33473d1f0fead2274bc588956152e8cb7663d45af9",
+      "record_version": "source-5a3bca76f5b4574a94d18f33473d1f0fead2274bc588956152e8cb7663d45af9"
+    },
+    {
+      "id": "roboticstoolbox-examples-branched-robot-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "1ae9f0a2c9b87c00e0c7b9e44d67eea93adc9aefcb73f199b8ed43d1f22eab10",
+      "record_version": "source-1ae9f0a2c9b87c00e0c7b9e44d67eea93adc9aefcb73f199b8ed43d1f22eab10"
+    }
+  ]
+}

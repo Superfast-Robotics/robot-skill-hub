@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pybullet-pdcontrol",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "1506818d6b5c47ed3eb55dee4531694e2a72612646223caf2d3c7a3c378607da",
+      "record_version": "source-1506818d6b5c47ed3eb55dee4531694e2a72612646223caf2d3c7a3c378607da"
+    },
+    {
+      "id": "pybullet-quadruped",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "1efbeaf03bdd5d2511f545829620491c419eb73984bbc7d4ef067061c496bc53",
+      "record_version": "source-1efbeaf03bdd5d2511f545829620491c419eb73984bbc7d4ef067061c496bc53"
+    }
+  ]
+}

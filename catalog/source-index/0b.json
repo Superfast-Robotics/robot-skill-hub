@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-hardware-sim-robot-commander-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "f1522256087d6ed032835add36df9608e569cb4bf64c3dc6b7e41020d45918d6",
+      "record_version": "source-f1522256087d6ed032835add36df9608e569cb4bf64c3dc6b7e41020d45918d6"
+    },
+    {
+      "id": "pinocchio-examples-model-graph-geometry-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "6bc32198c1ffd9e62a52efd0aaa2a3539f394404d4bd2a464a80a71dc02437c5",
+      "record_version": "source-6bc32198c1ffd9e62a52efd0aaa2a3539f394404d4bd2a464a80a71dc02437c5"
+    }
+  ]
+}

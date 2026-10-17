@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-simple-discrete-time-system-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "a3a1782689133745af25ce3f3c40f9d69564a7bbc33490799394b7e32b061192",
+      "record_version": "source-a3a1782689133745af25ce3f3c40f9d69564a7bbc33490799394b7e32b061192"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-04-sensors-add-sensors-on-robot-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "c69a025c9b1341ba00d3fa782c0c611a529229c28cf569f73bc04be19e05a3a5",
+      "record_version": "source-c69a025c9b1341ba00d3fa782c0c611a529229c28cf569f73bc04be19e05a3a5"
+    }
+  ]
+}

@@ -5,13 +5,56 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-10-17",
   "workers_dev": true,
-  "routes": [{ "pattern": "api.superfastrobotics.com", "custom_domain": true }],
-  "observability": { "enabled": false },
+  "routes": [
+    {
+      "pattern": "api.superfastrobotics.com",
+      "custom_domain": true
+    }
+  ],
+  "observability": {
+    "enabled": false
+  },
   "vars": {
-    "PUBLICATION_URL": "https://hub.superfastrobotics.com/catalog/v1/publication.json"
+    "PUBLICATION_URL": "https://hub.superfastrobotics.com/catalog/v1/publication.json",
+    "CAMPAIGN_STARTED_AT": "2026-10-17T15:47:38Z"
   },
   "ratelimits": [
-    { "name": "SUBMIT_LIMITER", "namespace_id": "78345101", "simple": { "limit": 10, "period": 60 } },
-    { "name": "STATUS_LIMITER", "namespace_id": "78345102", "simple": { "limit": 60, "period": 60 } }
-  ]
+    {
+      "name": "SUBMIT_LIMITER",
+      "namespace_id": "78345101",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    },
+    {
+      "name": "STATUS_LIMITER",
+      "namespace_id": "78345102",
+      "simple": {
+        "limit": 60,
+        "period": 60
+      }
+    },
+    {
+      "name": "PUBLIC_LIMITER",
+      "namespace_id": "78345103",
+      "simple": {
+        "limit": 120,
+        "period": 60
+      }
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "METRICS",
+      "database_name": "robot-skill-hub-metrics",
+      "database_id": "2022a8f3-26db-4c9e-b867-021d49dfb75f",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "0 * * * *"
+    ]
+  }
 }

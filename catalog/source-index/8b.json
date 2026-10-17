@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-01-assets-run-surface-gripper-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "510d589ab80fdfc3cd65e9c629474800009a3ea45f096281db01cf88bf4081f8",
+      "record_version": "source-510d589ab80fdfc3cd65e9c629474800009a3ea45f096281db01cf88bf4081f8"
+    },
+    {
+      "id": "pinocchio-examples-inverse-kinematics-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "598306f3807ec03d7ca360c38365a3af3af5792880a6815bac7a1875b696baff",
+      "record_version": "source-598306f3807ec03d7ca360c38365a3af3af5792880a6815bac7a1875b696baff"
+    },
+    {
+      "id": "pinocchio-examples-mimic-dynamics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "e4615b93021b76ce0d4e0bcb589406acb3a11d103f7df7b9f3e4141b9ae9bf8e",
+      "record_version": "source-e4615b93021b76ce0d4e0bcb589406acb3a11d103f7df7b9f3e4141b9ae9bf8e"
+    }
+  ]
+}

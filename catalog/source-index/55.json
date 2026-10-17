@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ompl-demos-point2dplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "169373f248203887bf4e1ffc6458cf6942f740a01e5ae881a3aef60d36628f26",
+      "record_version": "source-169373f248203887bf4e1ffc6458cf6942f740a01e5ae881a3aef60d36628f26"
+    },
+    {
+      "id": "webots-projects-robots-k-team-khepera1-controllers-khepera-gripper-ba002798b556",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "bdfb1217c83b49d3ec84f03a409489594e465dd0915b0cef96bc7b977abcfa6b",
+      "record_version": "source-bdfb1217c83b49d3ec84f03a409489594e465dd0915b0cef96bc7b977abcfa6b"
+    },
+    {
+      "id": "webots-projects-robots-niryo-ned-controllers-ned-ned-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e09e8b25c8d8a39ced5364c06be541bb9a7b366874e4bd611517f0331ad75aa4",
+      "record_version": "source-e09e8b25c8d8a39ced5364c06be541bb9a7b366874e4bd611517f0331ad75aa4"
+    }
+  ]
+}

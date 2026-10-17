@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-quadrotor-run-quadrotor-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "badd7bd86a701ade9e8598239a846c6c3323500abd9b1a9da7ec10c8e361c8e4",
+      "record_version": "source-badd7bd86a701ade9e8598239a846c6c3323500abd9b1a9da7ec10c8e361c8e4"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-force3d-sensor-force3d-sensor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "e000c9815c9137ef065d26832e31c844fd1445c00ebb66d9ec99a53b5b88514e",
+      "record_version": "source-e000c9815c9137ef065d26832e31c844fd1445c00ebb66d9ec99a53b5b88514e"
+    }
+  ]
+}

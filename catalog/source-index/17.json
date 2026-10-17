@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-04-sensors-run-ray-caster-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466",
+      "record_version": "source-3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466"
+    },
+    {
+      "id": "pinocchio-examples-robot-wrapper-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "0b4d5d2f0d9d1210facb56c8014dfb714c6b3bfdb99dc8cfb6d54604359a94f8",
+      "record_version": "source-0b4d5d2f0d9d1210facb56c8014dfb714c6b3bfdb99dc8cfb6d54604359a94f8"
+    },
+    {
+      "id": "ros2-examples-rclcpp-actions-minimal-action-server-member-functions-cpp",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "a2db58f672b61a386b610ec18d85333ea1ca55e06d56dc1186c85a7916e077fd",
+      "record_version": "source-a2db58f672b61a386b610ec18d85333ea1ca55e06d56dc1186c85a7916e077fd"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-coupled-motors-coupled-motors-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "0ecab6a0f6a95832d19d869ca453a864914b8e15798bece469345f63b8c5934a",
+      "record_version": "source-0ecab6a0f6a95832d19d869ca453a864914b8e15798bece469345f63b8c5934a"
+    }
+  ]
+}

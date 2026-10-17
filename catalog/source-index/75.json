@@ -1,0 +1,53 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crazyflie-examples-autonomy-motion-commander-demo-py",
+      "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
+      "source_sha256": "c103ec9ee97012285f0e654ddccc7d6f8399b8f4f25403f0cfeb58bbeb8de3c3",
+      "record_version": "source-c103ec9ee97012285f0e654ddccc7d6f8399b8f4f25403f0cfeb58bbeb8de3c3"
+    },
+    {
+      "id": "drake-examples-multibody-four-bar-four-bar-with-bushing-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "d9143691e36a888a551629e4a87ccb04fa0d72773459978ddecf508c091b3092",
+      "record_version": "source-d9143691e36a888a551629e4a87ccb04fa0d72773459978ddecf508c091b3092"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-05-controllers-run-diff-ik-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "fbd000abdda9fbb5dabb87d718441cca81a536c902f03ffc7ab262b819e99716",
+      "record_version": "source-fbd000abdda9fbb5dabb87d718441cca81a536c902f03ffc7ab262b819e99716"
+    },
+    {
+      "id": "lerobot-examples-phone-to-so100-teleoperate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "b88e0c8d57802bf8d1d2f83bcf39b2362a62a5956e124b1ba3bb196ae8c3ec30",
+      "record_version": "source-b88e0c8d57802bf8d1d2f83bcf39b2362a62a5956e124b1ba3bb196ae8c3ec30"
+    },
+    {
+      "id": "ompl-demos-constraint-constrainedplanningkinematicchain-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "6a5fc9cb5591d39329c5d17b9a17d3d68193162c1cbaa34ebe9fa53c9782aba8",
+      "record_version": "source-6a5fc9cb5591d39329c5d17b9a17d3d68193162c1cbaa34ebe9fa53c9782aba8"
+    },
+    {
+      "id": "webots-projects-robots-k-team-khepera1-controllers-pipe-client-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "dbc45ad1190a1ce9add27031721554acb66967c6dbaf38ef1d9b6ca2f59bd3a6",
+      "record_version": "source-dbc45ad1190a1ce9add27031721554acb66967c6dbaf38ef1d9b6ca2f59bd3a6"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-display-display-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2376959fc07215e2972aa14df722e88b548fa220e536bc9082b48f1b5e01ef04",
+      "record_version": "source-2376959fc07215e2972aa14df722e88b548fa220e536bc9082b48f1b5e01ef04"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-gps-supervisor-gps-supervisor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "3f3ab294d336f1306e583499bbc5f22c450ddaced94e2b26417907006e6814d7",
+      "record_version": "source-3f3ab294d336f1306e583499bbc5f22c450ddaced94e2b26417907006e6814d7"
+    }
+  ]
+}

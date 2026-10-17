@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-imu-imu-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "b659c4cb9da8d849a3c6fa96224bd177dbe587f43697cacd1cc6e25f8ae121b8",
+      "record_version": "source-b659c4cb9da8d849a3c6fa96224bd177dbe587f43697cacd1cc6e25f8ae121b8"
+    }
+  ]
+}

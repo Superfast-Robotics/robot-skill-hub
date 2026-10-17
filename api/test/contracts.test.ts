@@ -86,6 +86,14 @@ test('intake creates one durable internal PR, automatic version and separate evi
   assert.ok(!JSON.stringify(receipt).includes(TOKEN));
 });
 
+test('direct patch API rejects recognizable and active credentials before persisting data', async () => {
+  for (const secret of [TOKEN, 'rsh_' + 'x'.repeat(43), 'ghp_' + 'x'.repeat(30), '-----BEGIN PRIVATE KEY-----']) {
+    const s = await setup(); const value = bundle(); value.summary += ' ' + secret;
+    const response = await s.post(value); assert.equal(response.status, 422);
+    assert.equal((await response.json() as any).reason_code, 'sensitive_submission'); assert.equal(s.github.branchCreates, 0);
+  }
+});
+
 test('concurrent calls, lost response, stale-base retry and deleted branch retain one PR', async () => {
   const s = await setup(); const responses = await Promise.all(Array.from({ length: 10 }, () => s.post()));
   for (const r of responses) assert.ok([200, 201].includes(r.status));

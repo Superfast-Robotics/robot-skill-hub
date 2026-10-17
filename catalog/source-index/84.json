@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-dataset-use-dataset-image-transforms-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "517405dfcc79c840ba3f4774d205b182911f467a655ca273d900ac6d5430dbe1",
+      "record_version": "source-517405dfcc79c840ba3f4774d205b182911f467a655ca273d900ac6d5430dbe1"
+    },
+    {
+      "id": "ompl-demos-spacetimeplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "4b63aa446b1c05eb01dc030638e71da49e46e2ebdbc2db6c4de9f4f419f412a0",
+      "record_version": "source-4b63aa446b1c05eb01dc030638e71da49e46e2ebdbc2db6c4de9f4f419f412a0"
+    },
+    {
+      "id": "ompl-demos-statesampling-py",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "f33519564bd6c3ab44dc6e2c3da6ff481e4cb29cab67a619a5c811f002c29a3f",
+      "record_version": "source-f33519564bd6c3ab44dc6e2c3da6ff481e4cb29cab67a619a5c811f002c29a3f"
+    },
+    {
+      "id": "pinocchio-examples-casadi-casadi-aba-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "9f11d0afa93e9420d7f78de0567218ceb347c467bcaeff75103c0dc578295765",
+      "record_version": "source-9f11d0afa93e9420d7f78de0567218ceb347c467bcaeff75103c0dc578295765"
+    },
+    {
+      "id": "pinocchio-examples-run-algo-in-parallel-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "b77294f1eb83132eb1ea92b72495a5d0463a82b790e811c4a6057e8d2c262b81",
+      "record_version": "source-b77294f1eb83132eb1ea92b72495a5d0463a82b790e811c4a6057e8d2c262b81"
+    }
+  ]
+}

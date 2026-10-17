@@ -6,7 +6,7 @@ import argparse
 import json
 import sys
 
-from rshlib import contributions, memories, setup
+from rshlib import contributions, intake, memories, setup
 from rshlib.core import RshError, find, inspect, load_catalog, lookup, read_json
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
@@ -76,6 +76,15 @@ def build_parser():
     status = sub.add_parser("submission-status", help="Read only this pilot token owner's submission")
     status.add_argument("submission_id")
     status.add_argument("--api-url")
+    register = sub.add_parser("register", help="Save or submit a new pinned skill source for maintainer review")
+    register.add_argument("skill", help="Explicit small source-reference JSON; no project scanning")
+    register.add_argument("--project", required=True)
+    register.add_argument("--contributor", required=True, help="Self-reported contributor label")
+    register.add_argument("--policy")
+    register.add_argument("--api-url")
+    register.add_argument("--output")
+    register.add_argument("--draft", action="store_true", help="Save a local bundle without API delivery")
+    register.add_argument("--refresh-base", action="store_true", help="Explicitly create a new intake identity at the selected hub base after review")
     memory_status = sub.add_parser("memory-status", help="Read the saved finding's own review and publication status")
     memory_status.add_argument("memory_id")
     memory_status.add_argument("--api-url")
@@ -136,7 +145,7 @@ def execute(args, catalog_location):
         return memories.status(args.memory_id, api_url=args.api_url)
     if args.command == "flush":
         return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline)
-    latest = args.command in ("find", "inspect", "memories")
+    latest = args.command in ("find", "inspect", "memories", "register")
     catalog = load_discovery(catalog_location, offline=args.offline, refresh=args.refresh, latest=latest)
     environment = {}
     if getattr(args, "environment", None):
@@ -148,6 +157,9 @@ def execute(args, catalog_location):
             environment[field] = getattr(args, field)
     if args.command == "find":
         return find(catalog, args.query, environment, args.limit)
+    if args.command == "register":
+        return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
+                               api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
         return inspect(catalog, args.skill_id)
     if args.command == "prepare":

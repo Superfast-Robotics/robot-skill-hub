@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-sensors-multi-mesh-raycaster-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "ddaea7ea77416bd279c28f5e7b6c6b28cc718b2e47f6213f63a35995327af377",
+      "record_version": "source-ddaea7ea77416bd279c28f5e7b6c6b28cc718b2e47f6213f63a35995327af377"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-04-sensors-run-ray-caster-camera-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "70d2bda42a878e3ced823e9a7f17c30aae80172d3a41ea1c9dc938f939ee6e23",
+      "record_version": "source-70d2bda42a878e3ced823e9a7f17c30aae80172d3a41ea1c9dc938f939ee6e23"
+    },
+    {
+      "id": "lerobot-examples-tutorial-pi0-using-pi0-example-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "38a6b84ab5f01170de51447bac5b9089d3c3e9d4526ef7fe91536701d7508d42",
+      "record_version": "source-38a6b84ab5f01170de51447bac5b9089d3c3e9d4526ef7fe91536701d7508d42"
+    },
+    {
+      "id": "webots-projects-robots-dji-mavic-controllers-mavic2pro-mavic2pro-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "119991370d17d19dfc9f8391f00cf2a7ca41678928f410a9ee522b54e46de514",
+      "record_version": "source-119991370d17d19dfc9f8391f00cf2a7ca41678928f410a9ee522b54e46de514"
+    }
+  ]
+}

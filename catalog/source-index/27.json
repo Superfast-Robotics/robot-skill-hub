@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-bindings-pydrake-examples-multibody-pendulum-lqr-monte-carlo-analysis-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "7e3b257e3a6ebbaea6fb6e6b5468de05830ac39a3b722cd8f4c6e99cb9b99475",
+      "record_version": "source-7e3b257e3a6ebbaea6fb6e6b5468de05830ac39a3b722cd8f4c6e99cb9b99475"
+    }
+  ]
+}

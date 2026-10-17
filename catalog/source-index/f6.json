@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-rimless-wheel-simulate-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "dda2e6726833591662a452225e63cc36e6d1e08fd3d804e0388177e170f8fd8b",
+      "record_version": "source-dda2e6726833591662a452225e63cc36e6d1e08fd3d804e0388177e170f8fd8b"
+    },
+    {
+      "id": "lerobot-examples-phone-to-so100-rollout-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba",
+      "record_version": "source-7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba"
+    },
+    {
+      "id": "pinocchio-examples-sample-model-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "03bee4077f306b9207128abf1cd03a5951a3e603c15007d34c2a52fb84cfcc2e",
+      "record_version": "source-03bee4077f306b9207128abf1cd03a5951a3e603c15007d34c2a52fb84cfcc2e"
+    },
+    {
+      "id": "roboticstoolbox-examples-mexican-wave-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "1d5a41218bc1fbfc695bfb5e827e3a0c9d05daad2acaa5753201a5de242aa5f5",
+      "record_version": "source-1d5a41218bc1fbfc695bfb5e827e3a0c9d05daad2acaa5753201a5de242aa5f5"
+    }
+  ]
+}

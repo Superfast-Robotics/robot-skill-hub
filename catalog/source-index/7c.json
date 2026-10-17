@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-scene-graph-bouncing-ball-run-dynamics-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "ede6a4d7f9b7964ef1935085b817ea26a58ff8d5f98d7f11fde66d09648d63a0",
+      "record_version": "source-ede6a4d7f9b7964ef1935085b817ea26a58ff8d5f98d7f11fde66d09648d63a0"
+    },
+    {
+      "id": "roboticstoolbox-examples-neo-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "2c847930dbcf2d2f600317ade2946ac514df46c48d45807d27815e8654976a5c",
+      "record_version": "source-2c847930dbcf2d2f600317ade2946ac514df46c48d45807d27815e8654976a5c"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-brake-brake-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "73a1799df2372983af6ffe471ef567d52e268a6f1345bfd6cba35bdc7133f557",
+      "record_version": "source-73a1799df2372983af6ffe471ef567d52e268a6f1345bfd6cba35bdc7133f557"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-hinge-joint-with-backla-8d4d3465ed16",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f035341fb95a377c5db8ca6168c035fe4b41b257b1eca48a9017c91ad8bc813e",
+      "record_version": "source-f035341fb95a377c5db8ca6168c035fe4b41b257b1eca48a9017c91ad8bc813e"
+    }
+  ]
+}

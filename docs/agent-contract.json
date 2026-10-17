@@ -7,7 +7,9 @@
     "inspect_environment_contracts",
     "prepare_supported_recipes",
     "recall_exact_version_findings",
-    "save_already_observed_reusable_findings"
+    "save_already_observed_reusable_findings",
+    "discover_robot_code_and_artifacts_across_frameworks",
+    "register_reviewable_new_source_references"
   ],
   "resources": {
     "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
@@ -21,7 +23,14 @@
     "project_policy_schema_url": "https://hub.superfastrobotics.com/schemas/project-policy.schema.json",
     "api_base_url": "https://api.superfastrobotics.com",
     "api_capabilities_url": "https://api.superfastrobotics.com/v1/capabilities",
-    "api_session_url": "https://api.superfastrobotics.com/v1/session"
+    "api_session_url": "https://api.superfastrobotics.com/v1/session",
+    "search_url": "https://api.superfastrobotics.com/v1/search",
+    "inspect_url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}",
+    "mcp_url": "https://api.superfastrobotics.com/mcp",
+    "openapi_url": "https://hub.superfastrobotics.com/openapi.json",
+    "privacy_url": "https://hub.superfastrobotics.com/privacy.md",
+    "new_skills_guide_url": "https://hub.superfastrobotics.com/new-skills.md",
+    "access_metrics_url": "https://api.superfastrobotics.com/v1/metrics"
   },
   "cli": {
     "minimum_python": "3.10",
@@ -326,6 +335,18 @@
       "rate_limit": "status",
       "project_memory_scope": "client_policy_required",
       "credential_source": "RSH_SUBMISSION_TOKEN or the file named by RSH_SUBMISSION_TOKEN_FILE"
+    },
+    "register_skill": {
+      "method": "POST",
+      "url": "https://api.superfastrobotics.com/v1/skills",
+      "body_schema": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+      "body_max_utf8_bytes": 16384,
+      "authentication": "allowed_agent_Bearer_token",
+      "idempotency_header": "Idempotency-Key",
+      "client_command": "rsh.py register SKILL_JSON --project DIR --json",
+      "project_scope": "publication.public_submission_allowed and exact publication.allowed_new_skill_ids",
+      "result": "internal_draft_PR_then_maintainer_review_and_publication",
+      "artifact_execution": false
     }
   },
   "preparation": {
@@ -334,5 +355,48 @@
     "simulation_execution": "separate_from_preparation",
     "dependency_installation": "explicit_install_deps_within_existing_task_authorization",
     "selected_recipe_arguments": "use_returned_prepare_args_with_expected_record_and_source_versions"
+  },
+  "remote_discovery": {
+    "authentication_required": false,
+    "mcp": {
+      "url": "https://api.superfastrobotics.com/mcp",
+      "transport": "streamable-http",
+      "read_only": true,
+      "tools": [
+        "find_robot_skills",
+        "inspect_robot_skill",
+        "get_hub_capabilities"
+      ]
+    },
+    "search": {
+      "method": "GET",
+      "url": "https://api.superfastrobotics.com/v1/search",
+      "parameters": [
+        "q",
+        "runtime",
+        "robot",
+        "controller",
+        "observation",
+        "os",
+        "kind",
+        "limit",
+        "offset",
+        "hub_commit"
+      ],
+      "limit_maximum": 50,
+      "pagination": "Preserve hub_commit when following next."
+    },
+    "inspect": {
+      "method": "GET",
+      "url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}",
+      "execution_performed": false
+    }
+  },
+  "access_measurement": {
+    "privacy_url": "https://hub.superfastrobotics.com/privacy.md",
+    "opt_out_environment": "RSH_TELEMETRY=off",
+    "opt_out_header": "DNT: 1",
+    "identity": "optional_random_installation_id_daily_HMAC",
+    "counts_are": "self_reported_agent_compatible_requests_not_attested_unique_agents"
   }
 }

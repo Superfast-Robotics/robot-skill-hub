@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-so100-to-so100-ee-teleoperate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "aa87e80f7baff881957f9fb3d7e1520e7fbb557023ace984a3ae6a7128322741",
+      "record_version": "source-aa87e80f7baff881957f9fb3d7e1520e7fbb557023ace984a3ae6a7128322741"
+    },
+    {
+      "id": "lerobot-examples-tutorial-async-inf-robot-client-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "54cc9bf9ad77d857677618b46180eaa6bee29804baa28300ccfb94827b43970d",
+      "record_version": "source-54cc9bf9ad77d857677618b46180eaa6bee29804baa28300ccfb94827b43970d"
+    },
+    {
+      "id": "pyrobosim-pyrobosim-ros-examples-demo-commands-py",
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_sha256": "179425be68425fb5bc564a33357258b0a71cfd4667176482728e9be698e09389",
+      "record_version": "source-179425be68425fb5bc564a33357258b0a71cfd4667176482728e9be698e09389"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-light-sensor-light-sensor-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "4346d0c4b036d1b002e046b70db6bc2b21e60c2ec5d97e085225c8fb88b24711",
+      "record_version": "source-4346d0c4b036d1b002e046b70db6bc2b21e60c2ec5d97e085225c8fb88b24711"
+    }
+  ]
+}

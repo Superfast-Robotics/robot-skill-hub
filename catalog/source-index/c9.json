@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-bindings-pydrake-examples-gym-train-cart-pole-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "c070b261915bb67a22862cd2152094861dd24bb6297c06e08a3df6268e2a446b",
+      "record_version": "source-c070b261915bb67a22862cd2152094861dd24bb6297c06e08a3df6268e2a446b"
+    },
+    {
+      "id": "isaaclab-scripts-tutorials-03-envs-run-cartpole-rl-env-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "657fff8cb085bc25b8a4835161091f4a808da028232f91733001cf911a5f59de",
+      "record_version": "source-657fff8cb085bc25b8a4835161091f4a808da028232f91733001cf911a5f59de"
+    }
+  ]
+}

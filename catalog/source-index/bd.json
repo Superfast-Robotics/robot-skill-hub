@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-01-assets-run-rigid-object-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "3197de9898818463f38fd5a6e6910e10014f1bbcf0e1d022894ece8689fffd48",
+      "record_version": "source-3197de9898818463f38fd5a6e6910e10014f1bbcf0e1d022894ece8689fffd48"
+    },
+    {
+      "id": "nav2-nav2-simple-commander-nav2-simple-commander-demo-picking-py",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "1f00945b2dc3a8da87ef918b36ec826519dc794a245d4fef9541092a53fde46e",
+      "record_version": "source-1f00945b2dc3a8da87ef918b36ec826519dc794a245d4fef9541092a53fde46e"
+    },
+    {
+      "id": "pinocchio-examples-candlewick-viewer-solo-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "d912c13c79f655d31167308096f4270f84ed644a09ff34218e21c04f554759a0",
+      "record_version": "source-d912c13c79f655d31167308096f4270f84ed644a09ff34218e21c04f554759a0"
+    },
+    {
+      "id": "webots-projects-robots-robotis-darwin-op-controllers-soccer-main-cpp",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c5e6dc9ceaac355c64d2b78841176514d4a61158e60ee13d593b110e4a88d5ec",
+      "record_version": "source-c5e6dc9ceaac355c64d2b78841176514d4a61158e60ee13d593b110e4a88d5ec"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-hinge-joint-with-backla-0adf99affcd5",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5628c615482b7749553a0dfaa31b56f1742da89ea9c3679d25926e7872e04133",
+      "record_version": "source-5628c615482b7749553a0dfaa31b56f1742da89ea9c3679d25926e7872e04133"
+    }
+  ]
+}

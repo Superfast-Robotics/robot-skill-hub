@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-03-envs-policy-inference-in-usd-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "bededa9abacaa4518edbb81b73f29d06a026fa9d1a42e0ec0ae3e8c433bf9415",
+      "record_version": "source-bededa9abacaa4518edbb81b73f29d06a026fa9d1a42e0ec0ae3e8c433bf9415"
+    }
+  ]
+}

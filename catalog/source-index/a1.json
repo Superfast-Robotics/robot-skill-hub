@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ros2-control-example-11-bringup-launch-carlikebot-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "1d91921af4e08245b9ad8e65d71c358fef66e16e36685775d9f939370aaf30f9",
+      "record_version": "source-1d91921af4e08245b9ad8e65d71c358fef66e16e36685775d9f939370aaf30f9"
+    }
+  ]
+}

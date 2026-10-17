@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-tutorials-01-assets-add-new-robot-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "0c925d2cffc853a5e06b69394d782d7fba2f302d08e1c8bcc9ed1a324469e83a",
+      "record_version": "source-0c925d2cffc853a5e06b69394d782d7fba2f302d08e1c8bcc9ed1a324469e83a"
+    },
+    {
+      "id": "pinocchio-examples-overview-lie-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "51c5cd1df7f0d41b74e30818471b35311e6c52e05efc2a144b9bc6381e43abeb",
+      "record_version": "source-51c5cd1df7f0d41b74e30818471b35311e6c52e05efc2a144b9bc6381e43abeb"
+    },
+    {
+      "id": "pybullet-robotcontrol",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "source_sha256": "f0112cb3d835e5b110bb17df69b7b912d0a76d5bdb7d42f252faf2a979914186",
+      "record_version": "source-f0112cb3d835e5b110bb17df69b7b912d0a76d5bdb7d42f252faf2a979914186"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-display-shapes-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "281e686b501a122f0b36dc3469016fe32484e8b26c3889db0dbf09f24ff53f5e",
+      "record_version": "source-281e686b501a122f0b36dc3469016fe32484e8b26c3889db0dbf09f24ff53f5e"
+    },
+    {
+      "id": "roboticstoolbox-examples-swift-recording-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "3b8825aef444566a2a32e31712cb6eaa71715515c6db4edf0ccdbcd0e6cfebcc",
+      "record_version": "source-3b8825aef444566a2a32e31712cb6eaa71715515c6db4edf0ccdbcd0e6cfebcc"
+    },
+    {
+      "id": "webots-projects-robots-niryo-ned-controllers-ned-python-ned-python-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "ce6b4ef13eecfefc8d908a2cc2d6b0ea3590c525dd147c8c548e931d9a3c850d",
+      "record_version": "source-ce6b4ef13eecfefc8d908a2cc2d6b0ea3590c525dd147c8c548e931d9a3c850d"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-track-track-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "7bd4999c489ec1b709ea4eb9995b23ad914bd4457b1bb4acad9d8d0dc9575851",
+      "record_version": "source-7bd4999c489ec1b709ea4eb9995b23ad914bd4457b1bb4acad9d8d0dc9575851"
+    }
+  ]
+}

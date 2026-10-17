@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-training-train-with-streaming-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "1d10cc801d716f8f8d2baa1886ffdb52b4349adcd642a5871b1fd81536fc184b",
+      "record_version": "source-1d10cc801d716f8f8d2baa1886ffdb52b4349adcd642a5871b1fd81536fc184b"
+    },
+    {
+      "id": "roboticstoolbox-examples-readme-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "bc2e398ad7d7d5e9ce03e7d8548fecdb2ab1ca3c6f546045583089872263ad38",
+      "record_version": "source-bc2e398ad7d7d5e9ce03e7d8548fecdb2ab1ca3c6f546045583089872263ad38"
+    },
+    {
+      "id": "ros2-control-example-12-bringup-launch-launch-chained-controllers-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "d89855e2e8d3f5dbb67ab4472af98dfab59a4e4156dfdb43eb7e9da1d9e12ee2",
+      "record_version": "source-d89855e2e8d3f5dbb67ab4472af98dfab59a4e4156dfdb43eb7e9da1d9e12ee2"
+    }
+  ]
+}

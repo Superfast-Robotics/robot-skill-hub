@@ -65,6 +65,38 @@ async function setup() {
   return { github, env, handler, post, status, setManifest(value: any) { manifest = value; }, setUnavailable() { unavailable = true; } };
 }
 
+test('content-addressed community policy findings preserve exact artifact identity', async () => {
+  const s = await setup(); s.github.head = HUB;
+  const value = finding(); value.skill_id = 'panda-policy-onnx'; const digest = 'f'.repeat(64);
+  value.base = { hub_commit: HUB, record_version: 'source-' + digest, source_commit: 'sha256:' + digest };
+  s.github.mainFiles['catalog/intake/panda-policy-onnx.json'] = JSON.stringify({ id: value.skill_id, source: { revision: 'sha256:' + digest, sha256: digest } });
+  const response = await s.post(value); assert.equal(response.status, 201);
+  const body: any = await response.json(); assert.equal(body.base.source_commit, 'sha256:' + digest);
+  assert.equal(s.github.referenceReads, 0); assert.equal(s.github.branchCreates, 1);
+  const changed = structuredClone(value); changed.base.source_commit = 'sha256:' + 'e'.repeat(64);
+  assert.equal((await s.post(changed)).status, 409); assert.equal(s.github.branchCreates, 1);
+});
+
+test('compact source identity validates exact reference memory pins without fetching the aggregate', async () => {
+  const s = await setup(); s.github.head = HUB;
+  const value = finding(); value.skill_id = 'mujoco-basic'; const digest = 'f'.repeat(64);
+  value.base = { hub_commit: HUB, record_version: 'source-' + digest, source_commit: SOURCE };
+  s.github.mainFiles['catalog/source-index.json'] = JSON.stringify({ schema_version: '1', records: [{ id: value.skill_id, source_commit: SOURCE, source_sha256: digest, record_version: 'source-' + digest }] });
+  assert.equal((await s.post(value)).status, 201); assert.equal(s.github.referenceReads, 0);
+  const changed = structuredClone(value); changed.base.source_commit = 'e'.repeat(40);
+  assert.equal((await s.post(changed)).status, 409); assert.equal(s.github.branchCreates, 1);
+});
+
+test('source reference memory checks use one exact manifest shard at the original catalog base', async () => {
+  const s = await setup(); s.github.head = HUB; const value = finding(); value.skill_id = 'mujoco-basic';
+  const digest = 'f'.repeat(64), prefix = (await sha256(value.skill_id)).slice(0, 2), path = `catalog/source-index/${prefix}.json`;
+  value.base = { hub_commit: HUB, record_version: 'source-' + digest, source_commit: SOURCE };
+  const raw = JSON.stringify({ schema_version: '1', records: [{ id: value.skill_id, source_commit: SOURCE, source_sha256: digest, record_version: 'source-' + digest }] }) + '\n';
+  s.github.mainFiles['catalog/source-index-manifest.json'] = JSON.stringify({ schema_version: '1', scheme: 'sha256-id-prefix-2', records: 1, shards: { [prefix]: { path, sha256: await sha256(raw), records: 1 } } });
+  s.github.mainFiles[path] = raw; s.github.mainFiles['catalog/source-index.json'] = 'DO NOT READ FLAT INDEX';
+  assert.equal((await s.post(value)).status, 201); assert.equal(s.github.referenceReads, 0); assert.equal(s.github.branchCreates, 1);
+});
+
 test('memory fingerprint is portable, ignores attribution and catalog HEAD, and preserves the first finding', async () => {
   const s = await setup(); const first: any = await (await s.post()).json();
   assert.match(first.memory_id, /^mem_[a-f0-9]{64}$/); assert.equal(first.status, 'stored');
@@ -139,16 +171,18 @@ test('source-reference findings reject wrong hash versions, source commits and a
   const response = await s.post(body); assert.equal(response.status, 409); assert.equal(s.github.referenceReads, 0, 'An existing canonical record cannot be bypassed through reference fallback');
 });
 
-test('only the pinned reference index receives a bounded 256 KiB GitHub read allowance', async () => {
+test('only the pinned reference identity indexes receive a bounded 256 KiB GitHub read allowance', async () => {
   let bytes = 150 * 1024;
   const adapter = new GitHub('dedicated-token', async () => {
     const content = 'x'.repeat(bytes); return Response.json({ type: 'file', encoding: 'base64', size: bytes, content: Buffer.from(content).toString('base64') });
   });
   assert.equal((await adapter.getFile('catalog/references.json', HUB))!.length, bytes);
+  assert.equal((await adapter.getFile('catalog/source-index.json', HUB))!.length, bytes);
   await assert.rejects(adapter.getFile(`catalog/records/${SKILL}.json`, HUB), (error: unknown) => error instanceof ApiError && error.code === 'unsupported_base_file');
   await assert.rejects(adapter.getFile('catalog/other-index.json', HUB), (error: unknown) => error instanceof ApiError && error.code === 'unsupported_base_file');
   bytes = 256 * 1024 + 1;
   await assert.rejects(adapter.getFile('catalog/references.json', HUB), (error: unknown) => error instanceof ApiError && error.code === 'unsupported_base_file');
+  await assert.rejects(adapter.getFile('catalog/source-index.json', HUB), (error: unknown) => error instanceof ApiError && error.code === 'unsupported_base_file');
 });
 
 test('memory policy, bounded fields and recognizable credentials fail before any repository write', async () => {
@@ -166,10 +200,12 @@ test('memory policy, bounded fields and recognizable credentials fail before any
   ];
   for (const [code, mutate, http] of changes) { const s = await setup(); const body = finding(); mutate(body); const response = await s.post(body);
     assert.equal(response.status, http, code); assert.equal((await response.json() as any).reason_code, code); assert.equal(s.github.branchCreates, 0); }
-  for (const secret of ['ghp_' + 'a'.repeat(30), 'github_pat_' + 'a'.repeat(30), 'sk-' + 'a'.repeat(30), 'AKIA' + 'A'.repeat(16), 'Bearer ' + 'a'.repeat(32), 'https://user:password@example.invalid', '-----BEGIN PRIVATE KEY-----']) {
+  for (const secret of ['rsh_' + 'x'.repeat(43), 'ghp_' + 'a'.repeat(30), 'github_pat_' + 'a'.repeat(30), 'sk-' + 'a'.repeat(30), 'AKIA' + 'A'.repeat(16), 'Bearer ' + 'a'.repeat(32), 'https://user:password@example.invalid', '-----BEGIN PRIVATE KEY-----']) {
     const s = await setup(); const body = finding(); body.observation += ' ' + secret; const response = await s.post(body);
     assert.equal(response.status, 422); assert.equal((await response.json() as any).reason_code, 'sensitive_memory'); assert.equal(s.github.branchCreates, 0);
   }
+  const active = await setup(); const leaked = finding(); leaked.observation += ' ' + TOKEN;
+  assert.equal((await active.post(leaked)).status, 422); assert.equal(active.github.branchCreates, 0);
   const s = await setup(); assert.equal((await s.post('x'.repeat(16385))).status, 413);
   assert.equal((await s.post(finding(), TOKEN, { 'Content-Type': 'text/plain' })).status, 415);
   assert.equal((await s.post(finding(), TOKEN, { 'Content-Encoding': 'gzip' })).status, 415); assert.equal(s.github.branchCreates, 0);

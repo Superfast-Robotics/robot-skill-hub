@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-append-urdf-model-with-another-model-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "fa3cfb6d0fb304c9c8b6f6b47803820a45b0ab6597d436b107d43f53960bde44",
+      "record_version": "source-fa3cfb6d0fb304c9c8b6f6b47803820a45b0ab6597d436b107d43f53960bde44"
+    },
+    {
+      "id": "pinocchio-examples-capsule-approximation-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "64daa9b4d39f7467a31274eb94456f96bfcd466cefbeb6a5f54c2a84d7dfd39d",
+      "record_version": "source-64daa9b4d39f7467a31274eb94456f96bfcd466cefbeb6a5f54c2a84d7dfd39d"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-emitter-receiver-emitter-receiver-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "73da9e6e566db489c6d251bb13d6d52c7b9351d21eb7a13c13609f2d45323add",
+      "record_version": "source-73da9e6e566db489c6d251bb13d6d52c7b9351d21eb7a13c13609f2d45323add"
+    }
+  ]
+}

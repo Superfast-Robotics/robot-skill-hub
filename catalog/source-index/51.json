@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-so100-to-so100-ee-evaluate-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "f9d9367e57ef154af334d09fbe0761dde388465427f61bfc7b8c9ab3183c3f2b",
+      "record_version": "source-f9d9367e57ef154af334d09fbe0761dde388465427f61bfc7b8c9ab3183c3f2b"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-bumper-bumper-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "2e78365470b397df1e89f1a9f22b507329931f81f87b45bb783c83d77af78169",
+      "record_version": "source-2e78365470b397df1e89f1a9f22b507329931f81f87b45bb783c83d77af78169"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-range-finder-range-finder-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "27c2444456e383dbe0c6ced6eebf91c859deb53165c0caaf7e064cb8183d5dfc",
+      "record_version": "source-27c2444456e383dbe0c6ced6eebf91c859deb53165c0caaf7e064cb8183d5dfc"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "pinocchio-examples-floating-base-velocity-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "bffe99e543ea6803dfbade0eeaf49524b3bf02efbcf9cdd297ba13a0a3907ae3",
+      "record_version": "source-bffe99e543ea6803dfbade0eeaf49524b3bf02efbcf9cdd297ba13a0a3907ae3"
+    },
+    {
+      "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3dx-collis-b44794b69ee0",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "abc7f79e2c732fda982e4fd25a17d271c3f3e7f4ae69d9adbaaf8ea488ae9571",
+      "record_version": "source-abc7f79e2c732fda982e4fd25a17d271c3f3e7f4ae69d9adbaaf8ea488ae9571"
+    }
+  ]
+}

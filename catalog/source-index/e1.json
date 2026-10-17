@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-markers-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a46f81c75d429a20d2fe43389e786d3db761249b8a925ac022c278941141b5a1",
+      "record_version": "source-a46f81c75d429a20d2fe43389e786d3db761249b8a925ac022c278941141b5a1"
+    },
+    {
+      "id": "lerobot-examples-tutorial-rl-hilserl-example-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "0176c7cfd7f569052d3208d82a9aa765ded740db08b2bfc57f75f571ccb7c2e9",
+      "record_version": "source-0176c7cfd7f569052d3208d82a9aa765ded740db08b2bfc57f75f571ccb7c2e9"
+    },
+    {
+      "id": "ompl-demos-bouncingballplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "b08019faacad973ae9121d70ab5e352e62fa84e8019c230703fd377977e64033",
+      "record_version": "source-b08019faacad973ae9121d70ab5e352e62fa84e8019c230703fd377977e64033"
+    },
+    {
+      "id": "ompl-demos-plannerprogressproperties-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "d5f1136fec827d52215183d4d2cb3696d60b74a7b729c133541d5108ad33c687",
+      "record_version": "source-d5f1136fec827d52215183d4d2cb3696d60b74a7b729c133541d5108ad33c687"
+    },
+    {
+      "id": "webots-projects-robots-kuka-youbot-controllers-youbot-youbot-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "8154475a86cda09cf5db7a6da10fdd94f02c5c8355ff8d1ba1a7ca177b125f75",
+      "record_version": "source-8154475a86cda09cf5db7a6da10fdd94f02c5c8355ff8d1ba1a7ca177b125f75"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-connector-connector-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "c426e02274d97995535650286c5f62a747cff80771c11c4182b9688028eb89db",
+      "record_version": "source-c426e02274d97995535650286c5f62a747cff80771c11c4182b9688028eb89db"
+    }
+  ]
+}

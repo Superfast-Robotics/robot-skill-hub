@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "isaaclab-scripts-demos-arms-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "b783b65552f52ae7f9a18d7feea261a12a4469ca5a077ae6861f9e2f3b2ad6af",
+      "record_version": "source-b783b65552f52ae7f9a18d7feea261a12a4469ca5a077ae6861f9e2f3b2ad6af"
+    },
+    {
+      "id": "lerobot-examples-lekiwi-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "80f73a3ee6e36198d09807ab6b9b65a52bf4e98f6bde22a93d6d791326ef375c",
+      "record_version": "source-80f73a3ee6e36198d09807ab6b9b65a52bf4e98f6bde22a93d6d791326ef375c"
+    },
+    {
+      "id": "roboticstoolbox-examples-puma-fdyn-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "012f4b013cdfd77728dc8555f22a42a0ff9ad6e98af31b06cca69a4ee903b7c4",
+      "record_version": "source-012f4b013cdfd77728dc8555f22a42a0ff9ad6e98af31b06cca69a4ee903b7c4"
+    }
+  ]
+}

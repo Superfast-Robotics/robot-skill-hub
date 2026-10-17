@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-dataset-load-lerobot-dataset-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "2446971c045b8af60043b02c3d9bd59c41b3704c269b96f5bedc82614e56917f",
+      "record_version": "source-2446971c045b8af60043b02c3d9bd59c41b3704c269b96f5bedc82614e56917f"
+    },
+    {
+      "id": "ompl-demos-hybridsystemplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "5d3269294f114e2f10dd5013abab5f9e4bf7b9c67d6d4192da4ded341eeb50b6",
+      "record_version": "source-5d3269294f114e2f10dd5013abab5f9e4bf7b9c67d6d4192da4ded341eeb50b6"
+    },
+    {
+      "id": "ompl-demos-rigidbodyplanning-cpp",
+      "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
+      "source_sha256": "dad60ca926a339e918bcce5cdae579034f1dca510cd83aca761c4764e8f22352",
+      "record_version": "source-dad60ca926a339e918bcce5cdae579034f1dca510cd83aca761c4764e8f22352"
+    },
+    {
+      "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-cpp",
+      "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
+      "source_sha256": "4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2",
+      "record_version": "source-4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2"
+    },
+    {
+      "id": "webots-projects-samples-devices-controllers-gps-supervisor-gps-supervisor-py",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "650691893f7b71c6998aaebc2bcd4b76c7c8f6d9e6a7b7d44bfa51e257ead349",
+      "record_version": "source-650691893f7b71c6998aaebc2bcd4b76c7c8f6d9e6a7b7d44bfa51e257ead349"
+    }
+  ]
+}

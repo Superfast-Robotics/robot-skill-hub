@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-bindings-pydrake-examples-multibody-cart-pole-passive-simulation-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "9abd76c5f9afb3ffbfd34d1f45ecf19b00d7752f898f1a60fcf75d4bd68b8879",
+      "record_version": "source-9abd76c5f9afb3ffbfd34d1f45ecf19b00d7752f898f1a60fcf75d4bd68b8879"
+    },
+    {
+      "id": "isaaclab-scripts-demos-multi-asset-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "a4c9b1f80a6ccd3350a587ec0f72cc08e01e91b30acac6aab7bf052c51d12c1c",
+      "record_version": "source-a4c9b1f80a6ccd3350a587ec0f72cc08e01e91b30acac6aab7bf052c51d12c1c"
+    },
+    {
+      "id": "robosuite-demo-gripper-interaction",
+      "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
+      "source_sha256": "5c8005d1c24d1c09219147c95da4af9d3c15163eb21c80af65f0365ca54b909e",
+      "record_version": "source-5c8005d1c24d1c09219147c95da4af9d3c15163eb21c80af65f0365ca54b909e"
+    }
+  ]
+}

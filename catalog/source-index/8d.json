@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "webots-projects-samples-devices-controllers-pen-pen-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "f31f32eb4da33c35ff7be15e26f54e3d03417337ac72a088fdc42b4ac766375c",
+      "record_version": "source-f31f32eb4da33c35ff7be15e26f54e3d03417337ac72a088fdc42b4ac766375c"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-isaac-teleop-to-so101-override-reset-pose-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "3f879f3d2dee81d52dec65bb7e102ca9298797383868ee8a40d8ae58859d1ff4",
+      "record_version": "source-3f879f3d2dee81d52dec65bb7e102ca9298797383868ee8a40d8ae58859d1ff4"
+    },
+    {
+      "id": "ros2-control-example-10-bringup-launch-rrbot-launch-py",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "0e1d74de109db6993c856831a1ec53ddeb19db35203e68ffc8782565d0c39a92",
+      "record_version": "source-0e1d74de109db6993c856831a1ec53ddeb19db35203e68ffc8782565d0c39a92"
+    }
+  ]
+}

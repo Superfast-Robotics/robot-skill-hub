@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-simple-gripper-simple-gripper-cc",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "fa57d7ab84c4786a91d0fe96b410f625963d5b7957501e10b8795a891c035366",
+      "record_version": "source-fa57d7ab84c4786a91d0fe96b410f625963d5b7957501e10b8795a891c035366"
+    },
+    {
+      "id": "isaaclab-scripts-demos-haply-teleoperation-py",
+      "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "source_sha256": "d1a9ff9eae8695601e17988bb5c112f157bbda291de2d1c971b2ffbbae8e1362",
+      "record_version": "source-d1a9ff9eae8695601e17988bb5c112f157bbda291de2d1c971b2ffbbae8e1362"
+    },
+    {
+      "id": "webots-projects-robots-surveyor-controllers-surveyor-surveyor-c",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "5b58cf96196361efc2bb19126cfca968450e62b57123f9e9cdcd0aef321c23d1",
+      "record_version": "source-5b58cf96196361efc2bb19126cfca968450e62b57123f9e9cdcd0aef321c23d1"
+    }
+  ]
+}

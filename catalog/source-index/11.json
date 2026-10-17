@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "drake-examples-acrobot-optimizer-demo-py",
+      "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
+      "source_sha256": "dadb4ea7761b1e422facac3985da11434a0fa7e882fc41adc37a52c9d92216c7",
+      "record_version": "source-dadb4ea7761b1e422facac3985da11434a0fa7e882fc41adc37a52c9d92216c7"
+    },
+    {
+      "id": "pinocchio-examples-collision-with-point-clouds-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "c71f97a00531e5aa9dfe036e2e816dd7fea54db934c9258c6fcea16cb2dc505b",
+      "record_version": "source-c71f97a00531e5aa9dfe036e2e816dd7fea54db934c9258c6fcea16cb2dc505b"
+    },
+    {
+      "id": "pinocchio-examples-multiprecision-cpp",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "79add3eb7f43883a5433a2744a8b0669b7ba503c94440d96ae9d8c782c413bfe",
+      "record_version": "source-79add3eb7f43883a5433a2744a8b0669b7ba503c94440d96ae9d8c782c413bfe"
+    },
+    {
+      "id": "pinocchio-examples-panda3d-viewer-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "6f3b9a2bfdc3d8b47e26ecc1931e609248f07b9a331e64205acf24af398815dd",
+      "record_version": "source-6f3b9a2bfdc3d8b47e26ecc1931e609248f07b9a331e64205acf24af398815dd"
+    },
+    {
+      "id": "roboticstoolbox-examples-park-py",
+      "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
+      "source_sha256": "c09dcf8c9594ebf57e5fd9d16910d7fc426144504bfcefc1183f50d05d287201",
+      "record_version": "source-c09dcf8c9594ebf57e5fd9d16910d7fc426144504bfcefc1183f50d05d287201"
+    },
+    {
+      "id": "webots-projects-robots-neuronics-ipr-controllers-target-coordinates-d038db52b6df",
+      "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
+      "source_sha256": "9d6fa4af909c9eb55d21f526308e4bafddf53f7f82de45964d419bd1e61837e0",
+      "record_version": "source-9d6fa4af909c9eb55d21f526308e4bafddf53f7f82de45964d419bd1e61837e0"
+    }
+  ]
+}

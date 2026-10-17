@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+  "title": "Robot Skill Hub new source-reference submission v1",
+  "description": "Data-only new-skill onboarding. Transport requires scoped Bearer authentication, Idempotency-Key and a 16 KiB UTF-8 JSON body. No uploaded artifact is executed or marked verified by intake.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "base", "skill", "attribution", "publication"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "base": {"type": "object", "additionalProperties": false, "required": ["hub_commit"], "properties": {"hub_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}}},
+    "skill": {"$ref": "#/$defs/skill"},
+    "attribution": {"type": "object", "additionalProperties": false, "required": ["contributor_label", "preserve_upstream_attribution"], "properties": {"contributor_label": {"type": "string", "minLength": 1, "maxLength": 150}, "preserve_upstream_attribution": {"const": true}}},
+    "publication": {"type": "object", "additionalProperties": false, "required": ["public_submission_allowed"], "properties": {"public_submission_allowed": {"const": true}}}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "maxLength": 240, "pattern": "^[^\\u0000-\\u001f]+$"},
+    "strings": {"type": "array", "maxItems": 20, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "nonemptyStrings": {"allOf": [{"$ref": "#/$defs/strings"}, {"minItems": 1}]},
+    "url": {"type": "string", "format": "uri", "maxLength": 1500, "pattern": "^https://[^/@?#:]+\\.[^/@?#:]+(?:/[^?#]*)?$", "description": "Public HTTPS only; no credentials, signed query, fragment, IP literal, local host or custom port. The API applies stricter URL checks."},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository", "path", "url", "sha256", "bytes", "authors"],
+      "properties": {
+        "repository": {"$ref": "#/$defs/url"},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "revision": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "Standalone artifact revision. Its digest must equal sha256; omit commit."},
+        "path": {"type": "string", "minLength": 1, "maxLength": 500, "description": "Safe relative upstream path, never a local write destination."},
+        "url": {"$ref": "#/$defs/url"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 53687091200}, "authors": {"$ref": "#/$defs/nonemptyStrings"}
+      },
+      "oneOf": [{"required": ["commit"], "not": {"required": ["revision"]}}, {"required": ["revision"], "not": {"required": ["commit"]}}]
+    },
+    "compatibility": {
+      "type": "object", "additionalProperties": false, "required": ["runtime", "runtime_version", "robot", "controller", "observation", "os"],
+      "properties": {"runtime": {"$ref": "#/$defs/text"}, "runtime_version": {"$ref": "#/$defs/text"}, "robot": {"$ref": "#/$defs/text"}, "controller": {"$ref": "#/$defs/text"}, "observation": {"$ref": "#/$defs/text"}, "os": {"$ref": "#/$defs/text"}}
+    },
+    "skill": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "summary", "framework", "kind", "capabilities", "aliases", "robots", "source", "license", "artifact", "requirements", "invocation", "compatibility", "setup_url"],
+      "properties": {
+        "id": {"type": "string", "maxLength": 80, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "name": {"type": "string", "minLength": 1, "maxLength": 150},
+        "summary": {"type": "string", "minLength": 1, "maxLength": 1000}, "framework": {"type": "string", "minLength": 1, "maxLength": 120}, "kind": {"const": "community_skill"},
+        "capabilities": {"$ref": "#/$defs/nonemptyStrings"}, "aliases": {"$ref": "#/$defs/strings"}, "robots": {"$ref": "#/$defs/nonemptyStrings"}, "source": {"$ref": "#/$defs/source"},
+        "license": {"type": "object", "additionalProperties": false, "required": ["spdx", "url", "scope"], "properties": {"spdx": {"type": "string", "minLength": 1, "maxLength": 120}, "url": {"$ref": "#/$defs/url"}, "scope": {"type": "string", "minLength": 1, "maxLength": 1000}}},
+        "artifact": {"type": "object", "additionalProperties": false, "required": ["kind", "format"], "properties": {"kind": {"enum": ["code", "policy", "model", "dataset", "workflow", "robot_description", "documentation", "tool", "other"]}, "format": {"type": "string", "minLength": 1, "maxLength": 120}}},
+        "requirements": {"type": "object", "additionalProperties": false, "required": ["python", "packages", "hardware", "system", "notes"], "properties": {"python": {"type": ["string", "null"], "maxLength": 120}, "packages": {"type": "array", "maxItems": 30, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}}, "hardware": {"$ref": "#/$defs/strings"}, "system": {"$ref": "#/$defs/strings"}, "notes": {"type": "string", "minLength": 1, "maxLength": 2000}}},
+        "invocation": {"type": "object", "additionalProperties": false, "required": ["entrypoint", "notes"], "properties": {"entrypoint": {"type": "string", "minLength": 1, "maxLength": 500}, "notes": {"type": "string", "minLength": 1, "maxLength": 2000}}},
+        "compatibility": {"type": "array", "minItems": 1, "maxItems": 20, "items": {"$ref": "#/$defs/compatibility"}}, "setup_url": {"$ref": "#/$defs/url"}
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+name: Publish MCP discovery server
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mcp-registry-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'Superfast-Robotics/robot-skill-hub' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Check out the reviewed main commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Install the pinned official publisher
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 \
+            --header 'DNT: 1' --header 'X-RSH-Telemetry: off' \
+            --user-agent 'robot-skill-hub-release-verification/0.2.0' \
+            'https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz' \
+            --output "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP" mcp-publisher
+          "$RUNNER_TEMP/mcp-publisher" validate server.json
+
+      - name: Verify the public MCP endpoint before publication
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.request
+          from pathlib import Path
+
+          record = json.loads(Path('server.json').read_text())
+          endpoint = record['remotes'][0]['url']
+          headers = {
+              'DNT': '1',
+              'X-RSH-Telemetry': 'off',
+              'Content-Type': 'application/json',
+              'Accept': 'application/json, text/event-stream',
+              'User-Agent': 'robot-skill-hub-release-verification/0.2.0',
+          }
+          def call(method, params, request_id):
+              payload = {'jsonrpc': '2.0', 'id': request_id, 'method': method, 'params': params}
+              req = urllib.request.Request(endpoint, data=json.dumps(payload).encode(), headers=headers)
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  result = json.load(response)
+              if result.get('id') != request_id or 'error' in result:
+                  raise RuntimeError('Public MCP preflight failed: ' + method)
+              return result['result']
+
+          initialized = call('initialize', {
+              'protocolVersion': '2025-03-26',
+              'capabilities': {},
+              'clientInfo': {'name': 'robot-skill-hub-release-verification', 'version': '0.2.0'},
+          }, 1)
+          if initialized['serverInfo'] != {'name': 'robot-skill-hub', 'version': record['version']}:
+              raise RuntimeError('Published record does not match the live server version')
+          headers['MCP-Protocol-Version'] = initialized['protocolVersion']
+          notification = urllib.request.Request(endpoint, data=json.dumps({
+              'jsonrpc': '2.0', 'method': 'notifications/initialized',
+          }).encode(), headers=headers)
+          with urllib.request.urlopen(notification, timeout=30) as response:
+              if response.status != 202:
+                  raise RuntimeError('Public MCP endpoint rejected initialization notification')
+          tools = call('tools/list', {}, 2)['tools']
+          expected = {'find_robot_skills', 'inspect_robot_skill', 'get_hub_capabilities'}
+          if {tool['name'] for tool in tools} != expected:
+              raise RuntimeError('Public MCP tool contract differs from the release')
+          if any(tool.get('annotations', {}).get('readOnlyHint') is not True for tool in tools):
+              raise RuntimeError('Discovery tools must declare read-only behavior')
+          print('Public MCP endpoint and release record agree; all three discovery tools are read-only.')
+          PY
+
+      - name: Authenticate with GitHub Actions OIDC
+        shell: bash
+        run: '"$RUNNER_TEMP/mcp-publisher" login github-oidc'
+
+      - name: Publish the reviewed server record
+        shell: bash
+        run: '"$RUNNER_TEMP/mcp-publisher" publish server.json'
+
+      - name: Verify the public registry record
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          expected = json.loads(Path('server.json').read_text())
+          name = urllib.parse.quote(expected['name'], safe='')
+          version = urllib.parse.quote(expected['version'], safe='')
+          url = f'https://registry.modelcontextprotocol.io/v0.1/servers/{name}/versions/{version}'
+          request = urllib.request.Request(url, headers={
+              'DNT': '1', 'X-RSH-Telemetry': 'off',
+              'User-Agent': 'robot-skill-hub-release-verification/0.2.0',
+              'Accept': 'application/json',
+          })
+          with urllib.request.urlopen(request, timeout=30) as response:
+              published = json.load(response)
+          actual = published['server']
+          for field in ('name', 'version', 'remotes', 'repository', 'websiteUrl'):
+              if actual.get(field) != expected.get(field):
+                  raise RuntimeError('Registry readback differs in ' + field)
+          status = published.get('_meta', {}).get('io.modelcontextprotocol.registry/official', {}).get('status')
+          if status != 'active':
+              raise RuntimeError('Registry record is not active')
+          print(json.dumps({'registry_url': url, 'name': actual['name'], 'version': actual['version'], 'status': status}))
+          PY

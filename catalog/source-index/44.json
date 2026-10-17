@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "lerobot-examples-so100-to-so100-ee-record-py",
+      "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "source_sha256": "9daafbc8d075a60fa6189e76306f462538103f2200320aa68514e15c69623d99",
+      "record_version": "source-9daafbc8d075a60fa6189e76306f462538103f2200320aa68514e15c69623d99"
+    },
+    {
+      "id": "pinocchio-examples-inverse-dynamics-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "69899c2382b3d8fb7472b94a23d32b68dcaf5d58e9967d5659082067f9ef12c5",
+      "record_version": "source-69899c2382b3d8fb7472b94a23d32b68dcaf5d58e9967d5659082067f9ef12c5"
+    },
+    {
+      "id": "pinocchio-examples-model-graph-py",
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_sha256": "5e15046df609a02e44bb9fefbf6b0085bcca3f3630571f7c047ef16061313170",
+      "record_version": "source-5e15046df609a02e44bb9fefbf6b0085bcca3f3630571f7c047ef16061313170"
+    }
+  ]
+}
