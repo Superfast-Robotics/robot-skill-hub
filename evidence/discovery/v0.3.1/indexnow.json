@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T18:13:49.265320+00:00",
+  "operation": "One notification for 508 newly published catalog source-page URLs since the prior 679-URL notification, plus 3 updated discovery resources.",
+  "host": "hub.superfastrobotics.com",
+  "http_status": 200,
+  "response_body": "",
+  "attempted_url_count": 511,
+  "new_source_url_count": 508,
+  "key_location_verified": true,
+  "every_url_in_published_sitemap": true,
+  "submission_attempts": 1,
+  "indexing_verified": false,
+  "visits_or_traffic_claimed": false,
+  "hub_verification_traffic_opted_out": true
+}
