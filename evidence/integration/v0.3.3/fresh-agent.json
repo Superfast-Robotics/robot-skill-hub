@@ -1,0 +1,3699 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-17T19:24:13.564520+00:00",
+  "completed_at": "2026-10-17T19:26:05.858102+00:00",
+  "verification_scope": "Fresh unauthenticated public clone; bounded Pages/API/MCP metadata, sixteen CLI discovery/plan calls and three deliberately synthetic local save calls with network denied. No flush command executed or public finding created. No upstream source, package, simulator, weights or robot execution. All requests opt out of telemetry.",
+  "attribution": "Superfast Robotics maintainer verification; not independent peer verification, distinct-agent adoption or campaign traffic.",
+  "fresh_clone": {
+    "remote": "https://github.com/Superfast-Robotics/robot-skill-hub.git",
+    "commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+    "authentication_used": false,
+    "global_and_system_git_configuration_disabled": true,
+    "clean_before_and_after_checks": true,
+    "skill_path": "skills/find-robot-skills",
+    "api_package_version": "0.3.3"
+  },
+  "public_generation": {
+    "hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+    "counts": {
+      "recipes": 17,
+      "references": 1237,
+      "memories": 3
+    },
+    "search_backend": "d1_fts5"
+  },
+  "offline_snapshots": {
+    "catalog": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "records": 17,
+      "bytes": 199434,
+      "sha256": "d0a21b7ba32bd2c110be6ee11971876b435ce4315ab7390025135e7059a89c80"
+    },
+    "references": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "records": 1237,
+      "bytes": 6569947,
+      "sha256": "398271d31f4d8364bcac8bfbe05468106ea02e289ea730e511aa948804073ee9"
+    },
+    "memories": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "records": 3,
+      "bytes": 9404,
+      "sha256": "173dfcbe033c44437c38e682072fa66cdf5cce0a46a0bffc7728b3142c644d76"
+    }
+  },
+  "offline_snapshot_scope": "Generated assets retain their actual build-input commit preceding publication HEAD. Their records match frozen canonical source/recipe files; findings retain their original exact base pins.",
+  "enumeration": {
+    "documents": 1254,
+    "static_search_pages": 15,
+    "static_memory_pages": 1,
+    "api_search_pages": 26,
+    "findings": 3,
+    "backend": "d1_fts5"
+  },
+  "source_scope": {
+    "workflows": 133,
+    "instruction_bundles": 43,
+    "added_ids": [
+      "mavsdk-python-examples-camera-py",
+      "mavsdk-python-examples-follow-me-example-py",
+      "mavsdk-python-examples-geofence-py",
+      "mavsdk-python-examples-gimbal-py",
+      "mavsdk-python-examples-goto-py",
+      "mavsdk-python-examples-mission-py",
+      "mavsdk-python-examples-mission-raw-py",
+      "mavsdk-python-examples-offboard-position-ned-py",
+      "mavsdk-python-examples-offboard-velocity-body-py",
+      "mavsdk-python-examples-takeoff-and-land-py",
+      "mavsdk-python-examples-telemetry-flight-mode-py",
+      "mavsdk-python-examples-telemetry-py",
+      "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+      "spot-sdk-python-examples-arm-grasp-arm-grasp-py",
+      "spot-sdk-python-examples-arm-joint-move-arm-joint-move-py",
+      "spot-sdk-python-examples-arm-simple-arm-simple-py",
+      "spot-sdk-python-examples-arm-trajectory-arm-trajectory-py",
+      "spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py",
+      "spot-sdk-python-examples-docking-dock-my-robot-py",
+      "spot-sdk-python-examples-estop-estop-nogui-py",
+      "spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py",
+      "spot-sdk-python-examples-get-image-get-image-py",
+      "spot-sdk-python-examples-get-robot-state-get-robot-state-py",
+      "spot-sdk-python-examples-get-world-objects-get-world-objects-py",
+      "spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py",
+      "spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py",
+      "spot-sdk-python-examples-hello-spot-hello-spot-py",
+      "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+      "spot-sdk-python-examples-record-autowalk-record-autowalk-py",
+      "spot-sdk-python-examples-replay-mission-replay-mission-py"
+    ],
+    "changed_existing_ids": [],
+    "integration_preservation_sha256": "e4bb9a2651ef75aec7fc793167449665e7a187347de4e35b36827e1ffdd84885",
+    "full_json_records_checked": 42,
+    "unresolved_license_ids": [
+      "gap-bundle-curobo",
+      "gap-bundle-gemini-er",
+      "gap-bundle-geometry",
+      "gap-bundle-grounding-dino",
+      "gap-bundle-molmo",
+      "gap-bundle-perceiving-next-item",
+      "gap-bundle-perceiving-object-parts",
+      "gap-bundle-perceiving-objects",
+      "gap-bundle-perceiving-objects-oneshot",
+      "gap-bundle-sam3",
+      "gap-bundle-vlm",
+      "rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py"
+    ],
+    "instruction_license_conflict_ids": [
+      "gap-bundle-curobo",
+      "gap-bundle-gemini-er",
+      "gap-bundle-geometry",
+      "gap-bundle-grounding-dino",
+      "gap-bundle-molmo",
+      "gap-bundle-perceiving-next-item",
+      "gap-bundle-perceiving-object-parts",
+      "gap-bundle-perceiving-objects",
+      "gap-bundle-perceiving-objects-oneshot",
+      "gap-bundle-sam3",
+      "gap-bundle-vlm"
+    ],
+    "runtime_verification": "not_run",
+    "hub_prepare": false
+  },
+  "new_platforms": {
+    "spot": {
+      "records": 18,
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "license": {
+        "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+        "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/LICENSE",
+        "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+        "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+        "verified": false,
+        "review_status": "nonstandard_upstream_terms",
+        "source_terms": {
+          "identifier": "20191101-BDSDK-SL",
+          "marker": "(20191101-BDSDK-SL)",
+          "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+        },
+        "bytes": 3920
+      }
+    },
+    "mavsdk": {
+      "records": 12,
+      "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/LICENSE.txt",
+        "sha256": "2e373f427edf94ffd33fdda4d055989605257c6880026496b06d04890394bd12",
+        "scope": "Selected first-party Python example source under the MAVSDK Development Team BSD-3-Clause notice. Retain copyright, conditions and disclaimers. This source identity does not establish terms for separately obtained server binaries, autopilot firmware, hardware, payloads, maps, dependencies or services.",
+        "bytes": 1494
+      }
+    }
+  },
+  "synthetic_recovery": {
+    "synthetic_local_fixture": true,
+    "cli_calls": 3,
+    "network_requests": 0,
+    "posts": 0,
+    "real_or_dummy_tokens_created_or_read": false,
+    "local_save_persisted": true,
+    "duplicate_credential_provider_consulted": false,
+    "duplicate_outbox_unchanged": true,
+    "revoked_permission_hides_recovery": true,
+    "flush_arguments_checked_as_inert_data": true,
+    "flush_executed": false,
+    "public_finding_created": false,
+    "campaign_access_created": false
+  },
+  "cli": {
+    "calls": 19,
+    "online_read_or_plan_calls": 16,
+    "network_denied_local_save_calls": 3,
+    "commands": [
+      {
+        "label": "find_Spot_platform",
+        "args": [
+          "find",
+          "Spot",
+          "--runtime",
+          "spot-sdk",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 18,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+            "spot-sdk-python-examples-arm-grasp-arm-grasp-py",
+            "spot-sdk-python-examples-arm-joint-move-arm-joint-move-py"
+          ]
+        }
+      },
+      {
+        "label": "find_MAVSDK_platform",
+        "args": [
+          "find",
+          "MAVSDK",
+          "--runtime",
+          "mavsdk-python",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 12,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "mavsdk-python-examples-camera-py",
+            "mavsdk-python-examples-follow-me-example-py",
+            "mavsdk-python-examples-geofence-py"
+          ]
+        }
+      },
+      {
+        "label": "find_humanoid_locomotion",
+        "args": [
+          "find",
+          "humanoid locomotion",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 5,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "isaaclab-scripts-demos-h1-locomotion-py",
+            "unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py",
+            "unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py"
+          ]
+        }
+      },
+      {
+        "label": "find_G1_model",
+        "args": [
+          "find",
+          "G1",
+          "--robot",
+          "g1",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 5,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py",
+            "unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py",
+            "unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py"
+          ]
+        }
+      },
+      {
+        "label": "find_Crazyflie_model",
+        "args": [
+          "find",
+          "Crazyflie",
+          "--robot",
+          "crazyflie",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 12,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
+            "crazyflie-examples-autonomy-autonomous-sequence-py",
+            "crazyflie-examples-autonomy-motion-commander-demo-py"
+          ]
+        }
+      },
+      {
+        "label": "find_OpenPI_inference",
+        "args": [
+          "find",
+          "policy inference",
+          "--runtime",
+          "openpi",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 2,
+          "search_backend": "d1_fts5",
+          "returned_ids": [
+            "openpi-scripts-serve-policy-py",
+            "openpi-simple-client"
+          ]
+        }
+      },
+      {
+        "label": "inspect_Spot_hello",
+        "args": [
+          "inspect",
+          "spot-sdk-python-examples-hello-spot-hello-spot-py",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "selected_record",
+          "catalog_coverage": {
+            "complete": false,
+            "scope": "selected_record",
+            "included_records": 1
+          },
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source": {
+            "repository": "https://github.com/boston-dynamics/spot-sdk",
+            "commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+            "tag": "master",
+            "path": "python/examples/hello_spot/hello_spot.py",
+            "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/hello_spot.py",
+            "raw_url": "https://raw.githubusercontent.com/boston-dynamics/spot-sdk/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/hello_spot.py",
+            "sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+            "bytes": 12333,
+            "authors": [
+              "Boston Dynamics, Inc."
+            ]
+          },
+          "license": {
+            "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+            "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/LICENSE",
+            "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+            "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+            "verified": false,
+            "review_status": "nonstandard_upstream_terms",
+            "source_terms": {
+              "identifier": "20191101-BDSDK-SL",
+              "marker": "(20191101-BDSDK-SL)",
+              "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+            },
+            "bytes": 3920
+          },
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.1",
+              "Pillow"
+            ],
+            "display": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "execution_domain": "hardware",
+            "source_imports": [
+              "PIL",
+              "argparse",
+              "bosdyn.api",
+              "bosdyn.api.spot",
+              "bosdyn.client",
+              "bosdyn.client.frame_helpers",
+              "bosdyn.client.image",
+              "bosdyn.client.lease",
+              "bosdyn.client.robot_command",
+              "bosdyn.client.robot_state",
+              "bosdyn.client.util",
+              "bosdyn.geometry",
+              "bosdyn.util",
+              "io",
+              "os",
+              "sys",
+              "time"
+            ],
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment.",
+            "declared_requirements": {
+              "python": {
+                "value": ">=3.7",
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+              },
+              "dependency_file": {
+                "path": "python/examples/hello_spot/requirements.txt",
+                "sha256": "0c001224efd6125dee94b521e3686523c53ddff8b5bff67c10d3731381bc63fb",
+                "bytes": 50,
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/requirements.txt",
+                "literal_lines": [
+                  "-f ../../../prebuilt",
+                  "bosdyn-client >= 3.1",
+                  "",
+                  "Pillow"
+                ]
+              },
+              "firmware": "unknown",
+              "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+              "sdk_checkout_version": {
+                "value": "5.2.0",
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+              },
+              "robot_software_alignment": {
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+                "declaration": "Robot software should match Python package versions; actual firmware unknown."
+              },
+              "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+              "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+              "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+            }
+          },
+          "access": {
+            "mode": "source_reference",
+            "hub_prepare": false,
+            "instructions": "Inspect the pinned source, nonstandard upstream terms and setup requirements. The Hub supplies a source link, not license clearance, installation or execution.",
+            "setup_url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+            "setup_evidence": [
+              {
+                "path": "README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/README.md",
+                "sha256": "3ac44aefe8906d1e4445bc3fa733df3f594bf894a9516ecb781d09c14ad5aa59",
+                "bytes": 1966,
+                "purpose": "Author, project and SDK release"
+              },
+              {
+                "path": "python/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/README.md",
+                "sha256": "981346201e4c7fbbc44819b8b375e3303da758e6ce46780e1e7942d9bfa85587",
+                "bytes": 938,
+                "purpose": "Python library setup"
+              },
+              {
+                "path": "python/bosdyn-client/setup.py",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py",
+                "sha256": "8e686364ccff8e578d8c86c7062249c92bcc8c3b16fc2141e9fabd3b67a68ebd",
+                "bytes": 1905,
+                "purpose": "Author, Python and SDK-package declarations"
+              },
+              {
+                "path": "docs/python/quickstart.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+                "sha256": "1b88173e97239b7e539af1df3b9b63aeffd411527f6115b3275cccbef3fbc2c1",
+                "bytes": 15955,
+                "purpose": "Python, robot software alignment and access setup"
+              },
+              {
+                "path": "VERSION",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION",
+                "sha256": "e791457c25b99d69f3d5ca028f6a7f6d88f7e2d85af5162a92a8c5f3aecf59b0",
+                "bytes": 6,
+                "purpose": "SDK version, not connected robot firmware"
+              },
+              {
+                "path": "python/examples/arm_gaze/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/README.md",
+                "sha256": "b4b530f096d7a6b401a941b0e51ecb6fafb90c223b398b49e2993f61eac9e106",
+                "bytes": 1341,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_gaze/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_grasp/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_grasp/README.md",
+                "sha256": "46359d58295ec3f3bf112dbb5e9f8f70deee635d1d36560867868724f48d2c9a",
+                "bytes": 1745,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_grasp/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_grasp/requirements.txt",
+                "sha256": "f3d88d0e53dfd58452c096037cf67c32b761ff7f4ab0186dd4df5dd31ddc327f",
+                "bytes": 63,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_joint_move/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_joint_move/README.md",
+                "sha256": "7742747eeadf15fb964aeaa88e1ed060f1448b75f36cbd0a40f58a79278c17ca",
+                "bytes": 1614,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_joint_move/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_joint_move/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_simple/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_simple/README.md",
+                "sha256": "e142f5a6adebee760ffd7529203f07e3d4abd799eeba3b45582e2072710bf9ca",
+                "bytes": 1402,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_simple/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_simple/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_trajectory/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_trajectory/README.md",
+                "sha256": "eb1ec4ed53a2104e6beabaf70484831032e59e9941ed4fdfd4156eb7c19a24d4",
+                "bytes": 1843,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_trajectory/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_trajectory/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_walk_to_object/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_walk_to_object/README.md",
+                "sha256": "3258a4b06692c05445b98ae8a8adeda79477511f3ec98a3d4959686fab6761b9",
+                "bytes": 1698,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_walk_to_object/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_walk_to_object/requirements.txt",
+                "sha256": "8599b298a5bc4d9706599cf1b6bd89cf1981a12991c7dda63ef2004b68d4bce6",
+                "bytes": 63,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/docking/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/docking/README.md",
+                "sha256": "457fd47f92c2f9af3aceb661fe9900f15676e6cdd54da2090777975221fbf57a",
+                "bytes": 1529,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/docking/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/docking/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/estop/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/estop/README.md",
+                "sha256": "a38b11daf129789e045c851b43df8f8692adcbf4538b62c5c6086be1c2eaadc3",
+                "bytes": 2084,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/estop/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/estop/requirements.txt",
+                "sha256": "c728cb2b026ee2c6037d34739cc6ddb2628036f4e8eb07d2d0c90d1d6e67e926",
+                "bytes": 94,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/frame_trajectory_command/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/frame_trajectory_command/README.md",
+                "sha256": "7c18189abd25e9e565a177e015a9accd69fa423f282dbd8b068350aa20f3b875",
+                "bytes": 1346,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/frame_trajectory_command/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/frame_trajectory_command/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_image/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_image/README.md",
+                "sha256": "ee70211f70e3d0114e31e10013d748e7f89d05c110c4febdeb6859ced4ed22eb",
+                "bytes": 4515,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_image/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_image/requirements.txt",
+                "sha256": "5bc4d191f14f902ba746d72d9091711e35393757ebe5e6563bbdf9e394c192b0",
+                "bytes": 69,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_robot_state/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_robot_state/README.md",
+                "sha256": "6051a43b551db18e591206229e0610178e550572245ec027cf8ebae51bc8aa19",
+                "bytes": 1025,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_robot_state/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_robot_state/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_world_objects/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_world_objects/README.md",
+                "sha256": "dc938323f55391fba8c4dfa81c5752c159d32311a1e5172808ec50c4bf106a20",
+                "bytes": 836,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_world_objects/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_world_objects/requirements.txt",
+                "sha256": "460f1bdc6e23dd1eb2e1877a57bf76f555495247f7a728f7405b71f28c8d1458",
+                "bytes": 46,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/graph_nav_command_line/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/README.md",
+                "sha256": "48517ee0435b846b84053713362585219dec399a49cd8b52a5e46e96d125d2f2",
+                "bytes": 11543,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/graph_nav_command_line/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/requirements.txt",
+                "sha256": "ab41584318f4fa08377824ff9f1fc2a2c05ec54f3fd9ed52837696b5b5661553",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/hello_spot/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/README.md",
+                "sha256": "6d5b22bff94bfbfae87f64b3cd0a38d402d0595d07a06710fd5daf7d10fcc758",
+                "bytes": 1735,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/hello_spot/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/requirements.txt",
+                "sha256": "0c001224efd6125dee94b521e3686523c53ddff8b5bff67c10d3731381bc63fb",
+                "bytes": 50,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/inverse_kinematics/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/README.md",
+                "sha256": "bdbd1066365a1af8a928b292175342e00bfa1e6e7120e78b1c9885aee13c5c02",
+                "bytes": 1697,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/inverse_kinematics/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/requirements.txt",
+                "sha256": "629aabd338def189bc0d5c9a868169a91c538454497ea83c43cab2092a061189",
+                "bytes": 60,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/record_autowalk/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/record_autowalk/README.md",
+                "sha256": "9299a6ce99743d9b16423aaf0f01d55a8376c4f0e365f0cb88bbe6b1bac15b85",
+                "bytes": 2571,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/record_autowalk/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/record_autowalk/requirements.txt",
+                "sha256": "d140e06f7c382a1d00d9575cd314082a13c446e7a29db440f2aa45d7d7250126",
+                "bytes": 59,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/replay_mission/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/replay_mission/README.md",
+                "sha256": "b896fd6c99c52ea161767ebb201dd2e1538b6090790664b5df51d7db085a9862",
+                "bytes": 1930,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/replay_mission/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/replay_mission/requirements.txt",
+                "sha256": "6f7bee90b40321b1da4d7c8989aaca50ee6990d1f59a17738f2065ad6796fc5f",
+                "bytes": 64,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              }
+            ]
+          },
+          "evidence": {
+            "level": "source_reviewed",
+            "runtime_verification": "not_run",
+            "checked_at": "2026-10-18",
+            "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed the Python AST and reviewed this guarded operational entrypoint and its explicit license notices. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded.",
+            "entrypoint_kind": "python_main",
+            "inspection_method": "automated_static",
+            "robot_discovery": {
+              "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+              "method": "reviewed_pinned_text_declaration",
+              "compatibility_inferred": false,
+              "evidence": [
+                {
+                  "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/hello_spot.py",
+                  "sha256": "e729db69e4798764099f0c6ff817c366f1718372d727193fb9cfbccedbdc4f43",
+                  "bytes": 12333,
+                  "quote": "spot",
+                  "labels": [
+                    "spot"
+                  ],
+                  "match_in": "text"
+                }
+              ]
+            },
+            "limitations": [
+              "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified."
+            ]
+          },
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "inspect_MAVSDK_takeoff",
+        "args": [
+          "inspect",
+          "mavsdk-python-examples-takeoff-and-land-py",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "selected_record",
+          "catalog_coverage": {
+            "complete": false,
+            "scope": "selected_record",
+            "included_records": 1
+          },
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source": {
+            "repository": "https://github.com/mavlink/MAVSDK-Python",
+            "commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
+            "tag": "main",
+            "path": "examples/takeoff_and_land.py",
+            "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/examples/takeoff_and_land.py",
+            "raw_url": "https://raw.githubusercontent.com/mavlink/MAVSDK-Python/8fa280f1d7473524a32d061e60b7bb346ff65264/examples/takeoff_and_land.py",
+            "sha256": "441639dfc55723909ca210706962befda51025260ad2df62e139fcdefb864bc1",
+            "bytes": 1367,
+            "authors": [
+              "MAVSDK Development Team",
+              "Jonas Vautherin",
+              "Julian Oes"
+            ]
+          },
+          "license": {
+            "spdx": "BSD-3-Clause",
+            "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/LICENSE.txt",
+            "sha256": "2e373f427edf94ffd33fdda4d055989605257c6880026496b06d04890394bd12",
+            "scope": "Selected first-party Python example source under the MAVSDK Development Team BSD-3-Clause notice. Retain copyright, conditions and disclaimers. This source identity does not establish terms for separately obtained server binaries, autopilot firmware, hardware, payloads, maps, dependencies or services.",
+            "bytes": 1494
+          },
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned README/setup.py; support of separately declared dependencies remains unverified.",
+            "packages": [
+              "mavsdk-grpc (import mavsdk_grpc)",
+              "protobuf>=6.32.1",
+              "grpcio>=1.64.1"
+            ],
+            "display": "Configured MAVLink autopilot connection and working mavsdk_server required. Server version v4.0.5 is a binary declaration, not an autopilot firmware or Python distribution version. Airframe, firmware, payload and executable environment combinations remain unknown.",
+            "execution_domain": "hardware-or-upstream-simulation",
+            "source_imports": [
+              "asyncio",
+              "logging",
+              "mavsdk_grpc"
+            ],
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment.",
+            "declared_requirements": {
+              "python": {
+                "value": ">=3.7",
+                "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py"
+              },
+              "dependency_file": {
+                "path": "requirements.txt",
+                "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+                "bytes": 32,
+                "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+                "literal_lines": [
+                  "protobuf>=6.32.1",
+                  "grpcio>=1.64.1"
+                ]
+              },
+              "firmware": "unknown",
+              "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+              "server_binary_version": {
+                "value": "v4.0.5",
+                "source": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+                "meaning": "Server binary only, not Python distribution or autopilot firmware."
+              },
+              "vehicle_model": "unknown",
+              "install_side_effects": "Upstream build downloads server binary; connect() can launch it. Neither performed."
+            }
+          },
+          "access": {
+            "mode": "source_reference",
+            "hub_prepare": false,
+            "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+            "setup_url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/README.md",
+            "setup_evidence": [
+              {
+                "path": "README.md",
+                "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/README.md",
+                "sha256": "91b743b172ca9ae1fdf09137a66e106b76962a75034807f244e2c344d85efae8",
+                "bytes": 7585,
+                "purpose": "Wrapper/import rename and setup"
+              },
+              {
+                "path": "setup.py",
+                "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/setup.py",
+                "sha256": "5aed957f828c4a0769b08b45dc43a187487196a2035a5425641b6de61c5d7f56",
+                "bytes": 10879,
+                "purpose": "Maintainer, Python and binary build declarations"
+              },
+              {
+                "path": "requirements.txt",
+                "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/requirements.txt",
+                "sha256": "157550c310aedd7a24e36e99e9b94167bd7daad5ca8afcbbd8b233b8c215d587",
+                "bytes": 32,
+                "purpose": "Declared dependencies"
+              },
+              {
+                "path": "MAVSDK_SERVER_VERSION",
+                "url": "https://github.com/mavlink/MAVSDK-Python/blob/8fa280f1d7473524a32d061e60b7bb346ff65264/MAVSDK_SERVER_VERSION",
+                "sha256": "d14fb8c93c85dcffcb1e04b4268226d056a2f56841bfe33578d316955d337116",
+                "bytes": 7,
+                "purpose": "Separate server binary version"
+              }
+            ]
+          },
+          "evidence": {
+            "level": "source_reviewed",
+            "runtime_verification": "not_run",
+            "checked_at": "2026-10-18",
+            "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed the Python AST and reviewed this guarded operational entrypoint and its explicit license notices. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded.",
+            "entrypoint_kind": "python_main",
+            "inspection_method": "automated_static",
+            "limitations": [
+              "Hard-coded connection/motion/mission data may query or change an autopilot when run upstream; this reference was never run."
+            ]
+          },
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "inspect_Spot_reachability_not_offline_solver",
+        "args": [
+          "inspect",
+          "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "selected_record",
+          "catalog_coverage": {
+            "complete": false,
+            "scope": "selected_record",
+            "included_records": 1
+          },
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source": {
+            "repository": "https://github.com/boston-dynamics/spot-sdk",
+            "commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+            "tag": "master",
+            "path": "python/examples/inverse_kinematics/reachability.py",
+            "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/reachability.py",
+            "raw_url": "https://raw.githubusercontent.com/boston-dynamics/spot-sdk/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/reachability.py",
+            "sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+            "bytes": 13750,
+            "authors": [
+              "Boston Dynamics, Inc."
+            ]
+          },
+          "license": {
+            "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+            "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/LICENSE",
+            "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+            "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+            "verified": false,
+            "review_status": "nonstandard_upstream_terms",
+            "source_terms": {
+              "identifier": "20191101-BDSDK-SL",
+              "marker": "(20191101-BDSDK-SL)",
+              "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+            },
+            "bytes": 3920
+          },
+          "requirements": {
+            "python": "Python >=3.7 as declared by pinned bosdyn-client setup.py/quickstart; dependency and platform support remains unverified.",
+            "packages": [
+              "bosdyn-client >= 3.3",
+              "matplotlib",
+              "numpy"
+            ],
+            "display": "Authorized operator-supplied robot address and credentials required. SDK checkout declares 5.2.0; quickstart separately requires robot software aligned with package versions. Motion workflows also declare leases, time sync and external E-Stop. Payload, feature licenses, maps and missions depend on the selected workflow.",
+            "execution_domain": "hardware",
+            "source_imports": [
+              "argparse",
+              "bosdyn.api",
+              "bosdyn.api.spot",
+              "bosdyn.api.spot.inverse_kinematics_pb2",
+              "bosdyn.client",
+              "bosdyn.client.frame_helpers",
+              "bosdyn.client.inverse_kinematics",
+              "bosdyn.client.lease",
+              "bosdyn.client.math_helpers",
+              "bosdyn.client.robot_command",
+              "bosdyn.client.robot_state",
+              "bosdyn.client.util",
+              "bosdyn.util",
+              "math",
+              "matplotlib",
+              "numpy",
+              "sys"
+            ],
+            "notes": "Per-file package floors are declarations, not a tested combined runtime environment.",
+            "declared_requirements": {
+              "python": {
+                "value": ">=3.7",
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py"
+              },
+              "dependency_file": {
+                "path": "python/examples/inverse_kinematics/requirements.txt",
+                "sha256": "629aabd338def189bc0d5c9a868169a91c538454497ea83c43cab2092a061189",
+                "bytes": 60,
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/requirements.txt",
+                "literal_lines": [
+                  "-f ../../../prebuilt",
+                  "bosdyn-client >= 3.3",
+                  "",
+                  "matplotlib",
+                  "numpy"
+                ]
+              },
+              "firmware": "unknown",
+              "external_assets": "Server binaries/autopilot firmware/payloads for MAVSDK; robot firmware/features, camera data, maps/missions for Spot. Separate upstream terms and access requirements remain applicable.",
+              "sdk_checkout_version": {
+                "value": "5.2.0",
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION"
+              },
+              "robot_software_alignment": {
+                "source": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+                "declaration": "Robot software should match Python package versions; actual firmware unknown."
+              },
+              "credentials": "Operator-supplied authorized robot endpoint/credentials; none collected or contacted.",
+              "control_prerequisites": "Selected source may require lease, time sync, external E-Stop, motor power, arm/camera/dock or mission/map data; read-only queries differ from motion workflows.",
+              "source_license": "Local LicenseRef; nonstandard upstream terms unverified. No grant or feature entitlement inferred."
+            }
+          },
+          "access": {
+            "mode": "source_reference",
+            "hub_prepare": false,
+            "instructions": "Inspect the pinned source, nonstandard upstream terms and setup requirements. The Hub supplies a source link, not license clearance, installation or execution.",
+            "setup_url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+            "setup_evidence": [
+              {
+                "path": "README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/README.md",
+                "sha256": "3ac44aefe8906d1e4445bc3fa733df3f594bf894a9516ecb781d09c14ad5aa59",
+                "bytes": 1966,
+                "purpose": "Author, project and SDK release"
+              },
+              {
+                "path": "python/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/README.md",
+                "sha256": "981346201e4c7fbbc44819b8b375e3303da758e6ce46780e1e7942d9bfa85587",
+                "bytes": 938,
+                "purpose": "Python library setup"
+              },
+              {
+                "path": "python/bosdyn-client/setup.py",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/bosdyn-client/setup.py",
+                "sha256": "8e686364ccff8e578d8c86c7062249c92bcc8c3b16fc2141e9fabd3b67a68ebd",
+                "bytes": 1905,
+                "purpose": "Author, Python and SDK-package declarations"
+              },
+              {
+                "path": "docs/python/quickstart.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/docs/python/quickstart.md",
+                "sha256": "1b88173e97239b7e539af1df3b9b63aeffd411527f6115b3275cccbef3fbc2c1",
+                "bytes": 15955,
+                "purpose": "Python, robot software alignment and access setup"
+              },
+              {
+                "path": "VERSION",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/VERSION",
+                "sha256": "e791457c25b99d69f3d5ca028f6a7f6d88f7e2d85af5162a92a8c5f3aecf59b0",
+                "bytes": 6,
+                "purpose": "SDK version, not connected robot firmware"
+              },
+              {
+                "path": "python/examples/arm_gaze/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/README.md",
+                "sha256": "b4b530f096d7a6b401a941b0e51ecb6fafb90c223b398b49e2993f61eac9e106",
+                "bytes": 1341,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_gaze/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_grasp/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_grasp/README.md",
+                "sha256": "46359d58295ec3f3bf112dbb5e9f8f70deee635d1d36560867868724f48d2c9a",
+                "bytes": 1745,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_grasp/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_grasp/requirements.txt",
+                "sha256": "f3d88d0e53dfd58452c096037cf67c32b761ff7f4ab0186dd4df5dd31ddc327f",
+                "bytes": 63,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_joint_move/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_joint_move/README.md",
+                "sha256": "7742747eeadf15fb964aeaa88e1ed060f1448b75f36cbd0a40f58a79278c17ca",
+                "bytes": 1614,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_joint_move/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_joint_move/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_simple/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_simple/README.md",
+                "sha256": "e142f5a6adebee760ffd7529203f07e3d4abd799eeba3b45582e2072710bf9ca",
+                "bytes": 1402,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_simple/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_simple/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_trajectory/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_trajectory/README.md",
+                "sha256": "eb1ec4ed53a2104e6beabaf70484831032e59e9941ed4fdfd4156eb7c19a24d4",
+                "bytes": 1843,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_trajectory/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_trajectory/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/arm_walk_to_object/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_walk_to_object/README.md",
+                "sha256": "3258a4b06692c05445b98ae8a8adeda79477511f3ec98a3d4959686fab6761b9",
+                "bytes": 1698,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/arm_walk_to_object/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_walk_to_object/requirements.txt",
+                "sha256": "8599b298a5bc4d9706599cf1b6bd89cf1981a12991c7dda63ef2004b68d4bce6",
+                "bytes": 63,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/docking/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/docking/README.md",
+                "sha256": "457fd47f92c2f9af3aceb661fe9900f15676e6cdd54da2090777975221fbf57a",
+                "bytes": 1529,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/docking/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/docking/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/estop/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/estop/README.md",
+                "sha256": "a38b11daf129789e045c851b43df8f8692adcbf4538b62c5c6086be1c2eaadc3",
+                "bytes": 2084,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/estop/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/estop/requirements.txt",
+                "sha256": "c728cb2b026ee2c6037d34739cc6ddb2628036f4e8eb07d2d0c90d1d6e67e926",
+                "bytes": 94,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/frame_trajectory_command/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/frame_trajectory_command/README.md",
+                "sha256": "7c18189abd25e9e565a177e015a9accd69fa423f282dbd8b068350aa20f3b875",
+                "bytes": 1346,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/frame_trajectory_command/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/frame_trajectory_command/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_image/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_image/README.md",
+                "sha256": "ee70211f70e3d0114e31e10013d748e7f89d05c110c4febdeb6859ced4ed22eb",
+                "bytes": 4515,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_image/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_image/requirements.txt",
+                "sha256": "5bc4d191f14f902ba746d72d9091711e35393757ebe5e6563bbdf9e394c192b0",
+                "bytes": 69,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_robot_state/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_robot_state/README.md",
+                "sha256": "6051a43b551db18e591206229e0610178e550572245ec027cf8ebae51bc8aa19",
+                "bytes": 1025,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_robot_state/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_robot_state/requirements.txt",
+                "sha256": "c8c78bc9a4da2b6ab0d030422b19cd876bf5f1bb89e1f9c8f6954b28eec19c2f",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/get_world_objects/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_world_objects/README.md",
+                "sha256": "dc938323f55391fba8c4dfa81c5752c159d32311a1e5172808ec50c4bf106a20",
+                "bytes": 836,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/get_world_objects/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/get_world_objects/requirements.txt",
+                "sha256": "460f1bdc6e23dd1eb2e1877a57bf76f555495247f7a728f7405b71f28c8d1458",
+                "bytes": 46,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/graph_nav_command_line/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/README.md",
+                "sha256": "48517ee0435b846b84053713362585219dec399a49cd8b52a5e46e96d125d2f2",
+                "bytes": 11543,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/graph_nav_command_line/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/graph_nav_command_line/requirements.txt",
+                "sha256": "ab41584318f4fa08377824ff9f1fc2a2c05ec54f3fd9ed52837696b5b5661553",
+                "bytes": 42,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/hello_spot/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/README.md",
+                "sha256": "6d5b22bff94bfbfae87f64b3cd0a38d402d0595d07a06710fd5daf7d10fcc758",
+                "bytes": 1735,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/hello_spot/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/hello_spot/requirements.txt",
+                "sha256": "0c001224efd6125dee94b521e3686523c53ddff8b5bff67c10d3731381bc63fb",
+                "bytes": 50,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/inverse_kinematics/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/README.md",
+                "sha256": "bdbd1066365a1af8a928b292175342e00bfa1e6e7120e78b1c9885aee13c5c02",
+                "bytes": 1697,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/inverse_kinematics/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/requirements.txt",
+                "sha256": "629aabd338def189bc0d5c9a868169a91c538454497ea83c43cab2092a061189",
+                "bytes": 60,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/record_autowalk/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/record_autowalk/README.md",
+                "sha256": "9299a6ce99743d9b16423aaf0f01d55a8376c4f0e365f0cb88bbe6b1bac15b85",
+                "bytes": 2571,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/record_autowalk/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/record_autowalk/requirements.txt",
+                "sha256": "d140e06f7c382a1d00d9575cd314082a13c446e7a29db440f2aa45d7d7250126",
+                "bytes": 59,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              },
+              {
+                "path": "python/examples/replay_mission/README.md",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/replay_mission/README.md",
+                "sha256": "b896fd6c99c52ea161767ebb201dd2e1538b6090790664b5df51d7db085a9862",
+                "bytes": 1930,
+                "purpose": "Selected workflow setup and invocation"
+              },
+              {
+                "path": "python/examples/replay_mission/requirements.txt",
+                "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/replay_mission/requirements.txt",
+                "sha256": "6f7bee90b40321b1da4d7c8989aaca50ee6990d1f59a17738f2065ad6796fc5f",
+                "bytes": 64,
+                "purpose": "Per-workflow SDK floor and optional dependencies"
+              }
+            ]
+          },
+          "evidence": {
+            "level": "source_reviewed",
+            "runtime_verification": "not_run",
+            "checked_at": "2026-10-18",
+            "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed the Python AST and reviewed this guarded operational entrypoint and its explicit license notices. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded.",
+            "entrypoint_kind": "python_main",
+            "inspection_method": "automated_static",
+            "robot_discovery": {
+              "scope": "Selected-source or tied folder setup explicitly names Spot; discovery only. Model revision, payload, firmware, feature and environment compatibility are not verified.",
+              "method": "reviewed_pinned_text_declaration",
+              "compatibility_inferred": false,
+              "evidence": [
+                {
+                  "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/inverse_kinematics/reachability.py",
+                  "sha256": "148af4048dedbd6bef58d69e1a0c4956e12be890f382b253f935d7203dbe8912",
+                  "bytes": 13750,
+                  "quote": "spot",
+                  "labels": [
+                    "spot"
+                  ],
+                  "match_in": "text"
+                }
+              ]
+            },
+            "limitations": [
+              "Nonstandard SDK terms, credentials, feature entitlement, firmware alignment and execution remain unverified.",
+              "Selected source requires an arm; configured arm/camera input is an operator prerequisite.",
+              "Reachability example also sends physical Cartesian arm commands; not an offline numerical-only solver."
+            ]
+          },
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "inspect_unresolved_NoMaD",
+        "args": [
+          "inspect",
+          "rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "selected_record",
+          "catalog_coverage": {
+            "complete": false,
+            "scope": "selected_record",
+            "included_records": 1
+          },
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source": {
+            "repository": "https://github.com/RobotecAI/rai",
+            "commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+            "tag": "main",
+            "path": "src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+            "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+            "raw_url": "https://raw.githubusercontent.com/RobotecAI/rai/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+            "sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+            "bytes": 13619,
+            "authors": [
+              "Robotec.AI (per-file copyright notice)",
+              "Dhruv Shah",
+              "Ajay Sridhar",
+              "Nitish Dashora",
+              "Kyle Stachowicz",
+              "Kevin Black",
+              "Noriaki Hirose",
+              "Sergey Levine"
+            ]
+          },
+          "license": {
+            "spdx": "NOASSERTION",
+            "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+            "sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+            "bytes": 13619,
+            "verified": false,
+            "scope": "Pinned Python source link only. Robotec.AI first-party header declares Apache-2.0; an inline notice declares MIT for incorporated visualnav-transformer/fork code. Exact incorporated-code boundaries and notice completeness are not cleared by this review. Preserve both notices; no redistribution or preparation grant is asserted. Model/checkpoint terms remain separate.",
+            "review_status": "mixed_source_notices_unresolved",
+            "upstream_declarations": [
+              {
+                "spdx": "Apache-2.0",
+                "scope": "Robotec.AI first-party header declaration; does not erase the incorporated-code notice.",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+                "sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+                "bytes": 13619
+              },
+              {
+                "spdx": "MIT",
+                "scope": "Inline notice for incorporated visualnav-transformer and fork code, naming original authors; source does not mark exact incorporated-code boundaries.",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/rai_nomad/nomad.py",
+                "sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+                "bytes": 13619
+              }
+            ]
+          },
+          "requirements": {
+            "python": "Root/core/whoami/perception/semap/s2s use >=3.10,<3.13; standalone finetune uses >=3.10,<3.12. Match sourced ROS distribution Python.",
+            "packages": [
+              "Pinned RAI checkout",
+              "Matching ROS 2 and rai_interfaces",
+              "Per-workflow packages, local model or hosted-provider dependencies from pinned setup"
+            ],
+            "display": "Official setup documents ROS 2 Humble/Jazzy, rai_interfaces and feature-specific environment. Nothing installed or runtime verified.",
+            "execution_domain": "computation-or-hardware",
+            "source_imports": [
+              "ament_index_python.packages",
+              "diffusers.schedulers.scheduling_ddpm",
+              "gdown",
+              "geometry_msgs.msg",
+              "numpy",
+              "os",
+              "rcl_interfaces.msg",
+              "rclpy",
+              "rclpy.executors",
+              "rclpy.node",
+              "sensor_msgs.msg",
+              "std_msgs.msg",
+              "std_srvs.srv",
+              "torch",
+              "typing",
+              "visualnav_transformer.deployment.src.utils",
+              "visualnav_transformer.train.vint_train.training.train_utils",
+              "yaml"
+            ],
+            "notes": "Upstream per-workflow profile declarations only; provider availability, dependency resolution and runtime/robot compatibility are unverified.",
+            "declared_requirements": {
+              "nomad": {
+                "gpu": "Source chooses CUDA when available, CPU otherwise; no fixed GPU or latency requirement established.",
+                "external_models": "Separate NoMaD checkpoint and visualnav_transformer dependency. Missing checkpoint triggers gdown in the source; no weights were fetched.",
+                "api": "No hosted LLM API required by this node. Missing-checkpoint retrieval is an external network dependency.",
+                "environment": "ROS 2 camera and velocity target, model configuration and robot limits. Calling the start service causes velocity-command publication.",
+                "evidence_paths": [
+                  "src/rai_extensions/rai_nomad/README.md",
+                  "src/rai_extensions/rai_nomad/setup.py",
+                  "src/rai_extensions/rai_nomad/package.xml",
+                  "pyproject.toml"
+                ]
+              }
+            }
+          },
+          "access": {
+            "mode": "source_reference",
+            "hub_prepare": false,
+            "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+            "setup_url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/setup/install.md",
+            "setup_evidence": [
+              {
+                "path": "LICENSE",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/LICENSE",
+                "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+                "bytes": 11357,
+                "purpose": "evidence"
+              },
+              {
+                "path": ".licenserc.json",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/.licenserc.json",
+                "sha256": "582d8b1c7355a121692073d57a147481c9f36675eb43fcc2dc7a3c08dc0396e6",
+                "bytes": 261,
+                "purpose": "evidence"
+              },
+              {
+                "path": "README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/README.md",
+                "sha256": "11d112a35a74030658deebbbc9b198f88c8ebacc8119e46892196feb41a4d7f2",
+                "bytes": 6173,
+                "purpose": "evidence"
+              },
+              {
+                "path": "pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/pyproject.toml",
+                "sha256": "75d06b23be54413170513f9f67b406a4783ea13fd999725fb40707d443a941a4",
+                "bytes": 2059,
+                "purpose": "evidence"
+              },
+              {
+                "path": "config.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/config.toml",
+                "sha256": "2e143ea4ac089ca7ffa47d1b96d6668a1c09135fcad70bced4be43d2e928bd1c",
+                "bytes": 1226,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/setup/install.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/setup/install.md",
+                "sha256": "2e7fee7047c1360317e2e994a442b6405db9047ecfafef521dca0487cb0c0e1a",
+                "bytes": 6473,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/setup/vendors.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/setup/vendors.md",
+                "sha256": "efb9dea2ddb6ea0b85bdf8147cbc91aa262020ef3e7b24990090cef256aac94e",
+                "bytes": 5039,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/demos/agriculture.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/demos/agriculture.md",
+                "sha256": "0ebd3e0ad617b621fb84fd09b440e7fa80d18b16523639899b8f948123ba6f66",
+                "bytes": 2432,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/demos/debugging_assistant.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/demos/debugging_assistant.md",
+                "sha256": "93042957be43ad52266446945dbf07bc4118321593d4e2805b0290dfc9036bcf",
+                "bytes": 1995,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/demos/manipulation.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/demos/manipulation.md",
+                "sha256": "97c95690772056dcc92211d70808e0d8a0f5e5d5464e509cbdc4fef116e3558a",
+                "bytes": 5933,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/demos/rosbot_xl.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/demos/rosbot_xl.md",
+                "sha256": "c6ca69e681cca3e3a4ce75ca83b439a70fcafbba2e6643c8671eb512a690221d",
+                "bytes": 3853,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/tutorials/benchmarking.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/tutorials/benchmarking.md",
+                "sha256": "43019ba5b3d0ec168a5497dcfbfe1a523bdd5378094ebb879ba7fc36b4fdf617",
+                "bytes": 13188,
+                "purpose": "evidence"
+              },
+              {
+                "path": "docs/tutorials/create_robots_whoami.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/docs/tutorials/create_robots_whoami.md",
+                "sha256": "a9432c5b61a885ba123826e87d523d5e1c97e7593e3c476d753a5d6864ce6c19",
+                "bytes": 3035,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_core/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_core/pyproject.toml",
+                "sha256": "50c321b2466485c2161bf1ad771e9883ab35875bbca864ae9d82c6af103a93f5",
+                "bytes": 1504,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_bench/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_bench/pyproject.toml",
+                "sha256": "82778946361368e819fd87c4e10174d04a327a0e0b25bc33a8aef6fce6e7cf16",
+                "bytes": 597,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_bench/rai_bench/docs/tool_calling_agent_benchmark.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_bench/rai_bench/docs/tool_calling_agent_benchmark.md",
+                "sha256": "c188e77568217637866acb471ba0a9ec0cc93bfbb2228c4e114adda5d6b73fa9",
+                "bytes": 989,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_nomad/LICENSE",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/LICENSE",
+                "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+                "bytes": 11358,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_nomad/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/README.md",
+                "sha256": "fdfd696b553eaac8a66e310a4e3dee41aa239b75d1e84257051317507be83e91",
+                "bytes": 1543,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_nomad/setup.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/setup.py",
+                "sha256": "d238f2d66cd9cdb9da1f5910bed75a6040d38a180db46092105f72d73f3e5f95",
+                "bytes": 1337,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_nomad/package.xml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/package.xml",
+                "sha256": "d576a7b3f86969bd1b0a853d0d29bd82ea293ea2b039dc284e872d4253146ecc",
+                "bytes": 736,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/README.md",
+                "sha256": "972fecfcdd9f4e9fb8d40037559b649df1ca49ec839af3069a1184968dd45bbe",
+                "bytes": 15978,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/pyproject.toml",
+                "sha256": "43f584cd830d75df87a38a562a489b330c5123b1781ba5a9a026409f96718e21",
+                "bytes": 939,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/rai_perception/NOTICE",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/rai_perception/NOTICE",
+                "sha256": "cdd1b1f53733909991a963a43f855907f3c213e692f6e683de3bee2d6d73a1ab",
+                "bytes": 334,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_finetune/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_finetune/README.md",
+                "sha256": "eac71b0ed0b51be29f9a4b0d3b4c36762a66a7e398b7c91fb0c34f18a4d8b9d5",
+                "bytes": 8358,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_finetune/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_finetune/pyproject.toml",
+                "sha256": "c27c7d2434451030640ab4ec6b0dbfd51ef9106c42090714240a17d66f8b2678",
+                "bytes": 1973,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_s2s/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_s2s/README.md",
+                "sha256": "a9f5a9ac0c369b57174f46278bccc2b6ec3a9d175d061688e0893cdd6a604e3a",
+                "bytes": 6555,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_s2s/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_s2s/pyproject.toml",
+                "sha256": "060b33c80d4664fd4d5227388cc4435da93c867187c70c013178dba024d9c1d1",
+                "bytes": 1971,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_semap/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_semap/README.md",
+                "sha256": "fecd1426b7a4e072be874f7d9cd6cd9c034a80b6c440a8c2a88d0dfab02202fd",
+                "bytes": 5007,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_semap/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_semap/pyproject.toml",
+                "sha256": "dd45c5984e6e6cf80f0241701d02ead6299c51c7d4324becf0565eca7dab0ca7",
+                "bytes": 763,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_whoami/README.md",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_whoami/README.md",
+                "sha256": "1c4a9263e4eadf8321d890eefaee483bb7b590460e18e231259caac296a7b505",
+                "bytes": 5322,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_whoami/pyproject.toml",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_whoami/pyproject.toml",
+                "sha256": "aab825b051b81e8641a49e1e51fee514eeed9c6611ec388880f13ecf8443585b",
+                "bytes": 855,
+                "purpose": "evidence"
+              },
+              {
+                "path": "src/rai_bench/rai_bench/examples/benchmarking_models.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_bench/rai_bench/examples/benchmarking_models.py",
+                "sha256": "b9f7b389ec45ec6854d7d585c7658e4d0da463f9e034433ae1e54a3ae61d9c36",
+                "bytes": 1891,
+                "purpose": "entrypoint static inspection"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/rai_perception/scripts/run_perception_agents.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/rai_perception/scripts/run_perception_agents.py",
+                "sha256": "944ee8f6ff89160d55a30db540e8a7715f091d5ff92d4ff47b8742f108262cdd",
+                "bytes": 1212,
+                "purpose": "entrypoint static inspection"
+              },
+              {
+                "path": "src/rai_semap/rai_semap/scripts/validate_semap.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_semap/rai_semap/scripts/validate_semap.py",
+                "sha256": "662a9b4b33b949e1e1b3750f46e56c4eb162734bb6a1165e6ac0cb0c5b3e6237",
+                "bytes": 5233,
+                "purpose": "entrypoint static inspection"
+              },
+              {
+                "path": "src/rai_whoami/rai_whoami/initialize_docs_directory.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_whoami/rai_whoami/initialize_docs_directory.py",
+                "sha256": "0859f9494c096613b703e34dfbe86a20424276209220bad78414eab3e86d2afd",
+                "bytes": 1422,
+                "purpose": "entrypoint static inspection"
+              },
+              {
+                "path": "examples/manipulation_common.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/examples/manipulation_common.py",
+                "sha256": "22ff015b846cec16dacce61188ab9d2dc9bedfad49d2ccaa4ebcd13723c85c4b",
+                "bytes": 6654,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/rai_perception/services/weights.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/rai_perception/services/weights.py",
+                "sha256": "7d1854e53bf9853a7951bf1e1dd0ab34add5a2fb6648c256569e170b4be79567",
+                "bytes": 5282,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_extensions/rai_perception/rai_perception/services/base_vision_service.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_perception/rai_perception/services/base_vision_service.py",
+                "sha256": "a49b3fcaf01b76a023c560752b43c2663e7e90428b9b2f34a8b9e7b7cbd95f9a",
+                "bytes": 5833,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_finetune/rai_finetune/data/extractors/langfuse_data.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_finetune/rai_finetune/data/extractors/langfuse_data.py",
+                "sha256": "18fc8a5fff9e965d1019fc36061be0e175331f230c7b18e6ec36002bdaa3b2d9",
+                "bytes": 9366,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_finetune/rai_finetune/data/formatters/tool_calling.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_finetune/rai_finetune/data/formatters/tool_calling.py",
+                "sha256": "9bd2486eef5e0123fc90845919bf6100d7bc5b3171f861f78436142c4b621b64",
+                "bytes": 6305,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_s2s/rai_s2s/asr/models/local_whisper.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_s2s/rai_s2s/asr/models/local_whisper.py",
+                "sha256": "5642c6499d3d3b7454d01c402448dad61b14c85021bd61b26bc7d57cbd12d3b1",
+                "bytes": 5416,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_s2s/rai_s2s/tts/models/kokoro_tts.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_s2s/rai_s2s/tts/models/kokoro_tts.py",
+                "sha256": "fb75cc97c07a32f0fb9a927e5dc9a90ad3c9bb0ba28bd78dea3e5952c3da721f",
+                "bytes": 10141,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              },
+              {
+                "path": "src/rai_whoami/rai_whoami/agents/ros2/vector_store_retrieval_agent.py",
+                "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_whoami/rai_whoami/agents/ros2/vector_store_retrieval_agent.py",
+                "sha256": "c3b084ec8029de31fd7bc2b3e6c9722e25978295922e2c2521415f93f755000b",
+                "bytes": 2765,
+                "purpose": "supporting static dependency/license inspection; not a candidate"
+              }
+            ]
+          },
+          "evidence": {
+            "level": "source_reviewed",
+            "runtime_verification": "not_run",
+            "checked_at": "2026-10-18",
+            "entrypoint_kind": "python_console_script",
+            "inspection_method": "automated_static",
+            "limitations": [
+              "Source contains Apache first-party and inline MIT incorporated-code notices; exact code boundaries and notice completeness are unresolved. License remains NOASSERTION/verified:false, source-only."
+            ],
+            "inspection": "Verified exact source, setup registration, scoped license notice and author/setup bytes at a full Git commit; parsed Python AST and matched a literal setuptools console registration to its top-level source function. No setup file, source module, installation, robot command, dataset, mesh or checkpoint was executed or loaded.",
+            "console_registration": {
+              "url": "https://github.com/RobotecAI/rai/blob/b018729833742c6f71e1e9f332ee2b435676fb4f/src/rai_extensions/rai_nomad/setup.py",
+              "sha256": "d238f2d66cd9cdb9da1f5910bed75a6040d38a180db46092105f72d73f3e5f95",
+              "bytes": 1337,
+              "name": "nomad",
+              "target": "rai_nomad.nomad:main"
+            }
+          },
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "type_is_not_exact_robot",
+        "args": [
+          "find",
+          "humanoid locomotion",
+          "--robot",
+          "humanoid",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 0,
+          "search_backend": "d1_fts5",
+          "returned_ids": []
+        }
+      },
+      {
+        "label": "no_inferred_Spot_combination",
+        "args": [
+          "find",
+          "Spot",
+          "--runtime",
+          "spot-sdk",
+          "--robot",
+          "spot",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 0,
+          "search_backend": "d1_fts5",
+          "returned_ids": []
+        }
+      },
+      {
+        "label": "no_inferred_MAVSDK_airframe",
+        "args": [
+          "find",
+          "MAVSDK",
+          "--runtime",
+          "mavsdk-python",
+          "--robot",
+          "px4",
+          "--refresh"
+        ],
+        "returncode": 0,
+        "network_requests": 1,
+        "result": {
+          "status": "ready",
+          "catalog_origin": "remote_api",
+          "catalog_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "references_hub_commit": "cbe459404040a145b32f2812b8b72ad93e97439c",
+          "discovery_scope": "complete_public_query",
+          "execution_performed": false,
+          "total": 0,
+          "search_backend": "d1_fts5",
+          "returned_ids": []
+        }
+      },
+      {
+        "label": "plan_Spot_hello_no_adapter",
+        "args": [
+          "prepare",
+          "spot-sdk-python-examples-hello-spot-hello-spot-py",
+          "--project",
+          "$EMPTY_PLAN_PROJECT",
+          "--plan",
+          "--refresh"
+        ],
+        "returncode": 2,
+        "network_requests": 1,
+        "result": {
+          "status": "unsupported",
+          "reason_code": "source_reference_no_adapter",
+          "skill_id": "spot-sdk-python-examples-hello-spot-hello-spot-py",
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source_download_performed": false,
+          "environment_created": false,
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "plan_MAVSDK_no_adapter",
+        "args": [
+          "prepare",
+          "mavsdk-python-examples-takeoff-and-land-py",
+          "--project",
+          "$EMPTY_PLAN_PROJECT",
+          "--plan",
+          "--refresh"
+        ],
+        "returncode": 2,
+        "network_requests": 1,
+        "result": {
+          "status": "unsupported",
+          "reason_code": "source_reference_no_adapter",
+          "skill_id": "mavsdk-python-examples-takeoff-and-land-py",
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source_download_performed": false,
+          "environment_created": false,
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "plan_Spot_reachability_no_adapter",
+        "args": [
+          "prepare",
+          "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+          "--project",
+          "$EMPTY_PLAN_PROJECT",
+          "--plan",
+          "--refresh"
+        ],
+        "returncode": 2,
+        "network_requests": 1,
+        "result": {
+          "status": "unsupported",
+          "reason_code": "source_reference_no_adapter",
+          "skill_id": "spot-sdk-python-examples-inverse-kinematics-reachability-py",
+          "kind": "source_reference",
+          "hub_prepare": false,
+          "execution_performed": false,
+          "source_download_performed": false,
+          "environment_created": false,
+          "next_action": "open_source_reference"
+        }
+      },
+      {
+        "label": "synthetic_save_missing_token",
+        "synthetic_local_fixture": true,
+        "args": [
+          "save",
+          "synthetic-local-memory-recovery",
+          "--project",
+          "$SYNTHETIC_PROJECT",
+          "--finding",
+          "$SYNTHETIC_FINDING_JSON",
+          "--catalog",
+          "$SYNTHETIC_CATALOG_JSON"
+        ],
+        "returncode": 0,
+        "network_requests": 0,
+        "result": {
+          "status": "local_saved",
+          "reason_code": "missing_submission_token",
+          "network_performed": false,
+          "next_action": "continue_user_task",
+          "delivery_recovery": {
+            "credential_setup": {
+              "issuer": "Hub operator",
+              "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
+              "token_environment": "RSH_SUBMISSION_TOKEN",
+              "message": "Use an operator-issued scoped Hub token. Set RSH_SUBMISSION_TOKEN_FILE to the path of its private one-line UTF-8 file, or set RSH_SUBMISSION_TOKEN in the process environment. No GitHub token is needed; credentials do not grant project sharing permission."
+            },
+            "documentation_url": "https://hub.superfastrobotics.com/memory.md",
+            "automatic_retry": false,
+            "flush_args": [
+              "flush",
+              "--project",
+              "$SYNTHETIC_PROJECT",
+              "--limit",
+              "1",
+              "--api-url",
+              "https://api.superfastrobotics.com",
+              "--json"
+            ]
+          }
+        }
+      },
+      {
+        "label": "synthetic_duplicate_no_credential_read",
+        "synthetic_local_fixture": true,
+        "args": [
+          "save",
+          "synthetic-local-memory-recovery",
+          "--project",
+          "$SYNTHETIC_PROJECT",
+          "--finding",
+          "$SYNTHETIC_FINDING_JSON",
+          "--catalog",
+          "$SYNTHETIC_CATALOG_JSON"
+        ],
+        "returncode": 0,
+        "network_requests": 0,
+        "result": {
+          "status": "local_saved",
+          "reason_code": "unchanged_finding_already_saved",
+          "network_performed": false,
+          "next_action": "continue_user_task",
+          "delivery_recovery": {
+            "credential_setup": {
+              "issuer": "Hub operator",
+              "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
+              "token_environment": "RSH_SUBMISSION_TOKEN",
+              "message": "Use an operator-issued scoped Hub token. Set RSH_SUBMISSION_TOKEN_FILE to the path of its private one-line UTF-8 file, or set RSH_SUBMISSION_TOKEN in the process environment. No GitHub token is needed; credentials do not grant project sharing permission."
+            },
+            "documentation_url": "https://hub.superfastrobotics.com/memory.md",
+            "automatic_retry": false,
+            "flush_args": [
+              "flush",
+              "--project",
+              "$SYNTHETIC_PROJECT",
+              "--limit",
+              "1",
+              "--api-url",
+              "https://api.superfastrobotics.com",
+              "--json"
+            ]
+          }
+        }
+      },
+      {
+        "label": "synthetic_revoked_policy_no_public_hint",
+        "synthetic_local_fixture": true,
+        "args": [
+          "save",
+          "synthetic-local-memory-recovery",
+          "--project",
+          "$SYNTHETIC_PROJECT",
+          "--finding",
+          "$SYNTHETIC_FINDING_JSON",
+          "--catalog",
+          "$SYNTHETIC_CATALOG_JSON"
+        ],
+        "returncode": 0,
+        "network_requests": 0,
+        "result": {
+          "status": "local_saved",
+          "reason_code": "unchanged_finding_already_saved",
+          "network_performed": false,
+          "next_action": "continue_user_task"
+        }
+      }
+    ]
+  },
+  "checks": {
+    "fresh_public_clone_exact_commit": true,
+    "fresh_clone_public_remote": true,
+    "fresh_clone_clean_before": true,
+    "fresh_clone_cli_version": true,
+    "fresh_canonical_bound_to_completed_integration": true,
+    "frozen_new_source_counts": true,
+    "all_added_are_source_only_workflows": true,
+    "new_platform_counts_exact": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-gaze-arm-gaze-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-gaze-arm-gaze-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-grasp-arm-grasp-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-grasp-arm-grasp-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-joint-move-arm-joint-move-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-joint-move-arm-joint-move-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-simple-arm-simple-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-simple-arm-simple-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-trajectory-arm-trajectory-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-trajectory-arm-trajectory-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-docking-dock-my-robot-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-docking-dock-my-robot-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-estop-estop-nogui-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-estop-estop-nogui-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-get-image-get-image-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-get-image-get-image-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-get-robot-state-get-robot-state-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-get-robot-state-get-robot-state-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-get-world-objects-get-world-objects-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-get-world-objects-get-world-objects-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-hello-spot-hello-spot-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-hello-spot-hello-spot-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-inverse-kinematics-reachability-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-inverse-kinematics-reachability-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-record-autowalk-record-autowalk-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-record-autowalk-record-autowalk-py": true,
+    "platform_manifest_pins_spot-sdk-python-examples-replay-mission-replay-mission-py": true,
+    "Spot_nonstandard_terms_not_OSI_spot-sdk-python-examples-replay-mission-replay-mission-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-camera-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-camera-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-follow-me-example-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-follow-me-example-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-geofence-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-geofence-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-gimbal-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-gimbal-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-goto-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-goto-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-mission-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-mission-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-mission-raw-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-mission-raw-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-offboard-position-ned-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-offboard-position-ned-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-offboard-velocity-body-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-offboard-velocity-body-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-takeoff-and-land-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-takeoff-and-land-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-telemetry-flight-mode-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-telemetry-flight-mode-py": true,
+    "platform_manifest_pins_mavsdk-python-examples-telemetry-py": true,
+    "MAVSDK_grpc_rename_and_separate_binary_mavsdk-python-examples-telemetry-py": true,
+    "fresh_canonical_inventory_expected": true,
+    "offline_snapshot_exact_input_pin_catalog": true,
+    "offline_snapshot_exact_input_pin_references": true,
+    "offline_snapshot_exact_input_pin_memories": true,
+    "offline_reference_records_match_frozen_canonical": true,
+    "offline_recipe_records_and_bundled_file_text_match_frozen_canonical": true,
+    "published_generation_and_counts": true,
+    "search-manifest_canonical_url": true,
+    "memory-manifest_canonical_url": true,
+    "search_counts_and_memory_binding": true,
+    "complete_static_inventory": true,
+    "static_findings_data_only": true,
+    "offline_findings_match_current_static_data_without_rewriting_base_pins": true,
+    "api_search_page_0": true,
+    "api_search_page_50": true,
+    "api_search_page_100": true,
+    "api_search_page_150": true,
+    "api_search_page_200": true,
+    "api_search_page_250": true,
+    "api_search_page_300": true,
+    "api_search_page_350": true,
+    "api_search_page_400": true,
+    "api_search_page_450": true,
+    "api_search_page_500": true,
+    "api_search_page_550": true,
+    "api_search_page_600": true,
+    "api_search_page_650": true,
+    "api_search_page_700": true,
+    "api_search_page_750": true,
+    "api_search_page_800": true,
+    "api_search_page_850": true,
+    "api_search_page_900": true,
+    "api_search_page_950": true,
+    "api_search_page_1000": true,
+    "api_search_page_1050": true,
+    "api_search_page_1100": true,
+    "api_search_page_1150": true,
+    "api_search_page_1200": true,
+    "api_search_page_1250": true,
+    "complete_d1_static_parity": true,
+    "complete_findings_d1_static_parity": true,
+    "record_gap-bundle-curobo": true,
+    "record_gap-bundle-gemini-er": true,
+    "record_gap-bundle-geometry": true,
+    "record_gap-bundle-grounding-dino": true,
+    "record_gap-bundle-molmo": true,
+    "record_gap-bundle-perceiving-next-item": true,
+    "record_gap-bundle-perceiving-object-parts": true,
+    "record_gap-bundle-perceiving-objects": true,
+    "record_gap-bundle-perceiving-objects-oneshot": true,
+    "record_gap-bundle-sam3": true,
+    "record_gap-bundle-vlm": true,
+    "record_mavsdk-python-examples-camera-py": true,
+    "new_requirements_mavsdk-python-examples-camera-py": true,
+    "record_mavsdk-python-examples-follow-me-example-py": true,
+    "new_requirements_mavsdk-python-examples-follow-me-example-py": true,
+    "record_mavsdk-python-examples-geofence-py": true,
+    "new_requirements_mavsdk-python-examples-geofence-py": true,
+    "record_mavsdk-python-examples-gimbal-py": true,
+    "new_requirements_mavsdk-python-examples-gimbal-py": true,
+    "record_mavsdk-python-examples-goto-py": true,
+    "new_requirements_mavsdk-python-examples-goto-py": true,
+    "record_mavsdk-python-examples-mission-py": true,
+    "new_requirements_mavsdk-python-examples-mission-py": true,
+    "record_mavsdk-python-examples-mission-raw-py": true,
+    "new_requirements_mavsdk-python-examples-mission-raw-py": true,
+    "record_mavsdk-python-examples-offboard-position-ned-py": true,
+    "new_requirements_mavsdk-python-examples-offboard-position-ned-py": true,
+    "record_mavsdk-python-examples-offboard-velocity-body-py": true,
+    "new_requirements_mavsdk-python-examples-offboard-velocity-body-py": true,
+    "record_mavsdk-python-examples-takeoff-and-land-py": true,
+    "new_requirements_mavsdk-python-examples-takeoff-and-land-py": true,
+    "record_mavsdk-python-examples-telemetry-flight-mode-py": true,
+    "new_requirements_mavsdk-python-examples-telemetry-flight-mode-py": true,
+    "record_mavsdk-python-examples-telemetry-py": true,
+    "new_requirements_mavsdk-python-examples-telemetry-py": true,
+    "record_rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py": true,
+    "record_spot-sdk-python-examples-arm-gaze-arm-gaze-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-gaze-arm-gaze-py": true,
+    "record_spot-sdk-python-examples-arm-grasp-arm-grasp-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-grasp-arm-grasp-py": true,
+    "record_spot-sdk-python-examples-arm-joint-move-arm-joint-move-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-joint-move-arm-joint-move-py": true,
+    "record_spot-sdk-python-examples-arm-simple-arm-simple-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-simple-arm-simple-py": true,
+    "record_spot-sdk-python-examples-arm-trajectory-arm-trajectory-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-trajectory-arm-trajectory-py": true,
+    "record_spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py": true,
+    "new_requirements_spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py": true,
+    "record_spot-sdk-python-examples-docking-dock-my-robot-py": true,
+    "new_requirements_spot-sdk-python-examples-docking-dock-my-robot-py": true,
+    "record_spot-sdk-python-examples-estop-estop-nogui-py": true,
+    "new_requirements_spot-sdk-python-examples-estop-estop-nogui-py": true,
+    "record_spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py": true,
+    "new_requirements_spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py": true,
+    "record_spot-sdk-python-examples-get-image-get-image-py": true,
+    "new_requirements_spot-sdk-python-examples-get-image-get-image-py": true,
+    "record_spot-sdk-python-examples-get-robot-state-get-robot-state-py": true,
+    "new_requirements_spot-sdk-python-examples-get-robot-state-get-robot-state-py": true,
+    "record_spot-sdk-python-examples-get-world-objects-get-world-objects-py": true,
+    "new_requirements_spot-sdk-python-examples-get-world-objects-get-world-objects-py": true,
+    "record_spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py": true,
+    "new_requirements_spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py": true,
+    "record_spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py": true,
+    "new_requirements_spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py": true,
+    "record_spot-sdk-python-examples-hello-spot-hello-spot-py": true,
+    "new_requirements_spot-sdk-python-examples-hello-spot-hello-spot-py": true,
+    "record_spot-sdk-python-examples-inverse-kinematics-reachability-py": true,
+    "new_requirements_spot-sdk-python-examples-inverse-kinematics-reachability-py": true,
+    "record_spot-sdk-python-examples-record-autowalk-record-autowalk-py": true,
+    "new_requirements_spot-sdk-python-examples-record-autowalk-record-autowalk-py": true,
+    "record_spot-sdk-python-examples-replay-mission-replay-mission-py": true,
+    "new_requirements_spot-sdk-python-examples-replay-mission-replay-mission-py": true,
+    "eleven_instruction_license_conflicts_preserved": true,
+    "NoMaD_mixed_license_and_execution_boundary": true,
+    "all_twelve_unresolved_licenses_preserved": true,
+    "agent_contract_generation": true,
+    "well_known_contract_matches": true,
+    "manifest_link_artifact-projects": true,
+    "manifest_matches_clone_artifact-projects": true,
+    "manifest_link_workflow-projects": true,
+    "manifest_matches_clone_workflow-projects": true,
+    "manifest_link_agent-skill-projects": true,
+    "manifest_matches_clone_agent-skill-projects": true,
+    "canonical_capability_links": true,
+    "capabilities_version_and_public_access": true,
+    "schema_link_memory.schema.json": true,
+    "schema_matches_clone_memory.schema.json": true,
+    "schema_link_project-policy.schema.json": true,
+    "schema_matches_clone_project-policy.schema.json": true,
+    "schema_link_intake.schema.json": true,
+    "schema_matches_clone_intake.schema.json": true,
+    "openapi_version_matches_api_mirror": true,
+    "openapi_release_version": true,
+    "server_manifest_version_transport": true,
+    "mcp_version": true,
+    "mcp_exact_three_read_only_tools": true,
+    "mcp_capabilities_active_generation": true,
+    "find_Spot_platform": true,
+    "find_MAVSDK_platform": true,
+    "find_humanoid_locomotion": true,
+    "find_G1_model": true,
+    "find_Crazyflie_model": true,
+    "find_OpenPI_inference": true,
+    "inspect_Spot_hello": true,
+    "inspect_MAVSDK_takeoff": true,
+    "inspect_Spot_reachability_not_offline_solver": true,
+    "inspect_unresolved_NoMaD": true,
+    "type_is_not_exact_robot": true,
+    "no_inferred_Spot_combination": true,
+    "no_inferred_MAVSDK_airframe": true,
+    "plan_Spot_hello_no_adapter_initially_absent": true,
+    "plan_Spot_hello_no_adapter_source_only": true,
+    "plan_Spot_hello_no_adapter_no_filesystem_effects": true,
+    "plan_MAVSDK_no_adapter_initially_absent": true,
+    "plan_MAVSDK_no_adapter_source_only": true,
+    "plan_MAVSDK_no_adapter_no_filesystem_effects": true,
+    "plan_Spot_reachability_no_adapter_initially_absent": true,
+    "plan_Spot_reachability_no_adapter_source_only": true,
+    "plan_Spot_reachability_no_adapter_no_filesystem_effects": true,
+    "exactly_sixteen_online_cli_calls": true,
+    "synthetic_finding_persisted_only_in_private_project": true,
+    "synthetic_missing_token_static_recovery": true,
+    "synthetic_saved_payload_is_not_publication": true,
+    "synthetic_duplicate_is_read_only_under_any_current_auth": true,
+    "synthetic_revoked_permission_suppresses_public_recovery": true,
+    "synthetic_fixture_made_no_network_requests": true,
+    "exactly_nineteen_cli_calls": true,
+    "local_synthetic_cli_has_zero_network": true,
+    "publication_stable_during_verification": true,
+    "fresh_clone_clean_after": true,
+    "all_requests_excluded": true
+  },
+  "network": {
+    "requests": 128,
+    "get_requests": 125,
+    "read_only_mcp_metadata_posts": 3,
+    "finding_or_intake_posts": 0,
+    "all_measurement_opt_out_headers_verified": true,
+    "credentials_used": false,
+    "minimum_spacing_seconds": 0.65,
+    "request_budget": 200,
+    "response_body_bytes": 12452778,
+    "response_body_byte_budget": 25165824,
+    "byte_accounting_scope": "Exact instrumented Hub/API response-body bytes, including CLI and MCP. Git clone transport and HTTP headers are excluded.",
+    "response_bounds": {
+      "search_and_memory_manifest_and_page_bytes": 131072,
+      "selected_record_bytes": 262144,
+      "other_document_or_source_project_manifest_maximum_bytes": 2097152,
+      "optional_llms_full_bytes": 8388608
+    },
+    "request_evidence": [
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 1906,
+        "response_sha256": "b76b16778bed46fb4b7a7eaa6eb0bce2c15b09225a17c0ba56c21b4c8c773551"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 3289,
+        "response_sha256": "49ec20380b08445bae42fb64e9bc0157cc0c67077e54f73b6dc75d4af3933940"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 298,
+        "response_sha256": "96f0db02433b6b576da15fa11394c226dda8ee696094b520ecaa1554a4f46aac"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000000.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 129869,
+        "response_sha256": "8724968ff7d8eea8159438b0af72217152a4c9ce09b29a10220fdc95dc97e8fa"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000001.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130994,
+        "response_sha256": "f3665cf6648da05d1c590c29fa8de4c5b86fb33cc960ac876c681795d2cc2ad3"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000002.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 129634,
+        "response_sha256": "2e996be363812d432e13cf2b4640007dc066b5da6fe517cdb5808ff9aead64ca"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000003.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130018,
+        "response_sha256": "d34cd1b51ba65546b00e562e426fe491e9caf6b97da1e82b53be5787ede5b15d"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000004.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 129640,
+        "response_sha256": "43605d92719e6183c1804bec025755d834f06777cce4893286f0d97e58f9089d"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000005.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130933,
+        "response_sha256": "c0f55e4ec8d6733f42f32094b7b7f81e78626409e3c15ad97947092d192c5b3f"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000006.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130167,
+        "response_sha256": "cd6faa90166b387307987db5e33c965c98f772b251b5b0b551cdeda01ecf3648"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000007.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130285,
+        "response_sha256": "571206fc26a929be9e066c2de094f95b4bc705c606db4e6252f512d17639e4e5"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000008.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130996,
+        "response_sha256": "056bf9846e8eada795f30991f8b74fa125e4a4827f0e11b7b862c5309ccf66e6"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000009.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130266,
+        "response_sha256": "bf7707173465b4be4f77bffa7f7947f0b1036efecefad8b4003ad497cb1524a7"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000010.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 129633,
+        "response_sha256": "bb8f3e1ab2d16812946e38324eaf0aec1f4e14fbefe8bbc97b35ab9edaea46ea"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000011.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130036,
+        "response_sha256": "ae4b0d6e25a31039a4fe1c243ee886ad93feb9cb66106b5b44efd4243714bd0e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000012.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 129661,
+        "response_sha256": "6dfb57d7bdb03c85eda0ae3eaceac8be01f0ccc73e1405e1f04869b4a7f7ab9b"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000013.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 130807,
+        "response_sha256": "8b326542d9c03088f320ae63b1e036039e34d1c61442aa300aae6ae5d7bb3604"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/search/000014.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 72614,
+        "response_sha256": "5ae3e662a95c9df51e38b358e6cab5266dc9297994c354deb1af05535e05af16"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/generations/cbe459404040a145b32f2812b8b72ad93e97439c/memories/000000.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7990,
+        "response_sha256": "e3dd003aed81aa3c31236b8092270ca8d43330746d3d5380dca678b37f587b8b"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=0&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 74480,
+        "response_sha256": "be7ecb8196c517bbb529faff8dc482a4adb82268443d2f406c50a1a34f739918"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=50&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 72724,
+        "response_sha256": "34bf0911b664c8710e3b9516d63f4e792f32531a4ca2ddbb0e4462a0e9f72dec"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=100&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 76225,
+        "response_sha256": "1d4c905ab5e4928a674bdab93fff00450e0d8d9b9c955999cd835eb6f9b41e3a"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=150&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 77419,
+        "response_sha256": "4c09d1ed1a6fa7664aa4bb73ac6ac0914f5b91c501960641604f72f9d1d27523"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=200&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 73988,
+        "response_sha256": "b72dfa0bea05bad7ba9517b49e4ce74329496124af66cc86e409fb8b1b804c7d"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=250&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 73407,
+        "response_sha256": "85bb143646bd8842838c931ac71cf58d58c2b728c778303cbc92ab8d350a9a77"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=300&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 75782,
+        "response_sha256": "e033c5459a47f256091c3529ad0bb7763403cf3972ea1ea678012f51e4f2bdcf"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=350&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 76623,
+        "response_sha256": "625dd28f70374a52f19c204587567c0fde3046110d94b617ca323aebcf675ee9"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=400&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 79743,
+        "response_sha256": "4581e2c5e07e284b1d73fa7820227ec8be806a920d51c5f307d85f1dbaef3b1b"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=450&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 80376,
+        "response_sha256": "a84d74e6146023e9312b89df9151f9432cc8344a846588795bc610645d88554f"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=500&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 79747,
+        "response_sha256": "16d794f0e0cb080fa2c57429bc66dddc5960ebc2bb947b9e819f8ba57b840eb5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=550&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 77919,
+        "response_sha256": "7818d0b2b27621320ca209902ec61190e20a49e7e3fd7bd36b64eada79b60560"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=600&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 71313,
+        "response_sha256": "0b8c7feb4dbe88d73bb1375b7c2da6bea21b29eab7e7bb535647843d000189b7"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=650&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 74299,
+        "response_sha256": "2b9d80a48d15131d7389bcae4a2fcc121e3a7c1d5a1b5f598c8c2b33a5a38e5a"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=700&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 71630,
+        "response_sha256": "68dfa20414b148894cb62da1e6ca193e074dafb856fc072c2134b9a8ab3924f3"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=750&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 66872,
+        "response_sha256": "fe8356013110eb0a3a388b3aa80b394211f7c33a0b26058f97b3cdd109d355a5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=800&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 71159,
+        "response_sha256": "3c715b639640b36ab7de2de6f633d2552c5f14b78a7ebd392eafde692574aec8"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=850&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 79680,
+        "response_sha256": "33bffe2bee3e9bb437a9606fecfc82bb534288c7822bc92e590286c3252a27fd"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=900&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 79281,
+        "response_sha256": "4758dd6414cf70a53e4ef8732f54be6d537fed7dd666d0a80f5dc550b1176bdd"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=950&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 84045,
+        "response_sha256": "d663879b58556421f4d2ca4954a6efea051a2639e0e521e3caf0757c633886b4"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1000&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 87633,
+        "response_sha256": "3008676178e6a461e4f617c1757797f481444e336bda6ef6957e5d239d35992e"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1050&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 76675,
+        "response_sha256": "9d9591b93460069c290cc5516db8630e82490ed6a58029b9ec7141fc5f68262d"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1100&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 74525,
+        "response_sha256": "4bb4fee0f52e8009780423e591cc74a64e753b280a869b354fc5475b7e139306"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1150&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 73573,
+        "response_sha256": "0a8a8ffef493235dc0cc4d4afd0a8a4ae43b2eb8c388e19dd4c7d4cc5166ca8f"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1200&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 73022,
+        "response_sha256": "ee8659dccce47d62e02d3cfa1ecd9b0a59e1b174d2afac9e3257a36743d0c1d8"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?limit=50&offset=1250&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 6383,
+        "response_sha256": "7635f4187f9c1cb957ddc52cceb925d1bdb07c19fa47abd3ae297fdf5d31070c"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/findings?skill_id=maniskill-panda-stick-draw-svg&record_version=1.0.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&limit=1&offset=0&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 2482,
+        "response_sha256": "b4a32eef8d8ccb368c368bbb223cab19ee5c877f4e26620be75255714ea3e481"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/findings?skill_id=maniskill-panda-pick-cube&record_version=contrib-a5dd78ad4e1d4e3d&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&limit=1&offset=0&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 3190,
+        "response_sha256": "a3ee52e2445e8151fcf57121acf5edb1d290994391614c9bdd09c7d7df4b038c"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/findings?skill_id=maniskill-panda-pick-cube&record_version=contrib-a5dd78ad4e1d4e3d&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&limit=1&offset=1&hub_commit=cbe459404040a145b32f2812b8b72ad93e97439c",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 3238,
+        "response_sha256": "0e4ead5f5f45914a0f3806ed5ee31ec8f0023809d6e255a8e2a2b7b986033c1d"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-curobo/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4139,
+        "response_sha256": "083c89e79ce09f6fd8bb2b0819a8cdacd6edc00049dc4c8a4f9f4ae6fd483349"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-gemini-er/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4347,
+        "response_sha256": "2e109593b60f896a7e1a8d3ffb54fcd3bd77ef425a416a12d571a08a44dc3454"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-geometry/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4219,
+        "response_sha256": "dc965db82f0c1866c947fd70baafa8649d611f88a25ed5812d207b40ffb50786"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-grounding-dino/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4191,
+        "response_sha256": "04f4237cccf35cf1bbe6736b85ad0bf868917f66d4a958b671c46feb2fdf262e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-molmo/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4272,
+        "response_sha256": "84d5c2f6881e2b0dded79b7420627acd948821c7e98c2d76e0011c5ac8100a55"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-perceiving-next-item/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4389,
+        "response_sha256": "a50c8e67e5db32894cc15a65e9a12a52586ca1b301ada2a8ec78774b9231d244"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-perceiving-object-parts/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4385,
+        "response_sha256": "703ce1748b8075de6434f5135f2f62145981848d21901bb5bf4c61165bf75600"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-perceiving-objects/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4331,
+        "response_sha256": "059c24152c00734a1e41b364cc7dab4702ebafab453bb422b22d104c34a9268a"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-perceiving-objects-oneshot/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4398,
+        "response_sha256": "8b3d2ab84e13eac9cf12ce56e137f2c0a7b2a3ffbbe5083fb2467f122a560c95"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-sam3/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4130,
+        "response_sha256": "d547dec5f44dbd2bfc15a285870fb014d7b93f6ef46b6d8ad36083a355f0ae4b"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/gap-bundle-vlm/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4517,
+        "response_sha256": "ff1a3a8a06a89e9d29c28f123100f90cc291d5b5b98603f4af23ac00055e5069"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-camera-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7251,
+        "response_sha256": "dfb2ff4cd2f34735013e4c063e2dca394d8ccb4b1fea41b0075176d58b22048e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-follow-me-example-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7174,
+        "response_sha256": "928ffe668d5c43065aece647523d81142852109e46115d5897ce008a63340b6f"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-geofence-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7168,
+        "response_sha256": "728477632a7a4bf84b5428629bc798f7f76947927d8ee3ef022aec40afd33e24"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-gimbal-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7206,
+        "response_sha256": "56df285a593a614f582d3cc2ac4d3d3f238468c7e4fb35e76550b6dd33e0056f"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-goto-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7086,
+        "response_sha256": "1b768e5959b9ad6068b9399aad1079cd6f8feeb70a7719abbb9815509fb72a4e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-mission-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7122,
+        "response_sha256": "457fd963209709ecf16697b6a3a468d5826bc7bc70a60c2cc12bdd9dc2f5cd7a"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-mission-raw-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7157,
+        "response_sha256": "9406b0f18995e566925d98a73752439715da9f681eb44dd3c7183c8581fab920"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-offboard-position-ned-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7311,
+        "response_sha256": "e653a2d3fbd754ebbabf1985034d2f0c458f3c9a1f3f3db1d7cee658f57fe91a"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-offboard-velocity-body-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7171,
+        "response_sha256": "1c0a14404500b3ae30e97d4760c277905741845851f5ef51bd3aa909f761082e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-takeoff-and-land-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7124,
+        "response_sha256": "2d7731b18d7bf05b7ce17f8319fc9c69a988683c8163472bfd56891a86285998"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-telemetry-flight-mode-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7115,
+        "response_sha256": "9fcabf9521c872433afb6231b353412afc015634214378f6eb2d2ff5293b1e6e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/mavsdk-python-examples-telemetry-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7090,
+        "response_sha256": "178d52f5e437142ee7fead359e83be3a14326de10873f9091f9a002bc1a2260e"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23013,
+        "response_sha256": "dfdb77ff7871f0ef0efa2984a03c315d4d2798afdd1b8e2c656edaf903a7f69a"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-gaze-arm-gaze-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23470,
+        "response_sha256": "a2be8c610e26ca1635630dda1f57e3b6c4edc38a850a60cd0a6c861ebba6b8e5"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-grasp-arm-grasp-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23753,
+        "response_sha256": "c720115e1c772c6aeb2fb930ca22bf3afccd335ba77f4d81a99d78500544d25b"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-joint-move-arm-joint-move-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23632,
+        "response_sha256": "144d6d876d396cb7c3c2804c5f9041a03324a10f64ec0258ed4443fc9edb9d01"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-simple-arm-simple-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23549,
+        "response_sha256": "3a563b0b13b3142f11e181067d2d5e964b3b564ad04465b1fe7d22ad3a45cf37"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-trajectory-arm-trajectory-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23594,
+        "response_sha256": "dbfe80d2ccb455a852a06772d7376024ffe45f9bd74cabfabc4b38047c53d480"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-arm-walk-to-object-arm-walk-to-object-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23826,
+        "response_sha256": "a476cab1457bd13e1e1dce8452d3a3284d8efc0f181e1d065f329d55a485c557"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-docking-dock-my-robot-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23451,
+        "response_sha256": "1bbbccd36853025298fda9f62fbcbd703513505655fd4d4dc835ad4fe2c084bc"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-estop-estop-nogui-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23647,
+        "response_sha256": "741c1bbce08366d560893fff8d1179e82324c70087b119baf9c765ce18f36c5c"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-frame-trajectory-command-frame-trajectory-command-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23672,
+        "response_sha256": "2cffaf280e3c02040b0ab7af8bfed5e4f5f58c61deaa990b6c606147111eee85"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-get-image-get-image-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23459,
+        "response_sha256": "d95a8b443c772d4ee225f517c42985725d5c39439a2c6e247afc7ee7372f3edd"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-get-robot-state-get-robot-state-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 22600,
+        "response_sha256": "1a94855a8a54c16020c23563c32561fd1cb0d5bd1ff5c8aa67aac04ce35c10f1"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-get-world-objects-get-world-objects-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23434,
+        "response_sha256": "01b158a3e828d968f64a6d14ef1bb7de6c9b1420958f82acb4bda7439c1cb1f2"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-graph-nav-command-line-graph-nav-command-line-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23313,
+        "response_sha256": "1b6fcb13b5a7dff0e842d180a4a309f05783bd50227d24f41883054e53fb4dec"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-graph-nav-command-line-recording-command-line-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23122,
+        "response_sha256": "60f3fcb114dfefbe9aed34aecda88aed60e7c5d4c9e4e4c11eaa460309402ebb"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-hello-spot-hello-spot-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23645,
+        "response_sha256": "6d6c37d16f6855b19b3d16bbb17a1da5e722a6a1bcda13de4c4a7e0e27455e76"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-inverse-kinematics-reachability-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 24043,
+        "response_sha256": "3185fcacb145855d433f2a5f377b0df3e324dfe499fdce180a98295120c165cf"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-record-autowalk-record-autowalk-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23628,
+        "response_sha256": "b4ec5d539890a525b45c4e1f44a92a1366fa52c6262c5c445c7a33c8b3606040"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/references/spot-sdk-python-examples-replay-mission-replay-mission-py/skill.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 23928,
+        "response_sha256": "ffede1a40e6e67f069bbc9ee37a66061dcbb88e9b6b0d0154aa360db3b16cefe"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/agent.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 17490,
+        "response_sha256": "70240f069bf02f862e275f42cc5fa5b97f45a7a63fc452245ba1ac87a1fa5cc2"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/.well-known/robot-skill-hub.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 17490,
+        "response_sha256": "70240f069bf02f862e275f42cc5fa5b97f45a7a63fc452245ba1ac87a1fa5cc2"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/artifact-projects.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 141466,
+        "response_sha256": "8850ca3734b5d9f81a92e9dfa355016684cf74332e0e6798fc2ca68b6de355c4"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/workflow-projects.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 388969,
+        "response_sha256": "e8c86bed544b4ae9b4719c058c1b0d8e91bdfe108fec4101f6c93e486357a4d4"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/agent-skill-projects.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 17814,
+        "response_sha256": "fb056bdfd3556f179759341ce493735053a654a633f99437083e2e1b136d4b69"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/capabilities",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 2886,
+        "response_sha256": "c0478b2012c10d074daf8a2ca6c95c63fc39641939cfee3e19448a7dc31e1fea"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/agent-quickstart.md",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 8533,
+        "response_sha256": "52365b496f9fb4084256e8b98b4aca6e79c459d5d61c1974113ebe3652ad4e65"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms-full.txt",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 7154804,
+        "response_sha256": "11d7c73c24c1ab978bbe71ee5ea26c296a9c544898a9e3f0b4df34b9deeaa0b8"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/discovery.md",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 3214,
+        "response_sha256": "907725d6f8221fc1ce42eaafb65a0c3d08d07ee9503124615f018e415881f2bb"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/privacy.md",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 1728,
+        "response_sha256": "99799818193e04a943cec85cb6086f6682fb14632e84d408dafb1521c6517075"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/new-skills.md",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4945,
+        "response_sha256": "a1d5f7f96a18f63eea27013eed33ef428d85a22d02b25db6738e3b7285b7c862"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/memory.schema.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 4942,
+        "response_sha256": "927648c83c3113e55a807ec5c11987daa314f946371fb932ca63a26c34d59870"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/project-policy.schema.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 2522,
+        "response_sha256": "a0e299eec70eb0b437334101022eb12efe0bb69ccabc7993c7a461c48249ba49"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 6166,
+        "response_sha256": "cf79646631d112654df57973b435107b92e180cff3fb6a703c6e15915693ecb6"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/openapi.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 38508,
+        "response_sha256": "ad228ca7028dc873cdc295520c5c070bd54c95a59ffa565842d2764bf58f4883"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/openapi.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 38508,
+        "response_sha256": "ad228ca7028dc873cdc295520c5c070bd54c95a59ffa565842d2764bf58f4883"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/openapi.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 38508,
+        "response_sha256": "ad228ca7028dc873cdc295520c5c070bd54c95a59ffa565842d2764bf58f4883"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/server.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 610,
+        "response_sha256": "fe0750e36b4bedff6f5798ca23a876c027eb2add91091d84ad2e3abd62fc567f"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/mcp",
+        "method": "POST",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 345,
+        "response_sha256": "687ba9d3701dcf93f6d735b5b5bf8ecb24a85e0ca2cec23293f998d01e470ffc"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/mcp",
+        "method": "POST",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 1904,
+        "response_sha256": "3c30a608c7195e1e3e79efb480707e1ade9003b82b4c3ca73ad4e9053deec545"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/mcp",
+        "method": "POST",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 6266,
+        "response_sha256": "02a5e1781accea433d476eadd4c13eb9a55c9dee2c42cccea7dd3893f223a566"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=Spot&limit=3&runtime=spot-sdk",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 5622,
+        "response_sha256": "8c5d2fb2b2bb10786a268e102f14e029264d0cdcccadc0b32ffeb74b9e18e47e"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=MAVSDK&limit=3&runtime=mavsdk-python",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 5152,
+        "response_sha256": "538927c57c90bbf2d3f06fdcf1539d464a16f5f51dcb8b654b88249cba2b8654"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=humanoid+locomotion&limit=3",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 5313,
+        "response_sha256": "b2d985cd2183a62d5040617d20d40d9b876f4ba93b15d69e208814e4fc34c803"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=G1&limit=3&robot=g1",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 5638,
+        "response_sha256": "876235874d58c21845017d86ef36fe7c78f81c1752e2375952941aeee8fcad41"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=Crazyflie&limit=3&robot=crazyflie",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 5201,
+        "response_sha256": "f3caf4b67a729ca96aa7d64b0535e7d232646a02077f784c29a1c61f7f103a17"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=policy+inference&limit=3&runtime=openpi",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 4315,
+        "response_sha256": "bebb16ceb73d65fe65d148ae21b4154c29146fe4982cb7955527d492f4ab4df9"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/spot-sdk-python-examples-hello-spot-hello-spot-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 20279,
+        "response_sha256": "e282586369e7b6f167c92815889975a0322d842707124ae8c75dad9818053e8b"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/mavsdk-python-examples-takeoff-and-land-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 6353,
+        "response_sha256": "564e64be8c9c6cdd06724975f881f668004ea22b7eb11e6eac64bb034ead0226"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/spot-sdk-python-examples-inverse-kinematics-reachability-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 20645,
+        "response_sha256": "dfee93b4dbcded69b7527a52880defbe6e47fb0af717538b6df9cbe6e7e789e9"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 19499,
+        "response_sha256": "2a6d1d7a64e1e500d1e031091db35ddd7f115a64682d4fb794466b53d9da35f4"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=humanoid+locomotion&limit=3&robot=humanoid",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 473,
+        "response_sha256": "81cb83609eee549a57d3bd6da962f0b61af5300d89d8674201d2d95a52d31f70"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=Spot&limit=3&runtime=spot-sdk&robot=spot",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 473,
+        "response_sha256": "81cb83609eee549a57d3bd6da962f0b61af5300d89d8674201d2d95a52d31f70"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=MAVSDK&limit=3&runtime=mavsdk-python&robot=px4",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 473,
+        "response_sha256": "81cb83609eee549a57d3bd6da962f0b61af5300d89d8674201d2d95a52d31f70"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/spot-sdk-python-examples-hello-spot-hello-spot-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 20279,
+        "response_sha256": "e282586369e7b6f167c92815889975a0322d842707124ae8c75dad9818053e8b"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/mavsdk-python-examples-takeoff-and-land-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 6353,
+        "response_sha256": "564e64be8c9c6cdd06724975f881f668004ea22b7eb11e6eac64bb034ead0226"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/spot-sdk-python-examples-inverse-kinematics-reachability-py",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": true,
+        "status": 200,
+        "response_bytes": 20645,
+        "response_sha256": "dfee93b4dbcded69b7527a52880defbe6e47fb0af717538b6df9cbe6e7e789e9"
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "method": "GET",
+        "DNT": "1",
+        "X-RSH-Telemetry": "off",
+        "authenticated": false,
+        "cli": false,
+        "status": 200,
+        "response_bytes": 1906,
+        "response_sha256": "b76b16778bed46fb4b7a7eaa6eb0bce2c15b09225a17c0ba56c21b4c8c773551"
+      }
+    ]
+  },
+  "verification_bindings": {
+    "private_verifier_sha256": "9fbec7a9a2a7fa8240be1f0c40f8f344a6075b1a2dcf61b71f71aeecaf99c4e2",
+    "integration_preservation_sha256": "e4bb9a2651ef75aec7fc793167449665e7a187347de4e35b36827e1ffdd84885",
+    "private_full_report_sha256": "61d9bdaa6c597f242b956f7a613c0c0a7b601af54c44036360ab886007abfcf6"
+  },
+  "limits": [
+    "Finite release accessibility and metadata checks; not exhaustive Internet discovery or upstream runtime validation.",
+    "New Spot and MAVSDK records are source references with runtime_verification=not_run and no Hub preparation adapter.",
+    "Spot local LicenseRef identifies nonstandard source terms, not an OSI grant, license clearance or feature entitlement.",
+    "MAVSDK Python wrapper dependencies, server binary, autopilot firmware and exact vehicle/runtime compatibility remain separate declarations.",
+    "No upstream source, package, simulator, server binary, weights or robot was installed, loaded or executed.",
+    "Synthetic save data was created only in a private fixture. No real or dummy token was created or read; the duplicate case used a credential-provider sentinel, not an authenticated delivery.",
+    "Returned flush arguments were inspected as inert JSON and never executed. No finding, intake, PR or campaign access was created by the synthetic fixture.",
+    "All owned Hub/API checks opt out of telemetry. Anonymous Git clone transport is separate from the instrumented Hub/API response-byte and request budgets."
+  ],
+  "all_passed": true
+}

@@ -169,3 +169,9 @@ ready; obtaining a token alone would not resolve this.
 
 The exact HTTP observations, official source URLs, prepared metadata and remaining
 checks are in the [readiness receipt](../evidence/discovery/v0.3.0/provider-readiness.json).
+
+## Additional channel review, 2026-10-18
+
+MCP.so's [remote-server submission form](https://mcp.so/submit?type=remote-server) displayed a $39 one-time publishing payment when reviewed at 2026-10-17 19:23 UTC. No free route was established and no submission, signup or payment was made. This channel is deferred under the free-first deployment constraint.
+
+Composio's Claude skills directory requires an actual Claude-platform test under its [pinned contribution rules](https://github.com/ComposioHQ/awesome-claude-skills/blob/be2a406907dbc61b73e6827ded415c96139d13a2/CONTRIBUTING.md). Existing Python, Codex and Hermes evidence does not establish that test. No submission or claim of Claude validation was made.
