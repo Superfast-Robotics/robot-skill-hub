@@ -2,10 +2,9 @@
 
 ## Confirmed locally
 
-- Python CLI, adapter and operator tests: **67 passed** on Linux, including the real symlink regression. Windows passed the other 66 and skipped that one privilege-dependent case.
+- Python CLI, adapter and operator tests: **72 passed** on Linux, including the real symlink regression. Windows passed the other 71 and skipped that one privilege-dependent case.
 - Catalog integrity/publication tests: **13 passed**.
-- Worker contract tests: **39 passed**; real workerd transport tests: **5 passed**; TypeScript check passed. All **124 automated tests** passed without skips in Linux Checks run [39043597122](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39043597122).
-- The later horizon-hardening changes passed **71 Python tests** locally with one Windows privilege-dependent symlink skip (**72 total**) and **13 catalog tests**. A new Linux CI result and fresh runtime run are required for those changed wrappers; the earlier 124-test result is historical.
+- Worker contract tests: **39 passed**; real workerd transport tests: **5 passed**; TypeScript check and Python compilation passed. All **129 automated tests** passed without skips in Linux Checks run [39045343496](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045343496), including the explicit-horizon guards. These checks do not execute a simulator; exact runtime evidence is recorded separately below.
 - Agent-first update: 17 preparation recipes and 40 official source references pass validation. All generated HTML has no CSS or client-side JavaScript; JSON, Markdown, robots, sitemap and full-text discovery files are generated together.
 - The 15 added adapters preserve exact robot/task/controller contracts in dependency-mocked tests. DrawSVG source-only preparation in another clean Windows project verified the real pinned archive, recipe files and lock without creating an environment, installing dependencies or executing a simulator.
 - Official MuJoCo, Bullet and robosuite reference files were fetched at exact release commits and hashed; entrypoints, imports and licenses were inspected. They are discovery references without Hub preparation adapters. Repository stars are a dated interest proxy, not usage counts.
@@ -75,6 +74,7 @@
 - Exact historical outputs, environment, dependency freeze, command metadata and software-device report are permanently stored in [evidence/runtime/cpu-39042625468](../evidence/runtime/cpu-39042625468). Its manifest records all copied file hashes, original artifact hash and original project-lock hashes. Immutable commit `1b372b9b59c87f77f7b7a5f846d42eecba9d8819` preserves what those wrappers reported; the artifacts are not rewritten to apply the later acceptance contract.
 - The earlier evidence promotion relied on final-state success without checking the episode horizon. That claim is qualified by this audit. All 17 Hub wrappers now use recipe version `1.1.0` with an explicit `max_episode_steps=1000`, retain `terminated` and `truncated`, and require `success=true`, `truncated=false` and `0 < elapsed_steps < 1000` before reporting `task_complete` and exit 0. This is a Hub motion-planning budget, not an upstream default or standard-horizon benchmark. The upstream source pin is unchanged. New-version runtime evidence requires a fresh execution; old outputs cannot promote the changed wrappers.
 - The newly configured caller saved the actually observed Vulkan workaround through the published skill and created [PR #3](https://github.com/Superfast-Robotics/robot-skill-hub/pull/3). Independent review confirmed one append-only finding, matching original pins and raw hash, identical packages/source across failure and success, and no private data or evidence escalation. The maintainer merged it as `abbfba5e2c3b3f989eb3fe7dcb51ae67c097ff78`. Live owned status returned `published`; a different project recalled one matching Linux finding and zero Windows findings. The exact raw hash remains `bcd881913b0077f971e49c04b48ca87e8874ee2fe6baf188914a739a8bff36f0`.
+- An append-only documentation correction was subsequently published through [PR #4](https://github.com/Superfast-Robotics/robot-skill-hub/pull/4), merged as `209dc157f713c40e6cbba9ab46b7482513139180`. It qualifies the older memory's completion wording without changing the original entry or its Vulkan initialization observation. Owned status returned HTTP 200 and `published`; the correction's exact raw SHA-256 is `c17f5544a512ef648273699c4a77bd8a01efcfca606e8e54eb1b4eb1f03609a2`. An old-version project recalled both the original finding and correction (**2** results); a `1.1.0` project recalled **0**, preserving exact-version isolation. The correction is an audit with `evidence.level: not_run`, not new runtime evidence.
 
 ## LLM-selected execution
 
@@ -84,9 +84,21 @@
 - The LLM selected code and orchestrated tools. Python/MPlib generated numerical trajectories; the simulator PD controller executed joint targets. This was an owner-provided test executor, not a public Hub execution API. It does not establish platform auto-activation or general agent adoption.
 - PickCube's upstream objective is carrying the cube to the goal and stopping the arm, without requiring gripper release. StackCube's solver opens the gripper after moving the first cube over the second; its task checks stacking and release. These describe the selected code and objectives, not success within an untested horizon.
 
+## Bounded Hub recipe 1.1.0 execution
+
+- New [run 39045603320](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320) executed the exact `1.1.0` wrappers at Hub commit `3a1c17905e76bf58ed58fab17009aec3806e634a`. Each task ran once at seed 0 under the explicit Hub `max_episode_steps=1000` contract. This was one dispatch by the same LLM agent revalidating its earlier selection against the changed code, not a new blind-selection experiment.
+
+| Task | success | terminated | truncated | elapsed_steps / Hub limit | Exit | Task process time |
+| --- | --- | --- | --- | --- | --- | --- |
+| PickCube-v1 | true | true | false | 74 / 1000 | 0 | 4.875 s |
+| StackCube-v1 | true | true | false | 107 / 1000 | 0 | 3.823 s |
+
+- Both final results satisfy the current acceptance condition: `success=true`, `truncated=false` and `0 < elapsed_steps < 1000`. CPU/state simulation used Panda with `pd_joint_pos` and a Mesa lavapipe software Vulkan device, with no physical GPU or output rendering. Neither task hit the external process timeout. This establishes only the recorded seed and configuration under the Hub budget, not completion within the upstream 50-step benchmark horizon.
+- Exact new outputs, command metadata, dependency/environment records and orchestration evidence are preserved in [evidence/runtime/llm-bounded-39045603320](../evidence/runtime/llm-bounded-39045603320). The old outputs accepted without truncation checks remain separately preserved and qualified above; matching 74/107 step counts do not make those older artifacts validation of the new wrappers.
+
 ## Pending / unverified
 
-- Fresh LLM-selected execution of the `1.1.0` 1000-step Hub wrappers is pending. Standard 50-step benchmark completion is not established by either historical run. The other 15 preparation recipes and 40 official source references have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
+- The two initial `1.1.0` recipes have the bounded runtime evidence above. Standard 50-step benchmark completion remains unverified. The other 15 preparation recipes and 40 official source references have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
 - Platform automatic activation, unbranded agent discovery, external search indexing, skills.sh search inclusion and Context7 indexing remain **unverified**. The one fresh-agent forward test and repository install tests do not establish automatic activation or general model adoption.
 
 The original supplied planning documents remain local and were not published. No tokens, private datasets, session transcripts or full project logs were uploaded.

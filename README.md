@@ -25,7 +25,7 @@ Discovery uses the latest available index with a local cache and bundled offline
 
 Inspect pins, license, environment and evidence before preparing. Preparation does not execute the robot task. Existing project locks stay fixed even when discovery indexes change. See the [agent quickstart](docs/agent-quickstart.md) and [compatibility contract](docs/compatibility.md).
 
-Hub recipe version `1.1.0` uses an explicit 1000-step motion-planning budget and rejects truncated outcomes. This is separate from the upstream benchmark horizon. Historical PickCube/StackCube outputs at 74/107 steps were final-state observations beyond the default 50-step budget; they do not establish standard-horizon completion. See the [verification audit](docs/verification.md#historical-linux-cpu-execution-and-horizon-audit) for exact evidence and the current validation scope.
+Hub recipe version `1.1.0` uses an explicit 1000-step motion-planning budget and rejects truncated outcomes. Panda PickCube and StackCube completed seed 0 under that contract in a new CPU/state run; the other 15 recipes remain runtime-unverified. This does not establish completion within the upstream 50-step benchmark horizon. See the [verification record](docs/verification.md#bounded-hub-recipe-110-execution) for exact evidence and historical corrections.
 
 ## Remember findings from the actual task
 

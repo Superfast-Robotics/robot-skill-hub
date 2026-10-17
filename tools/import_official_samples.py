@@ -163,6 +163,12 @@ def generate():
                                           solver_module(sample).replace(".", "/") + ".py",
                                           "mani_skill/envs/tasks/" + task_path, "setup.py", "LICENSE"]
         record["compatibility"][0].update(robot=robot, status="source_reviewed")
+        # Source examples must not inherit the base task's measured hardware claim.
+        record["requirements"]["hardware"] = ["Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"]
+        record["requirements"]["rendering"] = (
+            "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. "
+            "Pinned SAPIEN material initialization may still require a usable Vulkan ICD. "
+            "CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.")
         record["invocation"].update(entrypoint=solver_module(sample) + ":solve",
                                     example=f"python skills/find-robot-skills/scripts/rsh.py prepare {ident} --project ./experiment --json")
         record["invocation"]["inputs"].update(task=task, robot=robot, reward_mode="sparse", max_episode_steps=1000)

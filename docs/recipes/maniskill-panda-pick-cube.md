@@ -20,6 +20,17 @@ dependency metadata and documentation paths.
 The canonical JSON keeps source inspection and simulator execution evidence in
 separate fields. Consult those fields for the exact recorded environment.
 
+## Verified Hub recipe 1.1.0 execution
+
+[Run 39045603320](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320)
+executed this exact version at Hub commit
+`3a1c17905e76bf58ed58fab17009aec3806e634a`, once at seed 0. PickCube returned
+`success=true`, `terminated=true`, `truncated=false`, `elapsed_steps=74` and
+`max_episode_steps=1000`, with exit 0 in 4.875 seconds and no process timeout.
+This verifies the recorded CPU/state/Panda configuration under the Hub budget.
+It does not establish completion within the upstream 50-step benchmark horizon.
+See [the preserved evidence](../../evidence/runtime/llm-bounded-39045603320).
+
 ## Historical CPU execution
 
 The earlier wrapper returned final-state `success=true` at 74 steps, seed 0,
@@ -57,9 +68,9 @@ installation resolves the remaining dependencies. Execute the returned
 `next_command` separately, using the returned working directory and a 180-second
 external timeout. The complete reproducible procedure is
 `tools/run_runtime_verification.py`; it is maintainer-run, never triggered by a
-submitted patch or memory. The historical environment check does not establish
-other seeds, robots, observation modes or physical hardware. Check the current
-record's evidence before treating the new wrapper as runtime verified.
+submitted patch or memory. The recorded execution does not establish other seeds,
+robots, observation modes or physical hardware. Preserve its exact version and
+environment when reusing the evidence.
 
 ## Hub episode horizon
 
@@ -69,7 +80,8 @@ default is not changed. The wrapper accepts completion only with `success=true`,
 `truncated=false` and `0 < elapsed_steps < 1000`, and reports `terminated`,
 `truncated` and the configured horizon in its final JSON. `terminated` alone is
 not proof of task success. The 180-second process timeout is a separate wall-clock
-limit. This contract needs a fresh run and is not a standard-horizon benchmark.
+limit. The version-specific run above satisfies this contract; it is not a
+standard-horizon benchmark.
 
 ## Prepare the source from Windows
 

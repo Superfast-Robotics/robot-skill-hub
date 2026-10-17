@@ -18,6 +18,17 @@ upstream Apache-2.0 license and original author notices in the downloaded source
 The canonical JSON keeps source inspection and simulator execution evidence in
 separate fields. Consult those fields for the exact recorded environment.
 
+## Verified Hub recipe 1.1.0 execution
+
+[Run 39045603320](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320)
+executed this exact version at Hub commit
+`3a1c17905e76bf58ed58fab17009aec3806e634a`, once at seed 0. StackCube returned
+`success=true`, `terminated=true`, `truncated=false`, `elapsed_steps=107` and
+`max_episode_steps=1000`, with exit 0 in 3.823 seconds and no process timeout.
+This verifies the recorded CPU/state/Panda configuration under the Hub budget.
+It does not establish completion within the upstream 50-step benchmark horizon.
+See [the preserved evidence](../../evidence/runtime/llm-bounded-39045603320).
+
 ## Historical CPU execution
 
 The earlier wrapper returned final-state `success=true` at 107 steps, seed 0,
@@ -37,9 +48,9 @@ the LLM into the trajectory planner.
 Use the same Mesa lavapipe ICD and CPU torch setup documented in the PickCube
 recipe. Pinned SAPIEN still initializes a Vulkan device for materials despite
 `render_backend="none"`. Run the returned command separately under the documented
-180-second external timeout. The historical environment check does not establish
-other seeds, observation modes or hardware execution. Check the current record's
-evidence before treating the new wrapper as runtime verified.
+180-second external timeout. The recorded execution does not establish other
+seeds, observation modes or hardware execution. Preserve its exact version and
+environment when reusing the evidence.
 
 ## Hub episode horizon
 
@@ -49,4 +60,5 @@ The upstream source pin is unchanged. Completion requires `success=true`,
 `truncated=false` and `0 < elapsed_steps < 1000`; final JSON includes `terminated`,
 `truncated` and the configured horizon. `terminated` alone does not establish
 success. The step budget and 180-second wall-clock timeout are separate limits.
-The changed wrapper requires a fresh run before runtime-evidence promotion.
+The version-specific run above satisfies this contract; it does not verify the
+upstream benchmark horizon.
