@@ -1,0 +1,115 @@
+{
+  "aliases": [
+    "OpenPI",
+    "Physical Intelligence",
+    "simple_client",
+    "ALOHA_SIM",
+    "DROID",
+    "LIBERO"
+  ],
+  "artifact": {
+    "format": "Python CLI / WebSocket policy client",
+    "kind": "tool"
+  },
+  "capabilities": [
+    "remote-policy-inference",
+    "synthetic-observations",
+    "client-server-integration",
+    "latency-measurement"
+  ],
+  "compatibility": [
+    {
+      "controller": "none",
+      "observation": "synthetic_aloha",
+      "os": "unknown",
+      "robot": "none",
+      "runtime": "openpi-client",
+      "runtime_version": "0.1.0",
+      "status": "contributor_reported"
+    },
+    {
+      "controller": "none",
+      "observation": "synthetic_droid",
+      "os": "unknown",
+      "robot": "none",
+      "runtime": "openpi-client",
+      "runtime_version": "0.1.0",
+      "status": "contributor_reported"
+    },
+    {
+      "controller": "none",
+      "observation": "synthetic_libero",
+      "os": "unknown",
+      "robot": "none",
+      "runtime": "openpi-client",
+      "runtime_version": "0.1.0",
+      "status": "contributor_reported"
+    }
+  ],
+  "framework": "openpi",
+  "id": "openpi-simple-client",
+  "invocation": {
+    "entrypoint": "uv run examples/simple_client/main.py --env ALOHA_SIM --host 127.0.0.1 --port 8000 --num-steps 20",
+    "notes": "Run from the pinned checkout only after configuring the upstream environment and a compatible policy server. Supported --env values in the source are ALOHA, ALOHA_SIM, DROID and LIBERO. Optional timing-file output writes a Parquet file. Credentials, if required by the chosen server, must be configured locally. This documented command has not been executed."
+  },
+  "kind": "community_skill",
+  "license": {
+    "scope": "The pinned repository license covers this example source code. Preserve upstream notices and attribution. Model weights, datasets, external policy servers and third-party dependencies retain their own applicable licenses.",
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/LICENSE",
+    "verified": false
+  },
+  "name": "OpenPI random-observation policy client",
+  "requirements": {
+    "hardware": [
+      "CPU client; no physical robot is required",
+      "Policy-server compute and model requirements are configured separately"
+    ],
+    "notes": "Source inspection only. Random RGB-shaped arrays and synthetic numeric state are sent to the configured server; the returned data is used for timing statistics. The upstream full workspace documents Ubuntu 22.04 and Python >=3.11. Client-only platform portability, installation, policy inference and robot execution were not tested. The server and model/checkpoint setup are separate.",
+    "packages": [
+      "openpi-client==0.1.0 from the pinned packages/openpi-client source",
+      "numpy>=1.22.4,<2.0.0",
+      "polars>=1.30.0",
+      "rich>=14.0.0",
+      "tyro>=0.9.5",
+      "tqdm (imported by this example; follow the upstream environment)"
+    ],
+    "python": ">=3.11 for the pinned upstream workspace; the example also uses Python 3.10 union annotations",
+    "system": [
+      "Network access to an operator-configured OpenPI WebSocket policy server",
+      "Pinned upstream checkout and its configured uv environment"
+    ]
+  },
+  "robots": [
+    "robot-independent"
+  ],
+  "source": {
+    "authors": [
+      "Physical Intelligence contributors"
+    ],
+    "bytes": 6281,
+    "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+    "path": "examples/simple_client/main.py",
+    "repository": "https://github.com/Physical-Intelligence/openpi",
+    "sha256": "3f4445762376cfa25ce0812ecaacc225f4ddc7d2ab66d219563d6150803c6767",
+    "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/examples/simple_client/main.py"
+  },
+  "summary": "Send synthetic ALOHA, ALOHA_SIM, DROID or LIBERO observation-shaped data to an OpenPI WebSocket policy server and report inference timing. This client generates random inputs; it does not read robot cameras, run a robot controller or move physical hardware.",
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Inspect the exact pinned upstream artifact and setup instructions. This record has no Hub runtime adapter.",
+    "setup_url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/examples/simple_client/README.md"
+  },
+  "evidence": {
+    "level": "contributor_reported",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-17",
+    "inspection": "Data-only intake structure checked. Source content, checksum, license and runtime claims require maintainer review; no submitted code was executed."
+  },
+  "maintenance": {
+    "record_version": "intake-a32fedaa23356d30",
+    "last_checked": "2026-10-17",
+    "upstream_status": "contributor_reported"
+  }
+}
