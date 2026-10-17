@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T17:39:29.983026+00:00",
+  "operation": "Read-only database inspection after second real deployment",
+  "result": {
+    "hub_commit": "3a9320f550c8c990a1198419e95ec10e1198a01e",
+    "generations": 2,
+    "generation_members": 2156,
+    "reused_documents": 1078,
+    "memory_members": 6,
+    "reused_findings": 3
+  },
+  "interpretation": "Both full generation memberships are retained while unchanged searchable documents and finding projections remain shared; no full FTS document rebuild was needed.",
+  "pages_and_sync": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39054379852",
+  "internal_checks_excluded_from_metrics": true
+}

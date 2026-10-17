@@ -10,6 +10,8 @@ An [independent fresh public clone](../evidence/integration/v0.3.0/fresh-agent.j
 
 Native D1 tests exercised actual FTS5/JSON SQL, concurrent/replayed page synchronization, atomic search/finding activation, unchanged-document reuse, pinned pagination and corruption rejection. Forced-small-budget publisher tests preserved complete v2 pages and per-receipt proofs while legacy compatibility views explicitly reported subsets or disappeared. These contracts remain finite: manifests, pages and free database quotas have bounded capacity and do not establish exhaustive Internet coverage.
 
+A [second real deployment](../evidence/integration/v0.3.0/generation-reuse.json) retained two complete generation memberships while sharing the same 1,078 searchable documents and 3 finding documents. The active generation advanced to `3a9320f550c8c990a1198419e95ec10e1198a01e`; unchanged source metadata did not require a duplicate FTS document set.
+
 ## Earlier public discovery and new-source intake
 
 The expansion indexes 651 pinned official source examples from 16 ecosystems, plus the reviewed OpenPI intake below. This is a finite, reproducible source census. It does not establish complete Internet coverage or runtime compatibility for those references.
