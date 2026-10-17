@@ -5,6 +5,7 @@ import { capabilities, memoryStatus, requireMemoryAdapter, saveMemory } from './
 import { submitSkill } from './intake.ts';
 import { handlePublicRequest } from './public.ts';
 import { pruneMeasurements, type Background } from './metrics.ts';
+import { readPublication } from './publication.ts';
 
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -41,9 +42,7 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
       const publication = async () => {
         if (publicationFetcher) return publicationFetcher(env.PUBLICATION_URL);
         const response = await fetch(env.PUBLICATION_URL, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: { 'Cache-Control': 'no-cache' } });
-        if (!response.ok) { await response.body?.cancel(); throw new Error('Publication unavailable'); }
-        const content = await response.text(); if (content.length > 512 * 1024) throw new Error('Publication too large');
-        return JSON.parse(content);
+        return readPublication(response);
       };
       if (memoryId) { requireMemoryAdapter(adapter); return json(await memoryStatus(memoryId, principal, adapter, publication)); }
       return json(await getStatus(id!, principal, adapter, publication));

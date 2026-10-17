@@ -35,7 +35,7 @@ For MCP clients that accept a `mcpServers` object with HTTP transports:
 
 Configuration field names depend on the client. The transport URL is the same. A public server record in [server.json](../server.json) describes the endpoint for registry clients.
 
-The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.2.0) is active for version `0.2.0`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.2.0) records its source commit and verification scope.
+The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.2.1) is active and latest for version `0.2.1`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.2.1) records its source commit and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
 
 The discovery skill is also listed on [skills.sh](https://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills). Use the canonical repository as the installation source.
 

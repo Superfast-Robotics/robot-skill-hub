@@ -27,6 +27,8 @@ Use the exact returned ID and inspect its source pin, license, requirements, con
 
 Discovery uses the latest available catalog, a local cache and bundled offline fallback. Report the result's origin and freshness. `--offline` prevents automatic discovery reads; `--refresh` requests a fresh index. An explicit `--catalog FILE_OR_URL` selects that catalog. Unknown environment fields stay unknown; explicit mismatches are excluded.
 
+Reference results report `references_origin`, `references_hub_commit` and bounded fallback reasons separately from the recipe catalog. A fresh recipe catalog does not make cached references current. Reference finding pins use the reference publication's own commit when available.
+
 Search requires every query term. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. If a source reference has no preparation adapter, open its pinned source and upstream setup instructions.
 
 Before troubleshooting a Hub recipe, read findings for the exact selected record/source and known environment:

@@ -1,10 +1,22 @@
-"""Small canonical source pins used by the submission service."""
+"""Small canonical source pins used by the submission service.
+
+The fixed hash-shard scheme has bounded manifests and leaf files. Growth that
+exceeds those consumer budgets requires a versioned capacity migration first.
+The legacy flat compatibility index is not subject to the leaf-file budget.
+"""
 import hashlib
 import json
 from pathlib import Path
 import re
 
 SHARD_SCHEME = "sha256-id-prefix-2"
+SOURCE_MANIFEST_MAX_BYTES = 128 * 1024
+SOURCE_SHARD_MAX_BYTES = 256 * 1024
+
+
+def require_byte_budget(raw, limit, label):
+    if len(raw) > limit:
+        raise ValueError(f"{label} exceeds its {limit}-byte UTF-8 budget ({len(raw)} bytes); capacity migration is required")
 
 
 def json_bytes(value):
@@ -77,10 +89,13 @@ def source_index_shards(records):
     descriptors = {}
     for prefix in sorted(grouped):
         body = json_bytes({"schema_version": "1", "records": grouped[prefix]})
+        require_byte_budget(body, SOURCE_SHARD_MAX_BYTES, f"Source index shard {prefix}")
         shards[prefix] = body
         descriptors[prefix] = {"path": f"catalog/source-index/{prefix}.json",
                                "sha256": hashlib.sha256(body).hexdigest(), "records": len(grouped[prefix])}
-    return {"schema_version": "1", "scheme": SHARD_SCHEME, "shards": descriptors, "records": len(flat["records"])}, shards
+    manifest = {"schema_version": "1", "scheme": SHARD_SCHEME, "shards": descriptors, "records": len(flat["records"])}
+    require_byte_budget(json_bytes(manifest), SOURCE_MANIFEST_MAX_BYTES, "Source index shard manifest")
+    return manifest, shards
 
 
 def check_source_index(records, path):
@@ -93,11 +108,15 @@ def check_source_index(records, path):
     if path.read_bytes() != json_bytes(source_index(records)):
         raise ValueError("Compact canonical source index does not match the reviewed references")
     manifest, shards = source_index_shards(records)
-    if (path.parent / "source-index-manifest.json").read_bytes() != json_bytes(manifest):
+    raw_manifest = (path.parent / "source-index-manifest.json").read_bytes()
+    require_byte_budget(raw_manifest, SOURCE_MANIFEST_MAX_BYTES, "Source index shard manifest")
+    if raw_manifest != json_bytes(manifest):
         raise ValueError("Source index shard manifest does not match the reviewed references")
     for prefix, expected in shards.items():
         shard = shard_dir / (prefix + ".json")
         if shard.is_symlink() or not shard.resolve().is_relative_to(shard_dir.resolve()):
             raise ValueError("Source index shard path escapes the catalog")
-        if shard.read_bytes() != expected:
+        raw = shard.read_bytes()
+        require_byte_budget(raw, SOURCE_SHARD_MAX_BYTES, f"Source index shard {prefix}")
+        if raw != expected:
             raise ValueError(f"Source index shard checksum or coverage mismatch: {prefix}")

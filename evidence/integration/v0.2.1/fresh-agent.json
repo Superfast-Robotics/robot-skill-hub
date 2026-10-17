@@ -1,0 +1,63 @@
+{
+  "started_at": "2026-10-17T16:44:54.459056+00:00",
+  "completed_at": "2026-10-17T16:46:36.269607+00:00",
+  "remote_commit": "1297f636a24da0daeec9432d42d7449030d1ac0b",
+  "regression_checks": {
+    "public_and_clone_commit_match": true,
+    "both_search_forms_same_two_api_cli_ids": true,
+    "unknown_robot_no_matches_api_cli": true,
+    "individual_labels_do_not_fabricate_combination_api_cli": true,
+    "known_source_reference_preparation_explicitly_unsupported": true,
+    "preparation_has_no_effects": true,
+    "new_openpi_public_and_bundled_offline_source_only": true,
+    "counts_match_public_and_bundled": true,
+    "one_online_cli_refresh_then_offline_only": true,
+    "direct_http_all_opted_out": true,
+    "all_commands_telemetry_off": true
+  },
+  "bundled_counts": {
+    "recipes": 17,
+    "references": 652,
+    "memories": 3
+  },
+  "snapshot_freshness": {
+    "public_and_refreshed_catalog_commit": "1297f636a24da0daeec9432d42d7449030d1ac0b",
+    "bundled_snapshot_catalog_commit": "178d8e776518e1e9a0857acd6db3cf39a1196475",
+    "bundled_origin": "bundled_snapshot",
+    "note": "Separate empty-cache --offline invocations intentionally used immutable bundled snapshots. Their reported 178d8e7 base is preserved, not relabeled as the current public commit. Count used empty query, never the literal word all."
+  },
+  "new_reference_limitations": {
+    "id": "openpi-simple-client",
+    "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+    "source_sha256": "3f4445762376cfa25ce0812ecaacc225f4ddc7d2ab66d219563d6150803c6767",
+    "license_spdx": "Apache-2.0",
+    "license_verified_claim": false,
+    "evidence_level": "contributor_reported",
+    "runtime_verification": "not_run",
+    "hub_prepare": false,
+    "next_action": "open_source_reference",
+    "notes": "Data-only public/bundled inspection succeeded. Upstream code, dependency installation, policy server inference and robot execution were not performed or asserted."
+  },
+  "scope": {
+    "product_code_modified": false,
+    "global_configuration_changed": false,
+    "dependency_installation": false,
+    "upstream_code_execution": false,
+    "public_posts": false,
+    "explicit_authentication": false,
+    "prior_report_preserved": true,
+    "direct_http_requests": 6,
+    "commands": 9,
+    "git_network_headers": [
+      "DNT: 1",
+      "X-RSH-Telemetry: off"
+    ]
+  },
+  "preparation_effects": {
+    "target_exists_after": false,
+    "source_download_performed": false,
+    "environment_created": false,
+    "execution_performed": false
+  },
+  "verification_scope": "Independent fresh agent, public shallow clone and unauthenticated HTTP; no additional robot execution."
+}

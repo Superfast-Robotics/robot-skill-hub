@@ -1,5 +1,7 @@
 """Anonymous discovery measurement remains optional and never reads project content."""
 import importlib
+import io
+import json
 import os
 from pathlib import Path
 import sys
@@ -10,6 +12,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "skills/find-robot-skills/scripts"))
 discovery = importlib.import_module("rshlib.discovery")
+core = importlib.import_module("rshlib.core")
 
 
 class DiscoveryAccessTests(unittest.TestCase):
@@ -80,6 +83,43 @@ class DiscoveryAccessTests(unittest.TestCase):
             result = discovery.load_discovery(refresh=True)
             self.assertEqual(result["catalog_origin"], "bundled_snapshot")
             self.assertRegex(result["hub_commit"], r"^[a-f0-9]{40}$")
+
+    def test_reference_fallback_exposes_its_own_commit_and_uses_it_for_memory_identity(self):
+        snapshot = {**discovery.load_catalog(), "hub_commit": "c" * 40}
+        reference = {"id": "fixture-ik", "name": "KUKA IK", "summary": "Inverse kinematics",
+                     "framework": "pybullet", "capabilities": ["ik"], "robots": ["kuka"],
+                     "source": {"commit": "b" * 40, "sha256": "d" * 64, "url": "https://example.org/source"}}
+        old_refs = {"schema_version": "1", "hub_commit": "a" * 40, "records": [reference]}
+        def fetch(url):
+            if url == discovery.API_BASE + "catalog":
+                return snapshot
+            raise core.RshError("catalog_too_large", "Controlled oversized reference response")
+        with tempfile.TemporaryDirectory() as directory, mock.patch.dict(os.environ, {"RSH_CACHE_DIR": directory}), mock.patch.object(discovery, "fetch_public", side_effect=fetch):
+            discovery._write_cache("references", old_refs)
+            catalog = discovery.load_discovery(refresh=True)
+            found = core.find(catalog, "kuka", {})
+            detail = core.inspect(catalog, "fixture-ik")
+            for result in (found, detail):
+                self.assertEqual(result["catalog_origin"], "remote")
+                self.assertEqual(result["references_origin"], "cache_fallback")
+                self.assertEqual(result["catalog_hub_commit"], "c" * 40)
+                self.assertEqual(result["references_hub_commit"], "a" * 40)
+                self.assertEqual(result["references_discovery"]["fallback_reasons"], ["catalog_too_large"])
+            self.assertEqual(found["results"][0]["memory_base"]["hub_commit"], "a" * 40)
+            self.assertEqual(detail["memory_base"]["hub_commit"], "a" * 40)
+
+    def test_explicit_remote_catalog_keeps_opt_out_and_bounded_redirect_free_transport(self):
+        snapshot = discovery.load_catalog()
+        raw = json.dumps(snapshot).encode()
+        opener = mock.Mock()
+        opener.open.return_value = io.BytesIO(raw)
+        with mock.patch.dict(os.environ, {"RSH_TELEMETRY": "off"}), mock.patch("urllib.request.build_opener", return_value=opener):
+            self.assertEqual(core.load_catalog(discovery.API_BASE + "catalog")["hub_commit"], snapshot["hub_commit"])
+        request = opener.open.call_args.args[0]
+        self.assertEqual(request.get_header("Dnt"), "1")
+        self.assertEqual(request.get_header("X-rsh-telemetry"), "off")
+        self.assertFalse(request.has_header("Authorization"))
+        self.assertEqual(discovery.PUBLIC_LIMIT, 8 * 1024 * 1024)
 
 
 if __name__ == "__main__":

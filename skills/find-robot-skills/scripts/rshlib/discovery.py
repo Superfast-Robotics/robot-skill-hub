@@ -8,13 +8,13 @@ from pathlib import Path
 import time
 import urllib.request
 
-from .core import COMMIT, RshError, SKILL_ROOT, load_catalog, read_json, require_url, validate_catalog, write_json
+from .core import COMMIT, PUBLIC_JSON_LIMIT, RshError, SKILL_ROOT, load_catalog, read_json, require_url, validate_catalog, write_json
 
 BASE = "https://hub.superfastrobotics.com/catalog/v1/"
 API_BASE = "https://api.superfastrobotics.com/v1/"
 READ_TIMEOUT = 1.5
 CACHE_SECONDS = 300
-PUBLIC_LIMIT = 4 * 1024 * 1024
+PUBLIC_LIMIT = PUBLIC_JSON_LIMIT
 
 
 def cache_root():
@@ -72,7 +72,7 @@ def fetch_public(url):
     with urllib.request.build_opener(NoRedirect()).open(request, timeout=READ_TIMEOUT) as response:
         data = response.read(PUBLIC_LIMIT + 1)
     if len(data) > PUBLIC_LIMIT:
-        raise RshError("catalog_too_large", "Public index exceeds 4 MiB.")
+        raise RshError("catalog_too_large", "Public index exceeds 8 MiB.")
     return json.loads(data)
 
 
@@ -99,16 +99,24 @@ def _write_cache(name, value):
         pass  # Read-only machines still use the retrieved data in this invocation.
 
 
-def public_index(name, *, url=None, offline=False, refresh=False):
+def public_index(name, *, url=None, offline=False, refresh=False, diagnostics=None):
     """Return (index, origin); network failure is never required for discovery."""
     cached = _read_cache(name)
+    failures = []
+    def result(data, origin):
+        if diagnostics is not None:
+            diagnostics.update({"origin": origin, "publication_hub_commit": data.get("hub_commit"),
+                                "fetched_at": time.time() if origin == "remote" else cached.get("fetched_at") if cached and origin.startswith("cache") else None,
+                                "fallback_reasons": list(dict.fromkeys(failures))})
+        return data, origin
     if cached:
         try:
             index_data(cached["data"])
         except (RshError, KeyError, TypeError):
             cached = None
+            failures.append("invalid_cached_index")
     if cached and not refresh and time.time() - cached["fetched_at"] < CACHE_SECONDS:
-        return cached["data"], "cache"
+        return result(cached["data"], "cache")
     if not offline:
         target = url or BASE + name + ".json"
         candidates = [API_BASE + "references", target] if name == "references" and target == BASE + "references.json" else [target]
@@ -116,16 +124,17 @@ def public_index(name, *, url=None, offline=False, refresh=False):
             try:
                 data = index_data(fetch_public(candidate))
                 _write_cache(name, data)
-                return data, "remote"
-            except (OSError, ValueError, TypeError, RshError):
-                pass
+                return result(data, "remote")
+            except (OSError, ValueError, TypeError, RshError) as error:
+                failures.append(error.result["reason_code"] if isinstance(error, RshError) else "network_unavailable" if isinstance(error, OSError) else "invalid_index")
     if cached:
-        return cached["data"], "cache_fallback"
+        return result(cached["data"], "cache_fallback")
     snapshot = SKILL_ROOT / "assets" / (name + ".snapshot.json")
     try:
-        return index_data(read_json(snapshot)), "bundled_snapshot"
+        return result(index_data(read_json(snapshot)), "bundled_snapshot")
     except (OSError, RshError, ValueError, TypeError):
-        return {"schema_version": "1", "records": []}, "empty_snapshot"
+        failures.append("bundled_index_unavailable")
+        return result({"schema_version": "1", "records": []}, "empty_snapshot")
 
 
 def load_discovery(location=None, *, offline=False, refresh=False, latest=True):
@@ -161,10 +170,12 @@ def load_discovery(location=None, *, offline=False, refresh=False, latest=True):
     if catalog is None:
         catalog = cached["data"] if cached else load_catalog()
         origin = "cache_fallback" if cached else "bundled_snapshot"
+    refs_diagnostics = {}
     refs, refs_origin = public_index("references", url=catalog.get("references_url"),
                                      offline=offline or not latest or origin == "bundled_snapshot",
-                                     refresh=refresh)
-    return {**catalog, "references": refs, "catalog_origin": origin, "references_origin": refs_origin}
+                                     refresh=refresh, diagnostics=refs_diagnostics)
+    return {**catalog, "references": refs, "catalog_origin": origin, "references_origin": refs_origin,
+            "references_discovery": refs_diagnostics}
 
 
 def pinned_project_catalog(catalog, project, skill_id):

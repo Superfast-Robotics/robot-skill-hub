@@ -131,7 +131,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     return { ...capabilities(), server_version: VERSION, catalog_hub_commit: index?.hub_commit ?? null, counts: index?.counts ?? null,
       public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
       new_skill_submission: { method: 'POST', url: API + '/v1/skills', authentication: 'allowed_agent_Bearer_token', publication: 'internal_draft_PR_then_maintainer_review' },
-      execution: 'Read-only discovery and preparation instructions. The Hub never runs robot code, downloads submitted artifacts, or merges submissions automatically.' };
+      execution: 'Public tools return discovery data and preparation instructions. CLI preparation and robot execution run separately in the caller environment. Submission APIs store data and open internal draft PRs for maintainer review.' };
   }
   async function mcp(request: Request, env: PublicEnv, ctx?: Background) {
     const origin = request.headers.get('Origin');

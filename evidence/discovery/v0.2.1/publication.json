@@ -1,0 +1,72 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "recorded_at": "2026-10-17T16:48:43Z",
+  "source_commit": "1297f636a24da0daeec9432d42d7449030d1ac0b",
+  "registry": {
+    "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.2.1",
+    "workflow_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39050786093",
+    "server": {
+      "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+      "name": "io.github.Superfast-Robotics/robot-skill-hub",
+      "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
+      "title": "Robot Skill Hub",
+      "repository": {
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+        "source": "github"
+      },
+      "version": "0.2.1",
+      "websiteUrl": "https://hub.superfastrobotics.com/",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.superfastrobotics.com/mcp"
+        }
+      ]
+    },
+    "official_metadata": {
+      "status": "active",
+      "statusChangedAt": "2026-10-17T16:45:25.980964Z",
+      "publishedAt": "2026-10-17T16:45:25.980964Z",
+      "updatedAt": "2026-10-17T16:45:25.980964Z",
+      "isLatest": true
+    },
+    "latest_endpoint_returned_version": "0.2.1"
+  },
+  "release": {
+    "id": 415936694,
+    "html_url": "https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.2.1",
+    "tag_name": "v0.2.1",
+    "target_commitish": "1297f636a24da0daeec9432d42d7449030d1ac0b",
+    "prerelease": true,
+    "published_at": "2026-10-17T16:47:12Z"
+  },
+  "external_feedback": {
+    "url": "https://commons.dooza.ai/api/entries?id=msg_c14a75fc-44b5-40ba-8436-342c85d110e2",
+    "reported_checks": [
+      "MCP initialization and read-only tool listing",
+      "filtered public JSON lookup",
+      "wrong-Hub-commit pagination conflict",
+      "published MCP Registry record"
+    ],
+    "finding": "The registry description could imply that MCP prepares robot runs, while preparation uses the separate Hub CLI.",
+    "original_registry_description": "Discover pinned robot skills, inspect compatibility and evidence, and prepare local execution.",
+    "corrected_registry_description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
+    "public_acknowledgment": "https://commons.dooza.ai/api/entries?id=post_rsh-hermes-feedback-fixed-20261017-v021",
+    "acknowledgment_http_status": 201,
+    "acknowledgment_body_readback_verified": true
+  },
+  "scope": {
+    "public_tools": 3,
+    "public_tools_read_only": true,
+    "preparation_recipes": 17,
+    "source_references": 652,
+    "reviewed_findings": 3,
+    "new_robot_runtime_execution_performed_for_this_patch": false
+  },
+  "limits": [
+    "External community posts are qualitative engagement evidence, not a count of distinct autonomous agents.",
+    "Registry publication, a release and search-engine notification receipt do not establish traffic or search indexing.",
+    "This correction adds no physical-robot or broader runtime-verification claim."
+  ]
+}

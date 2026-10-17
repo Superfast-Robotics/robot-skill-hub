@@ -10,6 +10,7 @@ import re
 import shutil
 import tempfile
 import unittest
+from unittest import mock
 from urllib.parse import urljoin, urlparse
 
 import build_catalog as builder
@@ -96,9 +97,15 @@ class CatalogTests(unittest.TestCase):
     def test_git_and_standalone_intakes_publish_data_only_pages_and_exact_search_hashes(self):
         _, git = self.intake()
         _, artifact = self.intake("panda-policy-model", standalone=True)
+        canonical_references = (self.root / "catalog/references.json").read_bytes()
         self.build()
         site = self.root / "site"
-        references = json.loads((site / "catalog/v1/references.json").read_text(encoding="utf-8"))["records"]
+        published_references = json.loads((site / "catalog/v1/references.json").read_text(encoding="utf-8"))
+        reference_snapshot = json.loads((self.root / "skills/find-robot-skills/assets/references.snapshot.json").read_text(encoding="utf-8"))
+        self.assertEqual(published_references["hub_commit"], "1" * 40)
+        self.assertEqual(reference_snapshot["hub_commit"], published_references["hub_commit"])
+        self.assertEqual((self.root / "catalog/references.json").read_bytes(), canonical_references)
+        references = published_references["records"]
         thin_path = site / "catalog/v1/search.json"
         self.assertLess(len(thin_path.read_bytes()), 2 * 1024 * 1024)
         thin = json.loads(thin_path.read_text(encoding="utf-8"))
@@ -299,6 +306,36 @@ class CatalogTests(unittest.TestCase):
         manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "manifest does not match"):
             builder.load_references()
+
+    def test_generated_resources_fail_build_before_exceeding_consumer_budgets(self):
+        # Reducing a real consumer budget exercises each actual build call site
+        # without producing a huge inventory merely to test a size boundary.
+        cases = (("CATALOG_JSON_MAX_BYTES", 1, "index.json"),
+                 ("CATALOG_JSON_MAX_BYTES", 300000, "references.json"),
+                 ("RECORD_JSON_MAX_BYTES", 1, "skill.json"),
+                 ("SEARCH_JSON_MAX_BYTES", 1, "Thin search index"),
+                 ("VERSION_JSON_MAX_BYTES", 1, "version.json"),
+                 ("PUBLICATION_JSON_MAX_BYTES", 1, "publication.json"))
+        for constant, limit, target in cases:
+            with self.subTest(resource=target), mock.patch.object(builder, constant, limit):
+                with self.assertRaisesRegex(ValueError, re.escape(target) + r".*UTF-8 budget"):
+                    self.build()
+
+    def test_memory_discovery_resource_uses_the_catalog_consumer_budget(self):
+        self.memory()
+        with mock.patch.object(builder, "CATALOG_JSON_MAX_BYTES", 1):
+            with self.assertRaisesRegex(ValueError, r"memories.json.*UTF-8 budget"):
+                builder.publish_memories(builder.load_memories(), self.root / "site", "https://example.test/hub", "1" * 40)
+
+    def test_oversized_reference_metadata_cannot_publish_a_record_the_api_cannot_read(self):
+        path = self.root / "catalog/references.json"
+        references = json.loads(path.read_text(encoding="utf-8"))
+        record = references["records"][0]
+        record["summary"] = "한" * (builder.RECORD_JSON_MAX_BYTES // 3 + 1)
+        path.write_text(json.dumps(references, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, r"references.*skill.json.*UTF-8 budget"):
+            self.build()
+        self.assertFalse((self.root / "site/references" / record["id"] / "skill.json").exists())
 
     def test_published_memory_keeps_exact_immutable_bytes_and_data_only_projection(self):
         path,entry = self.memory()
@@ -501,6 +538,13 @@ class CatalogTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     builder.load_publication_history()
 
+    def test_immutable_source_archives_obey_the_published_record_byte_budget(self):
+        _, _, _, _ = self.archived_intake(standalone=True)
+        release = next(r for r in builder.load_publication_history() if r["hub_commit"] == "9" * 40)
+        with mock.patch.object(builder, "RECORD_JSON_MAX_BYTES", 1):
+            with self.assertRaisesRegex(ValueError, r"skill.json.*UTF-8 budget"):
+                builder.publish_history([release], self.root / "site", "https://example.test/hub")
+
     def test_rejects_tampered_historical_record(self):
         archive = next((self.root / 'catalog/releases').glob('*/*.json'))
         archive.write_text('{}', encoding='utf-8')
@@ -517,6 +561,76 @@ class CatalogTests(unittest.TestCase):
             self.assertNotIn(' style=', page)
         for relative in ('llms.txt','llms-full.txt','robots.txt','catalog/v1/references.json'):
             self.assertTrue((self.root / 'site' / relative).is_file(), relative)
+
+
+class PublicationBudgetTests(unittest.TestCase):
+    def test_exact_utf8_boundary_succeeds_and_one_more_byte_preserves_existing_file(self):
+        limit = builder.VERSION_JSON_MAX_BYTES
+        value = {"summary": ""}
+        overhead = len((json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+        remaining = limit - overhead
+        value["summary"] = "한" * (remaining // 3) + "x" * (remaining % 3)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "version.json"
+            builder.write_json(path, value, max_bytes=limit)
+            original = path.read_bytes()
+            self.assertEqual(len(original), limit)
+            value["summary"] += "x"
+            self.assertLess(len(json.dumps(value, ensure_ascii=False, indent=2) + "\n"), limit)
+            with self.assertRaisesRegex(ValueError, "UTF-8 budget"):
+                builder.write_json(path, value, max_bytes=limit)
+            self.assertEqual(path.read_bytes(), original)
+
+    @staticmethod
+    def source_record(ident):
+        return {"id": ident, "source": {"commit": "1" * 40, "sha256": hashlib.sha256(ident.encode()).hexdigest()}}
+
+    def test_source_manifest_and_shard_raw_byte_limits_are_checked(self):
+        records = [self.source_record("capacity-fixture")]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "source-index.json"
+            reference_index.write_source_index(records, path)
+            manifest_path = path.parent / "source-index-manifest.json"
+            original = manifest_path.read_bytes()
+            manifest_path.write_bytes(original + b" " * (reference_index.SOURCE_MANIFEST_MAX_BYTES + 1 - len(original)))
+            with self.assertRaisesRegex(ValueError, "manifest.*UTF-8 budget"):
+                reference_index.check_source_index(records, path)
+            manifest_path.write_bytes(original)
+            prefix = reference_index.source_prefix(records[0]["id"])
+            shard = path.parent / "source-index" / (prefix + ".json")
+            original = shard.read_bytes()
+            shard.write_bytes(original + b" " * (reference_index.SOURCE_SHARD_MAX_BYTES + 1 - len(original)))
+            with self.assertRaisesRegex(ValueError, "shard.*UTF-8 budget"):
+                reference_index.check_source_index(records, path)
+
+    def test_first_overfull_hash_bucket_is_rejected_before_index_files_change(self):
+        # Exercise real hash-prefix skew with small synthetic metadata only.
+        records, candidate = [], 0
+        while len(records) < 1000:
+            ident = f"capacity-fixture-{candidate:09d}"
+            if reference_index.source_prefix(ident) == "00":
+                records.append(self.source_record(ident))
+            candidate += 1
+        low, high = 0, len(records)
+        while low < high:
+            middle = (low + high + 1) // 2
+            size = len(reference_index.json_bytes(reference_index.source_index(records[:middle])))
+            if size <= reference_index.SOURCE_SHARD_MAX_BYTES:
+                low = middle
+            else:
+                high = middle - 1
+        self.assertGreater(low, 0)
+        self.assertLess(low, len(records))
+        _, shards = reference_index.source_index_shards(records[:low])
+        self.assertLessEqual(len(shards["00"]), reference_index.SOURCE_SHARD_MAX_BYTES)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "source-index.json"
+            path.write_bytes(b"existing index remains unchanged\n")
+            with self.assertRaisesRegex(ValueError, "shard 00.*UTF-8 budget"):
+                reference_index.write_source_index(records[:low + 1], path)
+            self.assertEqual(path.read_bytes(), b"existing index remains unchanged\n")
+            self.assertFalse((path.parent / "source-index-manifest.json").exists())
+            self.assertFalse((path.parent / "source-index").exists())
 
 
 if __name__ == '__main__':

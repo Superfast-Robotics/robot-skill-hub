@@ -16,6 +16,7 @@ COMMIT = re.compile(r"^[0-9a-f]{40}$")
 SOURCE_REVISION = re.compile(r"^(?:[0-9a-f]{40}|sha256:[0-9a-f]{64})$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 IDENTIFIER = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+PUBLIC_JSON_LIMIT = 8 * 1024 * 1024
 
 
 class RshError(Exception):
@@ -120,11 +121,10 @@ def load_catalog(location=None):
     if location and str(location).startswith(("https://", "http://")):
         require_url(location, local_http=True)
         try:
-            with urllib.request.urlopen(location, timeout=30) as response:
-                data = response.read(4 * 1024 * 1024 + 1)
-            if len(data) > 4 * 1024 * 1024:
-                raise RshError("catalog_too_large", "Catalog exceeds 4 MiB.")
-            catalog = json.loads(data)
+            # Runtime import avoids a module cycle while preserving the same
+            # byte bound, redirect policy and telemetry opt-out as discovery.
+            from .discovery import fetch_public
+            catalog = fetch_public(str(location))
         except (OSError, ValueError) as exc:
             raise RshError("catalog_unavailable", "Could not retrieve catalog.", next_action="use_bundled_snapshot") from exc
     else:
@@ -202,7 +202,7 @@ def selection_base(catalog, record, *, reference=False):
         version = "source-" + digest
     else:
         version = record.get("maintenance", {}).get("record_version")
-    hub = catalog.get("hub_commit")
+    hub = catalog.get("references", {}).get("hub_commit", catalog.get("hub_commit")) if reference else catalog.get("hub_commit")
     commit = source.get("commit") or (source.get("revision") if reference else None)
     if (not isinstance(version, str) or not 1 <= len(version) <= 120
             or not COMMIT.fullmatch(str(hub or "")) or not (SOURCE_REVISION if reference else COMMIT).fullmatch(str(commit or ""))):
@@ -232,6 +232,15 @@ def reference_environment_matches(record, environment):
         robots = record.get("robots", [])
         return isinstance(robots, list) and any(isinstance(robot, str) and robot.strip().lower() == supplied["robot"] for robot in robots)
     return False
+
+
+def discovery_metadata(catalog):
+    """Expose independent reference freshness instead of implying a fresh aggregate."""
+    return {"catalog_hub_commit": catalog.get("hub_commit"),
+            "catalog_origin": catalog.get("catalog_origin", "explicit"),
+            "references_hub_commit": catalog.get("references", {}).get("hub_commit"),
+            "references_origin": catalog.get("references_origin", "explicit"),
+            "references_discovery": catalog.get("references_discovery", {})}
 
 
 def find(catalog, query, environment, limit=3):
@@ -285,8 +294,7 @@ def find(catalog, query, environment, limit=3):
     for item in results:
         item.pop("_score")
     return {"status": "ready", "results": results[:limit], "total": len(results),
-            "execution_performed": False, "catalog_hub_commit": catalog.get("hub_commit"),
-            "catalog_origin": catalog.get("catalog_origin", "explicit")}
+            "execution_performed": False, **discovery_metadata(catalog)}
 
 
 def inspect(catalog, skill_id):
@@ -294,7 +302,7 @@ def inspect(catalog, skill_id):
         if reference.get("id") == skill_id:
             return {"status": "ready", **reference, "kind": "source_reference", "hub_prepare": False,
                     "memory_base": selection_base(catalog, reference, reference=True),
-                    "next_action": "open_source_reference", "execution_performed": False}
+                    "next_action": "open_source_reference", "execution_performed": False, **discovery_metadata(catalog)}
     record = lookup(catalog, skill_id)
     return {"status": "ready", **record, "commit": record["source"]["commit"],
             "kind": "preparation_recipe", "hub_prepare": True,
@@ -303,7 +311,7 @@ def inspect(catalog, skill_id):
                              "--expected-record-version", record["maintenance"]["record_version"]],
             "entrypoint": record["invocation"]["entrypoint"], "inputs": record["invocation"].get("inputs"),
             "outputs": record["invocation"].get("outputs"), "example": record["invocation"].get("example"),
-            "execution_performed": False, "catalog_hub_commit": catalog.get("hub_commit")}
+            "execution_performed": False, **discovery_metadata(catalog)}
 
 
 def local_environment():

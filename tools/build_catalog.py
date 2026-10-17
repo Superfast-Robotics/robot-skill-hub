@@ -2,6 +2,10 @@
 
 Uses only Python's standard library. The schema validator implements the JSON
 Schema keywords used by schemas/skill.schema.json, not arbitrary JSON Schema.
+
+Published JSON has fixed UTF-8 byte budgets shared with API/CLI consumers.
+Before the inventory or immutable proof history exceeds them, migrate discovery
+and proof retrieval to a versioned, bounded index. Current publication is finite.
 """
 import argparse
 import copy
@@ -26,22 +30,30 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/find-robot-
 from rshlib.intake import validate_published_reference
 from rshlib.core import RshError
 if __package__:
-    from .reference_index import check_source_index
+    from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
 else:
-    from reference_index import check_source_index
+    from reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
+
+CATALOG_JSON_MAX_BYTES = 8 * 1024 * 1024
+SEARCH_JSON_MAX_BYTES = 2 * 1024 * 1024
+PUBLICATION_JSON_MAX_BYTES = 512 * 1024
+VERSION_JSON_MAX_BYTES = 32 * 1024
+RECORD_JSON_MAX_BYTES = 256 * 1024
 
 
 def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def write(path, value):
+def write(path, value, max_bytes=None):
+    if max_bytes is not None:
+        require_byte_budget(value.encode("utf-8"), max_bytes, str(path))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(value, encoding="utf-8", newline="\n")
 
 
-def write_json(path, value):
-    write(path, json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+def write_json(path, value, max_bytes=None):
+    write(path, json.dumps(value, ensure_ascii=False, indent=2) + "\n", max_bytes=max_bytes)
 
 
 def validate_schema(value, schema, root_schema, location="$"):
@@ -401,7 +413,7 @@ def publish_memories(entries, output, base, hub_commit):
         destination.write_bytes(raw)
     index = {"schema_version": "1", "hub_commit": hub_commit, "interpretation": "data_only",
              "trust": "contributor_reported", "records": records}
-    write_json(output / "catalog/v1/memories.json", index)
+    write_json(output / "catalog/v1/memories.json", index, max_bytes=CATALOG_JSON_MAX_BYTES)
     write_json(ROOT / "skills/find-robot-skills/assets/memories.snapshot.json", index)
     return proofs
 
@@ -418,13 +430,15 @@ def publish_history(releases, output, base):
             if proof.get("kind") == "source_reference":
                 # Preserve the immutable archive bytes as well as the original
                 # accepted-path hashes. Neither is derived from today's intake.
+                raw = archive.read_bytes()
+                require_byte_budget(raw, RECORD_JSON_MAX_BYTES, str(folder / "skill.json"))
                 folder.mkdir(parents=True, exist_ok=True)
-                (folder / "skill.json").write_bytes(archive.read_bytes())
+                (folder / "skill.json").write_bytes(raw)
                 write(folder / "README.md", reference_markdown(record, release["hub_commit"], publication_version=proof["record_version"]))
                 write(folder / "index.html", reference_detail(record, base, release["hub_commit"],
                       publication_version=proof["record_version"], page_path=relative))
                 continue
-            write_json(folder / "skill.json", record)
+            write_json(folder / "skill.json", record, max_bytes=RECORD_JSON_MAX_BYTES)
             body = f"""<main><h1>{esc(record['name'])}</h1>
 <p>Historical published record: <code>{esc(proof['record_version'])}</code>.</p>
 <p>Published hub commit: <code>{esc(release['hub_commit'])}</code>.</p>
@@ -732,10 +746,13 @@ def build(args):
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
+    # This is the commit of the independently cached reference resource, not a
+    # source pin. Keep the editable official aggregate unchanged on disk.
+    references["hub_commit"] = hub_commit
     index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "search_url":base+"/catalog/v1/search.json", "records":records}
-    write_json(output / "catalog/v1/index.json", index)
+    write_json(output / "catalog/v1/index.json", index, max_bytes=CATALOG_JSON_MAX_BYTES)
     write_json(ROOT / "skills/find-robot-skills/assets/catalog.snapshot.json", index)
-    write_json(output / "catalog/v1/references.json", references)
+    write_json(output / "catalog/v1/references.json", references, max_bytes=CATALOG_JSON_MAX_BYTES)
     write_json(ROOT / "skills/find-robot-skills/assets/references.snapshot.json", references)
     source_index = ROOT / "catalog/source-index.json"
     if source_index.exists():
@@ -745,6 +762,7 @@ def build(args):
         public_manifest = read_json(source_manifest)
         for prefix, descriptor in public_manifest["shards"].items():
             raw = safe_path(descriptor["path"]).read_bytes()
+            require_byte_budget(raw, SOURCE_SHARD_MAX_BYTES, descriptor["path"])
             # The canonical manifest addresses files in Git. Public descriptors
             # address the mirrored bytes, without changing their checksums.
             relative = f"catalog/v1/source-index/{prefix}.json"
@@ -752,7 +770,7 @@ def build(args):
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(raw)
             descriptor.update(path=relative, url=base + "/" + relative)
-        write(output / "catalog/v1/source-index-manifest.json", canonical(public_manifest) + "\n")
+        write(output / "catalog/v1/source-index-manifest.json", canonical(public_manifest) + "\n", max_bytes=SOURCE_MANIFEST_MAX_BYTES)
     source_projects = ROOT / "catalog/source-projects.json"
     if source_projects.exists():
         write(output / "catalog/v1/source-projects.json", canonical(read_json(source_projects)) + "\n")
@@ -823,7 +841,7 @@ def build(args):
     receipts = [read_json(p) for p in sorted((ROOT / ".hub/submissions").glob("*.json"))]
     for r in records:
         folder = output / "skills" / r['id']
-        write_json(folder / "skill.json", r)
+        write_json(folder / "skill.json", r, max_bytes=RECORD_JSON_MAX_BYTES)
         write(folder / "README.md", markdown(r, hub_commit, base))
         write(folder / "index.html", detail(r, base, hub_commit))
         # Hash canonical bytes (not enriched snapshot JSON) so the API can prove
@@ -833,7 +851,7 @@ def build(args):
         publication_records.append({"id":r['id'],"record_version":r['maintenance']['record_version'],"source_commit":r['source']['commit'],"recipe_url":base+"/skills/"+r['id']+"/", "compatibility":r['compatibility'],"contribution_path_hashes":path_hashes,"submission_ids":[x['submission_id'] for x in matching]})
     for r in references["records"]:
         folder = output / "references" / r["id"]
-        write_json(folder / "skill.json", r)
+        write_json(folder / "skill.json", r, max_bytes=RECORD_JSON_MAX_BYTES)
         write(folder / "README.md", reference_markdown(r, hub_commit))
         write(folder / "index.html", reference_detail(r, base, hub_commit))
         intake_path = ROOT / "catalog/intake" / (r["id"] + ".json")
@@ -856,8 +874,7 @@ def build(args):
     rows.extend(search_row(r, output, base) for r in references["records"])
     search = {"schema_version": "1", "hub_commit": hub_commit, "counts": counts, "records": rows}
     search_bytes = (canonical(search) + "\n").encode("utf-8")
-    if len(search_bytes) > 2 * 1024 * 1024:
-        raise ValueError("Thin search index exceeds the public API's 2 MiB read limit")
+    require_byte_budget(search_bytes, SEARCH_JSON_MAX_BYTES, "Thin search index")
     write(output / "catalog/v1/search.json", search_bytes.decode("utf-8"))
     resources = {}
     for name in ("index", "references", "memories", "search", "source-index", "source-index-manifest", "source-projects"):
@@ -865,9 +882,9 @@ def build(args):
         if path.exists():
             resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
     write_json(output / "catalog/v1/version.json", {"schema_version": "1", "hub_commit": hub_commit,
-               "counts": counts, "resources": resources})
+               "counts": counts, "resources": resources}, max_bytes=VERSION_JSON_MAX_BYTES)
     manifest = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":publication_records, "memories":memory_proofs, "history":publish_history(history, output, base)}
-    write_json(output / "catalog/v1/publication.json", manifest)
+    write_json(output / "catalog/v1/publication.json", manifest, max_bytes=PUBLICATION_JSON_MAX_BYTES)
     urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", base+"/catalog/v1/search.json", base+"/catalog/v1/publication.json"] + [base+"/skills/"+r['id']+"/" for r in records]
     urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
     if openapi.exists():
