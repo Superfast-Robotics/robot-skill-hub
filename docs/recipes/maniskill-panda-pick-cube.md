@@ -19,3 +19,19 @@ dependency metadata and documentation paths.
 
 Runtime status: **not_run (미검증)**. A source review and checksum verification do
 not prove dependency installation, imports or task completion on Linux.
+
+## Prepare the source from Windows
+
+Search and source preparation work on Windows even though the simulator target
+is Linux. To preserve the pinned source and adapter without attempting an
+unsupported simulation environment, use the installed skill directory:
+
+```sh
+python /PATH_TO_SKILL/scripts/rsh.py --catalog https://superfastrobotics.com/catalog/v1/index.json prepare maniskill-panda-pick-cube --project ./pick-cube-source --download-only --json
+```
+
+The expected result is `needs_configuration` with
+`reason_code: source_ready_runtime_not_prepared` and `next_command: null`.
+It verifies the archive SHA-256 and writes a source/recipe lock, but creates no
+venv, installs no dependencies and runs no robot task. Use a separate matching
+Linux environment for execution; keep the existing research project's lock.
