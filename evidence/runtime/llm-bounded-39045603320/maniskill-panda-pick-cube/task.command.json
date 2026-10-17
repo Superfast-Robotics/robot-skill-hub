@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/environments/maniskill-panda-pick-cube/bin/python",
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/recipes/maniskill-panda-pick-cube/run.py",
+    "--seed",
+    "0"
+  ],
+  "timeout_seconds": 180,
+  "started": true,
+  "timed_out": false,
+  "exit_code": 0,
+  "duration_seconds": 4.875,
+  "stdout_file": "task.stdout.txt",
+  "stderr_file": "task.stderr.txt"
+}

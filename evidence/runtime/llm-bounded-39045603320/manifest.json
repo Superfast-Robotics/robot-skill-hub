@@ -1,0 +1,30 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320",
+  "verified_hub_commit": "3a1c17905e76bf58ed58fab17009aec3806e634a",
+  "scope": "Same-agent LLM-selected revalidation of two Panda CPU/state recipes, one seed each, explicit Hub 1000-step motion-planning horizon, not the default benchmark horizon.",
+  "files_sha256": {
+    "report.json": "34bcb4da4744163c5ead4318995f0d9bf3c300e7fb73f46a459889ecf239cae9",
+    "vulkan-summary.txt": "8187fb1842d27f5719eaac8e210a6a2a415bd5d55a2d90aa246f8034cbdae0a9",
+    "maniskill-panda-pick-cube/report.json": "2f45f0026b33680c453ff41ec60619ec5becd4be47b7200867f8959b40082849",
+    "maniskill-panda-pick-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-pick-cube/pip-freeze.stdout.txt": "76c517604054cc1eb496a23b8bf4b2da23643336231146b2f738483a7b471007",
+    "maniskill-panda-pick-cube/task.stdout.txt": "e59a498fd04af46a9307754af2f68e685b3d99c840009c2d8a8c8fa5120c380b",
+    "maniskill-panda-pick-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-pick-cube/task.command.json": "603c0cf8a1c74c6db0ca2b040913b880691b2cf3524fd474cb43d5c527fb4dd3",
+    "maniskill-panda-stack-cube/report.json": "3d70feeec2f750918406f288e70d06d5c410381c6af9bc5897c4384a2c2cf396",
+    "maniskill-panda-stack-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-stack-cube/pip-freeze.stdout.txt": "a5fbc8d113560fbc17b2612a1006adf697bf3eb8ca1380a4edaf3b5b081f99ed",
+    "maniskill-panda-stack-cube/task.stdout.txt": "e6b7928205853291dec65d231b4445ab0a178094793c6bbe26c4e41877da1331",
+    "maniskill-panda-stack-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-stack-cube/task.command.json": "41caddcbca1b4c42b57aaed3203eb0d1723b3513cadf2187dfd4ba046d13d1be",
+    "orchestration.json": "02fefc01603108b537c36c9a9b201f174d5970fe75930972b20ac1707379cbc4"
+  },
+  "original_artifact_id": 12105871799,
+  "original_artifact_sha256": "fda29d342313e834407ae5f5f391b32b17ae5997315f1eba863b595b31211215",
+  "project_lock_sha256": {
+    "maniskill-panda-pick-cube": "9f5f24110ada78151773179514bf4596415a6b06c3c5a7b2ecd81d7a266bff3d",
+    "maniskill-panda-stack-cube": "0840167737da205b71efe9538c526674d3caf038f1f47a5fca3d5ea165c5b1c5"
+  }
+}

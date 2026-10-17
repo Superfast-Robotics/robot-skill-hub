@@ -1,0 +1,1 @@
+{"status": "task_complete", "success": true, "elapsed_steps": 107, "terminated": true, "truncated": false, "task": "StackCube-v1", "seed": 0, "runtime": "3.0.0b22", "robot": "panda", "controller": "pd_joint_pos", "observation": "state", "sim_backend": "cpu", "render_backend": "none", "max_episode_steps": 1000}

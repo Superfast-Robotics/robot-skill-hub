@@ -1,0 +1,87 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "orchestrator": "same_agent_LLM_selected_revalidation",
+  "fresh_blind_context": false,
+  "prior_run_qualification": {
+    "run_id": 39044177325,
+    "limitation": "Final simulator success predicates were observed beyond the registered default 50-step horizon; bounded episode success was not established."
+  },
+  "selection_catalog": {
+    "origin": "remote",
+    "hub_commit": "3a1c17905e76bf58ed58fab17009aec3806e634a"
+  },
+  "selected": [
+    {
+      "id": "maniskill-panda-pick-cube",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "5cd3551820612b7331709cca8e4454df1894a56c90675fd5bfb78d747bc6e68f",
+      "max_episode_steps": 1000
+    },
+    {
+      "id": "maniskill-panda-stack-cube",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "89dee3a4d1588e04bc337e928e93ea6c3b4cba703c8943708271c81d728c4d41",
+      "max_episode_steps": 1000
+    }
+  ],
+  "published_memories_read": [],
+  "observed_actions": [
+    "refresh_and_search_catalog",
+    "inspect_updated_requirements_and_pins",
+    "recall_exact_version_findings",
+    "inspect_preparation_plans",
+    "verify_exact_main_executor_source",
+    "check_truncation_and_horizon_rejection",
+    "dispatch_one_new_Linux_CPU_workflow",
+    "download_new_artifact_and_validate_outputs_flags_and_pins"
+  ],
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320",
+  "executed_hub_commit": "3a1c17905e76bf58ed58fab17009aec3806e634a",
+  "runtime_control": "The LLM selected and orchestrated reusable code. Python/MPlib generated trajectories and the simulator PD controller followed joint targets.",
+  "observed_results": [
+    {
+      "status": "task_complete",
+      "success": true,
+      "elapsed_steps": 74,
+      "terminated": true,
+      "truncated": false,
+      "task": "PickCube-v1",
+      "seed": 0,
+      "runtime": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "max_episode_steps": 1000
+    },
+    {
+      "status": "task_complete",
+      "success": true,
+      "elapsed_steps": 107,
+      "terminated": true,
+      "truncated": false,
+      "task": "StackCube-v1",
+      "seed": 0,
+      "runtime": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "max_episode_steps": 1000
+    }
+  ],
+  "scope": "Two CPU/state tasks, one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
+  "all_result_checks_pass": true,
+  "limits": [
+    "One seed per selected recipe and one owner-approved executor.",
+    "Explicit Hub 1000-step motion-planning horizon; not the upstream default benchmark.",
+    "No claim of fresh blind discovery, platform auto-activation, general adoption, visual policy, or physical hardware."
+  ]
+}
