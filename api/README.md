@@ -10,7 +10,7 @@ npm.cmd run check
 npm.cmd run dev
 ```
 
-`test` uses an in-memory fake GitHub adapter and mocked HTTP adapter. These tests verify the protocol, concurrency and recovery; they do not prove live GitHub PR creation or robot execution.
+`test` runs 20 contract tests with a fake GitHub adapter plus three tests in the real workerd runtime. The runtime tests intercept every outbound request locally with dummy credentials; they check native fetch behavior, redirect rejection and publication proof. These tests do not themselves prove live GitHub PR creation or robot execution. See [verification](../docs/verification.md) for separate live results.
 
 ## Secrets and permission boundary
 
