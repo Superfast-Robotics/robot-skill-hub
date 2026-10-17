@@ -23,9 +23,10 @@ class RuntimeEvidenceTests(unittest.TestCase):
                 self.assertEqual(content, (ROOT / record["preparation"]["recipe_path"] / name).read_text(encoding="utf-8"))
 
     def setUp(self):
-        self.record = {"invocation": {"inputs": {"task": "PickCube-v1"}}}
+        self.record = {"invocation": {"inputs": {"task": "PickCube-v1", "max_episode_steps": 1000}}}
         self.execution = {"started": True, "exit_code": 0, "timed_out": False}
         self.result = {"status": "task_complete", "success": True, "elapsed_steps": 12,
+                       "max_episode_steps": 1000, "terminated": True, "truncated": False,
                        "task": "PickCube-v1", "seed": 0, "runtime": "3.0.0b22", "robot": "panda",
                        "controller": "pd_joint_pos", "observation": "state", "sim_backend": "cpu", "render_backend": "none"}
 
@@ -45,6 +46,17 @@ class RuntimeEvidenceTests(unittest.TestCase):
         for result in ({"status": "ready", "execution_performed": False},
                        {**self.result, "success": False}, {**self.result, "elapsed_steps": True}):
             self.assertFalse(VERIFIER.assess_result(self.record, self.execution, json.dumps(result))["success"])
+
+    def test_objective_after_truncation_or_unknown_episode_flags_is_not_success(self):
+        for changes in ({"truncated": True}, {"elapsed_steps": 1000}, {"elapsed_steps": 1001},
+                        {"max_episode_steps": 50}, {"terminated": None}, {"truncated": 0}):
+            with self.subTest(changes=changes):
+                result = {**self.result, **changes}
+                self.assertFalse(VERIFIER.assess_result(self.record, self.execution, json.dumps(result))["success"])
+        for field in ("max_episode_steps", "terminated", "truncated"):
+            with self.subTest(missing=field):
+                result = {k: v for k, v in self.result.items() if k != field}
+                self.assertFalse(VERIFIER.assess_result(self.record, self.execution, json.dumps(result))["success"])
 
     def test_external_timeout_preserves_both_logs(self):
         with tempfile.TemporaryDirectory() as directory:

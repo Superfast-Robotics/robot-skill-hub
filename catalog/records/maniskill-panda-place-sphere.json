@@ -73,7 +73,7 @@
     "hardware": [
       "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
     ],
-    "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
     "api_keys": [],
     "network": [
       "GitHub source archive (~233 MiB)",
@@ -97,7 +97,8 @@
       "obs_mode": "state",
       "sim_backend": "cpu",
       "render_backend": "none",
-      "reward_mode": "sparse"
+      "reward_mode": "sparse",
+      "max_episode_steps": 1000
     },
     "outputs": {
       "format": "last stdout line JSON",
@@ -112,7 +113,10 @@
         "controller",
         "observation",
         "sim_backend",
-        "render_backend"
+        "render_backend",
+        "max_episode_steps",
+        "terminated",
+        "truncated"
       ],
       "error_fields": [
         "status",
@@ -124,13 +128,14 @@
     "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-place-sphere --project ./experiment --json"
   },
   "completion": {
-    "success_condition": "PlaceSphere-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+    "success_condition": "PlaceSphere-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
     "timeout_seconds": 300,
     "failure_modes": [
       "Dependency installation unavailable or incompatible",
       "Required Linux mplib wheels unavailable on host OS",
       "Motion planning reports failure or env info.success is false",
-      "Runtime exception or asset download failure"
+      "Runtime exception or asset download failure",
+      "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
     ],
     "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
   },
@@ -160,7 +165,7 @@
       "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
       "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
     ],
-    "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+    "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
     "artifacts": [],
     "runtime_verification": "not_run",
     "contributor_reported": null,
@@ -170,8 +175,8 @@
     }
   },
   "maintenance": {
-    "record_version": "1.0.0",
-    "last_checked": "2026-10-17",
+    "record_version": "1.1.0",
+    "last_checked": "2026-10-18",
     "upstream_status": "pinned_release; no automatic update"
   },
   "contribution": {

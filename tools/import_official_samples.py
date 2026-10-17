@@ -100,9 +100,11 @@ def main():
     from {solver_module(sample)} import solve
 
     # Sparse reward avoids robot-specific dense reward helpers in upstream variants.
+    # Hub motion-planning horizon; separate from the upstream benchmark default.
+    max_episode_steps = 1000
     env = gym.make("{task}", {robot_arg}obs_mode="state",
                    control_mode="pd_joint_pos", sim_backend="cpu",
-                   render_backend="none", render_mode=None, reward_mode="sparse")
+                   render_backend="none", render_mode=None, max_episode_steps=max_episode_steps, reward_mode="sparse")
     try:
         result = solve(env, seed=args.seed, debug=False, vis=False)
         if isinstance(result, int) and result == -1:
@@ -110,13 +112,26 @@ def main():
         else:
             info = result[-1]
             success = bool(info["success"].item())
-            report = {{"status": "task_complete" if success else "failed",
-                      "success": success, "elapsed_steps": int(info["elapsed_steps"].item())}}
+            terminated = bool(result[2].item())
+            truncated = bool(result[3].item())
+            elapsed_steps = int(info["elapsed_steps"].item())
+            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps
+            report = {{"status": "task_complete" if complete else "failed",
+                      "success": success, "elapsed_steps": elapsed_steps,
+                      "terminated": terminated, "truncated": truncated}}
+            if truncated:
+                report["reason_code"] = "episode_truncated"
+            elif elapsed_steps >= max_episode_steps:
+                report["reason_code"] = "horizon_exceeded"
+            elif elapsed_steps <= 0:
+                report["reason_code"] = "invalid_elapsed_steps"
+            elif not success:
+                report["reason_code"] = "task_objective_not_reached"
         report.update(task="{task}", seed=args.seed, runtime="3.0.0b22",
                       robot="{robot}", controller="pd_joint_pos", observation="state",
-                      sim_backend="cpu", render_backend="none")
+                      sim_backend="cpu", render_backend="none", max_episode_steps=max_episode_steps)
         print(json.dumps(report))
-        return 0 if report.get("success") else 1
+        return 0 if report.get("status") == "task_complete" else 1
     finally:
         env.close()
 
@@ -150,8 +165,8 @@ def generate():
         record["compatibility"][0].update(robot=robot, status="source_reviewed")
         record["invocation"].update(entrypoint=solver_module(sample) + ":solve",
                                     example=f"python skills/find-robot-skills/scripts/rsh.py prepare {ident} --project ./experiment --json")
-        record["invocation"]["inputs"].update(task=task, robot=robot, reward_mode="sparse")
-        record["completion"].update(success_condition=f"{task} env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        record["invocation"]["inputs"].update(task=task, robot=robot, reward_mode="sparse", max_episode_steps=1000)
+        record["completion"].update(success_condition=f"{task} final env info.success is true, truncated is false, and 0 < elapsed_steps < the Hub recipe horizon of 1000; exit 0 requires all conditions. This is not standard-horizon benchmark evaluation.",
                                      timeout_seconds=300, stop_condition="Stop after one seed; no automatic retries. Use an external 300-second process timeout.")
         record["preparation"].update(recipe_path=f"recipes/{ident}", requirements_file=f"recipes/{ident}/requirements.txt")
         record["evidence"] = {"level": "source_reviewed", "verified_by": "Robot Skill Hub source review", "date": CHECKED,
@@ -161,7 +176,7 @@ def generate():
                               "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
                               "artifacts": [], "runtime_verification": "not_run", "contributor_reported": None,
                               "hub_verification": {"level": "source_reviewed", "runtime": "not_run"}}
-        record["maintenance"].update(record_version="1.0.0", last_checked=CHECKED)
+        record["maintenance"].update(record_version="1.1.0", last_checked=CHECKED)
         record["contribution"]["allowed_paths"] = [f"catalog/records/{ident}.json", f"docs/recipes/{ident}.md",
                                                       f"recipes/{ident}/requirements.txt", f"recipes/{ident}/run.py"]
         deps = requirements
@@ -198,6 +213,10 @@ Run preparation on Linux x86_64 with Python 3.10 for the simulator environment.
 Add `--install-deps` explicitly to install dependencies. The returned task command
 is a separate execution step. Input is one seed (`--seed 0` by default); output is
 a final JSON line with task status and success. Use a 300-second process timeout.
+The fixed Hub motion-planning horizon is 1000 control steps. A successful result
+requires a true objective, no truncation and 0 < elapsed_steps < 1000; this does
+not establish success under the task's default benchmark horizon. Outputs include
+max_episode_steps, terminated and truncated. There is no horizon CLI option.
 
 ## Environment contract
 

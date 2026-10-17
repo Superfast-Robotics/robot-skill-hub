@@ -1,0 +1,25 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39044177325",
+  "verified_hub_commit": "017fefb8a225bbe2b181e32160689920aeca91a5",
+  "files_sha256": {
+    "report.json": "d7355524b15016d79beed7a5b876a8ac5fcb06778afdac8a184d8b9a4351648b",
+    "vulkan-summary.txt": "8187fb1842d27f5719eaac8e210a6a2a415bd5d55a2d90aa246f8034cbdae0a9",
+    "maniskill-panda-pick-cube/report.json": "b33955a1cdf7b9125289351413fc2483ac8b603061aa3b3625bc1385ddb59ebc",
+    "maniskill-panda-pick-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-pick-cube/pip-freeze.stdout.txt": "76c517604054cc1eb496a23b8bf4b2da23643336231146b2f738483a7b471007",
+    "maniskill-panda-pick-cube/task.stdout.txt": "37b55289726f3575ad9c9647d32ed52b02c15198ec2559ebc2b7ea48244c1bc5",
+    "maniskill-panda-pick-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-pick-cube/task.command.json": "d916f111d29f7b98dc6dd0ddd86693f37bc230714c54c87e56d692e080e10332",
+    "maniskill-panda-stack-cube/report.json": "bf25f52984df3d6cd5a88927e108a4a889a80e18f5ffd512d7a57da1c5f7f082",
+    "maniskill-panda-stack-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-stack-cube/pip-freeze.stdout.txt": "a5fbc8d113560fbc17b2612a1006adf697bf3eb8ca1380a4edaf3b5b081f99ed",
+    "maniskill-panda-stack-cube/task.stdout.txt": "74362c7c9ceffe4c6dae484fe9c2dd73d4ba2536edd776c912f6206019a20fa6",
+    "maniskill-panda-stack-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-stack-cube/task.command.json": "9d4be1b590bb46a6be28b180163b934f3d1bb6b5815556c92645b56ef8d3b3e9",
+    "orchestration.json": "27d67fa338fa41d59cbb4e2c115a36f353374a5444712759dad170dd9d44e9fa"
+  },
+  "original_artifact_id": 12105142669,
+  "original_artifact_sha256": "3e0dca509a36868459476d397d66079ae1829667ab634eeaf3946bce306dacfd"
+}

@@ -51,7 +51,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "hub_verified"
+      "status": "source_reviewed"
     }
   ],
   "observation": {
@@ -98,7 +98,8 @@
       "controller": "pd_joint_pos",
       "obs_mode": "state",
       "sim_backend": "cpu",
-      "render_backend": "none"
+      "render_backend": "none",
+      "max_episode_steps": 1000
     },
     "outputs": {
       "format": "last stdout line JSON",
@@ -113,7 +114,10 @@
         "controller",
         "observation",
         "sim_backend",
-        "render_backend"
+        "render_backend",
+        "max_episode_steps",
+        "terminated",
+        "truncated"
       ],
       "error_fields": [
         "status",
@@ -125,13 +129,14 @@
     "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-stack-cube --project ./experiment --json"
   },
   "completion": {
-    "success_condition": "StackCube-v1 env info.success is true after upstream solver finishes; adapter exit 0 only when success is true.",
+    "success_condition": "StackCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
     "timeout_seconds": 180,
     "failure_modes": [
       "Dependency installation unavailable or incompatible",
       "Required Linux mplib wheels unavailable on host OS",
       "Motion planning reports failure or env info.success is false",
-      "Runtime exception or asset download failure"
+      "Runtime exception or asset download failure",
+      "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
     ],
     "stop_condition": "Stop after one seed; no retries to conceal failures. Use an external 180-second process timeout."
   },
@@ -150,60 +155,28 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "task_complete",
-    "verified_by": "Robot Skill Hub maintainer review of exact GitHub Actions execution artifacts",
-    "date": "2026-10-17",
+    "level": "source_reviewed",
+    "verified_by": "Robot Skill Hub source review",
+    "date": "2026-10-18",
     "environment": {
-      "os": "linux",
-      "distribution": "Ubuntu 22.04",
-      "architecture": "x86_64",
-      "python": "3.10.22",
-      "packages": {
-        "mani_skill": "3.0.0b22",
-        "torch": "2.5.1+cpu",
-        "numpy": "1.26.4",
-        "sapien": "3.0.0",
-        "mplib": "0.1.1",
-        "fast_kinematics": "0.2.2"
-      },
-      "robot": "panda",
-      "controller": "pd_joint_pos",
-      "observation": "state",
-      "sim_backend": "cpu",
-      "render_backend": "none",
-      "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
-      "physical_gpu_used": false
+      "source": "pinned upstream release",
+      "host": "Windows source inspection"
     },
     "commands": [
-      "python tools/run_runtime_verification.py --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
-      "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/environments/maniskill-panda-stack-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/recipes/maniskill-panda-stack-cube/run.py --seed 0"
+      "python -m unittest discover -s tests/python -p test_adapters.py -v"
     ],
-    "result": "StackCube-v1 seed 0 completed with success=true, elapsed_steps=107, exit=0 and no timeout. One invocation was made for this task in the successful recorded run; earlier failed environment attempts remain recorded separately. This verifies only the recorded CPU/state configuration and one seed; no hardware or camera-mode claim.",
-    "artifacts": [
-      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/manifest.json",
-      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/report.json",
-      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/task.stdout.txt",
-      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/environment.json",
-      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/vulkan-summary.txt",
-      "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39042625468"
-    ],
-    "runtime_verification": "task_complete",
+    "result": "New record version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results. Runtime verification for this version is pending. Earlier immutable artifacts measured final objective success after the default 50-step horizon and do not establish completion within that default horizon.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
     "contributor_reported": null,
     "hub_verification": {
-      "level": "task_complete",
-      "runtime": "task_complete",
-      "workflow_run_id": "39042625468",
-      "verified_hub_commit": "73d2b037c18cac5eb36c769af6616e9565e14923",
-      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
-      "adapter_sha256": "57d8fa401f70364fb2ed54e7c6b797f01445f65734d8cbe80aa35c8c5aa6fd37",
-      "record_version": "1.0.0",
-      "seed": 0,
-      "physical_gpu_used": false
+      "level": "source_reviewed",
+      "runtime": "not_run"
     }
   },
   "maintenance": {
-    "record_version": "1.0.0",
-    "last_checked": "2026-10-17",
+    "record_version": "1.1.0",
+    "last_checked": "2026-10-18",
     "upstream_status": "pinned_release; no automatic update"
   },
   "contribution": {

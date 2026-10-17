@@ -36,4 +36,15 @@ dependencies resolve during installation and are captured by the project lock.
 The exact source and wrapper contracts were inspected; runtime status is recorded
 in the JSON evidence fields. A nonzero exit and JSON error preserve failures.
 
+## Hub episode horizon
+
+Hub recipe version `1.1.0` explicitly sets `max_episode_steps=1000`, a Hub
+motion-planning budget rather than an upstream default or standard benchmark.
+The upstream source pin is unchanged. Completion requires `success=true`,
+`truncated=false` and `0 < elapsed_steps < 1000`; final JSON includes `terminated`,
+`truncated` and the configured horizon. `terminated` alone does not establish
+success. The step budget is separate from the 300-second wall-clock timeout.
+This wrapper has no runtime-verification claim; inspect the current JSON evidence
+for any later exact-version execution.
+
 This robot variant comes from the official xArm6 runner. Some upstream task declarations list Panda/Fetch only and log a warning for xArm6. Sparse rewards avoid Panda-specific dense reward code; confirm the variant in your simulator environment.

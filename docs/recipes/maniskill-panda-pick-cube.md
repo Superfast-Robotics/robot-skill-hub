@@ -20,11 +20,21 @@ dependency metadata and documentation paths.
 The canonical JSON keeps source inspection and simulator execution evidence in
 separate fields. Consult those fields for the exact recorded environment.
 
-## Verified CPU-only execution
+## Historical CPU execution
 
-The exact wrapper completed PickCube-v1 seed 0 on Ubuntu 22.04 / Python 3.10.22:
-`success=true`, 74 steps, exit 0. The physical device was CPU llvmpipe, not a GPU.
-See the record's immutable artifact URLs for package versions, hashes and output.
+The earlier wrapper returned final-state `success=true` at 74 steps, seed 0,
+exit 0 on Ubuntu 22.04 / Python 3.10.22 with a CPU llvmpipe Vulkan device. This
+was beyond the upstream 50-step episode budget, and the old wrapper did not check
+truncation. Its immutable output establishes a final-state observation, not
+success within the standard horizon or verification of the changed wrapper.
+See [the horizon audit](../verification.md#historical-linux-cpu-execution-and-horizon-audit).
+
+The upstream objective requires the cube at the goal and a stationary arm. The
+solver keeps the gripper closed: this is pick-and-carry, with no release or
+placement-on-support requirement. Python computes target poses from simulator
+geometry; the numerical motion planner produces joint trajectories, and the
+`pd_joint_pos` controller tracks joint targets. An LLM can select and invoke this
+code; it does not generate the executed joint trajectory in this recipe.
 
 Although output rendering is disabled, pinned SAPIEN creates a Vulkan device for
 material initialization. On the verified CPU-only host, the required setup was:
@@ -47,8 +57,19 @@ installation resolves the remaining dependencies. Execute the returned
 `next_command` separately, using the returned working directory and a 180-second
 external timeout. The complete reproducible procedure is
 `tools/run_runtime_verification.py`; it is maintainer-run, never triggered by a
-submitted patch or memory. One successful seed does not establish other seeds,
-robots, observation modes or physical hardware.
+submitted patch or memory. The historical environment check does not establish
+other seeds, robots, observation modes or physical hardware. Check the current
+record's evidence before treating the new wrapper as runtime verified.
+
+## Hub episode horizon
+
+Hub recipe version `1.1.0` explicitly sets `max_episode_steps=1000`. This is the
+Hub motion-planning budget; the upstream source remains pinned and its benchmark
+default is not changed. The wrapper accepts completion only with `success=true`,
+`truncated=false` and `0 < elapsed_steps < 1000`, and reports `terminated`,
+`truncated` and the configured horizon in its final JSON. `terminated` alone is
+not proof of task success. The 180-second process timeout is a separate wall-clock
+limit. This contract needs a fresh run and is not a standard-horizon benchmark.
 
 ## Prepare the source from Windows
 

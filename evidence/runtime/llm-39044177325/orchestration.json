@@ -1,0 +1,46 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "orchestrator": "fresh_context_LLM_agent",
+  "task": "Select and execute reusable Panda cube-transfer and cube-stacking code in Linux CPU simulation.",
+  "provided_capabilities": [
+    "installed_find_robot_skills_package",
+    "owner_authorized_existing_Linux_CPU_workflow_executor"
+  ],
+  "expected_recipe_ids_or_numeric_outcomes_provided": false,
+  "selected": [
+    {
+      "id": "maniskill-panda-pick-cube",
+      "record_version": "contrib-a5dd78ad4e1d4e3d",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "2f4b49f8c2060488ff2a1c07bb946e622f45b399ce7cd9f9db8bf31bf562431c"
+    },
+    {
+      "id": "maniskill-panda-stack-cube",
+      "record_version": "1.0.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "57d8fa401f70364fb2ed54e7c6b797f01445f65734d8cbe80aa35c8c5aa6fd37"
+    }
+  ],
+  "published_memories_read": [
+    "mem_63eb7c608c662840d1a97fdbedf9529111b94026186d2ae12e4bc901b26ef350"
+  ],
+  "observed_actions": [
+    "search_catalog",
+    "inspect_requirements_and_pins",
+    "read_published_findings",
+    "inspect_preparation_plans",
+    "check_executor_matches_selected_code",
+    "dispatch_new_Linux_execution",
+    "verify_new_outputs_and_pins"
+  ],
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39044177325",
+  "runtime_control": "The LLM selects code and orchestrates tools; Python/MPlib computes trajectories and the simulator PD controller follows them.",
+  "limits": [
+    "Two selected recipes, one seed 0 each, one approved executor.",
+    "This does not establish platform automatic activation, unbranded discovery, other tasks or physical hardware.",
+    "Final objective success was measured after the pinned default 50-step horizon; valid completion within that horizon is not established. Old wrappers did not record termination/truncation flags. See docs/verification.md for the audit and explicit-horizon rerun."
+  ]
+}

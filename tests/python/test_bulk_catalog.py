@@ -54,13 +54,15 @@ class BulkAdapterTests(unittest.TestCase):
     def test_all_added_robot_task_pairs_preserve_explicit_simulation_contract(self):
         for sample in importer.SAMPLES:
             with self.subTest(sample=sample[0]):
-                result = (None, None, None, None, {"success": Scalar(True), "elapsed_steps": Scalar(15)})
+                result = (None, None, Scalar(True), Scalar(False),
+                          {"success": Scalar(True), "elapsed_steps": Scalar(15)})
                 report, code, make, solve, env = self.invoke(sample, result)
                 self.assertEqual(code, 0)
                 self.assertEqual(make.call_args.args, (sample[2],))
                 options = make.call_args.kwargs
                 for key, expected in {"sim_backend": "cpu", "render_backend": "none", "render_mode": None,
-                                      "obs_mode": "state", "control_mode": "pd_joint_pos", "reward_mode": "sparse"}.items():
+                                      "obs_mode": "state", "control_mode": "pd_joint_pos", "reward_mode": "sparse",
+                                      "max_episode_steps": 1000}.items():
                     self.assertEqual(options[key], expected)
                 if sample[3] == "so100":
                     self.assertNotIn("robot_uids", options)  # SO100 subclass supplies this itself.
@@ -71,6 +73,30 @@ class BulkAdapterTests(unittest.TestCase):
                 self.assertEqual(report["robot"], sample[3])
                 self.assertEqual(report["task"], sample[2])
                 self.assertTrue(report["success"])
+                self.assertEqual(report["max_episode_steps"], 1000)
+                self.assertTrue(report["terminated"])
+                self.assertFalse(report["truncated"])
+
+    def test_every_added_adapter_rejects_success_after_truncation_or_horizon(self):
+        for sample in importer.SAMPLES:
+            for truncated, elapsed, reason in ((True, 15, "episode_truncated"),
+                                               (False, 1000, "horizon_exceeded"),
+                                               (False, 0, "invalid_elapsed_steps")):
+                with self.subTest(sample=sample[0], truncated=truncated, elapsed=elapsed):
+                    result = (None, None, Scalar(True), Scalar(truncated),
+                              {"success": Scalar(True), "elapsed_steps": Scalar(elapsed)})
+                    report, code, _, _, env = self.invoke(sample, result)
+                    self.assertEqual(code, 1)
+                    self.assertEqual(report["status"], "failed")
+                    self.assertTrue(report["success"])
+                    self.assertEqual(report["reason_code"], reason)
+                    env.close.assert_called_once()
+
+    def test_generator_preserves_reviewed_adapter_horizon_safety(self):
+        for sample in importer.SAMPLES:
+            with self.subTest(sample=sample[0]):
+                actual = (ROOT / "recipes" / ("maniskill-" + sample[0]) / "run.py").read_text(encoding="utf-8")
+                self.assertEqual(importer.wrapper(sample), actual)
 
     def test_planning_failure_never_becomes_success(self):
         for sample in importer.SAMPLES:

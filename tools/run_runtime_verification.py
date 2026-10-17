@@ -86,10 +86,14 @@ def assess_result(record, execution, stdout):
         result = None
     expected = {"task": record["invocation"]["inputs"]["task"], "seed": 0,
                 "runtime": "3.0.0b22", "robot": "panda", "controller": "pd_joint_pos",
-                "observation": "state", "sim_backend": "cpu", "render_backend": "none"}
+                "observation": "state", "sim_backend": "cpu", "render_backend": "none",
+                "max_episode_steps": record["invocation"]["inputs"]["max_episode_steps"]}
     valid = (isinstance(result, dict) and result.get("status") == "task_complete"
              and result.get("success") is True and all(result.get(k) == v for k, v in expected.items())
-             and type(result.get("elapsed_steps")) is int and result["elapsed_steps"] > 0)
+             and type(result.get("terminated")) is bool and result.get("truncated") is False
+             and type(result.get("max_episode_steps")) is int
+             and type(result.get("elapsed_steps")) is int
+             and 0 < result["elapsed_steps"] < expected["max_episode_steps"])
     success = (execution["started"] and execution["exit_code"] == 0
                and not execution["timed_out"] and valid)
     return {"status": "task_complete" if success else "failed", "success": bool(success),
@@ -163,7 +167,7 @@ def main():
     work.mkdir(parents=True, exist_ok=True)
     report = {"schema_version": "1", "started_at": datetime.now(timezone.utc).isoformat(),
               "status": "failed", "runtime_verification": "not_run", "task_seed": 0,
-              "scope": "Two CPU/state tasks, one seed each; no hardware, rendering, GPU, publication or submission.",
+              "scope": "Two CPU/state tasks, one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
               "host": {"os": platform.system(), "architecture": platform.machine(), "python": sys.version},
               "recipes": []}
     try:

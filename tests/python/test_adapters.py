@@ -23,7 +23,8 @@ class Scalar:
 
 
 class AdapterContractTests(unittest.TestCase):
-    def run_fake_adapter(self, task, *, failure=None, success=True, version="3.0.0b22"):
+    def run_fake_adapter(self, task, *, failure=None, success=True, version="3.0.0b22",
+                         terminated=True, truncated=False, elapsed_steps=12):
         solver_name = "pick_cube" if task == "pick-cube" else "stack_cube"
         full_name = "mani_skill.examples.motionplanning.panda.solutions." + solver_name
         modules = {}
@@ -39,7 +40,8 @@ class AdapterContractTests(unittest.TestCase):
         gym = types.ModuleType("gymnasium")
         gym.make = mock.Mock(return_value=environment)
         modules["gymnasium"] = gym
-        returned = (None, None, None, None, {"success": Scalar(success), "elapsed_steps": Scalar(12)})
+        returned = (None, None, Scalar(terminated), Scalar(truncated),
+                    {"success": Scalar(success), "elapsed_steps": Scalar(elapsed_steps)})
         solve = mock.Mock(return_value=returned, side_effect=failure)
         modules[full_name].solve = solve
         output = io.StringIO()
@@ -58,11 +60,40 @@ class AdapterContractTests(unittest.TestCase):
                 self.assertEqual(make.call_args.kwargs["render_backend"], "none")
                 self.assertIsNone(make.call_args.kwargs["render_mode"])
                 self.assertEqual(make.call_args.kwargs["obs_mode"], "state")
+                self.assertEqual(make.call_args.kwargs["max_episode_steps"], 1000)
                 solve.assert_called_once_with(environment, seed=7, debug=False, vis=False)
                 environment.close.assert_called_once()
                 self.assertEqual(code, 0)
                 self.assertEqual(report["status"], "task_complete")
                 self.assertEqual(report["seed"], 7)
+                self.assertEqual(report["max_episode_steps"], 1000)
+                self.assertTrue(report["terminated"])
+                self.assertFalse(report["truncated"])
+
+    def test_truncation_or_horizon_exhaustion_never_reports_task_complete(self):
+        cases = ({"truncated": True, "elapsed_steps": 74, "reason": "episode_truncated"},
+                 {"truncated": False, "elapsed_steps": 1000, "reason": "horizon_exceeded"},
+                 {"truncated": False, "elapsed_steps": 1001, "reason": "horizon_exceeded"},
+                 {"truncated": False, "elapsed_steps": 0, "reason": "invalid_elapsed_steps"})
+        for task in ("pick-cube", "stack-cube"):
+            for case in cases:
+                with self.subTest(task=task, case=case):
+                    report, code, _, _, environment = self.run_fake_adapter(
+                        task, success=True, truncated=case["truncated"], elapsed_steps=case["elapsed_steps"])
+                    self.assertTrue(report["success"])  # Preserve the raw objective observation.
+                    self.assertEqual(report["status"], "failed")
+                    self.assertEqual(report["reason_code"], case["reason"])
+                    self.assertEqual(report["elapsed_steps"], case["elapsed_steps"])
+                    self.assertEqual(code, 1)
+                    environment.close.assert_called_once()
+
+    def test_successful_termination_inside_horizon_is_valid(self):
+        for task in ("pick-cube", "stack-cube"):
+            with self.subTest(task=task):
+                report, code, _, _, _ = self.run_fake_adapter(task, terminated=True, elapsed_steps=999)
+                self.assertEqual(report["status"], "task_complete")
+                self.assertEqual(code, 0)
+                self.assertNotIn("reason_code", report)
 
     def test_solver_failure_closes_environment_and_preserves_json_failure(self):
         for task in ("pick-cube", "stack-cube"):
