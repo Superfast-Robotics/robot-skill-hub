@@ -332,6 +332,57 @@ def _cached(target, plan):
         _fail("source_cache_conflict", "The existing acquisition is incomplete or invalid; it was not overwritten.")
 
 
+def catalog_from_manifest(manifest_path, project, skill_id):
+    """Select one verified managed acquisition's original pins, without discovery."""
+    try:
+        if not isinstance(skill_id, str) or len(skill_id) > 80 or not IDENTIFIER.fullmatch(skill_id):
+            _fail("invalid_source_id", "Use an exact catalog source-reference ID.")
+        supplied = Path(manifest_path).expanduser().absolute()
+        identity = supplied.parent.name
+        if supplied.name != MANIFEST_NAME or not SHA256.fullmatch(identity):
+            _fail("invalid_source_manifest", "Select one explicit managed source acquisition manifest.")
+        _, _, target = _paths(project, identity)
+        if supplied != target / MANIFEST_NAME:
+            _fail("source_path_escape", "The selected source manifest must belong to this project's managed acquisition folder.")
+        _regular(supplied, MAX_METADATA_BYTES)
+        with supplied.open("rb") as stream:
+            manifest = json.loads(stream.read(MAX_METADATA_BYTES + 1))
+        if (not isinstance(manifest, dict) or manifest.get("schema_version") != "1"
+                or manifest.get("interpretation") != "data_only"
+                or manifest.get("artifact_filename") != ARTIFACT_NAME
+                or manifest.get("source_download_only") is not True
+                or any(manifest.get(key) is not False for key in ("execution_performed", "environment_created", "installed_as_skill"))
+                or type(manifest.get("source_bytes")) is not int):
+            _fail("invalid_source_manifest", "The selected manifest does not describe a bounded inert source acquisition.")
+        if manifest.get("skill_id") != skill_id:
+            _fail("source_manifest_id_mismatch", "The selected source manifest belongs to a different source-reference ID.")
+        base = manifest.get("base")
+        if (not isinstance(base, dict) or set(base) != {"hub_commit", "record_version", "source_commit"}
+                or any(not isinstance(base.get(key), str) for key in base)
+                or not COMMIT.fullmatch(base["hub_commit"])):
+            _fail("invalid_source_manifest", "The selected manifest requires its exact original Hub and source base.")
+        record = {"id": skill_id, "kind": "source_reference",
+                  "source": manifest.get("source"), "license": manifest.get("license"),
+                  "access": {"mode": "source_reference", "hub_prepare": False}}
+        prepared = plan_source(record, base["hub_commit"])
+        if prepared["acquisition_id"] != identity or prepared["base"] != base:
+            _fail("invalid_source_manifest", "The selected manifest's identity or original base does not match its source pins.")
+        verified = _cached(target, prepared)
+        coverage = {"complete": False, "scope": "selected_record", "included_records": 1}
+        return {"schema_version": "1", "hub_commit": verified["base"]["hub_commit"], "records": [],
+                "references": {"schema_version": "1", "hub_commit": verified["base"]["hub_commit"],
+                               "records": [record], "coverage": dict(coverage)},
+                "coverage": coverage, "catalog_origin": "source_acquisition_manifest",
+                "references_origin": "source_acquisition_manifest", "discovery_scope": "selected_record",
+                "source_manifest_base": copy.deepcopy(verified["base"])}
+    except RshError:
+        raise
+    except FileNotFoundError:
+        _fail("source_manifest_unavailable", "The selected managed source manifest or artifact is missing.")
+    except (OSError, ValueError, TypeError, KeyError, UnicodeError, RecursionError):
+        _fail("invalid_source_manifest", "The selected managed source manifest is unreadable or malformed.")
+
+
 def _publish_directory(staging, target):
     """Atomically publish the complete pair, refusing even an empty existing target."""
     if os.name == "nt":
@@ -373,9 +424,11 @@ def _cleanup(staging, parent):
 
 
 def _result(plan, target, manifest, *, request=False, downloaded=False, reused=False):
+    selection = [plan["skill_id"], "--project", str(target.parents[2]), "--source-manifest", str(target / MANIFEST_NAME)]
     return {**plan, "reason_code": "source_cache_verified" if reused else "source_acquired",
             "base": manifest["base"], "selected_base": plan["base"], "cache_reused": reused,
             "source_file": str(target / ARTIFACT_NAME), "manifest_path": str(target / MANIFEST_NAME),
+            "save_args": ["save", *selection], "memories_args": ["memories", *selection],
             "next_action": "inspect_acquired_source_and_upstream_setup", **_flags(request, downloaded)}
 
 

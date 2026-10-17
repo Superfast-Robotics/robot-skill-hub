@@ -1,0 +1,224 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_timezone": "Asia/Seoul",
+  "review_kind": "bounded_provider_metadata_and_model_card_review",
+  "scope": "One official LeRobot SmolVLA learned-policy checkpoint from Hugging Face. This is a source reference, not a model download, runnable Hub adapter or verified robot behavior.",
+  "skill_id": "lerobot-smolvla-base-policy-weights",
+  "artifact": {
+    "kind": "policy",
+    "format": "safetensors"
+  },
+  "binding": {
+    "source_revision": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+    "provider_parent_git_revision": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6",
+    "source_url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/model.safetensors",
+    "path": "model.safetensors",
+    "sha256": "7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+    "bytes": 906712520,
+    "candidate_skill_json_sha256": "6b56aea76667abd72ab214234df7390afea93915e4d504e522a5d30dbb984be9",
+    "accepted_intake_record_sha256": "b4248da12e1dcd29c10fe743a8086606a1ba9ef83ee559bc757fc5a13e4301f3",
+    "accepted_intake_record_path": "catalog/intake/lerobot-smolvla-base-policy-weights.json",
+    "record_commit_when_reviewed": "e045f771f707a06062194531f209c98631dd5a12",
+    "full_catalog_hash_included": false
+  },
+  "hash_basis": {
+    "provider_attested_lfs_sha256": true,
+    "tensor_payload_downloaded": false,
+    "tensor_payload_locally_rehashed_by_hub": false,
+    "observations": [
+      "Pinned model API siblings[].lfs.sha256/size",
+      "Pinned file-tree API lfs.oid/size",
+      "HEAD X-Linked-ETag/X-Linked-Size plus X-Repo-Commit"
+    ],
+    "git_lfs_pointer_sha1": "2f9269405c7801d4943d7bcb06d9841b8d9d5fda",
+    "lfs_pointer_reconstructed_bytes": 134,
+    "git_pointer_oid_distinct_from_tensor_sha256": true,
+    "provider_xet_hash_not_substituted_for_sha256": true
+  },
+  "provider_metadata_pins": [
+    {
+      "url": "https://huggingface.co/api/models/lerobot/smolvla_base?blobs=true",
+      "bytes": 2978,
+      "sha256": "ecbc19917994e8775f7e625a3f5e5f85db6dca858135e6503970379fbd114464"
+    },
+    {
+      "url": "https://huggingface.co/api/models/lerobot/smolvla_base/revision/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6?blobs=true",
+      "bytes": 2978,
+      "sha256": "ecbc19917994e8775f7e625a3f5e5f85db6dca858135e6503970379fbd114464"
+    },
+    {
+      "url": "https://huggingface.co/api/models/lerobot/smolvla_base/tree/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6?recursive=true&expand=false",
+      "bytes": 1903,
+      "sha256": "7d1254ed676db9c4c9b426ea6b9ff00d0ea1570175f89cb2a5bd53271f68cf03"
+    }
+  ],
+  "model_text_pins": [
+    {
+      "path": "README.md",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/README.md",
+      "bytes": 4680,
+      "sha256": "1c4eab155e159a5fd3fd6c4d5f770c43f056665d73e11c0584e47f8b824d3c98",
+      "git_blob_sha1": "f66fa0831ccae4f97c776f3b75a69b1e4ed3c71b"
+    },
+    {
+      "path": "config.json",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/config.json",
+      "bytes": 2299,
+      "sha256": "650584b56c104720f7a3c91d1ec6bec9e8de8ac11e60c92ba2fa82d93eda147d",
+      "git_blob_sha1": "36d4d51c1b01be11b2c7a074ab34bf5ee6db9021"
+    },
+    {
+      "path": "policy_preprocessor.json",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/policy_preprocessor.json",
+      "bytes": 1872,
+      "sha256": "7683d648280a72f0d51e869fb8dd1596beed90b7f84849330cf1bc26634a4bd6",
+      "git_blob_sha1": "4df8f7cbce54095074f9cf31b663e5af5c006f85"
+    },
+    {
+      "path": "policy_postprocessor.json",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/policy_postprocessor.json",
+      "bytes": 660,
+      "sha256": "2b78bb742065288df2ec63b0ee35f97a1f6950171cf2272f7e34b1fe3873b17b",
+      "git_blob_sha1": "6f8997e5be18c67bad9377dd2cd9622ba38b5ae3"
+    },
+    {
+      "path": "Finetune_SmolVLA_notebook.ipynb",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/Finetune_SmolVLA_notebook.ipynb",
+      "bytes": 6757,
+      "sha256": "7f445c913c508142b632245ae52494c23ac8b96109fe1f9144e34b8b9c60f92d",
+      "git_blob_sha1": "c81710303e49abc7833bcd5e909c0fd1fa89e84a"
+    },
+    {
+      "path": ".gitattributes",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/.gitattributes",
+      "bytes": 1573,
+      "sha256": "32949ddb126c25a78e757b890078c46d0c8f8e899e56510a1efef817233149f9",
+      "git_blob_sha1": "3cf7283cdb1f9332b8d8327c7c50a52eb723d9b5"
+    }
+  ],
+  "license": {
+    "declared_spdx": "Apache-2.0",
+    "declaration_source": {
+      "path": "README.md",
+      "url": "https://huggingface.co/lerobot/smolvla_base/resolve/5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6/README.md",
+      "bytes": 4680,
+      "sha256": "1c4eab155e159a5fd3fd6c4d5f770c43f056665d73e11c0584e47f8b824d3c98",
+      "git_blob_sha1": "f66fa0831ccae4f97c776f3b75a69b1e4ed3c71b"
+    },
+    "literal_marker": "license: apache-2.0",
+    "separate_license_file_present": false,
+    "config_license_value": null,
+    "verified": false,
+    "meaning": "Pinned model-card repository declaration preserved, not legal clearance or a model-payload audit.",
+    "canonical_terms_text": {
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "external_base_model": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "external_base_revision_pinned_by_this_card": false,
+    "external_base_or_dataset_terms_cleared": false
+  },
+  "authors": {
+    "literal_provider_author": "lerobot",
+    "source_authors": [
+      "lerobot"
+    ],
+    "first_party_model_and_attribution_support": [
+      {
+        "repository": "https://github.com/huggingface/lerobot",
+        "commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+        "path": "README.md",
+        "bytes": 12118,
+        "sha256": "1292b3b1af5573c1f626ae3c1315ef47e9ea6c131e3224540f090c72553ab538",
+        "quote": "Built by the <a href=\"https://huggingface.co/lerobot\">LeRobot</a> team",
+        "url": "https://github.com/huggingface/lerobot/blob/7e241bd630a3719a56157a497ce5d08f244784f1/README.md",
+        "scope": "Existing frozen first-party attribution/model-ID declaration only; no code execution or checkpoint license inference."
+      },
+      {
+        "repository": "https://github.com/huggingface/lerobot",
+        "commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+        "path": "examples/tutorial/smolvla/using_smolvla_example.py",
+        "bytes": 2768,
+        "sha256": "1576d9394f5755f61dfed9330821ccef82bb803b41a17eff455e9cf28a7cf9e4",
+        "quote": "model_id = \"lerobot/smolvla_base\"",
+        "url": "https://github.com/huggingface/lerobot/blob/7e241bd630a3719a56157a497ce5d08f244784f1/examples/tutorial/smolvla/using_smolvla_example.py",
+        "scope": "Existing frozen first-party attribution/model-ID declaration only; no code execution or checkpoint license inference."
+      }
+    ],
+    "individual_weight_authors_invented": false
+  },
+  "requirements": {
+    "source_declarations_only": true,
+    "python": null,
+    "packages": [
+      "lerobot[smolvla]",
+      "torch"
+    ],
+    "hardware_verified": false,
+    "installed_environment_verified": false,
+    "gpu_memory_requirement_inferred": false,
+    "config_device_declaration": "cuda",
+    "card_example_device_selection": "CUDA when available, otherwise CPU",
+    "external_base_model": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "external_base_revision_pinned": false,
+    "processor_state_files_declared_separately": [
+      "policy_preprocessor_step_5_normalizer_processor.safetensors",
+      "policy_postprocessor_step_0_unnormalizer_processor.safetensors"
+    ],
+    "robot_labels": [
+      "unknown"
+    ],
+    "compatibility_combinations": [
+      {
+        "runtime": "unknown",
+        "runtime_version": "unknown",
+        "robot": "unknown",
+        "controller": "unknown",
+        "observation": "unknown",
+        "os": "unknown"
+      }
+    ],
+    "SO100_and_task_example_are_base_weights_compatibility_evidence": false
+  },
+  "known_limits": [
+    "Base weights require task-specific fine-tuning according to the card; SO100/task examples use a different user checkpoint.",
+    "The card's quickstart computes batch = preprocess(frame) but calls select_action(frame); correctness was not tested or repaired.",
+    "Pinned config image keys camera1/camera2/camera3 differ from saved normalizer feature keys image/image2/image3; no compatibility between these files or chosen runtime was tested.",
+    "Pinned training notebook clones the moving LeRobot default branch, uses a path/commands that are not version-pinned, and includes login/upload/tracking steps; none was run.",
+    "The provider resolve URL redirects to a signed CDN; temporary redirect query was omitted and not followed.",
+    "The artifact is too large for Hub fetch-source; no general Hugging Face binary retrieval claim is made."
+  ],
+  "acquisition": {
+    "hub_single_file_byte_limit": 8388608,
+    "artifact_exceeds_limit": true,
+    "actual_offline_plan_reason": "source_too_large",
+    "source_request_performed": false,
+    "provider_HEAD_status": 302,
+    "signed_CDN_redirect_followed": false,
+    "temporary_redirect_query_published": false,
+    "procedure": "Follow the pinned upstream model card only through a separately authorized acquisition/setup procedure that reviews all required files and external terms. No Hub binary retrieval support or complete model bundle is claimed."
+  },
+  "validation": {
+    "actual_intake_skill_validator_passed": true,
+    "actual_intake_schema_passed": true,
+    "actual_published_reference_validator_passed": true,
+    "server_transform_preserved_all_submitted_fields": true,
+    "accepted_record_license_verified": false,
+    "accepted_record_runtime_verification": "not_run",
+    "source_only_no_hub_adapter": true,
+    "provider_payload_hash_basis_explicit": true
+  },
+  "actions": {
+    "bounded_text_and_metadata_reads_only": true,
+    "DNT": "1",
+    "X_RSH_Telemetry": "off",
+    "new_network_requests_to_prepare_this_receipt": 0,
+    "weight_or_binary_payload_bytes_downloaded": 0,
+    "upstream_code_or_model_execution": false,
+    "package_installation": false,
+    "dataset_or_gpu_or_robot_contact": false
+  },
+  "publication_scope": "This receipt reviews provenance and server-generated data boundaries. It does not claim CI success, merge, publication, runtime success, rights clearance for every component, or exhaustive model coverage."
+}

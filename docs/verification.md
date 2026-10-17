@@ -1,5 +1,13 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Acquired-source finding context
+
+An offline regression reproduced a provenance gap: after acquiring one source version, a finding without a preparation lock could select a later catalog's pins. Successful `fetch-source` and cache reuse now return explicit `save_args` and `memories_args` selecting the verified managed manifest. Save and recall preserve that acquisition's original base without fresh source discovery; malformed caches, a competing catalog and conflicting preparation locks fail before delivery. No automatic acquisition selection or sharing permission is added.
+
+The [isolated installed-skill receipt](../evidence/integration/v0.3.3/source-finding-context.json) records nine CLI calls and 33 checks using a previously acquired real file plus an explicitly synthetic newer catalog and finding index. It preserved the original pins, recalled only the matching fixture finding, and made zero HTTP, DNS or credential attempts. Initial test-input corrections are retained; this establishes local provenance behavior, not published finding adoption or robot execution. The local Python suite ran 244 tests: 240 passed and four Windows symlink-privilege checks were skipped.
+
+Reference pages now consult the same pure acquisition planner as the CLI before offering a file command. Oversized artifacts retain their upstream pins and report `source_too_large`; the 8 MiB download limit is unchanged.
+
 ## Source-file retrieval and catalog follow-up
 
 The current catalog adds twelve [xArm SDK scripts](workflow-sources.md#xarm-sdk-top-level-scripts), preserving all 1,236 existing official source records exactly. Together with the existing community intake, the inventory is 17 preparation recipes, 1,249 source references and 3 findings. These additions have static source review only; no robot runtime, hardware contact or inferred environment compatibility was added.

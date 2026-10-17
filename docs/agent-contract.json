@@ -145,7 +145,8 @@
         "execution_performed": false,
         "environment_created": false,
         "installed_as_skill": false,
-        "preparation_lock_created": false
+        "preparation_lock_created": false,
+        "finding_context": "After a successful fetch or cache reuse, follow save_args and memories_args to retain this exact acquired source version."
       },
       {
         "name": "memories",
@@ -251,7 +252,17 @@
     "optional_input_fields": [
       "attribution"
     ],
-    "base_origin": "project_lock_when_present_otherwise_selected_catalog",
+    "base_origin": "explicit_source_manifest_otherwise_project_lock_when_present_otherwise_selected_catalog",
+    "source_manifest_context": {
+      "option": "--source-manifest",
+      "requires": "--project",
+      "mutually_exclusive_with": "--catalog",
+      "commands": ["save", "memories"],
+      "selection": "Only the explicitly selected managed acquisition manifest; no automatic file or version selection.",
+      "validation": "Revalidate the original base and cached file hash before saving or recalling. Reject a conflicting preparation lock.",
+      "network_behavior": "Manifest selection requires no catalog discovery or upstream source request. Public save and published finding lookup retain their normal authorization and offline behavior.",
+      "private_path_in_public_payload": false
+    },
     "local_outbox": ".robot-skill-hub/memory/outbox",
     "public_save_requires_all": [
       "existing_explicit_project_memory_authorization",

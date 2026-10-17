@@ -78,16 +78,23 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertEqual(caught.exception.result["reason_code"], code)
         return caught.exception.result
 
-    def test_plan_is_pure_and_all_current_reference_metadata_has_a_real_file_plan(self):
+    def test_current_reference_plans_are_pure_and_oversized_files_are_explicitly_refused(self):
         snapshot = json.loads((SKILL / "assets/references.snapshot.json").read_text(encoding="utf-8"))
+        oversized = reference()
+        oversized["source"]["bytes"] = acquisition.MAX_SOURCE_BYTES + 1
         with mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("Plan must not resolve DNS")), mock.patch.object(
                 Path, "mkdir", side_effect=AssertionError("Plan must not write")), mock.patch.object(acquisition, "_download", side_effect=AssertionError("No HTTP")):
-            for record in snapshot["records"]:
-                result = acquisition.plan_source(record, snapshot["hub_commit"])
-                self.assertEqual(result["source_sha256"], record["source"]["sha256"])
-                self.assertEqual(result["source_bytes"], record["source"]["bytes"])
-                self.assertFalse(result["source_request_performed"])
-                self.assertFalse(result["execution_performed"])
+            for record in [*snapshot["records"], oversized]:
+                with self.subTest(source_id=record["id"]):
+                    if record["source"]["bytes"] > acquisition.MAX_SOURCE_BYTES:
+                        result = self.assert_error("source_too_large", acquisition.plan_source, record, snapshot["hub_commit"])
+                        self.assertFalse(result["source_download_performed"])
+                    else:
+                        result = acquisition.plan_source(record, snapshot["hub_commit"])
+                        self.assertEqual(result["source_sha256"], record["source"]["sha256"])
+                        self.assertEqual(result["source_bytes"], record["source"]["bytes"])
+                    self.assertFalse(result["source_request_performed"])
+                    self.assertFalse(result["execution_performed"])
             result = acquisition.fetch_source(catalog(reference()), "fixture-source", self.project, plan=True)
         self.assertFalse(self.project.exists())
         self.assertEqual(result["fetch_args"], ["fetch-source", "fixture-source", "--expected-source-revision", COMMIT,
@@ -215,6 +222,153 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertTrue(second["cache_reused"])
         self.assertFalse(second["source_request_performed"])
         self.assertFalse(second["source_download_performed"])
+
+    def test_explicit_manifest_selects_original_source_among_two_acquired_versions(self):
+        original_body, changed_body = b"version one\n", b"version two\n"
+        original = reference(original_body, license_info={"spdx": "NOASSERTION", "verified": False,
+            "url": "https://example.com/license", "scope": "Unresolved source terms remain data."})
+        with mock.patch.object(acquisition, "_download", return_value=original_body):
+            first = acquisition.fetch_source(catalog(original), original["id"], self.project)
+        later = catalog(original)
+        later["hub_commit"] = later["references"]["hub_commit"] = "c" * 40
+        reused = acquisition.fetch_source(later, original["id"], self.project, offline=True)
+        self.assertEqual(reused["base"], first["base"])
+        self.assertEqual(reused["selected_base"]["hub_commit"], "c" * 40)
+        changed = reference(changed_body)
+        changed["source"]["commit"] = "d" * 40
+        changed["source"]["url"] = "https://github.com/example/robot/tree/" + "d" * 40 + "/examples"
+        changed_catalog = catalog(changed)
+        changed_catalog["hub_commit"] = changed_catalog["references"]["hub_commit"] = "e" * 40
+        with mock.patch.object(acquisition, "_download", return_value=changed_body):
+            second = acquisition.fetch_source(changed_catalog, changed["id"], self.project)
+        before = {path: path.read_bytes() for path in self.project.rglob("*") if path.is_file()}
+        with mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("No DNS for manifest selection")), mock.patch.object(
+                acquisition, "_download", side_effect=AssertionError("No source request")), mock.patch.object(
+                Path, "glob", side_effect=AssertionError("Select one manifest; do not scan")), mock.patch.object(
+                Path, "rglob", side_effect=AssertionError("Do not scan")), mock.patch.object(
+                Path, "iterdir", side_effect=AssertionError("Do not enumerate versions")), mock.patch.object(
+                Path, "mkdir", side_effect=AssertionError("Local selection does not create directories")), mock.patch.object(
+                acquisition, "_write_exclusive", side_effect=AssertionError("Local selection does not write files")):
+            selected = acquisition.catalog_from_manifest(first["manifest_path"], self.project, original["id"])
+            new_selected = acquisition.catalog_from_manifest(second["manifest_path"], self.project, original["id"])
+        self.assertEqual(selected["source_manifest_base"], first["base"])
+        self.assertEqual(selected["hub_commit"], HUB)
+        self.assertEqual(selected["references"]["hub_commit"], HUB)
+        self.assertEqual(selected["references"]["records"][0]["source"], original["source"])
+        self.assertEqual(selected["references"]["records"][0]["license"], original["license"])
+        self.assertEqual(selected["records"], [])
+        self.assertEqual(selected["catalog_origin"], "source_acquisition_manifest")
+        self.assertEqual(selected["references_origin"], "source_acquisition_manifest")
+        self.assertFalse(selected["coverage"]["complete"])
+        self.assertEqual(selected["coverage"]["included_records"], 1)
+        self.assertEqual(new_selected["source_manifest_base"], second["base"])
+        self.assertNotEqual(selected["source_manifest_base"], new_selected["source_manifest_base"])
+        self.assertNotIn(str(self.project), json.dumps(selected))
+        self.assertEqual(before, {path: path.read_bytes() for path in self.project.rglob("*") if path.is_file()})
+        for result in (first, reused, second):
+            selection = [original["id"], "--project", str(self.project.resolve()), "--source-manifest", result["manifest_path"]]
+            self.assertEqual(result["save_args"], ["save", *selection])
+            self.assertEqual(result["memories_args"], ["memories", *selection])
+            self.assertNotIn("--finding", result["save_args"])
+        pure_plan = acquisition.plan_source(original, HUB)
+        self.assertNotIn("save_args", pure_plan)
+        self.assertNotIn("memories_args", pure_plan)
+
+    def test_manifest_selection_rejects_missing_outside_wrong_id_and_nonregular_files(self):
+        record = reference()
+        identity = acquisition.plan_source(record, HUB)["acquisition_id"]
+        missing = self.project / ".robot-skill-hub/source-files" / identity / "manifest.json"
+        with mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("No DNS")), mock.patch.object(
+                acquisition, "_download", side_effect=AssertionError("No HTTP")), mock.patch.object(
+                Path, "mkdir", side_effect=AssertionError("No local creation")):
+            error = self.assert_error("source_manifest_unavailable", acquisition.catalog_from_manifest, missing, self.project, record["id"])
+            self.assertFalse(error["source_request_performed"])
+            self.assertFalse(self.project.exists())
+            self.assert_error("source_path_escape", acquisition.catalog_from_manifest, self.root / identity / "manifest.json", self.project, record["id"])
+            self.assert_error("invalid_source_manifest", acquisition.catalog_from_manifest, self.project / "manifest.json", self.project, record["id"])
+            self.assert_error("invalid_source_id", acquisition.catalog_from_manifest, missing, self.project, "../private")
+        with mock.patch.object(acquisition, "_download", return_value=b"print('never execute')\n"):
+            acquired = acquisition.fetch_source(catalog(record), record["id"], self.project)
+        self.assert_error("source_manifest_id_mismatch", acquisition.catalog_from_manifest, acquired["manifest_path"], self.project, "another-source")
+        manifest = Path(acquired["manifest_path"])
+        manifest.unlink()
+        manifest.mkdir()
+        self.assert_error("source_cache_conflict", acquisition.catalog_from_manifest, manifest, self.project, record["id"])
+
+    def test_manifest_selection_rejects_malformed_changed_identity_base_and_source_hash(self):
+        record = reference()
+        with mock.patch.object(acquisition, "_download", return_value=b"print('never execute')\n"):
+            acquired = acquisition.fetch_source(catalog(record), record["id"], self.project)
+        path = Path(acquired["manifest_path"])
+        raw = path.read_bytes()
+        baseline = json.loads(raw)
+        mutations = [
+            ("invalid_source_manifest", lambda value: value.update(schema_version="2")),
+            ("invalid_source_manifest", lambda value: value.update(execution_performed=0)),
+            ("invalid_source_manifest", lambda value: value["base"].update(hub_commit="main")),
+            ("invalid_source_manifest", lambda value: value["base"].update(record_version="source-" + "f" * 64)),
+            ("invalid_source_manifest", lambda value: value["base"].update(source_commit="f" * 40)),
+            ("source_cache_conflict", lambda value: value.update(acquisition_id="f" * 64)),
+            ("source_cache_conflict", lambda value: value.update(source_sha256="f" * 64)),
+            ("invalid_source_manifest", lambda value: value["source"].update(sha256="f" * 64)),
+            ("invalid_source_manifest", lambda value: value["license"].update(scope="Changed license context")),
+        ]
+        for code, mutate in mutations:
+            value = copy.deepcopy(baseline)
+            mutate(value)
+            path.write_text(json.dumps(value), encoding="utf-8")
+            with self.subTest(code=code, value=value), mock.patch.object(acquisition, "_download") as download:
+                self.assert_error(code, acquisition.catalog_from_manifest, path, self.project, record["id"])
+            download.assert_not_called()
+        for raw_value in (b"{broken json", b"null", b"[]", b"x" * (acquisition.MAX_METADATA_BYTES + 1)):
+            path.write_bytes(raw_value)
+            expected = "source_cache_conflict" if len(raw_value) > acquisition.MAX_METADATA_BYTES else "invalid_source_manifest"
+            with self.subTest(raw=raw_value[:20]):
+                self.assert_error(expected, acquisition.catalog_from_manifest, path, self.project, record["id"])
+        path.write_bytes(raw)
+        artifact = Path(acquired["source_file"])
+        artifact.write_bytes(b"tampered source bytes")
+        self.assert_error("source_cache_conflict", acquisition.catalog_from_manifest, path, self.project, record["id"])
+        artifact.unlink()
+        self.assert_error("source_cache_conflict", acquisition.catalog_from_manifest, path, self.project, record["id"])
+
+    def test_manifest_and_artifact_hardlinks_are_rejected(self):
+        record = reference()
+        with mock.patch.object(acquisition, "_download", return_value=b"print('never execute')\n"):
+            acquired = acquisition.fetch_source(catalog(record), record["id"], self.project)
+        for filename in (acquisition.MANIFEST_NAME, acquisition.ARTIFACT_NAME):
+            target = Path(acquired["manifest_path"]).parent / filename
+            link = self.root / ("linked-" + filename)
+            try:
+                os.link(target, link)
+            except OSError:
+                self.skipTest("Hardlink creation is unavailable on this filesystem")
+            try:
+                self.assert_error("source_cache_conflict", acquisition.catalog_from_manifest, acquired["manifest_path"], self.project, record["id"])
+            finally:
+                link.unlink()
+
+    def test_manifest_selection_never_follows_symlinked_manifest_or_artifact(self):
+        record = reference()
+        with mock.patch.object(acquisition, "_download", return_value=b"print('never execute')\n"):
+            acquired = acquisition.fetch_source(catalog(record), record["id"], self.project)
+        for filename in (acquisition.MANIFEST_NAME, acquisition.ARTIFACT_NAME):
+            target = Path(acquired["manifest_path"]).parent / filename
+            data = target.read_bytes()
+            external = self.root / ("external-" + filename)
+            external.write_bytes(data)
+            target.unlink()
+            try:
+                target.symlink_to(external)
+            except OSError:
+                target.write_bytes(data)
+                self.skipTest("Symlink creation requires unavailable Windows privileges")
+            try:
+                self.assert_error("source_cache_conflict", acquisition.catalog_from_manifest, acquired["manifest_path"], self.project, record["id"])
+                self.assertEqual(data, external.read_bytes())
+            finally:
+                target.unlink()
+                target.write_bytes(data)
 
     def test_cache_tampering_or_license_context_change_never_overwrites(self):
         record = reference()

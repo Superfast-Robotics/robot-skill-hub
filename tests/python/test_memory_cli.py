@@ -16,7 +16,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from unittest import mock
 
 from test_rsh import fixture_catalog, HUB, PIN, ROOT, SKILL
-from rshlib import contributions, discovery, memories
+from rshlib import acquisition, contributions, discovery, memories
 from rshlib.core import RshError, find, inspect
 
 
@@ -78,6 +78,86 @@ class MemoryTests(unittest.TestCase):
         with redirect_stdout(output):
             code = cli["main"](args)
         return code, json.loads(output.getvalue())
+
+    def acquire_reference(self):
+        catalog = reference_catalog()
+        record = catalog["references"]["records"][0]
+        body = b"# Synthetic source fixture; never executed.\n"
+        record["source"].update(repository="https://github.com/example/robot", path="example.py",
+            url="https://github.com/example/robot/blob/" + "d" * 40 + "/example.py",
+            sha256=hashlib.sha256(body).hexdigest(), bytes=len(body))
+        record["license"] = {"spdx": "NOASSERTION", "verified": False, "scope": "Synthetic fixture terms remain unresolved."}
+        record["access"] = {"mode": "source_reference", "hub_prepare": False}
+        with mock.patch.object(acquisition, "_download", return_value=body):
+            result = acquisition.fetch_source(catalog, record["id"], self.project)
+        return catalog, result
+
+    def test_source_manifest_save_and_recall_preserve_used_source_without_latest_discovery(self):
+        catalog, acquired = self.acquire_reference()
+        self.write_finding(finding(environment={"runtime": "pybullet", "robot": "kuka"}))
+        self.policy(allowed_skill_ids=["pybullet-ik"])
+        newer = copy.deepcopy(catalog)
+        newer["hub_commit"] = "f" * 40
+        newer["references"]["records"][0]["source"].update(commit="a" * 40, sha256="b" * 64)
+        cli = runpy.run_path(str(SKILL / "scripts/rsh.py"), run_name="rsh_source_context_test")
+        with mock.patch.object(cli["remote_catalog"], "selected_catalog", return_value=newer) as latest, \
+                mock.patch.dict(cli["execute"].__globals__, {"load_discovery": mock.Mock(side_effect=AssertionError("latest discovery"))}), \
+                mock.patch.object(contributions, "api_configuration", return_value=("https://api.example.test", "fixture-token")), \
+                mock.patch.object(contributions, "request_json", side_effect=self.response) as post:
+            code, saved = self.cli_result([*acquired["save_args"], "--finding", str(self.input), "--json"], cli)
+            self.assertEqual((0, "stored"), (code, saved["status"]))
+            latest.assert_not_called()
+            self.assertEqual(post.call_count, 1)
+            sent = json.loads(post.call_args.kwargs["payload"])
+            self.assertEqual(acquired["base"], sent["base"])
+        published = {**sent, "memory_id": "mem_" + "1" * 64, "fingerprint": saved["fingerprint"],
+                     "content_sha256": "f" * 64, "curation": "maintainer_merged", "interpretation": "data_only"}
+        index = self.root / "original-source-findings.json"
+        index.write_text(json.dumps({"schema_version": "1", "records": [published]}), encoding="utf-8")
+        with mock.patch.object(cli["remote_catalog"], "selected_catalog", side_effect=AssertionError("latest record")), \
+                mock.patch.dict(cli["execute"].__globals__, {"load_discovery": mock.Mock(side_effect=AssertionError("latest discovery"))}):
+            code, recalled = self.cli_result([*acquired["memories_args"], "--offline", "--index", str(index),
+                                              "--runtime", "pybullet", "--robot", "kuka", "--json"], cli)
+        self.assertEqual((0, 1), (code, recalled["total"]))
+        self.assertEqual(acquired["base"], recalled["base"])
+        self.assertEqual(acquired["base"], recalled["results"][0]["base"])
+
+    def test_invalid_source_manifest_stops_before_outbox_credentials_or_network(self):
+        _, acquired = self.acquire_reference()
+        Path(acquired["source_file"]).write_bytes(b"changed fixture")
+        with mock.patch.object(contributions, "api_configuration") as credentials, \
+                mock.patch.object(contributions, "request_json") as post:
+            code, result = self.cli_result([*acquired["save_args"], "--finding", str(self.input), "--json"])
+        self.assertEqual((0, "skipped", False), (code, result["status"], result["network_performed"]))
+        self.assertEqual("source_cache_conflict", result["reason_code"])
+        self.assertFalse((self.project / ".robot-skill-hub/outbox").exists())
+        credentials.assert_not_called()
+        post.assert_not_called()
+
+    def test_source_manifest_refuses_a_conflicting_project_lock(self):
+        _, acquired = self.acquire_reference()
+        lock = self.project / ".robot-skill-hub/locks/pybullet-ik.json"
+        lock.parent.mkdir(parents=True)
+        lock.write_text(json.dumps({"skill_id": "pybullet-ik", "hub_commit": "f" * 40,
+                                    "record_version": "different-version", "source_commit": "a" * 40}), encoding="utf-8")
+        with mock.patch.object(contributions, "api_configuration") as credentials, \
+                mock.patch.object(contributions, "request_json") as post:
+            _, result = self.cli_result([*acquired["save_args"], "--finding", str(self.input), "--json"])
+        self.assertEqual("source_context_conflict", result["reason_code"])
+        self.assertFalse(result["network_performed"])
+        self.assertFalse((self.project / ".robot-skill-hub/outbox").exists())
+        credentials.assert_not_called()
+        post.assert_not_called()
+
+    def test_source_manifest_requires_project_and_refuses_competing_catalog(self):
+        with mock.patch.object(acquisition, "catalog_from_manifest") as selector:
+            for args in (["memories", "pybullet-ik", "--source-manifest", "not-read.json", "--json"],
+                         ["save", "pybullet-ik", "--project", str(self.project), "--source-manifest", "not-read.json",
+                          "--catalog", "also-not-read.json", "--finding", str(self.input), "--json"]):
+                _, result = self.cli_result(args)
+                self.assertEqual("invalid_arguments", result["reason_code"])
+                self.assertFalse(result["network_performed"])
+            selector.assert_not_called()
 
     def test_patch_permission_and_token_do_not_grant_memory_sharing(self):
         (self.project / ".robot-skill-hub.json").write_text(json.dumps({"publication": {"public_submission_allowed": True}}))

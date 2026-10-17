@@ -30,6 +30,7 @@ API = "https://api.superfastrobotics.com"
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/find-robot-skills/scripts"))
 from rshlib.intake import validate_published_reference
 from rshlib.core import RshError
+from rshlib.acquisition import plan_source
 if __package__:
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from .catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
@@ -549,11 +550,28 @@ def explicit_compatibility(record):
                     for key in COMPATIBILITY_FIELDS if key != "status")]
 
 
+def reference_source_acquisition(record, hub_commit):
+    """Use the installed CLI's pure metadata contract before offering retrieval."""
+    try:
+        return plan_source(record, hub_commit)
+    except RshError as error:
+        return {"status": "unavailable", "reason_code": error.result["reason_code"], "message": error.result["message"]}
+
+
 def reference_markdown(record, hub_commit, publication_version=None):
     source, license_info, evidence = record["source"], record["license"], record["evidence"]
     revision = source.get("commit") or source["revision"]
     authors = ", ".join(source.get("authors", [])) or "See pinned upstream source and license notices."
     version = publication_version or "source-" + source["sha256"]
+    acquisition = reference_source_acquisition(record, hub_commit)
+    if acquisition["status"] == "ready":
+        command = "python /PATH_TO_SKILL/scripts/rsh.py " + " ".join(acquisition["fetch_args"]) + " --project ./experiment --json"
+        retrieval = (f"Optional inert file retrieval: `{command}`. This verifies one file, preserves provenance and never installs or runs it. "
+                     "See [source-file retrieval](https://hub.superfastrobotics.com/source-files.md).")
+    else:
+        retrieval = (f"Inert file retrieval is unavailable for this reference (`{acquisition['reason_code']}`): {acquisition['message']} "
+                     "Use the pinned upstream source and its acquisition instructions. The Hub CLI does not download this artifact. "
+                     "See [source-file retrieval limits](https://hub.superfastrobotics.com/source-files.md).")
     parts = [f"# {record['name']}", record["summary"],
              f"ID: `{record['id']}`\n\nRecord version: `{version}`\n\nHub commit: `{hub_commit}`"]
     if publication_version:
@@ -561,7 +579,7 @@ def reference_markdown(record, hub_commit, publication_version=None):
                       f"Source identity version: `source-{source['sha256']}`"))
     parts.extend([
              "## Access", record["access"]["instructions"],
-             f"Optional inert file retrieval: `python /PATH_TO_SKILL/scripts/rsh.py fetch-source {record['id']} --project ./experiment --expected-source-revision {revision} --expected-source-sha256 {source['sha256']} --json`. This verifies one file, preserves provenance and never installs or runs it. See [source-file retrieval](https://hub.superfastrobotics.com/source-files.md).",
+             retrieval,
              f"Hub preparation adapter: **false**. Runtime verification: **{evidence['runtime_verification']}**.",
              f"Upstream setup: {record['access'].get('setup_url', source['repository'])}",
              "## Source and license",
@@ -586,6 +604,16 @@ def reference_detail(record, base, hub_commit, publication_version=None, page_pa
     source, license_info, evidence = record["source"], record["license"], record["evidence"]
     revision = source.get("commit") or source["revision"]
     version = publication_version or "source-" + source["sha256"]
+    acquisition = reference_source_acquisition(record, hub_commit)
+    if acquisition["status"] == "ready":
+        retrieval = ("For one verified inert file, use the installed CLI's <code>inspect</code> response <code>fetch_source_args</code> "
+                     f"and append <code>--project DIR --json</code>. <a href=\"{esc(base)}/source-files.md\">Source-file retrieval</a> "
+                     "creates no environment and does not install or run the source.")
+    else:
+        retrieval = (f"Inert file retrieval is unavailable for this reference (<code>{esc(acquisition['reason_code'])}</code>): "
+                     f"{esc(acquisition['message'])} Use the pinned upstream source and its acquisition instructions. "
+                     "The Hub CLI does not download this artifact. "
+                     f"See <a href=\"{esc(base)}/source-files.md\">source-file retrieval limits</a>.")
     historical = ""
     if publication_version:
         historical = f"""<p>Historical published source reference: <code>{esc(publication_version)}</code>.</p>
@@ -597,11 +625,11 @@ def reference_detail(record, base, hub_commit, publication_version=None, page_pa
 <p><code>{esc(record['id'])}</code> | Record version: <code>{esc(version)}</code></p>
 <p><a href="skill.json">Record JSON</a> | <a href="README.md">Markdown</a> | <a href="{esc(source['url'])}">Pinned upstream source</a></p>
 <h2>Access</h2><p>{esc(record['access']['instructions'])}</p>
-<p>For one verified inert file, use the installed CLI's <code>inspect</code> response <code>fetch_source_args</code> and append <code>--project DIR --json</code>. <a href="{esc(base)}/source-files.md">Source-file retrieval</a> creates no environment and does not install or run the source.</p>
+<p>{retrieval}</p>
 <p>Hub preparation adapter: <code>false</code>. Follow the <a href="{esc(record['access'].get('setup_url', source['repository']))}">upstream setup</a> and invocation contract.</p>
 <h2>Source and license</h2><dl><dt>Repository</dt><dd><a href="{esc(source['repository'])}">{esc(source['repository'])}</a></dd>
 <dt>Revision</dt><dd><code>{esc(revision)}</code></dd><dt>Path</dt><dd><code>{esc(source['path'])}</code></dd>
-<dt>Source SHA256</dt><dd><code>{esc(source['sha256'])}</code></dd><dt>Original authors</dt><dd>{esc(', '.join(source.get('authors', [])) or 'See pinned upstream source and license notices.')}</dd>
+<dt>Source SHA256</dt><dd><code>{esc(source['sha256'])}</code></dd><dt>Source bytes</dt><dd>{esc(source.get('bytes', 'unknown'))}</dd><dt>Original authors</dt><dd>{esc(', '.join(source.get('authors', [])) or 'See pinned upstream source and license notices.')}</dd>
 <dt>License</dt><dd><a href="{esc(license_info['url'])}">{esc(license_info['spdx'])}</a></dd>
 <dt>License scope</dt><dd>{esc(license_info['scope'])}</dd><dt>License SHA256</dt><dd><code>{esc(license_info.get('sha256', 'not independently verified'))}</code></dd>
 <dt>Hub commit</dt><dd><code>{esc(hub_commit)}</code></dd></dl>"""

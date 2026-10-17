@@ -92,7 +92,19 @@ def base_for(catalog, skill_id, project=None):
             lock = read_json(path)
             if lock.get("skill_id") != skill_id:
                 raise RshError("invalid_project_lock", "Project lock identifies another skill.")
-    if lock:
+    manifest_base = catalog.get("source_manifest_base")
+    if manifest_base is not None:
+        reference = next((entry for entry in catalog.get("references", {}).get("records", [])
+                          if isinstance(entry, dict) and entry.get("id") == skill_id), None)
+        selected = selection_base(catalog, reference, reference=True) if reference else None
+        if not isinstance(manifest_base, dict) or manifest_base != selected:
+            raise RshError("invalid_source_manifest_base", "The acquired source does not contain its exact original pins.",
+                           network_performed=False)
+        if lock and manifest_base != {key: lock.get(key) for key in ("record_version", "hub_commit", "source_commit")}:
+            raise RshError("source_context_conflict", "The explicit acquired source conflicts with this project's preparation lock.",
+                           next_action="use_the_matching_project_or_source_context", network_performed=False)
+        base = dict(manifest_base)
+    elif lock:
         base = {key: lock.get(key) for key in ("record_version", "hub_commit", "source_commit")}
     else:
         # Canonical preparation records take precedence over the broader source index.
