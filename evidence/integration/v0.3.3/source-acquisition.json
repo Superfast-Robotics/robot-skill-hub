@@ -1,0 +1,629 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-17T20:15:40.057324+00:00",
+  "scope": "Internal maintainer forward test of an isolated copy of the installable find-robot-skills CLI, followed by an authorized transport correction and a separate offline pagination regression. This is not independent external-agent adoption, a robot runtime test, or a claim that these code hashes identify a deployed release.",
+  "catalog": {
+    "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+    "snapshot_pins_rewritten": false,
+    "selected_records_equal_prepared_canonical": true,
+    "snapshot_bindings": {
+      "catalog.snapshot.json": {
+        "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+        "records": 17,
+        "sha256": "d0a21b7ba32bd2c110be6ee11971876b435ce4315ab7390025135e7059a89c80"
+      },
+      "memories.snapshot.json": {
+        "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+        "records": 3,
+        "sha256": "173dfcbe033c44437c38e682072fa66cdf5cce0a46a0bffc7728b3142c644d76"
+      },
+      "references.snapshot.json": {
+        "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+        "records": 1237,
+        "sha256": "398271d31f4d8364bcac8bfbe05468106ea02e289ea730e511aa948804073ee9"
+      }
+    }
+  },
+  "source_acquisition": {
+    "cli_calls": 26,
+    "original": {
+      "cli_calls": 15,
+      "find_calls": 5,
+      "inspect_calls": 5,
+      "fetch_calls": 5,
+      "source_request_attempts_reported": 5,
+      "files_obtained": 0,
+      "reason_code": "source_unavailable",
+      "source_files_or_manifests_written": 0,
+      "original_module_sha256": "846db34c35274fd7cbeb8125abf000bbe78a71a48273ad797e862c5082831e1b",
+      "report_preserved_unchanged": true
+    },
+    "corrected": {
+      "cli_calls": 11,
+      "fetch_calls": 5,
+      "source_request_attempts_reported": 5,
+      "files_obtained": 5,
+      "verified_source_bytes": 32841,
+      "reason_code": "source_acquired",
+      "offline_cache_calls": 5,
+      "offline_cache_source_requests_reported": 0,
+      "changed_pin_refusal_calls": 1,
+      "changed_pin_refusal_reason": "selected_source_changed",
+      "changed_pin_refusal_exit_code": 2,
+      "changed_pin_refusal_source_requests_reported": 0,
+      "module_sha256": "a20ae684955e558f3640352738d7938f4087881540fdc5b25dddcd6d0a62a5d2",
+      "only_module_recopied": "scripts/rshlib/acquisition.py",
+      "all_other_installed_files_unchanged_for_transport_followup": true,
+      "per_file_fetches_with_corrected_module": 1
+    },
+    "audit_checks_passed": 106,
+    "audit_checks": [
+      "original_failure_report_unchanged",
+      "original_acquisition_module_preserved",
+      "corrected_installed_acquisition_module_exact",
+      "only_corrected_module_was_recopied",
+      "catalog.snapshot.json:hash_unchanged",
+      "catalog.snapshot.json:original_base_retained",
+      "memories.snapshot.json:hash_unchanged",
+      "memories.snapshot.json:original_base_retained",
+      "references.snapshot.json:hash_unchanged",
+      "references.snapshot.json:original_base_retained",
+      "cache_and_refusal_preserved_all_project_bytes_and_mtimes",
+      "project_has_only_five_artifacts_and_five_manifests",
+      "no_instruction_filename_or_executable_extension_in_project",
+      "spot:actual_file_bytes_and_sha_match_selected_pin",
+      "spot:artifact_is_inside_isolated_project",
+      "spot:fetch_succeeded_with_one_reported_source_request",
+      "spot:manifest_source_preserved_exactly",
+      "spot:manifest_license_preserved_exactly",
+      "spot:manifest_original_base_retained",
+      "spot:manifest_revision_path_sha_bytes_url_exact",
+      "spot:source_saved_as_inert_data",
+      "spot:execution_performed_false",
+      "spot:environment_created_false",
+      "spot:installed_as_skill_false",
+      "spot:hub_prepare_false",
+      "spot:declared_runtime_evidence_not_run",
+      "spot:offline_cache_reused_without_source_request",
+      "spot:offline_cache_provenance_original_base_exact",
+      "spot:fetch-corrected_actual_cli_success_telemetry_off_no_stderr",
+      "spot:cache-offline_actual_cli_success_telemetry_off_no_stderr",
+      "moveit:actual_file_bytes_and_sha_match_selected_pin",
+      "moveit:artifact_is_inside_isolated_project",
+      "moveit:fetch_succeeded_with_one_reported_source_request",
+      "moveit:manifest_source_preserved_exactly",
+      "moveit:manifest_license_preserved_exactly",
+      "moveit:manifest_original_base_retained",
+      "moveit:manifest_revision_path_sha_bytes_url_exact",
+      "moveit:source_saved_as_inert_data",
+      "moveit:execution_performed_false",
+      "moveit:environment_created_false",
+      "moveit:installed_as_skill_false",
+      "moveit:hub_prepare_false",
+      "moveit:declared_runtime_evidence_not_run",
+      "moveit:offline_cache_reused_without_source_request",
+      "moveit:offline_cache_provenance_original_base_exact",
+      "moveit:fetch-corrected_actual_cli_success_telemetry_off_no_stderr",
+      "moveit:cache-offline_actual_cli_success_telemetry_off_no_stderr",
+      "instruction:actual_file_bytes_and_sha_match_selected_pin",
+      "instruction:artifact_is_inside_isolated_project",
+      "instruction:fetch_succeeded_with_one_reported_source_request",
+      "instruction:manifest_source_preserved_exactly",
+      "instruction:manifest_license_preserved_exactly",
+      "instruction:manifest_original_base_retained",
+      "instruction:manifest_revision_path_sha_bytes_url_exact",
+      "instruction:source_saved_as_inert_data",
+      "instruction:execution_performed_false",
+      "instruction:environment_created_false",
+      "instruction:installed_as_skill_false",
+      "instruction:hub_prepare_false",
+      "instruction:declared_runtime_evidence_not_run",
+      "instruction:offline_cache_reused_without_source_request",
+      "instruction:offline_cache_provenance_original_base_exact",
+      "instruction:fetch-corrected_actual_cli_success_telemetry_off_no_stderr",
+      "instruction:cache-offline_actual_cli_success_telemetry_off_no_stderr",
+      "model:actual_file_bytes_and_sha_match_selected_pin",
+      "model:artifact_is_inside_isolated_project",
+      "model:fetch_succeeded_with_one_reported_source_request",
+      "model:manifest_source_preserved_exactly",
+      "model:manifest_license_preserved_exactly",
+      "model:manifest_original_base_retained",
+      "model:manifest_revision_path_sha_bytes_url_exact",
+      "model:source_saved_as_inert_data",
+      "model:execution_performed_false",
+      "model:environment_created_false",
+      "model:installed_as_skill_false",
+      "model:hub_prepare_false",
+      "model:declared_runtime_evidence_not_run",
+      "model:offline_cache_reused_without_source_request",
+      "model:offline_cache_provenance_original_base_exact",
+      "model:fetch-corrected_actual_cli_success_telemetry_off_no_stderr",
+      "model:cache-offline_actual_cli_success_telemetry_off_no_stderr",
+      "configuration:actual_file_bytes_and_sha_match_selected_pin",
+      "configuration:artifact_is_inside_isolated_project",
+      "configuration:fetch_succeeded_with_one_reported_source_request",
+      "configuration:manifest_source_preserved_exactly",
+      "configuration:manifest_license_preserved_exactly",
+      "configuration:manifest_original_base_retained",
+      "configuration:manifest_revision_path_sha_bytes_url_exact",
+      "configuration:source_saved_as_inert_data",
+      "configuration:execution_performed_false",
+      "configuration:environment_created_false",
+      "configuration:installed_as_skill_false",
+      "configuration:hub_prepare_false",
+      "configuration:declared_runtime_evidence_not_run",
+      "configuration:offline_cache_reused_without_source_request",
+      "configuration:offline_cache_provenance_original_base_exact",
+      "configuration:fetch-corrected_actual_cli_success_telemetry_off_no_stderr",
+      "configuration:cache-offline_actual_cli_success_telemetry_off_no_stderr",
+      "changed_expected_sha_refused_without_source_request",
+      "changed_pin_cli_exit_2_no_stderr",
+      "exactly_eleven_corrected_cli_subprocesses",
+      "exactly_fifteen_original_cli_subprocesses",
+      "original_five_fetch_failures_preserved",
+      "total_verified_source_bytes_32841",
+      "spot_nonstandard_terms_not_promoted_to_standard_grant",
+      "instruction_conflicting_mit_apache_declarations_remain_unresolved"
+    ],
+    "network_evidence_limit": "Source attempt counts are actual CLI source_request_performed results, not packet capture. The five successful files were independently checked against exact declared byte counts and SHA-256 pins.",
+    "project_artifact_files": 5,
+    "project_provenance_manifests": 5,
+    "files_and_mtimes_unchanged_after_offline_cache_and_changed_pin_refusal": true,
+    "original_source_and_license_dictionaries_preserved": true,
+    "records": [
+      {
+        "skill_id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+        "file_type": "python_source",
+        "source": {
+          "repository": "https://github.com/boston-dynamics/spot-sdk",
+          "commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+          "tag": "master",
+          "path": "python/examples/arm_gaze/arm_gaze.py",
+          "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/arm_gaze.py",
+          "raw_url": "https://raw.githubusercontent.com/boston-dynamics/spot-sdk/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/arm_gaze.py",
+          "sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+          "bytes": 11433,
+          "authors": [
+            "Boston Dynamics, Inc."
+          ]
+        },
+        "license": {
+          "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+          "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/LICENSE",
+          "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+          "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+          "verified": false,
+          "review_status": "nonstandard_upstream_terms",
+          "source_terms": {
+            "identifier": "20191101-BDSDK-SL",
+            "marker": "(20191101-BDSDK-SL)",
+            "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+          },
+          "bytes": 3920
+        },
+        "base": {
+          "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+          "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+          "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594"
+        },
+        "original_path": "python/examples/arm_gaze/arm_gaze.py",
+        "source_url": "https://raw.githubusercontent.com/boston-dynamics/spot-sdk/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/arm_gaze.py",
+        "source_revision": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+        "source_bytes": 11433,
+        "source_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+        "verified_download_bytes": 11433,
+        "verified_download_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+        "provenance_manifest_sha256": "a83190fab9e8af54919e236c179e08972c598ed0042a0e096428a381a0de9df0",
+        "saved_filename": "artifact.source",
+        "interpretation": "data_only",
+        "runtime_verification": "not_run",
+        "fetch_reason": "source_acquired",
+        "offline_cache_reason": "source_cache_verified",
+        "source_download_only": true,
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "hub_prepare": false
+      },
+      {
+        "skill_id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp",
+        "file_type": "cpp_source",
+        "source": {
+          "repository": "https://github.com/moveit/moveit2_tutorials",
+          "commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+          "tag": "main",
+          "path": "doc/examples/moveit_cpp/src/moveit_cpp_tutorial.cpp",
+          "url": "https://github.com/moveit/moveit2_tutorials/blob/e1b3727d4bbd22a57f17120ec423a4171f4bdc66/doc/examples/moveit_cpp/src/moveit_cpp_tutorial.cpp",
+          "raw_url": "https://raw.githubusercontent.com/moveit/moveit2_tutorials/e1b3727d4bbd22a57f17120ec423a4171f4bdc66/doc/examples/moveit_cpp/src/moveit_cpp_tutorial.cpp",
+          "sha256": "8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",
+          "bytes": 12163
+        },
+        "license": {
+          "spdx": "BSD-3-Clause",
+          "url": "https://github.com/moveit/moveit2_tutorials/blob/e1b3727d4bbd22a57f17120ec423a4171f4bdc66/LICENSE.txt",
+          "sha256": "fc64969d5899b2a89b72a8db8b0e99ad82f456540e133c30e30395013f89a443",
+          "scope": "Selected example source code only; preserve upstream copyright and per-file notices. Robot models, datasets, weights, simulator binaries and third-party dependencies retain their separate licenses."
+        },
+        "base": {
+          "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+          "record_version": "source-8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",
+          "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66"
+        },
+        "original_path": "doc/examples/moveit_cpp/src/moveit_cpp_tutorial.cpp",
+        "source_url": "https://raw.githubusercontent.com/moveit/moveit2_tutorials/e1b3727d4bbd22a57f17120ec423a4171f4bdc66/doc/examples/moveit_cpp/src/moveit_cpp_tutorial.cpp",
+        "source_revision": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+        "source_bytes": 12163,
+        "source_sha256": "8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",
+        "verified_download_bytes": 12163,
+        "verified_download_sha256": "8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",
+        "provenance_manifest_sha256": "063aa9a48852a9e6d996500dd96ef2a3fe287b9173ed872b33ec4200282a289f",
+        "saved_filename": "artifact.source",
+        "interpretation": "data_only",
+        "runtime_verification": "not_run",
+        "fetch_reason": "source_acquired",
+        "offline_cache_reason": "source_cache_verified",
+        "source_download_only": true,
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "hub_prepare": false
+      },
+      {
+        "skill_id": "gap-bundle-curobo",
+        "file_type": "agent_instruction_markdown",
+        "source": {
+          "repository": "https://github.com/graph-robots/open-robot-skills",
+          "commit": "752dfbd96968d4d08379f8111765efbf6457800b",
+          "path": "tools/curobo/SKILL.md",
+          "url": "https://github.com/graph-robots/open-robot-skills/blob/752dfbd96968d4d08379f8111765efbf6457800b/tools/curobo/SKILL.md",
+          "sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+          "bytes": 5008,
+          "authors": [
+            "graph-robots/open-robot-skills contributors; preserve per-bundle and dependency attribution"
+          ]
+        },
+        "license": {
+          "spdx": "NOASSERTION",
+          "url": "https://github.com/graph-robots/open-robot-skills/blob/752dfbd96968d4d08379f8111765efbf6457800b/tools/curobo/SKILL.md",
+          "sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+          "verified": false,
+          "scope": "Pinned instruction text only. Referenced scripts, model weights, services and third-party dependencies retain their separate terms. The instruction frontmatter and repository license declare different licenses; applicability remains unresolved. This is a source link, not a redistribution or preparation grant.",
+          "declared_spdx": "MIT",
+          "review_status": "conflicting_upstream_declarations",
+          "repository_declaration": {
+            "spdx": "Apache-2.0",
+            "url": "https://github.com/graph-robots/open-robot-skills/blob/752dfbd96968d4d08379f8111765efbf6457800b/LICENSE",
+            "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+          }
+        },
+        "base": {
+          "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+          "record_version": "source-4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+          "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b"
+        },
+        "original_path": "tools/curobo/SKILL.md",
+        "source_url": "https://raw.githubusercontent.com/graph-robots/open-robot-skills/752dfbd96968d4d08379f8111765efbf6457800b/tools/curobo/SKILL.md",
+        "source_revision": "752dfbd96968d4d08379f8111765efbf6457800b",
+        "source_bytes": 5008,
+        "source_sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+        "verified_download_bytes": 5008,
+        "verified_download_sha256": "4860b9854fad0267f84e49284e01d80966df90462febc4bc3680691d124352b4",
+        "provenance_manifest_sha256": "ca2a66d6855211df78ba554e9783dfa994345998000e45fcd4141701b3d24afc",
+        "saved_filename": "artifact.source",
+        "interpretation": "data_only",
+        "runtime_verification": "not_run",
+        "fetch_reason": "source_acquired",
+        "offline_cache_reason": "source_cache_verified",
+        "source_download_only": true,
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "hub_prepare": false
+      },
+      {
+        "skill_id": "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+        "file_type": "urdf_xacro_robot_description",
+        "source": {
+          "repository": "https://github.com/frankarobotics/franka_description",
+          "commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+          "tag": "main",
+          "path": "robots/fr3/fr3.urdf.xacro",
+          "url": "https://github.com/frankarobotics/franka_description/blob/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/fr3.urdf.xacro",
+          "raw_url": "https://raw.githubusercontent.com/frankarobotics/franka_description/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/fr3.urdf.xacro",
+          "sha256": "8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+          "bytes": 2863
+        },
+        "license": {
+          "spdx": "Apache-2.0",
+          "url": "https://github.com/frankarobotics/franka_description/blob/7aeeddc449edf8d62b594f9e36a81da53e7796f9/LICENSE",
+          "sha256": "4b25434e6ec2012e28a484f1d7924a0fd1a8bf232c2be2d50d584d299d04d6d6",
+          "scope": "Selected robot-description/configuration source text only. Preserve upstream notices; meshes, textures, dependencies and trademarks retain their separate licenses."
+        },
+        "base": {
+          "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+          "record_version": "source-8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+          "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9"
+        },
+        "original_path": "robots/fr3/fr3.urdf.xacro",
+        "source_url": "https://raw.githubusercontent.com/frankarobotics/franka_description/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/fr3.urdf.xacro",
+        "source_revision": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+        "source_bytes": 2863,
+        "source_sha256": "8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+        "verified_download_bytes": 2863,
+        "verified_download_sha256": "8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+        "provenance_manifest_sha256": "b8b831abe2464a4ec5b745db8595199b968e905f188d4d3f36c853f03ed7edf2",
+        "saved_filename": "artifact.source",
+        "interpretation": "data_only",
+        "runtime_verification": "not_run",
+        "fetch_reason": "source_acquired",
+        "offline_cache_reason": "source_cache_verified",
+        "source_download_only": true,
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "hub_prepare": false
+      },
+      {
+        "skill_id": "franka-description-artifact-robots-fr3-joint-limits-yaml",
+        "file_type": "yaml_robot_configuration",
+        "source": {
+          "repository": "https://github.com/frankarobotics/franka_description",
+          "commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+          "tag": "main",
+          "path": "robots/fr3/joint_limits.yaml",
+          "url": "https://github.com/frankarobotics/franka_description/blob/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/joint_limits.yaml",
+          "raw_url": "https://raw.githubusercontent.com/frankarobotics/franka_description/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/joint_limits.yaml",
+          "sha256": "42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65",
+          "bytes": 1374
+        },
+        "license": {
+          "spdx": "Apache-2.0",
+          "url": "https://github.com/frankarobotics/franka_description/blob/7aeeddc449edf8d62b594f9e36a81da53e7796f9/LICENSE",
+          "sha256": "4b25434e6ec2012e28a484f1d7924a0fd1a8bf232c2be2d50d584d299d04d6d6",
+          "scope": "Selected robot-description/configuration source text only. Preserve upstream notices; meshes, textures, dependencies and trademarks retain their separate licenses."
+        },
+        "base": {
+          "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+          "record_version": "source-42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65",
+          "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9"
+        },
+        "original_path": "robots/fr3/joint_limits.yaml",
+        "source_url": "https://raw.githubusercontent.com/frankarobotics/franka_description/7aeeddc449edf8d62b594f9e36a81da53e7796f9/robots/fr3/joint_limits.yaml",
+        "source_revision": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+        "source_bytes": 1374,
+        "source_sha256": "42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65",
+        "verified_download_bytes": 1374,
+        "verified_download_sha256": "42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65",
+        "provenance_manifest_sha256": "a7e231864693903f6dac38835cca89fa6b4eb4d5bd05e246285b6eae1176c2c7",
+        "saved_filename": "artifact.source",
+        "interpretation": "data_only",
+        "runtime_verification": "not_run",
+        "fetch_reason": "source_acquired",
+        "offline_cache_reason": "source_cache_verified",
+        "source_download_only": true,
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "hub_prepare": false
+      }
+    ]
+  },
+  "original_query_observations": {
+    "task_selection_used_canonical_metadata": true,
+    "details": [
+      {
+        "query": "moveit cpp tutorial",
+        "runtime": "moveit2",
+        "total": 17,
+        "displayed_candidates": 3,
+        "target_in_original_first_page": false,
+        "target_id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp"
+      },
+      {
+        "query": "fr3 urdf",
+        "runtime": "franka-description",
+        "total": 30,
+        "displayed_candidates": 3,
+        "target_in_original_first_page": false,
+        "target_id": "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+      }
+    ],
+    "interpretation": "The original first-page discoverability limitation remains part of the record. The separate corrected continuation test below did not alter either query or filter or claim better ranking."
+  },
+  "offline_pagination_regression": {
+    "scope": "Directed regression using already known target IDs, not a blind discovery test. No full canonical list was read by the test driver; the application searched the same explicit snapshot internally.",
+    "cli_calls": 7,
+    "search_pages": 6,
+    "max_authorized_calls": 16,
+    "documented_procedure": "Repeat the same query and filters using returned next.offset and next.hub_commit; use a single explicit catalog snapshot.",
+    "installed_file_bindings": {
+      "scripts/rsh.py": {
+        "before_sha256": "df3454318b8861012dfbe307a8875d2d87455655c0dcf0d0665f164124c352a3",
+        "after_sha256": "0fe1a18952bfe35da4951d6b0c303495ef835c23638c6aadb019177929ec3df0"
+      },
+      "scripts/rshlib/core.py": {
+        "before_sha256": "7079e86cea8dbe45cfcbef50e68590b4234c4224a2600901e8b1cc3a73fdf27a",
+        "after_sha256": "7aea259e5ae0f20999819fec5bae2081cd4c013a00e4d044439c6bd52254e4e1"
+      },
+      "scripts/rshlib/remote_catalog.py": {
+        "before_sha256": "e20b8432682c1ec28040e282dbadfb096c23791880fce1e8ff58e92813b57912",
+        "after_sha256": "8b86f2ed9fa5d9b13a1df3a48465280c9e4df7cd007eda497246b7da0c73c34d"
+      }
+    },
+    "only_recopied_files": [
+      "scripts/rsh.py",
+      "scripts/rshlib/core.py",
+      "scripts/rshlib/remote_catalog.py"
+    ],
+    "acquisition_module_sha256_unchanged": "a20ae684955e558f3640352738d7938f4087881540fdc5b25dddcd6d0a62a5d2",
+    "walks": [
+      {
+        "name": "moveit",
+        "query": "moveit cpp tutorial",
+        "runtime": "moveit2",
+        "target_id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp",
+        "target_found": true,
+        "target_offset": 3,
+        "pages_read": 2,
+        "pages": [
+          {
+            "offset": 0,
+            "ids": [
+              "moveit2-doc-examples-interactivity-src-attached-body-tutorial-cpp",
+              "moveit2-doc-examples-interactivity-src-interactivity-tutorial-cpp",
+              "moveit2-doc-examples-kinematics-src-ros-api-tutorial-cpp"
+            ],
+            "total": 17,
+            "next": {
+              "q": "moveit cpp tutorial",
+              "runtime": "moveit2",
+              "limit": 3,
+              "offset": 3,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          },
+          {
+            "offset": 3,
+            "ids": [
+              "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp",
+              "moveit2-doc-examples-move-group-interface-src-move-group-interface-tutorial-cpp",
+              "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp"
+            ],
+            "total": 17,
+            "next": {
+              "q": "moveit cpp tutorial",
+              "runtime": "moveit2",
+              "limit": 3,
+              "offset": 6,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          }
+        ],
+        "same_first_page_and_total_as_original": true,
+        "continuation_from_returned_next_only": true
+      },
+      {
+        "name": "model",
+        "query": "fr3 urdf",
+        "runtime": "franka-description",
+        "target_id": "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+        "target_found": true,
+        "target_offset": 9,
+        "pages_read": 4,
+        "pages": [
+          {
+            "offset": 0,
+            "ids": [
+              "franka-description-artifact-accessories-fr3-duo-mount-v0-3-fr3-duo-mount-xacro",
+              "franka-description-artifact-accessories-fr3-duo-mount-v0-3-inertials-yaml",
+              "franka-description-artifact-accessories-fr3-duo-mount-v0-3-kinematics-yaml"
+            ],
+            "total": 30,
+            "next": {
+              "q": "fr3 urdf",
+              "runtime": "franka-description",
+              "limit": 3,
+              "offset": 3,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          },
+          {
+            "offset": 3,
+            "ids": [
+              "franka-description-artifact-robots-fr3-accelerometers-yaml",
+              "franka-description-artifact-robots-fr3-duo-fr3-duo-srdf-xacro",
+              "franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro"
+            ],
+            "total": 30,
+            "next": {
+              "q": "fr3 urdf",
+              "runtime": "franka-description",
+              "limit": 3,
+              "offset": 6,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          },
+          {
+            "offset": 6,
+            "ids": [
+              "franka-description-artifact-robots-fr3-duo-fr3-duo-xacro",
+              "franka-description-artifact-robots-fr3-dynamics-yaml",
+              "franka-description-artifact-robots-fr3-fr3-srdf-xacro"
+            ],
+            "total": 30,
+            "next": {
+              "q": "fr3 urdf",
+              "runtime": "franka-description",
+              "limit": 3,
+              "offset": 9,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          },
+          {
+            "offset": 9,
+            "ids": [
+              "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+              "franka-description-artifact-robots-fr3-inertials-yaml",
+              "franka-description-artifact-robots-fr3-joint-limits-yaml"
+            ],
+            "total": 30,
+            "next": {
+              "q": "fr3 urdf",
+              "runtime": "franka-description",
+              "limit": 3,
+              "offset": 12,
+              "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+            }
+          }
+        ],
+        "same_first_page_and_total_as_original": true,
+        "continuation_from_returned_next_only": true
+      }
+    ],
+    "wrong_generation": {
+      "returncode": 2,
+      "result": {
+        "status": "failed",
+        "reason_code": "catalog_generation_changed",
+        "message": "The available recipe/reference snapshots differ from the requested search generation.",
+        "next_action": "restart_search_or_use_original_catalog_snapshot",
+        "expected_hub_commit": "0000000000000000000000000000000000000000",
+        "catalog_hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+        "references_hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe"
+      }
+    },
+    "network_attempt_count": 0,
+    "source_http_requests": 0,
+    "hub_http_requests": 0,
+    "network_guard": "All calls used --offline and the explicit local catalog. A Python audit hook denied socket, DNS and HTTP-connect attempts and observed none; no HTTP responses were mocked.",
+    "project_content_and_mtimes_unchanged": true,
+    "source_cache_unchanged": true,
+    "snapshot_assets_unchanged": true,
+    "original_and_corrected_source_reports_unchanged": true
+  },
+  "private_evidence_sha256": {
+    "original_source_run": "6c097cf27bbc61433b1a56311666e82d704821d533a1f7641af2a4c1dbeaf319",
+    "corrected_source_run": "e27e6188f4a01f152b9c942e7b4241216753ddcd682157306170421f9648e137",
+    "directed_pagination_run": "4719db24f7ec2e50e6580c37dd131ef4196b88aab3935ad8614e74e10d4082a7"
+  },
+  "safety_observations": {
+    "hub_reads_during_source_forward_test": 0,
+    "credentials_used": false,
+    "packages_installed": false,
+    "environments_created": false,
+    "upstream_import_or_execution": false,
+    "fetched_instruction_activation": false,
+    "hardware_contacted": false,
+    "real_project_modified": false,
+    "sharing_submission_or_live_flush": false
+  },
+  "limits": [
+    "Five selected files from four upstream projects only; no exhaustive source or format coverage is implied.",
+    "Only source bytes and catalog license metadata were acquired. Complete upstream license documents, adjacent definitions, assets, dependencies, datasets and weights were not downloaded in this test.",
+    "Spot retains its nonstandard LicenseRef and verified:false review state. The curobo instruction retains NOASSERTION, verified:false and the conflicting MIT versus repository Apache-2.0 declarations. Acquisition does not resolve either licensing state.",
+    "The downloaded instruction remained inert artifact.source data and was never activated or followed. Python/C++ sources were not imported, compiled or run; Xacro and YAML semantics were not executed.",
+    "All five records retain runtime_verification:not_run and no Hub preparation adapter. No simulation, policy inference, physical robot operation, firmware compatibility or permission to operate hardware was verified.",
+    "The authentic bundled catalog generation e138db5a829f20d93165cc72f78c76548075afbe was retained rather than relabeled to a newer publication commit.",
+    "The 26 acquisition-flow CLI calls and seven later offline pagination CLI calls are separate test phases; neither constitutes external-agent adoption or campaign traffic."
+  ]
+}

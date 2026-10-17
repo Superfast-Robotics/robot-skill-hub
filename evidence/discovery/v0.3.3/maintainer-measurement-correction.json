@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-17T20:12:37.406258+00:00",
+  "reason": "An existing standalone CLI smoke test was run without the telemetry opt-out wrapper. Three successful reads matched its search/inspect/search sequence, timestamps and the known maintainer installation HMAC.",
+  "scope": "Maintainer validation, excluded from campaign evidence.",
+  "rows_reclassified": [
+    {
+      "id": 18,
+      "ts": 1792267792,
+      "route": "search",
+      "family": "rsh_cli",
+      "utc": "2026-10-17T20:09:52+00:00"
+    },
+    {
+      "id": 19,
+      "ts": 1792267794,
+      "route": "inspect",
+      "family": "rsh_cli",
+      "utc": "2026-10-17T20:09:54+00:00"
+    },
+    {
+      "id": 20,
+      "ts": 1792267795,
+      "route": "search",
+      "family": "rsh_cli",
+      "utc": "2026-10-17T20:09:55+00:00"
+    }
+  ],
+  "known_maintainer_identity_match_verified_privately": true,
+  "raw_or_hashed_client_identifiers_published": false,
+  "previous_family": "rsh_cli",
+  "corrected_family": "unclassified",
+  "rows_changed": 3,
+  "classification_note": "The existing schema has no internal-test family. These three proven maintainer-test events were moved to its non-eligible unclassified bucket; this receipt preserves their original classification and audit reason.",
+  "rows_deleted": 0,
+  "campaign_window_reset": false,
+  "observed_counter_before_correction": 16,
+  "observed_counter_after_correction": 13,
+  "observed_at": "2026-10-17T20:12:37.453Z",
+  "target_reached": false,
+  "regression_prevention": "The standalone smoke subprocess now always uses --offline and RSH_TELEMETRY=off, independent of the parent test runner.",
+  "future_maintainer_checks_require_opt_out": true
+}

@@ -5,6 +5,7 @@
   "purpose": [
     "discover_pinned_robot_code",
     "inspect_environment_contracts",
+    "retrieve_pinned_source_files_as_inert_data",
     "prepare_supported_recipes",
     "recall_exact_version_findings",
     "save_already_observed_reusable_findings",
@@ -55,7 +56,8 @@
       "prepared_project_locks": "never_silently_updated",
       "coverage": "preserve_reported_scope_and_coverage",
       "search_semantics": "all_terms_word_prefix",
-      "findings": "bounded_exact_source_version_environment_page"
+      "findings": "bounded_exact_source_version_environment_page",
+      "search_pagination": "Repeat the same query and filters with next.offset as --offset and next.hub_commit as --hub-commit. Generation changes fail; mixed local generations require one snapshot for stable pagination."
     },
     "actions": [
       {
@@ -108,7 +110,7 @@
           "{robot}",
           "--json"
         ],
-        "purpose": "Return up to three candidates from preparation recipes and official source references."
+        "purpose": "Return up to three candidates per page from preparation recipes and official source references; follow next with --offset and --hub-commit."
       },
       {
         "name": "inspect",
@@ -120,6 +122,30 @@
           "--json"
         ],
         "purpose": "Read exact pins, license, access, environment requirements and evidence before use."
+      },
+      {
+        "name": "fetch_source",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "fetch-source",
+          "{source_reference_id}",
+          "--project",
+          "{project_dir}",
+          "--expected-source-revision",
+          "{inspected_source_revision}",
+          "--expected-source-sha256",
+          "{inspected_source_sha256}",
+          "--json"
+        ],
+        "purpose": "Retrieve one exact source-reference file as inert bytes, preserving source/license provenance; use inspect's fetch_source_args.",
+        "maximum_source_bytes": 8388608,
+        "plan_option": "--plan validates metadata without upstream source requests or project writes; catalog discovery remains online unless --offline.",
+        "offline_behavior": "Only reuses an already verified local source-file cache.",
+        "execution_performed": false,
+        "environment_created": false,
+        "installed_as_skill": false,
+        "preparation_lock_created": false
       },
       {
         "name": "memories",

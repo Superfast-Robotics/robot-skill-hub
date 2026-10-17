@@ -561,6 +561,7 @@ def reference_markdown(record, hub_commit, publication_version=None):
                       f"Source identity version: `source-{source['sha256']}`"))
     parts.extend([
              "## Access", record["access"]["instructions"],
+             f"Optional inert file retrieval: `python /PATH_TO_SKILL/scripts/rsh.py fetch-source {record['id']} --project ./experiment --expected-source-revision {revision} --expected-source-sha256 {source['sha256']} --json`. This verifies one file, preserves provenance and never installs or runs it. See [source-file retrieval](https://hub.superfastrobotics.com/source-files.md).",
              f"Hub preparation adapter: **false**. Runtime verification: **{evidence['runtime_verification']}**.",
              f"Upstream setup: {record['access'].get('setup_url', source['repository'])}",
              "## Source and license",
@@ -596,6 +597,7 @@ def reference_detail(record, base, hub_commit, publication_version=None, page_pa
 <p><code>{esc(record['id'])}</code> | Record version: <code>{esc(version)}</code></p>
 <p><a href="skill.json">Record JSON</a> | <a href="README.md">Markdown</a> | <a href="{esc(source['url'])}">Pinned upstream source</a></p>
 <h2>Access</h2><p>{esc(record['access']['instructions'])}</p>
+<p>For one verified inert file, use the installed CLI's <code>inspect</code> response <code>fetch_source_args</code> and append <code>--project DIR --json</code>. <a href="{esc(base)}/source-files.md">Source-file retrieval</a> creates no environment and does not install or run the source.</p>
 <p>Hub preparation adapter: <code>false</code>. Follow the <a href="{esc(record['access'].get('setup_url', source['repository']))}">upstream setup</a> and invocation contract.</p>
 <h2>Source and license</h2><dl><dt>Repository</dt><dd><a href="{esc(source['repository'])}">{esc(source['repository'])}</a></dd>
 <dt>Revision</dt><dd><code>{esc(revision)}</code></dd><dt>Path</dt><dd><code>{esc(source['path'])}</code></dd>
@@ -664,7 +666,7 @@ curl -fsSL {base}/agent.json
 <h2>Find and read</h2>
 <p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
-<p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
+<p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For source references, <code>fetch-source</code> retrieves one verified inert file. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
 <h2>Connect an agent</h2>
 <p>Read-only MCP: <a href="{API}/mcp"><code>{API}/mcp</code></a>. Public reads need no token. {api_docs}<a href="{esc(base)}/agent.json">Agent contract</a> | <a href="{API}/v1/capabilities">Capabilities</a></p>
 <h2>Share a new skill or finding</h2>
@@ -751,6 +753,7 @@ def discovery_text(records, base, references=None):
 - [Source references JSON]({base}/catalog/v1/references.json): pinned upstream code and artifacts; no hub preparation adapter
 - [Publication proof contract]({base}/agent.json): per-receipt published versions, exact hashes and historical anchors
 - [Agent quickstart]({base}/agent-quickstart.md): find, inspect and prepare commands
+- [Source-file retrieval]({base}/source-files.md): one pinned inert file, independent of runtime preparation
 - [Full documentation]({base}/llms-full.txt): quickstart, contracts and every recipe in plain text
 - [Record schema]({base}/schemas/skill.schema.json)
 - [Compatibility contract]({base}/compatibility.md)
@@ -770,6 +773,9 @@ def full_text(records, base, hub_commit, references=None):
         path = ROOT / "docs" / name
         if path.exists():
             parts.append(path.read_text(encoding="utf-8"))
+    source_guide = ROOT / "skills/find-robot-skills/references/source-files.md"
+    if source_guide.exists():
+        parts.append(source_guide.read_text(encoding="utf-8"))
     parts.extend(markdown(r, hub_commit, base) for r in records)
     if references and references["records"]:
         parts.append("# Source references\n\nThese records are discovery references with no hub preparation adapter. Follow upstream setup and invocation instructions.\n\n```json\n" + json.dumps(references, ensure_ascii=False, indent=2) + "\n```\n")
@@ -836,6 +842,7 @@ def build(args):
                     memory_manifest_url=memory_manifest_url, api_search_url=API+"/v1/search", mcp_url=API+"/mcp",
                     api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
                     privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md",
+                    source_files_guide_url=base+"/source-files.md",
                     submission_proof_url_template=base+"/catalog/v2/submissions/{submission_id}.json",
                     memory_proof_url_template=base+"/catalog/v2/memories/{memory_id}.json")
     if (ROOT / "docs/public-api.openapi.json").exists():
@@ -863,6 +870,9 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
+    source_guide = ROOT / "skills/find-robot-skills/references/source-files.md"
+    if source_guide.exists():
+        write(output / "source-files.md", source_guide.read_text(encoding="utf-8"))
     for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
         document = ROOT / "docs" / name
         if document.exists():
@@ -972,7 +982,7 @@ def build(args):
         contract["resources"].pop("publication_url", None)
     write_json(output / "agent.json", contract)
     write_json(output / ".well-known/robot-skill-hub.json", contract)
-    urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", search_manifest_url, memory_manifest_url] + [base+"/skills/"+r['id']+"/" for r in records]
+    urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/source-files.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", search_manifest_url, memory_manifest_url] + [base+"/skills/"+r['id']+"/" for r in records]
     if legacy_search:
         urls.append(base+"/catalog/v1/search.json")
     if legacy_publication:

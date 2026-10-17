@@ -163,6 +163,7 @@ def lookup_preparation(catalog, skill_id):
                            status="unsupported", next_action="open_source_reference", skill_id=skill_id,
                            kind="source_reference", hub_prepare=False, source_url=source.get("url"),
                            setup_url=reference.get("access", {}).get("setup_url") or reference.get("setup_url"),
+                           **reference_acquisition(catalog, reference),
                            source_download_performed=False, environment_created=False, execution_performed=False)
     return lookup(catalog, skill_id)
 
@@ -247,7 +248,21 @@ def discovery_metadata(catalog):
             "discovery_fallback_reasons": catalog.get("discovery_fallback_reasons", [])}
 
 
-def find(catalog, query, environment, limit=3):
+def validate_find_pagination(limit, offset, hub_commit, *, maximum_limit=50):
+    if type(limit) is not int or not 1 <= limit <= maximum_limit or type(offset) is not int or not 0 <= offset <= 1000000:
+        raise RshError("invalid_pagination", f"Search requires limit 1..{maximum_limit} and offset 0..1000000.")
+    if hub_commit is not None and (not isinstance(hub_commit, str) or not COMMIT.fullmatch(hub_commit)):
+        raise RshError("invalid_hub_commit", "Use the exact published Hub commit returned by the previous search page.")
+
+
+def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
+    validate_find_pagination(limit, offset, hub_commit)
+    recipe_hub = catalog.get("hub_commit")
+    reference_hub = catalog.get("references", {}).get("hub_commit", recipe_hub)
+    if hub_commit is not None and (recipe_hub != hub_commit or reference_hub != hub_commit):
+        raise RshError("catalog_generation_changed", "The available recipe/reference snapshots differ from the requested search generation.",
+                       next_action="restart_search_or_use_original_catalog_snapshot",
+                       expected_hub_commit=hub_commit, catalog_hub_commit=recipe_hub, references_hub_commit=reference_hub)
     # Match the public API: separators split terms, but an unfamiliar Unicode
     # word or punctuation-bearing token must not silently become an empty query.
     tokens = re.sub(r"[-_/]", " ", query.lower()).split()
@@ -299,8 +314,29 @@ def find(catalog, query, environment, limit=3):
     results.sort(key=lambda item: (-item["_score"], not item["hub_prepare"], item["id"]))
     for item in results:
         item.pop("_score")
-    return {"status": "ready", "results": results[:limit], "total": len(results),
-            "execution_performed": False, **discovery_metadata(catalog)}
+    stable_hub = recipe_hub if isinstance(recipe_hub, str) and COMMIT.fullmatch(recipe_hub) and recipe_hub == reference_hub else None
+    next_page = None
+    if offset + limit < len(results):
+        next_page = {"q": query, **{key: str(environment[key]) for key in ENVIRONMENT_FIELDS
+                     if environment.get(key) not in (None, "", "unknown")}, "limit": limit, "offset": offset + limit,
+                     **({"hub_commit": stable_hub} if stable_hub else {})}
+    return {"status": "ready", "results": results[offset:offset + limit], "total": len(results),
+            "offset": offset, "limit": limit, "next": next_page,
+            "pagination_stability": "single_generation" if stable_hub else "snapshot_required",
+            **({"pagination_note": "Recipe and reference generations differ or are unknown; use one catalog snapshot for stable pagination."}
+               if not stable_hub else {}), "execution_performed": False, **discovery_metadata(catalog)}
+
+
+def reference_acquisition(catalog, reference):
+    """Expose a pinned one-file route without making inspection depend on fetch support."""
+    from .acquisition import plan_source
+    hub = catalog.get("references", {}).get("hub_commit", catalog.get("hub_commit"))
+    try:
+        plan = plan_source(reference, hub)
+    except RshError as error:
+        return {"source_acquisition": {"status": "unsupported", "reason_code": error.result["reason_code"],
+                                       "execution_performed": False}}
+    return {"source_acquisition": plan, "fetch_source_args": plan["fetch_args"]}
 
 
 def inspect(catalog, skill_id):
@@ -308,6 +344,7 @@ def inspect(catalog, skill_id):
         if reference.get("id") == skill_id:
             return {"status": "ready", **reference, "kind": "source_reference", "hub_prepare": False,
                     "memory_base": selection_base(catalog, reference, reference=True),
+                    **reference_acquisition(catalog, reference),
                     "next_action": "open_source_reference", "execution_performed": False, **discovery_metadata(catalog)}
     record = lookup(catalog, skill_id)
     return {"status": "ready", **record, "commit": record["source"]["commit"],

@@ -12,7 +12,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "skills/find-robot-skills/scripts"
 sys.path.insert(0, str(SCRIPTS))
-from rshlib.core import RshError, find, lookup_preparation
+from rshlib.core import RshError, find, inspect, lookup_preparation
 preparation = importlib.import_module("rshlib.prepare")
 
 
@@ -31,6 +31,119 @@ def catalog(*references):
 
 
 class ReferenceDiscoveryTests(unittest.TestCase):
+    def page_catalog(self):
+        rows = [{**reference(), "id": "fixture-ik-" + str(index)} for index in reversed(range(8))]
+        return catalog(*rows)
+
+    def test_local_search_slices_sorted_pages_and_preserves_filters_and_effective_pin(self):
+        data = self.page_catalog()
+        first = find(data, "inverse kinematics", {"robot": "kuka"})
+        next_page = first["next"]
+        second = find(data, next_page["q"], {"robot": next_page["robot"]}, next_page["limit"],
+                      offset=next_page["offset"], hub_commit=next_page["hub_commit"])
+        last = find(data, "inverse kinematics", {"robot": "kuka"}, offset=6, hub_commit=data["hub_commit"])
+        self.assertEqual((0, 3, 8), (first["offset"], first["limit"], first["total"]))
+        self.assertEqual(["fixture-ik-0", "fixture-ik-1", "fixture-ik-2"], [row["id"] for row in first["results"]])
+        self.assertEqual(["fixture-ik-3", "fixture-ik-4", "fixture-ik-5"], [row["id"] for row in second["results"]])
+        self.assertEqual({"q": "inverse kinematics", "robot": "kuka", "offset": 3, "limit": 3, "hub_commit": data["hub_commit"]}, next_page)
+        self.assertEqual("single_generation", second["pagination_stability"])
+        self.assertEqual(2, len(last["results"]))
+        self.assertIsNone(last["next"])
+        empty = find(data, "inverse kinematics", {}, offset=1000000)
+        self.assertEqual([], empty["results"])
+        self.assertEqual(8, empty["total"])
+        self.assertIsNone(empty["next"])
+
+    def test_local_pinned_search_requires_both_recipe_and_reference_generations(self):
+        data = self.page_catalog()
+        expected = data["hub_commit"]
+        data["references"]["hub_commit"] = "d" * 40
+        for pin in (expected, "d" * 40):
+            with self.subTest(pin=pin), self.assertRaises(RshError) as error:
+                find(data, "inverse kinematics", {}, offset=3, hub_commit=pin)
+            self.assertEqual("catalog_generation_changed", error.exception.result["reason_code"])
+        data["references"]["hub_commit"] = expected
+        self.assertEqual(3, len(find(data, "inverse kinematics", {}, offset=3, hub_commit=expected)["results"]))
+
+    def test_mixed_or_unknown_local_generations_keep_origins_and_require_snapshot_for_stable_pages(self):
+        data = self.page_catalog()
+        data.update(catalog_origin="bundled", references_origin="cache")
+        data["references"]["hub_commit"] = "d" * 40
+        result = find(data, "inverse kinematics", {}, offset=3)
+        self.assertEqual("bundled", result["catalog_origin"])
+        self.assertEqual("cache", result["references_origin"])
+        self.assertEqual(data["hub_commit"], result["catalog_hub_commit"])
+        self.assertEqual("d" * 40, result["references_hub_commit"])
+        self.assertNotIn("hub_commit", result["next"])
+        self.assertEqual("snapshot_required", result["pagination_stability"])
+        self.assertIn("catalog snapshot", result["pagination_note"])
+        self.assertTrue(all(row["memory_base"]["hub_commit"] == "d" * 40 for row in result["results"]))
+        data.pop("hub_commit")
+        data["references"].pop("hub_commit")
+        unknown = find(data, "inverse kinematics", {})
+        self.assertNotIn("hub_commit", unknown["next"])
+        self.assertEqual("snapshot_required", unknown["pagination_stability"])
+
+    def test_local_search_rejects_invalid_bounds_and_commit_pins(self):
+        for arguments in ({"offset": -1}, {"offset": 1000001}, {"offset": True}, {"offset": "3"},
+                          {"limit": 0}, {"limit": 51}, {"limit": True}, {"hub_commit": "main"}, {"hub_commit": 42}):
+            with self.subTest(arguments=arguments), self.assertRaises(RshError):
+                find(self.page_catalog(), "inverse kinematics", {}, **arguments)
+
+    def test_real_cli_local_second_page_and_generation_error_are_structured(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            data = self.page_catalog()
+            path.write_text(json.dumps(data), encoding="utf-8")
+            command = [sys.executable, str(SCRIPTS / "rsh.py"), "--catalog", str(path), "--offline", "--json",
+                       "find", "inverse kinematics", "--offset", "3", "--hub-commit", data["hub_commit"]]
+            env = {**os.environ, "RSH_TELEMETRY": "off"}
+            page = subprocess.run(command, capture_output=True, text=True, env=env)
+            self.assertEqual(0, page.returncode, page.stdout + page.stderr)
+            self.assertEqual(["fixture-ik-3", "fixture-ik-4", "fixture-ik-5"], [row["id"] for row in json.loads(page.stdout)["results"]])
+            data["references"]["hub_commit"] = "d" * 40
+            path.write_text(json.dumps(data), encoding="utf-8")
+            changed = subprocess.run(command, capture_output=True, text=True, env=env)
+            self.assertEqual(2, changed.returncode, changed.stdout + changed.stderr)
+            self.assertEqual("catalog_generation_changed", json.loads(changed.stdout)["reason_code"])
+
+    def test_inspected_reference_routes_real_cli_to_pinned_source_only_plan(self):
+        row = reference()
+        row["source"]["bytes"] = 23
+        row["license"] = {"spdx": "NOASSERTION", "verified": False,
+                          "notes": "Review upstream terms before use."}
+        data = catalog(row)
+        detail = inspect(data, row["id"])
+        self.assertEqual(row["source"], detail["source_acquisition"]["source"])
+        self.assertEqual(row["license"], detail["source_acquisition"]["license"])
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            path.write_text(json.dumps(data), encoding="utf-8")
+            project = Path(directory) / "not-created"
+            command = [sys.executable, str(SCRIPTS / "rsh.py"), "--catalog", str(path), "--offline", "--json",
+                       *detail["fetch_source_args"], "--project", str(project), "--plan"]
+            result = subprocess.run(command, capture_output=True, text=True,
+                                    env={**os.environ, "RSH_TELEMETRY": "off"})
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            plan = json.loads(result.stdout)
+            self.assertEqual("source_acquisition_plan", plan["reason_code"])
+            self.assertEqual(row["source"]["commit"], plan["source_revision"])
+            self.assertEqual(row["source"]["sha256"], plan["source_sha256"])
+            self.assertFalse(plan["source_request_performed"])
+            self.assertFalse(plan["execution_performed"])
+            self.assertFalse(plan["environment_created"])
+            self.assertFalse(plan["installed_as_skill"])
+            self.assertFalse(project.exists())
+            # Reusing the returned pins against a changed selection must fail,
+            # even in plan mode, rather than silently choosing another file.
+            data["references"]["records"][0]["source"]["sha256"] = "e" * 64
+            path.write_text(json.dumps(data), encoding="utf-8")
+            changed = subprocess.run(command, capture_output=True, text=True,
+                                     env={**os.environ, "RSH_TELEMETRY": "off"})
+            self.assertEqual(2, changed.returncode, changed.stdout + changed.stderr)
+            self.assertEqual("selected_source_changed", json.loads(changed.stdout)["reason_code"])
+            self.assertFalse(project.exists())
+
     def test_query_requires_every_term_for_references_and_recipes(self):
         partial = reference()
         partial.update(id="pybullet-fixture-dynamics", name="KUKA inverse dynamics", capabilities=["inverse-dynamics"])

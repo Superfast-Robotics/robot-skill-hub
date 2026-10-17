@@ -81,5 +81,64 @@
     "paid_upgrade_performed": false,
     "registration_repeated": false,
     "redirects_followed": false
+  },
+  "successful_documentation_query": {
+    "checked_at": "2026-10-17T20:05:13.591595+00:00",
+    "primary_route_documentation": "https://context7.com/docs/api-guide",
+    "method": "GET",
+    "url": "https://context7.com/api/v2/context?libraryId=%2Fsuperfast-robotics%2Frobot-skill-hub&query=How+do+agents+find+pinned+robotics+skills%2C+inspect+source+provenance%2C+and+prepare+a+recipe+without+executing+a+simulator%3F&type=json",
+    "http_status": 200,
+    "bytes": 4752,
+    "sha256": "13fef6467f67855f592101e7ff9ff7572d24c8c827d673e67a65b9bc92471418",
+    "response_keys": [
+      "codeSnippets",
+      "infoSnippets"
+    ],
+    "error": null,
+    "message": null,
+    "code_snippets": 4,
+    "info_snippets": 1,
+    "github_credentials_sent": false,
+    "paid_upgrade_performed": false,
+    "registration_repeated": false,
+    "redirects_followed": false,
+    "actual_hub_instruction_content_verified": true,
+    "source_links": [
+      "https://github.com/superfast-robotics/robot-skill-hub/blob/main/docs/recipes/maniskill-panda-place-sphere.md",
+      "https://github.com/superfast-robotics/robot-skill-hub/blob/main/skills/find-robot-skills/SKILL.md"
+    ],
+    "retrieval_verified": true,
+    "unpublished_fetch_source_update_indexed": false
+  },
+  "later_search": {
+    "checked_at": "2026-10-17T20:05:36.927346+00:00",
+    "url": "https://context7.com/api/v2/libs/search?libraryName=Robot+Skill+Hub&query=Find+pinned+robotics+source+references+and+prepare+supported+recipes&fast=true",
+    "http_status": 200,
+    "sha256": "ae3efd33f381bfcbf4d0b90f9a45bfb53326be7aab9affbd885fca3b0f286492",
+    "bytes": 2501,
+    "returned_candidates": 5,
+    "exact_library_matches": [
+      {
+        "id": "/superfast-robotics/robot-skill-hub",
+        "title": "Robot Skill Hub",
+        "description": "Robotics source discovery and task-memory tools for agents. Search pinned code, policies, robot models and workflows across frameworks; inspect exact provenance, licenses and evidence; prepare supported recipes locally; contribute reviewed sources and findings through internal pull requests. Public HTTP and read-only MCP discovery require no account.",
+        "branch": "main",
+        "lastUpdateDate": "2026-10-17T19:59:45.930Z",
+        "state": "finalized",
+        "totalTokens": 27507,
+        "totalSnippets": 248,
+        "stars": 0,
+        "trustScore": 2.9,
+        "benchmarkScore": 94,
+        "versions": []
+      }
+    ],
+    "authentication_used": true,
+    "redirects_followed": false
+  },
+  "provider_display": {
+    "tokens": 27507,
+    "snippets": 248,
+    "scope": "Provider page display; not an adoption or task-success metric."
   }
 }

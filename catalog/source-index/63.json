@@ -60,6 +60,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "650691893f7b71c6998aaebc2bcd4b76c7c8f6d9e6a7b7d44bfa51e257ead349",
       "record_version": "source-650691893f7b71c6998aaebc2bcd4b76c7c8f6d9e6a7b7d44bfa51e257ead349"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-7001-servo-j-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+      "record_version": "source-042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353"
     }
   ]
 }

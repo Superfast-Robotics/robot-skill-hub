@@ -30,6 +30,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "f11c1d794c6217b76d4b76c554f643a698246e5df3f50fba8fd65526f8e5ca09",
       "record_version": "source-f11c1d794c6217b76d4b76c554f643a698246e5df3f50fba8fd65526f8e5ca09"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-0003-api-get-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+      "record_version": "source-7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661"
     }
   ]
 }

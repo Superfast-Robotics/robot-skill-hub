@@ -24,6 +24,9 @@ class CatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         for folder in ("catalog", "schemas", "recipes", "docs", "web"):
             shutil.copytree(self.real_root / folder, self.root / folder)
+        guide = Path("skills/find-robot-skills/references/source-files.md")
+        (self.root / guide).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(self.real_root / guide, self.root / guide)
         if (self.real_root / "server.json").exists():
             shutil.copyfile(self.real_root / "server.json", self.root / "server.json")
         builder.ROOT = self.root
@@ -236,7 +239,7 @@ class CatalogTests(unittest.TestCase):
             self.assertIn(text, home)
         self.assertLess(len(home), 12000)
         contract = json.loads((site / "agent.json").read_text(encoding="utf-8"))
-        for key in ("search_url", "api_search_url", "mcp_url", "openapi_url", "intake_schema_url"):
+        for key in ("search_url", "api_search_url", "mcp_url", "openapi_url", "intake_schema_url", "source_files_guide_url"):
             self.assertIn(key, contract["resources"])
         self.assertEqual(contract["resources"]["search_url"], "https://api.superfastrobotics.com/v1/search")
         self.assertEqual(contract["resources"]["search_index_url"], "https://example.test/hub/catalog/v1/search.json")
@@ -244,6 +247,9 @@ class CatalogTests(unittest.TestCase):
         official = json.loads((self.root / "catalog/references.json").read_text(encoding="utf-8"))["records"][0]
         self.assertIn("/references/" + official["id"] + "/", sitemap)
         self.assertIn("/openapi.json", sitemap)
+        self.assertIn("/source-files.md", sitemap)
+        self.assertEqual((site / "source-files.md").read_bytes(),
+                         (self.root / "skills/find-robot-skills/references/source-files.md").read_bytes())
 
     def test_public_agent_guides_and_their_local_links_are_published(self):
         self.build()

@@ -1,0 +1,1899 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+  "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+  "git_tree_sha": "8f678d1f2661068414fdd7b1b924df09c7f36a3f",
+  "git_tree_untruncated": true,
+  "source_pin_set_sha256": "8367258317e44910fe078c672e2ede838f1093aec93555f644d38aa62c564a1d",
+  "source_pin_set_hash_encoding": "Sorted UTF-8 canonical JSON list with sorted keys/compact separators and final LF",
+  "scope": {
+    "sources": 12,
+    "source_bytes": 24212,
+    "supporting_text_files": 10,
+    "supporting_text_bytes": 349882,
+    "all_text_files": 22,
+    "all_text_bytes": 374094,
+    "source_modes": {
+      "100644": 12
+    },
+    "source_kind": "python_top_level_script",
+    "main_guards": 0,
+    "named_models": [
+      "xarm5",
+      "xarm6",
+      "xarm7"
+    ],
+    "generic_scripts_without_model_label": 9,
+    "inverse_kinematics_entrypoint_capabilities": 0,
+    "coverage": "Exactly twelve selected xArm SDK scripts; no exhaustive upstream, usage or robot-success claim."
+  },
+  "source_pins": [
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/0002-get_property.py",
+      "sha256": "4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2",
+      "bytes": 2091
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/0003-api_get.py",
+      "sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+      "bytes": 1586
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/1001-move_line.py",
+      "sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+      "bytes": 2973
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/1009-cartesian_velocity_control.py",
+      "sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+      "bytes": 1583
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/2000-joint_velocity_control.py",
+      "sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+      "bytes": 1353
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/3002-record_trajectory.py",
+      "sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+      "bytes": 1366
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/5004-set_gripper.py",
+      "sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+      "bytes": 1269
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/5008-get_cgpio_state.py",
+      "sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+      "bytes": 1520
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/7001-servo_j.py",
+      "sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+      "bytes": 1477
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm5/2001-move_joint.py",
+      "sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+      "bytes": 2963
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm6/2001-move_joint.py",
+      "sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+      "bytes": 2999
+    },
+    {
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm7/2001-move_joint.py",
+      "sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+      "bytes": 3032
+    }
+  ],
+  "all_checked_text_pins": [
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/0002-get_property.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0002-get_property.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0002-get_property.py",
+      "sha256": "4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2",
+      "bytes": 2091,
+      "git_blob_sha1": "edced97fbff7b2ff3f869da776ab081b8d80f94f",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/0003-api_get.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0003-api_get.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0003-api_get.py",
+      "sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+      "bytes": 1586,
+      "git_blob_sha1": "9bc188dcea6518ad34762bf834f1d7b5fc35ab2c",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/1001-move_line.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1001-move_line.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1001-move_line.py",
+      "sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+      "bytes": 2973,
+      "git_blob_sha1": "45f7c6877117a9093b141c115df3de0568e8fef3",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/1009-cartesian_velocity_control.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1009-cartesian_velocity_control.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1009-cartesian_velocity_control.py",
+      "sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+      "bytes": 1583,
+      "git_blob_sha1": "24072de05494d2bcee29b6a3722b8aa2cabcbc81",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/2000-joint_velocity_control.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/2000-joint_velocity_control.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/2000-joint_velocity_control.py",
+      "sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+      "bytes": 1353,
+      "git_blob_sha1": "ddb83795abdcf3860b06ec1a3efec27604a4ad26",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/5004-set_gripper.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5004-set_gripper.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5004-set_gripper.py",
+      "sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+      "bytes": 1269,
+      "git_blob_sha1": "c3d6619b5bef91b705cd709d23fc663cfe3ac60d",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/5008-get_cgpio_state.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5008-get_cgpio_state.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5008-get_cgpio_state.py",
+      "sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+      "bytes": 1520,
+      "git_blob_sha1": "4a5e71f30a1a933ea9d4e2496a3d06510f393b40",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/7001-servo_j.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/7001-servo_j.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/7001-servo_j.py",
+      "sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+      "bytes": 1477,
+      "git_blob_sha1": "f602faf067c55972d7406547335a96e550095791",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/common/3002-record_trajectory.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/3002-record_trajectory.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/3002-record_trajectory.py",
+      "sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+      "bytes": 1366,
+      "git_blob_sha1": "5a133390febe813ed31e47e5cbc37644c71d9e2d",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm5/2001-move_joint.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm5/2001-move_joint.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm5/2001-move_joint.py",
+      "sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+      "bytes": 2963,
+      "git_blob_sha1": "4668540329f722b98b1f82e76f19c1e8f7ccf0f3",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm6/2001-move_joint.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm6/2001-move_joint.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm6/2001-move_joint.py",
+      "sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+      "bytes": 2999,
+      "git_blob_sha1": "331fab33863755aec040dadb006556cc9f89c800",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/xarm7/2001-move_joint.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm7/2001-move_joint.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm7/2001-move_joint.py",
+      "sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+      "bytes": 3032,
+      "git_blob_sha1": "ca7e6d3f0bb9fbc69108c8a9ddad6d72b119064e",
+      "git_mode": "100644",
+      "purpose": "selected entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "LICENSE",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+      "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+      "bytes": 1521,
+      "git_blob_sha1": "182843504ba6ad5ee6d12fdaf78e0e89d2197eb5",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "README.md",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+      "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+      "bytes": 16139,
+      "git_blob_sha1": "2444ffaaeb2c71d53d3c742d1cab368023db9c5e",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "README.rst",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+      "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+      "bytes": 1811,
+      "git_blob_sha1": "6ce46f9fd390059aa1f2075dbd362cffd53ffe45",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "setup.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+      "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+      "bytes": 2402,
+      "git_blob_sha1": "2716d44655b49e80f2dab823f5b4bb97c1659a91",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "pyproject.toml",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+      "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+      "bytes": 1640,
+      "git_blob_sha1": "c133c69f2d593e2c015808ef52440860217b576a",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "requirements.txt",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "git_mode": "100644",
+      "purpose": "license/author/setup text"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "xarm/version.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+      "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+      "bytes": 24,
+      "git_blob_sha1": "bbf2b72589a2236b25931f7df1200f2ffe27f835",
+      "git_mode": "100644",
+      "purpose": "version/connection setup declaration"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "example/wrapper/robot.conf",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+      "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+      "bytes": 25,
+      "git_blob_sha1": "e5c3da2929532ab65c9379de15757175caa94a7b",
+      "git_mode": "100644",
+      "purpose": "version/connection setup declaration"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "xarm/wrapper/xarm_api.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/wrapper/xarm_api.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/xarm/wrapper/xarm_api.py",
+      "sha256": "9d7f7693c32c60e18086a9b79f73a7a3a1b4993d82e132210d13b1874f6a8c4c",
+      "bytes": 225749,
+      "git_blob_sha1": "994981061e2b0ccd887f71ebbc500177e6109212",
+      "git_mode": "100644",
+      "purpose": "IK API/implementation inspection only; not an operational entrypoint"
+    },
+    {
+      "project": "xarm-python-sdk",
+      "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+      "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "path": "xarm/x3/xarm.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/x3/xarm.py",
+      "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/xarm/x3/xarm.py",
+      "sha256": "0c724a60aaf1ed318c0e50b8e7098bc0ab73869fc41cc72bd5c8cd62a65246a7",
+      "bytes": 100571,
+      "git_blob_sha1": "30dde3542ce871c59581322ffda205a73818488d",
+      "git_mode": "100644",
+      "purpose": "IK API/implementation inspection only; not an operational entrypoint"
+    }
+  ],
+  "static_entrypoint_reviews": [
+    {
+      "path": "example/wrapper/common/0002-get_property.py",
+      "sha256": "4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2",
+      "bytes": 2091,
+      "git_blob_sha1": "edced97fbff7b2ff3f869da776ab081b8d80f94f",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 43,
+      "representative_operational_call": "arm.motion_enable",
+      "representative_call_lines": [
+        44
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 44
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 45
+        },
+        {
+          "name": "arm.set_state",
+          "line": 46
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 78
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/0003-api_get.py",
+      "sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+      "bytes": 1586,
+      "git_blob_sha1": "9bc188dcea6518ad34762bf834f1d7b5fc35ab2c",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 42,
+      "representative_operational_call": "arm.get_position",
+      "representative_call_lines": [
+        52,
+        53
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 43
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 44
+        },
+        {
+          "name": "arm.set_state",
+          "line": 45
+        },
+        {
+          "name": "arm.get_version",
+          "line": 48
+        },
+        {
+          "name": "arm.get_state",
+          "line": 49
+        },
+        {
+          "name": "arm.get_cmdnum",
+          "line": 50
+        },
+        {
+          "name": "arm.get_err_warn_code",
+          "line": 51
+        },
+        {
+          "name": "arm.get_position",
+          "line": 52
+        },
+        {
+          "name": "arm.get_position",
+          "line": 53
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 55
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 57
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 59
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/1001-move_line.py",
+      "sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+      "bytes": 2973,
+      "git_blob_sha1": "45f7c6877117a9093b141c115df3de0568e8fef3",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 42,
+      "representative_operational_call": "arm.set_position",
+      "representative_call_lines": [
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        65,
+        67,
+        69,
+        71,
+        73,
+        75
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 43
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 44
+        },
+        {
+          "name": "arm.set_state",
+          "line": 45
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 47
+        },
+        {
+          "name": "arm.set_position",
+          "line": 49
+        },
+        {
+          "name": "arm.get_position",
+          "line": 50
+        },
+        {
+          "name": "arm.get_position",
+          "line": 50
+        },
+        {
+          "name": "arm.set_position",
+          "line": 51
+        },
+        {
+          "name": "arm.get_position",
+          "line": 52
+        },
+        {
+          "name": "arm.get_position",
+          "line": 52
+        },
+        {
+          "name": "arm.set_position",
+          "line": 53
+        },
+        {
+          "name": "arm.get_position",
+          "line": 54
+        },
+        {
+          "name": "arm.get_position",
+          "line": 54
+        },
+        {
+          "name": "arm.set_position",
+          "line": 55
+        },
+        {
+          "name": "arm.get_position",
+          "line": 56
+        },
+        {
+          "name": "arm.get_position",
+          "line": 56
+        },
+        {
+          "name": "arm.set_position",
+          "line": 57
+        },
+        {
+          "name": "arm.get_position",
+          "line": 58
+        },
+        {
+          "name": "arm.get_position",
+          "line": 58
+        },
+        {
+          "name": "arm.set_position",
+          "line": 59
+        },
+        {
+          "name": "arm.get_position",
+          "line": 60
+        },
+        {
+          "name": "arm.get_position",
+          "line": 60
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 63
+        },
+        {
+          "name": "arm.set_position",
+          "line": 65
+        },
+        {
+          "name": "arm.get_position",
+          "line": 66
+        },
+        {
+          "name": "arm.get_position",
+          "line": 66
+        },
+        {
+          "name": "arm.set_position",
+          "line": 67
+        },
+        {
+          "name": "arm.get_position",
+          "line": 68
+        },
+        {
+          "name": "arm.get_position",
+          "line": 68
+        },
+        {
+          "name": "arm.set_position",
+          "line": 69
+        },
+        {
+          "name": "arm.get_position",
+          "line": 70
+        },
+        {
+          "name": "arm.get_position",
+          "line": 70
+        },
+        {
+          "name": "arm.set_position",
+          "line": 71
+        },
+        {
+          "name": "arm.get_position",
+          "line": 72
+        },
+        {
+          "name": "arm.get_position",
+          "line": 72
+        },
+        {
+          "name": "arm.set_position",
+          "line": 73
+        },
+        {
+          "name": "arm.get_position",
+          "line": 74
+        },
+        {
+          "name": "arm.get_position",
+          "line": 74
+        },
+        {
+          "name": "arm.set_position",
+          "line": 75
+        },
+        {
+          "name": "arm.get_position",
+          "line": 76
+        },
+        {
+          "name": "arm.get_position",
+          "line": 76
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 78
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 79
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/1009-cartesian_velocity_control.py",
+      "sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+      "bytes": 1583,
+      "git_blob_sha1": "24072de05494d2bcee29b6a3722b8aa2cabcbc81",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 42,
+      "representative_operational_call": "arm.vc_set_cartesian_velocity",
+      "representative_call_lines": [
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        69
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 43
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 44
+        },
+        {
+          "name": "arm.set_state",
+          "line": 45
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 48
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 51
+        },
+        {
+          "name": "arm.set_state",
+          "line": 52
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 55
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 57
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 59
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 61
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 63
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 65
+        },
+        {
+          "name": "arm.vc_set_cartesian_velocity",
+          "line": 69
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 71
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/2000-joint_velocity_control.py",
+      "sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+      "bytes": 1353,
+      "git_blob_sha1": "ddb83795abdcf3860b06ec1a3efec27604a4ad26",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 42,
+      "representative_operational_call": "arm.vc_set_joint_velocity",
+      "representative_call_lines": [
+        58,
+        60,
+        64
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 43
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 44
+        },
+        {
+          "name": "arm.set_state",
+          "line": 45
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 48
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 51
+        },
+        {
+          "name": "arm.set_state",
+          "line": 52
+        },
+        {
+          "name": "arm.vc_set_joint_velocity",
+          "line": 58
+        },
+        {
+          "name": "arm.vc_set_joint_velocity",
+          "line": 60
+        },
+        {
+          "name": "arm.vc_set_joint_velocity",
+          "line": 64
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 66
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/5004-set_gripper.py",
+      "sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+      "bytes": 1269,
+      "git_blob_sha1": "c3d6619b5bef91b705cd709d23fc663cfe3ac60d",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 31,
+      "representative_operational_call": "arm.set_gripper_position",
+      "representative_call_lines": [
+        47,
+        50
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 32
+        },
+        {
+          "name": "arm.clean_error",
+          "line": 33
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 34
+        },
+        {
+          "name": "arm.set_state",
+          "line": 35
+        },
+        {
+          "name": "arm.set_gripper_mode",
+          "line": 38
+        },
+        {
+          "name": "arm.set_gripper_enable",
+          "line": 41
+        },
+        {
+          "name": "arm.set_gripper_speed",
+          "line": 44
+        },
+        {
+          "name": "arm.set_gripper_position",
+          "line": 47
+        },
+        {
+          "name": "arm.set_gripper_position",
+          "line": 50
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/5008-get_cgpio_state.py",
+      "sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+      "bytes": 1520,
+      "git_blob_sha1": "4a5e71f30a1a933ea9d4e2496a3d06510f393b40",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 30,
+      "representative_operational_call": "arm.get_cgpio_state",
+      "representative_call_lines": [
+        37
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.clean_warn",
+          "line": 33
+        },
+        {
+          "name": "arm.clean_error",
+          "line": 35
+        },
+        {
+          "name": "arm.get_cgpio_state",
+          "line": 37
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/7001-servo_j.py",
+      "sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+      "bytes": 1477,
+      "git_blob_sha1": "f602faf067c55972d7406547335a96e550095791",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 42,
+      "representative_operational_call": "arm.set_servo_angle_j",
+      "representative_call_lines": [
+        56,
+        61
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 43
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 44
+        },
+        {
+          "name": "arm.set_state",
+          "line": 45
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 47
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 49
+        },
+        {
+          "name": "arm.set_state",
+          "line": 50
+        },
+        {
+          "name": "arm.set_servo_angle_j",
+          "line": 56
+        },
+        {
+          "name": "arm.set_servo_angle_j",
+          "line": 61
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 65
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/common/3002-record_trajectory.py",
+      "sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+      "bytes": 1366,
+      "git_blob_sha1": "5a133390febe813ed31e47e5cbc37644c71d9e2d",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 43,
+      "representative_operational_call": "arm.start_record_trajectory",
+      "representative_call_lines": [
+        53
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 44
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 45
+        },
+        {
+          "name": "arm.set_state",
+          "line": 46
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 50
+        },
+        {
+          "name": "arm.set_state",
+          "line": 51
+        },
+        {
+          "name": "arm.start_record_trajectory",
+          "line": 53
+        },
+        {
+          "name": "arm.stop_record_trajectory",
+          "line": 58
+        },
+        {
+          "name": "arm.save_record_trajectory",
+          "line": 59
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 64
+        },
+        {
+          "name": "arm.set_state",
+          "line": 65
+        }
+      ],
+      "imports": [
+        "configparser",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/xarm5/2001-move_joint.py",
+      "sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+      "bytes": 2963,
+      "git_blob_sha1": "4668540329f722b98b1f82e76f19c1e8f7ccf0f3",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 43,
+      "representative_operational_call": "arm.set_servo_angle",
+      "representative_call_lines": [
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 44
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 45
+        },
+        {
+          "name": "arm.set_state",
+          "line": 46
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 48
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 51
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 53
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 55
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 57
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 59
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 61
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 65
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 67
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 69
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 71
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 73
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 75
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 77
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 81
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 82
+        }
+      ],
+      "imports": [
+        "configparser",
+        "math",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/xarm6/2001-move_joint.py",
+      "sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+      "bytes": 2999,
+      "git_blob_sha1": "331fab33863755aec040dadb006556cc9f89c800",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 43,
+      "representative_operational_call": "arm.set_servo_angle",
+      "representative_call_lines": [
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 44
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 45
+        },
+        {
+          "name": "arm.set_state",
+          "line": 46
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 48
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 51
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 53
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 55
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 57
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 59
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 61
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 65
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 67
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 69
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 71
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 73
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 75
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 77
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 81
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 82
+        }
+      ],
+      "imports": [
+        "configparser",
+        "math",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    },
+    {
+      "path": "example/wrapper/xarm7/2001-move_joint.py",
+      "sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+      "bytes": 3032,
+      "git_blob_sha1": "ca7e6d3f0bb9fbc69108c8a9ddad6d72b119064e",
+      "git_mode": "100644",
+      "entrypoint_kind": "python_top_level_script",
+      "has_main_guard": false,
+      "sdk_import": "from xarm.wrapper import XArmAPI",
+      "constructor_line": 43,
+      "representative_operational_call": "arm.set_servo_angle",
+      "representative_call_lines": [
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77
+      ],
+      "module_or_control_flow_sdk_calls": [
+        {
+          "name": "arm.motion_enable",
+          "line": 44
+        },
+        {
+          "name": "arm.set_mode",
+          "line": 45
+        },
+        {
+          "name": "arm.set_state",
+          "line": 46
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 48
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 51
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 52
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 53
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 54
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 55
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 56
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 57
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 58
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 59
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 60
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 61
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 62
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 65
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 67
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 68
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 69
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 70
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 71
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 72
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 73
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 74
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 75
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 76
+        },
+        {
+          "name": "arm.set_servo_angle",
+          "line": 77
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.get_servo_angle",
+          "line": 78
+        },
+        {
+          "name": "arm.move_gohome",
+          "line": 81
+        },
+        {
+          "name": "arm.disconnect",
+          "line": 82
+        }
+      ],
+      "imports": [
+        "configparser",
+        "math",
+        "os",
+        "sys",
+        "time",
+        "xarm.wrapper"
+      ],
+      "inverse_kinematics_capability": false,
+      "runtime_verification": "not_run",
+      "upstream_code_executed": false
+    }
+  ],
+  "ik_library_inspections_not_entrypoints": [
+    {
+      "path": "xarm/wrapper/xarm_api.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/wrapper/xarm_api.py",
+      "sha256": "9d7f7693c32c60e18086a9b79f73a7a3a1b4993d82e132210d13b1874f6a8c4c",
+      "bytes": 225749,
+      "method": "get_inverse_kinematics",
+      "line": 1837,
+      "calls": [
+        "self._arm.get_inverse_kinematics"
+      ],
+      "counted_as_entrypoint": false
+    },
+    {
+      "path": "xarm/wrapper/xarm_api.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/wrapper/xarm_api.py",
+      "sha256": "9d7f7693c32c60e18086a9b79f73a7a3a1b4993d82e132210d13b1874f6a8c4c",
+      "bytes": 225749,
+      "method": "get_forward_kinematics",
+      "line": 1857,
+      "calls": [
+        "self._arm.get_forward_kinematics"
+      ],
+      "counted_as_entrypoint": false
+    },
+    {
+      "path": "xarm/x3/xarm.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/x3/xarm.py",
+      "sha256": "0c724a60aaf1ed318c0e50b8e7098bc0ab73869fc41cc72bd5c8cd62a65246a7",
+      "bytes": 100571,
+      "method": "get_inverse_kinematics",
+      "line": 1038,
+      "calls": [
+        "len",
+        "math.degrees",
+        "min",
+        "range",
+        "self._check_code",
+        "self.arm_cmd.get_ik",
+        "self.version_is_ge",
+        "to_radian",
+        "xarm_is_connected"
+      ],
+      "counted_as_entrypoint": false
+    },
+    {
+      "path": "xarm/x3/xarm.py",
+      "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/x3/xarm.py",
+      "sha256": "0c724a60aaf1ed318c0e50b8e7098bc0ab73869fc41cc72bd5c8cd62a65246a7",
+      "bytes": 100571,
+      "method": "get_forward_kinematics",
+      "line": 1062,
+      "calls": [
+        "len",
+        "math.degrees",
+        "min",
+        "range",
+        "self._check_code",
+        "self.arm_cmd.get_fk",
+        "to_radian",
+        "xarm_is_connected"
+      ],
+      "counted_as_entrypoint": false
+    }
+  ],
+  "ik_limit": "Actual SDK methods delegate to controller commands self.arm_cmd.get_ik/get_fk; no standalone IK example in the12 reviewed scripts and no offline numerical solver or IK capability is inferred. Wrapper docstrings separately declare firmware>=2.7.103 for optional limited/ref_angles parameters.",
+  "zero_byte_requirement_file": {
+    "path": "requirements.txt",
+    "meaning": "Exactly empty frozen text file; retained here and in per-artifact declarations, not forced into positive-byte/nonempty-anchor importer evidence pins.",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "static_script_descriptor_contract": {
+    "format": "from_import_constructor_methods",
+    "fields": [
+      "import_module",
+      "import_name",
+      "import_binding",
+      "instance",
+      "methods"
+    ],
+    "subset": "One literal unconditional top-level absolute from-import and one later direct constructor assignment. Every declared direct instance method must occur in following module/control-flow syntax. Function/class/lambda and comprehension/generator scopes do not qualify. Rebound/deleted/mutated watched bindings and dynamic namespace APIs are rejected conservatively.",
+    "meaning": "Static syntactic evidence only, without execution, reachability or runtime compatibility inference."
+  },
+  "validation": {
+    "all_frozen_sha256_sizes_git_blobs_modes_verified": true,
+    "all_selected_sources_have_real_module_scope_sdk_constructor_and_operational_calls": true,
+    "python_main_not_claimed": true,
+    "importer_candidate_build_performed": true,
+    "reason": "Bounded reviewed SDK import/constructor/method AST policy implemented and tested; full candidate built twice offline.",
+    "upstream_import_exec_install": false,
+    "hardware_simulator_gpu_or_model_contact": false,
+    "models_binaries_or_robot_assets_downloaded": false,
+    "compatibility_combinations_inferred": false,
+    "hub_adapter_invented": false,
+    "runtime_verification": "not_run",
+    "source_reference_only": true,
+    "explicit_fetch_requested_for_this_verification": false,
+    "existing_1236_records_preserved_exactly": true,
+    "candidate_official_record_count": 1248,
+    "focused_workflow_tests_passed": 32,
+    "candidate_source_index_and_shards_verified": true
+  },
+  "canonical_append": {
+    "baseline_official_records": 1236,
+    "current_official_records": 1248,
+    "added_ids": [
+      "xarm-python-sdk-example-wrapper-common-0002-get-property-py",
+      "xarm-python-sdk-example-wrapper-common-0003-api-get-py",
+      "xarm-python-sdk-example-wrapper-common-1001-move-line-py",
+      "xarm-python-sdk-example-wrapper-common-1009-cartesian-velocity-control-py",
+      "xarm-python-sdk-example-wrapper-common-2000-joint-velocity-control-py",
+      "xarm-python-sdk-example-wrapper-common-3002-record-trajectory-py",
+      "xarm-python-sdk-example-wrapper-common-5004-set-gripper-py",
+      "xarm-python-sdk-example-wrapper-common-5008-get-cgpio-state-py",
+      "xarm-python-sdk-example-wrapper-common-7001-servo-j-py",
+      "xarm-python-sdk-example-wrapper-xarm5-2001-move-joint-py",
+      "xarm-python-sdk-example-wrapper-xarm6-2001-move-joint-py",
+      "xarm-python-sdk-example-wrapper-xarm7-2001-move-joint-py"
+    ],
+    "removed_ids": [],
+    "changed_existing_ids": [],
+    "all_original_objects_preserved_exactly": true,
+    "offline_importer_rebuilt": true,
+    "source_index_and_shards_checked": true,
+    "source_code_executed": false,
+    "importer_sha256": "126175f6189cfb608202e7d199c8a5332f4f2c673ff0cc78608f4902f980e2a6",
+    "manifest_sha256": "e9e2a60cbbef9cc28df141805d53bf8272e4563760219be91fde7912c4cde437",
+    "references_sha256": "c94e3c5effe2092ca53345a96ecb91043ae689f816e7e14fb77bebe92925b485"
+  }
+}

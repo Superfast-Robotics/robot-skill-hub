@@ -36,6 +36,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "0ecf2369efbbf737c03b5fc1526a288dc894ae7b92592f64169f5e620fc5f702",
       "record_version": "source-0ecf2369efbbf737c03b5fc1526a288dc894ae7b92592f64169f5e620fc5f702"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-2000-joint-velocity-control-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+      "record_version": "source-9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020"
     }
   ]
 }

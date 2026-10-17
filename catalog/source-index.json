@@ -7416,6 +7416,78 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "6cb838ca33399f1800863e3e7f54f2b1da6a34776a3e66890fe1128fbcf24353",
       "record_version": "source-6cb838ca33399f1800863e3e7f54f2b1da6a34776a3e66890fe1128fbcf24353"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-0002-get-property-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2",
+      "record_version": "source-4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-0003-api-get-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+      "record_version": "source-7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1001-move-line-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+      "record_version": "source-e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1009-cartesian-velocity-control-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+      "record_version": "source-cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-2000-joint-velocity-control-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+      "record_version": "source-9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-3002-record-trajectory-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+      "record_version": "source-972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5004-set-gripper-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+      "record_version": "source-dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5008-get-cgpio-state-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+      "record_version": "source-0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-7001-servo-j-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+      "record_version": "source-042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm5-2001-move-joint-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+      "record_version": "source-3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm6-2001-move-joint-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+      "record_version": "source-1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm7-2001-move-joint-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+      "record_version": "source-00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d"
     }
   ]
 }

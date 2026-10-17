@@ -314,8 +314,9 @@ class IndependentSkillTests(unittest.TestCase):
                               ["prepare", "maniskill-panda-pick-cube", "--json"],
                               ["--json", "--catalog"]):
                 with self.subTest(arguments=arguments):
-                    executed = subprocess.run([sys.executable, str(isolated / "scripts/rsh.py"), *arguments],
-                                              cwd=temporary, input="", capture_output=True, text=True, timeout=15)
+                    executed = subprocess.run([sys.executable, str(isolated / "scripts/rsh.py"), "--offline", *arguments],
+                                              cwd=temporary, input="", capture_output=True, text=True, timeout=15,
+                                              env={**os.environ, "RSH_TELEMETRY": "off"})
                     result = json.loads(executed.stdout)
                     self.assertIn("status", result)
                     self.assertNotIn("Traceback", executed.stdout)

@@ -38,3 +38,11 @@ A later finite selection adds **47 workflow source references** alongside the or
 - **14 OpenVLA, Diffusion Policy, ACT and Octo sources** have a separate [canonical policy source review](canonical-policy-sources.md) and [receipt](../evidence/sources/canonical-policy-upstreams-2026-10-18.json).
 
 These additions preserve their separate source/license/setup pins and per-workflow requirements. The importer checks a pinned literal console registration for NoMaD; all remaining additions have guarded Python entrypoints. Reviewed robot names remain discovery declarations, with no inferred compatibility combinations. None of the additions increases runtime verification or supplies a Hub adapter.
+
+## xArm SDK top-level scripts
+
+Twelve additional [xArm Python SDK](https://github.com/xArm-Developer/xArm-Python-SDK/tree/d911319cebc45142613e18086aabb8067b18ab7f) examples cover Cartesian and joint commands, velocity control, servo targets, grippers, GPIO, property access and trajectory recording. The [source receipt](../evidence/sources/xarm-sdk-2026-10-18.json) pins 22 text files totaling 374,094 bytes, including 24,212 bytes in the twelve examples. All 1,236 previously published official reference objects were preserved exactly.
+
+These are unguarded scripts: importing them can connect and initialize control state. Property/getter examples also issue initialization commands. The importer now accepts the explicit `python_top_level_script` form, checking a reviewed literal SDK import, direct constructor binding and subsequent instance method calls in module/control-flow syntax. It excludes deferred function, class, lambda and comprehension bodies. This establishes syntactic presence only; execution, reachability and compatibility remain unverified. No upstream code was imported, installed or run during this review.
+
+Only the three named source paths receive `xarm5`, `xarm6` and `xarm7` discovery labels; nine common examples retain unknown model scope. None of the twelve is an IK entrypoint. Source terms are BSD-3-Clause; SDK version 1.18.5, Python declarations and firmware-specific trajectory requirements remain separate upstream declarations. All records retain `source_reference`, `hub_prepare: false` and `runtime_verification: not_run`. Fetching their verified inert bytes uses `fetch-source`; it does not prepare or execute hardware control.

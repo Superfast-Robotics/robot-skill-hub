@@ -5,11 +5,12 @@ import hashlib
 import json
 import re
 import time
+import urllib.error
 import urllib.parse
 
 from . import discovery
 from .core import (COMMIT, ENVIRONMENT_FIELDS, SHA256, SOURCE_REVISION, RshError,
-                   compatibility, reference_environment_matches, require_url, validate_record)
+                   compatibility, reference_environment_matches, require_url, validate_find_pagination, validate_record)
 
 IDENT = re.compile(r"[a-z0-9][a-z0-9-]{0,79}\Z")
 
@@ -87,18 +88,25 @@ def selected_catalog(skill_id, *, offline=False, refresh=False, persist=True):
     raise RshError("public_record_not_cached", "No individually cached public record is available.", next_action="use_bundled_discovery")
 
 
-def _search(value, environment, limit, origin, fetched_at=None, *, params=None):
+def _search(value, environment, limit, origin, fetched_at=None, *, params=None, offset=0, hub_commit=None):
     hub = _hub(value)
+    _need(isinstance(hub, str), "Public search must identify its exact Hub commit as a string.")
+    if hub_commit is not None and hub != hub_commit:
+        raise RshError("catalog_generation_changed", "Public search returned a different Hub generation.",
+                       next_action="restart_search_without_hub_commit", expected_hub_commit=hub_commit, catalog_hub_commit=hub)
     rows, total = value.get("results"), value.get("total")
     _need(isinstance(rows, list) and len(rows) <= limit and type(total) is int and total >= len(rows), "Invalid bounded search result.")
-    _need(len(rows) == min(limit, total) and (value.get("next") is not None) == (total > limit), "Search page omits rows or pagination.")
-    _need(value.get("execution_performed") is False and value.get("offset") == 0 and value.get("limit") == limit
+    _need(len(rows) == min(limit, max(total - offset, 0)) and (value.get("next") is not None) == (offset + limit < total), "Search page omits rows or pagination.")
+    _need(value.get("execution_performed") is False and type(value.get("offset")) is int and value["offset"] == offset
+          and type(value.get("limit")) is int and value["limit"] == limit
           and isinstance(value.get("coverage"), dict) and value["coverage"].get("complete") is True,
           "Search must remain read-only, complete and bounded by its requested pagination.")
     next_page = value.get("next")
     if next_page is not None:
-        _need(isinstance(params, dict) and next_page == {**params, "offset": limit, "hub_commit": hub}
-              and total > len(rows) and len(rows) == limit,
+        _need(isinstance(params, dict) and isinstance(next_page, dict)
+              and type(next_page.get("offset")) is int and type(next_page.get("limit")) is int
+              and next_page == {**params, "offset": offset + limit, "hub_commit": hub}
+              and total > offset + len(rows) and len(rows) == limit,
               "Search pagination must retain the exact bounded generation.")
     results = []
     seen = set()
@@ -137,15 +145,16 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None):
         if recipe:
             result["prepare_args"] = ["prepare", row["id"], "--expected-source-commit", row["source_commit"], "--expected-record-version", row["record_version"]]
         results.append(result)
-    return {"status": "ready", "results": results, "total": total, "execution_performed": False,
+    return {"status": "ready", "results": results, "total": total, "offset": offset, "limit": limit, "execution_performed": False,
             "catalog_hub_commit": hub, "references_hub_commit": hub, "catalog_origin": origin, "references_origin": origin,
             "references_discovery": {"origin": origin, "publication_hub_commit": hub, "fetched_at": fetched_at, "fallback_reasons": []},
             "search_backend": value.get("backend", "published_api"), "search_semantics": value.get("search_semantics"), "counts": value.get("counts"),
             "next": value.get("next"), "discovery_scope": "complete_public_query"}
 
 
-def search(query, environment, limit=3, *, refresh=False):
-    params = {"q": query, "limit": limit}
+def search(query, environment, limit=3, *, refresh=False, offset=0, hub_commit=None):
+    validate_find_pagination(limit, offset, hub_commit, maximum_limit=3)
+    params = {"q": query, "limit": limit, "offset": offset, **({"hub_commit": hub_commit} if hub_commit else {})}
     for key in ENVIRONMENT_FIELDS:
         if environment.get(key) not in (None, "", "unknown"):
             text = str(environment[key])
@@ -156,19 +165,24 @@ def search(query, environment, limit=3, *, refresh=False):
     cached = discovery._read_cache(key)
     if cached:
         try:
-            _search(cached["data"], environment, limit, "api_cache", cached["fetched_at"], params=params)
+            _search(cached["data"], environment, limit, "api_cache", cached["fetched_at"], params=params, offset=offset, hub_commit=hub_commit)
         except (RshError, KeyError, TypeError):
             cached = None
     if cached and not refresh and time.time() - cached["fetched_at"] < discovery.CACHE_SECONDS:
-        return _search(cached["data"], environment, limit, "api_cache", cached["fetched_at"], params=params)
+        return _search(cached["data"], environment, limit, "api_cache", cached["fetched_at"], params=params, offset=offset, hub_commit=hub_commit)
     try:
         value = discovery.fetch_public(discovery.API_BASE + "search?" + urllib.parse.urlencode(params), max_bytes=512 * 1024)
-        result = _search(value, environment, limit, "remote_api", time.time(), params=params)
+        result = _search(value, environment, limit, "remote_api", time.time(), params=params, offset=offset, hub_commit=hub_commit)
         discovery._write_cache(key, value)
         return result
-    except (OSError, ValueError, TypeError, RshError):
+    except (OSError, ValueError, TypeError, RshError) as error:
+        if isinstance(error, urllib.error.HTTPError) and error.code == 409:
+            raise RshError("catalog_generation_changed", "Search pagination belongs to a different published generation.",
+                           next_action="restart_search_without_hub_commit") from error
+        if isinstance(error, RshError) and error.result.get("reason_code") == "catalog_generation_changed":
+            raise
         if cached:
-            result = _search(cached["data"], environment, limit, "api_cache_fallback", cached["fetched_at"], params=params)
+            result = _search(cached["data"], environment, limit, "api_cache_fallback", cached["fetched_at"], params=params, offset=offset, hub_commit=hub_commit)
             result["references_discovery"]["fallback_reasons"] = ["public_search_unavailable"]
             return result
         raise

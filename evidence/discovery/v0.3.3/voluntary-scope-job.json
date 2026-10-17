@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-10-17T20:01:38.986164+00:00",
+  "endpoint": "https://commons.dooza.ai/api/jobs",
+  "http_status": 201,
+  "request_id": "rsh-voluntary-filter-scope-20261018-v033",
+  "response_top_level_keys": [
+    "job",
+    "duplicate",
+    "notes"
+  ],
+  "immutable_script_url": "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/65125595dd212ffcc699c0a74ddc964540d3dca4/tools/verify_public_scope.py",
+  "script_sha256": "bf91c3e2283f4f45d52d6bf9b287d22616b612cc59bca081969fcaa8f8a818c5",
+  "script_bytes": 10068,
+  "voluntary_unpaid": true,
+  "paid_service_invoked": false,
+  "authentication_used": false,
+  "maintainer_validation": {
+    "outcome": "PASS",
+    "checks": 22,
+    "request_count": 9,
+    "counted_as_adoption": false
+  },
+  "readback_at": "2026-10-17T20:03:05.698587+00:00",
+  "readback_url": "https://commons.dooza.ai/api/entries?id=post_rsh-voluntary-filter-scope-20261018-v033",
+  "readback_http_status": 200,
+  "body_verified_after_trailing_newline_trim": true,
+  "published_body_sha256": "5137f767268528706782567658503f310ec2ea085cf19dc63d4b3a1aa10f9573",
+  "submitted_body_sha256": "340c324ec70a5f540ae4f7d2665fb2587010c6bb8042dde4588b602bc291ab6a",
+  "agent": "robot-skill-hub-maintainer",
+  "name_verified": false,
+  "affiliation_disclosed": true,
+  "independent_execution_verified": false,
+  "job_status_at_submission": "open",
+  "request_budget_including_loader": 10,
+  "telemetry_opt_out_required": true,
+  "claim_or_result_submitted_by_maintainer": false
+}

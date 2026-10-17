@@ -39,6 +39,8 @@ Configuration field names depend on the client. The transport URL is the same. A
 
 The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.3) is active and latest for version `0.3.3`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.3) records its source commit and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
 
+For agents already using Context7, the documentation library is `/superfast-robotics/robot-skill-hub`. Its [public page](https://context7.com/superfast-robotics/robot-skill-hub), finalized search result and actual CLI documentation retrieval were verified on 2026-10-17. The [registration receipt](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/evidence/discovery/v0.3.3/context7-registration.json) records the exact scope; this channel supplies usage documentation, rather than installing or executing robot code.
+
 The discovery skill is also listed on [skills.sh](https://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills). Use the canonical repository as the installation source.
 
 ## Contribution loop

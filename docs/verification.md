@@ -1,5 +1,17 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Source-file retrieval and catalog follow-up
+
+The current catalog adds twelve [xArm SDK scripts](workflow-sources.md#xarm-sdk-top-level-scripts), preserving all 1,236 existing official source records exactly. Together with the existing community intake, the inventory is 17 preparation recipes, 1,249 source references and 3 findings. These additions have static source review only; no robot runtime, hardware contact or inferred environment compatibility was added.
+
+The installed CLI adds `fetch-source` for one exact source-reference file, independent of a preparation adapter. It verifies size and SHA-256, stores neutral `artifact.source` bytes plus source/license/base provenance, and supports verified offline cache reuse. It neither extracts archives nor installs or executes the source. Search now supports bounded `--offset` and `--hub-commit` continuation; changed generations fail rather than silently changing catalogs.
+
+An isolated installed-skill forward test initially found a server-close transport failure in all five source attempts. A real socketpair regression reproduced the socket-lifetime error and verified its correction. The corrected [source-acquisition receipt](../evidence/integration/v0.3.3/source-acquisition.json) records five successful files totaling 32,841 bytes: Spot Python, MoveIt C++, an agent instruction document, a Franka Xacro and YAML configuration. All source/license/base dictionaries and file hashes were retained, including unresolved and custom terms. Five offline reuses and one changed-pin refusal made no additional source request. Fetched instructions remained inert. This is internal maintainer validation, not outside adoption or robot execution.
+
+A directed offline pagination follow-up reached the previously hidden MoveIt and Franka targets on pages two and four through returned continuation metadata. It used six bounded search pages and one wrong-generation refusal with zero network attempts, retaining the original queries and the honest `e138db5a` snapshot. The first-page usability limitation and original failed downloads remain separately recorded.
+
+The final local Python suite ran 235 tests: 232 passed and three Windows symlink-privilege checks were skipped. The installed skill's format validator, targeted publication/link checks, five wire-contract tests and eleven sync tests passed. The API implementation and MCP server version remain 0.3.3; this follow-up changes the installed CLI, published guidance and catalog data. Earlier release receipts below retain their immutable scopes.
+
 ## CLI follow-up: exact finding recovery
 
 After the 0.3.3 preview, the CLI adds `flush --fingerprint` and returns the saved finding's exact fingerprint in recovery arguments. This addresses a denied entry sorting before the intended permitted entry. Selected recovery reads one fixed file without scanning or falling back, and retains the current policy gate. Unselected bounded-prefix behavior remains documented; generic queue fairness is not claimed.
@@ -164,7 +176,7 @@ See the [sanitized live integration proof](https://github.com/Superfast-Robotics
 
 ## Pending / unverified
 
-- The two initial `1.1.0` recipes have the bounded runtime evidence above. Standard 50-step benchmark completion remains unverified. The other 15 preparation recipes and 40 official source references have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
-- Platform automatic activation, unbranded agent discovery, external search indexing, skills.sh search inclusion and Context7 indexing remain **unverified**. The one fresh-agent forward test and repository install tests do not establish automatic activation or general model adoption.
+- The two initial `1.1.0` recipes have the bounded runtime evidence above. Standard 50-step benchmark completion remains unverified. The other 15 preparation recipes and source-reference catalog have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
+- Context7 registration, a finalized library search result and retrieval of actual Hub instructions with source links were confirmed at 2026-10-17 20:05 UTC in the [provider receipt](../evidence/discovery/v0.3.3/context7-registration.json). The then-unpublished source-file update is outside that indexing check. Platform automatic activation, general unbranded discovery, other search-engine indexing and skills.sh search inclusion remain **unverified**. Maintainer validation and repository install tests do not establish general model adoption.
 
 The original supplied planning documents remain local and were not published. No tokens, private datasets, session transcripts or full project logs were uploaded.

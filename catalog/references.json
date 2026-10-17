@@ -121192,6 +121192,2499 @@
         "entrypoint_kind": "native_main",
         "inspection_method": "automated_static"
       }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-0002-get-property-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/0002-get_property.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0002-get_property.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0002-get_property.py",
+        "sha256": "4290b8fa643822797c8e5351f6148760c52ba1b27eb54c32a8852d1dcc5dd4a2",
+        "bytes": 2091,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/0002-get_property.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot.",
+          "Despite its inspection purpose, the source enables motion and sets mode/state before reading properties or queries."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "motion_enable"
+          ],
+          "import_line": 20,
+          "constructor_line": 43,
+          "method_calls": [
+            {
+              "method": "motion_enable",
+              "line": 44
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: SDK state and property inspection",
+      "summary": "Read XArmAPI properties after initializing motion/control state. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "robot-state-inspection",
+        "sdk-properties"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "robot-state-inspection"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-0003-api-get-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/0003-api_get.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0003-api_get.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/0003-api_get.py",
+        "sha256": "7277c7d75d674f81741a6f3c39f6911d4c5cbae9b24418b6fd2dfe9003b68661",
+        "bytes": 1586,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/0003-api_get.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot.",
+          "Despite its inspection purpose, the source enables motion and sets mode/state before reading properties or queries."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "get_position"
+          ],
+          "import_line": 19,
+          "constructor_line": 42,
+          "method_calls": [
+            {
+              "method": "get_position",
+              "line": 52
+            },
+            {
+              "method": "get_position",
+              "line": 53
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Robot state and pose API queries",
+      "summary": "Query version, state, command count, warnings, Cartesian pose and joint angles. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "pose-inspection",
+        "robot-state-inspection"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "robot-state-inspection"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1001-move-line-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/1001-move_line.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1001-move_line.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1001-move_line.py",
+        "sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+        "bytes": 2973,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/1001-move_line.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_position"
+          ],
+          "import_line": 19,
+          "constructor_line": 42,
+          "method_calls": [
+            {
+              "method": "set_position",
+              "line": 49
+            },
+            {
+              "method": "set_position",
+              "line": 51
+            },
+            {
+              "method": "set_position",
+              "line": 53
+            },
+            {
+              "method": "set_position",
+              "line": 55
+            },
+            {
+              "method": "set_position",
+              "line": 57
+            },
+            {
+              "method": "set_position",
+              "line": 59
+            },
+            {
+              "method": "set_position",
+              "line": 65
+            },
+            {
+              "method": "set_position",
+              "line": 67
+            },
+            {
+              "method": "set_position",
+              "line": 69
+            },
+            {
+              "method": "set_position",
+              "line": 71
+            },
+            {
+              "method": "set_position",
+              "line": 73
+            },
+            {
+              "method": "set_position",
+              "line": 75
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Cartesian linear motion",
+      "summary": "Send hard-coded Cartesian linear moves with degree/radian variants. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "arm-control",
+        "cartesian-control",
+        "linear-motion"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "cartesian-control"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1009-cartesian-velocity-control-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/1009-cartesian_velocity_control.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1009-cartesian_velocity_control.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/1009-cartesian_velocity_control.py",
+        "sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+        "bytes": 1583,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0,
+            5
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/1009-cartesian_velocity_control.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "vc_set_cartesian_velocity"
+          ],
+          "import_line": 19,
+          "constructor_line": 42,
+          "method_calls": [
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 55
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 57
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 59
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 61
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 63
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 65
+            },
+            {
+              "method": "vc_set_cartesian_velocity",
+              "line": 69
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Cartesian velocity control",
+      "summary": "Initialize Cartesian velocity mode and send velocity commands. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "arm-control",
+        "cartesian-velocity-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "cartesian-control"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-2000-joint-velocity-control-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/2000-joint_velocity_control.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/2000-joint_velocity_control.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/2000-joint_velocity_control.py",
+        "sha256": "9c467e675b6606d66a48138b7896a9b5b1695ad5a6d6c8da145be2983203e020",
+        "bytes": 1353,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0,
+            4
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/2000-joint_velocity_control.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "vc_set_joint_velocity"
+          ],
+          "import_line": 19,
+          "constructor_line": 42,
+          "method_calls": [
+            {
+              "method": "vc_set_joint_velocity",
+              "line": 58
+            },
+            {
+              "method": "vc_set_joint_velocity",
+              "line": 60
+            },
+            {
+              "method": "vc_set_joint_velocity",
+              "line": 64
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Joint velocity control",
+      "summary": "Initialize joint velocity mode and send joint velocity commands. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "joint-control",
+        "joint-velocity-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "joint-control"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-3002-record-trajectory-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/3002-record_trajectory.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/3002-record_trajectory.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/3002-record_trajectory.py",
+        "sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+        "bytes": 1366,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0,
+            2
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": {
+            "declaration": ">=1.2.0",
+            "quote": "requires firmware 1.2.0 and above support",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/3002-record_trajectory.py",
+            "sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+            "meaning": "Per-source upstream requirement only, not observed firmware."
+          },
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/3002-record_trajectory.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot.",
+          "Source switches to manual mode, substitutes a timed delay for the recording interval and saves test.traj upstream; no trajectory was recorded or retrieved."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "start_record_trajectory"
+          ],
+          "import_line": 20,
+          "constructor_line": 43,
+          "method_calls": [
+            {
+              "method": "start_record_trajectory",
+              "line": 53
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Manual-mode trajectory recording",
+      "summary": "Enter manual mode, record a timed trajectory interval and save a named trajectory. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "manual-guidance",
+        "trajectory-recording"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "trajectory-recording"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5004-set-gripper-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/5004-set_gripper.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5004-set_gripper.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5004-set_gripper.py",
+        "sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+        "bytes": 1269,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility.",
+          "payload": "Source explicitly requires an attached gripper; its hardware/version is not verified."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/5004-set_gripper.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_gripper_position"
+          ],
+          "import_line": 19,
+          "constructor_line": 31,
+          "method_calls": [
+            {
+              "method": "set_gripper_position",
+              "line": 47
+            },
+            {
+              "method": "set_gripper_position",
+              "line": 50
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Attached gripper control",
+      "summary": "Configure, enable and position an attached gripper. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "end-effector-control",
+        "gripper-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "gripper-control"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5008-get-cgpio-state-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/5008-get_cgpio_state.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5008-get_cgpio_state.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/5008-get_cgpio_state.py",
+        "sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+        "bytes": 1520,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/5008-get_cgpio_state.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot.",
+          "The GPIO inspection script may clear warning/error conditions; it is not a strictly passive controller read."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "get_cgpio_state"
+          ],
+          "import_line": 18,
+          "constructor_line": 30,
+          "method_calls": [
+            {
+              "method": "get_cgpio_state",
+              "line": 37
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Controller GPIO state inspection",
+      "summary": "Clear warning/error conditions when present and inspect controller GPIO state. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "controller-gpio",
+        "io-inspection"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "io-inspection"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-7001-servo-j-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/common/7001-servo_j.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/7001-servo_j.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/common/7001-servo_j.py",
+        "sha256": "042e56a19e7b272e40219469e5835397bd777b136a533a0c01a9a6b90bfa8353",
+        "bytes": 1477,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0,
+            1
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/common/7001-servo_j.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_servo_angle_j"
+          ],
+          "import_line": 19,
+          "constructor_line": 42,
+          "method_calls": [
+            {
+              "method": "set_servo_angle_j",
+              "line": 56
+            },
+            {
+              "method": "set_servo_angle_j",
+              "line": 61
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: Joint servo stream",
+      "summary": "Initialize servo mode and stream joint-angle commands. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "joint-control",
+        "joint-servo-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "joint-control"
+      }
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm5-2001-move-joint-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/xarm5/2001-move_joint.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm5/2001-move_joint.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm5/2001-move_joint.py",
+        "sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+        "bytes": 2963,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "math",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/xarm5/2001-move_joint.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "robot_discovery": {
+          "scope": "The exact selected source path names this model example; filename/discovery label only. Controller, firmware, payload and runtime compatibility are unverified.",
+          "method": "reviewed_pinned_text_declaration",
+          "compatibility_inferred": false,
+          "evidence": [
+            {
+              "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm5/2001-move_joint.py",
+              "sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+              "bytes": 2963,
+              "quote": "/xarm5/",
+              "labels": [
+                "xarm5"
+              ],
+              "match_in": "source_path"
+            }
+          ]
+        },
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_servo_angle"
+          ],
+          "import_line": 20,
+          "constructor_line": 43,
+          "method_calls": [
+            {
+              "method": "set_servo_angle",
+              "line": 51
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 53
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 55
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 57
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 59
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 61
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 67
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 69
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 71
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 73
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 75
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 77
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: xarm5 joint motion example",
+      "summary": "Send the selected xarm5-path example's five-element joint targets. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "joint-control",
+        "joint-position-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "joint-control"
+      },
+      "robots": [
+        "xarm5"
+      ]
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm6-2001-move-joint-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/xarm6/2001-move_joint.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm6/2001-move_joint.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm6/2001-move_joint.py",
+        "sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+        "bytes": 2999,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "math",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/xarm6/2001-move_joint.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "robot_discovery": {
+          "scope": "The exact selected source path names this model example; filename/discovery label only. Controller, firmware, payload and runtime compatibility are unverified.",
+          "method": "reviewed_pinned_text_declaration",
+          "compatibility_inferred": false,
+          "evidence": [
+            {
+              "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm6/2001-move_joint.py",
+              "sha256": "1601b33bb56f24fbabc0030c41537c45ce31f724446cbc9a02a53fad4c882e2d",
+              "bytes": 2999,
+              "quote": "/xarm6/",
+              "labels": [
+                "xarm6"
+              ],
+              "match_in": "source_path"
+            }
+          ]
+        },
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_servo_angle"
+          ],
+          "import_line": 20,
+          "constructor_line": 43,
+          "method_calls": [
+            {
+              "method": "set_servo_angle",
+              "line": 51
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 53
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 55
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 57
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 59
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 61
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 67
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 69
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 71
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 73
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 75
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 77
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: xarm6 joint motion example",
+      "summary": "Send the selected xarm6-path example's six-element joint targets. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "joint-control",
+        "joint-position-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "joint-control"
+      },
+      "robots": [
+        "xarm6"
+      ]
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm7-2001-move-joint-py",
+      "framework": "xarm-python-sdk",
+      "kind": "official_example",
+      "source": {
+        "repository": "https://github.com/xArm-Developer/xArm-Python-SDK",
+        "commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+        "tag": "master",
+        "path": "example/wrapper/xarm7/2001-move_joint.py",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm7/2001-move_joint.py",
+        "raw_url": "https://raw.githubusercontent.com/xArm-Developer/xArm-Python-SDK/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm7/2001-move_joint.py",
+        "sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+        "bytes": 3032,
+        "authors": [
+          "UFACTORY Inc.",
+          "Vinman"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/LICENSE",
+        "sha256": "3f14a09c97aae546da459e135d1257c3ba37a692ec1a6be4628da078d38b75a4",
+        "scope": "Selected first-party UFACTORY Python example source under the pinned BSD-3-Clause license and its own UFACTORY/Vinman notices. Preserve copyright, conditions, attribution and disclaimers. This source identity does not establish rights or compatibility for robot hardware, firmware, payloads, recorded trajectories, third-party dependencies or external assets.",
+        "bytes": 1521
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+        "setup_evidence": [
+          {
+            "path": "README.md",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "sha256": "563c3dcb63062b68220d19df9502211e4cefd3bbb22afee032e8840a27f72475",
+            "bytes": 16139,
+            "purpose": "Official setup, example/model links and controller address declaration"
+          },
+          {
+            "path": "README.rst",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.rst",
+            "sha256": "715eb6a8fbe427f13dbf0b3f964ae824033ae4247d5542b84788b8934bd7551b",
+            "bytes": 1811,
+            "purpose": "Official author/product and Python declarations"
+          },
+          {
+            "path": "setup.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/setup.py",
+            "sha256": "59d2fb40338f8e03273e9f613c953016e0c1543f5d81db8235c159ae27915841",
+            "bytes": 2402,
+            "purpose": "Author, package setup and Python declaration; treated as inert text"
+          },
+          {
+            "path": "pyproject.toml",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/pyproject.toml",
+            "sha256": "2d44732e1c250ed70143cb2930f1bc1eec90b70664b3214185d660ee7f3fe46f",
+            "bytes": 1640,
+            "purpose": "Package author/maintainer and Python/build declarations"
+          },
+          {
+            "path": "xarm/version.py",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "purpose": "SDK source version declaration, not installed distribution or firmware"
+          },
+          {
+            "path": "example/wrapper/robot.conf",
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/robot.conf",
+            "sha256": "c7c600dc691cf18f1a5e3130888ff2cadd8e734bb85b6f3accaaec6c93c8f013",
+            "bytes": 25,
+            "purpose": "Shipped example address configuration; never contacted"
+          }
+        ]
+      },
+      "requirements": {
+        "python": "Python >=3.5 declared by pinned pyproject.toml/setup.py; README.rst names 3.5-3.13. These are upstream declarations, not a tested runtime combination.",
+        "packages": [
+          "xarm-python-sdk from the exact source revision; xarm.wrapper.XArmAPI"
+        ],
+        "display": "Operator-supplied reachable robot-controller address, matching model/payload/control configuration and applicable firmware. Example scripts accept an address argument or use relative robot.conf/input. No controller, installed SDK, firmware or combined environment was verified.",
+        "execution_domain": "hardware",
+        "source_imports": [
+          "configparser",
+          "math",
+          "os",
+          "sys",
+          "time",
+          "xarm.wrapper"
+        ],
+        "notes": "No installed SDK or executable environment was tested. Source scripts may move or reconfigure hardware even when their primary task is inspection.",
+        "declared_requirements": {
+          "sdk_source_version": {
+            "value": "1.18.5",
+            "path": "xarm/version.py",
+            "sha256": "3e449707f57e6d6b33e6fcfde7341fddc629b4a4987772a5e1b20b1fa54c483e",
+            "bytes": 24,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/xarm/version.py",
+            "meaning": "Source declaration only; no installed SDK or firmware version inferred."
+          },
+          "readme_wheel_example_version": {
+            "value": "1.16.0",
+            "source": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/README.md",
+            "meaning": "The README's wheel-install example differs from the frozen version file; not treated as the SDK version at this pin."
+          },
+          "empty_runtime_requirements_file": {
+            "path": "requirements.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/requirements.txt",
+            "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "declaration": "This file is exactly empty. Its zero-byte identity is reviewed in the static receipt, not an assertion that every optional SDK feature has no dependencies."
+          },
+          "controller_address": "Operator-supplied; examples use an argument, relative ../robot.conf, or interactive input. Shipped address is example data and was not contacted.",
+          "source_control_mode_values": [
+            0
+          ],
+          "control_mode_meaning": "Literal set_mode arguments in this source, in initialization/control code; not model/controller/firmware compatibility declarations.",
+          "firmware": "unknown unless a source-specific requirement is stated below",
+          "license_boundaries": "BSD source terms do not establish hardware access, firmware/payload terms, entitlement or runtime compatibility."
+        }
+      },
+      "invocation": {
+        "entrypoint": "python example/wrapper/xarm7/2001-move_joint.py",
+        "notes": "These examples execute at module top level without __main__ guards. Do not import them to inspect metadata: import would execute connection/control code. Use upstream setup and the selected script only within an independently authorized robot task. Address, mode, targets, units, payload and firmware must be reviewed; this source reference installs/runs nothing."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 330,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "entrypoint_kind": "python_top_level_script",
+        "inspection_method": "automated_static",
+        "limitations": [
+          "Unguarded top-level code connects to a controller and executes operational API calls when run or imported upstream. It was only parsed as text here.",
+          "Hard-coded target values, control modes, units and rates are examples, not tested-safe values for any installed robot."
+        ],
+        "robot_discovery": {
+          "scope": "The exact selected source path names this model example; filename/discovery label only. Controller, firmware, payload and runtime compatibility are unverified.",
+          "method": "reviewed_pinned_text_declaration",
+          "compatibility_inferred": false,
+          "evidence": [
+            {
+              "url": "https://github.com/xArm-Developer/xArm-Python-SDK/blob/d911319cebc45142613e18086aabb8067b18ab7f/example/wrapper/xarm7/2001-move_joint.py",
+              "sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
+              "bytes": 3032,
+              "quote": "/xarm7/",
+              "labels": [
+                "xarm7"
+              ],
+              "match_in": "source_path"
+            }
+          ]
+        },
+        "inspection": "Verified exact source, applicable license and author/setup document bytes at a full Git commit; parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.",
+        "script_entrypoint": {
+          "format": "from_import_constructor_methods",
+          "import_module": "xarm.wrapper",
+          "import_name": "XArmAPI",
+          "import_binding": "XArmAPI",
+          "instance": "arm",
+          "methods": [
+            "set_servo_angle"
+          ],
+          "import_line": 20,
+          "constructor_line": 43,
+          "method_calls": [
+            {
+              "method": "set_servo_angle",
+              "line": 51
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 53
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 55
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 57
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 59
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 61
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 67
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 69
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 71
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 73
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 75
+            },
+            {
+              "method": "set_servo_angle",
+              "line": 77
+            }
+          ],
+          "method": "reviewed_sdk_syntactic_module_control_flow",
+          "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+          "runtime_verification": "not_run",
+          "reachability_verified": false,
+          "compatibility_inferred": false
+        }
+      },
+      "name": "UFACTORY xArm Python SDK: xarm7 joint motion example",
+      "summary": "Send the selected xarm7-path example's seven-element joint targets. Static source reference; upstream setup and hardware configuration require separate review.",
+      "source_registry": "official-robot-workflows-v1",
+      "capabilities": [
+        "joint-control",
+        "joint-position-control"
+      ],
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Source-specific SDK example only. Generic examples identify no exact model; named paths supply discovery labels only, with controller/firmware/payload/runtime compatibility unknown.",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "joint-control"
+      },
+      "robots": [
+        "xarm7"
+      ]
     }
   ],
   "source_manifest": "source-projects.json",

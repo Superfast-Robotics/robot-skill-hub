@@ -22,6 +22,24 @@ from reference_index import check_source_index, write_source_index
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = "official-robot-workflows-v1"
 ROLE = re.compile(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*")
+SCRIPT_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,79}")
+
+
+def validate_script_entrypoint(descriptor):
+    """Accept a small explicit import/constructor/method declaration, not code."""
+    keys = {"format", "import_module", "import_name", "import_binding", "instance", "methods"}
+    if (not isinstance(descriptor, dict) or set(descriptor) != keys
+            or descriptor["format"] != "from_import_constructor_methods"
+            or not isinstance(descriptor["import_module"], str) or len(descriptor["import_module"]) > 200
+            or not descriptor["import_module"]
+            or any(not SCRIPT_NAME.fullmatch(part) for part in descriptor["import_module"].split("."))
+            or any(not isinstance(descriptor[key], str) or not SCRIPT_NAME.fullmatch(descriptor[key])
+                   for key in ("import_name", "import_binding", "instance"))
+            or descriptor["import_binding"] == descriptor["instance"]
+            or not isinstance(descriptor["methods"], list) or not 1 <= len(descriptor["methods"]) <= 20
+            or any(not isinstance(method, str) or not SCRIPT_NAME.fullmatch(method) for method in descriptor["methods"])
+            or len(set(descriptor["methods"])) != len(descriptor["methods"])):
+        raise ValueError("Top-level script requires a bounded literal SDK import, constructor binding and reviewed methods")
 
 
 def validate_pin(pin):
@@ -56,8 +74,10 @@ def validate_project(project):
     for artifact in project["artifacts"]:
         validate_pin(artifact)
         paths.append(artifact["path"])
-        if artifact.get("entrypoint_kind") not in ("python_main", "python_console_script") or not examples.selected(project, artifact["path"]):
+        if artifact.get("entrypoint_kind") not in ("python_main", "python_console_script", "python_top_level_script") or not examples.selected(project, artifact["path"]):
             raise ValueError("Only explicitly selected Python workflow entrypoints are supported")
+        if artifact["entrypoint_kind"] == "python_top_level_script":
+            validate_script_entrypoint(artifact.get("script_entrypoint"))
         if artifact["entrypoint_kind"] == "python_console_script":
             console = artifact.get("console_script", {})
             validate_pin(console)
@@ -294,6 +314,63 @@ def inspect_console_source(project, artifact, cache, data):
     return {"kind": "python_console_script", "imports": imports}
 
 
+def inspect_top_level_script(artifact, data):
+    """Match reviewed SDK syntax without resolving imports, running or proving reachability.
+
+    This deliberately supports only an unconditional module-level from-import
+    and direct constructor assignment. Later module/control-flow calls qualify
+    syntactically; nested definitions and comprehension scopes do not.
+    """
+    descriptor = artifact["script_entrypoint"]
+    validate_script_entrypoint(descriptor)
+    tree = ast.parse(data.decode("utf-8-sig"), filename=artifact["path"])
+    imports = [(node, alias) for node in tree.body if isinstance(node, ast.ImportFrom)
+               and node.level == 0 and node.module == descriptor["import_module"]
+               for alias in node.names if alias.name == descriptor["import_name"]
+               and (alias.asname or alias.name) == descriptor["import_binding"]]
+    if len(imports) != 1:
+        raise ValueError("Reviewed SDK constructor import is missing or ambiguous")
+    import_node, import_alias = imports[0]
+    require_unique_literal_binding(tree, descriptor["import_binding"], import_alias)
+    constructors = [node for node in tree.body if isinstance(node, ast.Assign) and len(node.targets) == 1
+                    and isinstance(node.targets[0], ast.Name) and node.targets[0].id == descriptor["instance"]
+                    and isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Name)
+                    and node.value.func.id == descriptor["import_binding"]]
+    if len(constructors) != 1:
+        raise ValueError("Reviewed SDK instance needs exactly one direct module-level constructor assignment")
+    constructor = constructors[0]
+    require_unique_literal_binding(tree, descriptor["instance"], constructor.targets[0])
+    if tree.body.index(import_node) >= tree.body.index(constructor):
+        raise ValueError("Reviewed SDK import must precede its constructor assignment")
+
+    def script_nodes(node):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Lambda,
+                             ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)):
+            return
+        yield node
+        for child in ast.iter_child_nodes(node):
+            yield from script_nodes(child)
+
+    calls = []
+    for statement in tree.body[tree.body.index(constructor) + 1:]:
+        for node in script_nodes(statement):
+            if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+                    and isinstance(node.func.value, ast.Name) and node.func.value.id == descriptor["instance"]
+                    and node.func.attr in descriptor["methods"]):
+                calls.append({"method": node.func.attr, "line": node.lineno})
+    if set(descriptor["methods"]) != {call["method"] for call in calls}:
+        raise ValueError("Every reviewed SDK method needs a direct instance call after construction in module/control-flow syntax")
+    source_imports = sorted({node.module for node in ast.walk(tree) if isinstance(node, ast.ImportFrom) and node.module}
+                            | {alias.name for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names})
+    return {"kind": "python_top_level_script", "imports": source_imports,
+            "script_entrypoint": {**descriptor, "methods": list(descriptor["methods"]),
+                "import_line": import_node.lineno, "constructor_line": constructor.lineno,
+                "method_calls": calls, "method": "reviewed_sdk_syntactic_module_control_flow",
+                "scope": "Static syntactic presence only; execution, reachability and runtime compatibility are unverified.",
+                "runtime_verification": "not_run", "reachability_verified": False,
+                "compatibility_inferred": False}}
+
+
 def observed_license_identifiers(text):
     identifiers = set(re.findall(r"SPDX-License-Identifier:\s*([^\r\n]+)", text[:6000]))
     identifiers = {value.strip().rstrip("*/ ") for value in identifiers}
@@ -356,6 +433,7 @@ def static_source_record(project, artifact, inspection):
 def make_record(project, artifact, cache):
     data = checked_pin(cache, project, artifact)
     inspection = (inspect_console_source(project, artifact, cache, data) if artifact["entrypoint_kind"] == "python_console_script"
+                  else inspect_top_level_script(artifact, data) if artifact["entrypoint_kind"] == "python_top_level_script"
                   else examples.inspect_source(artifact["path"], data))
     if inspection["kind"] != artifact["entrypoint_kind"]:
         raise ValueError("Workflow entrypoint differs from its reviewed manifest")
@@ -411,6 +489,14 @@ def make_record(project, artifact, cache):
         record["evidence"]["console_registration"] = {"url": file_url(project, artifact["console_script"]["path"]),
             "sha256": artifact["console_script"]["sha256"], "bytes": artifact["console_script"]["bytes"],
             "name": artifact["console_script"]["name"], "target": artifact["console_script"]["module"] + ":" + artifact["console_script"]["function"]}
+    if inspection["kind"] == "python_top_level_script":
+        record["evidence"]["inspection"] = (
+            "Verified exact source, applicable license and author/setup document bytes at a full Git commit; "
+            "parsed Python AST and matched the reviewed SDK import, direct module-level constructor binding and "
+            "subsequent instance method calls in module/control-flow syntax, excluding nested definitions and comprehension scopes. "
+            "This is syntactic evidence, not proof of execution or reachability. No upstream code, installation, robot command, "
+            "dataset, mesh or checkpoint was executed or loaded; runtime compatibility is unverified.")
+        record["evidence"]["script_entrypoint"] = inspection["script_entrypoint"]
     return record
 
 

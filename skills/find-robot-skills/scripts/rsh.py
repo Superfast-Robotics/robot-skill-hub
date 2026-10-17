@@ -6,7 +6,7 @@ import argparse
 import json
 import sys
 
-from rshlib import contributions, intake, memories, remote_catalog, setup
+from rshlib import acquisition, contributions, intake, memories, remote_catalog, setup
 from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
@@ -46,9 +46,17 @@ def build_parser():
     search = sub.add_parser("find", help="Find at most three candidate recipes without running their code")
     search.add_argument("query")
     search.add_argument("--limit", type=int, default=3, choices=(1, 2, 3))
+    search.add_argument("--offset", type=int, default=0, help="Read a later bounded search page (0..1000000)")
+    search.add_argument("--hub-commit", help="Keep search pagination on the exact Hub generation returned by the previous page")
     environment_options(search)
     detail = sub.add_parser("inspect", help="Read source, requirements and verification evidence")
     detail.add_argument("skill_id")
+    fetch = sub.add_parser("fetch-source", help="Save one checksum-verified source-reference file as inert data; never install or run it")
+    fetch.add_argument("skill_id")
+    fetch.add_argument("--project", required=True)
+    fetch.add_argument("--plan", action="store_true", help="Validate metadata only; no upstream request or project writes")
+    fetch.add_argument("--expected-source-revision", help="Require the exact revision returned by inspect")
+    fetch.add_argument("--expected-source-sha256", help="Require the exact source-file digest returned by inspect")
     prep = sub.add_parser("prepare", help="Download pinned source and create an isolated environment; never run task")
     prep.add_argument("skill_id")
     prep.add_argument("--project", required=True)
@@ -161,8 +169,12 @@ def execute(args, catalog_location):
     fallback_reason = None
     if args.command == "find" and not catalog_location and not args.offline:
         try:
-            return remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh)
-        except (RshError, OSError, ValueError, TypeError):
+            return remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh,
+                                         offset=args.offset, hub_commit=args.hub_commit)
+        except (RshError, OSError, ValueError, TypeError) as error:
+            if isinstance(error, RshError) and error.result.get("reason_code") in (
+                    "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit"):
+                raise
             fallback_reason = "public_search_unavailable"
     catalog = None
     if not catalog_location and args.command == "register" and not args.offline:
@@ -191,12 +203,17 @@ def execute(args, catalog_location):
     if fallback_reason:
         catalog["discovery_fallback_reasons"] = [fallback_reason]
     if args.command == "find":
-        return find(catalog, args.query, environment, args.limit)
+        return find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit)
     if args.command == "register":
         return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
                                api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
         return inspect(catalog, args.skill_id)
+    if args.command == "fetch-source":
+        return acquisition.fetch_source(catalog, args.skill_id, args.project,
+                                        expected_source_revision=args.expected_source_revision,
+                                        expected_source_sha256=args.expected_source_sha256,
+                                        plan=args.plan, offline=args.offline)
     if args.command == "prepare":
         if args.download_only and args.install_deps:
             raise RshError("invalid_arguments", "--download-only cannot be combined with --install-deps.")

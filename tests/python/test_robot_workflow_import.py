@@ -471,5 +471,111 @@ class RobotWorkflowExtensionTests(unittest.TestCase):
             self.build_fixture(manifest, files)
 
 
+class TopLevelSdkScriptTests(unittest.TestCase):
+    def fixture(self, source=None):
+        manifest, files = RobotWorkflowImportTests().fixture()
+        if source is None:
+            source = ("raise RuntimeError('source must never execute')\n"
+                      "from fixture_sdk.wrapper import Robot as SDK\n"
+                      "arm = SDK(address)\narm.move()\n")
+        files["scripts/train.py"] = source.encode()
+        artifact = manifest["projects"][0]["artifacts"][0]
+        artifact.update(sha256=importer.examples.digest(files["scripts/train.py"]), bytes=len(files["scripts/train.py"]),
+            entrypoint_kind="python_top_level_script", script_entrypoint={
+                "format": "from_import_constructor_methods", "import_module": "fixture_sdk.wrapper",
+                "import_name": "Robot", "import_binding": "SDK", "instance": "arm", "methods": ["move"]})
+        return manifest, files
+
+    def build_source(self, source=None):
+        manifest, files = self.fixture(source)
+        return RobotWorkflowExtensionTests().build_fixture(manifest, files)
+
+    def test_reviewed_script_is_static_source_only_without_importing_or_network(self):
+        record = self.build_source()
+        evidence = record["evidence"]
+        self.assertEqual("python_top_level_script", evidence["entrypoint_kind"])
+        proof = evidence["script_entrypoint"]
+        self.assertEqual("fixture_sdk.wrapper", proof["import_module"])
+        self.assertEqual(3, proof["constructor_line"])
+        self.assertEqual([{"method": "move", "line": 4}], proof["method_calls"])
+        self.assertFalse(proof["reachability_verified"])
+        self.assertFalse(proof["compatibility_inferred"])
+        self.assertEqual("not_run", evidence["runtime_verification"])
+        self.assertIn("syntactic evidence", evidence["inspection"])
+        self.assertFalse(record["access"]["hub_prepare"])
+        self.assertNotIn("compatibility", record)
+        self.assertNotIn("robots", record)
+
+    def test_module_if_try_and_loop_bodies_qualify_without_reachability_claims(self):
+        bodies = ["if False:\n    arm.move()\n", "while unknown:\n    arm.move()\n",
+                  "for item in unknown:\n    arm.move()\n", "try:\n    arm.move()\nexcept Exception:\n    pass\n"]
+        for body in bodies:
+            with self.subTest(body=body):
+                record = self.build_source("from fixture_sdk.wrapper import Robot as SDK\narm = SDK(address)\n" + body)
+                self.assertEqual("move", record["evidence"]["script_entrypoint"]["method_calls"][0]["method"])
+                self.assertFalse(record["evidence"]["script_entrypoint"]["reachability_verified"])
+
+    def test_constructor_only_and_deferred_or_spoofed_calls_do_not_qualify(self):
+        bodies = ["", "print('arm.move()')\n# arm.move()\n", "other.move()\n", "arm.stop()\n",
+                  "def helper():\n    arm.move()\n", "async def helper():\n    arm.move()\n",
+                  "class Helper:\n    arm.move()\n", "callback = lambda: arm.move()\n",
+                  "values = [arm.move() for item in items]\n", "values = {arm.move() for item in items}\n",
+                  "values = {item: arm.move() for item in items}\n", "values = (arm.move() for item in items)\n"]
+        for body in bodies:
+            with self.subTest(body=body), self.assertRaisesRegex(ValueError, "Every reviewed SDK method"):
+                self.build_source("from fixture_sdk.wrapper import Robot as SDK\narm = SDK(address)\n" + body)
+        for source in ["from fixture_sdk.wrapper import Robot as SDK\narm.move()\narm = SDK(address)\n",
+                       "from fixture_sdk.wrapper import Robot as SDK\narm = SDK(arm.move())\n"]:
+            with self.subTest(source=source), self.assertRaisesRegex(ValueError, "Every reviewed SDK method"):
+                self.build_source(source)
+
+    def test_exact_import_constructor_and_assignment_order_are_required(self):
+        sources = ["import fixture_sdk.wrapper\narm = SDK(address)\narm.move()\n",
+                   "from .fixture_sdk.wrapper import Robot as SDK\narm = SDK(address)\narm.move()\n",
+                   "from other_sdk.wrapper import Robot as SDK\narm = SDK(address)\narm.move()\n",
+                   "from fixture_sdk.wrapper import Other as SDK\narm = SDK(address)\narm.move()\n",
+                   "from fixture_sdk.wrapper import Robot\narm = Robot(address)\narm.move()\n",
+                   "arm = SDK(address)\nfrom fixture_sdk.wrapper import Robot as SDK\narm.move()\n",
+                   "from fixture_sdk.wrapper import Robot as SDK\nif unknown:\n    arm = SDK(address)\narm.move()\n",
+                   "from fixture_sdk.wrapper import Robot as SDK\narm = another = SDK(address)\narm.move()\n",
+                   "from fixture_sdk.wrapper import Robot as SDK\narm: object = SDK(address)\narm.move()\n"]
+        for source in sources:
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                self.build_source(source)
+
+    def test_rebound_deleted_or_mutated_sdk_bindings_are_rejected(self):
+        mutations = ["SDK = replacement", "del SDK", "import other as SDK", "from other import SDK",
+                     "arm = replacement", "arm: object = replacement", "del arm", "import other as arm",
+                     "arm = SDK(address)", "arm.move = replacement", "del arm.move",
+                     "arm.__dict__.update(move=replacement)", "SDK.__dict__.update(move=replacement)",
+                     "globals()['arm'] = replacement", "setattr(arm, 'move', replacement)",
+                     "for arm in []:\n    pass", "(arm := replacement)",
+                     "def helper(value=(arm := replacement)):\n    pass"]
+        for mutation in mutations:
+            source = ("from fixture_sdk.wrapper import Robot as SDK\narm = SDK(address)\n"
+                      + mutation + "\narm.move()\n")
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                self.build_source(source)
+
+    def test_descriptor_is_bounded_literal_data_and_all_methods_must_match(self):
+        mutations = [{}, {"format": "eval"}, {"methods": []}, {"methods": ["move", "move"]},
+                     {"methods": ["move()"]}, {"methods": ["move"] * 21}, {"methods": "move"},
+                     {"import_module": ".fixture_sdk.wrapper"}, {"import_module": "x" * 201},
+                     {"instance": "SDK"}, {"instance": "arm.value"}, {"unexpected": True}]
+        for mutation in mutations:
+            manifest, files = self.fixture()
+            descriptor = manifest["projects"][0]["artifacts"][0]["script_entrypoint"]
+            if mutation:
+                descriptor.update(mutation)
+            else:
+                descriptor.clear()
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, "bounded literal SDK"):
+                RobotWorkflowExtensionTests().build_fixture(manifest, files)
+        manifest, files = self.fixture()
+        manifest["projects"][0]["artifacts"][0]["script_entrypoint"]["methods"].append("stop")
+        with self.assertRaisesRegex(ValueError, "Every reviewed SDK method"):
+            RobotWorkflowExtensionTests().build_fixture(manifest, files)
+
+
 if __name__ == "__main__":
     unittest.main()

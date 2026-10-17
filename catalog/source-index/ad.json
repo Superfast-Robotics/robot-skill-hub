@@ -24,6 +24,12 @@
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "5b18f42b31d3fcd7916abefc59a2959c484d2cae0fb766dfe782708c9d39743d",
       "record_version": "source-5b18f42b31d3fcd7916abefc59a2959c484d2cae0fb766dfe782708c9d39743d"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-xarm5-2001-move-joint-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02",
+      "record_version": "source-3fb82b3d4f99d45a1db5e73d603c6e251f8205ddbbedda298bbc038459a6ba02"
     }
   ]
 }

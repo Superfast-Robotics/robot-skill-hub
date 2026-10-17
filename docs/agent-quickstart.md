@@ -29,7 +29,9 @@ Online discovery reads a bounded search page and the selected record, with local
 
 Reference results report `references_origin`, `references_hub_commit` and bounded fallback reasons separately from the recipe catalog. A fresh recipe catalog does not make cached references current. Reference finding pins use the reference publication's own commit when available.
 
-Search requires every query term and the indexed backend matches word prefixes. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. If a source reference has no preparation adapter, open its pinned source and upstream setup instructions.
+The CLI returns at most three candidates per page. To read later matches, repeat the query and original filters using `find --offset N --hub-commit COMMIT`, copying `N` and `COMMIT` from the returned `next` object. The query remains a positional argument. Keep the same `--catalog` or `--offline` choice when used. A changed publication rejects the old generation rather than switching catalogs. Mixed or unknown local generations report `pagination_stability: snapshot_required`; preserve one explicit catalog snapshot before a stable walk.
+
+Search requires every query term and the indexed backend matches word prefixes. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. For a source reference, inspect its upstream setup and use the returned `fetch_source_args` with `rsh.py`, appending `--project DIR --json`, to save one pinned, checksum-verified source file. This works independently of a runtime adapter. Add `--plan` for metadata validation with no upstream source request or project writes. `--offline` permits only an already verified local source-file cache. Fetching creates no environment, installs no skill and runs no downloaded code. See the installed skill's [source-file guide](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/skills/find-robot-skills/references/source-files.md).
 
 Robot types such as `humanoid` are searchable classifications, not robot-model filter values. For example, search `humanoid locomotion`; use a source-declared model such as `g1` for the robot filter.
 
@@ -48,7 +50,7 @@ Online `memories` reads one exact-pin `/v1/findings` page, default 20 results. C
 
 Remove `--plan` to prepare verified sources and an isolated project environment where supported. Use the selected result's returned `prepare_args` to retain exact record/source checks, and follow returned command arrays. Dependency installation requires `--install-deps` within the existing task scope. Preparation does not run the robot task. Preserve the project lock; catalog refreshes never silently update an existing project.
 
-The preparation recipes target the Linux/Python/ManiSkill environment recorded in each recipe. Windows can search, inspect and prepare sources with `--download-only`. Source review, installation, import and successful task execution remain distinct evidence levels.
+The preparation recipes target the Linux/Python/ManiSkill environment recorded in each recipe. Windows can search, inspect and download supported recipe archives with `prepare --download-only`; source references use the separate `fetch-source` command. Source review, download, installation, import and successful task execution remain distinct evidence levels.
 
 ## Remember a useful finding
 

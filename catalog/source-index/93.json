@@ -24,6 +24,12 @@
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4",
       "record_version": "source-adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-3002-record-trajectory-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d",
+      "record_version": "source-972ee21cc303724c7fecd00d62d1d473b81e9b20badf43e8b08ee935122f142d"
     }
   ]
 }

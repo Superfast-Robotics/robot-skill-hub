@@ -6,6 +6,8 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import urllib.error
+import urllib.parse
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +27,17 @@ def search_page():
            "compatibility": record["compatibility"], "python_requirement": record["requirements"]["python"]}
     return {"schema_version": "1", "hub_commit": HUB, "results": [row], "total": 1,
             "offset": 0, "limit": 3, "next": None, "backend": "d1", "execution_performed": False, "coverage": {"complete": True}}
+
+
+def search_slice(offset, *, total=7, limit=3, hub=HUB, query="pick", environment=None):
+    page = search_page()
+    prototype = page["results"][0]
+    page.update(hub_commit=hub, total=total, offset=offset, limit=limit,
+                results=[{**prototype, "id": "fixture-pick-" + str(index)}
+                         for index in range(offset, min(offset + limit, total))],
+                next={"q": query, **(environment or {}), "limit": limit, "offset": offset + limit, "hub_commit": hub}
+                     if offset + limit < total else None)
+    return page
 
 
 def finding_page():
@@ -56,6 +69,86 @@ class RemoteDiscoveryTests(unittest.TestCase):
         self.assertEqual(fetch.call_count, 1)
         self.assertTrue(fetch.call_args.args[0].startswith(discovery.API_BASE + "search?"))
         self.assertEqual(fetch.call_args.kwargs["max_bytes"], 512 * 1024)
+
+    def test_cli_page_two_retains_query_filters_generation_and_cache_identity(self):
+        environment = {"robot": "panda"}
+        pages = [search_slice(0, environment=environment), search_slice(3, environment=environment), search_slice(6, environment=environment)]
+        with mock.patch.object(discovery, "fetch_public", side_effect=pages) as fetch, \
+                mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("whole catalog read")):
+            first = rsh.execute(self.args("find", "pick", "--robot", "panda"), None)
+            second = rsh.execute(self.args("find", "pick", "--robot", "panda", "--offset", "3", "--hub-commit", HUB), None)
+            cached = rsh.execute(self.args("find", "pick", "--robot", "panda", "--offset", "3", "--hub-commit", HUB), None)
+            last = rsh.execute(self.args("find", "pick", "--robot", "panda", "--offset", "6", "--hub-commit", HUB), None)
+        self.assertEqual(3, fetch.call_count)
+        self.assertEqual(3, second["offset"])
+        self.assertEqual(3, second["limit"])
+        self.assertEqual(["fixture-pick-3", "fixture-pick-4", "fixture-pick-5"], [row["id"] for row in second["results"]])
+        self.assertTrue(set(row["id"] for row in first["results"]).isdisjoint(row["id"] for row in second["results"]))
+        self.assertEqual("api_cache", cached["catalog_origin"])
+        self.assertEqual(first["next"], {"q": "pick", "robot": "panda", "offset": 3, "limit": 3, "hub_commit": HUB})
+        self.assertEqual(second["next"], {**first["next"], "offset": 6})
+        self.assertEqual(1, len(last["results"]))
+        self.assertIsNone(last["next"])
+        params = urllib.parse.parse_qs(urllib.parse.urlsplit(fetch.call_args_list[1].args[0]).query)
+        self.assertEqual({"q": ["pick"], "robot": ["panda"], "offset": ["3"], "limit": ["3"], "hub_commit": [HUB]}, params)
+        self.assertEqual(3, len(list(Path(self.temporary.name).glob("api-search-*.json"))))
+
+    def test_search_cache_separates_hub_pins_and_empty_later_pages_are_valid(self):
+        changed = "f" * 40
+        with mock.patch.object(discovery, "fetch_public", side_effect=[search_slice(3), search_slice(3, hub=changed), search_slice(20)]) as fetch:
+            remote_catalog.search("pick", {}, offset=3, hub_commit=HUB)
+            other = remote_catalog.search("pick", {}, offset=3, hub_commit=changed)
+            empty = remote_catalog.search("pick", {}, offset=20, hub_commit=HUB)
+        self.assertEqual(3, fetch.call_count)
+        self.assertEqual(changed, other["catalog_hub_commit"])
+        self.assertEqual([], empty["results"])
+        self.assertEqual(20, empty["offset"])
+        self.assertIsNone(empty["next"])
+
+    def test_generation_change_never_falls_back_to_cached_or_local_generation(self):
+        with mock.patch.object(discovery, "fetch_public", return_value=search_slice(3)):
+            remote_catalog.search("pick", {}, offset=3, hub_commit=HUB)
+        failures = [search_slice(3, hub="f" * 40), urllib.error.HTTPError("https://example.invalid", 409, "changed", {}, None)]
+        for failure in failures:
+            with self.subTest(failure=type(failure).__name__), \
+                    mock.patch.object(discovery, "fetch_public", **({"side_effect": failure} if isinstance(failure, Exception) else {"return_value": failure})), \
+                    mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("generation fallback")):
+                with self.assertRaises(core.RshError) as error:
+                    rsh.execute(self.args("--refresh", "find", "pick", "--offset", "3", "--hub-commit", HUB), None)
+                self.assertEqual("catalog_generation_changed", error.exception.result["reason_code"])
+
+    def test_search_rejects_invalid_pagination_before_network_or_fallback(self):
+        for arguments in ({"offset": -1}, {"offset": 1000001}, {"offset": True}, {"offset": 1.5},
+                          {"limit": 0}, {"limit": 4}, {"limit": True}, {"hub_commit": "main"}, {"hub_commit": 42}):
+            with self.subTest(arguments=arguments), mock.patch.object(discovery, "fetch_public", side_effect=AssertionError("invalid request")):
+                with self.assertRaises(core.RshError):
+                    remote_catalog.search("pick", {}, **arguments)
+        for arguments in (("--offset", "-1"), ("--offset", "1000001"), ("--hub-commit", "main")):
+            with self.subTest(arguments=arguments), mock.patch.object(discovery, "fetch_public", side_effect=AssertionError("invalid request")), \
+                    mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("invalid fallback")):
+                with self.assertRaises(core.RshError):
+                    rsh.execute(self.args("find", "pick", *arguments), None)
+        with mock.patch.object(discovery, "fetch_public", return_value=search_slice(1000000)):
+            self.assertEqual([], remote_catalog.search("pick", {}, offset=1000000)["results"])
+
+    def test_later_pages_require_exact_row_count_offset_and_unchanged_next(self):
+        missing = search_slice(3)
+        missing["results"].pop()
+        wrong_offset = search_slice(3)
+        wrong_offset["offset"] = 0
+        wrong_next = search_slice(3)
+        wrong_next["next"]["offset"] = 3
+        changed_filter = search_slice(3)
+        changed_filter["next"]["robot"] = "other"
+        floating_next = search_slice(3)
+        floating_next["next"]["offset"] = 6.0
+        extra = search_slice(6)
+        extra["results"].append({**extra["results"][0], "id": "unexpected"})
+        for value in (missing, wrong_offset, wrong_next, changed_filter, floating_next, extra):
+            with self.subTest(value=value), mock.patch.object(discovery, "fetch_public", return_value=value):
+                with self.assertRaises(core.RshError):
+                    remote_catalog.search("pick", {}, offset=6 if value is extra else 3, hub_commit=HUB, refresh=True)
+        self.assertFalse(list(Path(self.temporary.name).glob("api-search-*.json")))
 
     def test_inspect_uses_one_selected_record_and_its_individual_offline_cache(self):
         value = {"schema_version": "1", "hub_commit": HUB, "record": fixture_catalog()["records"][0]}

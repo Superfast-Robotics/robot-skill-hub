@@ -22,7 +22,7 @@ For an MCP client supporting Streamable HTTP, use its remote-server configuratio
 {"mcpServers":{"robot-skill-hub":{"url":"https://api.superfastrobotics.com/mcp"}}}
 ```
 
-References include code, policies and other artifacts with exact source checksums. A source reference has no Hub preparation adapter. Runtime evidence is limited to the exact configuration and seed recorded with each recipe; source review is not task completion. Existing project locks never silently change.
+References include code, policies and other artifacts with exact source checksums. Use a reference's inspected `fetch_source_args` with `rsh.py` and append `--project DIR --json` to retrieve one verified file as inert data. This does not require a runtime adapter or install the source as an agent skill. Supported recipes use `prepare`; runtime evidence is limited to the exact configuration and seed recorded with each recipe. Existing project locks never silently change.
 
 Preserve useful findings from the actual task with `rsh.py save SKILL_ID --project DIR --finding FILE --json`. Register a newly found pinned source with `rsh.py register FILE --project DIR --contributor LABEL --json`. Both keep local drafts; allowed-agent credentials and a separately authorized sharing scope enable one API submission. An internal draft PR still needs maintainer review and publication.
 

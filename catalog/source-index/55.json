@@ -30,6 +30,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "e09e8b25c8d8a39ced5364c06be541bb9a7b366874e4bd611517f0331ad75aa4",
       "record_version": "source-e09e8b25c8d8a39ced5364c06be541bb9a7b366874e4bd611517f0331ad75aa4"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1001-move-line-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
+      "record_version": "source-e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66"
     }
   ]
 }

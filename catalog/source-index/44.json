@@ -36,6 +36,12 @@
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7",
       "record_version": "source-1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-1009-cartesian-velocity-control-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2",
+      "record_version": "source-cc877b474218ffdf14a96c1a65261684ce3f68691ea3baac226780fe5b30a3e2"
     }
   ]
 }

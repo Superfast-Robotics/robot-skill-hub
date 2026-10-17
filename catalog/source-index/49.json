@@ -24,6 +24,12 @@
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4",
       "record_version": "source-124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5008-get-cgpio-state-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628",
+      "record_version": "source-0dda6f2a560f3c45225fb5141968c9c87003f7811155ed3f6d5ba6a84746c628"
     }
   ]
 }

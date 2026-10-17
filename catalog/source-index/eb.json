@@ -24,6 +24,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "e581ac51922a9bb8084d955c9191c2edffc95fb57bb45b5252f9ef15ac789e27",
       "record_version": "source-e581ac51922a9bb8084d955c9191c2edffc95fb57bb45b5252f9ef15ac789e27"
+    },
+    {
+      "id": "xarm-python-sdk-example-wrapper-common-5004-set-gripper-py",
+      "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
+      "source_sha256": "dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756",
+      "record_version": "source-dc0092c1ec8e7506e74c698fd684c99460de6288b62211b8345625397d3f3756"
     }
   ]
 }

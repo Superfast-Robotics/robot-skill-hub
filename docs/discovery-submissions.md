@@ -11,11 +11,14 @@ The registration API returned HTTP 200, `Repository submitted successfully`, and
 library ID `/superfast-robotics/robot-skill-hub`. The
 [public library page](https://context7.com/superfast-robotics/robot-skill-hub)
 subsequently returned HTTP 200. A bounded search at 19:57 UTC returned no exact
-library match among its five candidates. A direct documentation query at 19:59 UTC
-returned HTTP 404 with `no_snippets_found`; no Hub snippets were available in that
-response. Processing completion and documentation retrieval are not yet
-established. The [sanitized receipt](../evidence/discovery/v0.3.3/context7-registration.json)
-preserves both observations without credentials.
+library match among its five candidates, and an initial documentation query
+returned `no_snippets_found`. At **20:05 UTC**, a later exact library search
+returned the Hub with state `finalized`, 248 snippets and 27,507 tokens. A direct
+documentation query returned HTTP 200 with four code snippets and one information
+snippet containing actual Hub find, inspect and prepare instructions and GitHub
+source links. The [sanitized receipt](../evidence/discovery/v0.3.3/context7-registration.json)
+preserves these separate observations without credentials. The then-unpublished
+`fetch-source` update is outside that indexing result.
 
 Context7 accepts public GitHub documentation. Its parser reads documentation and
 code examples; it does not install or run the Hub CLI. Anyone can request a public
@@ -48,8 +51,9 @@ description and paths were checked against the official schema before submission
 The earlier readiness receipt retains its historical proposal. The provider's
 [owner configuration](https://context7.com/docs/library-owners) controls parsing.
 
-Submission is confirmed. Completion still requires completed library processing
-and a documentation query returning actual Hub instructions with source links.
+Registration, finalized library search and actual documentation retrieval are
+confirmed. These checks do not establish automatic client activation, agent
+adoption or successful robot tasks.
 
 ## Smithery remote MCP
 
