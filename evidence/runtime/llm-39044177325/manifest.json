@@ -18,7 +18,7 @@
     "maniskill-panda-stack-cube/task.stdout.txt": "74362c7c9ceffe4c6dae484fe9c2dd73d4ba2536edd776c912f6206019a20fa6",
     "maniskill-panda-stack-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "maniskill-panda-stack-cube/task.command.json": "9d4be1b590bb46a6be28b180163b934f3d1bb6b5815556c92645b56ef8d3b3e9",
-    "orchestration.json": "27d67fa338fa41d59cbb4e2c115a36f353374a5444712759dad170dd9d44e9fa"
+    "orchestration.json": "7fed4e2bb3506a96a146c4d9f45bcb2aa2537cf74c22e5a7fd002ec2b6a90765"
   },
   "original_artifact_id": 12105142669,
   "original_artifact_sha256": "3e0dca509a36868459476d397d66079ae1829667ab634eeaf3946bce306dacfd"
