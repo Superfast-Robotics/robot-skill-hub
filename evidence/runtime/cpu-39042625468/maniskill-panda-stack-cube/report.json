@@ -1,0 +1,40 @@
+{
+  "skill_id": "maniskill-panda-stack-cube",
+  "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+  "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+  "record_version": "1.0.0",
+  "adapter_sha256": "57d8fa401f70364fb2ed54e7c6b797f01445f65734d8cbe80aa35c8c5aa6fd37",
+  "status": "task_complete",
+  "runtime_verification": "executed",
+  "execution_performed": true,
+  "success": true,
+  "contract_matches": true,
+  "result": {
+    "status": "task_complete",
+    "success": true,
+    "elapsed_steps": 107,
+    "task": "StackCube-v1",
+    "seed": 0,
+    "runtime": "3.0.0b22",
+    "robot": "panda",
+    "controller": "pd_joint_pos",
+    "observation": "state",
+    "sim_backend": "cpu",
+    "render_backend": "none"
+  },
+  "execution": {
+    "argv": [
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/environments/maniskill-panda-stack-cube/bin/python",
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/recipes/maniskill-panda-stack-cube/run.py",
+      "--seed",
+      "0"
+    ],
+    "timeout_seconds": 180,
+    "started": true,
+    "timed_out": false,
+    "exit_code": 0,
+    "duration_seconds": 2.82,
+    "stdout_file": "task.stdout.txt",
+    "stderr_file": "task.stderr.txt"
+  }
+}
