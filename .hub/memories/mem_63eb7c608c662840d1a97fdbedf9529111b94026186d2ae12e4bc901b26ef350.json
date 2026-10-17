@@ -1,0 +1,49 @@
+{
+  "attribution": {
+    "contributor_label": "Robot Skill Hub onboarding agent",
+    "preserve_upstream_attribution": true
+  },
+  "base": {
+    "hub_commit": "f87522f2714f311776399e3d7e033eafdf2c7186",
+    "record_version": "contrib-a5dd78ad4e1d4e3d",
+    "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907"
+  },
+  "environment": {
+    "architecture": "x86_64",
+    "controller": "pd_joint_pos",
+    "observation": "state",
+    "os": "linux",
+    "package.mesa": "23.2.1",
+    "package.sapien": "3.0.0",
+    "python": "3.10",
+    "render_backend": "none",
+    "robot": "panda",
+    "runtime": "maniskill",
+    "runtime_version": "3.0.0b22",
+    "sim_backend": "cpu"
+  },
+  "evidence": {
+    "command": "/home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/environments/maniskill-panda-pick-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/recipes/maniskill-panda-pick-cube/run.py --seed 0",
+    "level": "contributor_reported",
+    "reported_by": "submitter",
+    "result": "GitHub Actions run 39042278396 failed during scene initialization without a rendering device. Run 39042625468 used a CPU llvmpipe device and completed PickCube-v1 seed 0: success=true, elapsed_steps=74, exit=0, no timeout or retry. Source archive and adapter hashes were unchanged."
+  },
+  "kind": "working_workaround",
+  "observation": "On Ubuntu 22.04, the pinned PickCube CPU/state recipe installed successfully but failed with failed to find a rendering device when no usable Vulkan ICD was present. The same source, adapter and package versions subsequently completed seed 0 after enabling Mesa lavapipe.",
+  "publication": {
+    "public_submission_allowed": true
+  },
+  "resolution": "On the tested Ubuntu 22.04 host, install libvulkan1 and mesa-vulkan-drivers, then set VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/lvp_icd.x86_64.json before invoking the prepared command. Keep sim_backend=cpu and render_backend=none. This does not establish other platforms or graphics modes.",
+  "schema_version": "1",
+  "skill_id": "maniskill-panda-pick-cube",
+  "summary": "CPU-only SAPIEN initialization needs a Vulkan ICD even with rendering output disabled",
+  "memory_id": "mem_63eb7c608c662840d1a97fdbedf9529111b94026186d2ae12e4bc901b26ef350",
+  "principal_id": "515078c29927bab51e073f6fb07537ac0bda517500fca8e92b59fb9907908a0e",
+  "fingerprint": "68f883eb337269d00895fcf483c8e7b01d9d0a95cc200ba2f80250395a42e232",
+  "hub_validation": {
+    "level": "structure_checked",
+    "runtime": "not_run",
+    "result": "Exact catalog pins and bounded finding fields checked; no robot execution."
+  },
+  "created_at": "2026-10-17T14:59:07.120Z"
+}
