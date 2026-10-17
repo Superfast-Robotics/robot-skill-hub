@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "hub_commit": "978d7690f14d552be27d8f98254b275b98d3e20e",
+  "hub_commit": "9ca81f40e638081c74eea9ef6ef1acd32b682b83",
   "interpretation": "data_only",
   "trust": "contributor_reported",
   "records": [
@@ -97,6 +97,58 @@
       "entry_url": "https://hub.superfastrobotics.com/memories/mem_63eb7c608c662840d1a97fdbedf9529111b94026186d2ae12e4bc901b26ef350.json",
       "hash_target": "entry_url",
       "created_at": "2026-10-17T14:59:07.120Z",
+      "curation": "maintainer_merged",
+      "interpretation": "data_only",
+      "trust": "contributor_reported",
+      "hub_validation": {
+        "level": "structure_checked",
+        "runtime": "not_run",
+        "result": "Exact catalog pins and bounded finding fields checked; no robot execution."
+      }
+    },
+    {
+      "schema_version": "1",
+      "skill_id": "maniskill-panda-pick-cube",
+      "base": {
+        "hub_commit": "f87522f2714f311776399e3d7e033eafdf2c7186",
+        "record_version": "contrib-a5dd78ad4e1d4e3d",
+        "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907"
+      },
+      "kind": "docs_correction",
+      "summary": "Earlier PickCube completion evidence did not enforce the 50-step episode horizon",
+      "observation": "The completion wording in memory mem_63eb7c608c662840d1a97fdbedf9529111b94026186d2ae12e4bc901b26ef350 needs qualification. For Hub record contrib-a5dd78ad4e1d4e3d at source 33967b9e3ead1f841eec57cc9f31d0d8b8cf0907, run 39042625468 reported final-state success=true at 74 steps, beyond the upstream PickCube-v1 50-step episode budget. The old wrapper neither reported nor rejected truncation. Success within 50 steps is not established; this is not evidence of a failed standard-horizon benchmark. The Vulkan initialization workaround is separate from horizon-validated task completion.",
+      "resolution": "Evaluate Hub recipe version 1.1.0 in a separate project without changing the old project lock. It keeps the upstream source pin and explicitly sets max_episode_steps=1000 as a Hub planning budget, not an upstream default. Completion requires success=true, truncated=false and 0 < elapsed_steps < 1000; output includes terminated, truncated and max_episode_steps. New-version runtime verification requires fresh exact-pin evidence and cannot be inferred from the old 74-step output.",
+      "environment": {
+        "architecture": "x86_64",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "os": "linux",
+        "python": "3.10",
+        "render_backend": "none",
+        "robot": "panda",
+        "runtime": "maniskill",
+        "runtime_version": "3.0.0b22",
+        "sim_backend": "cpu"
+      },
+      "evidence": {
+        "command": null,
+        "level": "not_run",
+        "reported_by": "submitter",
+        "result": "Source/documentation audit of the pinned PickCube-v1 registration, old wrapper and preserved task.stdout.txt from run 39042625468. The source registers max_episode_steps=50; the recorded final output has elapsed_steps=74 and lacks terminated/truncated fields. No new robot task was executed for this correction, and no runtime verification of version 1.1.0 is supplied."
+      },
+      "attribution": {
+        "contributor_label": "Robot Skill Hub horizon audit",
+        "preserve_upstream_attribution": true
+      },
+      "publication": {
+        "public_submission_allowed": true
+      },
+      "memory_id": "mem_fe36a37f4dc82345cb771ca2c21555acf280e2c988a304cc36d78a79e265cf21",
+      "fingerprint": "c2b3e9099baba400e966e189895a7a8b92d78e1f8a104d2ee793dccf3127c3d0",
+      "content_sha256": "c17f5544a512ef648273699c4a77bd8a01efcfca606e8e54eb1b4eb1f03609a2",
+      "entry_url": "https://hub.superfastrobotics.com/memories/mem_fe36a37f4dc82345cb771ca2c21555acf280e2c988a304cc36d78a79e265cf21.json",
+      "hash_target": "entry_url",
+      "created_at": "2026-10-17T15:34:49.654Z",
       "curation": "maintainer_merged",
       "interpretation": "data_only",
       "trust": "contributor_reported",

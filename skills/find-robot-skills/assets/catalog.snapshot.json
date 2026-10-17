@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "hub_commit": "978d7690f14d552be27d8f98254b275b98d3e20e",
+  "hub_commit": "9ca81f40e638081c74eea9ef6ef1acd32b682b83",
   "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
   "references_url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
   "memories_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
@@ -80,7 +80,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -104,7 +104,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -119,7 +120,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -131,13 +135,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-lift-peg-upright --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "LiftPegUpright-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "LiftPegUpright-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -155,7 +160,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official LiftPegUpright-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.lift_peg_upright import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"LiftPegUpright-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"LiftPegUpright-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official LiftPegUpright-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.lift_peg_upright import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"LiftPegUpright-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"LiftPegUpright-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -171,7 +176,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -181,8 +186,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -271,7 +276,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -295,7 +300,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -310,7 +316,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -322,13 +331,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-peg-insertion-side --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PegInsertionSide-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PegInsertionSide-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -346,7 +356,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PegInsertionSide-v1 / panda_wristcam motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.peg_insertion_side import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PegInsertionSide-v1\", robot_uids=\"panda_wristcam\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PegInsertionSide-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_wristcam\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PegInsertionSide-v1 / panda_wristcam motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.peg_insertion_side import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PegInsertionSide-v1\", robot_uids=\"panda_wristcam\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PegInsertionSide-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_wristcam\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -362,7 +372,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -372,8 +382,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -394,7 +404,7 @@
       "capabilities": [
         "grasping",
         "pick",
-        "pick-and-place",
+        "pick-and-carry",
         "motion-planning"
       ],
       "aliases": [
@@ -486,7 +496,8 @@
           "controller": "pd_joint_pos",
           "obs_mode": "state",
           "sim_backend": "cpu",
-          "render_backend": "none"
+          "render_backend": "none",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -501,7 +512,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -513,13 +527,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pick-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PickCube-v1 env info.success is true after upstream solver finishes; adapter exit 0 only when success is true.",
+        "success_condition": "PickCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon. Success means cube at its goal and robot static; gripper release or placement on a support surface is not verified.",
         "timeout_seconds": 180,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no retries to conceal failures. Use an external 180-second process timeout."
       },
@@ -537,14 +552,14 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"CPU/state adapter around the pinned upstream ManiSkill PickCube solver.\n\nThe solver is authored by ManiSkill contributors (Apache-2.0); this hub wrapper\ndoes not contain upstream solver code. It never renders or controls hardware.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs  # registers simulation tasks\n    from mani_skill.examples.motionplanning.panda.solutions.pick_cube import solve\n\n    env = gym.make(\"PickCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None)\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PickCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        # Keep the invocation contract even if an optional dependency is absent\n        # or the simulator cannot initialize. Do not report this as task success.\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"CPU/state adapter around the pinned upstream ManiSkill PickCube solver.\n\nThe solver is authored by ManiSkill contributors (Apache-2.0); this hub wrapper\ndoes not contain upstream solver code. It never renders or controls hardware.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs  # registers simulation tasks\n    from mani_skill.examples.motionplanning.panda.solutions.pick_cube import solve\n\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PickCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps)\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PickCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        # Keep the invocation contract even if an optional dependency is absent\n        # or the simulator cannot initialize. Do not report this as task success.\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
       "evidence": {
         "level": "task_complete",
-        "verified_by": "Robot Skill Hub maintainer review of exact GitHub Actions execution artifacts",
-        "date": "2026-10-17",
+        "verified_by": "Robot Skill Hub maintainer review of exact LLM-selected GitHub Actions execution artifacts",
+        "date": "2026-10-18",
         "environment": {
           "os": "linux",
           "distribution": "Ubuntu 22.04",
@@ -564,43 +579,44 @@
           "sim_backend": "cpu",
           "render_backend": "none",
           "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
-          "physical_gpu_used": false
+          "physical_gpu_used": false,
+          "max_episode_steps": 1000
         },
         "commands": [
           "python tools/run_runtime_verification.py --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
           "/home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/environments/maniskill-panda-pick-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-pick-cube/.robot-skill-hub/recipes/maniskill-panda-pick-cube/run.py --seed 0"
         ],
-        "result": "PickCube-v1 seed 0 completed with success=true, elapsed_steps=74, exit=0 and no timeout. One invocation was made for this task in the successful recorded run; earlier failed environment attempts remain recorded separately. This verifies only the recorded CPU/state configuration and one seed; no hardware or camera-mode claim.",
+        "result": "PickCube-v1 seed 0 completed in the explicit Hub 1000-step motion-planning episode: success=true, terminated=true, truncated=false, elapsed_steps=74, exit=0 and no process timeout. One invocation was made for this task in the LLM-selected revalidation run. This verifies only the recorded CPU/state configuration and one seed, not the upstream default 50-step benchmark, hardware or camera modes. The cube was carried to the goal with a stationary arm; gripper release or support-surface placement is not required.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/manifest.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/report.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/task.stdout.txt",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-pick-cube/environment.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/vulkan-summary.txt",
-          "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39042625468"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/manifest.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-pick-cube/report.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-pick-cube/task.stdout.txt",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-pick-cube/environment.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/vulkan-summary.txt",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/orchestration.json",
+          "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320"
         ],
         "runtime_verification": "task_complete",
-        "contributor_reported": {
-          "command": "rsh.py prepare maniskill-panda-pick-cube --project CLEAN_PROJECT --download-only --json",
-          "level": "contributor_reported",
-          "reported_by": "submitter",
-          "result": "Pinned 243636110-byte upstream archive SHA-256 and extracted paths verified in two clean Windows projects; corrected render_backend=none adapter preserved. Source-only preparation reports needs_configuration with no venv or dependency install. ManiSkill imports and robot task execution: not_run."
-        },
+        "contributor_reported": null,
         "hub_verification": {
           "level": "task_complete",
           "runtime": "task_complete",
-          "workflow_run_id": "39042625468",
-          "verified_hub_commit": "73d2b037c18cac5eb36c769af6616e9565e14923",
+          "workflow_run_id": "39045603320",
+          "verified_hub_commit": "3a1c17905e76bf58ed58fab17009aec3806e634a",
           "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
-          "adapter_sha256": "2f4b49f8c2060488ff2a1c07bb946e622f45b399ce7cd9f9db8bf31bf562431c",
-          "record_version": "contrib-a5dd78ad4e1d4e3d",
+          "adapter_sha256": "5cd3551820612b7331709cca8e4454df1894a56c90675fd5bfb78d747bc6e68f",
+          "record_version": "1.1.0",
           "seed": 0,
+          "max_episode_steps": 1000,
+          "terminated": true,
+          "truncated": false,
+          "elapsed_steps": 74,
           "physical_gpu_used": false
         }
       },
       "maintenance": {
-        "record_version": "contrib-a5dd78ad4e1d4e3d",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -688,7 +704,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -712,7 +728,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -727,7 +744,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -739,13 +759,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-place-sphere --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PlaceSphere-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PlaceSphere-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -763,7 +784,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PlaceSphere-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.place_sphere import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PlaceSphere-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PlaceSphere-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PlaceSphere-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.place_sphere import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PlaceSphere-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PlaceSphere-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -779,7 +800,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -789,8 +810,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -879,7 +900,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -903,7 +924,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -918,7 +940,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -930,13 +955,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-plug-charger --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PlugCharger-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PlugCharger-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -954,7 +980,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PlugCharger-v1 / panda_wristcam motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.plug_charger import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PlugCharger-v1\", robot_uids=\"panda_wristcam\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PlugCharger-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_wristcam\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PlugCharger-v1 / panda_wristcam motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.plug_charger import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PlugCharger-v1\", robot_uids=\"panda_wristcam\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PlugCharger-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_wristcam\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -970,7 +996,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -980,8 +1006,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -1069,7 +1095,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -1093,7 +1119,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -1108,7 +1135,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -1120,13 +1150,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pull-cube-tool --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PullCubeTool-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PullCubeTool-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -1144,7 +1175,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PullCubeTool-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.pull_cube_tool import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PullCubeTool-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PullCubeTool-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PullCubeTool-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.pull_cube_tool import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PullCubeTool-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PullCubeTool-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -1160,7 +1191,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -1170,8 +1201,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -1258,7 +1289,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -1282,7 +1313,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -1297,7 +1329,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -1309,13 +1344,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-pull-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PullCube-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PullCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -1333,7 +1369,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PullCube-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.pull_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PullCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PullCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PullCube-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.pull_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PullCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PullCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -1349,7 +1385,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -1359,8 +1395,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -1447,7 +1483,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -1471,7 +1507,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -1486,7 +1523,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -1498,13 +1538,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-push-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PushCube-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PushCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -1522,7 +1563,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PushCube-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.push_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PushCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PushCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PushCube-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.push_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PushCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PushCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -1538,7 +1579,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -1548,8 +1589,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -1662,7 +1703,8 @@
           "controller": "pd_joint_pos",
           "obs_mode": "state",
           "sim_backend": "cpu",
-          "render_backend": "none"
+          "render_backend": "none",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -1677,7 +1719,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -1689,13 +1734,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-stack-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "StackCube-v1 env info.success is true after upstream solver finishes; adapter exit 0 only when success is true.",
+        "success_condition": "StackCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 180,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no retries to conceal failures. Use an external 180-second process timeout."
       },
@@ -1713,14 +1759,14 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"CPU/state adapter around the pinned upstream ManiSkill StackCube solver.\n\nThe solver is authored by ManiSkill contributors (Apache-2.0); this hub wrapper\ndoes not contain upstream solver code. It never renders or controls hardware.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs  # registers simulation tasks\n    from mani_skill.examples.motionplanning.panda.solutions.stack_cube import solve\n\n    env = gym.make(\"StackCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None)\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"StackCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        # Keep the invocation contract even if an optional dependency is absent\n        # or the simulator cannot initialize. Do not report this as task success.\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"CPU/state adapter around the pinned upstream ManiSkill StackCube solver.\n\nThe solver is authored by ManiSkill contributors (Apache-2.0); this hub wrapper\ndoes not contain upstream solver code. It never renders or controls hardware.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs  # registers simulation tasks\n    from mani_skill.examples.motionplanning.panda.solutions.stack_cube import solve\n\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"StackCube-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps)\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"StackCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        # Keep the invocation contract even if an optional dependency is absent\n        # or the simulator cannot initialize. Do not report this as task success.\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
       "evidence": {
         "level": "task_complete",
-        "verified_by": "Robot Skill Hub maintainer review of exact GitHub Actions execution artifacts",
-        "date": "2026-10-17",
+        "verified_by": "Robot Skill Hub maintainer review of exact LLM-selected GitHub Actions execution artifacts",
+        "date": "2026-10-18",
         "environment": {
           "os": "linux",
           "distribution": "Ubuntu 22.04",
@@ -1740,38 +1786,44 @@
           "sim_backend": "cpu",
           "render_backend": "none",
           "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
-          "physical_gpu_used": false
+          "physical_gpu_used": false,
+          "max_episode_steps": 1000
         },
         "commands": [
           "python tools/run_runtime_verification.py --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
           "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/environments/maniskill-panda-stack-cube/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-stack-cube/.robot-skill-hub/recipes/maniskill-panda-stack-cube/run.py --seed 0"
         ],
-        "result": "StackCube-v1 seed 0 completed with success=true, elapsed_steps=107, exit=0 and no timeout. One invocation was made for this task in the successful recorded run; earlier failed environment attempts remain recorded separately. This verifies only the recorded CPU/state configuration and one seed; no hardware or camera-mode claim.",
+        "result": "StackCube-v1 seed 0 completed in the explicit Hub 1000-step motion-planning episode: success=true, terminated=true, truncated=false, elapsed_steps=107, exit=0 and no process timeout. One invocation was made for this task in the LLM-selected revalidation run. This verifies only the recorded CPU/state configuration and one seed, not the upstream default 50-step benchmark, hardware or camera modes.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/manifest.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/report.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/task.stdout.txt",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/maniskill-panda-stack-cube/environment.json",
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/1b372b9b59c87f77f7b7a5f846d42eecba9d8819/evidence/runtime/cpu-39042625468/vulkan-summary.txt",
-          "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39042625468"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/manifest.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-stack-cube/report.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-stack-cube/task.stdout.txt",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/maniskill-panda-stack-cube/environment.json",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/vulkan-summary.txt",
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/07e53d9d7a0e1a6f169cab0065ce647c350cb652/evidence/runtime/llm-bounded-39045603320/orchestration.json",
+          "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39045603320"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
         "hub_verification": {
           "level": "task_complete",
           "runtime": "task_complete",
-          "workflow_run_id": "39042625468",
-          "verified_hub_commit": "73d2b037c18cac5eb36c769af6616e9565e14923",
+          "workflow_run_id": "39045603320",
+          "verified_hub_commit": "3a1c17905e76bf58ed58fab17009aec3806e634a",
           "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
-          "adapter_sha256": "57d8fa401f70364fb2ed54e7c6b797f01445f65734d8cbe80aa35c8c5aa6fd37",
-          "record_version": "1.0.0",
+          "adapter_sha256": "89dee3a4d1588e04bc337e928e93ea6c3b4cba703c8943708271c81d728c4d41",
+          "record_version": "1.1.0",
           "seed": 0,
+          "max_episode_steps": 1000,
+          "terminated": true,
+          "truncated": false,
+          "elapsed_steps": 107,
           "physical_gpu_used": false
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -1859,7 +1911,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -1883,7 +1935,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -1898,7 +1951,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -1910,13 +1966,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-stack-pyramid --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "StackPyramid-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "StackPyramid-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -1934,7 +1991,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official StackPyramid-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.stack_pyramid import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"StackPyramid-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"StackPyramid-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official StackPyramid-v1 / panda motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.stack_pyramid import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"StackPyramid-v1\", robot_uids=\"panda\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"StackPyramid-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -1950,7 +2007,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -1960,8 +2017,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -2051,7 +2108,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -2075,7 +2132,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -2090,7 +2148,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -2102,13 +2163,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-stick-draw-svg --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "DrawSVG-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "DrawSVG-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -2126,7 +2188,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official DrawSVG-v1 / panda_stick motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.draw_svg import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"DrawSVG-v1\", robot_uids=\"panda_stick\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"DrawSVG-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_stick\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official DrawSVG-v1 / panda_stick motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.draw_svg import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"DrawSVG-v1\", robot_uids=\"panda_stick\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"DrawSVG-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_stick\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n# Optional drawing task parser required by DrawSVGEnv.\nsvgpathtools==1.6.1\n"
         }
       },
@@ -2142,7 +2204,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -2152,8 +2214,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -2241,7 +2303,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -2265,7 +2327,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -2280,7 +2343,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -2292,13 +2358,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-panda-stick-draw-triangle --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "DrawTriangle-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "DrawTriangle-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -2316,7 +2383,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official DrawTriangle-v1 / panda_stick motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.draw_triangle import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"DrawTriangle-v1\", robot_uids=\"panda_stick\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"DrawTriangle-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_stick\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official DrawTriangle-v1 / panda_stick motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.panda.solutions.draw_triangle import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"DrawTriangle-v1\", robot_uids=\"panda_stick\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"DrawTriangle-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"panda_stick\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -2332,7 +2399,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -2342,8 +2409,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -2430,7 +2497,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -2454,7 +2521,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -2469,7 +2537,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -2481,13 +2552,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-so100-pick-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PickCubeSO100-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PickCubeSO100-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -2505,7 +2577,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PickCubeSO100-v1 / so100 motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.so100.solutions.pick_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PickCubeSO100-v1\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PickCubeSO100-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"so100\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PickCubeSO100-v1 / so100 motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.so100.solutions.pick_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PickCubeSO100-v1\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PickCubeSO100-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"so100\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -2521,7 +2593,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -2531,8 +2603,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -2620,7 +2692,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -2644,7 +2716,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -2659,7 +2732,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -2671,13 +2747,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-xarm6-pick-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PickCube-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PickCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -2695,7 +2772,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PickCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.pick_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PickCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PickCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PickCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.pick_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PickCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PickCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -2711,7 +2788,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -2721,8 +2798,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -2811,7 +2888,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -2835,7 +2912,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -2850,7 +2928,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -2862,13 +2943,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-xarm6-plug-charger --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PlugCharger-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PlugCharger-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -2886,7 +2968,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PlugCharger-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.plug_charger import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PlugCharger-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PlugCharger-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PlugCharger-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.plug_charger import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PlugCharger-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PlugCharger-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -2902,7 +2984,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -2912,8 +2994,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -3001,7 +3083,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -3025,7 +3107,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -3040,7 +3123,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -3052,13 +3138,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-xarm6-push-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "PushCube-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "PushCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -3076,7 +3163,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official PushCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.push_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"PushCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"PushCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official PushCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.push_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"PushCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"PushCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -3092,7 +3179,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -3102,8 +3189,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
@@ -3191,7 +3278,7 @@
         "hardware": [
           "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
         ],
-        "rendering": "disabled explicitly: render_backend=none, render_mode=None, state observations and CPU simulation; graphics paths require separate Vulkan setup",
+        "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
         "api_keys": [],
         "network": [
           "GitHub source archive (~233 MiB)",
@@ -3215,7 +3302,8 @@
           "obs_mode": "state",
           "sim_backend": "cpu",
           "render_backend": "none",
-          "reward_mode": "sparse"
+          "reward_mode": "sparse",
+          "max_episode_steps": 1000
         },
         "outputs": {
           "format": "last stdout line JSON",
@@ -3230,7 +3318,10 @@
             "controller",
             "observation",
             "sim_backend",
-            "render_backend"
+            "render_backend",
+            "max_episode_steps",
+            "terminated",
+            "truncated"
           ],
           "error_fields": [
             "status",
@@ -3242,13 +3333,14 @@
         "example": "python skills/find-robot-skills/scripts/rsh.py prepare maniskill-xarm6-stack-cube --project ./experiment --json"
       },
       "completion": {
-        "success_condition": "StackCube-v1 env info.success is true after the upstream solver finishes; exit 0 requires success.",
+        "success_condition": "StackCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon.",
         "timeout_seconds": 300,
         "failure_modes": [
           "Dependency installation unavailable or incompatible",
           "Required Linux mplib wheels unavailable on host OS",
           "Motion planning reports failure or env info.success is false",
-          "Runtime exception or asset download failure"
+          "Runtime exception or asset download failure",
+          "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
         ],
         "stop_condition": "Stop after one seed; no automatic retries. Use an external 300-second process timeout."
       },
@@ -3266,7 +3358,7 @@
         ],
         "execution_separate": true,
         "files": {
-          "run.py": "\"\"\"Hub adapter for the pinned official StackCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.stack_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    env = gym.make(\"StackCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            report = {\"status\": \"task_complete\" if success else \"failed\",\n                      \"success\": success, \"elapsed_steps\": int(info[\"elapsed_steps\"].item())}\n        report.update(task=\"StackCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\")\n        print(json.dumps(report))\n        return 0 if report.get(\"success\") else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
+          "run.py": "\"\"\"Hub adapter for the pinned official StackCube-v1 / xarm6_robotiq motion planner.\n\nUpstream solver: ManiSkill contributors, Apache-2.0. This wrapper contains no\nupstream solver implementation. Simulation execution is a separate explicit step.\n\"\"\"\nimport argparse\nimport importlib.metadata\nimport json\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--seed\", type=int, default=0)\n    args = parser.parse_args()\n    actual = importlib.metadata.version(\"mani_skill\")\n    if actual != \"3.0.0b22\":\n        raise RuntimeError(f\"Expected mani_skill 3.0.0b22, found {actual}\")\n    import gymnasium as gym\n    import mani_skill.envs\n    from mani_skill.examples.motionplanning.xarm6.solutions.stack_cube import solve\n\n    # Sparse reward avoids robot-specific dense reward helpers in upstream variants.\n    # Hub motion-planning horizon; separate from the upstream benchmark default.\n    max_episode_steps = 1000\n    env = gym.make(\"StackCube-v1\", robot_uids=\"xarm6_robotiq\", obs_mode=\"state\",\n                   control_mode=\"pd_joint_pos\", sim_backend=\"cpu\",\n                   render_backend=\"none\", render_mode=None, max_episode_steps=max_episode_steps, reward_mode=\"sparse\")\n    try:\n        result = solve(env, seed=args.seed, debug=False, vis=False)\n        if isinstance(result, int) and result == -1:\n            report = {\"status\": \"failed\", \"reason_code\": \"motion_plan_failed\"}\n        else:\n            info = result[-1]\n            success = bool(info[\"success\"].item())\n            terminated = bool(result[2].item())\n            truncated = bool(result[3].item())\n            elapsed_steps = int(info[\"elapsed_steps\"].item())\n            complete = success and not truncated and 0 < elapsed_steps < max_episode_steps\n            report = {\"status\": \"task_complete\" if complete else \"failed\",\n                      \"success\": success, \"elapsed_steps\": elapsed_steps,\n                      \"terminated\": terminated, \"truncated\": truncated}\n            if truncated:\n                report[\"reason_code\"] = \"episode_truncated\"\n            elif elapsed_steps >= max_episode_steps:\n                report[\"reason_code\"] = \"horizon_exceeded\"\n            elif elapsed_steps <= 0:\n                report[\"reason_code\"] = \"invalid_elapsed_steps\"\n            elif not success:\n                report[\"reason_code\"] = \"task_objective_not_reached\"\n        report.update(task=\"StackCube-v1\", seed=args.seed, runtime=\"3.0.0b22\",\n                      robot=\"xarm6_robotiq\", controller=\"pd_joint_pos\", observation=\"state\",\n                      sim_backend=\"cpu\", render_backend=\"none\", max_episode_steps=max_episode_steps)\n        print(json.dumps(report))\n        return 0 if report.get(\"status\") == \"task_complete\" else 1\n    finally:\n        env.close()\n\n\nif __name__ == \"__main__\":\n    try:\n        exit_code = main()\n    except Exception as error:\n        print(json.dumps({\"status\": \"failed\", \"reason_code\": \"runtime_error\",\n                          \"error_type\": type(error).__name__, \"message\": str(error)}))\n        exit_code = 1\n    raise SystemExit(exit_code)\n",
           "requirements.txt": "# Direct dependencies pinned for the initial Linux / Python 3.10 recipe.\n# Install the SHA256-checked upstream source separately as documented.\ntorch==2.5.1\nnumpy==1.26.4\nsapien==3.0.0\nmplib==0.1.1\nfast_kinematics==0.2.2\n# Transitive dependencies are resolved by pip; this is not a full lockfile.\n"
         }
       },
@@ -3282,7 +3374,7 @@
           "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
           "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
         ],
-        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached.",
+        "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
         "artifacts": [],
         "runtime_verification": "not_run",
         "contributor_reported": null,
@@ -3292,8 +3384,8 @@
         }
       },
       "maintenance": {
-        "record_version": "1.0.0",
-        "last_checked": "2026-10-17",
+        "record_version": "1.1.0",
+        "last_checked": "2026-10-18",
         "upstream_status": "pinned_release; no automatic update"
       },
       "contribution": {
