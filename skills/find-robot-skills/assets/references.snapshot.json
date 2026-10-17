@@ -70808,7 +70808,9 @@
       },
       "aliases": [
         "MPC",
-        "model predictive control"
+        "model predictive control",
+        "steering control",
+        "path tracking"
       ]
     },
     {
@@ -124311,5 +124313,5 @@
   "artifact_manifest": "artifact-projects.json",
   "agent_skill_manifest": "agent-skill-projects.json",
   "workflow_manifest": "workflow-projects.json",
-  "hub_commit": "f02a4c11fe4b912a775b13637159e18b1dadeca5"
+  "hub_commit": "850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492"
 }
