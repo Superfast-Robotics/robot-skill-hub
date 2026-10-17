@@ -1,0 +1,122 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T21:49:04.799330+00:00",
+  "channel": "TensorBlock MCP Index",
+  "classification": "affiliated public directory contribution, pending maintainer acceptance",
+  "reviewed_provider_commit": "59a693cb4783e28f2697f69c86dab915d1fb7cb0",
+  "rules": {
+    "README": {
+      "url": "https://github.com/TensorBlock/awesome-mcp-servers/blob/59a693cb4783e28f2697f69c86dab915d1fb7cb0/README.md",
+      "sha256": "f060c62dd1abdea69765c2b0c2787cc6bb4d90ea99a1a02e8d3c2f06f4825a05"
+    },
+    "metadata_guide": {
+      "url": "https://github.com/TensorBlock/awesome-mcp-servers/blob/59a693cb4783e28f2697f69c86dab915d1fb7cb0/docs/index-alpha/contribution-guide.md",
+      "sha256": "44a56f55c0bc98d3fcddb24eeb0824929888ee1c903bc67a06fc9567adbf28d6"
+    },
+    "add_form": {
+      "url": "https://github.com/TensorBlock/awesome-mcp-servers/blob/59a693cb4783e28f2697f69c86dab915d1fb7cb0/.github/ISSUE_TEMPLATE/add-mcp-server.yml",
+      "sha256": "4dd7a4cb6671d76e34df296227af9de095977708d4903260ce0320e0d7f2e5b7"
+    },
+    "complete_tree_reviewed": true,
+    "tree_truncated": false,
+    "human_only_or_attestation_requirement_found": false,
+    "required_duplicate_check_completed": true
+  },
+  "duplicate_checks": {
+    "complete_pinned_catalog_entries": 8492,
+    "pinned_catalog_identity_matches": 0,
+    "live_project_query_matches": 0,
+    "live_organization_query_matches": 0,
+    "source_and_live_generation_equated": false
+  },
+  "PR": {
+    "url": "https://github.com/TensorBlock/awesome-mcp-servers/pull/4027",
+    "number": 4027,
+    "created_at": "2026-10-17T21:46:43Z",
+    "state": "open",
+    "merged": false,
+    "draft": false,
+    "head": "20aab8fc10cc96d9ba12f6b2e3221a7987435cad",
+    "head_repository": "Superfast-Robotics/awesome-mcp-servers",
+    "base_repository": "TensorBlock/awesome-mcp-servers",
+    "base_ref": "main",
+    "body_sha256": "09b47ec0ea3982614202982c29945b868bcd325b36bb14e890d449f884cb1916",
+    "affiliation": "Superfast Robotics with Codex assistance"
+  },
+  "files": [
+    {
+      "path": "data/server-metadata/github-superfast-robotics-robot-skill-hub-c87479bf.json",
+      "status": "added",
+      "git_blob_sha": "6f43a8dccc70e95d9904e31f169d74afe6dce968",
+      "expected_git_blob_sha": "6f43a8dccc70e95d9904e31f169d74afe6dce968",
+      "additions": 39,
+      "deletions": 0
+    },
+    {
+      "path": "docs/search.md",
+      "status": "modified",
+      "git_blob_sha": "6f793d76d1c7aceb7a363bf22114bb951faf6bc3",
+      "expected_git_blob_sha": "6f793d76d1c7aceb7a363bf22114bb951faf6bc3",
+      "additions": 2,
+      "deletions": 0
+    }
+  ],
+  "metadata": {
+    "endpoint": "https://api.superfastrobotics.com/mcp",
+    "transport": "streamable-http",
+    "public_auth": "none",
+    "tool_names": [
+      "find_robot_skills",
+      "inspect_robot_skill",
+      "get_hub_capabilities"
+    ],
+    "tool_count": 3,
+    "tools_and_verification_status": "self_reported",
+    "install_confidence": "medium, explicit maintainer metadata",
+    "desktop_client_or_physical_robot_execution_claimed": false,
+    "MIT_scope": "Hub implementation only; linked upstream sources retain their own terms"
+  },
+  "offline_rule_audit": {
+    "checks": 39,
+    "passed": 39,
+    "method": "Private Python stdlib reimplementation/static binding checks of narrowly inspected pinned TypeScript rules, not execution of upstream code.",
+    "provider_build_or_TypeScript_execution": false,
+    "provider_install_config_readback": false
+  },
+  "anonymous_public_readback": {
+    "GETs": 2,
+    "checks": 13,
+    "passed": 13,
+    "authorization_headers": false,
+    "body_and_exact_git_blobs_match_reviewed_proposal": true,
+    "raw_response_bindings": [
+      {
+        "url": "https://api.github.com/repos/TensorBlock/awesome-mcp-servers/pulls/4027",
+        "method": "GET",
+        "status": 200,
+        "bytes": 19536,
+        "sha256": "439e9267d97598f39fd4fba6cb4037e34862e037baa95b71d4dfed0897fa618c",
+        "read_at": "2026-10-17T21:47:51.214279+00:00"
+      },
+      {
+        "url": "https://api.github.com/repos/TensorBlock/awesome-mcp-servers/pulls/4027/files?per_page=100",
+        "method": "GET",
+        "status": 200,
+        "bytes": 4971,
+        "sha256": "84ed2bfbf65fcad39092746b6d59e3b77653a88149fc6d2bbcebbfdca53d8ca0",
+        "read_at": "2026-10-17T21:47:51.158367+00:00"
+      }
+    ]
+  },
+  "local_validation_corrections": [
+    "Initial hand-written patch lacked trailing context; isolated validation caught it before posting and the frozen patch was corrected.",
+    "First private staging apply inherited global autocrlf and failed exact-byte checks before any remote PR mutation. Corrected staging disables conversion; original attempt retained."
+  ],
+  "new_account_created": false,
+  "paid_service_used": false,
+  "synthetic_installs_or_visits_generated": false,
+  "Hub_requests_for_this_submission": 0,
+  "public_index_ingestion_verified": false,
+  "traffic_or_adoption_claimed": false,
+  "next_external_gate": "Provider review, merge and successful index deployment; then read the public profile and connection configuration."
+}

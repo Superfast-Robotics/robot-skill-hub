@@ -2,6 +2,7 @@
 import { capabilities } from './memories.ts';
 import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
 import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings } from './catalog.ts';
+import { containsWordPrefixes, wordTerms } from './search.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
@@ -93,18 +94,19 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   async function searchRows(index: Snapshot, input: Row) {
     const { limit, offset } = validateSearch(input, index.hub_commit);
-    const terms = String(input.q || '').toLowerCase().replace(/[-_/]/g, ' ').split(/\s+/).filter(Boolean);
+    const query = String(input.q || ''), terms = wordTerms(query);
     const matches = index.records.filter(row => {
+      if (query.trim() && !terms.length) return false;
       if (input.kind && row.kind !== input.kind) return false;
       if (!combinationMatches(row, input)) return false;
-      const haystack = [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ').toLowerCase().replace(/[-_/]/g, ' ');
-      return terms.every(term => haystack.includes(term));
+      const haystack = [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ');
+      return containsWordPrefixes(haystack, terms);
     });
     const normalized = String(input.q || '').toLowerCase();
     matches.sort((a, b) => Number(b.id === normalized) - Number(a.id === normalized) || Number(b.kind === 'preparation_recipe') - Number(a.kind === 'preparation_recipe') || a.id.localeCompare(b.id));
     const found = index.database ? await indexedSearch(index.database, index.hub_commit, input) : { results: matches.slice(offset, offset + limit), total: matches.length };
     const results = found.results;
-    return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts, backend: index.backend, coverage: { complete: true }, search_semantics: index.database ? 'all_terms_word_prefix' : 'all_terms_substring', results, total: found.total, limit, offset,
+    return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts, backend: index.backend, coverage: { complete: true }, search_semantics: 'all_terms_word_prefix', results, total: found.total, limit, offset,
       next: offset + limit < found.total ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
       execution_performed: false, next_action: results.length ? 'inspect_selected_record' : 'broaden_or_correct_query',
       evidence_rule: 'A search match does not establish runtime compatibility or task completion.' };

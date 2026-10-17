@@ -177,6 +177,8 @@ checks are in the [readiness receipt](../evidence/discovery/v0.3.0/provider-read
 
 ## Additional channel review, 2026-10-18
 
+One affiliated [TensorBlock MCP Index PR](https://github.com/TensorBlock/awesome-mcp-servers/pull/4027) adds a Search category entry and optional structured metadata for the public endpoint, transport, authentication, docs and three read-only tools. The repository's contribution guide, complete source catalog, live search and recent merged community submissions were reviewed before posting. The [submission receipt](../evidence/discovery/v0.3.3/tensorblock-submission.json) records exact public file hashes and an independent anonymous two-request readback. Tools and verification remain self-reported; no desktop-client execution, physical robot control, provider verification or transferred upstream license is claimed. The PR is open and unmerged at readback; public index ingestion and resulting traffic remain pending. No fee, new account or synthetic installation activity was used.
+
 The skills.sh detail page and its generated repository installation command are
 available, but two anonymous searches at 20:58 UTC did not return this skill.
 The current public frontmatter and supported directory layout passed the

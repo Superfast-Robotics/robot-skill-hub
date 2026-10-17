@@ -6,7 +6,7 @@ import { createPublicHandler } from '../src/public.ts';
 const HUB = 'a'.repeat(40), ORIGIN = 'https://hub.superfastrobotics.com';
 const hash = (bytes: string | Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 const env = { PUBLICATION_URL: ORIGIN + '/catalog/v1/publication.json' };
-function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean } = {}) {
+function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
   let instant = Date.parse('2026-10-18T00:00:00Z');
   const combo = (runtime: string, robot: string, controller = 'pd_joint_pos', observation = 'state', os = 'linux') => ({ runtime, runtime_version: '1', robot, controller, observation, os, status: 'source_reviewed' });
   const source = { repository: 'https://github.com/upstream/robot', commit: 'b'.repeat(40), sha256: 'c'.repeat(64), url: 'https://github.com/upstream/robot/blob/' + 'b'.repeat(40) + '/task.py' };
@@ -18,9 +18,11 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
   const text = details.map(d => JSON.stringify(d));
   const rows = details.map((d, index) => ({ id: d.id, name: d.name, summary: d.summary, kind: index === 0 ? 'preparation_recipe' : 'source_reference',
     hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + d.source.sha256, record_sha256: hash(text[index]),
+    source_commit: 'commit' in d.source ? d.source.commit : d.source.revision, source_sha256: d.source.sha256,
     capabilities: [index === 0 ? 'pick' : 'grasp', ...(index === 2 ? ['locomotion'] : [])], aliases: index === 0 ? ['cube transfer'] : [], robots: [index === 1 ? 'ur5' : 'panda'], robot_types: index === 2 ? ['humanoid'] : [], runtime: index === 1 ? 'ros2' : 'maniskill', framework: index === 2 ? 'openpi' : 'maniskill',
     compatibility: index === 0 ? [combo('maniskill', 'panda'), combo('mujoco', 'ur5', 'torque', 'rgb', 'windows')] : index === 1 ? [combo('ros2', 'ur5')] : [],
     record_url: 'https://attacker.example.org/ignored-destination.json', evidence: d.evidence }));
+  options.rowOverrides?.forEach((values, index) => Object.assign(rows[index], values));
   const search = JSON.stringify({ schema_version: '1', hub_commit: HUB, counts: { recipes: 1, references: 2, memories: 0 }, records: rows });
   const catalog = JSON.stringify({ schema_version: '1', hub_commit: HUB, records: [details[0]] });
   const references = JSON.stringify({ schema_version: '1', records: details.slice(1) });
@@ -109,6 +111,53 @@ test('static search includes declared robot types without turning them into robo
   assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&robot=humanoid'))!.json() as any).total, 0);
   assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&runtime=openpi&robot=panda'))!.json() as any).total, 0);
   assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&os=linux'))!.json() as any).total, 0);
+});
+
+test('static word-prefix search separates acronyms from mid-word substrings and preserves declared aliases, Unicode words and filters', async () => {
+  const overrides = [
+    { name: 'Model predictive speed and steer control', summary: 'Path tracking control', aliases: ['MPC', 'steering control'] },
+    { name: 'Dynamic window approach', summary: 'Navigation algorithm', aliases: ['DWA'], capabilities: ['navigation'] },
+    { name: 'Hardware SDK', summary: '\uB85C\uBD07 SDK sample', aliases: [] }
+  ];
+  const s = fixture({ rowOverrides: overrides });
+  const read = async (q: string, extra = '') => {
+    const response = await s.request('/v1/search?q=' + encodeURIComponent(q) + extra);
+    assert.equal(response!.status, 200); const value = await response!.json() as any;
+    assert.equal(value.search_semantics, 'all_terms_word_prefix'); assert.equal(value.backend, 'static_v1_fallback');
+    return value;
+  };
+  for (const q of ['DWA', '!!!DWA!!!', 'dynamic\u2013window/navigation', 'dyn nav']) {
+    const found = await read(q); assert.deepEqual(found.results.map((row: any) => row.id), ['beta-grasp']);
+    assert.equal(found.results[0].record_version, 'source-' + s.details[1].source.sha256);
+    assert.equal(found.results[0].hub_prepare, false);
+  }
+  for (const q of ['model predictive speed steering', 'speed steering', 'MPC']) {
+    assert.deepEqual((await read(q)).results.map((row: any) => row.id), ['alpha-pick']);
+  }
+  for (const q of ['ware', 'dwa missingterm', 'DWA OR hardware', '\uC5C6\uB294\uB2E8\uC5B4', '---', '!!!', '/_']) {
+    const absent = await read(q, '&offset=5&limit=2'); assert.equal(absent.total, 0); assert.deepEqual(absent.results, []);
+    assert.equal(absent.offset, 5); assert.equal(absent.limit, 2); assert.equal(absent.next, null);
+  }
+  assert.deepEqual((await read('\uB85C\uBD07 SDK')).results.map((row: any) => row.id), ['gamma-policy']);
+  assert.equal((await read('DWA', '&runtime=ros2')).total, 1);
+  assert.equal((await read('DWA', '&runtime=ros2&robot=ur5')).total, 1);
+  assert.equal((await read('DWA', '&runtime=ros2&robot=panda')).total, 0);
+  assert.equal((await read('DWA', '&kind=preparation_recipe')).total, 0);
+  for (const q of ['', '  ']) assert.equal((await read(q)).total, 3, 'Only empty or whitespace query browses every record');
+  const undeclared = fixture({ rowOverrides: [{ ...overrides[0], aliases: ['MPC'] }] });
+  assert.equal((await (await undeclared.request('/v1/search?q=speed%20steering'))!.json() as any).total, 0, 'No inferred stemming or undeclared synonym');
+});
+
+test('static word-prefix search retains exact-ID priority, pinned pagination and its explicit accent limitation', async () => {
+  const s = fixture({ rowOverrides: [{ name: 'Beta grasp recipe', summary: 'Caf\u00E9 manipulation' }] });
+  const first = await (await s.request('/v1/search?q=beta-grasp&limit=1'))!.json() as any;
+  assert.equal(first.total, 2); assert.deepEqual(first.results.map((row: any) => row.id), ['beta-grasp']);
+  assert.deepEqual(first.next, { q: 'beta-grasp', limit: 1, offset: 1, hub_commit: HUB });
+  const last = await (await s.request('/v1/search?' + new URLSearchParams(first.next)))!.json() as any;
+  assert.deepEqual(last.results.map((row: any) => row.id), ['alpha-pick']); assert.equal(last.next, null);
+  assert.equal(last.results[0].source_commit, s.rows[0].source_commit);
+  assert.equal((await (await s.request('/v1/search?q=caf\u00E9'))!.json() as any).total, 1);
+  assert.equal((await (await s.request('/v1/search?q=cafe'))!.json() as any).total, 0, 'Static tokenization does not claim native Latin accent folding');
 });
 
 test('record version conflicts and absent IDs never fall through to arbitrary upstream fetches', async () => {

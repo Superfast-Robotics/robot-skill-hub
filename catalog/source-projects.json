@@ -5091,7 +5091,9 @@
           "entrypoint_kind": "python_main",
           "aliases": [
             "MPC",
-            "model predictive control"
+            "model predictive control",
+            "steering control",
+            "path tracking"
           ],
           "authors": [
             "Atsushi Sakai"

@@ -13,11 +13,12 @@ const KEY = 'local-native-catalog-sync-credential';
 const hash = (text: string) => createHash('sha256').update(text).digest('hex');
 const bundle = build({ entryPoints: [fileURLToPath(new URL('../../src/index.ts', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023' }).then(result => result.outputFiles![0].text);
 const schema = readFile(new URL('../../migrations-catalog/0001_catalog.sql', import.meta.url), 'utf8');
-function publication(commit: string, options: { duplicate?: boolean; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean } = {}) {
+function publication(commit: string, options: { duplicate?: boolean; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
   const count = options.records ?? 3;
   const full = Array.from({ length: count }, (_, index) => ({ id: index === 0 ? 'maniskill-panda-pick-cube' : index === 1 ? options.humanoid ? 'h1-locomotion' : 'kuka-grasp' : 'source-' + index, access: { hub_prepare: index === 0 }, source: { commit: 'b'.repeat(40), sha256: 'c'.repeat(64) } }));
   const combos = [{ runtime: 'maniskill', runtime_version: '3.0', robot: 'panda', controller: 'pd_joint_pos', observation: 'state', os: 'linux', python: '3.10', architecture: 'x86_64' }, { runtime: 'ros2', runtime_version: 'humble', robot: 'ur5', controller: 'torque', observation: 'rgb', os: 'windows' }];
   const rows = full.map((record, index) => ({ id: record.id, name: index === 0 ? 'PickCube-v1' : index === 1 ? options.humanoid ? 'H1 locomotion' : 'KUKA iiwa grasp' : 'Source ' + index, summary: 'Pinned source for pick cube and robot grasp', kind: index === 0 ? 'preparation_recipe' : 'source_reference', hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + 'c'.repeat(64), record_sha256: hash(JSON.stringify(record)), source_sha256: 'c'.repeat(64), source_commit: 'b'.repeat(40), record_url: ORIGIN + (index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', capabilities: options.humanoid && index === 1 ? ['locomotion'] : ['pick cube'], aliases: [], runtime: index === 0 ? 'maniskill' : options.humanoid && index === 1 ? 'isaaclab' : 'ros2', framework: options.humanoid && index === 1 ? 'isaaclab' : 'maniskill', robots: [index === 1 ? options.humanoid ? 'h1' : 'kuka_iiwa' : 'panda'], ...(options.humanoid && index === 1 ? { robot_types: ['humanoid'] } : {}), compatibility: index === 0 ? combos : [], ...(index === 0 ? { python_requirement: '>=3.10,<3.12' } : {}) }));
+  options.rowOverrides?.forEach((values, index) => Object.assign(rows[index], values));
   if (options.invalidRow) Object.assign(rows[1], options.invalidRow);
   const memories = Array.from({ length: options.memories ?? 1 }, (_, i) => ({ schema_version: '1', memory_id: 'mem_' + String(i + 1).repeat(64), skill_id: rows[0]?.id ?? 'absent-skill', base: { record_version: '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) }, environment: { runtime: 'maniskill', robot: i === 0 ? 'panda' : 'ur5', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64), entry_url: ORIGIN + '/memories/mem_' + String(i + 1).repeat(64) + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported', summary: 'Contributor finding', evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }));
   const resources = new Map<string, string>();
@@ -210,6 +211,58 @@ test('native unavailable mirror falls back only to a complete checksum-bound cur
     const result = await s.read('/v1/search?q=kuka'); assert.equal(result.status, 200); assert.equal(result.body.backend, 'static_v1_fallback'); assert.equal(result.body.total, 1); assert.equal(result.body.coverage.complete, true);
     current.resources.set('/catalog/v1/search.json', search + ' ');
     s.set(publication('c'.repeat(40))); assert.equal((await s.read('/v1/search')).status, 503, 'Older cached static data cannot claim a fresh generation');
+  } finally { await s.mf.dispose(); }
+});
+
+test('native and static MCP/search agree on basic word prefixes, strict filters, source pins and two-page queries', async () => {
+  const current = publication('a'.repeat(40), { rowOverrides: [
+    { name: 'Model predictive speed and steer control', summary: 'Path tracking sample', aliases: ['MPC', 'steering control', 'kuka grasp'] },
+    { name: 'Dynamic window approach', summary: 'Navigation sample', aliases: ['DWA'], capabilities: ['navigation'] },
+    { name: 'Hardware SDK', summary: '\uB85C\uBD07 SDK sample', aliases: [] }
+  ] });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 2, memories: 1 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) }; current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const s = await runtime(current); try {
+    const queries = ['DWA', '!!!DWA!!!', 'dyn nav', 'dynamic\u2013window/navigation', 'ware', 'DWA missingterm', 'DWA OR hardware', 'MPC', 'speed steering', 'model predictive speed steering', '\uB85C\uBD07 SDK', '\uC5C6\uB294\uB2E8\uC5B4', '---', '!!!', '/_', '', '  '];
+    const paths = [...queries.map(q => '/v1/search?q=' + encodeURIComponent(q)),
+      '/v1/search?q=DWA&runtime=ros2', '/v1/search?q=DWA&robot=kuka_iiwa', '/v1/search?q=DWA&runtime=ros2&robot=kuka_iiwa',
+      '/v1/search?q=DWA&os=linux', '/v1/search?q=DWA&kind=preparation_recipe', '/v1/search?q=---&limit=2&offset=5',
+      '/v1/search?q=kuka-grasp&limit=1'];
+    const staticResults = new Map<string, any>();
+    for (const path of paths) {
+      const result = await s.read(path); assert.equal(result.status, 200); assert.equal(result.body.backend, 'static_v1_fallback');
+      assert.equal(result.body.search_semantics, 'all_terms_word_prefix'); staticResults.set(path, result.body);
+    }
+    assert.deepEqual(staticResults.get('/v1/search?q=DWA').results.map((row: any) => row.id), ['kuka-grasp']);
+    assert.equal(staticResults.get('/v1/search?q=speed%20steering').total, 1);
+    assert.equal(staticResults.get('/v1/search?q=ware').total, 0);
+    assert.equal(staticResults.get('/v1/search?q=DWA&runtime=ros2&robot=kuka_iiwa').total, 0, 'Discovery labels cannot manufacture a compatibility combination');
+    assert.equal(staticResults.get('/v1/search?q=kuka-grasp&limit=1').results[0].id, 'kuka-grasp', 'Exact source ID precedes a matching recipe alias');
+    const mcp = async () => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { q: '!!!DWA!!!', limit: 1, offset: 0, hub_commit: current.version.hub_commit } } }) });
+      assert.equal(response.status, 200); const body = await response.json() as any; assert.equal(body.result.isError, false); return body.result.structuredContent;
+    };
+    const staticMcp = await mcp(); assert.equal(staticMcp.backend, 'static_v1_fallback'); assert.equal(staticMcp.total, 1);
+    const pages = async () => {
+      const first = await s.read('/v1/search?q=sample&limit=2');
+      assert.equal(first.body.total, 3); assert.deepEqual(first.body.next, { q: 'sample', limit: 2, offset: 2, hub_commit: current.version.hub_commit });
+      const second = await s.read('/v1/search?' + new URLSearchParams(first.body.next));
+      assert.equal(second.body.next, null); assert.equal(second.body.results.length, 1);
+      const rows = [...first.body.results, ...second.body.results];
+      assert.equal(new Set(rows.map(row => row.id)).size, 3);
+      rows.forEach(row => { assert.equal(row.source_commit, 'b'.repeat(40)); assert.equal(row.source_sha256, 'c'.repeat(64)); });
+      return [first.body, second.body];
+    };
+    const staticPages = await pages(); await s.complete();
+    const withoutBackend = ({ backend, ...body }: any) => body;
+    for (const path of paths) {
+      const result = await s.read(path); assert.equal(result.status, 200); assert.equal(result.body.backend, 'd1_fts5');
+      assert.deepEqual(withoutBackend(result.body), withoutBackend(staticResults.get(path)), path);
+    }
+    const nativeMcp = await mcp(); assert.equal(nativeMcp.backend, 'd1_fts5'); assert.deepEqual(withoutBackend(nativeMcp), withoutBackend(staticMcp));
+    const nativePages = await pages();
+    assert.deepEqual(nativePages.map(withoutBackend), staticPages.map(withoutBackend));
+    const fts = await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'dwa*'").first<any>(); assert.equal(fts.total, 1, 'Real native FTS excludes Hardware');
   } finally { await s.mf.dispose(); }
 });
 

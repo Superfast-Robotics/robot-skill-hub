@@ -1,0 +1,37 @@
+{
+  "schema_version": "1",
+  "reviewed_at": "2026-10-17T21:36:42.001556+00:00",
+  "base_hub_commit": "cc1fd985b754bf5898342ee362216c9cd2c9884e",
+  "classification": "reviewed search metadata correction, not execution evidence",
+  "record_id": "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "source_sha256": "5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1",
+  "source_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+  "readme_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md",
+  "readme_sha256": "97d04bf1a938b849e43235e48a476968a2ce6d85ca10c47060ec91a2c539c9e8",
+  "readme_bytes": 25677,
+  "evidence": {
+    "source_header_line": 3,
+    "source_steering_angle_line": 52,
+    "readme_heading": "Model predictive speed and steering control"
+  },
+  "aliases_before": [
+    "MPC",
+    "model predictive control"
+  ],
+  "aliases_after": [
+    "MPC",
+    "model predictive control",
+    "steering control",
+    "path tracking"
+  ],
+  "changed_record_fields": [
+    "aliases"
+  ],
+  "unchanged_other_official_records": 1252,
+  "source_license_authors_requirements_evidence_unchanged": true,
+  "offline_rebuild_deterministic": true,
+  "HTTP_or_DNS_requests": 0,
+  "upstream_execution": false,
+  "runtime_verification": "not_run"
+}

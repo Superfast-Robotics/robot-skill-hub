@@ -1,0 +1,257 @@
+{
+  "schema_version": "1",
+  "reviewed_at": "2026-10-17T21:46:12.878982+00:00",
+  "classification": "internal maintainer offline retrieval regression, not deployment or outside adoption",
+  "candidate_fixture_hub_commit": "1111111111111111111111111111111111111111",
+  "baseline_local_publication_commit": "f02a4c11fe4b912a775b13637159e18b1dadeca5",
+  "counts": {
+    "recipes": 17,
+    "references": 1255,
+    "search_rows": 1272
+  },
+  "input_sha256": {
+    "skills/find-robot-skills/scripts/rshlib/core.py": "3f27f4d2dee3ede9ee35d8d41ab0798154fbbc798763a2c6b5eb17ed15b06e1c",
+    "api/src/search.ts": "8525348358ee1cbbc77efcc4c4109fc07843d7355f93fc19063219c8125116f5",
+    "api/src/catalog.ts": "9b2fa395507d7d694b6f3a5527631de4b3ae17abb207a4b8c761bf1b8d9ddcf4",
+    "api/src/public.ts": "0927f9ca265ea7a170b6a4ee45f05fab9dd06004009504af68946f403286f7cf",
+    "catalog/references.json": "9395f403ba0ec1202f64de5601f77f5ac70fb060daf53ba799b941c1c3e0846a",
+    "catalog/source-projects.json": "73c55a974f6299e559d5734e8663080be4604b13741f6b2754ed536df58c3e5e"
+  },
+  "queries": [
+    {
+      "query": "model-predictive speed/steering",
+      "baseline_core_total": 0,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "model predictive speed steering",
+      "baseline_core_total": 0,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "model predictive speed steer",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "model predictive control",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "MPC",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "MPC path tracking",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "path tracking",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "ground vehicle",
+      "baseline_core_total": 0,
+      "after_core_total": 0,
+      "sqlite_fts5_total": 0,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "steering",
+      "baseline_core_total": 1,
+      "after_core_total": 2,
+      "sqlite_fts5_total": 2,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "DWA",
+      "baseline_core_total": 40,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "dynamic window",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "dynamic window approach",
+      "baseline_core_total": 1,
+      "after_core_total": 1,
+      "sqlite_fts5_total": 1,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "pick cube",
+      "baseline_core_total": 6,
+      "after_core_total": 6,
+      "sqlite_fts5_total": 6,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "PickCube-v1",
+      "baseline_core_total": 3,
+      "after_core_total": 3,
+      "sqlite_fts5_total": 3,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "panda",
+      "baseline_core_total": 29,
+      "after_core_total": 29,
+      "sqlite_fts5_total": 29,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "panda_wristcam",
+      "baseline_core_total": 2,
+      "after_core_total": 2,
+      "sqlite_fts5_total": 2,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "xarm6_robotiq",
+      "baseline_core_total": 4,
+      "after_core_total": 4,
+      "sqlite_fts5_total": 4,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "humanoid locomotion",
+      "baseline_core_total": 5,
+      "after_core_total": 5,
+      "sqlite_fts5_total": 5,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "pick impossible",
+      "baseline_core_total": 0,
+      "after_core_total": 0,
+      "sqlite_fts5_total": 0,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "!!!",
+      "baseline_core_total": 0,
+      "after_core_total": 0,
+      "sqlite_fts5_total": 0,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "!!!PickCube!!!",
+      "baseline_core_total": 0,
+      "after_core_total": 3,
+      "sqlite_fts5_total": 3,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "---",
+      "baseline_core_total": null,
+      "after_core_total": 0,
+      "sqlite_fts5_total": 0,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": true
+    },
+    {
+      "query": "   ",
+      "baseline_core_total": null,
+      "after_core_total": 1272,
+      "sqlite_fts5_total": 1272,
+      "core_equals_sqlite_total": true,
+      "core_equals_sqlite_first_50_order": true,
+      "complete_result_set_compared": false
+    }
+  ],
+  "word_prefix_scope": "All query terms must prefix letter/number words; punctuation-only nonblank queries match nothing and blank queries browse.",
+  "local_SQLite_comparison": "SQLite FTS5 unicode61 in memory, not Cloudflare D1 or a network service; totals and the first 50 ordered results compared.",
+  "unicode_limitation": "Native unicode61 has its own Unicode version, case rules and default Latin-accent removal; universal Unicode parity is not claimed.",
+  "metadata_review": "evidence/sources/pythonrobotics-mpc-search-metadata-2026-10-18.json",
+  "source_pins_licenses_authors_and_runtime_evidence_unchanged": true,
+  "successful_audit_guard_events": {
+    "network_dns": [],
+    "subprocess": [],
+    "denied_reads": [],
+    "outside_write": []
+  },
+  "initial_harness_corrections": [
+    "The independent audit initially omitted two requested API source files from its read allowlist; corrected locally before repeating the unchanged matching checks.",
+    "A synthetic punctuation test initially expected one result although two fixture records carried the same KUKA metadata; its expected count was corrected without changing the matcher."
+  ],
+  "local_checks": {
+    "Python_tests_run": 251,
+    "Python_passed": 247,
+    "Python_Windows_symlink_privilege_skips": 4,
+    "API_unit_tests_passed": 95,
+    "native_workerd_tests_passed_with_existing_publisher_fixture": 30,
+    "TypeScript": "passed"
+  },
+  "offline_audit_HTTP_or_DNS_requests": 0,
+  "offline_audit_credential_reads": 0,
+  "upstream_execution": false,
+  "GPU_or_paid_service_used": false,
+  "production_verification_pending": true
+}

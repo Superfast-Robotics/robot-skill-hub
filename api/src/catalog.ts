@@ -1,4 +1,6 @@
 /** Fixed-source, bounded D1 mirror. Catalog metadata is data, never executable. */
+import { wordTerms } from './search.ts';
+
 export const HUB_ORIGIN = 'https://hub.superfastrobotics.com';
 export const INTERNAL_HEADERS = { Accept: 'application/json', 'Cache-Control': 'no-cache', DNT: '1', 'X-RSH-Telemetry': 'off', 'User-Agent': 'robot-skill-hub-api/catalog' };
 export const COMMIT = /^[a-f0-9]{40}$/;
@@ -137,7 +139,7 @@ function sqlFilters(input: Row) {
 }
 export async function indexedSearch(db: CatalogDatabase, commit: string, input: Row) {
   const { limit, offset } = validateSearch(input, commit);
-  const terms = String(input.q || '').toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+  const terms = wordTerms(String(input.q || ''));
   if (String(input.q || '').trim() && !terms.length) return { results: [], total: 0, limit, offset };
   const { clauses, values } = sqlFilters(input);
   const fts = terms.length ? ' JOIN catalog_fts ON catalog_fts.rowid=d.rowid' : '';

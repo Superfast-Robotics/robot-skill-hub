@@ -263,18 +263,19 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
         raise RshError("catalog_generation_changed", "The available recipe/reference snapshots differ from the requested search generation.",
                        next_action="restart_search_or_use_original_catalog_snapshot",
                        expected_hub_commit=hub_commit, catalog_hub_commit=recipe_hub, references_hub_commit=reference_hub)
-    # Match the public API: separators split terms, but an unfamiliar Unicode
-    # word or punctuation-bearing token must not silently become an empty query.
-    tokens = re.sub(r"[-_/]", " ", query.lower()).split()
+    # Match whole-word prefixes, never arbitrary substrings such as DWA inside
+    # hardware. Keep Unicode words and distinguish punctuation from browsing.
+    tokens = re.findall(r"[^\W_]+", query.lower())
+    punctuation_only = bool(query.strip()) and not tokens
     results = []
     for record in catalog["records"]:
         matched = compatibility(record, environment)
         if matched["compatibility_status"] == "incompatible":
             continue
-        words = re.sub(r"[-_/]", " ", " ".join([record["id"], record["name"], record["summary"],
-                          *record["capabilities"], *record.get("aliases", [])]).lower())
-        score = sum(token in words for token in tokens)
-        if tokens and score != len(tokens):
+        words = re.findall(r"[^\W_]+", " ".join([record["id"], record["name"], record["summary"],
+                           *record["capabilities"], *record.get("aliases", [])]).lower())
+        score = sum(any(word.startswith(token) for word in words) for token in tokens)
+        if punctuation_only or score != len(tokens):
             continue
         results.append({"id": record["id"], "name": record["name"], "summary": record["summary"],
                         "kind": "preparation_recipe", "hub_prepare": True, "next_action": "inspect_recipe",
@@ -296,11 +297,11 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
         if (not IDENTIFIER.fullmatch(str(record.get("id", ""))) or not isinstance(record.get("source"), dict)
                 or not SOURCE_REVISION.fullmatch(str(record["source"].get("commit") or record["source"].get("revision", "")))):
             continue
-        words = re.sub(r"[-_/]", " ", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
+        words = re.findall(r"[^\W_]+", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
                           framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", []),
                           *record.get("robot_types", [])]).lower())
-        score = sum(token in words for token in tokens)
-        if tokens and score != len(tokens):
+        score = sum(any(word.startswith(token) for word in words) for token in tokens)
+        if punctuation_only or score != len(tokens):
             continue
         results.append({"id": record["id"], "name": record.get("name", record["id"]),
                         "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,
@@ -311,7 +312,7 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                         "compatibility_status": "unknown", "missing_requirements": ["upstream_environment_review"],
                         "match_reason": ["Pinned upstream source reference; no Hub preparation adapter or environment compatibility claim."],
                         "evidence_level": record.get("evidence", {}).get("level", "source_reviewed"), "_score": score})
-    results.sort(key=lambda item: (-item["_score"], not item["hub_prepare"], item["id"]))
+    results.sort(key=lambda item: (item["id"] != query.lower(), -item["_score"], not item["hub_prepare"], item["id"]))
     for item in results:
         item.pop("_score")
     stable_hub = recipe_hub if isinstance(recipe_hub, str) and COMMIT.fullmatch(recipe_hub) and recipe_hub == reference_hub else None
@@ -321,6 +322,7 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                      if environment.get(key) not in (None, "", "unknown")}, "limit": limit, "offset": offset + limit,
                      **({"hub_commit": stable_hub} if stable_hub else {})}
     return {"status": "ready", "results": results[offset:offset + limit], "total": len(results),
+            "search_semantics": "all_terms_word_prefix",
             "offset": offset, "limit": limit, "next": next_page,
             "pagination_stability": "single_generation" if stable_hub else "snapshot_required",
             **({"pagination_note": "Recipe and reference generations differ or are unknown; use one catalog snapshot for stable pagination."}

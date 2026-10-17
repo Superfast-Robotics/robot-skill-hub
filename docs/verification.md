@@ -1,10 +1,20 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Search boundaries and reviewed task terms
+
+A real offline task exposed two discovery gaps: `DWA` returned its algorithm plus 39 unrelated hardware references, and the MPC example could not be found with speed/steering terms. Local and static search now require every query term at a word start, matching the native query's basic grammar. Nonblank punctuation-only queries return no matches; blank queries retain catalog browsing. Exact IDs rank first, and existing filters, source pins and generation-bound pagination are preserved.
+
+The MPC record adds only the source-backed aliases `steering control` and `path tracking`. Its pinned header and README support those terms; the [metadata review](../evidence/sources/pythonrobotics-mpc-search-metadata-2026-10-18.json) preserves its source, authors, license, requirements and execution evidence unchanged, along with all 1,252 other official references. No stemming, inferred synonyms, robot-model support or preparation adapter was added.
+
+An [independent offline comparison](../evidence/integration/v0.3.3/search-prefix-local.json) checked 23 queries against actual canonical metadata and local SQLite FTS5: natural MPC queries changed from zero to one match and `DWA` from 40 to one. Existing recipe/model controls retained their sets. Counts and the first 50 ordered results agreed; the 1,272-row blank query was not a full ID enumeration. This was an explicitly unpublished local fixture, not production or outside adoption. Native unicode61 accent/version behavior can differ from local/static Unicode matching.
+
+All 251 Python tests completed with 247 passes and four Windows symlink-privilege skips. TypeScript checking, 95 Worker unit tests and 30 native workerd tests passed. A native regression compared the same publication before and after D1 activation across 26 search paths, MCP, source pins, strict filters and pagination. New production verification remains separate from these local checks.
+
 ## Compact agent entry and classical planning sources
 
 The catalog contains 17 preparation recipes, 1,255 source references and 3 findings. Five [PythonRobotics algorithm demonstrations](../evidence/sources/pythonrobotics-classical-planning-2026-10-18.json) add A*, D* Lite, Dynamic Window Approach, Hybrid A* and MPC path tracking. The offline importer preserved all 1,248 earlier official records exactly. Each new record retains reviewed file-specific aliases and header authors; no robot model, compatible runtime or execution result is inferred. Dependencies, plotting and local helpers still require upstream setup.
 
-The earlier agent directory rendered 414,007 bytes before usage, and its full-text route rendered 7,312,527 bytes by repeating the catalog. The entry routes now publish a 4,249-byte directory and a 42,264-byte usage guide with the quickstart first. Complete catalog records remain accessible through the same checksum-bound paginated manifests and per-ID pages. Explicit 16 KiB/128 KiB publication budgets reject oversized entry documents without truncation. A synthetic 10,000-recipe/25,000-reference regression verifies that document size grows only with the count text, while real UTF-8 overflow preserves the previous affected file.
+The earlier agent directory rendered 414,007 bytes before usage, and its full-text route rendered 7,312,527 bytes by repeating the catalog. The compact-entry publication at `f02a4c11fe4b912a775b13637159e18b1dadeca5` rendered a 4,249-byte directory and a 42,264-byte usage guide with the quickstart first; later guidance edits can change those bytes. Complete catalog records remain accessible through the same checksum-bound paginated manifests and per-ID pages. Explicit 16 KiB/128 KiB publication budgets reject oversized entry documents without truncation. A synthetic 10,000-recipe/25,000-reference regression verifies that document size grows only with the count text, while real UTF-8 overflow preserves the previous affected file.
 
 Local checks passed: 247 Python tests with four Windows symlink-privilege skips, all 39 publication tests, and the offline 14-project importer rebuild. No upstream package, algorithm, simulator or hardware was executed in this follow-up.
 

@@ -158,6 +158,53 @@ class ReferenceDiscoveryTests(unittest.TestCase):
         self.assertEqual([], find(data, "pick missingterm", {}, 50)["results"])
         self.assertEqual("fixture-pick", find(data, "pick object", {}, 50)["results"][0]["id"])
 
+    def test_word_prefixes_reject_hardware_substrings_and_keep_declared_acronyms(self):
+        algorithm = {**reference(), "id": "fixture-local-planner", "name": "Dynamic Window Approach", "aliases": ["DWA"]}
+        hardware = {**reference(), "id": "fixture-hardware", "name": "Hardware controller", "summary": "Hardware setup example."}
+        data = catalog(algorithm, hardware)
+        self.assertEqual([algorithm["id"]], [row["id"] for row in find(data, "DWA", {}, 50)["results"]])
+        self.assertEqual([hardware["id"]], [row["id"] for row in find(data, "hardw", {}, 50)["results"]])
+        self.assertEqual([], find(data, "dwa impossible", {}, 50)["results"])
+        self.assertEqual("all_terms_word_prefix", find(data, "DWA", {})["search_semantics"])
+
+    def test_punctuation_does_not_become_catalog_browsing_and_unicode_words_remain_terms(self):
+        accented = {**reference(), "id": "fixture-accent", "name": "Caf\u00e9 control"}
+        data = catalog(reference(), accented)
+        for query in ("---", "!!!", "\U0001f9be", "\u672a\u77e5"):
+            with self.subTest(query=query):
+                result = find(data, query, {}, offset=5)
+                self.assertEqual((0, [], None, 5), (result["total"], result["results"], result["next"], result["offset"]))
+        self.assertEqual(2, find(data, "  ", {}, 50)["total"])
+        self.assertEqual(2, find(data, "!!!KUKA/inverse_kinematics!!!", {}, 50)["total"])
+        self.assertEqual([accented["id"]], [row["id"] for row in find(data, "Caf\u00e9", {}, 50)["results"]])
+        self.assertEqual(0, find(data, "cafe", {}, 50)["total"], "Local matching does not emulate unicode61 accent removal")
+
+    def test_exact_source_id_ranks_before_prepared_recipe_and_continuation_keeps_order(self):
+        source = {**reference(), "id": "fixture-target"}
+        data = catalog(source)
+        data["records"] = [{"id": "aaa-fixture-target", "name": "Fixture target", "summary": "Planning fixture", "capabilities": ["planning"],
+                            "compatibility": [{"runtime": "fixture", "runtime_version": "1", "robot": "panda", "controller": "position", "observation": "state", "os": "linux"}],
+                            "requirements": {"python": ">=3.10"}, "source": {"commit": "a" * 40}, "maintenance": {"record_version": "1"}, "evidence": {"level": "not_run"}}]
+        first = find(data, source["id"], {}, 1)
+        self.assertEqual(source["id"], first["results"][0]["id"])
+        second = find(data, first["next"]["q"], {}, 1, offset=first["next"]["offset"], hub_commit=first["next"]["hub_commit"])
+        self.assertEqual("aaa-fixture-target", second["results"][0]["id"])
+
+    def test_reviewed_classical_planning_metadata_supports_natural_mpc_terms_without_hardware_noise(self):
+        rows = json.loads((ROOT / "catalog/references.json").read_text(encoding="utf-8"))["records"]
+        data = catalog(*rows)
+        mpc = "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+        for query in ("model-predictive speed/steering", "model predictive speed steering", "MPC path tracking"):
+            with self.subTest(query=query):
+                found = find(data, query, {}, 3)
+                self.assertEqual([mpc], [row["id"] for row in found["results"]])
+                self.assertEqual(1, found["total"])
+                self.assertFalse(found["execution_performed"])
+                self.assertFalse(found["results"][0]["hub_prepare"])
+        dwa = find(data, "DWA", {}, 3)
+        self.assertEqual(["pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py"], [row["id"] for row in dwa["results"]])
+        self.assertEqual(1, dwa["total"])
+
     def test_single_robot_filter_requires_an_explicit_discovery_fact(self):
         unknown = reference()
         unknown["id"] = "robot-unknown"

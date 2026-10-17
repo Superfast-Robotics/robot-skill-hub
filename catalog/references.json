@@ -70808,7 +70808,9 @@
       },
       "aliases": [
         "MPC",
-        "model predictive control"
+        "model predictive control",
+        "steering control",
+        "path tracking"
       ]
     },
     {
