@@ -26,6 +26,12 @@
       "record_version": "source-55f6e7e612ae1623bdb3b2f4da9bc4a6e385ca15d9fd9866314518c2c424f294"
     },
     {
+      "id": "rai-examples-manipulation-demo-streamlit-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "aa8b58dfa73f96dbe95da524e3f4726617dc50a4f2354049d334c755bcbe5ed6",
+      "record_version": "source-aa8b58dfa73f96dbe95da524e3f4726617dc50a4f2354049d334c755bcbe5ed6"
+    },
+    {
       "id": "ur-description-artifact-config-ur3e-physical-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "ee8e6db5d031bd7b4bc02d70edcbba4846036187d0ecaeb7b0bbc4d810f1e3ac",

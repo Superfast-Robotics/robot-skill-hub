@@ -14,6 +14,12 @@
       "record_version": "source-9d8f25c38bdb60617f378c07b7e71f97306471353c81bf281eb9943f3f2340d8"
     },
     {
+      "id": "rai-src-rai-semap-rai-semap-ros2-node-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "dcf96f9346e1fc26f81c5f773aae0587cb4528799681c2e1df2bdd67af7c4cc5",
+      "record_version": "source-dcf96f9346e1fc26f81c5f773aae0587cb4528799681c2e1df2bdd67af7c4cc5"
+    },
+    {
       "id": "robomimic-robomimic-scripts-get-dataset-info-py",
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "dc5881bd1da0f0aae423097798492b731ed65cc3e8a9ff303ffe80f750b7e62b",

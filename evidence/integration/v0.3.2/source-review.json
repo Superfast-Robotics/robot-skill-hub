@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "review_kind": "predeployment_static_source_integration",
+  "release_candidate": "0.3.2",
+  "checked_at": "2026-10-17T18:47:10.198244+00:00",
+  "repository": "https://github.com/Superfast-Robotics/robot-skill-hub",
+  "baseline": {
+    "commit": "3a81abb601c3b4b8fcb9a8bed5ca270e546f5f1a",
+    "catalog_url": "https://github.com/Superfast-Robotics/robot-skill-hub/blob/3a81abb601c3b4b8fcb9a8bed5ca270e546f5f1a/catalog/references.json",
+    "catalog_bytes": 5199675,
+    "catalog_sha256": "fd6cac6c8c1800b1e47245a5c245e2cec8c36674da0a44e75a1bb52a1dc16373",
+    "official_references": 1159
+  },
+  "candidate_counts": {
+    "preparation_recipes": 17,
+    "official_references": 1206,
+    "reviewed_intake_references": 1,
+    "published_findings_in_source": 3,
+    "references": 1207,
+    "search_documents": 1224
+  },
+  "preservation": {
+    "added_official_references": 47,
+    "changed_existing_references": 33,
+    "unchanged_existing_references": 1126,
+    "removed_references": 0,
+    "allowed_existing_changes": [
+      "robots: source-declared discovery labels",
+      "evidence.robot_discovery: pinned quote/hash/scope provenance",
+      "openpi-scripts-serve-policy-py capabilities: add policy-inference"
+    ],
+    "source_license_requirements_access_invocation_and_compatibility_preserved_for_all_existing_records": true,
+    "added_id_set_sha256": "c32cb33c9d4d1346db230a59d8ae99107375fd3d56fa1a453572498472535d40",
+    "changed_existing_id_set_sha256": "bb055ed20b34cc425918333fb682e5f9913ddf4445568123569db60cc85c7c20",
+    "id_set_hash_format": "SHA-256 of sorted ID strings encoded as a compact JSON array followed by LF"
+  },
+  "static_review": {
+    "named_checks_passed": 87,
+    "unique_pinned_source_and_supporting_texts_checked": 218,
+    "workflow_records": 103,
+    "workflow_projects": 11,
+    "reviewed_robot_discovery_declarations": 45,
+    "literal_console_entrypoints": 1,
+    "local_metadata_query_cases": 10,
+    "checks": {
+      "preservation_counts": true,
+      "preservation_receipt_ids": true,
+      "allowed_delta_crazyflie-examples-autonomy-autonomous-sequence-high-level-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-autonomy-autonomous-sequence-high-level-py": true,
+      "allowed_delta_crazyflie-examples-autonomy-autonomous-sequence-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-autonomy-autonomous-sequence-py": true,
+      "allowed_delta_crazyflie-examples-autonomy-motion-commander-demo-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-autonomy-motion-commander-demo-py": true,
+      "allowed_delta_crazyflie-examples-lighthouse-multi-bs-geometry-estimation-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-lighthouse-multi-bs-geometry-estimation-py": true,
+      "allowed_delta_crazyflie-examples-logging-basiclog-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-logging-basiclog-py": true,
+      "allowed_delta_crazyflie-examples-logging-basiclog-sync-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-logging-basiclog-sync-py": true,
+      "allowed_delta_crazyflie-examples-parameters-basicparam-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-parameters-basicparam-py": true,
+      "allowed_delta_crazyflie-examples-parameters-persistent-params-from-file-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-parameters-persistent-params-from-file-py": true,
+      "allowed_delta_crazyflie-examples-parameters-persistent-params-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-parameters-persistent-params-py": true,
+      "allowed_delta_crazyflie-examples-step-by-step-sbs-connect-log-param-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-step-by-step-sbs-connect-log-param-py": true,
+      "allowed_delta_crazyflie-examples-step-by-step-sbs-motion-commander-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-step-by-step-sbs-motion-commander-py": true,
+      "allowed_delta_crazyflie-examples-step-by-step-sbs-swarm-py": true,
+      "source_license_requirements_preserved_crazyflie-examples-step-by-step-sbs-swarm-py": true,
+      "allowed_delta_openpi-examples-aloha-real-main-py": true,
+      "source_license_requirements_preserved_openpi-examples-aloha-real-main-py": true,
+      "allowed_delta_openpi-examples-aloha-sim-main-py": true,
+      "source_license_requirements_preserved_openpi-examples-aloha-sim-main-py": true,
+      "allowed_delta_openpi-examples-droid-main-py": true,
+      "source_license_requirements_preserved_openpi-examples-droid-main-py": true,
+      "OpenPI_only_added_inference": true,
+      "allowed_delta_openpi-scripts-serve-policy-py": true,
+      "source_license_requirements_preserved_openpi-scripts-serve-policy-py": true,
+      "allowed_delta_unitree-sdk2-python-example-b2-high-level-b2-sport-client-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-b2-high-level-b2-sport-client-py": true,
+      "allowed_delta_unitree-sdk2-python-example-b2w-high-level-b2w-sport-client-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-b2w-high-level-b2w-sport-client-py": true,
+      "allowed_delta_unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-g1-low-level-g1-low-level-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-g1-low-level-g1-low-level-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-go2-high-level-go2-sport-client-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-go2-high-level-go2-sport-client-py": true,
+      "allowed_delta_unitree-sdk2-python-example-go2-low-level-go2-stand-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-go2-low-level-go2-stand-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-go2w-high-level-go2w-sport-client-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-go2w-high-level-go2w-sport-client-py": true,
+      "allowed_delta_unitree-sdk2-python-example-h1-2-low-level-h1-2-low-level-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-h1-2-low-level-h1-2-low-level-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-h1-low-level-h1-low-level-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-h1-low-level-h1-low-level-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py": true,
+      "allowed_delta_unitree-sdk2-python-example-obstacles-avoid-obstacles-avoid-move-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-obstacles-avoid-obstacles-avoid-move-py": true,
+      "allowed_delta_unitree-sdk2-python-example-r1-high-level-r1-loco-client-example-py": true,
+      "source_license_requirements_preserved_unitree-sdk2-python-example-r1-high-level-r1-loco-client-example-py": true,
+      "103_workflows_mapped_once": true,
+      "all_added_records_are_reviewed_workflows": true,
+      "all_changed_robot_labels_have_manifest_proof": true,
+      "NoMaD_unresolved_not_executable": true,
+      "flat_source_index_complete": true,
+      "source_shards_complete": true,
+      "local_query_humanoid locomotion_{}": true,
+      "local_query_G1_{'robot': 'g1'}": true,
+      "local_query_Crazyflie_{'robot': 'crazyflie'}": true,
+      "local_query_policy inference_{'runtime': 'openpi'}": true,
+      "local_query_Octo_{}": true,
+      "local_query_OpenVLA_{}": true,
+      "local_query_diffusion policy_{}": true,
+      "local_query_ACT policy training_{}": true,
+      "local_query_GR00T policy_{}": true,
+      "local_query_NoMaD_{}": true,
+      "no_inferred_g1_combination": true,
+      "robot_type_not_model": true
+    },
+    "methods": [
+      "Compared baseline/candidate records and limited all 33 existing-record changes to the allowed search metadata.",
+      "Independently compared exact cached text byte sizes, SHA-256 values and declared text anchors for 218 unique source/license/setup/evidence files at immutable upstream commits.",
+      "Mapped all 103 workflow artifacts exactly once to canonical records; retained per-workflow Python/packages/environment/notes, declared external requirements and limitations.",
+      "Checked all 45 workflow/Crazyflie robot-discovery declarations against their pinned source/path quote and published provenance, without inferring compatibility.",
+      "Parsed Python syntax and checked the literal setuptools console registration against its top-level source function, without importing upstream modules or evaluating setup.",
+      "Compared the complete 1206-record flat source index and all hash-bound source-index shards against canonical source pins."
+    ]
+  },
+  "workflow_upstreams": [
+    {
+      "project_id": "openpi",
+      "repository": "https://github.com/Physical-Intelligence/openpi",
+      "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "workflow_records": 11
+    },
+    {
+      "project_id": "robomimic",
+      "repository": "https://github.com/ARISE-Initiative/robomimic",
+      "commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
+      "workflow_records": 10
+    },
+    {
+      "project_id": "unitree-sdk2-python",
+      "repository": "https://github.com/unitreerobotics/unitree_sdk2_python",
+      "commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "workflow_records": 18
+    },
+    {
+      "project_id": "lerobot",
+      "repository": "https://github.com/huggingface/lerobot",
+      "commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
+      "workflow_records": 9
+    },
+    {
+      "project_id": "isaaclab",
+      "repository": "https://github.com/isaac-sim/IsaacLab",
+      "commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "workflow_records": 8
+    },
+    {
+      "project_id": "isaac-groot",
+      "repository": "https://github.com/NVIDIA/Isaac-GR00T",
+      "commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "workflow_records": 12
+    },
+    {
+      "project_id": "rai",
+      "repository": "https://github.com/RobotecAI/rai",
+      "commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "workflow_records": 21
+    },
+    {
+      "project_id": "openvla",
+      "repository": "https://github.com/openvla/openvla",
+      "commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "workflow_records": 5
+    },
+    {
+      "project_id": "diffusion-policy",
+      "repository": "https://github.com/real-stanford/diffusion_policy",
+      "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "workflow_records": 3
+    },
+    {
+      "project_id": "act",
+      "repository": "https://github.com/tonyzhaozh/act",
+      "commit": "742c753c0d4a5d87076c8f69e5628c79a8cc5488",
+      "workflow_records": 1
+    },
+    {
+      "project_id": "octo",
+      "repository": "https://github.com/octo-models/octo",
+      "commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "workflow_records": 5
+    }
+  ],
+  "unresolved_licenses": {
+    "canonical_references": 12,
+    "unchanged_GaP_instruction_conflicts": 11,
+    "new_NoMaD_mixed_notice_reference": 1,
+    "all_verified_false": true,
+    "all_source_only_no_adapter": true,
+    "all_runtime_verification": "not_run",
+    "NoMaD": {
+      "id": "rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py",
+      "review_status": "mixed_source_notices_unresolved",
+      "declarations": [
+        "Apache-2.0",
+        "MIT"
+      ],
+      "disposition": "Pinned source has a Robotec.AI first-party notice and an incorporated-code notice. Boundaries remain unresolved; no redistribution or preparation grant is inferred."
+    }
+  },
+  "notable_requirement_limits": {
+    "ACT": "Retains README Python3.8.10 versus conda_env.yaml Python3.9 disagreement and separate CUDA/ALOHA setup scope.",
+    "Isaac_GR00T": "Keeps model-serving CUDA and dataset-replay branches distinct; model-weight terms and checkpoint access remain separate from source-code licensing.",
+    "NoMaD": "Discloses missing-checkpoint retrieval and ROS velocity-command publication without installing, downloading weights or executing the node."
+  },
+  "file_bindings": [
+    {
+      "path": "catalog/references.json",
+      "bytes": 6017478,
+      "sha256": "8cd2a30d936df1bcabbd422b9196d55788506bf7f97f356d6737ab16fb08842e"
+    },
+    {
+      "path": "catalog/workflow-projects.json",
+      "bytes": 343611,
+      "sha256": "02a6f52f176b58acddaee7348a936ed9d033f2e713cbe5a0de1bb28e67356e57"
+    },
+    {
+      "path": "catalog/source-projects.json",
+      "bytes": 205437,
+      "sha256": "90eb67544b24d4ec8caf3e831aac04fb0b39e4b6b02edaeb83a8ff2aff7dc2e2"
+    },
+    {
+      "path": "catalog/source-index.json",
+      "bytes": 409947,
+      "sha256": "a64e6a874b8dda4d0880a92f79f861e882ceb618b0f41ff92bbf7254eef60187"
+    },
+    {
+      "path": "catalog/source-index-manifest.json",
+      "bytes": 42780,
+      "sha256": "a573f2704fc94cae8539e1417a4406d8780271f75bc2ca6dd8ba12834f4bcb7e"
+    },
+    {
+      "path": "tools/import_robot_workflows.py",
+      "bytes": 31376,
+      "sha256": "7e3fdbd1c189ec1e4dc567538f67dfbb8fdade7b7a046fceb729e3231189bce6"
+    },
+    {
+      "path": "tools/import_ecosystem_examples.py",
+      "bytes": 27021,
+      "sha256": "04669ec902040b2171ab00831fb9671f57d5e4f48e8cfef26f99d72e921a089d"
+    }
+  ],
+  "verification_limits": [
+    "This receipt describes a finite candidate worktree before release publication. It does not claim a deployed generation, successful live endpoint check or accepted external listing.",
+    "The 218 texts include source, license, setup and evidence documents; they are not 218 executed skills. Pinned cached bytes were checked locally; no network or upstream refresh occurred in this review.",
+    "No upstream source module, setup file or robot command was executed. No environment was installed or dependency resolution, simulator, hardware, dataset or model/checkpoint access was tested.",
+    "The 47 added workflows remain source references with hub_prepare=false and runtime_verification=not_run. Discovery labels do not establish robot/runtime support.",
+    "The 12 unresolved license states comprise 11 unchanged GaP instruction conflicts and one newly reviewed NoMaD mixed-notice source. No license clearance is asserted.",
+    "Local metadata query cases test retrieval only; they do not represent independent agent adoption, production API validation or access-campaign measurements.",
+    "Coverage is explicit and finite, not an exhaustive inventory of Internet robot skills."
+  ],
+  "all_named_static_checks_passed": true
+}

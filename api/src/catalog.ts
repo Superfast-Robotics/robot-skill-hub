@@ -52,9 +52,10 @@ function validRow(row: Row) {
     && (kind === 'preparation_recipe' || row.record_version === 'source-' + row.source_sha256)
     && row.record_url === HUB_ORIGIN + (kind === 'preparation_recipe' ? '/skills/' : '/references/') + row.id + '/skill.json'
     && ['name', 'summary'].every(key => typeof row[key] === 'string')
-    && ['capabilities', 'aliases', 'robots', 'compatibility'].every(key => row[key] === undefined || Array.isArray(row[key]));
+    && ['capabilities', 'aliases', 'robots', 'robot_types', 'compatibility'].every(key => row[key] === undefined || Array.isArray(row[key]))
+    && (row.robot_types === undefined || row.robot_types.every((value: unknown) => typeof value === 'string' && value.length > 0 && value.length <= 80));
 }
-const text = (row: Row) => [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), row.runtime || '', row.framework || ''].join(' ').replace(/[-_/]/g, ' ');
+const text = (row: Row) => [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ').replace(/[-_/]/g, ' ');
 function validMemory(row: Row) {
   return row && /^mem_[a-f0-9]{64}$/.test(row.memory_id || '') && IDENTIFIER.test(row.skill_id || '')
     && HASH.test(row.fingerprint || '') && HASH.test(row.content_sha256 || '')

@@ -12,11 +12,11 @@ const KEY = 'local-native-catalog-sync-credential';
 const hash = (text: string) => createHash('sha256').update(text).digest('hex');
 const bundle = build({ entryPoints: [fileURLToPath(new URL('../../src/index.ts', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023' }).then(result => result.outputFiles![0].text);
 const schema = readFile(new URL('../../migrations-catalog/0001_catalog.sql', import.meta.url), 'utf8');
-function publication(commit: string, options: { duplicate?: boolean; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown> } = {}) {
+function publication(commit: string, options: { duplicate?: boolean; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean } = {}) {
   const count = options.records ?? 3;
-  const full = Array.from({ length: count }, (_, index) => ({ id: index === 0 ? 'maniskill-panda-pick-cube' : index === 1 ? 'kuka-grasp' : 'source-' + index, access: { hub_prepare: index === 0 }, source: { commit: 'b'.repeat(40), sha256: 'c'.repeat(64) } }));
+  const full = Array.from({ length: count }, (_, index) => ({ id: index === 0 ? 'maniskill-panda-pick-cube' : index === 1 ? options.humanoid ? 'h1-locomotion' : 'kuka-grasp' : 'source-' + index, access: { hub_prepare: index === 0 }, source: { commit: 'b'.repeat(40), sha256: 'c'.repeat(64) } }));
   const combos = [{ runtime: 'maniskill', runtime_version: '3.0', robot: 'panda', controller: 'pd_joint_pos', observation: 'state', os: 'linux', python: '3.10', architecture: 'x86_64' }, { runtime: 'ros2', runtime_version: 'humble', robot: 'ur5', controller: 'torque', observation: 'rgb', os: 'windows' }];
-  const rows = full.map((record, index) => ({ id: record.id, name: index === 0 ? 'PickCube-v1' : index === 1 ? 'KUKA iiwa grasp' : 'Source ' + index, summary: 'Pinned source for pick cube and robot grasp', kind: index === 0 ? 'preparation_recipe' : 'source_reference', hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + 'c'.repeat(64), record_sha256: hash(JSON.stringify(record)), source_sha256: 'c'.repeat(64), source_commit: 'b'.repeat(40), record_url: ORIGIN + (index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', capabilities: ['pick cube'], aliases: [], runtime: index === 0 ? 'maniskill' : 'ros2', framework: 'maniskill', robots: [index === 1 ? 'kuka_iiwa' : 'panda'], compatibility: index === 0 ? combos : [], ...(index === 0 ? { python_requirement: '>=3.10,<3.12' } : {}) }));
+  const rows = full.map((record, index) => ({ id: record.id, name: index === 0 ? 'PickCube-v1' : index === 1 ? options.humanoid ? 'H1 locomotion' : 'KUKA iiwa grasp' : 'Source ' + index, summary: 'Pinned source for pick cube and robot grasp', kind: index === 0 ? 'preparation_recipe' : 'source_reference', hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + 'c'.repeat(64), record_sha256: hash(JSON.stringify(record)), source_sha256: 'c'.repeat(64), source_commit: 'b'.repeat(40), record_url: ORIGIN + (index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', capabilities: options.humanoid && index === 1 ? ['locomotion'] : ['pick cube'], aliases: [], runtime: index === 0 ? 'maniskill' : options.humanoid && index === 1 ? 'isaaclab' : 'ros2', framework: options.humanoid && index === 1 ? 'isaaclab' : 'maniskill', robots: [index === 1 ? options.humanoid ? 'h1' : 'kuka_iiwa' : 'panda'], ...(options.humanoid && index === 1 ? { robot_types: ['humanoid'] } : {}), compatibility: index === 0 ? combos : [], ...(index === 0 ? { python_requirement: '>=3.10,<3.12' } : {}) }));
   if (options.invalidRow) Object.assign(rows[1], options.invalidRow);
   const memories = Array.from({ length: options.memories ?? 1 }, (_, i) => ({ schema_version: '1', memory_id: 'mem_' + String(i + 1).repeat(64), skill_id: rows[0]?.id ?? 'absent-skill', base: { record_version: '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) }, environment: { runtime: 'maniskill', robot: i === 0 ? 'panda' : 'ur5', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64), entry_url: ORIGIN + '/memories/mem_' + String(i + 1).repeat(64) + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported', summary: 'Contributor finding', evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }));
   const resources = new Map<string, string>();
@@ -110,7 +110,24 @@ test('native D1 concurrent sync retries reuse documents/FTS and stale or partial
   } finally { await s.mf.dispose(); }
 });
 
-for (const options of [{ wrongPageHash: true }, { duplicate: true }, { maliciousPath: true }, { invalidRow: { record_version: '' } }, { invalidRow: { hub_prepare: true } }, { invalidRow: { record_version: 'unbound-version' } }]) test('native D1 rejects corrupt, duplicated or off-origin publication without activation: ' + JSON.stringify(options), async () => {
+test('native D1 indexes declared robot types while robot models and combinations remain explicit', async () => {
+  const s = await runtime(publication('a'.repeat(40), { humanoid: true })); try {
+    await s.complete();
+    const found = await s.read('/v1/search?q=humanoid%20locomotion');
+    assert.equal(found.status, 200); assert.equal(found.body.backend, 'd1_fts5');
+    assert.deepEqual(found.body.results.map((row: any) => row.id), ['h1-locomotion']);
+    assert.deepEqual(found.body.results[0].robot_types, ['humanoid']);
+    assert.equal(found.body.results[0].hub_prepare, false);
+    assert.deepEqual(found.body.results[0].compatibility, []);
+    assert.equal((await s.read('/v1/search?q=humanoid%20locomotion&runtime=isaaclab')).body.total, 1);
+    for (const filter of ['robot=humanoid', 'robot=panda', 'os=linux', 'runtime=isaaclab&robot=h1']) {
+      assert.equal((await s.read('/v1/search?q=humanoid%20locomotion&' + filter)).body.total, 0, filter);
+    }
+    assert.equal((await s.read('/v1/search?q=humanoid%20locomotion%20missingterm')).body.total, 0);
+  } finally { await s.mf.dispose(); }
+});
+
+for (const options of [{ wrongPageHash: true }, { duplicate: true }, { maliciousPath: true }, { invalidRow: { record_version: '' } }, { invalidRow: { hub_prepare: true } }, { invalidRow: { record_version: 'unbound-version' } }, { invalidRow: { robot_types: 'humanoid' } }, { invalidRow: { robot_types: [null] } }]) test('native D1 rejects corrupt, duplicated or off-origin publication without activation: ' + JSON.stringify(options), async () => {
   const s = await runtime(publication('a'.repeat(40), options)); try {
     let failure = 0;
     for (let i = 0; i < 4; i++) { const result = await s.sync(); if (result.status !== 200) { failure = result.status; break; } }

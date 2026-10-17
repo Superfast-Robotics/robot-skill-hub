@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "diffusion-policy-train-py",
+      "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "source_sha256": "4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5",
+      "record_version": "source-4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5"
+    },
+    {
       "id": "drake-examples-acrobot-run-lqr-w-estimator-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "1105ed8a55011071e9207d602cfc39d55dd1723ef00876cb2325a7c3dc349b44",

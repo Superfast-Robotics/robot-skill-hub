@@ -20,6 +20,12 @@
       "record_version": "source-f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b"
     },
     {
+      "id": "rai-examples-agriculture-demo-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "a960c95918b049dbfc7d16ad92ab627d7e2b8c985e4cbb9bf4cb75fc37201a18",
+      "record_version": "source-a960c95918b049dbfc7d16ad92ab627d7e2b8c985e4cbb9bf4cb75fc37201a18"
+    },
+    {
       "id": "unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "7901aa5ef687b914e3d657d8b2ccb4eabc2a32b6abf97cf91dd41ffbdfb7e65a",

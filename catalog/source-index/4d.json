@@ -14,6 +14,12 @@
       "record_version": "source-dbf6b9901364e99d4c5b0a71c1ab029355787a3dbc01a9e0f4c2b2a7022c67b9"
     },
     {
+      "id": "openvla-experiments-robot-libero-run-libero-eval-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77",
+      "record_version": "source-369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77"
+    },
+    {
       "id": "pinocchio-examples-casadi-casadi-rnea-cpp",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "17f08ff20afa24c92e61f7864fe8f22f0a57aab733b20be88115457f4e965f95",

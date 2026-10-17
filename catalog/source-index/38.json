@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "act-imitate-episodes-py",
+      "source_commit": "742c753c0d4a5d87076c8f69e5628c79a8cc5488",
+      "source_sha256": "f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540",
+      "record_version": "source-f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-02-scene-create-scene-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "f4af6b75d1fda9f0cd636e5666058ff4d4c4612d9b63cd7d78883112eaec28c9",

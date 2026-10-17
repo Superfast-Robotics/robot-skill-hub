@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaac-groot-gr00t-experiment-launch-train-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f",
+      "record_version": "source-e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "b2c4a8929a64fe88f7580ae1da1d3e0c3c4ed0dd5f3139894107569f86fa8700",

@@ -14,6 +14,12 @@
       "record_version": "source-169373f248203887bf4e1ffc6458cf6942f740a01e5ae881a3aef60d36628f26"
     },
     {
+      "id": "rai-src-rai-extensions-rai-perception-rai-perception-scripts-run-pe-06864147bf08",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "fcd33f6953f5128086ce6275d0c8ee8103076e727f3f35edad34e68a59bf834d",
+      "record_version": "source-fcd33f6953f5128086ce6275d0c8ee8103076e727f3f35edad34e68a59bf834d"
+    },
+    {
       "id": "webots-projects-robots-k-team-khepera1-controllers-khepera-gripper-ba002798b556",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "bdfb1217c83b49d3ec84f03a409489594e465dd0915b0cef96bc7b977abcfa6b",

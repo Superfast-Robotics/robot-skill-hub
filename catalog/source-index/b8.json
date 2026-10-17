@@ -20,6 +20,12 @@
       "record_version": "source-a8f709df340788033d497ff7d892fdecab4f6cc9c36299a00f57efa9f25e0744"
     },
     {
+      "id": "openvla-vla-scripts-train-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49",
+      "record_version": "source-8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49"
+    },
+    {
       "id": "robosuite-demo-composite-robot",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "15b959be2ceb693ad69b3076c3ccfd59981423b62f86ed45f770035b87296ac5",

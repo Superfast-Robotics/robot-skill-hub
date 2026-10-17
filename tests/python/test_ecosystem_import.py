@@ -29,6 +29,66 @@ class EcosystemImportTests(unittest.TestCase):
         artifact = {"path": "examples/ik.py", "sha256": importer.digest(source), "bytes": len(source), "entrypoint_kind": "python_main"}
         return project, artifact, source, license_text
 
+    def discovery_fetch_fixture(self):
+        project, artifact, source, license_text = self.fixture()
+        artifact["path"] = "examples/panda.py"
+        documents = {"README.md": b"Selected Panda example setup.\n",
+                     "setup/robot.md": b"Panda controller configuration.\n"}
+        artifact["robot_discovery"] = {"labels": ["panda"], "scope": "Pinned example setup only; compatibility unknown.",
+            "evidence": [{"path": path, "sha256": importer.digest(data), "bytes": len(data),
+                          "quote": "Panda", "labels": ["panda"]} for path, data in documents.items()]}
+        # Same-source evidence must not make the fetch download an artifact twice.
+        artifact["robot_discovery"]["evidence"].append({"path": artifact["path"], "sha256": artifact["sha256"],
+            "bytes": artifact["bytes"], "quote": "panda", "labels": ["panda"], "match_in": "source_path"})
+        project["artifacts"] = [artifact]
+        return project, artifact, {"LICENSE": license_text, artifact["path"]: source, **documents}
+
+    def test_fresh_fetch_includes_pinned_setup_discovery_evidence_and_rebuilds_offline(self):
+        project, artifact, bodies = self.discovery_fetch_fixture()
+        base = f"https://raw.githubusercontent.com/example/robot/{project['commit']}/"
+        responses = {base + path: data for path, data in bodies.items()}
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            with mock.patch.object(importer, "download", side_effect=lambda url: responses[url]) as fetch:
+                result = importer.build({"projects": [project]}, cache, {"records": []}, fetch=True)
+            self.assertCountEqual(responses, [call.args[0] for call in fetch.call_args_list])
+            self.assertEqual(len(responses), fetch.call_count)
+            for path, data in bodies.items():
+                self.assertEqual(data, importer.cache_path(cache, project, path).read_bytes())
+            record = result["records"][0]
+            self.assertEqual(["panda"], record["robots"])
+            self.assertEqual([pin["sha256"] for pin in artifact["robot_discovery"]["evidence"]],
+                             [pin["sha256"] for pin in record["evidence"]["robot_discovery"]["evidence"]])
+            self.assertNotIn("compatibility", record)
+            self.assertFalse(record["access"]["hub_prepare"])
+            self.assertEqual("not_run", record["evidence"]["runtime_verification"])
+            with mock.patch.object(importer, "download", side_effect=AssertionError("Offline build fetched")) as fetch:
+                self.assertEqual(result, importer.build({"projects": [project]}, cache, result, fetch=False))
+            fetch.assert_not_called()
+
+    def test_malformed_discovery_pin_is_rejected_before_any_fetch(self):
+        changes = [{"path": "../escape.md"}, {"path": None}, {"sha256": "not-a-sha"},
+                   {"bytes": True}, {"bytes": 0}, {"bytes": importer.MAX_SOURCE_BYTES + 1},
+                   {"match_in": "source_path"}]
+        for change in changes:
+            project, artifact, _ = self.discovery_fetch_fixture()
+            artifact["robot_discovery"]["evidence"][0].update(change)
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as directory:
+                with mock.patch.object(importer, "download") as fetch:
+                    with self.assertRaises(ValueError):
+                        importer.build({"projects": [project]}, Path(directory), {"records": []}, fetch=True)
+                fetch.assert_not_called()
+
+    def test_fetched_discovery_evidence_still_requires_its_reviewed_checksum(self):
+        project, artifact, bodies = self.discovery_fetch_fixture()
+        bodies["README.md"] = b"Changed Panda setup text.\n"
+        base = f"https://raw.githubusercontent.com/example/robot/{project['commit']}/"
+        responses = {base + path: data for path, data in bodies.items()}
+        with tempfile.TemporaryDirectory() as directory:
+            with mock.patch.object(importer, "download", side_effect=lambda url: responses[url]):
+                with self.assertRaisesRegex(ValueError, "evidence checksum/size"):
+                    importer.build({"projects": [project]}, Path(directory), {"records": []}, fetch=True)
+
     def test_pinned_bytes_and_license_are_required(self):
         project, artifact, source, license_text = self.fixture()
         with tempfile.TemporaryDirectory() as directory:
@@ -54,6 +114,70 @@ class EcosystemImportTests(unittest.TestCase):
                            ("helper.cpp", b"// int main() { return 0; }\nvoid helper() {}\n")]:
             with self.subTest(name=name), self.assertRaises(ValueError):
                 importer.inspect_source(name, data)
+
+    def test_reviewed_robot_name_is_searchable_without_inferred_compatibility(self):
+        project, artifact, _, license_text = self.fixture()
+        source = b"import cflib.crazyflie\nif __name__ == '__main__':\n    main()\n"
+        artifact.update(sha256=importer.digest(source), bytes=len(source), robot_discovery={
+            "labels": ["crazyflie"], "scope": "Named library target only; compatibility unknown.",
+            "evidence": [{"path": artifact["path"], "sha256": importer.digest(source), "bytes": len(source),
+                          "quote": "cflib.crazyflie", "labels": ["crazyflie"]}]})
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            target = importer.cache_path(cache, project, artifact["path"])
+            target.parent.mkdir(parents=True)
+            target.write_bytes(source)
+            importer.cache_path(cache, project, "LICENSE").write_bytes(license_text)
+            record = importer.make_record(project, artifact, cache)
+            sys.path.insert(0, str(ROOT / "skills/find-robot-skills/scripts"))
+            from rshlib.core import find
+            catalog = {"records": [], "references": {"records": [record]}}
+            self.assertEqual(1, find(catalog, "", {"robot": "crazyflie"})["total"])
+            self.assertEqual(0, find(catalog, "", {"robot": "crazyflie", "os": "linux"})["total"])
+            self.assertNotIn("compatibility", record)
+            self.assertFalse(record["evidence"]["robot_discovery"]["compatibility_inferred"])
+            self.assertEqual("not_run", record["evidence"]["runtime_verification"])
+            artifact["robot_discovery"]["evidence"][0]["quote"] = "logging1"
+            artifact["robot_discovery"]["labels"] = ["g1"]
+            artifact["robot_discovery"]["evidence"][0]["labels"] = ["g1"]
+            changed = source + b"# logging1\n"
+            target.write_bytes(changed)
+            artifact.update(sha256=importer.digest(changed), bytes=len(changed))
+            artifact["robot_discovery"]["evidence"][0].update(sha256=artifact["sha256"], bytes=artifact["bytes"])
+            with self.assertRaisesRegex(ValueError, "complete robot label"):
+                importer.make_record(project, artifact, cache)
+
+    def test_path_discovery_cannot_use_another_artifact_or_changed_bytes(self):
+        project, artifact, source, license_text = self.fixture()
+        artifact["path"] = "examples/g1.py"
+        artifact["robot_discovery"] = {"labels": ["g1"], "scope": "Source filename only.",
+            "evidence": [{"path": artifact["path"], "sha256": artifact["sha256"], "bytes": artifact["bytes"],
+                          "quote": "g1", "labels": ["g1"], "match_in": "source_path"}]}
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            target = importer.cache_path(cache, project, artifact["path"])
+            target.parent.mkdir(parents=True)
+            target.write_bytes(source)
+            importer.cache_path(cache, project, "LICENSE").write_bytes(license_text)
+            record = importer.make_record(project, artifact, cache)
+            self.assertEqual(["g1"], record["robots"])
+            pin = artifact["robot_discovery"]["evidence"][0]
+            pin["sha256"] = "0" * 64
+            with self.assertRaisesRegex(ValueError, "checksum/size"):
+                importer.make_record(project, artifact, cache)
+            pin.update(path="LICENSE", sha256=importer.digest(license_text), bytes=len(license_text))
+            with self.assertRaisesRegex(ValueError, "selected source"):
+                importer.make_record(project, artifact, cache)
+
+    def test_offline_source_read_preserves_the_fetch_byte_bound(self):
+        project, artifact, *_ = self.fixture()
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            target = importer.cache_path(cache, project, artifact["path"])
+            target.parent.mkdir(parents=True)
+            target.write_bytes(b"x" * 33)
+            with mock.patch.object(importer, "MAX_SOURCE_BYTES", 32), self.assertRaisesRegex(ValueError, "size limit"):
+                importer.source_bytes(cache, project, artifact["path"])
 
     def test_straightline_config_is_not_a_reviewed_lerobot_entrypoint(self):
         project, artifact, _, _ = self.fixture()

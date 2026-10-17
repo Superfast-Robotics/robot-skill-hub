@@ -8,6 +8,12 @@
       "record_version": "source-1e8564decdca2235c6af20d71ae0604bfb5128b9486e68f8451db994fbe14898"
     },
     {
+      "id": "isaac-groot-scripts-deployment-build-trt-pipeline-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "d00e27f0251efb9fd26d20e4d54f62740871017675956081ea53f7a84f03e008",
+      "record_version": "source-d00e27f0251efb9fd26d20e4d54f62740871017675956081ea53f7a84f03e008"
+    },
+    {
       "id": "moveit2-doc-tutorials-your-first-project-panda-hello-moveit-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "252e1a39d4fb8775d5b6b8f1d7499d27cc73da12c069b1f18498c4417e53e57e",
@@ -18,6 +24,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "febd69a4d05008f9eb72b4b599700981145dd07eb2382c5f522bd67ed9a58f89",
       "record_version": "source-febd69a4d05008f9eb72b4b599700981145dd07eb2382c5f522bd67ed9a58f89"
+    },
+    {
+      "id": "rai-src-rai-whoami-rai-whoami-build-whoami-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "c49eb85740ffe7dae0f66ccc857924c051cddb773f4202f838cb634204c6229b",
+      "record_version": "source-c49eb85740ffe7dae0f66ccc857924c051cddb773f4202f838cb634204c6229b"
     },
     {
       "id": "ur-description-artifact-config-ur3-visual-parameters-yaml",

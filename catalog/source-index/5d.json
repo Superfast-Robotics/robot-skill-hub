@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "rai-examples-s2s-conversational-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "7c0d1e4525b1f4ed9e6da067260a8def173ae22f678f884b6a3413dcd847ce78",
+      "record_version": "source-7c0d1e4525b1f4ed9e6da067260a8def173ae22f678f884b6a3413dcd847ce78"
+    },
+    {
       "id": "roboticstoolbox-examples-puma-jtraj-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "ed3ffc875ce5166b63c19685230a5a79912d8f6c58c4cc8e71b48e9929dc2070",

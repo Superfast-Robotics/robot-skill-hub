@@ -8,6 +8,12 @@
       "record_version": "source-a90c8eb1ae7f77c3c226b683f2c50098803d7a7665595c9fa04b5a940c7452b0"
     },
     {
+      "id": "isaac-groot-scripts-lerobot-conversion-convert-v3-to-v2-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "94bc600b613be43133aabcddde64ca3188048a09cd84e293afe4d5a79614e24c",
+      "record_version": "source-94bc600b613be43133aabcddde64ca3188048a09cd84e293afe4d5a79614e24c"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-00-sim-set-rendering-mode-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "cd5864c2fc714be584472c73f1714b8e4f2d0a4fa263fd8a26c627430084fc0c",

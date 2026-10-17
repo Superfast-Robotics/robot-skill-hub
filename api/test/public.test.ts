@@ -18,7 +18,7 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
   const text = details.map(d => JSON.stringify(d));
   const rows = details.map((d, index) => ({ id: d.id, name: d.name, summary: d.summary, kind: index === 0 ? 'preparation_recipe' : 'source_reference',
     hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + d.source.sha256, record_sha256: hash(text[index]),
-    capabilities: [index === 0 ? 'pick' : 'grasp'], aliases: index === 0 ? ['cube transfer'] : [], robots: [index === 1 ? 'ur5' : 'panda'], runtime: index === 1 ? 'ros2' : 'maniskill', framework: index === 2 ? 'openpi' : 'maniskill',
+    capabilities: [index === 0 ? 'pick' : 'grasp', ...(index === 2 ? ['locomotion'] : [])], aliases: index === 0 ? ['cube transfer'] : [], robots: [index === 1 ? 'ur5' : 'panda'], robot_types: index === 2 ? ['humanoid'] : [], runtime: index === 1 ? 'ros2' : 'maniskill', framework: index === 2 ? 'openpi' : 'maniskill',
     compatibility: index === 0 ? [combo('maniskill', 'panda'), combo('mujoco', 'ur5', 'torque', 'rgb', 'windows')] : index === 1 ? [combo('ros2', 'ur5')] : [],
     record_url: 'https://attacker.example.org/ignored-destination.json', evidence: d.evidence }));
   const search = JSON.stringify({ schema_version: '1', hub_commit: HUB, counts: { recipes: 1, references: 2, memories: 0 }, records: rows });
@@ -95,6 +95,20 @@ test('pagination is stable, bounded and pinned to its original catalog commit', 
   const second: any = await (await s.request('/v1/search?' + new URLSearchParams(first.next)))!.json(); assert.equal(second.results[0].id, 'beta-grasp');
   assert.equal((await s.request('/v1/search?hub_commit=' + 'f'.repeat(40)))!.status, 409);
   for (const query of ['limit=0', 'limit=51', 'offset=-1', 'offset=1.5', 'limit=NaN', 'offset=1000001', 'kind=anything', 'url=https://evil.example.org']) assert.equal((await s.request('/v1/search?' + query))!.status, 400);
+});
+
+test('static search includes declared robot types without turning them into robot compatibility', async () => {
+  const s = fixture();
+  const found: any = await (await s.request('/v1/search?q=humanoid%20locomotion'))!.json();
+  assert.deepEqual(found.results.map((row: any) => row.id), ['gamma-policy']);
+  assert.deepEqual(found.results[0].robot_types, ['humanoid']);
+  assert.equal(found.results[0].hub_prepare, false);
+  assert.deepEqual(found.results[0].compatibility, []);
+  const framework: any = await (await s.request('/v1/search?q=openpi'))!.json();
+  assert.deepEqual(framework.results.map((row: any) => row.id), ['gamma-policy']);
+  assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&robot=humanoid'))!.json() as any).total, 0);
+  assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&runtime=openpi&robot=panda'))!.json() as any).total, 0);
+  assert.equal((await (await s.request('/v1/search?q=humanoid%20locomotion&os=linux'))!.json() as any).total, 0);
 });
 
 test('record version conflicts and absent IDs never fall through to arbitrary upstream fetches', async () => {

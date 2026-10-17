@@ -12,6 +12,12 @@
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "c5c75740da74bee0acb029aaf6ec0a9101bedcb61012683ecb1aef30b70ef842",
       "record_version": "source-c5c75740da74bee0acb029aaf6ec0a9101bedcb61012683ecb1aef30b70ef842"
+    },
+    {
+      "id": "rai-examples-agents-state-based-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "967dab001d1fd714d77de09f92b59c398ba8dc9cdb528540952641c65ec1cfc3",
+      "record_version": "source-967dab001d1fd714d77de09f92b59c398ba8dc9cdb528540952641c65ec1cfc3"
     }
   ]
 }

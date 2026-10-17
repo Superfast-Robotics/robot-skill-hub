@@ -3405,73 +3405,277 @@
           "path": "examples/autonomy/autonomous_sequence.py",
           "sha256": "db2addd549eb36ef1c95159668fa769c6b5690b63fe67e6d0d24563f04aca8aa",
           "bytes": 4102,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/autonomy/autonomous_sequence.py",
+                "sha256": "db2addd549eb36ef1c95159668fa769c6b5690b63fe67e6d0d24563f04aca8aa",
+                "bytes": 4102,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/autonomy/autonomous_sequence_high_level.py",
           "sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
           "bytes": 7915,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/autonomy/autonomous_sequence_high_level.py",
+                "sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
+                "bytes": 7915,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/autonomy/motion_commander_demo.py",
           "sha256": "c103ec9ee97012285f0e654ddccc7d6f8399b8f4f25403f0cfeb58bbeb8de3c3",
           "bytes": 3435,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/autonomy/motion_commander_demo.py",
+                "sha256": "c103ec9ee97012285f0e654ddccc7d6f8399b8f4f25403f0cfeb58bbeb8de3c3",
+                "bytes": 3435,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/lighthouse/multi_bs_geometry_estimation.py",
           "sha256": "00293e5f7c3bd61240481c9fba839dd6419108e14bb6bd4df111209f2a5395ac",
           "bytes": 13637,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/lighthouse/multi_bs_geometry_estimation.py",
+                "sha256": "00293e5f7c3bd61240481c9fba839dd6419108e14bb6bd4df111209f2a5395ac",
+                "bytes": 13637,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/logging/basiclog.py",
           "sha256": "a9c12faaf360ca7a5580c9b9ff53f9c1c3202c93fe4e6af8fbfb2ce0f7b243fb",
           "bytes": 5710,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/logging/basiclog.py",
+                "sha256": "a9c12faaf360ca7a5580c9b9ff53f9c1c3202c93fe4e6af8fbfb2ce0f7b243fb",
+                "bytes": 5710,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/logging/basiclog_sync.py",
           "sha256": "1e8564decdca2235c6af20d71ae0604bfb5128b9486e68f8451db994fbe14898",
           "bytes": 2600,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/logging/basiclog_sync.py",
+                "sha256": "1e8564decdca2235c6af20d71ae0604bfb5128b9486e68f8451db994fbe14898",
+                "bytes": 2600,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/parameters/basicparam.py",
           "sha256": "96b34a26ff9ced56b89e9c89ff6bbe49b11b09a208af24d700db72574006aa79",
           "bytes": 6627,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/parameters/basicparam.py",
+                "sha256": "96b34a26ff9ced56b89e9c89ff6bbe49b11b09a208af24d700db72574006aa79",
+                "bytes": 6627,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/parameters/persistent_params.py",
           "sha256": "3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca",
           "bytes": 4425,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/parameters/persistent_params.py",
+                "sha256": "3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca",
+                "bytes": 4425,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/parameters/persistent_params_from_file.py",
           "sha256": "467dda951ad1f7a8d228cd61778c10f50d12450f02506ed244c1965761a256e9",
           "bytes": 2158,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/parameters/persistent_params_from_file.py",
+                "sha256": "467dda951ad1f7a8d228cd61778c10f50d12450f02506ed244c1965761a256e9",
+                "bytes": 2158,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/step-by-step/sbs_connect_log_param.py",
           "sha256": "f6f5f1c36d3df20affd2668fca1e6b19362624ecf73c4e0db5956d55a0a7bc39",
           "bytes": 3276,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/step-by-step/sbs_connect_log_param.py",
+                "sha256": "f6f5f1c36d3df20affd2668fca1e6b19362624ecf73c4e0db5956d55a0a7bc39",
+                "bytes": 3276,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/step-by-step/sbs_motion_commander.py",
           "sha256": "833fa7867303ddfa47edc298a129af4172fa6f0d4851504448dc357315cc5bb9",
           "bytes": 4031,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/step-by-step/sbs_motion_commander.py",
+                "sha256": "833fa7867303ddfa47edc298a129af4172fa6f0d4851504448dc357315cc5bb9",
+                "bytes": 4031,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         },
         {
           "path": "examples/step-by-step/sbs_swarm.py",
           "sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
           "bytes": 4539,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "robot_discovery": {
+            "labels": [
+              "crazyflie"
+            ],
+            "scope": "The pinned source imports the Crazyflie hardware client. This is a discovery label, with no tested platform, firmware or runtime combination.",
+            "evidence": [
+              {
+                "path": "examples/step-by-step/sbs_swarm.py",
+                "sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
+                "bytes": 4539,
+                "quote": "cflib.crazyflie",
+                "labels": [
+                  "crazyflie"
+                ]
+              }
+            ]
+          }
         }
       ],
       "selection_report": {

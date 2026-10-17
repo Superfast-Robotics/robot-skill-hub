@@ -70,6 +70,21 @@ class ReferenceDiscoveryTests(unittest.TestCase):
                 self.assertEqual("unknown", result["compatibility_status"])
                 self.assertEqual(["upstream_environment_review"], result["missing_requirements"])
 
+    def test_declared_robot_types_are_searchable_without_becoming_environment_constraints(self):
+        records = json.loads((ROOT / "catalog/references.json").read_text(encoding="utf-8"))["records"]
+        classified = [row for row in records if "humanoid" in row.get("robot_types", [])
+                      and "locomotion" in row.get("capabilities", [])]
+        self.assertTrue(classified)
+        result = find(catalog(*classified), "humanoid locomotion", {}, 50)
+        self.assertEqual({row["id"] for row in classified}, {row["id"] for row in result["results"]})
+        self.assertTrue(all(row["robot_types"] == ["humanoid"] and not row["hub_prepare"]
+                            and row["compatibility_status"] == "unknown" for row in result["results"]))
+        # A class label is neither an exact robot model nor an environment tuple.
+        for environment in ({"robot": "humanoid"}, {"os": "linux"},
+                            {"runtime": "isaaclab", "robot": "h1"}):
+            with self.subTest(environment=environment):
+                self.assertEqual(0, find(catalog(*classified), "humanoid locomotion", environment)["total"])
+
     def test_multiple_filters_cannot_be_synthesized_from_individual_discovery_labels(self):
         self.assertEqual(0, find(catalog(reference()), "inverse kinematics", {"runtime": "pybullet", "robot": "kuka"})["total"])
         for field, value in (("controller", "position"), ("observation", "state"), ("os", "linux"), ("runtime_version", "3.25"), ("python", "3.10"), ("architecture", "x86_64")):

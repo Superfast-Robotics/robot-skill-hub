@@ -8,6 +8,12 @@
       "record_version": "source-1396b4932b216e0d9f0cd5065147b9d0bde116abe2f98380b68ff382f6eae70b"
     },
     {
+      "id": "rai-examples-rosbot-xl-demo-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "375c688472525bd053e50b387068a3a5474bb4f8456d5b1b950757bbf44d13b1",
+      "record_version": "source-375c688472525bd053e50b387068a3a5474bb4f8456d5b1b950757bbf44d13b1"
+    },
+    {
       "id": "ros2-control-artifact-example-1-bringup-config-rrbot-controllers-yaml",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "ea7d004b29db727a6e0788b6d58588a4c211d5001dc9549e2c8c641597dce1e6",

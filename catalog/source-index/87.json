@@ -8,6 +8,12 @@
       "record_version": "source-d4850d7a10a51da3c862a7bdd56b69293336c87e608fbec042aaa8427e151476"
     },
     {
+      "id": "isaac-groot-gr00t-eval-rollout-policy-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e0833d57826f26e5b05e46e202f56eeae53fbb0e22b1c8b7c6b2271320e66132",
+      "record_version": "source-e0833d57826f26e5b05e46e202f56eeae53fbb0e22b1c8b7c6b2271320e66132"
+    },
+    {
       "id": "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-330d5dc33df6",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "8d7e4ca9e6f4c1ec11e7fc7a0bb77eadd06806c534396814ca781ae950a2480a",

@@ -26,6 +26,12 @@
       "record_version": "source-8290f2de28d5a04805619883fe3de13b52e88603bc44f7f23ec67ac89e41d558"
     },
     {
+      "id": "rai-examples-s2s-tts-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "21186a99d1aa7d8a7dd9ed0715e3afae8dd5f0834743afffa3d074082e14d496",
+      "record_version": "source-21186a99d1aa7d8a7dd9ed0715e3afae8dd5f0834743afffa3d074082e14d496"
+    },
+    {
       "id": "ur-description-artifact-config-ur3-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "3ca03a6b107fab1d20a18a4e3a967ed0f14de228208a95c4735a6c966ea18534",

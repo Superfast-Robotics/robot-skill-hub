@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaac-groot-examples-droid-main-gr00t-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b",
+      "record_version": "source-f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b"
+    },
+    {
       "id": "mujoco-menagerie-artifact-unitree-a1-a1-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "492978cb7700b0064bcefbc2b93dba651a828cf9212df91d56e951666890807c",

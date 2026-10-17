@@ -98,7 +98,74 @@ def source_bytes(cache, project, path, fetch=False):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
         return data
-    return target.read_bytes()
+    with target.open("rb") as stream:
+        data = stream.read(MAX_SOURCE_BYTES + 1)
+    if len(data) > MAX_SOURCE_BYTES:
+        raise ValueError("Source exceeds the static inspection size limit")
+    return data
+
+
+def robot_discovery_pins(artifact):
+    """Validate declared evidence before fetching its fixed source paths."""
+    discovery = artifact.get("robot_discovery")
+    if discovery is None:
+        return []
+    if not isinstance(discovery, dict):
+        raise ValueError("Robot discovery must be a reviewed declaration")
+    labels, scope, pins = discovery.get("labels"), discovery.get("scope"), discovery.get("evidence")
+    if (not isinstance(labels, list) or not 0 < len(labels) <= 50
+            or any(not isinstance(label, str) or len(label) > 120
+                   or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", label) for label in labels)
+            or len(labels) != len(set(labels)) or not isinstance(scope, str) or not 0 < len(scope) <= 1000
+            or not isinstance(pins, list) or not 0 < len(pins) <= 20):
+        raise ValueError("Robot discovery needs bounded names, scope and pinned evidence")
+    covered = set()
+    for pin in pins:
+        if not isinstance(pin, dict):
+            raise ValueError("Robot discovery evidence must be a pinned source")
+        if not isinstance(pin.get("path"), str):
+            raise ValueError("Robot discovery evidence needs a source path")
+        safe_relative(pin["path"])
+        quote, supported = pin.get("quote"), pin.get("labels")
+        if (not re.fullmatch(r"[a-f0-9]{64}", str(pin.get("sha256", "")))
+                or type(pin.get("bytes")) is not int or not 0 < pin["bytes"] <= MAX_SOURCE_BYTES
+                or not isinstance(quote, str) or not 0 < len(quote) <= 1000
+                or not isinstance(supported, list) or not supported
+                or any(not isinstance(label, str) or label not in labels for label in supported)):
+            raise ValueError("Robot discovery evidence needs exact bytes and a named quote")
+        match_in = pin.get("match_in", "text")
+        if match_in not in ("text", "source_path") or match_in == "source_path" and pin["path"] != artifact["path"]:
+            raise ValueError("Path discovery evidence must be the selected source itself")
+        normalized = re.sub(r"[^a-z0-9]+", " ", quote.casefold())
+        for label in supported:
+            if not re.search(r"\b" + r"\s+".join(map(re.escape, label.split("-"))) + r"\b", normalized):
+                raise ValueError("Robot discovery quote does not name the complete robot label")
+        covered.update(supported)
+    if covered != set(labels):
+        raise ValueError("Every robot discovery label needs a pinned declaration")
+    return pins
+
+
+def reviewed_robot_discovery(project, artifact, cache):
+    """Preserve explicitly reviewed names as discovery data, never compatibility."""
+    pins = robot_discovery_pins(artifact)
+    if not pins:
+        return None
+    discovery = artifact["robot_discovery"]
+    evidence = []
+    for pin in pins:
+        data = source_bytes(cache, project, pin["path"])
+        if len(data) != pin["bytes"] or digest(data) != pin["sha256"]:
+            raise ValueError("Robot discovery evidence checksum/size differs")
+        match_in = pin.get("match_in", "text")
+        text = pin["path"] if match_in == "source_path" else data.decode("utf-8-sig")
+        if pin["quote"] not in text:
+            raise ValueError("Robot discovery quote is absent from its pinned source")
+        evidence.append({"url": f"{project['repository']}/blob/{project['commit']}/{urllib.parse.quote(pin['path'], safe='/')}",
+                         "sha256": pin["sha256"], "bytes": pin["bytes"], "quote": pin["quote"],
+                         "labels": pin["labels"], "match_in": match_in})
+    return {"labels": discovery["labels"], "scope": discovery["scope"], "method": "reviewed_pinned_text_declaration",
+            "compatibility_inferred": False, "evidence": evidence}
 
 
 def inspect_source(path, data):
@@ -280,7 +347,7 @@ def make_record(project, artifact, cache):
         ident = ident[:67].rstrip("-") + "-" + digest(path.encode())[:12]
     source_url = f"{project['repository']}/blob/{project['commit']}/{path}"
     raw_url = project["repository"].replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + project["commit"] + "/" + urllib.parse.quote(path, safe="/")
-    return {"id": ident, "name": f"{project['name']}: {topic(path)}", "summary": f"Official {project['name']} {inspection['kind'].replace('_', ' ')} example for {topic(path)}. Inspect the pinned source and upstream setup before use.",
+    record = {"id": ident, "name": f"{project['name']}: {topic(path)}", "summary": f"Official {project['name']} {inspection['kind'].replace('_', ' ')} example for {topic(path)}. Inspect the pinned source and upstream setup before use.",
             "framework": project["id"], "kind": "official_example", "source_registry": REGISTRY,
             "capabilities": capabilities(project, path), "robot_types": robot_types(project, path),
             "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
@@ -296,6 +363,11 @@ def make_record(project, artifact, cache):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": project["checked_at"],
                          "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
                          "entrypoint_kind": inspection["kind"], "inspection_method": "automated_static"}}
+    discovery = reviewed_robot_discovery(project, artifact, cache)
+    if discovery:
+        record["robots"] = discovery.pop("labels")
+        record["evidence"]["robot_discovery"] = discovery
+    return record
 
 
 def merge_records(existing, generated):
@@ -312,18 +384,26 @@ def build(manifest, cache, existing, fetch=False):
     generated = []
     for project in manifest["projects"]:
         validate_project(project)
-        checked_license(project, cache, fetch)
         artifacts = project.get("artifacts", [])
         if not artifacts:
             raise ValueError(f"{project['id']}: discover and review entrypoints before building")
+        paths = {artifact["path"] for artifact in artifacts}
+        for artifact in artifacts:
+            paths.update(pin["path"] for pin in robot_discovery_pins(artifact))
+        checked_license(project, cache, fetch)
         if fetch:
+            # License/package declaration bytes were already fetched and checked.
+            paths.discard(project["license"]["path"])
+            declaration = project["license"].get("package_declaration")
+            if declaration:
+                paths.discard(declaration["path"])
             with ThreadPoolExecutor(max_workers=8) as pool:
-                list(pool.map(lambda a: source_bytes(cache, project, a["path"], True), artifacts))
+                list(pool.map(lambda path: source_bytes(cache, project, path, True), sorted(paths)))
         generated.extend(make_record(project, artifact, cache) for artifact in artifacts)
     records = merge_records(existing["records"], generated)
     return {**existing, "checked_at": max(p["checked_at"] for p in manifest["projects"]),
-            "description": "Immutable official robot-control, planning, navigation, learning and simulation source examples. Hub preparation adapters are indexed separately.",
-            "selection": "Explicit official repository roots; static runnable-entrypoint and license checks. Coverage is finite and published in source-projects.json; it is not an exhaustive inventory of internet robot skills.",
+            "description": "Immutable robot code, artifacts, workflows and agent-instruction source references. Hub preparation adapters are indexed separately.",
+            "selection": "Explicit frozen repository/file manifests with artifact-specific static source, identity and license review. Coverage is finite; these manifests do not establish an exhaustive inventory of Internet robot skills or runtime compatibility.",
             "source_manifest": "source-projects.json", "records": records}
 
 

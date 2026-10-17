@@ -20,6 +20,12 @@
       "record_version": "source-86f44895cc4b766a255334c4f31c9699a76a5531aa3e937592cd3548c0a5fbf8"
     },
     {
+      "id": "octo-examples-02-finetune-new-observation-action-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91",
+      "record_version": "source-3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91"
+    },
+    {
       "id": "roboticstoolbox-examples-mmc-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "fa1965f8516ef8fff6deed65dd1240fe629692aedcc52a2d94334de8bb0880fa",

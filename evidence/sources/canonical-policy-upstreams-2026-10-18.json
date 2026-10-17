@@ -1,0 +1,2301 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-18",
+  "review_timezone": "Asia/Seoul",
+  "receipt_prepared_at_utc": "2026-10-17T18:35:37.998854+00:00",
+  "scope": "Static review of 14 selected first-party policy workflow Python sources from 4 canonical upstream repositories. Existing ACT/diffusion implementations elsewhere in the Hub are not new behaviors. This receipt does not establish runtime success, model/dataset rights, installed adapters, public indexing or independent usage.",
+  "review_type": "bounded_text_and_python_ast_source_review_only",
+  "binding": {
+    "unit": "each reviewed_project object embedded in projects",
+    "sha256_encoding": "SHA-256 of json.dumps(reviewed_project, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8'), without a trailing newline",
+    "full_workflow_manifest_hash_included": false,
+    "meaning": "Per-project review snapshots and immutable source/license/setup pins remain independently checkable as the combined workflow manifest evolves."
+  },
+  "counts": {
+    "projects": 4,
+    "workflow_source_files": 14,
+    "workflow_source_bytes": 137706,
+    "first_party_license_documents": 4,
+    "first_party_license_bytes": 4371,
+    "supporting_documents_including_separate_vendored_license": 17,
+    "supporting_document_bytes": 101906,
+    "unique_cached_text_files": 35,
+    "unique_cached_text_bytes": 243983,
+    "largest_text_file_bytes": 38458,
+    "source_text_read_bound_bytes": 262144,
+    "metadata_response_read_bound_bytes": 2097152,
+    "robot_named_workflows": 6,
+    "generic_workflows_without_robot_names": 8
+  },
+  "actions": {
+    "new_external_requests_to_prepare_guide_and_receipt": 0,
+    "original_frozen_source_fetches_public_and_read_only": true,
+    "original_frozen_source_fetches_DNT": "1",
+    "original_frozen_source_fetches_X_RSH_Telemetry": "off",
+    "upstream_python_modules_imported": 0,
+    "upstream_code_executed": 0,
+    "dependencies_installed": 0,
+    "model_or_weight_or_dataset_or_mesh_downloads": 0,
+    "simulator_or_robot_connections": 0,
+    "model_inference_calls": 0,
+    "provider_authentication_attempts": 0,
+    "paid_calls": 0,
+    "public_network_writes": 0,
+    "canonical_files_written_by_this_review": 0
+  },
+  "review_method": [
+    "Resolve each public repository default branch to a full immutable Git commit and retain primary metadata plus a complete untruncated Git tree.",
+    "Fetch only explicitly selected bounded regular UTF-8 text at that commit. Verify byte length, SHA-256 and Git blob SHA-1 against the frozen tree.",
+    "Parse selected Python with ast.parse and inspect the real main guard and operational calls, imports and declared workflow requirements, without importing the upstream modules or evaluating configuration.",
+    "Verify pinned first-party license documents and explicit source notices; separately retain author/setup identity anchors, external model/dataset constraints and vendored license declarations.",
+    "Preserve per-workflow Python/hardware/weight/data/service declarations as data, with literal pinned evidence for specific robot names. Generic workflows receive no robot-name compatibility inference.",
+    "Construct source-only records offline and verify an identical second build and the generated source index."
+  ],
+  "selection_limits": {
+    "finite_explicit_paths_only": true,
+    "excluded": [
+      "helpers",
+      "tests",
+      "notebooks",
+      "model definitions",
+      "download-only scripts",
+      "checkpoint converters",
+      "data-loader-only examples",
+      "configuration expansion"
+    ],
+    "act_train_eval_same_file_counted_once": true,
+    "source_files_are_not_distinct_behaviors": true,
+    "repository_popularity_is_not_usage_or_runtime_evidence": true
+  },
+  "validation": {
+    "checked_at_utc": "2026-10-17T18:47:36.143629+00:00",
+    "workflow_importer": {
+      "path": "tools/import_robot_workflows.py",
+      "sha256": "7e3fdbd1c189ec1e4dc567538f67dfbb8fdade7b7a046fceb729e3231189bce6"
+    },
+    "example_importer": {
+      "path": "tools/import_ecosystem_examples.py",
+      "sha256": "04669ec902040b2171ab00831fb9671f57d5e4f48e8cfef26f99d72e921a089d"
+    },
+    "verified_source_only_records": 14,
+    "idempotent_offline_rebuild": true,
+    "source_index_check": "passed",
+    "network_open_attempts_during_offline_validation": 0,
+    "per_workflow_python_preserved": true,
+    "all_original_declared_requirements_preserved": true,
+    "code_model_weight_dataset_scopes_separate": true,
+    "robot_discovery_negative_cases_passed": [
+      "ur5_does_not_match_ur5e_prefix",
+      "tampered_source_sha_rejected",
+      "source_path_evidence_must_bind_selected_artifact"
+    ],
+    "preintegration_deduplication": {
+      "existing_records_at_check": 1159,
+      "exact_repository_commit_path_duplicates": 0,
+      "identical_source_sha256_duplicates": 0,
+      "record_id_collisions": 0,
+      "scope": "Historical deduplication against the catalog read during source review; this is not a hash or count assertion about the later merged catalog."
+    }
+  },
+  "interpretation": {
+    "access_mode": "source_reference",
+    "hub_prepare": false,
+    "runtime_verification": "not_run",
+    "compatibility_combinations_inferred": false,
+    "external_model_cards_or_dataset_licenses_verified": false,
+    "license_scope": "Pinned selected first-party code only; external models, weights, datasets, dependencies, simulator/robot components and services retain separate terms. OpenVLA Llama-derived model restrictions and ACT vendored DETR provenance are retained per project/workflow."
+  },
+  "projects": [
+    {
+      "reviewed_project_sha256": "40f52e458475addc45b4ff8fd769c7dcff5d2f061d86afeb56aca36506553885",
+      "reviewed_project": {
+        "id": "openvla",
+        "repository": "https://github.com/openvla/openvla",
+        "ref": "main",
+        "commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+        "tree_sha": "c326be57bb61629a3efd2b968ef141fa576a623f",
+        "observed_at": "2026-10-17T18:20:17.708045+00:00",
+        "checked_at": "2026-10-17",
+        "commit_date": "2025-03-23T23:40:34Z",
+        "stars": 7166,
+        "archived": false,
+        "name": "OpenVLA",
+        "authors": [
+          "Moo Jin Kim",
+          "Karl Pertsch",
+          "Siddharth Karamcheti"
+        ],
+        "attribution_notes": "First-party code authors and copyright holders in pyproject.toml and LICENSE; the full paper team is separately credited in README.md.",
+        "capabilities": [
+          "robot-workflow"
+        ],
+        "robot_types": [
+          "source-defined"
+        ],
+        "execution_domain": "computation-or-hardware",
+        "requirements": {
+          "python": "pyproject.toml declares >=3.8; README installation uses 3.10; the LIBERO reproduction section specifically reports 3.10.13. These are upstream declarations, not Hub verification.",
+          "packages": [
+            "Pinned OpenVLA checkout",
+            "Upstream PyTorch 2.2.0, transformers 4.40.1, timm 0.9.10 and tokenizers 0.19.1 pins",
+            "Workflow-specific dependencies in pinned README and source"
+          ],
+          "environment": "Use the per-workflow requirements and declared_requirements; no project-wide robot, GPU, weight or credential applicability is inferred."
+        },
+        "setup_url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/README.md",
+        "invocation_notes": "Source-reference-only candidate. Review exact source, setup and external asset terms before any separately authorized local use; nothing was installed or executed.",
+        "license": {
+          "path": "LICENSE",
+          "sha256": "c4ee2ba5958af03d74b1d3dfa174e3749171d689fb4c23cc170749c05ae3eeb5",
+          "bytes": 1105,
+          "git_blob_sha": "04f26a7d0bfdeb89ce54681c695a40df21aa6d96",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/LICENSE",
+          "spdx": "MIT",
+          "scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+        },
+        "license_scopes": {
+          "code": "MIT for selected first-party workflow source.",
+          "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+          "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+          "third_party_code": "External dependencies retain their own licenses."
+        },
+        "evidence_files": [
+          {
+            "path": "README.md",
+            "sha256": "ba8e9a2884e38a8000dafc98af4116512e37b0e143dad2f940100482bfd6b75c",
+            "bytes": 38458,
+            "git_blob_sha": "075feef94adfeb802d1d89856159a974bf5358f8",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/README.md",
+            "purpose": "Author/setup, separate model-license declaration, training and robot evaluation instructions",
+            "contains": [
+              "Moo Jin",
+              "Llama Community License",
+              "Python 3.10",
+              "BridgeData V2 WidowX Evaluations"
+            ]
+          },
+          {
+            "path": "pyproject.toml",
+            "sha256": "1ea10f21c13dd82cb9255f6edbd5ac477143937ff51d22740830e4e7d08d3b45",
+            "bytes": 2553,
+            "git_blob_sha": "f72cae0714861509d895f3b84a4890925f5faac0",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/pyproject.toml",
+            "purpose": "First-party code authors, Python minimum and pinned packages",
+            "contains": [
+              "requires-python = \">=3.8\"",
+              "torch==2.2.0"
+            ]
+          },
+          {
+            "path": "requirements-min.txt",
+            "sha256": "bc8177f94a408f1c034f5efb4d34dafb29beb6d1ff9cfba6cf1f73835f7af98d",
+            "bytes": 86,
+            "git_blob_sha": "8276051adb53f994cf0d72388a035c23cd41d2e2",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/requirements-min.txt",
+            "purpose": "Minimal inference dependency pins",
+            "contains": [
+              "transformers==4.40.1"
+            ]
+          },
+          {
+            "path": "experiments/robot/libero/libero_requirements.txt",
+            "sha256": "ab74171b8df14e391b7759f01c4c4a2334c9a362e91abeb67337f3a0d9447369",
+            "bytes": 63,
+            "git_blob_sha": "ca0c0467efa33b91ad76d66976da480c1e5f572f",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/experiments/robot/libero/libero_requirements.txt",
+            "purpose": "LIBERO evaluation-specific package declarations",
+            "contains": [
+              "robosuite"
+            ]
+          }
+        ],
+        "selection": {
+          "include": [
+            "vla-scripts/deploy.py",
+            "vla-scripts/finetune.py",
+            "vla-scripts/train.py",
+            "experiments/robot/libero/run_libero_eval.py",
+            "experiments/robot/bridge/run_bridgev2_eval.py"
+          ],
+          "exclude": []
+        },
+        "artifacts": [
+          {
+            "path": "vla-scripts/deploy.py",
+            "sha256": "14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65",
+            "bytes": 5554,
+            "git_blob_sha": "c70a9f279e3dda2a68091468fc87b563c655a5d7",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/deploy.py",
+            "entrypoint_kind": "python_main",
+            "name": "REST policy inference server",
+            "role": "policy-serving",
+            "summary": "Pinned server entrypoint that loads an OpenVLA policy and serves action predictions over its upstream FastAPI REST interface. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-serving"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python vla-scripts/deploy.py --openvla_path <approved-local-checkpoint-or-reviewed-model-id>",
+            "execution_domain": "computation",
+            "invocation_notes": "The source starts a network listener and permits model-provided remote code when actually run. This record is inert provenance, not permission to execute it.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": ">=3.8 in project metadata; upstream setup uses Python 3.10.",
+              "weights": "Loads AutoProcessor and AutoModelForVision2Seq from the configured model path; default is openvla/openvla-7b. from_pretrained is called with trust_remote_code=True. No weights or remote model code were fetched.",
+              "datasets": "Accepts caller-provided image/instruction observations; no training dataset is required by this server entrypoint.",
+              "hardware": "Docstring describes a GPU server. Source selects cuda:0 if available and otherwise CPU, while requesting flash_attention_2 and bfloat16. CPU success and minimum VRAM are not established.",
+              "external_services_and_auth": "Starts a local HTTP API, default host 0.0.0.0/port 8000. No provider API key or authentication requirement is declared by the selected entrypoint; remote model retrieval may occur when a model ID is used.",
+              "evidence": [
+                {
+                  "anchor": "self.device = torch.device",
+                  "line": 74
+                },
+                {
+                  "anchor": "trust_remote_code=True",
+                  "line": 77
+                },
+                {
+                  "anchor": "port: int = 8000",
+                  "line": 120
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+                "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": ">=3.8 in project metadata; upstream setup uses Python 3.10.",
+              "environment": "Hardware: Docstring describes a GPU server. Source selects cuda:0 if available and otherwise CPU, while requesting flash_attention_2 and bfloat16. CPU success and minimum VRAM are not established. Weights: Loads AutoProcessor and AutoModelForVision2Seq from the configured model path; default is openvla/openvla-7b. from_pretrained is called with trust_remote_code=True. No weights or remote model code were fetched. Datasets: Accepts caller-provided image/instruction observations; no training dataset is required by this server entrypoint. Services/auth: Starts a local HTTP API, default host 0.0.0.0/port 8000. No provider API key or authentication requirement is declared by the selected entrypoint; remote model retrieval may occur when a model ID is used.",
+              "notes": "The source starts a network listener and permits model-provided remote code when actually run. This record is inert provenance, not permission to execute it. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "vla-scripts/finetune.py",
+            "sha256": "0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b",
+            "bytes": 17834,
+            "git_blob_sha": "ec51a6b3cffa2216dffba9fb0b5265a5dde3ebe8",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/finetune.py",
+            "entrypoint_kind": "python_main",
+            "name": "LoRA policy fine-tuning",
+            "role": "policy-training",
+            "summary": "Pinned distributed parameter-efficient OpenVLA fine-tuning entrypoint using PEFT LoRA and a selected RLDS demonstration dataset. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "torchrun --standalone --nnodes 1 --nproc-per-node <reviewed-gpu-count> vla-scripts/finetune.py --data_root_dir <reviewed-rlds-data> --dataset_name <dataset>",
+            "execution_domain": "computation",
+            "invocation_notes": "Checkpoint weights, RLDS data and W&B setup remain external. No model licensing or runtime success is established by the code license.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10.",
+              "weights": "Loads a configured pretrained OpenVLA processor/model; default model ID openvla/openvla-7b. Source enables trust_remote_code=True and writes/merges checkpoint artifacts.",
+              "datasets": "Requires an existing named RLDS dataset under configured data_root_dir. README's BridgeData example is separately obtained data; no data were downloaded.",
+              "hardware": "Source explicitly asserts at least one CUDA GPU. Source examples report batch 12 on 48 GB and batch 24 on 80 GB; README's different batch examples describe roughly 27 GB minimum after adjustments and roughly 72 GB for batch16. These are distinct upstream configurations, not measured requirements here.",
+              "external_services_and_auth": "Initializes Weights & Biases logging on the main process. Project/entity fields are present; the selected file does not name a particular API-key environment variable. No service was contacted.",
+              "evidence": [
+                {
+                  "anchor": "assert torch.cuda.is_available()",
+                  "line": 118
+                },
+                {
+                  "anchor": "trust_remote_code=True",
+                  "line": 157
+                },
+                {
+                  "anchor": "wandb.init",
+                  "line": 242
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+                "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10.",
+              "environment": "Hardware: Source explicitly asserts at least one CUDA GPU. Source examples report batch 12 on 48 GB and batch 24 on 80 GB; README's different batch examples describe roughly 27 GB minimum after adjustments and roughly 72 GB for batch16. These are distinct upstream configurations, not measured requirements here. Weights: Loads a configured pretrained OpenVLA processor/model; default model ID openvla/openvla-7b. Source enables trust_remote_code=True and writes/merges checkpoint artifacts. Datasets: Requires an existing named RLDS dataset under configured data_root_dir. README's BridgeData example is separately obtained data; no data were downloaded. Services/auth: Initializes Weights & Biases logging on the main process. Project/entity fields are present; the selected file does not name a particular API-key environment variable. No service was contacted.",
+              "notes": "Checkpoint weights, RLDS data and W&B setup remain external. No model licensing or runtime success is established by the code license. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "vla-scripts/train.py",
+            "sha256": "8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49",
+            "bytes": 12141,
+            "git_blob_sha": "5c38038d05acf4392d0c53e875a29b6015c3bf1e",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/train.py",
+            "entrypoint_kind": "python_main",
+            "name": "FSDP VLA training and full fine-tuning",
+            "role": "policy-training",
+            "summary": "Pinned training entrypoint for OpenVLA action policies over configured Open X-Embodiment/RLDS mixtures using PyTorch FSDP. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "torchrun --standalone --nnodes 1 --nproc-per-node <reviewed-gpu-count> vla-scripts/train.py --data_root_dir <reviewed-data> --vla.type <reviewed-vla-config>",
+            "execution_domain": "computation",
+            "invocation_notes": "The upstream .hf_token location is documentation data, not a local credential path to inspect. No credentials, models or datasets were loaded.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10.",
+              "weights": "Loads either an explicit pretrained VLA checkpoint or the configured base VLM. README full-fine-tuning path uses a separate Prismatic-compatible OpenVLA checkpoint.",
+              "datasets": "Requires configured training mixtures and local dataset root; README uses separately downloaded BridgeData V2/Open X-Embodiment data.",
+              "hardware": "Source uses CUDA and distributed FSDP; its header assumes CUDA toolkit >=11.0 for BF16. README full-fine-tuning example uses eight A100 GPUs. The script also documents a one-GPU debug launch; the example cluster size is not a universal minimum.",
+              "external_services_and_auth": "Source reads the configured Hugging Face token from .hf_token by default or a named environment variable, and defaults metrics trackers to jsonl and wandb. README explicitly directs creating an HF user access token. No token was read or requested.",
+              "evidence": [
+                {
+                  "anchor": "Path(\".hf_token\")",
+                  "line": 76
+                },
+                {
+                  "anchor": "torch.cuda.set_device",
+                  "line": 111
+                },
+                {
+                  "anchor": "hf_token = cfg.hf_token.read_text()",
+                  "line": 128
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+                "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10.",
+              "environment": "Hardware: Source uses CUDA and distributed FSDP; its header assumes CUDA toolkit >=11.0 for BF16. README full-fine-tuning example uses eight A100 GPUs. The script also documents a one-GPU debug launch; the example cluster size is not a universal minimum. Weights: Loads either an explicit pretrained VLA checkpoint or the configured base VLM. README full-fine-tuning path uses a separate Prismatic-compatible OpenVLA checkpoint. Datasets: Requires configured training mixtures and local dataset root; README uses separately downloaded BridgeData V2/Open X-Embodiment data. Services/auth: Source reads the configured Hugging Face token from .hf_token by default or a named environment variable, and defaults metrics trackers to jsonl and wandb. README explicitly directs creating an HF user access token. No token was read or requested.",
+              "notes": "The upstream .hf_token location is documentation data, not a local credential path to inspect. No credentials, models or datasets were loaded. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "experiments/robot/libero/run_libero_eval.py",
+            "sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77",
+            "bytes": 11936,
+            "git_blob_sha": "5c3f58178d7c827df829379354f7aefddc0458bc",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/experiments/robot/libero/run_libero_eval.py",
+            "entrypoint_kind": "python_main",
+            "name": "LIBERO policy evaluation",
+            "role": "policy-evaluation",
+            "summary": "Pinned OpenVLA policy rollout/evaluation entrypoint for one explicitly selected LIBERO simulation task suite. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint <approved-checkpoint> --task_suite_name <suite> --center_crop <reviewed-setting>",
+            "execution_domain": "simulation",
+            "invocation_notes": "LIBERO task-suite choices are parameters of this one source entrypoint. No Panda/Franka label is inferred from external simulator knowledge.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Project metadata >=3.8; this reproduction setup specifically reports Python 3.10.13.",
+              "weights": "Requires a selected pretrained checkpoint. README's per-suite model-ID examples automatically retrieve weights if executed; no suite/model cross-product is expanded into records here.",
+              "datasets": "Requires the separately installed LIBERO simulator and task/init-state assets. README marks modified training-data download optional for evaluation because it supplies pretrained checkpoints.",
+              "hardware": "README reports LIBERO evaluations on an NVIDIA A100 and pins its software versions; no CPU verification or universal VRAM minimum is declared by this review.",
+              "external_services_and_auth": "W&B logging is optional, controlled by use_wandb=False by default. No mandatory API key is declared in this selected script.",
+              "evidence": [
+                {
+                  "anchor": "def eval_libero",
+                  "line": 91
+                },
+                {
+                  "anchor": "use_wandb: bool = False",
+                  "line": 81
+                },
+                {
+                  "anchor": "env.step(action.tolist())",
+                  "line": 228
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+                "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Project metadata >=3.8; this reproduction setup specifically reports Python 3.10.13.",
+              "environment": "Hardware: README reports LIBERO evaluations on an NVIDIA A100 and pins its software versions; no CPU verification or universal VRAM minimum is declared by this review. Weights: Requires a selected pretrained checkpoint. README's per-suite model-ID examples automatically retrieve weights if executed; no suite/model cross-product is expanded into records here. Datasets: Requires the separately installed LIBERO simulator and task/init-state assets. README marks modified training-data download optional for evaluation because it supplies pretrained checkpoints. Services/auth: W&B logging is optional, controlled by use_wandb=False by default. No mandatory API key is declared in this selected script.",
+              "notes": "LIBERO task-suite choices are parameters of this one source entrypoint. No Panda/Franka label is inferred from external simulator knowledge. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "experiments/robot/bridge/run_bridgev2_eval.py",
+            "sha256": "ee1a2acb0dd1d0d4a71cff4d29d4287c5e7542b6b5b37cd234243bb1fab0c2d3",
+            "bytes": 6985,
+            "git_blob_sha": "f547329faf6deb17de0b7ce3c330347fd29aea62",
+            "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/experiments/robot/bridge/run_bridgev2_eval.py",
+            "entrypoint_kind": "python_main",
+            "name": "Bridge V2 WidowX policy evaluation",
+            "role": "policy-evaluation",
+            "summary": "Pinned OpenVLA real-robot evaluation entrypoint using the separately configured Bridge V2 WidowX environment/controller service. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "WidowX is declared by this Bridge V2 evaluator's controller import and its dedicated pinned README setup. This names only that configured robot/controller workflow, not other OpenVLA trainers or general robot compatibility.",
+            "entrypoint": "python experiments/robot/bridge/run_bridgev2_eval.py --model_family openvla --pretrained_checkpoint <approved-checkpoint>",
+            "execution_domain": "hardware",
+            "invocation_notes": "This workflow can send real robot actions if an operator executes it; the Hub candidate does not execute, authorize or prepare it.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10; controller environment remains separate.",
+              "weights": "Requires a selected pretrained OpenVLA checkpoint; README demonstrates openvla/openvla-7b.",
+              "datasets": "Consumes live robot observations; optional rollout-data/video output is separate from training data.",
+              "hardware": "README requires the BridgeData V2 WidowX setup, bridge_data_robot/widowx_envs, edgeml and the upstream Docker robot server. Compatible compute/controller and calibration are source-defined; no universal robot support is inferred.",
+              "external_services_and_auth": "Uses the separately running WidowX controller server with configured host/port. No named provider API key is declared by this entrypoint.",
+              "evidence": [
+                {
+                  "anchor": "def eval_model_in_bridge_env",
+                  "line": 82
+                },
+                {
+                  "anchor": "get_widowx_env",
+                  "line": 24
+                },
+                {
+                  "anchor": "env.step(action)",
+                  "line": 160
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README explicitly says the released OpenVLA models derive from Llama-2 and are subject to the Llama Community License. No checkpoint/model card/base-model license was fetched or evaluated here; MIT is asserted only for the selected first-party Python source.",
+                "datasets": "README names BridgeData V2, Open X-Embodiment and LIBERO datasets. Individual dataset terms were not reviewed, and repository MIT is not applied to them.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": ">=3.8 in metadata; README installation uses Python 3.10; controller environment remains separate.",
+              "environment": "Hardware: README requires the BridgeData V2 WidowX setup, bridge_data_robot/widowx_envs, edgeml and the upstream Docker robot server. Compatible compute/controller and calibration are source-defined; no universal robot support is inferred. Weights: Requires a selected pretrained OpenVLA checkpoint; README demonstrates openvla/openvla-7b. Datasets: Consumes live robot observations; optional rollout-data/video output is separate from training data. Services/auth: Uses the separately running WidowX controller server with configured host/port. No named provider API key is declared by this entrypoint.",
+              "notes": "This workflow can send real robot actions if an operator executes it; the Hub candidate does not execute, authorize or prepare it. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "widowx"
+              ],
+              "scope": "WidowX is declared by this Bridge V2 evaluator's controller import and its dedicated pinned README setup. This names only that configured robot/controller workflow, not other OpenVLA trainers or general robot compatibility.",
+              "evidence": [
+                {
+                  "path": "experiments/robot/bridge/run_bridgev2_eval.py",
+                  "sha256": "ee1a2acb0dd1d0d4a71cff4d29d4287c5e7542b6b5b37cd234243bb1fab0c2d3",
+                  "bytes": 6985,
+                  "quote": "get_widowx_env",
+                  "labels": [
+                    "widowx"
+                  ]
+                },
+                {
+                  "path": "README.md",
+                  "sha256": "ba8e9a2884e38a8000dafc98af4116512e37b0e143dad2f940100482bfd6b75c",
+                  "bytes": 38458,
+                  "quote": "### BridgeData V2 WidowX Evaluations",
+                  "labels": [
+                    "widowx"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "source_inspections": [
+        {
+          "project_id": "openvla",
+          "path": "vla-scripts/deploy.py",
+          "sha256": "14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65",
+          "bytes": 5554,
+          "git_blob_sha": "c70a9f279e3dda2a68091468fc87b563c655a5d7",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/deploy.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 144,
+          "source_imports": [
+            "PIL",
+            "dataclasses",
+            "draccus",
+            "fastapi",
+            "fastapi.responses",
+            "json",
+            "json_numpy",
+            "logging",
+            "os.path",
+            "pathlib",
+            "torch",
+            "traceback",
+            "transformers",
+            "typing",
+            "uvicorn"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "self.device = torch.device",
+              "line": 74
+            },
+            {
+              "anchor": "trust_remote_code=True",
+              "line": 77
+            },
+            {
+              "anchor": "port: int = 8000",
+              "line": 120
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "openvla-vla-scripts-deploy-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "openvla",
+          "path": "vla-scripts/finetune.py",
+          "sha256": "0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b",
+          "bytes": 17834,
+          "git_blob_sha": "ec51a6b3cffa2216dffba9fb0b5265a5dde3ebe8",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/finetune.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 372,
+          "source_imports": [
+            "accelerate",
+            "collections",
+            "dataclasses",
+            "draccus",
+            "os",
+            "pathlib",
+            "peft",
+            "prismatic.extern.hf.configuration_prismatic",
+            "prismatic.extern.hf.modeling_prismatic",
+            "prismatic.extern.hf.processing_prismatic",
+            "prismatic.models.backbones.llm.prompting",
+            "prismatic.util.data_utils",
+            "prismatic.vla.action_tokenizer",
+            "prismatic.vla.datasets",
+            "prismatic.vla.datasets.rlds.utils.data_utils",
+            "torch",
+            "torch.distributed",
+            "torch.nn.parallel",
+            "torch.optim",
+            "torch.utils.data",
+            "tqdm",
+            "transformers",
+            "transformers.modeling_outputs",
+            "typing",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "assert torch.cuda.is_available()",
+              "line": 118
+            },
+            {
+              "anchor": "trust_remote_code=True",
+              "line": 157
+            },
+            {
+              "anchor": "wandb.init",
+              "line": 242
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "openvla-vla-scripts-finetune-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "openvla",
+          "path": "vla-scripts/train.py",
+          "sha256": "8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49",
+          "bytes": 12141,
+          "git_blob_sha": "5c38038d05acf4392d0c53e875a29b6015c3bf1e",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/vla-scripts/train.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 262,
+          "source_imports": [
+            "dataclasses",
+            "draccus",
+            "json",
+            "os",
+            "pathlib",
+            "prismatic.conf",
+            "prismatic.models",
+            "prismatic.overwatch",
+            "prismatic.training",
+            "prismatic.util",
+            "prismatic.vla",
+            "prismatic.vla.datasets.rlds.utils.data_utils",
+            "re",
+            "torch",
+            "torch.distributed",
+            "typing",
+            "yaml"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "Path(\".hf_token\")",
+              "line": 76
+            },
+            {
+              "anchor": "torch.cuda.set_device",
+              "line": 111
+            },
+            {
+              "anchor": "hf_token = cfg.hf_token.read_text()",
+              "line": 128
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "openvla-vla-scripts-train-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "openvla",
+          "path": "experiments/robot/libero/run_libero_eval.py",
+          "sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77",
+          "bytes": 11936,
+          "git_blob_sha": "5c3f58178d7c827df829379354f7aefddc0458bc",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/experiments/robot/libero/run_libero_eval.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 285,
+          "source_imports": [
+            "dataclasses",
+            "draccus",
+            "experiments.robot.libero.libero_utils",
+            "experiments.robot.openvla_utils",
+            "experiments.robot.robot_utils",
+            "libero.libero",
+            "numpy",
+            "os",
+            "pathlib",
+            "sys",
+            "tqdm",
+            "typing",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "def eval_libero",
+              "line": 91
+            },
+            {
+              "anchor": "use_wandb: bool = False",
+              "line": 81
+            },
+            {
+              "anchor": "env.step(action.tolist())",
+              "line": 228
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "openvla-experiments-robot-libero-run-libero-eval-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "openvla",
+          "path": "experiments/robot/bridge/run_bridgev2_eval.py",
+          "sha256": "ee1a2acb0dd1d0d4a71cff4d29d4287c5e7542b6b5b37cd234243bb1fab0c2d3",
+          "bytes": 6985,
+          "git_blob_sha": "f547329faf6deb17de0b7ce3c330347fd29aea62",
+          "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/experiments/robot/bridge/run_bridgev2_eval.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 182,
+          "source_imports": [
+            "dataclasses",
+            "draccus",
+            "experiments.robot.bridge.bridgev2_utils",
+            "experiments.robot.openvla_utils",
+            "experiments.robot.robot_utils",
+            "pathlib",
+            "sys",
+            "time",
+            "typing"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "def eval_model_in_bridge_env",
+              "line": 82
+            },
+            {
+              "anchor": "get_widowx_env",
+              "line": 24
+            },
+            {
+              "anchor": "env.step(action)",
+              "line": 160
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "openvla-experiments-robot-bridge-run-bridgev2-eval-py",
+          "robot_discovery_labels": [
+            "widowx"
+          ],
+          "compatibility_inferred": false
+        }
+      ]
+    },
+    {
+      "reviewed_project_sha256": "ab1bfcd35b6d13825f30d1b82499c9a9e7a81ee1c127f3485452930230005773",
+      "reviewed_project": {
+        "id": "diffusion-policy",
+        "repository": "https://github.com/real-stanford/diffusion_policy",
+        "ref": "main",
+        "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+        "tree_sha": "5a8bd7058d1dce44312e2e1a78949237884dab32",
+        "observed_at": "2026-10-17T18:20:17.649045+00:00",
+        "checked_at": "2026-10-17",
+        "commit_date": "2024-12-24T19:47:59Z",
+        "stars": 4651,
+        "archived": false,
+        "name": "Diffusion Policy",
+        "authors": [
+          "Cheng Chi",
+          "Siyuan Feng",
+          "Yilun Du",
+          "Zhenjia Xu",
+          "Eric Cousineau",
+          "Benjamin Burchfiel",
+          "Shuran Song"
+        ],
+        "attribution_notes": "Named upstream authors in README.md; LICENSE credits Columbia Artificial Intelligence and Robotics Lab.",
+        "capabilities": [
+          "robot-workflow"
+        ],
+        "robot_types": [
+          "source-defined"
+        ],
+        "execution_domain": "computation-or-hardware",
+        "requirements": {
+          "python": "Python 3.9 in both conda_environment.yaml and conda_environment_real.yaml. README says the macOS environment is development-only and lacks full benchmark support.",
+          "packages": [
+            "Pinned diffusion_policy checkout",
+            "Workflow-specific conda environment with PyTorch1.12.1 and CUDA toolkit11.6",
+            "Configured simulator or real-robot dependencies"
+          ],
+          "environment": "Use the per-workflow requirements and declared_requirements; no project-wide robot, GPU, weight or credential applicability is inferred."
+        },
+        "setup_url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/README.md",
+        "invocation_notes": "Source-reference-only candidate. Review exact source, setup and external asset terms before any separately authorized local use; nothing was installed or executed.",
+        "license": {
+          "path": "LICENSE",
+          "sha256": "304e99a48271e10820f71a1b86ef395c06c100d7f68dd1d308790d1064fc4d41",
+          "bytes": 1106,
+          "git_blob_sha": "a2eb6cb62c1472fa2de9b6f1f6e0f97af8ba96e7",
+          "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/LICENSE",
+          "spdx": "MIT",
+          "scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+        },
+        "license_scopes": {
+          "code": "MIT for selected first-party workflow source.",
+          "weights": "README links separately downloadable trained checkpoints but the reviewed repository text does not separately establish their license. Do not extend first-party-code MIT to weights.",
+          "datasets": "README links separate task demonstration datasets and dependencies such as robomimic. Individual dataset licenses were not reviewed; code MIT does not grant dataset rights.",
+          "third_party_code": "External dependencies retain their own licenses."
+        },
+        "evidence_files": [
+          {
+            "path": "README.md",
+            "sha256": "51b6717d694a4ea4b476cf07c64651dc58643402beb0a27cda38a87cc58334b0",
+            "bytes": 25219,
+            "git_blob_sha": "fd4fdf4615e513bd4ea78d39b64e8c4b5a59c43e",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/README.md",
+            "purpose": "Upstream authors, simulation/real-robot setup, W&B login, train/evaluation usage and code license",
+            "contains": [
+              "Cheng Chi",
+              "wandb login",
+              "UR5-CB3",
+              "MIT license"
+            ]
+          },
+          {
+            "path": "conda_environment.yaml",
+            "sha256": "c945bcac09284cf897d3e1837139ea83f991e4b2298dbd3a8c4a0718a34994ea",
+            "bytes": 1626,
+            "git_blob_sha": "c540b5bdb90524fe7a5c940f945ca1a84a35411d",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/conda_environment.yaml",
+            "purpose": "Simulation environment Python and CUDA/PyTorch declarations",
+            "contains": [
+              "python=3.9",
+              "cudatoolkit=11.6"
+            ]
+          },
+          {
+            "path": "conda_environment_real.yaml",
+            "sha256": "6e2c5d828e5277edb99551f6e935ac36addad462b6a71ef5b0eefe60920a67a9",
+            "bytes": 2017,
+            "git_blob_sha": "7636360794b6b69d2e16f5a8903d1c5f2c1fdb80",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/conda_environment_real.yaml",
+            "purpose": "Real-robot environment Python, CUDA and hardware dependency declarations",
+            "contains": [
+              "python=3.9",
+              "pyrealsense2"
+            ]
+          },
+          {
+            "path": "conda_environment_macos.yaml",
+            "sha256": "80c41cb42c7702f6959a5fadc177db339b0877b1a17a807660722d9db4995f0e",
+            "bytes": 1183,
+            "git_blob_sha": "0d2676724a4a46000b17a7e8c696411e36c641b8",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/conda_environment_macos.yaml",
+            "purpose": "Separate development-only environment; not benchmark parity",
+            "contains": [
+              "python=3.9"
+            ]
+          }
+        ],
+        "selection": {
+          "include": [
+            "train.py",
+            "eval.py",
+            "eval_real_robot.py"
+          ],
+          "exclude": []
+        },
+        "artifacts": [
+          {
+            "path": "train.py",
+            "sha256": "4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5",
+            "bytes": 965,
+            "git_blob_sha": "51c564e6f242877ff8cd13573ce38c97b6812595",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/train.py",
+            "entrypoint_kind": "python_main",
+            "name": "Configured policy training launcher",
+            "role": "policy-training",
+            "summary": "Pinned upstream Hydra training entrypoint that resolves a selected workspace configuration and invokes its operational training run. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python train.py --config-name=<reviewed-training-workspace>",
+            "execution_domain": "computation",
+            "invocation_notes": "Included because README names it as the operational training entrypoint and it calls workspace.run, not as a config-only expansion. Source registers an eval resolver, so only reviewed upstream configurations could be considered for later manual execution.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python 3.9 in upstream simulation/real conda declarations.",
+              "weights": "Checkpoint initialization/resume behavior depends on the explicitly chosen workspace configuration; no blanket external pretrained-weight requirement is declared by this dispatcher.",
+              "datasets": "Requires a selected demonstration dataset/task configuration; README's Push-T example downloads a separate training dataset.",
+              "hardware": "README benchmark-reproduction setup specifies Linux with an NVIDIA GPU. Exact device and memory depend on chosen workspace/data; macOS is documented for development only.",
+              "external_services_and_auth": "README's documented training path explicitly logs in to W&B. The dispatcher itself delegates logging to its chosen workspace; no particular API-key variable is named.",
+              "evidence": [
+                {
+                  "anchor": "OmegaConf.register_new_resolver(\"eval\", eval",
+                  "line": 18
+                },
+                {
+                  "anchor": "workspace.run()",
+                  "line": 32
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately downloadable trained checkpoints but the reviewed repository text does not separately establish their license. Do not extend first-party-code MIT to weights.",
+                "datasets": "README links separate task demonstration datasets and dependencies such as robomimic. Individual dataset licenses were not reviewed; code MIT does not grant dataset rights.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python 3.9 in upstream simulation/real conda declarations.",
+              "environment": "Hardware: README benchmark-reproduction setup specifies Linux with an NVIDIA GPU. Exact device and memory depend on chosen workspace/data; macOS is documented for development only. Weights: Checkpoint initialization/resume behavior depends on the explicitly chosen workspace configuration; no blanket external pretrained-weight requirement is declared by this dispatcher. Datasets: Requires a selected demonstration dataset/task configuration; README's Push-T example downloads a separate training dataset. Services/auth: README's documented training path explicitly logs in to W&B. The dispatcher itself delegates logging to its chosen workspace; no particular API-key variable is named.",
+              "notes": "Included because README names it as the operational training entrypoint and it calls workspace.run, not as a config-only expansion. Source registers an eval resolver, so only reviewed upstream configurations could be considered for later manual execution. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "eval.py",
+            "sha256": "e62694214cce4265ad783d1352713e25e963fb6684365ff1f0f4db08e57ade12",
+            "bytes": 1996,
+            "git_blob_sha": "06003f97d91be2f585a3d071ed14e5cd137003b5",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/eval.py",
+            "entrypoint_kind": "python_main",
+            "name": "Checkpoint simulation evaluation",
+            "role": "policy-evaluation",
+            "summary": "Pinned evaluation entrypoint that loads a selected policy checkpoint and runs the checkpoint-configured simulation environment runner. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python eval.py --checkpoint <approved-local-checkpoint> --output_dir <local-output> --device <reviewed-device>",
+            "execution_domain": "simulation",
+            "invocation_notes": "Checkpoint metadata drives dynamic workspace/environment loading. This is a source-only pointer; local checkpoint loading was not performed.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python 3.9 in upstream conda environment.",
+              "weights": "Required local checkpoint is loaded with torch.load and dill; it contains the workspace configuration. No checkpoint was downloaded, deserialized or trusted during review.",
+              "datasets": "Environment/assets are selected by the checkpoint's env_runner configuration; no standalone training-data download is required by this selected evaluator.",
+              "hardware": "CLI device defaults to cuda:0. README benchmark setup is Linux/NVIDIA GPU; alternate device flag does not establish CPU compatibility.",
+              "external_services_and_auth": "Imports W&B for video-object handling but contains no wandb.init/login call. No mandatory online API authentication is declared in this selected script.",
+              "evidence": [
+                {
+                  "anchor": "pickle_module=dill",
+                  "line": 31
+                },
+                {
+                  "anchor": "default='cuda:0'",
+                  "line": 24
+                },
+                {
+                  "anchor": "env_runner.run(policy)",
+                  "line": 51
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately downloadable trained checkpoints but the reviewed repository text does not separately establish their license. Do not extend first-party-code MIT to weights.",
+                "datasets": "README links separate task demonstration datasets and dependencies such as robomimic. Individual dataset licenses were not reviewed; code MIT does not grant dataset rights.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python 3.9 in upstream conda environment.",
+              "environment": "Hardware: CLI device defaults to cuda:0. README benchmark setup is Linux/NVIDIA GPU; alternate device flag does not establish CPU compatibility. Weights: Required local checkpoint is loaded with torch.load and dill; it contains the workspace configuration. No checkpoint was downloaded, deserialized or trusted during review. Datasets: Environment/assets are selected by the checkpoint's env_runner configuration; no standalone training-data download is required by this selected evaluator. Services/auth: Imports W&B for video-object handling but contains no wandb.init/login call. No mandatory online API authentication is declared in this selected script.",
+              "notes": "Checkpoint metadata drives dynamic workspace/environment loading. This is a source-only pointer; local checkpoint loading was not performed. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "eval_real_robot.py",
+            "sha256": "cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c",
+            "bytes": 18383,
+            "git_blob_sha": "cb3cdd17e8dfece64cdb99326dbb0e5c6a828406",
+            "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/eval_real_robot.py",
+            "entrypoint_kind": "python_main",
+            "name": "UR5 real-robot policy evaluation",
+            "role": "policy-evaluation",
+            "summary": "Pinned learned-policy evaluation entrypoint for the upstream UR5/UR5e real-world Push-T setup with operator control and recording. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "UR5 is named by this evaluator's --robot_ip option; its dedicated real Push-T setup lists UR5-CB3 or UR5e with RTDE. These are source-declared discovery names for the specific upstream setup, without a verified compatibility combination or Hub adapter.",
+            "entrypoint": "python eval_real_robot.py -i <approved-local-checkpoint> -o <local-output> --robot_ip <configured-robot-address>",
+            "execution_domain": "hardware",
+            "invocation_notes": "UR5/UR5e are discovery labels from the pinned setup, not Hub-tested compatibility combinations or authorization to move hardware.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python 3.9 in conda_environment_real.yaml.",
+              "weights": "Requires a local checkpoint, loaded through torch.load/dill. Its configuration determines policy behavior and observation/action shape.",
+              "datasets": "Consumes live robot/camera observations and writes evaluation recordings; optional dataset matching uses separately supplied local data.",
+              "hardware": "Source moves policies to CUDA. README's Push-T setup lists UR5-CB3 or UR5e with RTDE, two RealSense D415 cameras, SpaceMouse and task-specific fixtures, on tested Ubuntu20.04.3.",
+              "external_services_and_auth": "Requires robot network access through robot_ip and local camera/controller services. No cloud API key or W&B login is declared by this evaluator.",
+              "evidence": [
+                {
+                  "anchor": "UR5's IP address",
+                  "line": 53
+                },
+                {
+                  "anchor": "torch.device('cuda')",
+                  "line": 100
+                },
+                {
+                  "anchor": "robot_ip=robot_ip",
+                  "line": 146
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately downloadable trained checkpoints but the reviewed repository text does not separately establish their license. Do not extend first-party-code MIT to weights.",
+                "datasets": "README links separate task demonstration datasets and dependencies such as robomimic. Individual dataset licenses were not reviewed; code MIT does not grant dataset rights.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python 3.9 in conda_environment_real.yaml.",
+              "environment": "Hardware: Source moves policies to CUDA. README's Push-T setup lists UR5-CB3 or UR5e with RTDE, two RealSense D415 cameras, SpaceMouse and task-specific fixtures, on tested Ubuntu20.04.3. Weights: Requires a local checkpoint, loaded through torch.load/dill. Its configuration determines policy behavior and observation/action shape. Datasets: Consumes live robot/camera observations and writes evaluation recordings; optional dataset matching uses separately supplied local data. Services/auth: Requires robot network access through robot_ip and local camera/controller services. No cloud API key or W&B login is declared by this evaluator.",
+              "notes": "UR5/UR5e are discovery labels from the pinned setup, not Hub-tested compatibility combinations or authorization to move hardware. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "ur5",
+                "ur5e"
+              ],
+              "scope": "UR5 is named by this evaluator's --robot_ip option; its dedicated real Push-T setup lists UR5-CB3 or UR5e with RTDE. These are source-declared discovery names for the specific upstream setup, without a verified compatibility combination or Hub adapter.",
+              "evidence": [
+                {
+                  "path": "eval_real_robot.py",
+                  "sha256": "cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c",
+                  "bytes": 18383,
+                  "quote": "UR5's IP address",
+                  "labels": [
+                    "ur5"
+                  ]
+                },
+                {
+                  "path": "README.md",
+                  "sha256": "51b6717d694a4ea4b476cf07c64651dc58643402beb0a27cda38a87cc58334b0",
+                  "bytes": 25219,
+                  "quote": "* 1x [UR5-CB3](https://www.universal-robots.com/cb3) or [UR5e](https://www.universal-robots.com/products/ur5-robot/)",
+                  "labels": [
+                    "ur5",
+                    "ur5e"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "source_inspections": [
+        {
+          "project_id": "diffusion-policy",
+          "path": "train.py",
+          "sha256": "4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5",
+          "bytes": 965,
+          "git_blob_sha": "51c564e6f242877ff8cd13573ce38c97b6812595",
+          "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/train.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 34,
+          "source_imports": [
+            "diffusion_policy.workspace.base_workspace",
+            "hydra",
+            "omegaconf",
+            "pathlib",
+            "sys"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "OmegaConf.register_new_resolver(\"eval\", eval",
+              "line": 18
+            },
+            {
+              "anchor": "workspace.run()",
+              "line": 32
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "diffusion-policy-train-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "diffusion-policy",
+          "path": "eval.py",
+          "sha256": "e62694214cce4265ad783d1352713e25e963fb6684365ff1f0f4db08e57ade12",
+          "bytes": 1996,
+          "git_blob_sha": "06003f97d91be2f585a3d071ed14e5cd137003b5",
+          "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/eval.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 63,
+          "source_imports": [
+            "click",
+            "diffusion_policy.workspace.base_workspace",
+            "dill",
+            "hydra",
+            "json",
+            "os",
+            "pathlib",
+            "sys",
+            "torch",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "pickle_module=dill",
+              "line": 31
+            },
+            {
+              "anchor": "default='cuda:0'",
+              "line": 24
+            },
+            {
+              "anchor": "env_runner.run(policy)",
+              "line": 51
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "diffusion-policy-eval-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "diffusion-policy",
+          "path": "eval_real_robot.py",
+          "sha256": "cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c",
+          "bytes": 18383,
+          "git_blob_sha": "cb3cdd17e8dfece64cdb99326dbb0e5c6a828406",
+          "url": "https://github.com/real-stanford/diffusion_policy/blob/5ba07ac6661db573af695b419a7947ecb704690f/eval_real_robot.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 417,
+          "source_imports": [
+            "click",
+            "cv2",
+            "diffusion_policy.common.cv2_util",
+            "diffusion_policy.common.precise_sleep",
+            "diffusion_policy.common.pytorch_util",
+            "diffusion_policy.policy.base_image_policy",
+            "diffusion_policy.real_world.real_env",
+            "diffusion_policy.real_world.real_inference_util",
+            "diffusion_policy.real_world.spacemouse_shared_memory",
+            "diffusion_policy.workspace.base_workspace",
+            "dill",
+            "hydra",
+            "multiprocessing.managers",
+            "numpy",
+            "omegaconf",
+            "pathlib",
+            "scipy.spatial.transform",
+            "skvideo.io",
+            "time",
+            "torch"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "UR5's IP address",
+              "line": 53
+            },
+            {
+              "anchor": "torch.device('cuda')",
+              "line": 100
+            },
+            {
+              "anchor": "robot_ip=robot_ip",
+              "line": 146
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "diffusion-policy-eval-real-robot-py",
+          "robot_discovery_labels": [
+            "ur5",
+            "ur5e"
+          ],
+          "compatibility_inferred": false
+        }
+      ]
+    },
+    {
+      "reviewed_project_sha256": "81d07616f7fc09f715f8a268d30b8a86b819225f58c2eb62acf4bfb02bf046df",
+      "reviewed_project": {
+        "id": "act",
+        "repository": "https://github.com/tonyzhaozh/act",
+        "ref": "main",
+        "commit": "742c753c0d4a5d87076c8f69e5628c79a8cc5488",
+        "tree_sha": "d86d0895394f11a7a6c09b6478804c540c6d334a",
+        "observed_at": "2026-10-17T18:20:17.584838+00:00",
+        "checked_at": "2026-10-17",
+        "commit_date": "2024-01-28T20:18:07Z",
+        "stars": 2277,
+        "archived": false,
+        "name": "ACT",
+        "authors": [
+          "Tony Z. Zhao"
+        ],
+        "attribution_notes": "First-party copyright holder in LICENSE; the separately pinned detr/README.md credits the upstream DETR paper/code team.",
+        "capabilities": [
+          "robot-workflow"
+        ],
+        "robot_types": [
+          "source-defined"
+        ],
+        "execution_domain": "computation-or-hardware",
+        "requirements": {
+          "python": "Conflicting upstream setup declarations retained: README creates Python3.8.10, while conda_env.yaml pins Python3.9. The review does not choose or validate one.",
+          "packages": [
+            "Pinned ACT checkout",
+            "Torch/torchvision, MuJoCo and dm_control setup in README/conda_env.yaml",
+            "Separately installed modified DETR package; ALOHA package for real mode"
+          ],
+          "environment": "Use the per-workflow requirements and declared_requirements; no project-wide robot, GPU, weight or credential applicability is inferred."
+        },
+        "setup_url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/README.md",
+        "invocation_notes": "Source-reference-only candidate. Review exact source, setup and external asset terms before any separately authorized local use; nothing was installed or executed.",
+        "license": {
+          "path": "LICENSE",
+          "sha256": "4666c312da313e6c46929f6695d06cf98a2e7359b9c7dcbb0ea232d01b32cd42",
+          "bytes": 1069,
+          "git_blob_sha": "35e5f5e277714ec3b4b69ce573f1aa8a79bad787",
+          "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/LICENSE",
+          "spdx": "MIT",
+          "scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+        },
+        "license_scopes": {
+          "code": "MIT for selected first-party workflow source.",
+          "weights": "Selected evaluator requires a locally produced policy_best.ckpt and dataset_stats.pkl. Separate pretrained-backbone/dependency assets were not audited; first-party MIT is not extended to external weights.",
+          "datasets": "README links separately hosted scripted/human demonstration data. That dataset's license/access terms were not inspected or inferred from the code license.",
+          "third_party_code": "External dependencies retain their own licenses."
+        },
+        "evidence_files": [
+          {
+            "path": "README.md",
+            "sha256": "5059f601c1f0409556fd467150b99e93208de5d5594e9049f87ca92b24a5e7a2",
+            "bytes": 3500,
+            "git_blob_sha": "2c6f726dc91071e803002bf70b4a64cf812b0286",
+            "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/README.md",
+            "purpose": "ACT train/eval entrypoint, simulator and real-ALOHA scope, Python3.8.10 setup",
+            "contains": [
+              "imitate_episodes.py",
+              "python=3.8.10",
+              "ALOHA"
+            ]
+          },
+          {
+            "path": "conda_env.yaml",
+            "sha256": "b9cefd6bb83a6d5bb399529db1e8adc83456943bf664080e4c85b9ab70b7420b",
+            "bytes": 390,
+            "git_blob_sha": "0f44d6b09d93c47971cf7bef83488d68c2c3ba99",
+            "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/conda_env.yaml",
+            "purpose": "Different declared Python3.9 environment and CUDA11.8 dependency",
+            "contains": [
+              "python=3.9",
+              "pytorch-cuda=11.8"
+            ]
+          },
+          {
+            "path": "detr/LICENSE",
+            "sha256": "b208c52b00a2df2c8f4c3298c34407bf2bfe409968213372251c91fcc737a1a5",
+            "bytes": 11354,
+            "git_blob_sha": "b1395e94b016dd1b95b4c7e3ed493e1d0b342917",
+            "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/detr/LICENSE",
+            "purpose": "Separate Apache2 license for vendored DETR subtree, not the selected first-party workflow",
+            "contains": [
+              "Apache License",
+              "Version 2.0"
+            ]
+          },
+          {
+            "path": "detr/README.md",
+            "sha256": "138b41d39a453f11ce56a6aa6dd47ec0afa3195e89f6d0da3daad9b5b0665f91",
+            "bytes": 417,
+            "git_blob_sha": "500b1b8d01108f8ff99b2c505a58cdd43a546fee",
+            "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/detr/README.md",
+            "purpose": "Upstream DETR provenance and attribution for vendored model definitions",
+            "contains": [
+              "modified from DETR",
+              "APACHE 2.0"
+            ]
+          }
+        ],
+        "selection": {
+          "include": [
+            "imitate_episodes.py"
+          ],
+          "exclude": []
+        },
+        "artifacts": [
+          {
+            "path": "imitate_episodes.py",
+            "sha256": "f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540",
+            "bytes": 17242,
+            "git_blob_sha": "34f9a372909edc0414cdd88ac22c800cdf8ffd98",
+            "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/imitate_episodes.py",
+            "entrypoint_kind": "python_main",
+            "name": "ACT policy training and evaluation",
+            "role": "policy-training",
+            "summary": "Pinned ACT entrypoint that trains on configured demonstrations or evaluates the resulting policy using its --eval mode in simulated or real ALOHA environments. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "This train/evaluate file imports the aloha_scripts real environment in real mode; its pinned README specifically requires ALOHA for real operation. Simulation modes remain separate. No universal ALOHA support, prepared adapter or execution success is inferred.",
+            "entrypoint": "python imitate_episodes.py --task_name <reviewed-task> --ckpt_dir <local-directory> --policy_class ACT --batch_size <size> --seed <seed> --num_epochs <epochs> --lr <rate> <reviewed-act-options>",
+            "execution_domain": "computation-or-hardware",
+            "invocation_notes": "Train and --eval are modes of one physical source entrypoint, counted once. The Python/setup disagreement is an integration note, not hidden by a normalized version range.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "README Python3.8.10 and conda_env.yaml Python3.9 disagree; both are preserved without compatibility inference.",
+              "weights": "Evaluation requires local policy_best.ckpt and dataset_stats.pkl. Training obtains selected demonstration data; external pretrained-backbone behavior in imported dependencies was not inspected.",
+              "datasets": "Training uses a configured local demonstration dataset; evaluation uses matching dataset statistics. README links separately hosted simulation demonstrations.",
+              "hardware": "Training/evaluation explicitly calls .cuda() on policy and tensors. Simulator mode needs MuJoCo/dm_control; README says real mode additionally needs ALOHA installation/hardware. GPU memory minimum is not declared.",
+              "external_services_and_auth": "No cloud API key, provider token or online logging service is declared by this selected entrypoint. Imported dependencies and optional external assets remain outside this review.",
+              "evidence": [
+                {
+                  "anchor": "policy.cuda()",
+                  "line": 170
+                },
+                {
+                  "anchor": "torch.load(ckpt_path)",
+                  "line": 168
+                },
+                {
+                  "anchor": "main(vars(parser.parse_args()))",
+                  "line": 435
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "Selected evaluator requires a locally produced policy_best.ckpt and dataset_stats.pkl. Separate pretrained-backbone/dependency assets were not audited; first-party MIT is not extended to external weights.",
+                "datasets": "README links separately hosted scripted/human demonstration data. That dataset's license/access terms were not inspected or inferred from the code license.",
+                "third_party_code": "The pinned detr/LICENSE and detr/README.md declare Apache-2.0 for the modified DETR subtree. Root MIT applies to the selected first-party workflow, not all vendored/dependency code. External weights, data and dependencies retain separate terms."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "README Python3.8.10 and conda_env.yaml Python3.9 disagree; both are preserved without compatibility inference.",
+              "environment": "Hardware: Training/evaluation explicitly calls .cuda() on policy and tensors. Simulator mode needs MuJoCo/dm_control; README says real mode additionally needs ALOHA installation/hardware. GPU memory minimum is not declared. Weights: Evaluation requires local policy_best.ckpt and dataset_stats.pkl. Training obtains selected demonstration data; external pretrained-backbone behavior in imported dependencies was not inspected. Datasets: Training uses a configured local demonstration dataset; evaluation uses matching dataset statistics. README links separately hosted simulation demonstrations. Services/auth: No cloud API key, provider token or online logging service is declared by this selected entrypoint. Imported dependencies and optional external assets remain outside this review.",
+              "notes": "Train and --eval are modes of one physical source entrypoint, counted once. The Python/setup disagreement is an integration note, not hidden by a normalized version range. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "aloha"
+              ],
+              "scope": "This train/evaluate file imports the aloha_scripts real environment in real mode; its pinned README specifically requires ALOHA for real operation. Simulation modes remain separate. No universal ALOHA support, prepared adapter or execution success is inferred.",
+              "evidence": [
+                {
+                  "path": "imitate_episodes.py",
+                  "sha256": "f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540",
+                  "bytes": 17242,
+                  "quote": "from aloha_scripts.real_env import make_real_env",
+                  "labels": [
+                    "aloha"
+                  ]
+                },
+                {
+                  "path": "README.md",
+                  "sha256": "5059f601c1f0409556fd467150b99e93208de5d5594e9049f87ca92b24a5e7a2",
+                  "bytes": 3500,
+                  "quote": "For real, you would also need to install [ALOHA](https://github.com/tonyzhaozh/aloha).",
+                  "labels": [
+                    "aloha"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "source_inspections": [
+        {
+          "project_id": "act",
+          "path": "imitate_episodes.py",
+          "sha256": "f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540",
+          "bytes": 17242,
+          "git_blob_sha": "34f9a372909edc0414cdd88ac22c800cdf8ffd98",
+          "url": "https://github.com/tonyzhaozh/act/blob/742c753c0d4a5d87076c8f69e5628c79a8cc5488/imitate_episodes.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 416,
+          "source_imports": [
+            "IPython",
+            "aloha_scripts.constants",
+            "aloha_scripts.real_env",
+            "aloha_scripts.robot_utils",
+            "argparse",
+            "constants",
+            "copy",
+            "einops",
+            "matplotlib.pyplot",
+            "numpy",
+            "os",
+            "pickle",
+            "policy",
+            "sim_env",
+            "torch",
+            "tqdm",
+            "utils",
+            "visualize_episodes"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "policy.cuda()",
+              "line": 170
+            },
+            {
+              "anchor": "torch.load(ckpt_path)",
+              "line": 168
+            },
+            {
+              "anchor": "main(vars(parser.parse_args()))",
+              "line": 435
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "act-imitate-episodes-py",
+          "robot_discovery_labels": [
+            "aloha"
+          ],
+          "compatibility_inferred": false
+        }
+      ]
+    },
+    {
+      "reviewed_project_sha256": "7d746a40d9c6be583294872a01e8f4ed40eaf27b9a66639207c4f67cdb4c56f0",
+      "reviewed_project": {
+        "id": "octo",
+        "repository": "https://github.com/octo-models/octo",
+        "ref": "main",
+        "commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+        "tree_sha": "49acc608247a83f7f65da31be1d870980a4c5c03",
+        "observed_at": "2026-10-17T18:20:17.618547+00:00",
+        "checked_at": "2026-10-17",
+        "commit_date": "2024-07-31T00:26:13Z",
+        "stars": 1807,
+        "archived": false,
+        "name": "Octo",
+        "authors": [
+          "Octo Model Team",
+          "Robotic AI & Learning Lab Berkeley"
+        ],
+        "attribution_notes": "README citation credits Octo Model Team and named researchers; LICENSE credits Robotic AI & Learning Lab Berkeley.",
+        "capabilities": [
+          "robot-workflow"
+        ],
+        "robot_types": [
+          "source-defined"
+        ],
+        "execution_domain": "computation-or-hardware",
+        "requirements": {
+          "python": "README installs Python3.10; pyproject.toml only has formatting target py310 and does not declare a packaging minimum.",
+          "packages": [
+            "Pinned Octo checkout",
+            "JAX0.4.20, Flax0.7.5 and TensorFlow2.15.0 from requirements.txt",
+            "Per-example simulator/robot-controller dependencies and reviewed checkpoints/data"
+          ],
+          "environment": "Use the per-workflow requirements and declared_requirements; no project-wide robot, GPU, weight or credential applicability is inferred."
+        },
+        "setup_url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/README.md",
+        "invocation_notes": "Source-reference-only candidate. Review exact source, setup and external asset terms before any separately authorized local use; nothing was installed or executed.",
+        "license": {
+          "path": "LICENSE",
+          "sha256": "8c891a7dd06fdaa873aa011ff0b2773a3ccfe6d123f6b9a9fc589db718aec1d1",
+          "bytes": 1091,
+          "git_blob_sha": "239522dcb0271245b5486e598a98737d445b3cd6",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/LICENSE",
+          "spdx": "MIT",
+          "scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+        },
+        "license_scopes": {
+          "code": "MIT for selected first-party workflow source.",
+          "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+          "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+          "third_party_code": "External dependencies retain their own licenses."
+        },
+        "evidence_files": [
+          {
+            "path": "README.md",
+            "sha256": "057e41b4866d4c1c19eaf8882c5f1551594476f1b2193f52ec626833381de262",
+            "bytes": 11627,
+            "git_blob_sha": "b33cd8e7df1bb51243e060e14b5a14741cb06032",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/README.md",
+            "purpose": "Octo attribution, Python3.10/JAX GPU or TPU setup, train/fine-tune and rollout usage",
+            "contains": [
+              "Octo Model Team",
+              "python=3.10",
+              "TPUv4-128"
+            ]
+          },
+          {
+            "path": "pyproject.toml",
+            "sha256": "bfc9541c6293829194ef392d5d5cdf506848708c40bc96d1999182a9579af252",
+            "bytes": 286,
+            "git_blob_sha": "951140f7ef3b6a9cc746b997c92c02af3b4bfcf8",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/pyproject.toml",
+            "purpose": "Formatting Python target only, not an inferred runtime minimum",
+            "contains": [
+              "target-version = [\"py310\"]"
+            ]
+          },
+          {
+            "path": "requirements.txt",
+            "sha256": "e50f53de0de6182cf4cae61c07a42ec7d94f9d2dc549c8065dd4022051208095",
+            "bytes": 587,
+            "git_blob_sha": "e18c724a07b651ec90f78a3fb71f4fbe4cbfa671",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/requirements.txt",
+            "purpose": "JAX/Flax/TensorFlow and W&B dependency declarations",
+            "contains": [
+              "jax == 0.4.20",
+              "flax == 0.7.5",
+              "wandb >= 0.12.14"
+            ]
+          },
+          {
+            "path": "examples/README.md",
+            "sha256": "6f5fd78fbbe3e61d669dd0029f0418d9650b77813d25aabc16637b1e4aaa26a3",
+            "bytes": 1704,
+            "git_blob_sha": "37a3d2296f12a4ca82fe9a4a1aa3da2a43dd1e52",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/README.md",
+            "purpose": "Explicit fine-tune, simulated rollout and real WidowX evaluator roles",
+            "contains": [
+              "OCTO",
+              "WidowX"
+            ]
+          },
+          {
+            "path": "examples/envs/README.md",
+            "sha256": "7fb9fbe17280d73eb80a30c3e5b7086aa3b9f6ae3be95d964f0faab351438982",
+            "bytes": 836,
+            "git_blob_sha": "ad170f2a1c7af80c517f2441397cdd21f808ec05",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/envs/README.md",
+            "purpose": "Source-defined observation keys and Gym interface scope",
+            "contains": [
+              "image_primary",
+              "proprio"
+            ]
+          }
+        ],
+        "selection": {
+          "include": [
+            "scripts/train.py",
+            "scripts/finetune.py",
+            "examples/02_finetune_new_observation_action.py",
+            "examples/03_eval_finetuned.py",
+            "examples/04_eval_finetuned_on_robot.py"
+          ],
+          "exclude": []
+        },
+        "artifacts": [
+          {
+            "path": "scripts/train.py",
+            "sha256": "e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8",
+            "bytes": 12303,
+            "git_blob_sha": "a081f6e14f03140bba1c279544a404023b998bb2",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/scripts/train.py",
+            "entrypoint_kind": "python_main",
+            "name": "Generalist policy pretraining",
+            "role": "policy-training",
+            "summary": "Pinned Octo pretraining entrypoint that constructs a configured policy and trains it on an explicitly selected interleaved dataset mixture. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python scripts/train.py --config scripts/configs/octo_pretrain_config.py:<reviewed-size> --name=<run> --config.dataset_kwargs.oxe_kwargs.data_dir=<reviewed-data>",
+            "execution_domain": "computation",
+            "invocation_notes": "One pretraining entrypoint; configurations, sizes and dataset mixtures are parameters, not additional records.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "weights": "Creates the policy from a selected configuration; resume uses saved training state. External tokenizer/backbone assets in configuration/dependencies were not expanded or fetched.",
+              "datasets": "Requires separately obtained Open X-Embodiment dataset mixture under the configured data directory.",
+              "hardware": "Uses JAX device mesh/data parallelism. README provides GPU and TPU installs and reports pretraining on a TPUv4-128 pod; that reproduction platform is not asserted as the only supported hardware or a universal minimum.",
+              "external_services_and_auth": "Initializes W&B by default, can use W&B API for resuming, and has debug mode with disabled logging. No particular API-key environment variable is named in the selected entrypoint.",
+              "evidence": [
+                {
+                  "anchor": "Mesh(jax.devices()",
+                  "line": 66
+                },
+                {
+                  "anchor": "wandb.init",
+                  "line": 95
+                },
+                {
+                  "anchor": "OctoModel.from_config",
+                  "line": 177
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+                "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "environment": "Hardware: Uses JAX device mesh/data parallelism. README provides GPU and TPU installs and reports pretraining on a TPUv4-128 pod; that reproduction platform is not asserted as the only supported hardware or a universal minimum. Weights: Creates the policy from a selected configuration; resume uses saved training state. External tokenizer/backbone assets in configuration/dependencies were not expanded or fetched. Datasets: Requires separately obtained Open X-Embodiment dataset mixture under the configured data directory. Services/auth: Initializes W&B by default, can use W&B API for resuming, and has debug mode with disabled logging. No particular API-key environment variable is named in the selected entrypoint.",
+              "notes": "One pretraining entrypoint; configurations, sizes and dataset mixtures are parameters, not additional records. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "scripts/finetune.py",
+            "sha256": "76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0",
+            "bytes": 12544,
+            "git_blob_sha": "43409469f2d20ce116b9d6e65b21102d34cba34f",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/scripts/finetune.py",
+            "entrypoint_kind": "python_main",
+            "name": "Configured policy fine-tuning",
+            "role": "policy-training",
+            "summary": "Pinned Octo fine-tuning entrypoint that loads a configured pretrained policy and trains it with selected target-domain data and fine-tuning settings. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "source-defined"
+            ],
+            "robot_scope": "Source-configured workflow. The selected dataset, checkpoint, simulator/controller and observation/action schema determine applicability; no specific robot names, compatibility combinations or Hub support are inferred.",
+            "entrypoint": "python scripts/finetune.py --config.pretrained_path=<approved-checkpoint> <reviewed-data-and-save-settings>",
+            "execution_domain": "computation",
+            "invocation_notes": "This configurable full script and the separate didactic observation/action adaptation example remain distinct source documents; neither represents a new policy behavior claim.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "weights": "Requires configured pretrained_path, loaded with OctoModel.load_pretrained; README examples use separately hosted Octo checkpoints.",
+              "datasets": "Requires selected target-domain dataset settings. Data names and observation/action definitions remain configuration-specific.",
+              "hardware": "Uses JAX devices, sharding and device-count divisibility checks. README supplies GPU/TPU setup. No per-workflow GPU-memory minimum or CPU validation is declared.",
+              "external_services_and_auth": "Initializes W&B; --debug is documented as no W&B logging. Authentication method/key variable is not specified in the selected file.",
+              "evidence": [
+                {
+                  "anchor": "OctoModel.load_pretrained",
+                  "line": 129
+                },
+                {
+                  "anchor": "Debug config (no wandb logging)",
+                  "line": 46
+                },
+                {
+                  "anchor": "Mesh(jax.devices()",
+                  "line": 92
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+                "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "environment": "Hardware: Uses JAX devices, sharding and device-count divisibility checks. README supplies GPU/TPU setup. No per-workflow GPU-memory minimum or CPU validation is declared. Weights: Requires configured pretrained_path, loaded with OctoModel.load_pretrained; README examples use separately hosted Octo checkpoints. Datasets: Requires selected target-domain dataset settings. Data names and observation/action definitions remain configuration-specific. Services/auth: Initializes W&B; --debug is documented as no W&B logging. Authentication method/key variable is not specified in the selected file.",
+              "notes": "This configurable full script and the separate didactic observation/action adaptation example remain distinct source documents; neither represents a new policy behavior claim. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred."
+          },
+          {
+            "path": "examples/02_finetune_new_observation_action.py",
+            "sha256": "3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91",
+            "bytes": 7391,
+            "git_blob_sha": "53e8da40aeca5e13666b9011a4d6b8de1629ecc6",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/02_finetune_new_observation_action.py",
+            "entrypoint_kind": "python_main",
+            "name": "ALOHA observation/action adaptation fine-tuning",
+            "role": "policy-training",
+            "summary": "Pinned didactic Octo fine-tuning entrypoint adapting observation and action heads with the explicitly named ALOHA simulated cube-handover dataset. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-training"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "The selected example explicitly fine-tunes on simulated ALOHA cube-handover demonstrations and a bimanual action space. This is a dataset/embodiment discovery label, not a real-hardware deployment or generic Octo compatibility claim.",
+            "entrypoint": "python examples/02_finetune_new_observation_action.py --pretrained_path=<approved-checkpoint> --data_dir=<reviewed-data> --save_dir=<local-output>",
+            "execution_domain": "computation",
+            "invocation_notes": "This is actual fine-tuning, not a data-download-only entrypoint. Dataset/model downloads were not performed.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "weights": "Requires an explicit pretrained Octo checkpoint; script loads it through OctoModel.load_pretrained.",
+              "datasets": "Docstring requires a separately downloaded/extracted example_sim_data.zip ALOHA simulation dataset.",
+              "hardware": "Uses JAX devices and batch/device-count divisibility. No hard GPU minimum or CPU validation is declared in this file; README offers GPU/TPU setup.",
+              "external_services_and_auth": "Unconditionally initializes W&B in main and logs training metrics. No specific API-key variable is named.",
+              "evidence": [
+                {
+                  "anchor": "simulated ALOHA cube handover dataset",
+                  "line": 3
+                },
+                {
+                  "anchor": "OctoModel.load_pretrained",
+                  "line": 60
+                },
+                {
+                  "anchor": "wandb.init(name=\"finetune_aloha\"",
+                  "line": 56
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+                "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "environment": "Hardware: Uses JAX devices and batch/device-count divisibility. No hard GPU minimum or CPU validation is declared in this file; README offers GPU/TPU setup. Weights: Requires an explicit pretrained Octo checkpoint; script loads it through OctoModel.load_pretrained. Datasets: Docstring requires a separately downloaded/extracted example_sim_data.zip ALOHA simulation dataset. Services/auth: Unconditionally initializes W&B in main and logs training metrics. No specific API-key variable is named.",
+              "notes": "This is actual fine-tuning, not a data-download-only entrypoint. Dataset/model downloads were not performed. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "aloha"
+              ],
+              "scope": "The selected example explicitly fine-tunes on simulated ALOHA cube-handover demonstrations and a bimanual action space. This is a dataset/embodiment discovery label, not a real-hardware deployment or generic Octo compatibility claim.",
+              "evidence": [
+                {
+                  "path": "examples/02_finetune_new_observation_action.py",
+                  "sha256": "3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91",
+                  "bytes": 7391,
+                  "quote": "using a simulated ALOHA cube handover dataset",
+                  "labels": [
+                    "aloha"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "path": "examples/03_eval_finetuned.py",
+            "sha256": "00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb",
+            "bytes": 4177,
+            "git_blob_sha": "f897b21a338c05e8ab6ea200712d6867a677c762",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/03_eval_finetuned.py",
+            "entrypoint_kind": "python_main",
+            "name": "ALOHA simulation policy rollout",
+            "role": "policy-evaluation",
+            "summary": "Pinned Octo rollout entrypoint for a fine-tuned ALOHA simulation checkpoint in the upstream Gym environment. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "The selected rollout uses a checkpoint fine-tuned on ALOHA simulation data and creates the named aloha-sim-cube Gym environment. This is simulation discovery only, not a real ALOHA adapter or a compatibility guarantee.",
+            "entrypoint": "cd examples && python 03_eval_finetuned.py --finetuned_path=<approved-aloha-checkpoint>",
+            "execution_domain": "simulation",
+            "invocation_notes": "Didactic source contains a path/to/your/act placeholder that must be edited to match an independently reviewed ACT checkout; it is not a turnkey Hub recipe.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "weights": "Requires the fine-tuned ALOHA checkpoint produced by the preceding adaptation example or an otherwise reviewed matching local checkpoint.",
+              "datasets": "Evaluation uses the configured ALOHA simulation environment; source refers to the previous example's training data but does not download a dataset itself.",
+              "hardware": "Requires separately installed ACT/MuJoCo/dm_control environment and appropriate rendering/display setup. Docstring supplies an Xvfb path for headless servers. No GPU-memory minimum or CPU validation is declared.",
+              "external_services_and_auth": "Unconditionally initializes W&B and logs rollout video. No specific API-key variable is named.",
+              "evidence": [
+                {
+                  "anchor": "sys.path.append(\"path/to/your/act\")",
+                  "line": 27
+                },
+                {
+                  "anchor": "gym.make(\"aloha-sim-cube-v0\")",
+                  "line": 65
+                },
+                {
+                  "anchor": "wandb.init(name=\"eval_aloha\"",
+                  "line": 45
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+                "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python3.10 in README setup; no packaging minimum asserted.",
+              "environment": "Hardware: Requires separately installed ACT/MuJoCo/dm_control environment and appropriate rendering/display setup. Docstring supplies an Xvfb path for headless servers. No GPU-memory minimum or CPU validation is declared. Weights: Requires the fine-tuned ALOHA checkpoint produced by the preceding adaptation example or an otherwise reviewed matching local checkpoint. Datasets: Evaluation uses the configured ALOHA simulation environment; source refers to the previous example's training data but does not download a dataset itself. Services/auth: Unconditionally initializes W&B and logs rollout video. No specific API-key variable is named.",
+              "notes": "Didactic source contains a path/to/your/act placeholder that must be edited to match an independently reviewed ACT checkout; it is not a turnkey Hub recipe. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "aloha"
+              ],
+              "scope": "The selected rollout uses a checkpoint fine-tuned on ALOHA simulation data and creates the named aloha-sim-cube Gym environment. This is simulation discovery only, not a real ALOHA adapter or a compatibility guarantee.",
+              "evidence": [
+                {
+                  "path": "examples/03_eval_finetuned.py",
+                  "sha256": "00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb",
+                  "bytes": 4177,
+                  "quote": "We use the Octo model finetuned on ALOHA sim data",
+                  "labels": [
+                    "aloha"
+                  ]
+                },
+                {
+                  "path": "examples/03_eval_finetuned.py",
+                  "sha256": "00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb",
+                  "bytes": 4177,
+                  "quote": "gym.make(\"aloha-sim-cube-v0\")",
+                  "labels": [
+                    "aloha"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "path": "examples/04_eval_finetuned_on_robot.py",
+            "sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
+            "bytes": 8255,
+            "git_blob_sha": "32cca7135bbc0d81865f94c6839821c938978027",
+            "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/04_eval_finetuned_on_robot.py",
+            "entrypoint_kind": "python_main",
+            "name": "WidowX real-robot policy evaluation",
+            "role": "policy-evaluation",
+            "summary": "Pinned didactic Octo evaluation entrypoint for a separately configured real WidowX robot and matching fine-tuned checkpoint. Statically reviewed source only; not run and no Hub preparation adapter.",
+            "capabilities": [
+              "robot-workflow",
+              "policy-evaluation"
+            ],
+            "robot_types": [
+              "manipulator"
+            ],
+            "robot_scope": "The selected didactic evaluator explicitly names a real WidowX robot and its separate BridgeData controller setup. Its exact specifics may not apply elsewhere; no robot compatibility, authorization, adapter or runtime result is inferred.",
+            "entrypoint": "cd examples && python 04_eval_finetuned_on_robot.py --checkpoint_weights_path=<approved-checkpoint> --checkpoint_step=<step> --ip=<controller-address>",
+            "execution_domain": "hardware",
+            "invocation_notes": "WidowX is a source-declared discovery label. No compatibility combination, adapter support, automatic execution or robot-success claim is created.",
+            "access": {
+              "mode": "source_reference",
+              "hub_prepare": false
+            },
+            "evidence": {
+              "level": "source_reviewed",
+              "runtime_verification": "not_run",
+              "inspection_method": "automated_static"
+            },
+            "declared_requirements": {
+              "python": "Python3.10 in README setup; controller environment remains separate.",
+              "weights": "Requires checkpoint_weights_path and checkpoint_step, then loads OctoModel.load_pretrained. Matching model observations/actions are required by the chosen source setup.",
+              "datasets": "Consumes live robot/camera observations and can save videos; no training dataset fetch is performed by the selected entrypoint.",
+              "hardware": "Docstring requires reproducing BridgeData robot setup and installing bridge_data_robot controller. Source creates WidowXClient, initializes the environment and issues movement/actions; exact setup is didactic and may not apply to another robot.",
+              "external_services_and_auth": "Requires the separate WidowX controller service at configured IP/port. No cloud API key or W&B initialization is declared by this selected file.",
+              "evidence": [
+                {
+                  "anchor": "WidowXClient(host=FLAGS.ip",
+                  "line": 92
+                },
+                {
+                  "anchor": "OctoModel.load_pretrained",
+                  "line": 101
+                },
+                {
+                  "anchor": "env.step(action)",
+                  "line": 215
+                }
+              ],
+              "license_scopes": {
+                "code": "MIT for selected first-party workflow source.",
+                "weights": "README links separately hosted rail-berkeley Octo checkpoints. This bounded repository review did not inspect model cards or establish a weight license; repository MIT is limited to selected code.",
+                "datasets": "README references Open X-Embodiment and an example ALOHA simulation dataset. Their individual terms were not inspected and are not covered by the code-license assertion.",
+                "third_party_code": "External dependencies retain their own licenses."
+              },
+              "interpretation": "Pinned upstream declarations only; no dependency resolution, model/data access, compatibility inference or runtime validation was performed."
+            },
+            "requirements": {
+              "python": "Python3.10 in README setup; controller environment remains separate.",
+              "environment": "Hardware: Docstring requires reproducing BridgeData robot setup and installing bridge_data_robot controller. Source creates WidowXClient, initializes the environment and issues movement/actions; exact setup is didactic and may not apply to another robot. Weights: Requires checkpoint_weights_path and checkpoint_step, then loads OctoModel.load_pretrained. Matching model observations/actions are required by the chosen source setup. Datasets: Consumes live robot/camera observations and can save videos; no training dataset fetch is performed by the selected entrypoint. Services/auth: Requires the separate WidowX controller service at configured IP/port. No cloud API key or W&B initialization is declared by this selected file.",
+              "notes": "WidowX is a source-declared discovery label. No compatibility combination, adapter support, automatic execution or robot-success claim is created. Code licensing does not establish model, checkpoint, dataset or service permission."
+            },
+            "license_scope": "Selected first-party Python workflow source only. Preserve upstream copyright and per-file notices. Model weights, datasets, third-party code, robot drivers/firmware and services retain separate terms; no rights for those assets are inferred.",
+            "robot_discovery": {
+              "labels": [
+                "widowx"
+              ],
+              "scope": "The selected didactic evaluator explicitly names a real WidowX robot and its separate BridgeData controller setup. Its exact specifics may not apply elsewhere; no robot compatibility, authorization, adapter or runtime result is inferred.",
+              "evidence": [
+                {
+                  "path": "examples/04_eval_finetuned_on_robot.py",
+                  "sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
+                  "bytes": 8255,
+                  "quote": "a real WidowX robot",
+                  "labels": [
+                    "widowx"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "source_inspections": [
+        {
+          "project_id": "octo",
+          "path": "scripts/train.py",
+          "sha256": "e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8",
+          "bytes": 12303,
+          "git_blob_sha": "a081f6e14f03140bba1c279544a404023b998bb2",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/scripts/train.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 341,
+          "source_imports": [
+            "absl",
+            "datetime",
+            "flax.traverse_util",
+            "functools",
+            "jax",
+            "jax.experimental",
+            "jax.sharding",
+            "ml_collections",
+            "octo",
+            "octo.data.dataset",
+            "octo.data.oxe",
+            "octo.model.octo_model",
+            "octo.utils",
+            "octo.utils.spec",
+            "octo.utils.train_callbacks",
+            "octo.utils.train_utils",
+            "octo.utils.typing",
+            "optax",
+            "os",
+            "os.path",
+            "tensorflow",
+            "tqdm",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "Mesh(jax.devices()",
+              "line": 66
+            },
+            {
+              "anchor": "wandb.init",
+              "line": 95
+            },
+            {
+              "anchor": "OctoModel.from_config",
+              "line": 177
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "octo-scripts-train-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "octo",
+          "path": "scripts/finetune.py",
+          "sha256": "76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0",
+          "bytes": 12544,
+          "git_blob_sha": "43409469f2d20ce116b9d6e65b21102d34cba34f",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/scripts/finetune.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 411,
+          "source_imports": [
+            "absl",
+            "datetime",
+            "flax",
+            "flax.traverse_util",
+            "functools",
+            "jax",
+            "jax.sharding",
+            "jax_smi",
+            "ml_collections",
+            "octo.data.dataset",
+            "octo.model.octo_model",
+            "octo.utils.jax_utils",
+            "octo.utils.spec",
+            "octo.utils.train_callbacks",
+            "octo.utils.train_utils",
+            "optax",
+            "os",
+            "tensorflow",
+            "tqdm",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "OctoModel.load_pretrained",
+              "line": 129
+            },
+            {
+              "anchor": "Debug config (no wandb logging)",
+              "line": 46
+            },
+            {
+              "anchor": "Mesh(jax.devices()",
+              "line": 92
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "octo-scripts-finetune-py",
+          "robot_discovery_labels": [],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "octo",
+          "path": "examples/02_finetune_new_observation_action.py",
+          "sha256": "3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91",
+          "bytes": 7391,
+          "git_blob_sha": "53e8da40aeca5e13666b9011a4d6b8de1629ecc6",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/02_finetune_new_observation_action.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 199,
+          "source_imports": [
+            "absl",
+            "flax",
+            "jax",
+            "octo.data.dataset",
+            "octo.model.components.action_heads",
+            "octo.model.components.tokenizers",
+            "octo.model.octo_model",
+            "octo.utils.jax_utils",
+            "octo.utils.spec",
+            "octo.utils.train_utils",
+            "optax",
+            "tensorflow",
+            "tqdm",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "simulated ALOHA cube handover dataset",
+              "line": 3
+            },
+            {
+              "anchor": "OctoModel.load_pretrained",
+              "line": 60
+            },
+            {
+              "anchor": "wandb.init(name=\"finetune_aloha\"",
+              "line": 56
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "octo-examples-02-finetune-new-observation-action-py",
+          "robot_discovery_labels": [
+            "aloha"
+          ],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "octo",
+          "path": "examples/03_eval_finetuned.py",
+          "sha256": "00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb",
+          "bytes": 4177,
+          "git_blob_sha": "f897b21a338c05e8ab6ea200712d6867a677c762",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/03_eval_finetuned.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 113,
+          "source_imports": [
+            "absl",
+            "envs.aloha_sim_env",
+            "functools",
+            "gym",
+            "jax",
+            "numpy",
+            "octo.model.octo_model",
+            "octo.utils.gym_wrappers",
+            "octo.utils.train_callbacks",
+            "sys",
+            "wandb"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "sys.path.append(\"path/to/your/act\")",
+              "line": 27
+            },
+            {
+              "anchor": "gym.make(\"aloha-sim-cube-v0\")",
+              "line": 65
+            },
+            {
+              "anchor": "wandb.init(name=\"eval_aloha\"",
+              "line": 45
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "octo-examples-03-eval-finetuned-py",
+          "robot_discovery_labels": [
+            "aloha"
+          ],
+          "compatibility_inferred": false
+        },
+        {
+          "project_id": "octo",
+          "path": "examples/04_eval_finetuned_on_robot.py",
+          "sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
+          "bytes": 8255,
+          "git_blob_sha": "32cca7135bbc0d81865f94c6839821c938978027",
+          "url": "https://github.com/octo-models/octo/blob/241fb3514b7c40957a86d869fecb7c7fc353f540/examples/04_eval_finetuned_on_robot.py",
+          "entrypoint_kind": "python_main",
+          "guard_line": 235,
+          "source_imports": [
+            "absl",
+            "click",
+            "cv2",
+            "datetime",
+            "envs.widowx_env",
+            "functools",
+            "imageio",
+            "jax",
+            "jax.numpy",
+            "numpy",
+            "octo.model.octo_model",
+            "octo.utils.gym_wrappers",
+            "octo.utils.train_callbacks",
+            "os",
+            "time",
+            "widowx_envs.widowx_env_service"
+          ],
+          "reviewed_operational_evidence": [
+            {
+              "anchor": "WidowXClient(host=FLAGS.ip",
+              "line": 92
+            },
+            {
+              "anchor": "OctoModel.load_pretrained",
+              "line": 101
+            },
+            {
+              "anchor": "env.step(action)",
+              "line": 215
+            }
+          ],
+          "runtime_verification": "not_run",
+          "upstream_module_imported": false,
+          "record_id": "octo-examples-04-eval-finetuned-on-robot-py",
+          "robot_discovery_labels": [
+            "widowx"
+          ],
+          "compatibility_inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -204,6 +204,24 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(builder.explicit_compatibility({"framework": "ros2", "robots": ["panda", "ur5"]}), [])
         self.assertEqual(builder.explicit_compatibility({"compatibility": {"runtime": ["ros2", "mujoco"], "robot": ["panda", "ur5"]}}), [])
 
+    def test_thin_source_search_keeps_robot_types_separate_from_model_compatibility(self):
+        references = json.loads((self.root / "catalog/references.json").read_text(encoding="utf-8"))["records"]
+        record = copy.deepcopy(next(row for row in references if row["id"] == "unitree-sdk2-python-example-g1-high-level-g1-loco-client-example-py"))
+        record.pop("robots", None)
+        record.pop("compatibility", None)
+        destination = self.root / "site/references" / record["id"] / "skill.json"
+        destination.parent.mkdir(parents=True)
+        destination.write_text(json.dumps(record), encoding="utf-8")
+        row = builder.search_row(record, self.root / "site", "https://example.test/hub")
+        self.assertEqual(["humanoid"], row["robot_types"])
+        self.assertEqual([], row["compatibility"])
+        self.assertNotIn("robots", row)
+        self.assertFalse(row["hub_prepare"])
+        self.assertEqual("not_run", row["runtime_verification"])
+        record["robot_types"] = "humanoid"
+        with self.assertRaisesRegex(ValueError, "robot type discovery labels"):
+            builder.search_row(record, self.root / "site", "https://example.test/hub")
+
     def test_builder_publishes_minimal_action_home_contract_openapi_and_indexnow(self):
         key = "public-indexnow-key-123456789"
         (self.root / "docs/indexnow-key.txt").write_text(key + "\n", encoding="utf-8")

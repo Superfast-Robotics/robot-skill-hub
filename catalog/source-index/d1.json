@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "isaac-groot-gr00t-eval-real-robot-so100-eval-so100-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "c8ec1535e586ebd8544fb671b162f8d63a04a74e173ac6902bdf2e0d0843342f",
+      "record_version": "source-c8ec1535e586ebd8544fb671b162f8d63a04a74e173ac6902bdf2e0d0843342f"
+    },
+    {
       "id": "mujoco-menagerie-artifact-universal-robots-ur5e-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e877852d40095926ff7db9cfb85e595b550e03da398bd6f6f58885d39038d1b6",

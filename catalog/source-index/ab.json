@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "rai-src-rai-bench-rai-bench-examples-manipulation-o3de-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "ba0ff50ef58ddb4c28bbf4f3374b957f151938288886eda97d656b6785697bc7",
+      "record_version": "source-ba0ff50ef58ddb4c28bbf4f3374b957f151938288886eda97d656b6785697bc7"
+    },
+    {
       "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-w-3580a4642a8c",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "37f60d84122ab7f1d7c1592c19f3f696ead70f1c8baff365aa116a3fd0e7dbee",

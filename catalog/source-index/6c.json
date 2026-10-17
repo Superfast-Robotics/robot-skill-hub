@@ -12,6 +12,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "705432e2ce7535d809239a5bfff66ab08b0cedb5e167a70c3edcd018dbb01f48",
       "record_version": "source-705432e2ce7535d809239a5bfff66ab08b0cedb5e167a70c3edcd018dbb01f48"
+    },
+    {
+      "id": "openvla-vla-scripts-deploy-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65",
+      "record_version": "source-14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65"
     }
   ]
 }

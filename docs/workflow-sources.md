@@ -1,6 +1,6 @@
 # Official robot workflow source review
 
-The finite selection in [`catalog/workflow-projects.json`](../catalog/workflow-projects.json) adds 56 operational Python entrypoints. Every selected file has a guarded Python entrypoint and an exact source byte count and SHA-256 at a full Git commit. The importer parses source syntax; it does not import a robot library, run an upstream script, install dependencies, load a simulator, connect hardware or retrieve weights, datasets or meshes.
+The original finite selection in [`catalog/workflow-projects.json`](../catalog/workflow-projects.json) added 56 operational Python entrypoints. The table and byte counts below preserve that historical selection. Every one has a guarded Python entrypoint and an exact source byte count and SHA-256 at a full Git commit. The importer parses source syntax; it does not import a robot library, run an upstream script, install dependencies, load a simulator, connect hardware or retrieve weights, datasets or meshes.
 
 | Upstream | Frozen commit | Entries | Reviewed scope |
 | --- | --- | ---: | --- |
@@ -29,3 +29,12 @@ python tools/import_robot_workflows.py --fetch --check
 ```
 
 Neither command discovers new files or updates commits. Missing source bytes, changed hashes/sizes, changed license identifiers, missing attribution/setup anchors and duplicate immutable source ownership fail validation. Existing records owned by other registries are retained unchanged. All generated workflow records remain `source_reviewed`, `runtime_verification: not_run`, `access.mode: source_reference` and `hub_prepare: false`.
+
+## Later robot-agent and policy sources
+
+A later finite selection adds **47 workflow source references** alongside the original 56:
+
+- **33 GR00T/RAI sources** cover policy training, serving/evaluation, robot clients and robot-agent workflows. See the [robot-agent/policy review](robot-agent-policy-sources.md) and [source receipt](../evidence/sources/robot-agent-policy-workflows-2026-10-18.json). NoMaD retains unresolved Apache/MIT source-notice scope as `NOASSERTION`, `verified: false`.
+- **14 OpenVLA, Diffusion Policy, ACT and Octo sources** have a separate [canonical policy source review](canonical-policy-sources.md) and [receipt](../evidence/sources/canonical-policy-upstreams-2026-10-18.json).
+
+These additions preserve their separate source/license/setup pins and per-workflow requirements. The importer checks a pinned literal console registration for NoMaD; all remaining additions have guarded Python entrypoints. Reviewed robot names remain discovery declarations, with no inferred compatibility combinations. None of the additions increases runtime verification or supplies a Hub adapter.

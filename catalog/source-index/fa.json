@@ -20,6 +20,12 @@
       "record_version": "source-7c0665e7cfd2b2455773236357a0a852627df4534bb82898c2d4b5d19c0c2a7f"
     },
     {
+      "id": "openvla-vla-scripts-finetune-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b",
+      "record_version": "source-0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b"
+    },
+    {
       "id": "unitree-sdk2-python-example-h1-2-low-level-h1-2-low-level-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "d17bc442d7f4f17b9085ea4f11ce22e7ef9b182ebc9114d359716e0116672ea8",

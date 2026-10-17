@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "octo-examples-04-eval-finetuned-on-robot-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
+      "record_version": "source-dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c"
+    },
+    {
       "id": "unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "fc30196db80f7c469a7ded7db9e23fb6e1d0f2d4c43250a2eb9a1c1953d7772f",

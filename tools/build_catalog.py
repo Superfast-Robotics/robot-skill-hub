@@ -638,6 +638,13 @@ def search_row(record, output, base, recipe=False):
     robots = record.get("robots") or list(dict.fromkeys(c["robot"] for c in combinations if c.get("robot") not in (None, "", "unknown")))
     if robots:
         row["robots"] = robots
+    if not recipe and "robot_types" in record:
+        types = record["robot_types"]
+        if not isinstance(types, list) or any(not isinstance(value, str) or not 0 < len(value) <= 80 for value in types):
+            raise ValueError(f"{record['id']}: robot type discovery labels must be bounded strings")
+        if types:
+            # Classification is searchable discovery data, not a compatibility tuple.
+            row["robot_types"] = list(types)
     if recipe:
         row["python_requirement"] = record["requirements"]["python"]
     return row
@@ -856,11 +863,11 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "verification.md"):
+            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "verification.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"

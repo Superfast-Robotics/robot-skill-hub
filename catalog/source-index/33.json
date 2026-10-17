@@ -8,6 +8,12 @@
       "record_version": "source-4351fe2a301be007ae89291578e68f639e61a8d76c25cefc455e413898b43b20"
     },
     {
+      "id": "isaac-groot-gr00t-eval-run-gr00t-server-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "b94d8f879bc83b97120cfcf3e3c9d7a506d93f633a036474c7f60db81792705d",
+      "record_version": "source-b94d8f879bc83b97120cfcf3e3c9d7a506d93f633a036474c7f60db81792705d"
+    },
+    {
       "id": "mujoco-menagerie-artifact-robotiq-2f85-v4-mjx-2f85-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a8be05d166de27319fa85002ecb03bda1101318a2af7d3a1c0711dba26e8f51d",

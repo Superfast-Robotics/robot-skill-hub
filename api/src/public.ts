@@ -5,7 +5,7 @@ import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeC
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.3.1';
+const VERSION = '0.3.2';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -97,7 +97,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     const matches = index.records.filter(row => {
       if (input.kind && row.kind !== input.kind) return false;
       if (!combinationMatches(row, input)) return false;
-      const haystack = [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), row.runtime || ''].join(' ').toLowerCase().replace(/[-_/]/g, ' ');
+      const haystack = [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ').toLowerCase().replace(/[-_/]/g, ' ');
       return terms.every(term => haystack.includes(term));
     });
     const normalized = String(input.q || '').toLowerCase();

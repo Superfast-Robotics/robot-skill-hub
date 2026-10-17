@@ -8,6 +8,18 @@
       "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
     },
     {
+      "id": "isaac-groot-gr00t-eval-open-loop-eval-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e15706fac4cd8caff3229a1538eb0288b487919b28c0e26ecf30c32d0f61245f",
+      "record_version": "source-e15706fac4cd8caff3229a1538eb0288b487919b28c0e26ecf30c32d0f61245f"
+    },
+    {
+      "id": "isaac-groot-scripts-deployment-standalone-inference-script-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "9e1b3587ded4cfbc87eb51f1ae9b9bcb12174aa2a4d81f75dc78fea6db738610",
+      "record_version": "source-9e1b3587ded4cfbc87eb51f1ae9b9bcb12174aa2a4d81f75dc78fea6db738610"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-manipulation-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7a74b19a4b6b42633b171257641edf1c023604fe57abe0526aa6cee384864058",

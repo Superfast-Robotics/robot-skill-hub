@@ -282,7 +282,8 @@ def find(catalog, query, environment, limit=3):
                 or not SOURCE_REVISION.fullmatch(str(record["source"].get("commit") or record["source"].get("revision", "")))):
             continue
         words = re.sub(r"[-_/]", " ", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
-                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", [])]).lower())
+                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", []),
+                          *record.get("robot_types", [])]).lower())
         score = sum(token in words for token in tokens)
         if tokens and score != len(tokens):
             continue
@@ -290,6 +291,7 @@ def find(catalog, query, environment, limit=3):
                         "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,
                         "next_action": "open_source_reference", "source_url": record["source"].get("url"),
                         "source_commit": record["source"].get("commit") or record["source"].get("revision"), "framework": framework,
+                        **({"robot_types": list(record["robot_types"])} if record.get("robot_types") else {}),
                         "memory_base": selection_base(catalog, record, reference=True),
                         "compatibility_status": "unknown", "missing_requirements": ["upstream_environment_review"],
                         "match_reason": ["Pinned upstream source reference; no Hub preparation adapter or environment compatibility claim."],

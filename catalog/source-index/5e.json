@@ -8,6 +8,12 @@
       "record_version": "source-59b5a242d3eb9f9ccd1d875c2af3499d2d26a99a3eed9fa2d496e298f98f7033"
     },
     {
+      "id": "octo-scripts-finetune-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0",
+      "record_version": "source-76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0"
+    },
+    {
       "id": "ur-description-artifact-config-ur15-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "14dccc1a99cbbddd4460b8560ee793106fd9fa0b8c8f884e662a18f7fb862ad7",

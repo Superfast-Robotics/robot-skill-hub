@@ -24,6 +24,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "5be3b1ff2198ed4a38d87973e79e4577d4313540d6d5fb978f91d57d6428f113",
       "record_version": "source-5be3b1ff2198ed4a38d87973e79e4577d4313540d6d5fb978f91d57d6428f113"
+    },
+    {
+      "id": "rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+      "record_version": "source-2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae"
     }
   ]
 }

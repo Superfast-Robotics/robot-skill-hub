@@ -114,6 +114,9 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None):
         seen.add(row["id"])
         recipe = row["kind"] == "preparation_recipe"
         _need(row.get("hub_prepare") is recipe, "Search preparation flags conflict.")
+        _need(isinstance(row.get("robot_types", []), list) and all(
+            isinstance(value, str) and 0 < len(value) <= 80 for value in row.get("robot_types", [])),
+            "Robot type discovery labels must be bounded strings.")
         _need(isinstance(row.get("compatibility", []), list)
               and all(isinstance(item, dict) for item in row.get("compatibility", [])), "Invalid declared environment combinations.")
         if recipe:

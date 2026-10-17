@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "act-imitate-episodes-py",
+      "source_commit": "742c753c0d4a5d87076c8f69e5628c79a8cc5488",
+      "source_sha256": "f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540",
+      "record_version": "source-f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540"
+    },
+    {
       "id": "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
@@ -72,6 +78,24 @@
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
       "record_version": "source-3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2"
+    },
+    {
+      "id": "diffusion-policy-eval-py",
+      "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "source_sha256": "e62694214cce4265ad783d1352713e25e963fb6684365ff1f0f4db08e57ade12",
+      "record_version": "source-e62694214cce4265ad783d1352713e25e963fb6684365ff1f0f4db08e57ade12"
+    },
+    {
+      "id": "diffusion-policy-eval-real-robot-py",
+      "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "source_sha256": "cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c",
+      "record_version": "source-cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c"
+    },
+    {
+      "id": "diffusion-policy-train-py",
+      "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "source_sha256": "4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5",
+      "record_version": "source-4dc8d6e876db25a62bf6c647444d7ee88f6754cda992c75728419d47f26374e5"
     },
     {
       "id": "drake-bindings-pydrake-examples-gym-play-cart-pole-py",
@@ -1200,6 +1224,78 @@
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41",
       "record_version": "source-34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41"
+    },
+    {
+      "id": "isaac-groot-examples-droid-main-gr00t-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b",
+      "record_version": "source-f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b"
+    },
+    {
+      "id": "isaac-groot-examples-rebot-arm-dm-eval-rebot-arm-dm-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "5baee6c727e9ba049255fa2236e063166a2a1bfc4b6298204343ab0543fa40fc",
+      "record_version": "source-5baee6c727e9ba049255fa2236e063166a2a1bfc4b6298204343ab0543fa40fc"
+    },
+    {
+      "id": "isaac-groot-gr00t-eval-open-loop-eval-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e15706fac4cd8caff3229a1538eb0288b487919b28c0e26ecf30c32d0f61245f",
+      "record_version": "source-e15706fac4cd8caff3229a1538eb0288b487919b28c0e26ecf30c32d0f61245f"
+    },
+    {
+      "id": "isaac-groot-gr00t-eval-real-robot-so100-eval-so100-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "c8ec1535e586ebd8544fb671b162f8d63a04a74e173ac6902bdf2e0d0843342f",
+      "record_version": "source-c8ec1535e586ebd8544fb671b162f8d63a04a74e173ac6902bdf2e0d0843342f"
+    },
+    {
+      "id": "isaac-groot-gr00t-eval-rollout-policy-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e0833d57826f26e5b05e46e202f56eeae53fbb0e22b1c8b7c6b2271320e66132",
+      "record_version": "source-e0833d57826f26e5b05e46e202f56eeae53fbb0e22b1c8b7c6b2271320e66132"
+    },
+    {
+      "id": "isaac-groot-gr00t-eval-run-gr00t-server-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "b94d8f879bc83b97120cfcf3e3c9d7a506d93f633a036474c7f60db81792705d",
+      "record_version": "source-b94d8f879bc83b97120cfcf3e3c9d7a506d93f633a036474c7f60db81792705d"
+    },
+    {
+      "id": "isaac-groot-gr00t-experiment-launch-finetune-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "5f259a9453957fb08d21e7a0ec5febd29c986cdb7e031ee2a4573628bfc30852",
+      "record_version": "source-5f259a9453957fb08d21e7a0ec5febd29c986cdb7e031ee2a4573628bfc30852"
+    },
+    {
+      "id": "isaac-groot-gr00t-experiment-launch-train-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f",
+      "record_version": "source-e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f"
+    },
+    {
+      "id": "isaac-groot-scripts-deployment-benchmark-inference-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "7487f8d5b85a4a4a35a2dc46521c28a3fc0516638b77851c0137c925c5924173",
+      "record_version": "source-7487f8d5b85a4a4a35a2dc46521c28a3fc0516638b77851c0137c925c5924173"
+    },
+    {
+      "id": "isaac-groot-scripts-deployment-build-trt-pipeline-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "d00e27f0251efb9fd26d20e4d54f62740871017675956081ea53f7a84f03e008",
+      "record_version": "source-d00e27f0251efb9fd26d20e4d54f62740871017675956081ea53f7a84f03e008"
+    },
+    {
+      "id": "isaac-groot-scripts-deployment-standalone-inference-script-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "9e1b3587ded4cfbc87eb51f1ae9b9bcb12174aa2a4d81f75dc78fea6db738610",
+      "record_version": "source-9e1b3587ded4cfbc87eb51f1ae9b9bcb12174aa2a4d81f75dc78fea6db738610"
+    },
+    {
+      "id": "isaac-groot-scripts-lerobot-conversion-convert-v3-to-v2-py",
+      "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
+      "source_sha256": "94bc600b613be43133aabcddde64ca3188048a09cd84e293afe4d5a79614e24c",
+      "record_version": "source-94bc600b613be43133aabcddde64ca3188048a09cd84e293afe4d5a79614e24c"
     },
     {
       "id": "isaaclab-scripts-demos-arms-py",
@@ -3410,6 +3506,36 @@
       "record_version": "source-5a3bca76f5b4574a94d18f33473d1f0fead2274bc588956152e8cb7663d45af9"
     },
     {
+      "id": "octo-examples-02-finetune-new-observation-action-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91",
+      "record_version": "source-3d4e5cd0fa179d57f1a56ef14ff335dd7f1f59812ad6ea0f7029ae4187805a91"
+    },
+    {
+      "id": "octo-examples-03-eval-finetuned-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb",
+      "record_version": "source-00536ee90b51db9f8e2bd3f1429c0bdb2fa973765ff415d562401709894c00bb"
+    },
+    {
+      "id": "octo-examples-04-eval-finetuned-on-robot-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
+      "record_version": "source-dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c"
+    },
+    {
+      "id": "octo-scripts-finetune-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0",
+      "record_version": "source-76e6c7520947a2b2e32d2dd1cd227fc455f4b2205c00a25bf59772a6b72151d0"
+    },
+    {
+      "id": "octo-scripts-train-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8",
+      "record_version": "source-e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8"
+    },
+    {
       "id": "ompl-demos-bouncingballplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "b08019faacad973ae9121d70ab5e352e62fa84e8019c230703fd377977e64033",
@@ -3756,6 +3882,36 @@
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "baa66f1642e955d5cc2ec3f54d9495035df61d71b028b98ab4ebb1e240548311",
       "record_version": "source-baa66f1642e955d5cc2ec3f54d9495035df61d71b028b98ab4ebb1e240548311"
+    },
+    {
+      "id": "openvla-experiments-robot-bridge-run-bridgev2-eval-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "ee1a2acb0dd1d0d4a71cff4d29d4287c5e7542b6b5b37cd234243bb1fab0c2d3",
+      "record_version": "source-ee1a2acb0dd1d0d4a71cff4d29d4287c5e7542b6b5b37cd234243bb1fab0c2d3"
+    },
+    {
+      "id": "openvla-experiments-robot-libero-run-libero-eval-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77",
+      "record_version": "source-369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77"
+    },
+    {
+      "id": "openvla-vla-scripts-deploy-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65",
+      "record_version": "source-14d74c56a437058eb473f41f93a0a82ec892e16e55ed91236c5d30f4fd8adc65"
+    },
+    {
+      "id": "openvla-vla-scripts-finetune-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b",
+      "record_version": "source-0b3d7ccd6b95ce7fb13ea82414f2be80c2c1aa8f0f84060eb677dd0e0e40243b"
+    },
+    {
+      "id": "openvla-vla-scripts-train-py",
+      "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "source_sha256": "8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49",
+      "record_version": "source-8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49"
     },
     {
       "id": "pinocchio-examples-admm-constraint-solver-py",
@@ -4422,6 +4578,132 @@
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652",
       "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
+    },
+    {
+      "id": "rai-examples-agents-react-ros2-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "6f72735745d5f34f963f7441ae9a706b02f36ccc892ff98a16e6faa5d7ee8fee",
+      "record_version": "source-6f72735745d5f34f963f7441ae9a706b02f36ccc892ff98a16e6faa5d7ee8fee"
+    },
+    {
+      "id": "rai-examples-agents-state-based-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "967dab001d1fd714d77de09f92b59c398ba8dc9cdb528540952641c65ec1cfc3",
+      "record_version": "source-967dab001d1fd714d77de09f92b59c398ba8dc9cdb528540952641c65ec1cfc3"
+    },
+    {
+      "id": "rai-examples-agriculture-demo-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "a960c95918b049dbfc7d16ad92ab627d7e2b8c985e4cbb9bf4cb75fc37201a18",
+      "record_version": "source-a960c95918b049dbfc7d16ad92ab627d7e2b8c985e4cbb9bf4cb75fc37201a18"
+    },
+    {
+      "id": "rai-examples-debugging-assistant-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "06f36eb1ba7859f47d182e67f8f129398b567e9aeba8b406feb8711ff4bf4fc1",
+      "record_version": "source-06f36eb1ba7859f47d182e67f8f129398b567e9aeba8b406feb8711ff4bf4fc1"
+    },
+    {
+      "id": "rai-examples-manipulation-demo-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "a6cbe651ece0055adfd354c91d8bd3f0a17a425789a7da964f9baa02221b3977",
+      "record_version": "source-a6cbe651ece0055adfd354c91d8bd3f0a17a425789a7da964f9baa02221b3977"
+    },
+    {
+      "id": "rai-examples-manipulation-demo-streamlit-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "aa8b58dfa73f96dbe95da524e3f4726617dc50a4f2354049d334c755bcbe5ed6",
+      "record_version": "source-aa8b58dfa73f96dbe95da524e3f4726617dc50a4f2354049d334c755bcbe5ed6"
+    },
+    {
+      "id": "rai-examples-rosbot-xl-demo-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "375c688472525bd053e50b387068a3a5474bb4f8456d5b1b950757bbf44d13b1",
+      "record_version": "source-375c688472525bd053e50b387068a3a5474bb4f8456d5b1b950757bbf44d13b1"
+    },
+    {
+      "id": "rai-examples-s2s-asr-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77",
+      "record_version": "source-c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77"
+    },
+    {
+      "id": "rai-examples-s2s-conversational-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "7c0d1e4525b1f4ed9e6da067260a8def173ae22f678f884b6a3413dcd847ce78",
+      "record_version": "source-7c0d1e4525b1f4ed9e6da067260a8def173ae22f678f884b6a3413dcd847ce78"
+    },
+    {
+      "id": "rai-examples-s2s-tts-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "21186a99d1aa7d8a7dd9ed0715e3afae8dd5f0834743afffa3d074082e14d496",
+      "record_version": "source-21186a99d1aa7d8a7dd9ed0715e3afae8dd5f0834743afffa3d074082e14d496"
+    },
+    {
+      "id": "rai-src-rai-bench-rai-bench-examples-manipulation-o3de-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "ba0ff50ef58ddb4c28bbf4f3374b957f151938288886eda97d656b6785697bc7",
+      "record_version": "source-ba0ff50ef58ddb4c28bbf4f3374b957f151938288886eda97d656b6785697bc7"
+    },
+    {
+      "id": "rai-src-rai-bench-rai-bench-examples-tool-calling-agent-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "c1849e5e29eb00b5447d4a35788eda71b916f4b5da40fd7a5785cd432763c28f",
+      "record_version": "source-c1849e5e29eb00b5447d4a35788eda71b916f4b5da40fd7a5785cd432763c28f"
+    },
+    {
+      "id": "rai-src-rai-bench-rai-bench-examples-vlm-benchmark-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "b47a4c6138aa3758585a0c37cbe97bb40e673f4fca9d91cb5c5eb621a006ed07",
+      "record_version": "source-b47a4c6138aa3758585a0c37cbe97bb40e673f4fca9d91cb5c5eb621a006ed07"
+    },
+    {
+      "id": "rai-src-rai-extensions-rai-nomad-rai-nomad-nomad-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae",
+      "record_version": "source-2385002ec8283c4923454d932504259db81dac32303e8b61f73d93a6a6110aae"
+    },
+    {
+      "id": "rai-src-rai-extensions-rai-perception-rai-perception-scripts-run-pe-06864147bf08",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "fcd33f6953f5128086ce6275d0c8ee8103076e727f3f35edad34e68a59bf834d",
+      "record_version": "source-fcd33f6953f5128086ce6275d0c8ee8103076e727f3f35edad34e68a59bf834d"
+    },
+    {
+      "id": "rai-src-rai-finetune-rai-finetune-data-cli-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "97a99ec6a87f29c6578f7aee7ee99ef79239a15c87b9aaaa0b34d5b936e8263f",
+      "record_version": "source-97a99ec6a87f29c6578f7aee7ee99ef79239a15c87b9aaaa0b34d5b936e8263f"
+    },
+    {
+      "id": "rai-src-rai-semap-rai-semap-ros2-node-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "dcf96f9346e1fc26f81c5f773aae0587cb4528799681c2e1df2bdd67af7c4cc5",
+      "record_version": "source-dcf96f9346e1fc26f81c5f773aae0587cb4528799681c2e1df2bdd67af7c4cc5"
+    },
+    {
+      "id": "rai-src-rai-semap-rai-semap-scripts-navigate-collect-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "b0e08342b66d6de90052a585c63e9fec5bb05d4cde79475b391a9964e087679f",
+      "record_version": "source-b0e08342b66d6de90052a585c63e9fec5bb05d4cde79475b391a9964e087679f"
+    },
+    {
+      "id": "rai-src-rai-whoami-rai-whoami-build-whoami-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "c49eb85740ffe7dae0f66ccc857924c051cddb773f4202f838cb634204c6229b",
+      "record_version": "source-c49eb85740ffe7dae0f66ccc857924c051cddb773f4202f838cb634204c6229b"
+    },
+    {
+      "id": "rai-src-rai-whoami-rai-whoami-scripts-ros2-embodiment-service-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "5854d07c855f2a7cf661c8660236eb960c7cec49170341d2d39023c7dead7b90",
+      "record_version": "source-5854d07c855f2a7cf661c8660236eb960c7cec49170341d2d39023c7dead7b90"
+    },
+    {
+      "id": "rai-src-rai-whoami-rai-whoami-scripts-ros2-vector-store-retrieval-service-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "1b4030133a8b8157b5eb5b8cb453195089f809c10c5abc3c900b445acbc4fdb3",
+      "record_version": "source-1b4030133a8b8157b5eb5b8cb453195089f809c10c5abc3c900b445acbc4fdb3"
     },
     {
       "id": "robomimic-examples-simple-train-loop-py",

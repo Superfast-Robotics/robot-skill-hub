@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "diffusion-policy-eval-real-robot-py",
+      "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "source_sha256": "cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c",
+      "record_version": "source-cd7c0f1f46dce8606ebb9b2b2618811870c4d41205ce4ad6369ac5d7ac0a1b7c"
+    },
+    {
       "id": "franka-description-artifact-robots-fer-dynamics-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",

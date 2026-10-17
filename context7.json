@@ -1,0 +1,25 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Robot Skill Hub",
+  "description": "Robotics source discovery and task-memory tools for agents. Search pinned code, policies, robot models and workflows across frameworks; inspect exact provenance, licenses and evidence; prepare supported recipes locally; contribute reviewed sources and findings through internal pull requests. Public HTTP and read-only MCP discovery require no account.",
+  "folders": [
+    "docs",
+    "skills/find-robot-skills"
+  ],
+  "excludeFolders": [
+    "skills/find-robot-skills/assets",
+    "skills/find-robot-skills/scripts",
+    "skills/find-robot-skills/schemas"
+  ],
+  "excludeFiles": [
+    "growth-status.md",
+    "deployment.md",
+    "discovery-submissions.md",
+    "verification.md",
+    "sample-sources.md",
+    "workflow-sources.md",
+    "agent-skill-sources.md",
+    "robot-agent-policy-sources.md",
+    "canonical-policy-sources.md"
+  ]
+}

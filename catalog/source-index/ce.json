@@ -14,6 +14,12 @@
       "record_version": "source-66769a2572bda57628afb4469e972fa9eb7aa9a14830e81d45f376ae2fb4beb4"
     },
     {
+      "id": "octo-scripts-train-py",
+      "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
+      "source_sha256": "e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8",
+      "record_version": "source-e164ea607376d5fb55f59bfac9cc8b87e78fc8c6544698a7a77c47bedbd6f2b8"
+    },
+    {
       "id": "unitree-sdk2-python-example-obstacles-avoid-obstacles-avoid-move-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "79697b82289389ffc99bb3cab9956c6a52452e80b1a898951d230a0adc899f6d",

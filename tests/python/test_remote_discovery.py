@@ -67,6 +67,32 @@ class RemoteDiscoveryTests(unittest.TestCase):
         self.assertEqual(offline["catalog_origin"], "api_cache")
         self.assertEqual(offline["discovery_scope"], "selected_record")
 
+    def test_online_search_preserves_robot_type_labels_without_inventing_compatibility(self):
+        page = search_page()
+        page["results"][0].update(id="h1-locomotion", name="H1 locomotion", summary="Pinned locomotion source",
+                                  kind="source_reference", hub_prepare=False, robot_types=["humanoid"],
+                                  framework="isaaclab", robots=["h1"], compatibility=[],
+                                  record_version="source-" + "d" * 64, source_sha256="d" * 64)
+        with mock.patch.object(discovery, "fetch_public", return_value=page) as fetch:
+            result = remote_catalog.search("humanoid locomotion", {})
+        self.assertEqual(1, fetch.call_count)
+        self.assertEqual(["humanoid"], result["results"][0]["robot_types"])
+        self.assertEqual("unknown", result["results"][0]["compatibility_status"])
+        self.assertFalse(result["results"][0]["hub_prepare"])
+        for environment in ({"robot": "humanoid"}, {"runtime": "isaaclab", "robot": "h1"}, {"os": "linux"}):
+            with self.subTest(environment=environment), mock.patch.object(discovery, "fetch_public", return_value=page):
+                with self.assertRaises(core.RshError):
+                    remote_catalog.search("humanoid locomotion", environment, refresh=True)
+
+    def test_malformed_robot_type_labels_do_not_poison_the_online_query_cache(self):
+        for types in ("humanoid", [None], [""], ["x" * 81]):
+            page = search_page()
+            page["results"][0]["robot_types"] = types
+            with self.subTest(types=types), mock.patch.object(discovery, "fetch_public", return_value=page):
+                with self.assertRaises(core.RshError):
+                    remote_catalog.search("humanoid locomotion", {}, refresh=True)
+        self.assertFalse(list(Path(self.temporary.name).glob("api-search-*.json")))
+
     def test_register_reads_only_generation_metadata_without_source_inventory(self):
         with mock.patch.object(discovery, "fetch_public", return_value={"schema_version": "1", "hub_commit": HUB}) as fetch, mock.patch.object(rsh.intake, "register", return_value={"status": "ready"}) as register, mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("whole catalog read")):
             rsh.execute(self.args("register", "new-source.json", "--project", self.temporary.name, "--contributor", "fixture", "--draft"), None)

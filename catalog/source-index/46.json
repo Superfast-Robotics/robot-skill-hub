@@ -26,6 +26,12 @@
       "record_version": "source-2080f6c06b503f01ac9f092f574bbf75c2ef11e16769b53a10615b540ae5027b"
     },
     {
+      "id": "rai-src-rai-bench-rai-bench-examples-vlm-benchmark-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "b47a4c6138aa3758585a0c37cbe97bb40e673f4fca9d91cb5c5eb621a006ed07",
+      "record_version": "source-b47a4c6138aa3758585a0c37cbe97bb40e673f4fca9d91cb5c5eb621a006ed07"
+    },
+    {
       "id": "webots-projects-robots-robotis-darwin-op-controllers-walk-main-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "a3ba68e4f4f667dc42675a2600931e3a4a156efd8aa2daf3fb46f6d5562c961e",

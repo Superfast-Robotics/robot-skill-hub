@@ -6,6 +6,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "ebaec659011610ad1ab91c6e6ff869a8edf8dcd519ac952a0a4ce44ef89df3ca",
       "record_version": "source-ebaec659011610ad1ab91c6e6ff869a8edf8dcd519ac952a0a4ce44ef89df3ca"
+    },
+    {
+      "id": "rai-examples-s2s-asr-py",
+      "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
+      "source_sha256": "c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77",
+      "record_version": "source-c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77"
     }
   ]
 }
