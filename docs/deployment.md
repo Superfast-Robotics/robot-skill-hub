@@ -49,6 +49,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\configure-secrets.ps
 
 The script validates access, uploads `GITHUB_TOKEN` into Cloudflare Worker encrypted secrets, generates a random pilot token and uploads only its SHA-256 hash in `SUBMISSION_TOKENS_JSON`. It saves the limited client token in `.local/pilot-token.secret` and writes `.local/pilot-env.ps1`. It never prints either token. The pilot token has no GitHub permission.
 
+Load the client environment from the project directory without executing another
+PowerShell script (this also works when the default script policy is restricted):
+
+```powershell
+$env:RSH_API_URL = 'https://api.superfastrobotics.com'
+$env:RSH_SUBMISSION_TOKEN = (Get-Content -LiteralPath '.local\pilot-token.secret' -Raw).Trim()
+```
+
 Secrets can also be entered in Cloudflare → Workers & Pages → robot-skill-hub-api → Settings → Variables and Secrets:
 
 ```text

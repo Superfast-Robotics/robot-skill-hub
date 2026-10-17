@@ -38,4 +38,6 @@ $utf8 = New-Object Text.UTF8Encoding $false
 [IO.File]::WriteAllText((Join-Path $localDir 'pilot-env.ps1'), ('$env:RSH_API_URL = ''https://api.superfastrobotics.com''' + [Environment]::NewLine + '$env:RSH_SUBMISSION_TOKEN = (Get-Content -LiteralPath (Join-Path $PSScriptRoot ''pilot-token.secret'') -Raw).Trim()' + [Environment]::NewLine), $utf8)
 $pilotToken = $null
 Write-Output 'Worker secrets configured. Pilot token: .local/pilot-token.secret (ignored by Git).'
-Write-Output 'Load client environment: . .\.local\pilot-env.ps1'
+Write-Output 'Load client environment from the project directory (works with restricted PowerShell script policies):'
+Write-Output '$env:RSH_API_URL = ''https://api.superfastrobotics.com'''
+Write-Output '$env:RSH_SUBMISSION_TOKEN = (Get-Content -LiteralPath ''.local\pilot-token.secret'' -Raw).Trim()'

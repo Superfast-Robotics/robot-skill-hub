@@ -21,7 +21,7 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
       if (isPost) { const result = await submit(request, principal, adapter); return json(result.response, result.status); }
       return json(await getStatus(id!, principal, adapter, async () => {
         if (publicationFetcher) return publicationFetcher(env.PUBLICATION_URL);
-        const response = await fetch(env.PUBLICATION_URL, { redirect: 'error', signal: AbortSignal.timeout(10000), headers: { 'Cache-Control': 'no-cache' } });
+        const response = await fetch(env.PUBLICATION_URL, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: { 'Cache-Control': 'no-cache' } });
         if (!response.ok) { await response.body?.cancel(); throw new Error('Publication unavailable'); }
         const content = await response.text(); if (content.length > 512 * 1024) throw new Error('Publication too large');
         return JSON.parse(content);

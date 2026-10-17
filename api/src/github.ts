@@ -15,8 +15,13 @@ export class GitHub implements GitHubAdapter {
     if (publicChecks && (method !== 'GET' || !/^\/commits\/[a-f0-9]{40}\/check-runs\?per_page=100&filter=latest$/.test(path))) {
       throw new ApiError(503, 'github_unavailable', 'Unexpected public check-run request.');
     }
-    const response = await this.fetcher(PREFIX + path, {
-      method, redirect: 'error', signal: AbortSignal.timeout(12000),
+    // Workers' native fetch rejects a GitHub instance as its `this` receiver.
+    // Call it as a standalone function, just like the global fetch API.
+    const fetcher = this.fetcher;
+    const response = await fetcher(PREFIX + path, {
+      // Workers supports manual/follow only; manual lets !ok reject redirects
+      // without following them or forwarding the repository credential.
+      method, redirect: 'manual', signal: AbortSignal.timeout(12000),
       headers: { ...(publicChecks ? {} : { Authorization: `Bearer ${this.token}` }), Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'robot-skill-hub-api', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
       ...(body === undefined ? {} : { body: JSON.stringify(body) })
     });

@@ -213,7 +213,7 @@ test('real adapter bounds repository, authenticates PRs and reads public checks 
     assert.ok(url.startsWith('https://api.github.com/repos/Superfast-Robotics/robot-skill-hub/'));
     const headers = new Headers(init?.headers);
     assert.equal(headers.get('Authorization'), url.includes('/check-runs') ? null : 'Bearer not-a-real-token');
-    assert.equal(init?.redirect, 'error');
+    assert.equal(init?.redirect, 'manual');
     if (url.includes('/pulls?')) { lookups++; return Response.json(lookups === 1 ? [] : [pr]); }
     if (url.endsWith('/pulls') && method === 'POST') return Response.json({ message: 'already exists' }, { status: 422 });
     if (url.includes('/check-runs')) return Response.json({ check_runs: [{ name: 'test', status: 'completed', conclusion: 'success' }] });
@@ -254,6 +254,33 @@ test('failed PR mutation keeps authentication and is never retried anonymously',
   });
   await assert.rejects(github.createPull(receipt), (error: unknown) => error instanceof ApiError && error.status === 503);
   assert.deepEqual(methods, ['GET', 'POST']);
+});
+
+test('adapter invokes fetch without a class receiver as required by the Workers runtime', async () => {
+  let calls = 0;
+  const receiverSensitiveFetch: typeof fetch = async function (this: unknown, input, init) {
+    assert.equal(this, undefined, 'Native Workers fetch rejects the adapter as its receiver');
+    calls++;
+    assert.equal(String(input), 'https://api.github.com/repos/Superfast-Robotics/robot-skill-hub/git/ref/heads/main');
+    assert.equal(new Headers(init?.headers).get('Authorization'), 'Bearer dedicated-repository-token');
+    return Response.json({ object: { sha: HUB } });
+  };
+  assert.equal(await new GitHub('dedicated-repository-token', receiverSensitiveFetch).getHead(), HUB);
+  assert.equal(calls, 1);
+});
+
+test('adapter rejects GitHub redirects without following or forwarding the token', async () => {
+  for (const redirect of [301, 302, 303, 307, 308]) {
+    let calls = 0;
+    const github = new GitHub('dedicated-repository-token', async (input, init) => {
+      calls++;
+      assert.equal(String(input), 'https://api.github.com/repos/Superfast-Robotics/robot-skill-hub/git/ref/heads/main');
+      assert.equal(init?.redirect, 'manual');
+      return new Response(null, { status: redirect, headers: { Location: 'https://another-host.invalid/' } });
+    });
+    await assert.rejects(github.getHead(), (error: unknown) => error instanceof ApiError && error.code === 'github_unavailable' && error.status === 503);
+    assert.equal(calls, 1);
+  }
 });
 
 test('actual catalog record accepts a docs patch and invalidates inherited execution evidence', async () => {
