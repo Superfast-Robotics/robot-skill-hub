@@ -1,0 +1,490 @@
+{
+  "schema_version": "1",
+  "recorded_at": "2026-10-17T18:57:39.977453+00:00",
+  "scope": "Maintainer release integration verification from recorded production captures and separately attributed offline checks. No upstream robot or model code executed for this verification.",
+  "source_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+  "offline_snapshot_commit": "3a25e251c3b599413b7de3039a87618ba3cee72f",
+  "worker": {
+    "version": "0.3.2",
+    "cloudflare_version_id": "54442852-7b2d-4f94-be31-a53e54157718",
+    "new_resources_created": false,
+    "paid_plan_change": false,
+    "evidence_source": "Release operator deployment report"
+  },
+  "public_http": {
+    "observed_at": "2026-10-17T18:52:08Z",
+    "checks": [
+      {
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db",
+        "bytes": 97
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "sha256": "158985399e3a3d7a4d7b1f98f2d3921b5732626386337840090df4156cf21eb1",
+        "bytes": 1906
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/search.json",
+        "status": 200,
+        "sha256": "b2ea901064fbc68e5763d3ded3cbcb48eb38c5565bcff6998dd901523c933557",
+        "bytes": 1845312
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
+        "status": 200,
+        "sha256": "394e53ac2cd8fdae54f16dc8d7736b54c5668d342529e51b218fbbb0668ba5e9",
+        "bytes": 199434
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
+        "status": 200,
+        "sha256": "437fa4da4fd68b28283590adfcd650217f0980c70a2bc77de46144efb6c15574",
+        "bytes": 6022924
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v1/source-index-manifest.json",
+        "status": 200,
+        "sha256": "f5b3837ddc56a606546875193e38d514aa1b395235a244ebafe1b67a5c174043",
+        "bytes": 53428
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
+        "status": 200,
+        "sha256": "cf8df48bfdeaccc8cd14459bb808f42372eeff5864704e34228d7ac3143c6ce0",
+        "bytes": 3289
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json",
+        "status": 200,
+        "sha256": "2cb02c548b35be26a89bd404d9eae54e080be5ea506e2952ccbc20b252bfc8df",
+        "bytes": 298
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/privacy.md",
+        "status": 200,
+        "sha256": "99799818193e04a943cec85cb6086f6682fb14632e84d408dafb1521c6517075",
+        "bytes": 1728
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/discovery.md",
+        "status": 200,
+        "sha256": "7dc0b10ef18b93b69f5ca619397a7db35bf6bad504baceaf005a7b9ac58c76a0",
+        "bytes": 2985
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/new-skills.md",
+        "status": 200,
+        "sha256": "a1d5f7f96a18f63eea27013eed33ef428d85a22d02b25db6738e3b7285b7c862",
+        "bytes": 4945
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms.txt",
+        "status": 200,
+        "sha256": "704f9ac86653544e3a887a635168737df4097c1b45386f1388cbd3b6a343fe1f",
+        "bytes": 398830
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/llms-full.txt",
+        "status": 200,
+        "sha256": "06aa1c00aa36d6598b48c377ace58cc4e547668b568f54f03ba9c23ad6a3b2da",
+        "bytes": 6595720
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/agent.json",
+        "status": 200,
+        "sha256": "c5b28a9958657eaa1903ebc3eb8918cd4274ef5c347d02498da7d1a505829a18",
+        "bytes": 17490
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/openapi.json",
+        "status": 200,
+        "sha256": "166fe025cf0fd338322ada4609d69765758a628574ba77fdac98dd90634765e8",
+        "bytes": 38508
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/schemas/intake.schema.json",
+        "status": 200,
+        "sha256": "cf79646631d112654df57973b435107b92e180cff3fb6a703c6e15915693ecb6",
+        "bytes": 6166
+      },
+      {
+        "url": "https://hub.superfastrobotics.com/",
+        "status": 200,
+        "sha256": "4a12a289b7dd829f2b0836546a039f8bf05475ad435b19d7c066605289036a69",
+        "bytes": 3932
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/capabilities",
+        "status": 200,
+        "sha256": "658c40c36cc965f142c3e0bed7d20e1bac2f8bf379a53f0c4b1c112ac657bf1a",
+        "bytes": 2886
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?q=pick%20cube&limit=2",
+        "status": 200,
+        "sha256": "b0c429aad5ef9a858da46e26e2f07ac8c87a4c178af2f9434a9328531db60c1d",
+        "bytes": 3508
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/maniskill-panda-pick-cube",
+        "status": 200,
+        "sha256": "3591e93c334a210133f3836e09fb9f0c1cd99c87483995373b48ff7686a9d5fc",
+        "bytes": 12208
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/pybullet-inverse-kinematics",
+        "status": 200,
+        "sha256": "67229015d3d68cde47ccc0c3da41d3660f4df2280a8fd1c45e26ffbf529ab3a9",
+        "bytes": 2743
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/catalog",
+        "status": 200,
+        "sha256": "394e53ac2cd8fdae54f16dc8d7736b54c5668d342529e51b218fbbb0668ba5e9",
+        "bytes": 199434
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/references",
+        "status": 200,
+        "sha256": "437fa4da4fd68b28283590adfcd650217f0980c70a2bc77de46144efb6c15574",
+        "bytes": 6022924
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/search?hub_commit=0000000000000000000000000000000000000000",
+        "status": 409,
+        "sha256": "031c0df89da243ce049fe4b7e42eb02319db2b8374fef014de080942abfa69ca",
+        "bytes": 252
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/skills/no-such-published-skill",
+        "status": 404,
+        "sha256": "4a42d687d935edb6043010e7f7fb38a7eab874bd3ce7e802a091cac1ad2b7ef2",
+        "bytes": 212
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/session",
+        "status": 401,
+        "sha256": "fc7aabea8300e9c070d097c9fac8b1a2b97b62961934d49291e293d2cc6db6ee",
+        "bytes": 151
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/metrics",
+        "status": 200,
+        "sha256": "f746cf2b594df61bb9a1cf1f31e4e157069afac23f7c9d5b564389bc5f73f555",
+        "bytes": 1350
+      }
+    ],
+    "hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+    "counts": {
+      "recipes": 17,
+      "references": 1207,
+      "memories": 3
+    },
+    "metrics": {
+      "schema_version": "1",
+      "interpretation": "data_only",
+      "measurement_configured": true,
+      "observed_at": "2026-10-17T18:52:22.114Z",
+      "window_start": "2026-10-17T15:47:38.000Z",
+      "window_end": "2026-10-18T15:47:38.000Z",
+      "window_closed": false,
+      "target_agent_accesses": 100,
+      "observed_agent_accesses": 13,
+      "target_reached": false,
+      "groups": [
+        {
+          "family": "crawler",
+          "requests": 1,
+          "identified_client_days": 0
+        },
+        {
+          "family": "mcp_tool",
+          "requests": 2,
+          "identified_client_days": 0
+        },
+        {
+          "family": "rsh_cli",
+          "requests": 11,
+          "identified_client_days": 2
+        },
+        {
+          "family": "unclassified",
+          "requests": 2,
+          "identified_client_days": 0
+        }
+      ],
+      "counting_rule": "Successful public discovery/record reads from the Hub CLI or recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count toward the target.",
+      "limitations": [
+        "Client identity is self-reported; CLI use can be initiated by a person. Counts do not prove distinct autonomous agents.",
+        "Direct GitHub Pages reads and offline uses are not measured. Anonymous clients have no installation identifier.",
+        "Optional installation IDs are HMAC hashed per UTC day; identified_client_days is not a unique-agent count."
+      ],
+      "privacy": {
+        "raw_ip_stored": false,
+        "raw_client_id_stored": false,
+        "query_or_conversation_stored": false,
+        "retention_days": 30,
+        "opt_out": "DNT: 1 or X-RSH-Telemetry: off"
+      }
+    },
+    "internal_checks_excluded_from_metrics": true,
+    "check_count": 27,
+    "expected_statuses_passed": true
+  },
+  "official_mcp_sdk": {
+    "version": "1.32.1",
+    "sdk_version_evidence_source": "Release operator test harness report",
+    "observed_at": "2026-10-17T18:52:10.725Z",
+    "server": {
+      "name": "robot-skill-hub",
+      "version": "0.3.2"
+    },
+    "tools": [
+      "find_robot_skills",
+      "inspect_robot_skill",
+      "get_hub_capabilities"
+    ],
+    "counts": {
+      "memories": 3,
+      "recipes": 17,
+      "references": 1207
+    },
+    "search": {
+      "schema_version": "1",
+      "interpretation": "data_only",
+      "hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+      "counts": {
+        "memories": 3,
+        "recipes": 17,
+        "references": 1207
+      },
+      "backend": "d1_fts5",
+      "coverage": {
+        "complete": true
+      },
+      "search_semantics": "all_terms_word_prefix",
+      "total": 6,
+      "limit": 2,
+      "offset": 0,
+      "next": {
+        "q": "pick cube",
+        "limit": 2,
+        "offset": 2,
+        "hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5"
+      },
+      "execution_performed": false,
+      "next_action": "inspect_selected_record",
+      "evidence_rule": "A search match does not establish runtime compatibility or task completion."
+    },
+    "returned_search_results": 2,
+    "inspected_record_id": "maniskill-panda-pick-cube",
+    "live_search_inspect_capabilities_passed": true,
+    "internal_checks_excluded_from_metrics": true
+  },
+  "catalog_database": {
+    "observed_at_utc": "2026-10-17T18:53:59.523102+00:00",
+    "http_status": 200,
+    "query_type": "read_only_select",
+    "success": true,
+    "generation": {
+      "hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+      "total_records": 1224,
+      "next_page": 16,
+      "total_pages": 16,
+      "active_documents": 1224,
+      "active_findings": 3,
+      "search_pages": 15,
+      "memory_pages": 1
+    },
+    "rows_written": 0,
+    "database_changed": false,
+    "pass": true
+  },
+  "submission_status": {
+    "scope": "Read existing submission status only; roles identify authorization cases, not private principals.",
+    "cases": {
+      "owner": {
+        "observed_at_utc": "2026-10-17T18:54:01.215747+00:00",
+        "http_status": 200,
+        "status": "published",
+        "publication_scope": "current",
+        "published_hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+        "pass": true
+      },
+      "other_authenticated": {
+        "observed_at_utc": "2026-10-17T18:53:59.910966+00:00",
+        "http_status": 404,
+        "status": "blocked",
+        "reason_code": "submission_not_found",
+        "pass": true
+      },
+      "anonymous": {
+        "observed_at_utc": "2026-10-17T18:53:59.572485+00:00",
+        "http_status": 401,
+        "status": "blocked",
+        "reason_code": "invalid_token",
+        "pass": true
+      }
+    }
+  },
+  "production_verification_controls": {
+    "redirects_followed": false,
+    "DNT": "1",
+    "X_RSH_Telemetry": "off",
+    "new_submissions_or_saves": 0,
+    "deployments": 0
+  },
+  "official_registry_readback": {
+    "server": {
+      "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+      "name": "io.github.Superfast-Robotics/robot-skill-hub",
+      "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
+      "title": "Robot Skill Hub",
+      "repository": {
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+        "source": "github"
+      },
+      "version": "0.3.2",
+      "websiteUrl": "https://hub.superfastrobotics.com/",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.superfastrobotics.com/mcp"
+        }
+      ]
+    },
+    "_meta": {
+      "io.modelcontextprotocol.registry/official": {
+        "status": "active",
+        "statusChangedAt": "2026-10-17T18:52:45.164326Z",
+        "publishedAt": "2026-10-17T18:52:45.164326Z",
+        "updatedAt": "2026-10-17T18:52:45.164326Z",
+        "isLatest": true
+      }
+    }
+  },
+  "github": {
+    "workflows": [
+      {
+        "purpose": "CI checks",
+        "run_id": 39059852870,
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39059852870",
+        "head_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+        "conclusion": "success"
+      },
+      {
+        "purpose": "Pages publication and catalog synchronization",
+        "run_id": 39059852803,
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39059852803",
+        "head_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+        "conclusion": "success"
+      },
+      {
+        "purpose": "Official MCP registry publication",
+        "run_id": 39060016837,
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39060016837",
+        "head_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+        "conclusion": "success"
+      }
+    ],
+    "workflow_evidence_source": "Release operator verified workflow readbacks",
+    "release": {
+      "id": 416000311,
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.2",
+      "tag_name": "v0.3.2",
+      "target_commitish": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+      "prerelease": true,
+      "published_at": "2026-10-17T18:55:20Z"
+    }
+  },
+  "offline_checks": {
+    "source_commit": "3a25e251c3b599413b7de3039a87618ba3cee72f",
+    "evidence_source": "Release operator reported local validation; not rerun while assembling this receipt.",
+    "python": {
+      "tests_run": 181,
+      "skipped": 2,
+      "skip_reason": "Windows privileges",
+      "result": "pass"
+    },
+    "publication": {
+      "tests_passed": 34
+    },
+    "wire_contract": {
+      "tests_passed": 5
+    },
+    "catalog_sync": {
+      "tests_passed": 11
+    },
+    "typescript": {
+      "check": "pass"
+    },
+    "worker_unit": {
+      "tests_passed": 87
+    },
+    "worker_native": {
+      "tests_passed": 26,
+      "optional_fixture_skipped": 1
+    },
+    "catalog_native_actual_publisher": {
+      "tests_passed": 14,
+      "result": "pass",
+      "note": "Separate actual-publisher fixture run; do not add this count to the preceding native suite as a unique-test total."
+    },
+    "bundled_cli": {
+      "tests_passed": 18
+    }
+  },
+  "source_catalog_changes": {
+    "evidence_source": "Release operator reviewed source import and catalog report",
+    "new_source_references": 47,
+    "new_source_references_execution_status": "not_run",
+    "new_source_references_hub_adapter": false,
+    "existing_reference_search_metadata_updates": 33,
+    "catalog_license_NOASSERTION_unknown_records": 12,
+    "license_limit": "NOASSERTION and unknown are unresolved declarations, not permission to use code, weights, models or datasets. Code, model/weight and dataset license scopes remain separate.",
+    "source_review_receipts": [
+      "../../sources/canonical-policy-upstreams-2026-10-18.json",
+      "../../sources/robot-agent-policy-workflows-2026-10-18.json"
+    ],
+    "runtime_compatibility_inferred": false
+  },
+  "fresh_agent_validation": {
+    "receipt": "fresh-agent.json",
+    "summary_evidence_source": "Release operator report; detailed results belong to the separate receipt.",
+    "reported_checks": 230,
+    "reported_excluded_requests": 176,
+    "reported_cli_checks": 16,
+    "reported_result": "pass",
+    "counted_toward_access_target": false
+  },
+  "capture_sha256": {
+    "http": "50b4695153d867002cd322e1cc400ace4046d102d45daea17745ab2e2167ed8c",
+    "mcp": "92b7af3e3a4fe2dea4af0269c281c0fb43ea4ad6ea2dbc95ff280e81b11a296c",
+    "production": "7ff65ec39e24fca54146272a4f506218f92db411786e5eb898ead9dc33df1080",
+    "registry": "35e5f4e9349d30ca658719d34e1c3bcd5bb0b7f6f3b224492ac9d67573bfbee0",
+    "release": "9aedd31ca32f200a682726bbd0ae2b1484475fae687cf00e208f127e0e6571a5"
+  },
+  "coverage_limit": "Finite pinned sources; no claim of exhaustive robot, skill, framework or Internet coverage. Search labels do not establish runtime compatibility.",
+  "robot_execution_limit": "No new robot, simulator, model, GPU or hardware execution in this release verification. Existing recorded CPU/state Panda results retain their original evidence limits.",
+  "access_target": {
+    "observed_at": "2026-10-17T18:52:22.114Z",
+    "window_start": "2026-10-17T15:47:38.000Z",
+    "window_end": "2026-10-18T15:47:38.000Z",
+    "window_closed": false,
+    "target": 100,
+    "observed": 13,
+    "target_reached": false,
+    "unit": "Qualifying public access events under the recorded counting rule, not distinct autonomous agents.",
+    "counting_rule": "Successful public discovery/record reads from the Hub CLI or recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count toward the target.",
+    "limitations": [
+      "Client identity is self-reported; CLI use can be initiated by a person. Counts do not prove distinct autonomous agents.",
+      "Direct GitHub Pages reads and offline uses are not measured. Anonymous clients have no installation identifier.",
+      "Optional installation IDs are HMAC hashed per UTC day; identified_client_days is not a unique-agent count."
+    ]
+  },
+  "internal_checks_excluded_from_access_target": true,
+  "production_integration_checks_passed": true
+}

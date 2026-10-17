@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-17T18:53:29.674478+00:00",
+  "hub_commit": "a0c4444a9bfb11e28073a37521739f8cea7c43e5",
+  "operation": "One notification for 47 newly published source-page URLs and three updated discovery resources.",
+  "host": "hub.superfastrobotics.com",
+  "http_status": 200,
+  "response_body": "",
+  "attempted_url_count": 50,
+  "new_source_url_count": 47,
+  "key_location_verified": true,
+  "every_url_in_published_sitemap": true,
+  "submission_attempts": 1,
+  "indexing_verified": false,
+  "visits_or_traffic_claimed": false,
+  "hub_verification_traffic_opted_out": true
+}

@@ -3,10 +3,12 @@
 Use the Hub without an account:
 
 - [Agent contract](https://hub.superfastrobotics.com/agent.json)
-- [JSON recipe catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
-- [Pinned upstream source examples](https://hub.superfastrobotics.com/catalog/v1/references.json)
-- [Reviewed task findings](https://hub.superfastrobotics.com/catalog/v1/memories.json)
+- [Bounded HTTP search](https://api.superfastrobotics.com/v1/search?q=pick%20cube&limit=3)
+- [Paginated search manifest](https://hub.superfastrobotics.com/catalog/v2/search-manifest.json)
+- [Reviewed finding manifest](https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json)
 - [Text discovery index](https://hub.superfastrobotics.com/llms.txt)
+
+Use returned record URLs for full metadata and exact source/version pins for findings. Complete legacy catalogs remain linked by the agent contract; a selected-record lookup does not require downloading them.
 
 Install the discovery skill into the current project:
 
@@ -35,7 +37,7 @@ For MCP clients that accept a `mcpServers` object with HTTP transports:
 
 Configuration field names depend on the client. The transport URL is the same. A public server record in [server.json](../server.json) describes the endpoint for registry clients.
 
-The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.1) is active and latest for version `0.3.1`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.1) records its source commit and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
+The [official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.2) is active and latest for version `0.3.2`. The [public preview release](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.3.2) records its source commit and verification scope. MCP discovers and inspects records; the separate Hub CLI prepares local projects.
 
 The discovery skill is also listed on [skills.sh](https://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills). Use the canonical repository as the installation source.
 
