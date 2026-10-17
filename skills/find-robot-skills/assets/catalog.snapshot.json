@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+  "hub_commit": "5f51d88b3c6dacdc3f5095b3955ee5be0006bd86",
   "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
   "references_url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
   "memories_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
