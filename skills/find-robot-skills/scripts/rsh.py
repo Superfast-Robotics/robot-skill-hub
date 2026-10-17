@@ -100,6 +100,7 @@ def build_parser():
     save.add_argument("skill_id")
     save.add_argument("--project", required=True)
     save.add_argument("--finding", required=True, help="Small explicit JSON finding; no project scan")
+    save.add_argument("--source-manifest", help="Use the exact verified fetch-source manifest and its original pins")
     save.add_argument("--policy")
     save.add_argument("--api-url")
     flush = sub.add_parser("flush", help="Explicitly retry at most three locally saved findings with their original identity")
@@ -111,6 +112,7 @@ def build_parser():
     recall = sub.add_parser("memories", help="Read published observations for the exact skill/source version and environment")
     recall.add_argument("skill_id")
     recall.add_argument("--project")
+    recall.add_argument("--source-manifest", help="Recall findings for this explicit verified acquired source; requires --project")
     recall.add_argument("--index", help="Explicit local file or HTTPS published memory index")
     recall.add_argument("--limit", type=int, default=20, choices=range(1, 51))
     recall.add_argument("--offset", type=int, default=0)
@@ -158,6 +160,10 @@ def execute(args, catalog_location):
     if args.command == "flush":
         return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline,
                               selected_fingerprint=args.selected_fingerprint)
+    source_manifest = getattr(args, "source_manifest", None)
+    if source_manifest and (catalog_location or not getattr(args, "project", None)):
+        raise RshError("invalid_arguments", "--source-manifest requires --project and cannot be combined with --catalog.",
+                       network_performed=False)
     environment = {}
     if getattr(args, "environment", None):
         environment = read_json(args.environment)
@@ -177,6 +183,12 @@ def execute(args, catalog_location):
                 raise
             fallback_reason = "public_search_unavailable"
     catalog = None
+    if source_manifest:
+        try:
+            catalog = acquisition.catalog_from_manifest(source_manifest, args.project, args.skill_id)
+        except RshError as error:
+            error.result["network_performed"] = False
+            raise
     if not catalog_location and args.command == "register" and not args.offline:
         try:
             catalog = remote_catalog.current_catalog()
@@ -185,7 +197,7 @@ def execute(args, catalog_location):
     skill_id = getattr(args, "skill_id", None)
     if args.command == "submit":
         skill_id = read_json(args.bundle).get("skill_id")
-    if not catalog_location and skill_id:
+    if not catalog_location and skill_id and catalog is None:
         # A prepared project's original source/version wins over later publication.
         if getattr(args, "project", None):
             pinned = pinned_project_catalog({"schema_version": "1", "records": []}, args.project, skill_id)

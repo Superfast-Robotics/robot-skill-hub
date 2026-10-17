@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import socket
 import tempfile
 import unittest
 from unittest import mock
@@ -752,6 +753,59 @@ class PublicationBudgetTests(unittest.TestCase):
             self.assertEqual(path.read_bytes(), b"existing index remains unchanged\n")
             self.assertFalse((path.parent / "source-index-manifest.json").exists())
             self.assertFalse((path.parent / "source-index").exists())
+
+
+class ReferenceAcquisitionGuidanceTests(unittest.TestCase):
+    """Pure page guidance checks; no build, source download or fixture allocation."""
+    HUB, REVISION, DIGEST = "a" * 40, "b" * 40, "c" * 64
+
+    def reference(self):
+        return {"id": "fixture-source", "name": "Pinned source fixture", "summary": "An inert source-reference fixture.",
+                "source": {"repository": "https://github.com/example/robot", "commit": self.REVISION,
+                           "path": "example/main.py", "url": f"https://github.com/example/robot/blob/{self.REVISION}/example/main.py",
+                           "sha256": self.DIGEST, "bytes": 128, "authors": ["Fixture author"]},
+                "license": {"spdx": "NOASSERTION", "url": f"https://github.com/example/robot/blob/{self.REVISION}/LICENSE",
+                            "scope": "Unresolved source terms only.", "verified": False},
+                "access": {"mode": "source_reference", "hub_prepare": False, "instructions": "Inspect the pinned upstream source and setup."},
+                "evidence": {"level": "contributor_reported", "runtime_verification": "not_run"}}
+
+    def render(self, record):
+        with mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("Page guidance must not resolve source hosts")), mock.patch.object(
+                builder, "build", side_effect=AssertionError("Do not run a catalog build")):
+            markdown = builder.reference_markdown(record, self.HUB)
+            html = builder.reference_detail(record, "https://hub.superfastrobotics.com", self.HUB)
+        return markdown, html
+
+    def test_supported_reference_offers_the_same_pinned_command_as_the_cli_plan(self):
+        record = self.reference()
+        original = copy.deepcopy(record)
+        markdown, html = self.render(record)
+        plan = builder.plan_source(record, self.HUB)
+        self.assertIn("rsh.py " + " ".join(plan["fetch_args"]), markdown)
+        self.assertIn("--project ./experiment --json", markdown)
+        self.assertIn("fetch_source_args", html)
+        self.assertNotIn("retrieval is unavailable", markdown + html)
+        self.assertEqual(original, record)
+
+    def test_large_policy_keeps_upstream_identity_without_promising_cli_download(self):
+        record = self.reference()
+        record["source"].update(repository="https://huggingface.co/lerobot/smolvla_base", path="model.safetensors",
+                                url=f"https://huggingface.co/lerobot/smolvla_base/resolve/{self.REVISION}/model.safetensors", bytes=906712520)
+        record["artifact"] = {"kind": "policy", "format": "safetensors"}
+        markdown, html = self.render(record)
+        self.assertNotIn("rsh.py fetch-source", markdown)
+        self.assertNotIn("fetch_source_args", html)
+        for document in (markdown, html):
+            self.assertIn("source_too_large", document)
+            self.assertIn("8 MiB", document)
+            self.assertIn("Use the pinned upstream source", document)
+            self.assertIn("does not download this artifact", document)
+            self.assertIn(record["source"]["url"], document)
+            self.assertIn(self.REVISION, document)
+            self.assertIn(self.DIGEST, document)
+            self.assertIn("906712520", document)
+            self.assertIn("NOASSERTION", document)
+        self.assertNotIn("<script", html)
 
 
 if __name__ == '__main__':

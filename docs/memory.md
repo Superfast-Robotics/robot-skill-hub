@@ -2,7 +2,7 @@
 
 A memory is a small, reusable fact already observed while an agent completes the user's robotics task. It can record a failure, missing requirement, working workaround, compatibility note, documentation correction or successful invocation. It preserves the exact recipe/source pins, environment and actual evidence; it does not replace a code patch.
 
-Use the installed skill's [memory reference](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/skills/find-robot-skills/references/memory.md) for finding-file examples and commands. The CLI reads pins from the prepared project lock when present, otherwise the selected catalog, saves a local outbox entry, and checks the project's separate memory policy. A preparation lock or code patch is not required to remember an observed finding.
+Use the installed skill's [memory reference](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/skills/find-robot-skills/references/memory.md) for finding-file examples and commands. For a file acquired through `fetch-source`, use its returned `save_args` or `memories_args`; they include an explicit `--source-manifest` preserving the original used version. The CLI verifies that managed artifact and manifest locally, bypassing fresh source-catalog discovery. It requires the matching `--project` and rejects an explicit `--catalog` or conflicting preparation lock. Its private manifest path is not included in the finding payload. Other saves read preparation-lock pins when present, otherwise the selected catalog. Saving preserves a local outbox entry and checks the project's separate memory policy. No preparation lock or code patch is required, and a source manifest grants no sharing permission.
 
 ```json
 {

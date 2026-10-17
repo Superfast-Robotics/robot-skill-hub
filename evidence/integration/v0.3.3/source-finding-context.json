@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-17T20:38:26.433768+00:00",
+  "test_observed_at": "2026-10-17T20:36:37.630502+00:00",
+  "outcome": "PASS_scoped_manifest_save_and_recall",
+  "scope": "Independent internal maintainer forward test of an isolated copy of the current installable skill. Genuine previously acquired source bytes/provenance were combined with explicit synthetic finding, newer-catalog and published-index fixtures. This does not establish external-agent adoption, real publication, upstream execution or robot task success.",
+  "before_fix_basis": {
+    "trigger": "A source file was acquired and used without a preparation-recipe lock; a later selected catalog can identify a different source version for the same skill ID.",
+    "maintainer_reported_defect": "Saving or recalling a finding for the acquired file must not silently select the later catalog source instead of the exact version actually used.",
+    "independent_static_observation": "The retained pre-fix memory base selector checks a preparation lock and otherwise resolves the selected recipe/reference catalog. The retained pre-fix acquisition CLI has no explicit source-manifest save/recall selector. The genuine acquired project contained five source files/manifests and no preparation lock.",
+    "inference": "For that no-lock scenario, the old code would resolve finding pins from the selected catalog rather than the acquired-source manifest. This is a static control-flow inference, not an independently repeated pre-fix CLI outcome in this run.",
+    "pre_fix_cli_reproduction_in_this_run": false,
+    "pre_fix_static_source_sha256": {
+      "scripts/rshlib/memories.py": "86cc57a54129428a3816dd1cb21b8a28f2eea86c05ab938f557ed8331ba1e233",
+      "scripts/rshlib/acquisition.py": "a20ae684955e558f3640352738d7938f4087881540fdc5b25dddcd6d0a62a5d2",
+      "scripts/rsh.py": "0fe1a18952bfe35da4951d6b0c303495ef835c23638c6aadb019177929ec3df0"
+    },
+    "prior_genuine_source_receipt": {
+      "path": "source-acquisition.json",
+      "sha256": "be37df5c523c0ba5a2173ebb34701e9f6d0903e54b38f2ac3cc7fdc4c229de3b"
+    }
+  },
+  "genuine_acquired_source": {
+    "skill_id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
+    "base": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594"
+    },
+    "source": {
+      "authors": [
+        "Boston Dynamics, Inc."
+      ],
+      "bytes": 11433,
+      "commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
+      "path": "python/examples/arm_gaze/arm_gaze.py",
+      "raw_url": "https://raw.githubusercontent.com/boston-dynamics/spot-sdk/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/arm_gaze.py",
+      "repository": "https://github.com/boston-dynamics/spot-sdk",
+      "sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "tag": "master",
+      "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/python/examples/arm_gaze/arm_gaze.py"
+    },
+    "license": {
+      "bytes": 3920,
+      "review_status": "nonstandard_upstream_terms",
+      "scope": "Selected Boston Dynamics first-party Python examples reference the pinned Boston Dynamics SDK License (20191101-BDSDK-SL). This local LicenseRef identifies upstream terms; it is not an OSI/SPDX-standard grant or legal-clearance assertion. Source-reference metadata only; preserve complete terms and notices. Firmware, hardware, assets and dependencies remain separate.",
+      "sha256": "8c431a217d39f8e1d40cb755a3144728892987765246785351c2be21d8ebe51c",
+      "source_terms": {
+        "identifier": "20191101-BDSDK-SL",
+        "marker": "(20191101-BDSDK-SL)",
+        "notes": "Upstream terms declare hardware use limited to Boston Dynamics products, software-only simulation/emulation subject to those terms, retention of complete license/notices, and possible separately issued license keys/app tokens. These are declarations; no entitlement, compatibility or permission to operate a robot is inferred."
+      },
+      "spdx": "LicenseRef-BostonDynamics-SDK-20191101-BDSDK-SL",
+      "url": "https://github.com/boston-dynamics/spot-sdk/blob/04537ddafe0641d1751af3eb9e76cb785fc18594/LICENSE",
+      "verified": false
+    },
+    "source_bytes_reused_not_downloaded_again": true,
+    "source_manifest_and_original_bytes_unchanged": true,
+    "interpretation": "data_only",
+    "runtime_verification": "not_run"
+  },
+  "synthetic_inputs": {
+    "finding": "Explicit minimal docs_correction fixture, evidence.level:not_run, command:null. It describes the test setup, not a robot fault or actual upstream correction.",
+    "newer_selected_catalog_base": {
+      "hub_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "record_version": "source-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "newer_catalog_is_synthetic": true,
+    "index_generation_is_synthetic": true,
+    "index_rows": 3,
+    "index_row_roles": [
+      "Matching genuinely acquired old source",
+      "Artificial changed-source version",
+      "Deliberately mismatched source revision"
+    ],
+    "index_curation_and_publication_state": "Fixture rows model the complete published-index contract, including maintainer_merged/public_submission_allowed:true and content identities. These literals do not describe an actual merge or published finding and grant no project sharing permission.",
+    "actual_project_public_memory_permission": false
+  },
+  "procedure": [
+    "Read the updated SKILL.md and memory/source-files references; copy the current installable skill and the genuine five-source acquired project privately.",
+    "Offline-cache verification returned save_args and memories_args selecting one explicit managed source manifest and the same project.",
+    "Inspect the synthetic newer selected catalog, then use returned source-manifest argument arrays without any --catalog argument.",
+    "Save the supplied minimal finding offline; retain one local outbox entry with the genuine acquired-source pins and publication permission false.",
+    "Recall from the explicit complete synthetic findings index and known spot-sdk/spot environment; retain the original source base separately from the synthetic index generation.",
+    "Try one missing manifest and one separately copied source whose bytes were deliberately altered; preserve the genuine acquired files."
+  ],
+  "cli_calls": 9,
+  "checks_passed": 33,
+  "checks": [
+    {
+      "name": "offline_cache_verified_genuine_old_source",
+      "passed": true
+    },
+    {
+      "name": "save_args_explicit_same_project_manifest",
+      "passed": true
+    },
+    {
+      "name": "memories_args_explicit_same_project_manifest",
+      "passed": true
+    },
+    {
+      "name": "advanced_catalog_fixture_actually_inspected",
+      "passed": true
+    },
+    {
+      "name": "finding_local_saved_without_delivery",
+      "passed": true
+    },
+    {
+      "name": "outbox_base_is_acquired_version_not_advanced_catalog",
+      "passed": true
+    },
+    {
+      "name": "outbox_source_and_record_pins_exact",
+      "passed": true
+    },
+    {
+      "name": "source_manifest_does_not_authorize_publication",
+      "passed": true
+    },
+    {
+      "name": "outbox_remains_unattempted",
+      "passed": true
+    },
+    {
+      "name": "private_source_manifest_path_not_in_finding_payload",
+      "passed": true
+    },
+    {
+      "name": "recall_retains_old_source_base",
+      "passed": true
+    },
+    {
+      "name": "recall_finds_only_matching_old_source_fixture",
+      "passed": true
+    },
+    {
+      "name": "advanced_and_wrong_source_findings_excluded",
+      "passed": true
+    },
+    {
+      "name": "recall_explicit_index_origin_and_environment_preserved",
+      "passed": true
+    },
+    {
+      "name": "returned_finding_is_data_and_not_runtime_evidence",
+      "passed": true
+    },
+    {
+      "name": "missing_manifest_fails_safely",
+      "passed": true
+    },
+    {
+      "name": "tampered_artifact_fails_safely",
+      "passed": true
+    },
+    {
+      "name": "all_cli_network_attempts_zero",
+      "passed": true
+    },
+    {
+      "name": "all_cli_credential_read_attempts_zero",
+      "passed": true
+    },
+    {
+      "name": "all_selected_manifest_flows_bypass_latest_catalog_reads",
+      "passed": true
+    },
+    {
+      "name": "missing-selector_no_outbox_access",
+      "passed": true
+    },
+    {
+      "name": "tampered-source_no_outbox_access",
+      "passed": true
+    },
+    {
+      "name": "exactly_nine_cli_invocations_all_telemetry_off",
+      "passed": true
+    },
+    {
+      "name": "all_original_project_files_bytes_and_mtimes_retained",
+      "passed": true
+    },
+    {
+      "name": "only_one_new_local_outbox_file",
+      "passed": true
+    },
+    {
+      "name": "no_outbox_created_in_tampered_negative_fixture",
+      "passed": true
+    },
+    {
+      "name": "genuine_original_acquisition_tree_unchanged",
+      "passed": true
+    },
+    {
+      "name": "original_source_reports_unchanged",
+      "passed": true
+    },
+    {
+      "name": "isolated_installed_skill_and_snapshots_unchanged",
+      "passed": true
+    },
+    {
+      "name": "spot_license_source_and_base_unchanged",
+      "passed": true
+    },
+    {
+      "name": "no_isolated_client_or_discovery_cache_created",
+      "passed": true
+    },
+    {
+      "name": "invalid_reporter_fixture_rejected_before_delivery",
+      "passed": true
+    },
+    {
+      "name": "incomplete_index_fixtures_not_treated_as_published_findings",
+      "passed": true
+    }
+  ],
+  "phase_results": [
+    {
+      "phase": "cache-context",
+      "exit_code": 0,
+      "status": "ready",
+      "reason_code": "source_cache_verified",
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": false,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "advanced-selection",
+      "exit_code": 0,
+      "status": "ready",
+      "reason_code": null,
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": false,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "save",
+      "exit_code": 0,
+      "status": "skipped",
+      "reason_code": "invalid_evidence",
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "save-corrected-fixture",
+      "exit_code": 0,
+      "status": "local_saved",
+      "reason_code": "offline_local_save",
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "recall",
+      "exit_code": 0,
+      "status": "ready",
+      "reason_code": null,
+      "returned_findings": 0,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "recall-corrected-index",
+      "exit_code": 0,
+      "status": "ready",
+      "reason_code": null,
+      "returned_findings": 0,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "recall-complete-index",
+      "exit_code": 0,
+      "status": "ready",
+      "reason_code": null,
+      "returned_findings": 1,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": null
+    },
+    {
+      "phase": "missing-selector",
+      "exit_code": 0,
+      "status": "skipped",
+      "reason_code": "invalid_source_manifest",
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": 0
+    },
+    {
+      "phase": "tampered-source",
+      "exit_code": 0,
+      "status": "skipped",
+      "reason_code": "source_cache_conflict",
+      "returned_findings": null,
+      "network_attempt_count": 0,
+      "credential_read_attempt_count": 0,
+      "selected_catalog_read_guard_enabled": true,
+      "selected_catalog_read_attempt_count": 0,
+      "outbox_access_attempt_count": 0
+    }
+  ],
+  "observed_results": {
+    "cache_reason": "source_cache_verified",
+    "local_save_reason": "offline_local_save",
+    "saved_base": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594"
+    },
+    "recalled_source_base": {
+      "hub_commit": "e138db5a829f20d93165cc72f78c76548075afbe",
+      "record_version": "source-f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
+      "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594"
+    },
+    "recall_origin": "explicit",
+    "matching_old_source_findings": 1,
+    "advanced_source_findings_returned": 0,
+    "wrong_source_findings_returned": 0,
+    "synthetic_index_hub_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "missing_selector_reason": "invalid_source_manifest",
+    "tampered_source_reason": "source_cache_conflict",
+    "private_manifest_path_in_finding_payload": false,
+    "new_local_outbox_files": 1,
+    "delivery_attempted": false,
+    "public_submission_allowed": false,
+    "project_file_count_before": 11,
+    "project_file_count_after": 12,
+    "genuine_source_and_manifest_files_unchanged": 10,
+    "original_reports_unchanged": true,
+    "installed_skill_files_and_snapshots_unchanged": true
+  },
+  "fixture_authoring_corrections": [
+    "Initial finding fixture used a non-schema reported_by label; the CLI returned skipped/invalid_evidence. Preserved input and raw result; corrected only the fixture to documented reported_by:submitter.",
+    "Initial index fixture lacked published-state/identity metadata and returned zero findings. A first correction added synthetic curation/publication state; it still lacked fingerprints and returned zero. After diagnosing index validation, independently computed stdlib canonical payload/semantic hashes for the explicit fixture; one old-source finding then matched. All input versions/results are preserved. These are test-fixture authoring errors, not observed source-selector defects."
+  ],
+  "guards": {
+    "all_calls_offline_and_telemetry_off": true,
+    "network_dns_and_credential_access": "Actual installed CLI entrypoint ran under Python audit hooks denying socket/DNS/HTTP-connect and secret-credential file reads; zero attempts were observed. No HTTP responses or provider behavior were mocked.",
+    "selected_catalog_access": "Seven manifest save/recall/negative invocations denied bundled snapshot and supplied catalog-file reads; zero attempts were observed.",
+    "negative_selector_outbox_access": "Both invalid selector cases denied outbox reads, writes, creation and enumeration; zero attempts were observed."
+  },
+  "external_operations": {
+    "source_http_requests": 0,
+    "hub_http_requests": 0,
+    "all_network_attempts": 0,
+    "dns_attempts": 0,
+    "credential_read_attempts": 0,
+    "posts_or_submissions": 0,
+    "register_or_flush_calls": 0,
+    "package_installations": 0,
+    "upstream_imports_or_execution": 0,
+    "fetched_instruction_activation": 0,
+    "robot_or_simulator_execution": 0,
+    "hardware_connections": 0
+  },
+  "frozen_source_code_sha256": {
+    "scripts/rsh.py": "222e580cf32daaf503bdb5be1f57a5c6fc769f4b526a1cd4ee523af61577a5a6",
+    "scripts/rshlib/__init__.py": "7a7a662d24b9b8822240c6d360efdab5991bfaa5df1c7cffcdc9b80d5705d751",
+    "scripts/rshlib/acquisition.py": "a208013c1083d3c549af1afdd731583692355e4a354157a070b751577d061610",
+    "scripts/rshlib/contributions.py": "734f1e64b14d730d1de1f0f8292134be0e521766d0f0fd17c6a50e444125829e",
+    "scripts/rshlib/core.py": "7aea259e5ae0f20999819fec5bae2081cd4c013a00e4d044439c6bd52254e4e1",
+    "scripts/rshlib/discovery.py": "11eed7f8fe36a8d4866ebc2d5bfc647684efb1efe25b969e8516950c7f56e1f2",
+    "scripts/rshlib/intake.py": "62b9a2b13f38d63bb1937bb04d7b3353a802a16d5600a6697603a52a8f9138de",
+    "scripts/rshlib/memories.py": "6bda56948c809e2fe24a7aaf087a572d6a782c26bb2d7af5130ebc2529ced172",
+    "scripts/rshlib/prepare.py": "a5622178acebf5eb75c5db78682a177e14a7aacf13911ad967db1e15cc75fa9d",
+    "scripts/rshlib/remote_catalog.py": "8b86f2ed9fa5d9b13a1df3a48465280c9e4df7cd007eda497246b7da0c73c34d",
+    "scripts/rshlib/setup.py": "8393189acec0368cbfcba441b23171eb7e3ed198af344cabae1ceb580dbdd96c"
+  },
+  "frozen_guidance_sha256": {
+    "SKILL.md": "cffcad06d71af9e9d52f2bcf31aa671351f1e132db49ab4f80d2eee2da66ede5",
+    "references/memory.md": "abfd108c926ca4ffa9d3ffd74ccc5df3797f27a193826228b2df4d5b1ace8a18",
+    "references/source-files.md": "ce07e7acbc527c2c72ca24b40c18c6b73229f6a1acb5c7046294782924bc8215"
+  },
+  "frozen_install_file_bindings": {
+    "agents/openai.yaml": {
+      "sha256": "57d315755ba5ca229074f647aff685e3a4773fb6844894768d38a8b2b3d67f96",
+      "bytes": 150
+    },
+    "assets/catalog.snapshot.json": {
+      "sha256": "f91719b644c102d0dc79bb075b406d67cf1fdade3435e36b6895ac5fce0a0007",
+      "bytes": 199434
+    },
+    "assets/memories.snapshot.json": {
+      "sha256": "9c8905b70525650ae6fd6dadda1e6f786caa826f40b3419fbb2f76152f272646",
+      "bytes": 9404
+    },
+    "assets/references.snapshot.json": {
+      "sha256": "0d17527205f3dc74fec5714786d27f321746048f2847ee7147ea5ee9523eba0a",
+      "bytes": 6710869
+    },
+    "references/contributions.md": {
+      "sha256": "eaa5c652d104ad9f2dd6cf75f6cc5e3fee9eadfdc05f36ea252e8ee5b15e7baa",
+      "bytes": 5017
+    },
+    "references/memory.md": {
+      "sha256": "abfd108c926ca4ffa9d3ffd74ccc5df3797f27a193826228b2df4d5b1ace8a18",
+      "bytes": 10615
+    },
+    "references/new-skills.md": {
+      "sha256": "a1d5f7f96a18f63eea27013eed33ef428d85a22d02b25db6738e3b7285b7c862",
+      "bytes": 4945
+    },
+    "references/source-files.md": {
+      "sha256": "ce07e7acbc527c2c72ca24b40c18c6b73229f6a1acb5c7046294782924bc8215",
+      "bytes": 3406
+    },
+    "scripts/__pycache__/rsh.cpython-310.pyc": {
+      "sha256": "3b1f5784b73efd91bddf4a0f44a0e28256cb83523b99402cae08f6cabe7c9169",
+      "bytes": 13111
+    },
+    "scripts/rsh.py": {
+      "sha256": "222e580cf32daaf503bdb5be1f57a5c6fc769f4b526a1cd4ee523af61577a5a6",
+      "bytes": 18927
+    },
+    "scripts/rshlib/__init__.py": {
+      "sha256": "7a7a662d24b9b8822240c6d360efdab5991bfaa5df1c7cffcdc9b80d5705d751",
+      "bytes": 65
+    },
+    "scripts/rshlib/__pycache__/__init__.cpython-310.pyc": {
+      "sha256": "bc927029f25f6022c27b6bc259c77f53e85d2f2f43639b4120caa66c54895a77",
+      "bytes": 213
+    },
+    "scripts/rshlib/__pycache__/acquisition.cpython-310.pyc": {
+      "sha256": "da2f06aeaa075e360980c32b3307a2031d8626ee5574cd3c163a4d4a313637a9",
+      "bytes": 24082
+    },
+    "scripts/rshlib/__pycache__/contributions.cpython-310.pyc": {
+      "sha256": "cbb0eecb92f7ba41bb144140e7b31770bd7d243e571ff98c0e698bf0a8e10551",
+      "bytes": 13220
+    },
+    "scripts/rshlib/__pycache__/core.cpython-310.pyc": {
+      "sha256": "47c9e4906f4505327e5f5d3bb1c2337d15558f83d33cf866b0fb49c937641d99",
+      "bytes": 19760
+    },
+    "scripts/rshlib/__pycache__/discovery.cpython-310.pyc": {
+      "sha256": "062d1878611e6058c03b532af7174e04ddb039f1f689943673bfc0873b6cbbf1",
+      "bytes": 7794
+    },
+    "scripts/rshlib/__pycache__/intake.cpython-310.pyc": {
+      "sha256": "3241ad5353ec625db5b5def98d40d4c0767b6530d2248f11cacab12614280bba",
+      "bytes": 12000
+    },
+    "scripts/rshlib/__pycache__/memories.cpython-310.pyc": {
+      "sha256": "9416de97edd18cc596a76274d4953cb3c1f302022de2c88219ff137ef2259feb",
+      "bytes": 24022
+    },
+    "scripts/rshlib/__pycache__/prepare.cpython-310.pyc": {
+      "sha256": "a0e3992f34e96b143e4a4def541a9787d490aae24f0d945b9944bc9decc88674",
+      "bytes": 11216
+    },
+    "scripts/rshlib/__pycache__/remote_catalog.cpython-310.pyc": {
+      "sha256": "665f4482f4464dba6502a8e3b6f82925db8179451ca72334e0dca15ac77dbfb7",
+      "bytes": 9775
+    },
+    "scripts/rshlib/__pycache__/setup.cpython-310.pyc": {
+      "sha256": "f51202916d7fe76d8a64cb97cf106cf0bc2c39af6d0cde167aae28c8c445e0dd",
+      "bytes": 6076
+    },
+    "scripts/rshlib/acquisition.py": {
+      "sha256": "a208013c1083d3c549af1afdd731583692355e4a354157a070b751577d061610",
+      "bytes": 28949
+    },
+    "scripts/rshlib/contributions.py": {
+      "sha256": "734f1e64b14d730d1de1f0f8292134be0e521766d0f0fd17c6a50e444125829e",
+      "bytes": 15880
+    },
+    "scripts/rshlib/core.py": {
+      "sha256": "7aea259e5ae0f20999819fec5bae2081cd4c013a00e4d044439c6bd52254e4e1",
+      "bytes": 23332
+    },
+    "scripts/rshlib/discovery.py": {
+      "sha256": "11eed7f8fe36a8d4866ebc2d5bfc647684efb1efe25b969e8516950c7f56e1f2",
+      "bytes": 9324
+    },
+    "scripts/rshlib/intake.py": {
+      "sha256": "62b9a2b13f38d63bb1937bb04d7b3353a802a16d5600a6697603a52a8f9138de",
+      "bytes": 13476
+    },
+    "scripts/rshlib/memories.py": {
+      "sha256": "6bda56948c809e2fe24a7aaf087a572d6a782c26bb2d7af5130ebc2529ced172",
+      "bytes": 32439
+    },
+    "scripts/rshlib/prepare.py": {
+      "sha256": "a5622178acebf5eb75c5db78682a177e14a7aacf13911ad967db1e15cc75fa9d",
+      "bytes": 16742
+    },
+    "scripts/rshlib/remote_catalog.py": {
+      "sha256": "8b86f2ed9fa5d9b13a1df3a48465280c9e4df7cd007eda497246b7da0c73c34d",
+      "bytes": 12865
+    },
+    "scripts/rshlib/setup.py": {
+      "sha256": "8393189acec0368cbfcba441b23171eb7e3ed198af344cabae1ceb580dbdd96c",
+      "bytes": 6845
+    },
+    "SKILL.md": {
+      "sha256": "cffcad06d71af9e9d52f2bcf31aa671351f1e132db49ab4f80d2eee2da66ede5",
+      "bytes": 8051
+    }
+  },
+  "frozen_install_binding_scope": "All 31 copied install files are bound by relative bundle filename and hash only, including genuine snapshots and pre-existing generated Python cache files. No cache/code contents or absolute paths are published.",
+  "private_run_sha256": "e375fabf4834858dc9ac9c5559c6a9d5bc9a2cba1d509f84c0be5c1f03042eb1",
+  "limits": [
+    "Only one of five genuine acquired files (Spot arm gaze) was used for this context workflow; the other four remained present and unchanged.",
+    "The advanced source pins and three index rows are explicitly synthetic, not actual newer upstream bytes, accepted public findings or registry generations.",
+    "This tests local persistence and exact-source recall only; no delivery/token acceptance/PR/publication or runtime execution was attempted.",
+    "The malformed finding and incomplete index fixtures required authoring corrections; the final successful index is contract-complete, not an assertion that arbitrary partial index rows are accepted.",
+    "No upstream code, fetched instruction, robot program, simulator, model or hardware was executed; only the installed Hub CLI and local test harness ran.",
+    "The no-lock pre-fix problem is described from maintainer context and retained-code static review; this follow-up did not independently execute the old CLI against the advanced fixture.",
+    "Zero network attempts describe this audited offline test, not a remote API delivery test or proof about all possible clients."
+  ]
+}
