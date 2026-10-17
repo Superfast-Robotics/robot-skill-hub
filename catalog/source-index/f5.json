@@ -8,6 +8,12 @@
       "record_version": "source-de33abfe759765119825dd2d6c5cd549d5fc91f68c3e3abc06f3ce4842f2a7fd"
     },
     {
+      "id": "ur-description-artifact-config-ur12e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "4bf9a0dfdeb73d7a8b43171fd8a2cedffa9eaf6e342857df44229380e4ad2e49",
+      "record_version": "source-4bf9a0dfdeb73d7a8b43171fd8a2cedffa9eaf6e342857df44229380e4ad2e49"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-compass-compass-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "d0e8d215bcb40347ab7d8807430b4f629400ed5b2944f8467d052bf2890b9874",

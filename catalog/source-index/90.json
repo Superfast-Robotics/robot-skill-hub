@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-tmrv0-2-tmrv0-2-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "8ef560c5e30ce40a83f768ad858f0a210945e901e12bc93b7801318adbdf9ce5",
+      "record_version": "source-8ef560c5e30ce40a83f768ad858f0a210945e901e12bc93b7801318adbdf9ce5"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-light-sensor-light-sensor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "90115a8ee15d183be2164e04bea58cce0b7f1118478ea7be671ae66c8182b90c",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fer-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "213cbf35de6645bee36e8e60f9707ad69972738a12dcb1ec496ed720fb7ffc66",
+      "record_version": "source-213cbf35de6645bee36e8e60f9707ad69972738a12dcb1ec496ed720fb7ffc66"
+    },
+    {
+      "id": "franka-description-artifact-robots-fr3v2-1-fr3v2-1-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "4095a74ff0ff09583e59b6734fe8df4201eef3cf720c830c134ef120b1e11977",
+      "record_version": "source-4095a74ff0ff09583e59b6734fe8df4201eef3cf720c830c134ef120b1e11977"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-using-ompl-constrained-planning-src-ompl-af905496324a",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "fc050f49525b3e571656b44f18f63c8f640e8921237f41e77071565981fb78cd",

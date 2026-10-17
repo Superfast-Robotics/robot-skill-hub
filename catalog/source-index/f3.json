@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "ros2-control-artifact-example-8-bringup-config-rrbot-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "c1c663a844c5205ea485526c47cfea93e2b5b9b239175ac1ceec51636f5fc8ab",
+      "record_version": "source-c1c663a844c5205ea485526c47cfea93e2b5b9b239175ac1ceec51636f5fc8ab"
+    },
+    {
       "id": "webots-projects-robots-epson-scara-t6-controllers-scara-food-indust-3ea5ce9bb171",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "0cfcc948a3b72dca3585e11285d1adbc2e679b860a44390f0aba7ca44732eabd",

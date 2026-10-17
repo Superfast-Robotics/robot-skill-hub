@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fp3-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386",
+      "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
+    },
+    {
       "id": "lerobot-examples-lekiwi-replay-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "774225113fad605e08806458af49b8e3edfb9b6bc036063cafb052ab6c49ae50",
@@ -12,6 +18,12 @@
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "f79c54436d5c521399544ef55da3620b971fcdc590970d2849f3eec39093ab3a",
       "record_version": "source-f79c54436d5c521399544ef55da3620b971fcdc590970d2849f3eec39093ab3a"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pndbotics-adam-lite-adam-lite-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a8725b28db6a1c748ab3e54dbb9233a99a38b3b73e07cdc8506e2e569bca4889",
+      "record_version": "source-a8725b28db6a1c748ab3e54dbb9233a99a38b3b73e07cdc8506e2e569bca4889"
     },
     {
       "id": "pinocchio-examples-meshcat-viewer-solo-py",

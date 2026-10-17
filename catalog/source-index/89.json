@@ -8,6 +8,12 @@
       "record_version": "source-4b25b737f8ccbbfeb3082e5d7cdfece7232bff5c6edc6f4631fe6052e2d29230"
     },
     {
+      "id": "ros2-control-artifact-example-17-description-urdf-rrbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "92a4ddc99d15542b264d34782a40e706cbd410ead55f7d91128c0cd2f172fce2",
+      "record_version": "source-92a4ddc99d15542b264d34782a40e706cbd410ead55f7d91128c0cd2f172fce2"
+    },
+    {
       "id": "webots-projects-robots-irobot-create-controllers-ground-ground-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "4f45fc47b7828438cdca9abea9e223c1e9e21e1e75f21554ab4adb7d11754cfd",

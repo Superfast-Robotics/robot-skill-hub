@@ -12,6 +12,18 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "f26451149b349b28b79043ee429c0078626ebfab5c97c4629c4f4842c07f6d40",
       "record_version": "source-f26451149b349b28b79043ee429c0078626ebfab5c97c4629c4f4842c07f6d40"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xm-scene-pos-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "584d5f7e59b12894b63c952f593b56bf1bedf4c3047424faa720d318dbaea9bf",
+      "record_version": "source-584d5f7e59b12894b63c952f593b56bf1bedf4c3047424faa720d318dbaea9bf"
+    },
+    {
+      "id": "ur-description-artifact-config-ur16e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "2d3a9bfff28749b5a2a5517eeaa8f86557981166414be0d34d521061187e587e",
+      "record_version": "source-2d3a9bfff28749b5a2a5517eeaa8f86557981166414be0d34d521061187e587e"
     }
   ]
 }

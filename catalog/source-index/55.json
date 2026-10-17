@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-robotiq-2f85-v4-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "dbc7255f3e1a5539e59cffac3000a49f19aa3cae384061aa74ec787e6a5760ff",
+      "record_version": "source-dbc7255f3e1a5539e59cffac3000a49f19aa3cae384061aa74ec787e6a5760ff"
+    },
+    {
       "id": "ompl-demos-point2dplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "169373f248203887bf4e1ffc6458cf6942f740a01e5ae881a3aef60d36628f26",

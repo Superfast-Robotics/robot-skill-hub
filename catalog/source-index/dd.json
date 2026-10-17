@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-rby1a-1-2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7a8f80dd827c15e6691f78faf5cb1fd0c6f96cb567e25ac7d3db233dfbe33620",
+      "record_version": "source-7a8f80dd827c15e6691f78faf5cb1fd0c6f96cb567e25ac7d3db233dfbe33620"
+    },
+    {
       "id": "pinocchio-examples-forward-dynamics-derivatives-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "2f281b5958b0403d9a2c06515f649877fa3bbedf6058c7facd7a5a7c59233248",

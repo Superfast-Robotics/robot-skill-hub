@@ -1,22 +1,18 @@
 /** Public discovery and stateless, read-only MCP. Never executes robot code. */
 import { capabilities } from './memories.ts';
 import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
+import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings } from './catalog.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.2.1';
+const VERSION = '0.3.0';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
 const MAX_INDEX = 2 * 1024 * 1024;
 type Row = Record<string, any>;
-type PublicEnv = MetricsEnv & { PUBLICATION_URL: string; PUBLIC_LIMITER?: { limit(input: { key: string }): Promise<{ success: boolean }> } };
+type PublicEnv = MetricsEnv & CatalogEnv & { PUBLICATION_URL: string; PUBLIC_LIMITER?: { limit(input: { key: string }): Promise<{ success: boolean }> } };
 type Snapshot = { schema_version: string; hub_commit: string; records: Row[]; [key: string]: any };
-class PublicError extends Error {
-  status: number;
-  code: string;
-  constructor(status: number, code: string, message: string) { super(message); this.status = status; this.code = code; }
-}
 const HEADERS = { 'Content-Type': 'application/json; charset=utf-8', 'X-Content-Type-Options': 'nosniff',
   'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'MCP-Protocol-Version, Retry-After', 'Cache-Control': 'no-store' };
 const json = (body: unknown, status = 200, extra: Record<string, string> = {}) => new Response(JSON.stringify(body), { status, headers: { ...HEADERS, ...extra } });
@@ -49,7 +45,7 @@ async function digest(bytes: Uint8Array): Promise<string> {
 
 export const MCP_TOOLS = [
   { name: 'find_robot_skills', description: 'Search pinned robot code across robots and runtimes. Results distinguish prepared recipes from upstream references; source discovery is not runtime verification.',
-    inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240 }, runtime: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
+    inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240 }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference, provenance, license, access instructions and exact evidence. No installation or execution is performed.',
     inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120 } }, required: ['skill_id'], additionalProperties: false },
@@ -64,57 +60,58 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   let pending: Promise<Snapshot> | undefined;
   const records = new Map<string, { expires: number; value: Row }>();
   async function read(path: string, maximum: number) {
-    const response = await fetcher(ORIGIN + path, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: { Accept: 'application/json', 'User-Agent': 'robot-skill-hub-api/0.2', 'Cache-Control': 'no-cache' } });
+    const response = await fetcher(ORIGIN + path, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: INTERNAL_HEADERS });
     return boundedBytes(response, maximum);
   }
-  async function snapshot(): Promise<Snapshot> {
+  async function snapshot(env: PublicEnv): Promise<Snapshot> {
+    if (env.CATALOG) {
+      const version = await publishedVersion(fetcher);
+      try {
+        const manifest = await activeCatalog(env.CATALOG, version.hub_commit);
+        if (manifest) return { ...manifest, hub_commit: version.hub_commit, schema_version: '1', records: [], backend: 'd1_fts5', database: env.CATALOG };
+      } catch { /* A bounded, verified static view remains usable during D1 outages. */ }
+      if (!SHA.test(version.resources?.search?.sha256 || '')) fail(503, 'catalog_sync_required', 'The current catalog mirror is not ready and no complete static search resource is published.');
+      return staticSnapshot(version);
+    }
     if (cached && cached.expires > now()) return cached.value;
     if (!pending) pending = (async () => {
       const version = JSON.parse(new TextDecoder().decode(await read('/catalog/v1/version.json', 32 * 1024)));
+      return staticSnapshot(version);
+    })().finally(() => { pending = undefined; });
+    return pending;
+  }
+  async function staticSnapshot(version: Row): Promise<Snapshot> {
+      if (cached && cached.value.hub_commit === version.hub_commit && cached.expires > now()) return cached.value;
       const expected = version.resources?.search?.sha256;
       if (!SHA.test(expected || '')) fail(503, 'search_not_published', 'The current publication has no verified search resource.');
       const bytes = await read('/catalog/v1/search.json?v=' + encodeURIComponent(version.hub_commit), MAX_INDEX);
       if (await digest(bytes) !== expected) fail(503, 'publication_changed', 'The catalog changed during this read; retry once.');
       const value = JSON.parse(new TextDecoder().decode(bytes));
-      if (value.schema_version !== '1' || value.hub_commit !== version.hub_commit || !/^[a-f0-9]{40}$/.test(value.hub_commit) || !Array.isArray(value.records) || value.records.some((r: Row) => !IDENT.test(r.id) || !SHA.test(r.record_sha256 || ''))) fail(503, 'invalid_publication', 'The published search resource does not match its version.');
+      if (value.schema_version !== '1' || value.hub_commit !== version.hub_commit || !/^[a-f0-9]{40}$/.test(value.hub_commit) || value.coverage?.complete === false || !Array.isArray(value.records) || value.records.some((r: Row) => !IDENT.test(r.id) || !SHA.test(r.record_sha256 || ''))) fail(503, 'invalid_publication', 'The published search resource does not match its version or is incomplete.');
+      value.backend = 'static_v1_fallback';
       cached = { value, expires: now() + 60000 }; return value;
-    })().finally(() => { pending = undefined; });
-    return pending;
   }
-  function searchRows(index: Snapshot, input: Row) {
-    const allowed = ['q', 'runtime', 'robot', 'controller', 'observation', 'os', 'kind', 'limit', 'offset', 'hub_commit'];
-    if (Object.keys(input).some(k => !allowed.includes(k))) fail(400, 'invalid_search', 'Use only documented search parameters.');
-    const limit = input.limit === undefined ? 10 : Number(input.limit), offset = input.offset === undefined ? 0 : Number(input.offset);
-    if (!Number.isInteger(limit) || limit < 1 || limit > 50 || !Number.isInteger(offset) || offset < 0 || offset > 1000000) fail(400, 'invalid_pagination', 'limit must be 1..50 and offset a nonnegative bounded integer.');
-    for (const [key, value] of Object.entries(input)) if (!['limit', 'offset'].includes(key) && (typeof value !== 'string' || value.length > (key === 'q' ? 240 : 80))) fail(400, 'invalid_search', 'Search values must be bounded strings.');
-    if (input.hub_commit && input.hub_commit !== index.hub_commit) fail(409, 'catalog_changed', 'Refresh the query before continuing pagination on a new catalog version.');
-    if (input.kind && !['preparation_recipe', 'source_reference'].includes(input.kind)) fail(400, 'invalid_kind', 'kind must be preparation_recipe or source_reference.');
+  async function searchRows(index: Snapshot, input: Row) {
+    const { limit, offset } = validateSearch(input, index.hub_commit);
     const terms = String(input.q || '').toLowerCase().replace(/[-_/]/g, ' ').split(/\s+/).filter(Boolean);
     const matches = index.records.filter(row => {
       if (input.kind && row.kind !== input.kind) return false;
-      const filters = ['runtime', 'robot', 'controller', 'observation', 'os'].filter(key => input[key]);
-      for (const key of filters) {
-        if (!input[key]) continue;
-        // A framework is a discovery fact, not a tested environment combination.
-        if (filters.length === 1 && key === 'runtime' && [row.runtime, row.framework].some(value => typeof value === 'string' && value.toLowerCase() === input.runtime.toLowerCase())) continue;
-        if (filters.length === 1 && key === 'robot' && Array.isArray(row.robots) && row.robots.some((robot: unknown) => typeof robot === 'string' && robot.toLowerCase() === input.robot.toLowerCase())) continue;
-        const combinations = Array.isArray(row.compatibility) ? row.compatibility : [];
-        if (!combinations.some((c: Row) => String(c[key] || '').toLowerCase() === input[key].toLowerCase() && ['runtime', 'robot', 'controller', 'observation', 'os'].every(k => !input[k] || String(c[k] || '').toLowerCase() === input[k].toLowerCase()))) return false;
-      }
+      if (!combinationMatches(row, input)) return false;
       const haystack = [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), row.runtime || ''].join(' ').toLowerCase().replace(/[-_/]/g, ' ');
       return terms.every(term => haystack.includes(term));
     });
     const normalized = String(input.q || '').toLowerCase();
     matches.sort((a, b) => Number(b.id === normalized) - Number(a.id === normalized) || Number(b.kind === 'preparation_recipe') - Number(a.kind === 'preparation_recipe') || a.id.localeCompare(b.id));
-    const results = matches.slice(offset, offset + limit);
-    return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, results, total: matches.length, limit, offset,
-      next: offset + limit < matches.length ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
+    const found = index.database ? await indexedSearch(index.database, index.hub_commit, input) : { results: matches.slice(offset, offset + limit), total: matches.length };
+    const results = found.results;
+    return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts, backend: index.backend, coverage: { complete: true }, search_semantics: index.database ? 'all_terms_word_prefix' : 'all_terms_substring', results, total: found.total, limit, offset,
+      next: offset + limit < found.total ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
       execution_performed: false, next_action: results.length ? 'inspect_selected_record' : 'broaden_or_correct_query',
       evidence_rule: 'A search match does not establish runtime compatibility or task completion.' };
   }
   async function inspect(index: Snapshot, id: string, version?: string) {
     if (!IDENT.test(id)) fail(400, 'invalid_skill_id', 'Use an exact catalog skill ID.');
-    const row = index.records.find(row => row.id === id); if (!row) throw new PublicError(404, 'skill_not_found', 'No published record has this ID.');
+    const row = index.database ? await indexedRow(index.database, index.hub_commit, id) : index.records.find(row => row.id === id); if (!row) throw new PublicError(404, 'skill_not_found', 'No published record has this ID.');
     if (version && version !== row.record_version) fail(409, 'record_version_changed', 'The selected record version changed. Preserve existing project locks and inspect the new version separately.');
     const key = index.hub_commit + ':' + id;
     const hit = records.get(key); if (hit && hit.expires > now()) return hit.value;
@@ -126,8 +123,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     if (records.size >= 128) records.delete(records.keys().next().value!);
     records.set(key, { value, expires: now() + 60000 }); return value;
   }
-  async function describe(refresh = false) {
-    const index = refresh ? await snapshot() : cached?.value;
+  async function describe(env: PublicEnv, refresh = false) {
+    const index = refresh ? await snapshot(env) : cached?.value;
     return { ...capabilities(), server_version: VERSION, catalog_hub_commit: index?.hub_commit ?? null, counts: index?.counts ?? null,
       public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
       new_skill_submission: { method: 'POST', url: API + '/v1/skills', authentication: 'allowed_agent_Bearer_token', publication: 'internal_draft_PR_then_maintainer_review' },
@@ -163,12 +160,12 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       let value;
       if (name === 'find_robot_skills') {
         if (['limit', 'offset'].some(k => args[k] !== undefined && (typeof args[k] !== 'number' || !Number.isInteger(args[k])))) fail(400, 'invalid_arguments', 'MCP pagination values must be integers.');
-        value = searchRows(await snapshot(), args);
+        value = await searchRows(await snapshot(env), args);
       }
       else if (name === 'inspect_robot_skill') {
         if (Object.keys(args).some(k => !['skill_id', 'record_version'].includes(k)) || typeof args.skill_id !== 'string' || (args.record_version !== undefined && typeof args.record_version !== 'string')) fail(400, 'invalid_arguments', 'Provide skill_id and optional record_version only.');
-        value = { schema_version: '1', interpretation: 'data_only', record: await inspect(await snapshot(), args.skill_id, args.record_version), execution_performed: false };
-      } else { if (Object.keys(args).length) fail(400, 'invalid_arguments', 'This tool takes no arguments.'); value = await describe(true); }
+        value = { schema_version: '1', interpretation: 'data_only', record: await inspect(await snapshot(env), args.skill_id, args.record_version), execution_performed: false };
+      } else { if (Object.keys(args).length) fail(400, 'invalid_arguments', 'This tool takes no arguments.'); value = await describe(env, true); }
       await measure(request, env, 'mcp', ctx, true);
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value, isError: false });
     } catch (error) {
@@ -179,7 +176,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   return async function handle(request: Request, env: PublicEnv, ctx?: Background): Promise<Response | null> {
     const url = new URL(request.url), path = url.pathname;
-    const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
+    const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
     if (!relevant) return null;
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, MCP-Protocol-Version, Mcp-Session-Id, X-RSH-Client, X-RSH-Telemetry, DNT', 'Access-Control-Max-Age': '600' } });
     try {
@@ -193,7 +190,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       if (!['GET', 'HEAD'].includes(request.method)) return json({ status: 'failed', reason_code: 'method_not_allowed' }, 405, { Allow: 'GET, HEAD, OPTIONS' });
       let response: Response;
       if (path === '/v1/metrics') response = json(await measurementReport(env, now()));
-      else if (path === '/v1/capabilities') response = json(await describe());
+      else if (path === '/v1/capabilities') response = json(await describe(env));
       else if (path === '/openapi.json') response = new Response((await read('/openapi.json', 128 * 1024)).buffer as ArrayBuffer, { headers: HEADERS });
       else if (path === '/v1/catalog' || path === '/v1/references') {
         const resource = path === '/v1/catalog' ? 'index' : 'references';
@@ -205,11 +202,16 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         response = new Response(bytes.buffer as ArrayBuffer, { headers: HEADERS });
         if (request.method === 'GET') await measure(request, env, resource === 'index' ? 'catalog' : 'references', ctx);
       } else if (path === '/v1/search') {
-        response = json(searchRows(await snapshot(), Object.fromEntries(url.searchParams)));
+        response = json(await searchRows(await snapshot(env), Object.fromEntries(url.searchParams)));
         if (request.method === 'GET') await measure(request, env, 'search', ctx);
+      } else if (path === '/v1/findings') {
+        const version = await publishedVersion(fetcher), input = Object.fromEntries(url.searchParams);
+        const active = env.CATALOG ? await activeCatalog(env.CATALOG, version.hub_commit) : null;
+        response = json(active ? await indexedFindings(env.CATALOG!, version.hub_commit, input) : await staticFindings(fetcher, version, input));
       } else {
         const id = path.slice('/v1/skills/'.length);
-        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: (await snapshot()).hub_commit, record: await inspect(await snapshot(), id, url.searchParams.get('record_version') || undefined), execution_performed: false });
+        const index = await snapshot(env);
+        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record: await inspect(index, id, url.searchParams.get('record_version') || undefined), execution_performed: false });
         if (request.method === 'GET') await measure(request, env, 'inspect', ctx);
       }
       return request.method === 'HEAD' ? new Response(null, { status: response.status, headers: response.headers }) : response;

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-accessories-franka-head-v0-2-franka-head-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "1bfd8de5d28742aab56aa33e9dee8b1aab4da6878b7c9f18aa2c06695366f7fe",
+      "record_version": "source-1bfd8de5d28742aab56aa33e9dee8b1aab4da6878b7c9f18aa2c06695366f7fe"
+    },
+    {
       "id": "ompl-demos-optimalplanning-py",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "859f99c56e2156320f126375f6723b68b6a93c6086662ea252cb283c0a4ae45b",
@@ -12,6 +18,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "2b6430a1063ad0ff0717296e29067da594afaeb5ccdaa790f27b001de07a88a0",
       "record_version": "source-2b6430a1063ad0ff0717296e29067da594afaeb5ccdaa790f27b001de07a88a0"
+    },
+    {
+      "id": "ur-description-artifact-urdf-inc-ur-joint-control-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "5b18f42b31d3fcd7916abefc59a2959c484d2cae0fb766dfe782708c9d39743d",
+      "record_version": "source-5b18f42b31d3fcd7916abefc59a2959c484d2cae0fb766dfe782708c9d39743d"
     }
   ]
 }

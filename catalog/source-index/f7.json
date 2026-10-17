@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "ros2-control-artifact-example-5-bringup-config-wrench-transformer-params-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "0680f0626f80f3145e38a6d65eb2298fbc0cec1f0abe33d8d41956306fbfce08",
+      "record_version": "source-0680f0626f80f3145e38a6d65eb2298fbc0cec1f0abe33d8d41956306fbfce08"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-camera-segmentation-cam-5b8f99a1218d",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "36cf713d7917aac7a5eadfbaec27a51d05d5b22ff27375988e1dff579792138f",

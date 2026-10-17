@@ -8,10 +8,34 @@
       "record_version": "source-f95d18faea55acb1dddaf29fb68db41624c1d2e6ca7c542c8c553cbd7d648e97"
     },
     {
+      "id": "mujoco-menagerie-artifact-leap-hand-scene-left-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2108f237852073a5a76cf8ede77c282d7ad16885da98b0f9d9b58988c1f136b2",
+      "record_version": "source-2108f237852073a5a76cf8ede77c282d7ad16885da98b0f9d9b58988c1f136b2"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-low-cost-robot-arm-low-cost-robot-arm-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "30a8641f3187e3633b0251d71d1589913a5a3bd8464ae29d21ef0398b8cf3649",
+      "record_version": "source-30a8641f3187e3633b0251d71d1589913a5a3bd8464ae29d21ef0398b8cf3649"
+    },
+    {
+      "id": "ros2-control-artifact-example-2-description-urdf-diffbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "52170f48920a56ce48a1618e6876daa476bc87616fb4908854c9c51d5271007a",
+      "record_version": "source-52170f48920a56ce48a1618e6876daa476bc87616fb4908854c9c51d5271007a"
+    },
+    {
       "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-w-9a827c1e8c23",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "745e5f5cf81840f2b1bee792de1e34a1c3a107b2d55d095a49134fc8a367964a",
       "record_version": "source-745e5f5cf81840f2b1bee792de1e34a1c3a107b2d55d095a49134fc8a367964a"
+    },
+    {
+      "id": "ur-description-artifact-config-ur12e-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "677931caf9cbaec19eedf7671b8070f345ca409de9ab4a99a4c11b75f918655a",
+      "record_version": "source-677931caf9cbaec19eedf7671b8070f345ca409de9ab4a99a4c11b75f918655a"
     },
     {
       "id": "webots-projects-robots-unimation-puma-controllers-puma560-puma560-c",

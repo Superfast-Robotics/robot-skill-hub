@@ -8,6 +8,12 @@
       "record_version": "source-2e4b9bed7bbcdbf651eff7c1924ee604c9ee072f7eaebe7b5c00758884c3e78c"
     },
     {
+      "id": "mujoco-menagerie-artifact-shadow-hand-right-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399",
+      "record_version": "source-ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399"
+    },
+    {
       "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3at-obstac-eaa2d6c7c6b1",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c48f7159e3f8fffadb9efa163d92e646d43c70080d5ca3efc137d4436c952012",

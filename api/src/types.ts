@@ -1,7 +1,8 @@
 import type { MetricsEnv } from './metrics.ts';
+import type { CatalogEnv } from './catalog.ts';
 
 export type JsonObject = Record<string, any>;
-export interface Env extends MetricsEnv {
+export interface Env extends MetricsEnv, CatalogEnv {
   GITHUB_TOKEN?: string;
   SUBMISSION_TOKENS_JSON?: string;
   PUBLICATION_URL: string;

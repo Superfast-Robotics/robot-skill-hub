@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-pal-tiago-scene-velocity-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4fbda702df6f19245412264aa0707c987e99e3627fcc0cc9fc878598a1b804d1",
+      "record_version": "source-4fbda702df6f19245412264aa0707c987e99e3627fcc0cc9fc878598a1b804d1"
+    },
+    {
+      "id": "ur-description-artifact-config-ur15-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "9f7d3294303f0bea7ed368f7d56eda27a59e088646527f3b792bdfe047780cfa",
+      "record_version": "source-9f7d3294303f0bea7ed368f7d56eda27a59e088646527f3b792bdfe047780cfa"
+    },
+    {
       "id": "webots-projects-robots-gctronic-e-puck-controllers-e-puck-line-demo-30a0e0414e0c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "cd64e58eb15e5ecb5977c23073ec922757d029f5855f1e081bc3a91340458829",

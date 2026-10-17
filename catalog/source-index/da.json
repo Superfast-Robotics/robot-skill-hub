@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-robotiq-2f85-2f85-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d48aca5f9151798ffd38111ce4e8b2081f3ec2d4f525161b33643451580010de",
+      "record_version": "source-d48aca5f9151798ffd38111ce4e8b2081f3ec2d4f525161b33643451580010de"
+    },
+    {
       "id": "ompl-demos-constraint-constrainedplanningsphere-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "664fc29de94042194928fa8e63802429d6e0b93ef60af5f94cdfc930387f5163",
       "record_version": "source-664fc29de94042194928fa8e63802429d6e0b93ef60af5f94cdfc930387f5163"
+    },
+    {
+      "id": "ros2-control-artifact-example-6-bringup-config-rrbot-modular-actuators-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "c1c663a844c5205ea485526c47cfea93e2b5b9b239175ac1ceec51636f5fc8ab",
+      "record_version": "source-c1c663a844c5205ea485526c47cfea93e2b5b9b239175ac1ceec51636f5fc8ab"
     },
     {
       "id": "webots-projects-robots-k-team-khepera3-controllers-khepera3-gripper-f9ba2a8ae028",

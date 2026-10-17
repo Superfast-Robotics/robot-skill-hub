@@ -20,6 +20,12 @@
       "record_version": "source-d912c13c79f655d31167308096f4270f84ed644a09ff34218e21c04f554759a0"
     },
     {
+      "id": "ros2-control-artifact-example-13-bringup-config-three-robots-positi-2b3db7386426",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "9b44334bd208faafacac71c27239d7148ebea25da49233d8843bbf6f82fa4c5f",
+      "record_version": "source-9b44334bd208faafacac71c27239d7148ebea25da49233d8843bbf6f82fa4c5f"
+    },
+    {
       "id": "webots-projects-robots-robotis-darwin-op-controllers-soccer-main-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c5e6dc9ceaac355c64d2b78841176514d4a61158e60ee13d593b110e4a88d5ec",

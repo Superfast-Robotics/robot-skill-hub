@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-end-effectors-cobot-pump-cobot-pump-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "f1ddf78729400ed40398d5d6cb9a30b36f426c89743549e9224583c3ae0e4990",
+      "record_version": "source-f1ddf78729400ed40398d5d6cb9a30b36f426c89743549e9224583c3ae0e4990"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-universal-robots-ur10e-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "fc50163a7d83af12d950bddc4df7ff61817895540922a40d23b5855f372888d3",
+      "record_version": "source-fc50163a7d83af12d950bddc4df7ff61817895540922a40d23b5855f372888d3"
+    },
+    {
       "id": "ompl-demos-diagonal-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "2a2f3638735c1b839ca337997af1c589043d92060a4221df7c01c678ac773f01",
       "record_version": "source-2a2f3638735c1b839ca337997af1c589043d92060a4221df7c01c678ac773f01"
+    },
+    {
+      "id": "ur-description-artifact-config-ur30-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "0f3c5522edef7feee142ef87cba9dd21eccb4974c048f4bf53a13772f09e5c4e",
+      "record_version": "source-0f3c5522edef7feee142ef87cba9dd21eccb4974c048f4bf53a13772f09e5c4e"
     }
   ]
 }

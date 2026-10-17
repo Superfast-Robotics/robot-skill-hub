@@ -30,6 +30,8 @@ jobs:
       - run: python tools/build_catalog.py --hub-commit "$GITHUB_SHA" --base-url https://hub.superfastrobotics.com
       - run: python -m unittest discover -s tests/python -v
       - run: python tools/test_catalog.py -v
+      - run: python tools/test_catalog_v2.py -v
+      - run: python tools/test_sync_catalog.py -v
       - run: npm ci
         working-directory: api
       - run: npm run check && npm test

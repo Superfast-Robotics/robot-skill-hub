@@ -3,9 +3,10 @@
 Uses only Python's standard library. The schema validator implements the JSON
 Schema keywords used by schemas/skill.schema.json, not arbitrary JSON Schema.
 
-Published JSON has fixed UTF-8 byte budgets shared with API/CLI consumers.
-Before the inventory or immutable proof history exceeds them, migrate discovery
-and proof retrieval to a versioned, bounded index. Current publication is finite.
+Complete discovery uses checksum-bound v2 pages and per-receipt proofs. Bounded
+v1 resources are compatibility views with explicit coverage, or are omitted
+when their wire format cannot express partial coverage. Leaf and manifest byte
+budgets remain explicit capacity limits for a future versioned migration.
 """
 import argparse
 import copy
@@ -31,14 +32,20 @@ from rshlib.intake import validate_published_reference
 from rshlib.core import RshError
 if __package__:
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
+    from .catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 else:
     from reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
+    from catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 
 CATALOG_JSON_MAX_BYTES = 8 * 1024 * 1024
 SEARCH_JSON_MAX_BYTES = 2 * 1024 * 1024
 PUBLICATION_JSON_MAX_BYTES = 512 * 1024
 VERSION_JSON_MAX_BYTES = 32 * 1024
 RECORD_JSON_MAX_BYTES = 256 * 1024
+V2_MANIFEST_MAX_BYTES = 128 * 1024
+V2_PAGE_MAX_BYTES = 128 * 1024
+V2_PAGE_MAX_RECORDS = 100
+RECEIPT_PROOF_MAX_BYTES = 256 * 1024
 
 
 def read_json(path):
@@ -54,6 +61,30 @@ def write(path, value, max_bytes=None):
 
 def write_json(path, value, max_bytes=None):
     write(path, json.dumps(value, ensure_ascii=False, indent=2) + "\n", max_bytes=max_bytes)
+
+
+def publish_compatibility(index, path, snapshot, manifest_url):
+    view = compatibility_view(index, CATALOG_JSON_MAX_BYTES, manifest_url)
+    write_json(path, view, max_bytes=CATALOG_JSON_MAX_BYTES)
+    write_json(snapshot, view, max_bytes=CATALOG_JSON_MAX_BYTES)
+    return view
+
+
+def write_exact_files(output, files):
+    for relative, raw in files.items():
+        destination = output / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(raw)
+
+
+def optional_aggregate(path, raw, limit):
+    if len(raw) <= limit:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(raw)
+        return True
+    if path.is_file():
+        path.unlink()
+    return False
 
 
 def validate_schema(value, schema, root_schema, location="$"):
@@ -200,9 +231,9 @@ Compatibility status: **{c['status']}**. An environment match does not establish
 ## Find, inspect, prepare
 
 ```sh
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json find "{r['capabilities'][0]}" --runtime {c['runtime']} --runtime-version {c['runtime_version']} --robot {c['robot']} --json
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json inspect {r['id']} --json
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json prepare {r['id']} --project ./experiment --plan --json
+python /PATH_TO_SKILL/scripts/rsh.py find "{r['capabilities'][0]}" --runtime {c['runtime']} --runtime-version {c['runtime_version']} --robot {c['robot']} --json
+python /PATH_TO_SKILL/scripts/rsh.py inspect {r['id']} --json
+python /PATH_TO_SKILL/scripts/rsh.py prepare {r['id']} --project ./experiment --expected-source-commit {r['source']['commit']} --expected-record-version {r['maintenance']['record_version']} --plan --json
 ```
 
 Remove `--plan` to download the checksum-verified pinned source and create an isolated project environment. Preparation returns the remaining configuration. Dependency installation is an explicit `--install-deps` step; it can execute package build hooks. Robot simulation is a separate command returned by prepare, never run by find/inspect.
@@ -391,7 +422,7 @@ def load_memories():
     return entries
 
 
-def publish_memories(entries, output, base, hub_commit):
+def publish_memories(entries, output, base, hub_commit, *, return_index=False):
     records, proofs = [], []
     for entry, raw in entries:
         ident = entry["memory_id"]
@@ -413,9 +444,10 @@ def publish_memories(entries, output, base, hub_commit):
         destination.write_bytes(raw)
     index = {"schema_version": "1", "hub_commit": hub_commit, "interpretation": "data_only",
              "trust": "contributor_reported", "records": records}
-    write_json(output / "catalog/v1/memories.json", index, max_bytes=CATALOG_JSON_MAX_BYTES)
-    write_json(ROOT / "skills/find-robot-skills/assets/memories.snapshot.json", index)
-    return proofs
+    publish_compatibility(index, output / "catalog/v1/memories.json",
+                          ROOT / "skills/find-robot-skills/assets/memories.snapshot.json",
+                          base + "/catalog/v2/memory-manifest.json")
+    return (proofs, index) if return_index else proofs
 
 
 def publish_history(releases, output, base):
@@ -464,9 +496,9 @@ def shell(title, description, body, base, path=""):
 </head>
 <body>
 <header><p><a href="{esc(base)}/">Robot Skill Hub</a> by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
-<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v1/search.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
+<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
 {body}
-<footer><hr><p><a href="{esc(base)}/catalog/v1/publication.json">Publication manifest</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
+<footer><hr><p><a href="{esc(base)}/agent.json">Publication proof contract</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
 </body>
 </html>"""
 
@@ -598,6 +630,7 @@ def search_row(record, output, base, recipe=False):
            "record_version": record["maintenance"]["record_version"] if recipe else "source-" + source["sha256"],
            "source_commit": source.get("commit") or source["revision"],
            "source_sha256": source.get("archive_sha256") if recipe else source["sha256"],
+           "source_url": source["repository"].rstrip("/") + "/tree/" + source["commit"] if recipe else source["url"],
            "license": {key: record["license"][key] for key in ("spdx", "url", "scope", "verified") if key in record["license"]},
            "evidence_level": record["evidence"]["level"], "runtime_verification": record["evidence"]["runtime_verification"],
            "hub_prepare": recipe, "record_url": base + "/" + relative,
@@ -605,6 +638,8 @@ def search_row(record, output, base, recipe=False):
     robots = record.get("robots") or list(dict.fromkeys(c["robot"] for c in combinations if c.get("robot") not in (None, "", "unknown")))
     if robots:
         row["robots"] = robots
+    if recipe:
+        row["python_requirement"] = record["requirements"]["python"]
     return row
 
 
@@ -620,7 +655,7 @@ curl -fsSL {base}/agent.json
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
 <p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
 <h2>Find and read</h2>
-<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v1/search.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
+<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
 <p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
 <h2>Connect an agent</h2>
@@ -641,8 +676,8 @@ def detail(r, base, hub_commit):
         environments.append("<dl>" + "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in fields) + f"</dl><p>Compatibility status: {esc(c['status'])}</p>")
     commands = f"""curl -fsSL {base}/skills/{r['id']}/skill.json
 curl -fsSL {base}/skills/{r['id']}/README.md
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json inspect {r['id']} --json
-python /PATH_TO_SKILL/scripts/rsh.py --catalog {base}/catalog/v1/index.json prepare {r['id']} --project ./experiment --plan --json"""
+python /PATH_TO_SKILL/scripts/rsh.py inspect {r['id']} --json
+python /PATH_TO_SKILL/scripts/rsh.py prepare {r['id']} --project ./experiment --expected-source-commit {r['source']['commit']} --expected-record-version {r['maintenance']['record_version']} --plan --json"""
     source_links = "".join(f'<li><a href="{esc(r["source"]["repository"])}/blob/{esc(r["source"]["commit"])}/{esc(p)}">{esc(p)}</a></li>' for p in r["source"]["paths"])
     body = f"""<main id="main-content">
 <h1>{esc(r['name'])}</h1>
@@ -701,12 +736,13 @@ def discovery_text(records, base, references=None):
 - [Agent contract JSON]({base}/agent.json): machine-readable operations, schemas and trust boundaries
 - [Public search API]({API}/v1/search): query capabilities and inspect selected records without authentication
 - [Read-only MCP]({API}/mcp): connect an agent with search, inspect and capabilities tools
-- [Thin search index]({base}/catalog/v1/search.json): recipes and source references with exact public record checksums
+- [Complete search manifest]({base}/catalog/v2/search-manifest.json): bounded checksum-bound pages for every recipe and source reference
+- [Complete finding manifest]({base}/catalog/v2/memory-manifest.json): bounded checksum-bound pages for every shared finding
 - [Shared memory JSON]({base}/catalog/v1/memories.json): reviewed contributor reports, scoped to exact source/recipe versions; data only
 - [Catalog version JSON]({base}/catalog/v1/version.json): published commit, resource counts and checksums
 - [Catalog JSON]({base}/catalog/v1/index.json): canonical records with bundled recipes
 - [Source references JSON]({base}/catalog/v1/references.json): pinned upstream code and artifacts; no hub preparation adapter
-- [Publication manifest]({base}/catalog/v1/publication.json): published versions and submission receipts
+- [Publication proof contract]({base}/agent.json): per-receipt published versions, exact hashes and historical anchors
 - [Agent quickstart]({base}/agent-quickstart.md): find, inspect and prepare commands
 - [Full documentation]({base}/llms-full.txt): quickstart, contracts and every recipe in plain text
 - [Record schema]({base}/schemas/skill.schema.json)
@@ -749,11 +785,9 @@ def build(args):
     # This is the commit of the independently cached reference resource, not a
     # source pin. Keep the editable official aggregate unchanged on disk.
     references["hub_commit"] = hub_commit
-    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "search_url":base+"/catalog/v1/search.json", "records":records}
-    write_json(output / "catalog/v1/index.json", index, max_bytes=CATALOG_JSON_MAX_BYTES)
-    write_json(ROOT / "skills/find-robot-skills/assets/catalog.snapshot.json", index)
-    write_json(output / "catalog/v1/references.json", references, max_bytes=CATALOG_JSON_MAX_BYTES)
-    write_json(ROOT / "skills/find-robot-skills/assets/references.snapshot.json", references)
+    search_manifest_url = base + "/catalog/v2/search-manifest.json"
+    memory_manifest_url = base + "/catalog/v2/memory-manifest.json"
+    index = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "references_url":base+"/catalog/v1/references.json", "memories_url":base+"/catalog/v1/memories.json", "search_manifest_url":search_manifest_url, "records":records}
     source_index = ROOT / "catalog/source-index.json"
     if source_index.exists():
         write(output / "catalog/v1/source-index.json", canonical(read_json(source_index)) + "\n")
@@ -774,7 +808,7 @@ def build(args):
     source_projects = ROOT / "catalog/source-projects.json"
     if source_projects.exists():
         write(output / "catalog/v1/source-projects.json", canonical(read_json(source_projects)) + "\n")
-    memory_proofs = publish_memories(memories, output, base, hub_commit)
+    memory_proofs, memory_index = publish_memories(memories, output, base, hub_commit, return_index=True)
     contract_path = ROOT / "docs/agent-contract.json"
     contract = read_json(contract_path) if contract_path.exists() else {"schema_version": "1", "name": "Robot Skill Hub"}
     contract.update(hub_commit=hub_commit, catalog_url=index["catalog_url"], references_url=index["references_url"],
@@ -784,9 +818,12 @@ def build(args):
                     publication_url=base+"/catalog/v1/publication.json", quickstart_url=base+"/agent-quickstart.md",
                     full_text_url=base+"/llms-full.txt", memory_schema_url=base+"/schemas/memory.schema.json",
                     project_policy_schema_url=base+"/schemas/project-policy.schema.json",
-                    search_url=API+"/v1/search", search_index_url=index["search_url"], api_search_url=API+"/v1/search", mcp_url=API+"/mcp",
+                    search_url=API+"/v1/search", findings_url=API+"/v1/findings", search_manifest_url=search_manifest_url,
+                    memory_manifest_url=memory_manifest_url, api_search_url=API+"/v1/search", mcp_url=API+"/mcp",
                     api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
-                    privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md")
+                    privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md",
+                    submission_proof_url_template=base+"/catalog/v2/submissions/{submission_id}.json",
+                    memory_proof_url_template=base+"/catalog/v2/memories/{memory_id}.json")
     if (ROOT / "docs/public-api.openapi.json").exists():
         contract["resources"]["openapi_url"] = base+"/openapi.json"
     if source_index.exists():
@@ -795,8 +832,6 @@ def build(args):
         contract["resources"]["source_index_manifest_url"] = base+"/catalog/v1/source-index-manifest.json"
     if source_projects.exists():
         contract["resources"]["source_projects_url"] = base+"/catalog/v1/source-projects.json"
-    write_json(output / "agent.json", contract)
-    write_json(output / ".well-known/robot-skill-hub.json", contract)
     write(output / "index.html", home(records, base, references))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
@@ -872,20 +907,57 @@ def build(args):
     counts = {"recipes": len(records), "references": len(references["records"]), "memories": len(memory_proofs)}
     rows = [search_row(r, output, base, recipe=True) for r in records]
     rows.extend(search_row(r, output, base) for r in references["records"])
+    page_options = {"page_max_bytes": V2_PAGE_MAX_BYTES, "page_max_records": V2_PAGE_MAX_RECORDS,
+                    "manifest_max_bytes": V2_MANIFEST_MAX_BYTES}
+    memory_manifest, memory_pages = paged_index(memory_index["records"], hub_commit, "memories", **page_options)
+    memory_manifest_raw = v2_json_bytes(memory_manifest, compact=True)
+    memory_descriptor = {"path": "catalog/v2/memory-manifest.json", "sha256": hashlib.sha256(memory_manifest_raw).hexdigest(),
+                         "bytes": len(memory_manifest_raw), "records": len(memory_index["records"])}
+    search_manifest, search_pages = paged_index(rows, hub_commit, "search", counts=counts,
+                                               memory_manifest=memory_descriptor, **page_options)
+    search_manifest_raw = v2_json_bytes(search_manifest, compact=True)
+    write_exact_files(output, {**memory_pages, **search_pages, "catalog/v2/memory-manifest.json": memory_manifest_raw,
+                              "catalog/v2/search-manifest.json": search_manifest_raw})
     search = {"schema_version": "1", "hub_commit": hub_commit, "counts": counts, "records": rows}
     search_bytes = (canonical(search) + "\n").encode("utf-8")
-    require_byte_budget(search_bytes, SEARCH_JSON_MAX_BYTES, "Thin search index")
-    write(output / "catalog/v1/search.json", search_bytes.decode("utf-8"))
+    legacy_search = optional_aggregate(output / "catalog/v1/search.json", search_bytes, SEARCH_JSON_MAX_BYTES)
+    if legacy_search:
+        index["search_url"] = base + "/catalog/v1/search.json"
+        contract["resources"]["search_index_url"] = index["search_url"]
+    else:
+        contract["resources"]["search_index_url"] = search_manifest_url
+    publish_compatibility(index, output / "catalog/v1/index.json",
+                          ROOT / "skills/find-robot-skills/assets/catalog.snapshot.json", search_manifest_url)
+    publish_compatibility(references, output / "catalog/v1/references.json",
+                          ROOT / "skills/find-robot-skills/assets/references.snapshot.json", search_manifest_url)
     resources = {}
     for name in ("index", "references", "memories", "search", "source-index", "source-index-manifest", "source-projects"):
         path = output / f"catalog/v1/{name}.json"
         if path.exists():
             resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    resources["search-manifest"] = {"url": search_manifest_url, "sha256": hashlib.sha256(search_manifest_raw).hexdigest()}
+    resources["memory-manifest"] = {"url": memory_manifest_url, "sha256": hashlib.sha256(memory_manifest_raw).hexdigest()}
     write_json(output / "catalog/v1/version.json", {"schema_version": "1", "hub_commit": hub_commit,
                "counts": counts, "resources": resources}, max_bytes=VERSION_JSON_MAX_BYTES)
     manifest = {"schema_version":"1", "hub_commit":hub_commit, "catalog_url":base+"/catalog/v1/index.json", "records":publication_records, "memories":memory_proofs, "history":publish_history(history, output, base)}
-    write_json(output / "catalog/v1/publication.json", manifest, max_bytes=PUBLICATION_JSON_MAX_BYTES)
-    urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", base+"/catalog/v1/search.json", base+"/catalog/v1/publication.json"] + [base+"/skills/"+r['id']+"/" for r in records]
+    per_receipt = receipt_proofs(manifest, max_bytes=RECEIPT_PROOF_MAX_BYTES)
+    write_exact_files(output, per_receipt)
+    # Only recognized generated receipt filenames are eligible for cleanup.
+    for folder, pattern in (("submissions", r"sub_[a-f0-9]{64}\.json"), ("memories", r"mem_[a-f0-9]{64}\.json")):
+        for path in (output / "catalog/v2" / folder).glob("*.json"):
+            if re.fullmatch(pattern, path.name) and path.relative_to(output).as_posix() not in per_receipt and path.is_file():
+                path.unlink()
+    legacy_publication = optional_aggregate(output / "catalog/v1/publication.json", v2_json_bytes(manifest), PUBLICATION_JSON_MAX_BYTES)
+    if not legacy_publication:
+        contract.pop("publication_url", None)
+        contract["resources"].pop("publication_url", None)
+    write_json(output / "agent.json", contract)
+    write_json(output / ".well-known/robot-skill-hub.json", contract)
+    urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", search_manifest_url, memory_manifest_url] + [base+"/skills/"+r['id']+"/" for r in records]
+    if legacy_search:
+        urls.append(base+"/catalog/v1/search.json")
+    if legacy_publication:
+        urls.append(base+"/catalog/v1/publication.json")
     urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
     if openapi.exists():
         urls.append(base+"/openapi.json")

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-17T17:08:55.809957Z",
+  "purpose": "Preserve actual discovery publication states; these are not adoption or traffic counts.",
+  "maintainer_reads_opted_out_of_hub_telemetry": true,
+  "official_registry": {
+    "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/latest",
+    "http_status": 200,
+    "version": "0.2.1",
+    "status": "active",
+    "is_latest": true,
+    "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI."
+  },
+  "glama": {
+    "url": "https://glama.ai/mcp/connectors/io.github.Superfast-Robotics/robot-skill-hub",
+    "http_status": 200,
+    "title": "Robot Skill Hub - MCP Connector | Glama",
+    "transport": "Streamable HTTP",
+    "endpoint": "https://api.superfastrobotics.com/mcp",
+    "badge_url": "https://glama.ai/mcp/connectors/io.github.Superfast-Robotics/robot-skill-hub/badges/score.svg",
+    "badge_http_status": 200,
+    "visible_health": "Not tested",
+    "visible_last_tested": "Never",
+    "search_inclusion_established": false,
+    "health_grade_claimed": false
+  },
+  "skills_directory": {
+    "url": "https://www.skills.sh/superfast-robotics/robot-skill-hub/find-robot-skills",
+    "http_status": 200,
+    "displayed_install_count": 2,
+    "independent_agents_or_task_use_established": false,
+    "search_url": "https://skills.sh/api/search?q=robot-skill-hub&limit=20",
+    "search_http_status": 200,
+    "matching_hub_result_observed": false
+  },
+  "remote_directory_submission": {
+    "url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/2087",
+    "state": "open",
+    "merged": false,
+    "affiliation_disclosed": true,
+    "head_commit": "049bcff668201b10c7a5009f467b9452e7df0cad",
+    "base_commit": "5223236cc00535dcab06900e0445f37b34f46402",
+    "changed_file": "README.md",
+    "additions": 3,
+    "deletions": 0,
+    "category": "Science & Research",
+    "description": "Find pinned robot code and inspect source, compatibility and execution evidence.",
+    "description_characters": 80,
+    "rules_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/blob/main/CONTRIBUTING.md",
+    "duplicate_readme_or_issue_search_match_observed": false,
+    "submission_check": {
+      "url": "https://github.com/punkpeye/awesome-remote-mcp-servers/actions/runs/39052445876/job/117453592053",
+      "name": "check-submission",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "prior_agent_skills_submission": {
+    "url": "https://github.com/Ezeafk/awesome-agent-skills/pull/67",
+    "state": "open",
+    "merged": false
+  },
+  "scope_read_back": {
+    "mcp_version": "0.2.1",
+    "tool_names": ["find_robot_skills", "inspect_robot_skill", "get_hub_capabilities"],
+    "all_tools_read_only": true,
+    "mcp_executes_robot_code": false,
+    "preparation": "Separate local Hub CLI",
+    "preparation_recipes": 17,
+    "official_source_references": 651,
+    "reviewed_intake_references": 1,
+    "runtime_verified_recipes": 2,
+    "runtime_evidence_limit": "ManiSkill Panda CPU/state, seed 0, explicit 1000-step Hub budget; other references are not runtime-verified."
+  },
+  "additional_channels_reviewed": [
+    "Glama connector directory",
+    "Awesome Remote MCP Servers",
+    "Awesome MCP Servers (directs hosted endpoints to the remote list; no duplicate submission)"
+  ]
+}

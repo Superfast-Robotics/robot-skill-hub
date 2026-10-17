@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "franka-description-artifact-robots-tmrv0-2-rocker-arm-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "42a74392014341110f03979ad84721f36f520c69caa459aff813cae6575a457e",
+      "record_version": "source-42a74392014341110f03979ad84721f36f520c69caa459aff813cae6575a457e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ufactory-xarm7-xarm7-nohand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "90bcc0e2fbbe5fa95dbbafb74e56bd0106ecc6f5767a4dc3e7c511016efc023c",
+      "record_version": "source-90bcc0e2fbbe5fa95dbbafb74e56bd0106ecc6f5767a4dc3e7c511016efc023c"
+    },
+    {
+      "id": "ros2-control-artifact-example-4-bringup-config-rrbot-with-sensor-co-8d66e909d2c7",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "5a7054b9ebe171b664694da10742774e86f01287d662c36f912c943e43394dfb",
+      "record_version": "source-5a7054b9ebe171b664694da10742774e86f01287d662c36f912c943e43394dfb"
+    }
+  ]
+}

@@ -8,6 +8,12 @@
       "record_version": "source-0de56778e6a269cc3f0f1d993b5e83e4d64c7b8df784f7ebc3129c4f04df7b4c"
     },
     {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xc-toddlerbot-2xc-pos-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cd20d7dd773bc407c82f7c9d64069c4e97ee529f0a02bc2122a856a198e23e3d",
+      "record_version": "source-cd20d7dd773bc407c82f7c9d64069c4e97ee529f0a02bc2122a856a198e23e3d"
+    },
+    {
       "id": "mujoco-simulate",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "7659d8b4b8f298c141ce92ffc867a3e48f0b65a45f5a995fb0e0840c9d3d13bb",

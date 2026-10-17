@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fp3-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "447383a28f3183b04278a624c961a15df627dd6df485c599b12f921f21af3458",
+      "record_version": "source-447383a28f3183b04278a624c961a15df627dd6df485c599b12f921f21af3458"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-arx-l5-arx-l5-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5d83116bda7378b6c247f3f93a0b27d6174057fcb86ce37418d1bee60bde735c",
+      "record_version": "source-5d83116bda7378b6c247f3f93a0b27d6174057fcb86ce37418d1bee60bde735c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-boston-dynamics-spot-spot-arm-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "dd82ea4cbcfcd5cb2ec11326b00661dd8f679cf690e81cef469d76a641c69f6f",
+      "record_version": "source-dd82ea4cbcfcd5cb2ec11326b00661dd8f679cf690e81cef469d76a641c69f6f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-google-barkour-vb-barkour-vb-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "19fb3912f95bb15e6b913082038ca76da90e59e759d3b007dfc17b40dfa5a8f2",
+      "record_version": "source-19fb3912f95bb15e6b913082038ca76da90e59e759d3b007dfc17b40dfa5a8f2"
+    },
+    {
       "id": "pinocchio-examples-anymal-simulation-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "20fe2ede63212b9bf958c8a6beb870d4ed70239ec9c96053c01e8499910c776e",
@@ -12,6 +36,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "3b72492eccc81b90f059880c4a58a53c84c5fa3ab91dd652a9636ca0cd684278",
       "record_version": "source-3b72492eccc81b90f059880c4a58a53c84c5fa3ab91dd652a9636ca0cd684278"
+    },
+    {
+      "id": "ros2-control-artifact-example-15-bringup-config-multi-controller-ma-d7933b314949",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "b1f5a5e88fae764824e1a37cd29953e6c985a89276b6eda8cbe9da90dc27b98c",
+      "record_version": "source-b1f5a5e88fae764824e1a37cd29953e6c985a89276b6eda8cbe9da90dc27b98c"
     },
     {
       "id": "webots-projects-robots-nvidia-jetbot-controllers-jetbot-basic-motio-2563fbbd7fdc",

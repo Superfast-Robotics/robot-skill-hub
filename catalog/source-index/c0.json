@@ -6,6 +6,24 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "841dc8392d57985d2c5d0808e990a4daef3a5d65b397e78f8b5619bd83a62148",
       "record_version": "source-841dc8392d57985d2c5d0808e990a4daef3a5d65b397e78f8b5619bd83a62148"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-leap-hand-scene-right-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1081fba90e532543a2f69910d65c4ddb0e0b0eedec8673cf28764bfa1b17592a",
+      "record_version": "source-1081fba90e532543a2f69910d65c4ddb0e0b0eedec8673cf28764bfa1b17592a"
+    },
+    {
+      "id": "ros2-control-artifact-example-12-bringup-config-rrbot-chained-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "21135f58a19f09f1345e8e8e482af8148f433bd90819b5d5abe134068164407e",
+      "record_version": "source-21135f58a19f09f1345e8e8e482af8148f433bd90819b5d5abe134068164407e"
+    },
+    {
+      "id": "ros2-control-artifact-example-13-bringup-config-three-robots-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "ffea3f27c2ca16c33b12a9cb0f6ffcc92f17099a7f9206b49f1135d7fa666806",
+      "record_version": "source-ffea3f27c2ca16c33b12a9cb0f6ffcc92f17099a7f9206b49f1135d7fa666806"
     }
   ]
 }

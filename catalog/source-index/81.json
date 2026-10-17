@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "franka-description-artifact-robots-common-franka-arm-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "3c19225fa490120bb0276faa83b5d8dedab56d21fc0b64a677d5c61136fde81e",
+      "record_version": "source-3c19225fa490120bb0276faa83b5d8dedab56d21fc0b64a677d5c61136fde81e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-z1-z1-gripper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b7cf72ca30b53808f70f96e1a01758cbde4912d4541abba7d24ce63b63e8e86d",
+      "record_version": "source-b7cf72ca30b53808f70f96e1a01758cbde4912d4541abba7d24ce63b63e8e86d"
+    }
+  ]
+}

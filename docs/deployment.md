@@ -36,6 +36,8 @@ In GitHub repository Settings → Pages → Build and deployment, select **GitHu
 
 Worker deployment is intentionally an explicit local operation. Catalog changes deploy automatically after maintainer merge. No Cloudflare account token is stored in GitHub Actions.
 
+After Pages deploys, a read-only checkout job calls `tools/sync_catalog.py --hub-commit "$GITHUB_SHA"`. Its separate `CATALOG_SYNC_KEY` secret authorizes only the Worker's fixed `/internal/catalog-sync` endpoint. The helper advances bounded pages until the exact search and finding generation is active. It retries brief propagation failures without changing the expected commit; a superseded deployment cannot replace a newer generation. PR workflows receive no sync credential. For manual operation, supply the secret through the process environment rather than a command argument.
+
 ## Scoped GitHub bot credential
 
 Create a fine-grained token at https://github.com/settings/personal-access-tokens/new:
@@ -117,7 +119,7 @@ Do not replace the company site's apex records or unrelated DNS records. Set rep
 
 Inspect draft PRs, upstream attribution, exact patch and contributor-reported evidence. The Worker accepts existing allowlisted files only and rejects operational changes, rewritten source pins and evidence escalation. Checks establish structure and API behavior; simulator evidence remains `not_run` unless a maintainer actually runs it on the documented environment. Merge only reviewed changes.
 
-The catalog generator embeds merged submission IDs, exact record versions, upstream commits and hashes of contribution paths in `catalog/v1/publication.json`. Status becomes `published` only when the live manifest proves the merged change is included. Failed deployment never becomes a published success. Re-running the publication workflow does not create another submission.
+The catalog generator embeds merged submission IDs, exact record versions, upstream commits and hashes of contribution paths in per-receipt `/catalog/v2/submissions/{submission_id}.json` and `/catalog/v2/memories/{memory_id}.json` proofs. The complete legacy `catalog/v1/publication.json` remains available while it fits its byte budget. Status becomes `published` only when the live proof establishes the merged change, exact content and Git ancestry. Failed deployment never becomes a published success. Re-running the publication workflow does not create another submission.
 
 ## Free operation
 
@@ -135,6 +137,8 @@ The machine entry contract is maintained in `docs/agent-contract.json`; the buil
 
 ## Bounded catalog capacity
 
-The current deployment uses finite, whole-file discovery indexes. The publisher rejects resources exceeding their consumers' UTF-8 byte budgets: 8 MiB for full recipe/reference/memory indexes, 2 MiB for thin search, 512 KiB for publication proof, 32 KiB for version metadata, and 256 KiB per published skill record. Source identity lookup uses a manifest of at most 128 KiB and checksum-bound shards of at most 256 KiB. The legacy flat identity index is retained for compatibility and is not the primary growing lookup path.
+Complete search and finding discovery use checksum-bound v2 manifests and pages. Each manifest is at most128KiB; each page is at most128KiB and100 records. Per-ID skill metadata and per-receipt proofs are at most256KiB. A separate `CATALOG` D1 database stages and atomically activates matching search/finding generations; native FTS5 and compatibility indexes answer bounded queries. Stable content hashes reuse documents across publications. See [API operations](../api/README.md) for schema, synchronization and free quotas.
 
-These are byte limits, not a guaranteed number of records. Monitor generated sizes as the inventory and publication history grow. Before a limit is reached, migrate public search and CLI reads to bounded pages/shards or a commit-keyed indexed mirror, and shard publication proofs. Increasing an inventory beyond these bounds requires that migration; this deployment does not claim unlimited storage or an exhaustive Internet index. Builds must fail before an oversized resource can replace the working publication. CLI fallback remains usable and reports its separate reference origin, commit and failure reason.
+The v1 full recipe/reference/memory indexes and offline snapshots are compatibility views capped at8MiB. If a complete view no longer fits, it explicitly reports incomplete coverage and links to its complete v2 manifest. Thin v1 search is omitted above2MiB and aggregate publication proof above512KiB; stale output files are removed. Public search never uses an incomplete view as a complete total. Source identity lookup retains checksum-bound256KiB shards and a128KiB manifest.
+
+These finite byte, manifest and free-database limits still require monitoring and a versioned capacity migration before exhaustion. This deployment does not claim unlimited storage or an exhaustive Internet index. Builds fail before an oversized complete leaf or manifest can replace the working publication. CLI fallback reports its actual origin, commit, scope and coverage; existing project locks remain fixed.

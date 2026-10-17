@@ -8,6 +8,12 @@
       "record_version": "source-adfa7599b9afca3fc0e4b1df699d6953ff401e0372894e4a91a014ffd3f5cdf9"
     },
     {
+      "id": "mujoco-menagerie-artifact-low-cost-robot-arm-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "dbf6b9901364e99d4c5b0a71c1ab029355787a3dbc01a9e0f4c2b2a7022c67b9",
+      "record_version": "source-dbf6b9901364e99d4c5b0a71c1ab029355787a3dbc01a9e0f4c2b2a7022c67b9"
+    },
+    {
       "id": "pinocchio-examples-casadi-casadi-rnea-cpp",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "17f08ff20afa24c92e61f7864fe8f22f0a57aab733b20be88115457f4e965f95",

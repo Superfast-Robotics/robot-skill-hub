@@ -8,6 +8,12 @@
       "record_version": "source-ce03f4cfc807ed2ad237397df3552e24a80ec9c6b66f2b018fec896d8aaadcd2"
     },
     {
+      "id": "ur-description-artifact-config-ur10e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "0e58b93fdce20ef92bf7321d6eb5eaf17aacdf8c146a7b0bf96deb37e0f68cdc",
+      "record_version": "source-0e58b93fdce20ef92bf7321d6eb5eaf17aacdf8c146a7b0bf96deb37e0f68cdc"
+    },
+    {
       "id": "webots-projects-robots-k-team-khepera1-controllers-tcpip-client-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "68074ce6fab1bac8df21342abf006def38c42dbe473eab4fb882e5804f9951a5",

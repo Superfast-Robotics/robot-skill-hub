@@ -6,6 +6,18 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "7e3b257e3a6ebbaea6fb6e6b5468de05830ac39a3b722cd8f4c6e99cb9b99475",
       "record_version": "source-7e3b257e3a6ebbaea6fb6e6b5468de05830ac39a3b722cd8f4c6e99cb9b99475"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-google-barkour-vb-barkour-vb-rev-1-0-head-2d9f1b8018b1",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cdee14ec1e9da1694eadf6f32daeb2a174f0f1fa3ab48043ce46d0100fd579a3",
+      "record_version": "source-cdee14ec1e9da1694eadf6f32daeb2a174f0f1fa3ab48043ce46d0100fd579a3"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-rby1a-1-2-no-gripper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "da9d9ca59b91421025f8af7e209c28564913669b5c8424bbff1f50ccf90a0a02",
+      "record_version": "source-da9d9ca59b91421025f8af7e209c28564913669b5c8424bbff1f50ccf90a0a02"
     }
   ]
 }

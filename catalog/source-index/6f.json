@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ur-description-artifact-config-ur15-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "5f3d566874194178e7aa153a99b622ca7c19f18866a8379d0ac3ccf4706aed8f",
+      "record_version": "source-5f3d566874194178e7aa153a99b622ca7c19f18866a8379d0ac3ccf4706aed8f"
+    }
+  ]
+}

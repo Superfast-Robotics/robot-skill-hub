@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ur-description-artifact-config-ur30-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "9f207e694a9247c3d7d1f0ac21470a64bb244c4004d254a6cf798f9912aef84e",
+      "record_version": "source-9f207e694a9247c3d7d1f0ac21470a64bb244c4004d254a6cf798f9912aef84e"
+    },
+    {
+      "id": "ur-description-artifact-config-ur8long-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "9e9be2fb54f2b92f184bb3f7b10934d6a4be19c66e07cc3df5ec1a97a6040f75",
+      "record_version": "source-9e9be2fb54f2b92f184bb3f7b10934d6a4be19c66e07cc3df5ec1a97a6040f75"
+    }
+  ]
+}

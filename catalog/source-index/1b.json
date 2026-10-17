@@ -12,6 +12,18 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "cd5864c2fc714be584472c73f1714b8e4f2d0a4fa263fd8a26c627430084fc0c",
       "record_version": "source-cd5864c2fc714be584472c73f1714b8e4f2d0a4fa263fd8a26c627430084fc0c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-aloha-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7331d72cb821561d8fa3ed03d920babb3cf7faaed3a25fe3f2046bcfe2406e0f",
+      "record_version": "source-7331d72cb821561d8fa3ed03d920babb3cf7faaed3a25fe3f2046bcfe2406e0f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-g1-scene-with-hands-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "69a995bc8f8ba05de416de0944635e386f0581a82ce8cf2bbe3f50d4bd64e812",
+      "record_version": "source-69a995bc8f8ba05de416de0944635e386f0581a82ce8cf2bbe3f50d4bd64e812"
     }
   ]
 }

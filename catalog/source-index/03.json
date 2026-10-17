@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-franka-fr3-fr3-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "0d0e502d0c517a33217dac859fa84fbb74c7ab9b2f104c64c70a41dfa77e6d2f",
+      "record_version": "source-0d0e502d0c517a33217dac859fa84fbb74c7ab9b2f104c64c70a41dfa77e6d2f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-talos-scene-motor-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "77ee528794e8fce89e8b08ee73550066e797dccc3d96b22cb07e4dc8f98e5568",
+      "record_version": "source-77ee528794e8fce89e8b08ee73550066e797dccc3d96b22cb07e4dc8f98e5568"
+    },
+    {
       "id": "pinocchio-examples-gepetto-viewer-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "077cc33e4637417fd4e955a2ca65115dff3df3564e05406a4cacd5107f8e4ff3",

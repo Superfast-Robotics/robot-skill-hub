@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-v0-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "c46bb3b82883cade4ce41ed99d61538c2a45468de0af097d3865ce00c6e0413b",
+      "record_version": "source-c46bb3b82883cade4ce41ed99d61538c2a45468de0af097d3865ce00c6e0413b"
+    },
+    {
       "id": "pinocchio-examples-display-shapes-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "281e686b501a122f0b36dc3469016fe32484e8b26c3889db0dbf09f24ff53f5e",
@@ -12,6 +18,12 @@
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "3b8825aef444566a2a32e31712cb6eaa71715515c6db4edf0ccdbcd0e6cfebcc",
       "record_version": "source-3b8825aef444566a2a32e31712cb6eaa71715515c6db4edf0ccdbcd0e6cfebcc"
+    },
+    {
+      "id": "ros2-control-artifact-example-15-bringup-config-rrbot-namespace-joi-779aa8cfb7ea",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "050ac0da4e4403132572836ee1be43780221192ab8552ef390fd4812190c9169",
+      "record_version": "source-050ac0da4e4403132572836ee1be43780221192ab8552ef390fd4812190c9169"
     },
     {
       "id": "webots-projects-robots-niryo-ned-controllers-ned-python-ned-python-py",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-tmrv0-2-caster-wheel-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "02ffdc610820a1b2ed988af5426ec44270cddb297545f8abbefeee951f414b2e",
+      "record_version": "source-02ffdc610820a1b2ed988af5426ec44270cddb297545f8abbefeee951f414b2e"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-raycaster-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "807f1e4f3cf6071f1a18d1f000fb35b5f01215a556a0f2d3b3dc014a4634ea7e",

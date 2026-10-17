@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-tmrv0-2-tmrv0-2-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c",
+      "record_version": "source-14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-rollout-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "bc82cffdeaef4104e131ce4d3f0c9265765bfe806f62fa023573a1c8c7439b19",
       "record_version": "source-bc82cffdeaef4104e131ce4d3f0c9265765bfe806f62fa023573a1c8c7439b19"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+      "record_version": "source-d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a"
     },
     {
       "id": "ompl-demos-constraint-constrainedplanningimplicitparallel-cpp",

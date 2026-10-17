@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-tmrv0-2-argo-drive-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "93ba4b27c7edb0908adea14f6770118c60e32f1c7a2f08cfadbddab79dfd0a1d",
+      "record_version": "source-93ba4b27c7edb0908adea14f6770118c60e32f1c7a2f08cfadbddab79dfd0a1d"
+    },
+    {
       "id": "lerobot-examples-dataset-load-lerobot-dataset-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "2446971c045b8af60043b02c3d9bd59c41b3704c269b96f5bedc82614e56917f",
@@ -20,10 +26,22 @@
       "record_version": "source-dad60ca926a339e918bcce5cdae579034f1dca510cd83aca761c4764e8f22352"
     },
     {
+      "id": "ros2-control-artifact-example-2-bringup-config-diffbot-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "a226e5a108c3b33a97017a2c267292b3194d1f67324ac9a20ca13e2f3a8a87e0",
+      "record_version": "source-a226e5a108c3b33a97017a2c267292b3194d1f67324ac9a20ca13e2f3a8a87e0"
+    },
+    {
       "id": "ros2-examples-rclcpp-actions-minimal-action-client-not-composable-cpp",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2",
       "record_version": "source-4d7967ed6412b9795961479d7beb53fe287b41ad4869cd9ab358c727ee1e76f2"
+    },
+    {
+      "id": "ur-description-artifact-config-ur16e-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "81fcdec084c4ee0ecb6bd10664e762e20888d6fc7fdb50ec21f0162092b719eb",
+      "record_version": "source-81fcdec084c4ee0ecb6bd10664e762e20888d6fc7fdb50ec21f0162092b719eb"
     },
     {
       "id": "webots-projects-samples-devices-controllers-gps-supervisor-gps-supervisor-py",

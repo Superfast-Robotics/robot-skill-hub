@@ -12,6 +12,12 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "b1990e171c2a5e26bb340e93a6efb9a4f2e639c0a23802c79a8a299dc3dab0bd",
       "record_version": "source-b1990e171c2a5e26bb340e93a6efb9a4f2e639c0a23802c79a8a299dc3dab0bd"
+    },
+    {
+      "id": "ur-description-artifact-urdf-ur-macro-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "2683ddcc2db392116d69ac775e4d6dd1c7b3d420f9eca926bd10cf43a1ce8b35",
+      "record_version": "source-2683ddcc2db392116d69ac775e4d6dd1c7b3d420f9eca926bd10cf43a1ce8b35"
     }
   ]
 }

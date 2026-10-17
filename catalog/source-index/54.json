@@ -8,10 +8,22 @@
       "record_version": "source-975f01aacf78e3836553b5dacae86fa5eb4bdab31c2d0addc47d98417d73f6fb"
     },
     {
+      "id": "ros2-control-artifact-example-15-bringup-config-multi-controller-ma-233be8cc2572",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "c478de697a9ef32f6cfc82b6e4a98dfdd280267eab22d85441cd7e56b22b3f05",
+      "record_version": "source-c478de697a9ef32f6cfc82b6e4a98dfdd280267eab22d85441cd7e56b22b3f05"
+    },
+    {
       "id": "ros2-examples-rclcpp-actions-minimal-action-client-member-functions-cpp",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "9b0e92fbbacc3b2e66b105b7aeed1787c010c6f65151d968736c769e06efa6a4",
       "record_version": "source-9b0e92fbbacc3b2e66b105b7aeed1787c010c6f65151d968736c769e06efa6a4"
+    },
+    {
+      "id": "ur-description-artifact-config-ur20-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "2328a839f0cbf3e55aa420110f1f708f64f37e7f65b5d6b8994eb4860b5991bb",
+      "record_version": "source-2328a839f0cbf3e55aa420110f1f708f64f37e7f65b5d6b8994eb4860b5991bb"
     },
     {
       "id": "webots-projects-samples-devices-controllers-accelerometer-accelerometer-c",

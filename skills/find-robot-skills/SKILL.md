@@ -14,7 +14,7 @@ python /ABSOLUTE_SKILL_PATH/scripts/rsh.py find "pick object" --runtime maniskil
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py inspect SKILL_ID --json
 ```
 
-Discovery reads the latest available catalog with a local cache and bundled offline fallback. Preserve its reported freshness and origin. `--offline` prevents discovery network reads; `--refresh` requests a fresh index. Missing environment values remain unknown. Explicit mismatches are excluded. Results distinguish Hub preparation recipes from pinned source references. References can cover different robots, languages, hardware integrations or model formats, but have no Hub runtime adapter. Inspect their upstream setup and exact provenance; do not infer compatibility from a framework name alone.
+Online discovery reads a bounded search page and selected record, with local cache and bundled offline fallback. Preserve reported origin, generation and coverage: an offline compatibility subset is not the complete Hub inventory. `--offline` prevents discovery network reads; `--refresh` requests fresh metadata. Search requires all terms and matches word prefixes. Missing environment values remain unknown. Explicit mismatches are excluded. Results distinguish Hub preparation recipes from pinned source references. References can cover different robots, languages, hardware integrations or model formats, but have no Hub runtime adapter. Inspect their upstream setup and exact provenance; do not infer compatibility from a framework name alone.
 
 Inspect the selected source, license, robot, runtime version, controller, observations and evidence. Before troubleshooting a selected recipe, read published findings for that exact record/source and the known project environment:
 

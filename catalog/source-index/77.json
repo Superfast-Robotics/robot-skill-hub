@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-mobile-fr3-duo-v0-2-mobile-fr3-duo-v0-2-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "0936c4e48de3eec728a1f16f981f865e19e20890e3f4452c48988bb3049c4807",
+      "record_version": "source-0936c4e48de3eec728a1f16f981f865e19e20890e3f4452c48988bb3049c4807"
+    },
+    {
       "id": "lerobot-examples-phone-to-so100-replay-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "f47a8ec69e5bb2ece0cab05b0fcd285a4e56f9177e995eb639c654cc30a6072c",
@@ -12,6 +18,24 @@
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "bb39c25fbe2dcb75dcc609c92b56fb66e7deba2f6b8d8189f7f2c31d4da6ce3a",
       "record_version": "source-bb39c25fbe2dcb75dcc609c92b56fb66e7deba2f6b8d8189f7f2c31d4da6ce3a"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-fourier-n1-n1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "50a15602f6dfb4db22ea1790198b9302403ba5768081b3c76b353c780bf89848",
+      "record_version": "source-50a15602f6dfb4db22ea1790198b9302403ba5768081b3c76b353c780bf89848"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-mjx-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+      "record_version": "source-cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-leap-hand-left-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "aed631597451a7fe4e81f26887ddb07634dc9500c896f19308e1a531cdf31488",
+      "record_version": "source-aed631597451a7fe4e81f26887ddb07634dc9500c896f19308e1a531cdf31488"
     },
     {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-waypoint-follower-py",

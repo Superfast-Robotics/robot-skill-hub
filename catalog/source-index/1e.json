@@ -8,6 +8,18 @@
       "record_version": "source-7d95abf00eaf939d0d2679cb81518f1cbf8cb0093d36ee5bc70af9e7caa9d7ca"
     },
     {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-c-anymal-c-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "25dfeab8913aff6f69877a85faa5f2dfa15c56a0d553cd99dbd46a4584067d8b",
+      "record_version": "source-25dfeab8913aff6f69877a85faa5f2dfa15c56a0d553cd99dbd46a4584067d8b"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-tiago-velocity-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3f2143f0150b9d852d15a2084e21934e1860e3d303e72d339defccd40a15dbcb",
+      "record_version": "source-3f2143f0150b9d852d15a2084e21934e1860e3d303e72d339defccd40a15dbcb"
+    },
+    {
       "id": "roboticstoolbox-examples-holistic-mm-non-holonomic-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "69e01a48f31e91e00f18c4679c06b7a3d2cb38a01c1fefff48c55f120000f253",

@@ -14,6 +14,12 @@
       "record_version": "source-341b60f1763dac1d1d5af98a1b7660594780279a7f401abb74f2fbfd4a426632"
     },
     {
+      "id": "franka-description-artifact-robots-fr3-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386",
+      "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
+    },
+    {
       "id": "moveit2-doc-examples-realtime-servo-src-pose-tracking-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "6e4f1e50174974ebbd4900fba9541e94dcc003b99c96efe9b9bc9d2fa1108b86",

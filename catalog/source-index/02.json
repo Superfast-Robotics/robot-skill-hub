@@ -6,6 +6,12 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "3d09dcac8ae38cc59234f5d7949a6c9c4ebdf29e83e5e10ab42e6ea2dd30e7d2",
       "record_version": "source-3d09dcac8ae38cc59234f5d7949a6c9c4ebdf29e83e5e10ab42e6ea2dd30e7d2"
+    },
+    {
+      "id": "franka-description-artifact-end-effectors-common-franka-hand-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1",
+      "record_version": "source-6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1"
     }
   ]
 }

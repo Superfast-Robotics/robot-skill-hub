@@ -6,6 +6,12 @@
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
       "record_version": "source-3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2"
+    },
+    {
+      "id": "franka-description-artifact-accessories-franka-head-v0-2-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "c5c75740da74bee0acb029aaf6ec0a9101bedcb61012683ecb1aef30b70ef842",
+      "record_version": "source-c5c75740da74bee0acb029aaf6ec0a9101bedcb61012683ecb1aef30b70ef842"
     }
   ]
 }

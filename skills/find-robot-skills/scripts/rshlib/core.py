@@ -240,7 +240,11 @@ def discovery_metadata(catalog):
             "catalog_origin": catalog.get("catalog_origin", "explicit"),
             "references_hub_commit": catalog.get("references", {}).get("hub_commit"),
             "references_origin": catalog.get("references_origin", "explicit"),
-            "references_discovery": catalog.get("references_discovery", {})}
+            "references_discovery": catalog.get("references_discovery", {}),
+            "discovery_scope": catalog.get("discovery_scope", "compatibility_view"),
+            "catalog_coverage": catalog.get("coverage", {"complete": True}),
+            "references_coverage": catalog.get("references", {}).get("coverage", {"complete": True}),
+            "discovery_fallback_reasons": catalog.get("discovery_fallback_reasons", [])}
 
 
 def find(catalog, query, environment, limit=3):

@@ -14,6 +14,12 @@
       "record_version": "source-db87875ab4050d9f6b007538503d1233eef79660cdf85b03b6994adc0489f2c8"
     },
     {
+      "id": "mujoco-menagerie-artifact-unitree-go1-go1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d5a7466784c8e72fd174cc7fa5a92754a1a0a6d458a1dec79e7ca0abc9525c4a",
+      "record_version": "source-d5a7466784c8e72fd174cc7fa5a92754a1a0a6d458a1dec79e7ca0abc9525c4a"
+    },
+    {
       "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3dx-grippe-c448e71c182b",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "006343e5f3f4567cd3d2f83324b0df676740f67afaae8800646b370eb1ece0d8",

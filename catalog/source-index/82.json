@@ -8,6 +8,12 @@
       "record_version": "source-62761fd6d3f942bde2f8b334ece9aebc8d6fcb77e13d92ac12b39e7bd3cb117f"
     },
     {
+      "id": "mujoco-menagerie-artifact-trossen-vx300s-vx300s-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d6202f119c53c4969b1a1ca1256e26a540964203fe62ad5d9a496592305f85ec",
+      "record_version": "source-d6202f119c53c4969b1a1ca1256e26a540964203fe62ad5d9a496592305f85ec"
+    },
+    {
       "id": "ompl-demos-rigidbodyplanningwithodesolverandcontrols-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "59e54d2b890710c7dd13e565903d77514f6ddf0f29453ffed5907b15eddf2518",

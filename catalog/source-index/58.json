@@ -14,6 +14,18 @@
       "record_version": "source-7bf226253ed767ca63ecb4584936c87380768d32d2b9979d37de5cb036ad8286"
     },
     {
+      "id": "franka-description-artifact-robots-mobile-fr3-duo-v0-2-mobile-fr3-d-459ff7931bce",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "99d3205bd545d3afd3da8033c6b5994b0b6f462deea321d4a1e73c26e3977394",
+      "record_version": "source-99d3205bd545d3afd3da8033c6b5994b0b6f462deea321d4a1e73c26e3977394"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-h1-h1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4d15bc381ee8113722fe514a6fc0059988cd114c2bedfadf2e6279b41ef0810d",
+      "record_version": "source-4d15bc381ee8113722fe514a6fc0059988cd114c2bedfadf2e6279b41ef0810d"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-through-poses-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "53b56acb65bd9be8bd96c393480907d1c4d024bbed46d6f4274bc15ae63c7897",

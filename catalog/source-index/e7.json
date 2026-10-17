@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "ur-description-artifact-config-ur3e-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "51f2e1d00f69154a49aca95c1f17497622861b1d14c2de5ace0a9687dc5424ca",
+      "record_version": "source-51f2e1d00f69154a49aca95c1f17497622861b1d14c2de5ace0a9687dc5424ca"
+    },
+    {
       "id": "webots-projects-robots-kinematics-tinkerbots-controllers-tinkerbots-30c3d28e96ea",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "30d2555053e39fdf1083a00f386839bb7d74081f2d244959e42d9d316250fe38",

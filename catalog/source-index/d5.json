@@ -2,6 +2,36 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-booster-t1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "0da1f67c4d9496d6680571ef2a8560ce1bbd7cf2c6178152bd883b9f17135038",
+      "record_version": "source-0da1f67c4d9496d6680571ef2a8560ce1bbd7cf2c6178152bd883b9f17135038"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-talos-scene-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a570c76ca3ea2e697ee32708d47023cce2bc8889ea035e1f6a570fcc0067dad5",
+      "record_version": "source-a570c76ca3ea2e697ee32708d47023cce2bc8889ea035e1f6a570fcc0067dad5"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xm-toddlerbot-2xm-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "0599ae55c3562408550b9ccf09e3c985ab48941e9f727157120c10f63a420d6e",
+      "record_version": "source-0599ae55c3562408550b9ccf09e3c985ab48941e9f727157120c10f63a420d6e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-a1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "415eb95e2982c5a90c873f10d45e3efee94186ef6050e2c9aaea40135ff569ad",
+      "record_version": "source-415eb95e2982c5a90c873f10d45e3efee94186ef6050e2c9aaea40135ff569ad"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-wonik-allegro-scene-left-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "032b28250a7d6fb27378d2de18c271666aa150fd9b58a869fb28443333a9b3b8",
+      "record_version": "source-032b28250a7d6fb27378d2de18c271666aa150fd9b58a869fb28443333a9b3b8"
+    },
+    {
       "id": "pybullet-kuka-with-cube",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "96814d2cabec8d0d410ff61e5ef68283b202156b90d70d06cca125614daa84e7",
@@ -18,6 +48,18 @@
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "466bec488b52b7965a2e3dfb6d745cb52ac05a1d9aea34fb2d9e6d5469130cef",
       "record_version": "source-466bec488b52b7965a2e3dfb6d745cb52ac05a1d9aea34fb2d9e6d5469130cef"
+    },
+    {
+      "id": "ur-description-artifact-config-ur30-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "ba2be7ecf42ee235d83aa572ca3743532c45577affef0d75b65d9f0cd40aed66",
+      "record_version": "source-ba2be7ecf42ee235d83aa572ca3743532c45577affef0d75b65d9f0cd40aed66"
+    },
+    {
+      "id": "ur-description-artifact-config-ur7e-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7",
+      "record_version": "source-1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7"
     },
     {
       "id": "webots-projects-robots-micromagic-scout-controllers-scout-scout-c",

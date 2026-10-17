@@ -18,6 +18,18 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "5e15046df609a02e44bb9fefbf6b0085bcca3f3630571f7c047ef16061313170",
       "record_version": "source-5e15046df609a02e44bb9fefbf6b0085bcca3f3630571f7c047ef16061313170"
+    },
+    {
+      "id": "ros2-control-artifact-example-6-bringup-config-rrbot-forward-positi-b0ab7ca09cbe",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5e-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7",
+      "record_version": "source-1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7"
     }
   ]
 }

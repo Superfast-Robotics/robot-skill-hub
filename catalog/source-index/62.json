@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-ufactory-lite6-lite6-gripper-wide-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3ef9fb392e504949797b6d77557148b32623098ee7206e05273fdd4b2199f2ff",
+      "record_version": "source-3ef9fb392e504949797b6d77557148b32623098ee7206e05273fdd4b2199f2ff"
+    },
+    {
       "id": "roboticstoolbox-examples-rne-compare-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "193c46cb1e2a114307a5ef7624efa21ab5f267a39a9a609a554549fa870d4092",

@@ -14,6 +14,18 @@
       "record_version": "source-0c28fd1872cfadb852884ba1df09f38c460b2f8db476b278cf8c70eda04e561c"
     },
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-vb-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a13a8aec3224ee5b07241ae45df4f9bf65b2e26fd0c66ae93b0f79e88fbec2c6",
+      "record_version": "source-a13a8aec3224ee5b07241ae45df4f9bf65b2e26fd0c66ae93b0f79e88fbec2c6"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-shadow-dexee-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "72abc14afb7aab117941947ffe8befe1daffdfd22ad6b23eb02faab3f20bbd9e",
+      "record_version": "source-72abc14afb7aab117941947ffe8befe1daffdfd22ad6b23eb02faab3f20bbd9e"
+    },
+    {
       "id": "pinocchio-examples-overview-simple-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "4032a6af7250bbc79123c1eb14db768f851eb0aca1835b06e353759af636033a",

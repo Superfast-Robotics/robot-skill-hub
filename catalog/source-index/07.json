@@ -6,6 +6,30 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "5980d7f36c1861146a558d7353ef793351e86d6828cf69f796009af6949114da",
       "record_version": "source-5980d7f36c1861146a558d7353ef793351e86d6828cf69f796009af6949114da"
+    },
+    {
+      "id": "franka-description-artifact-robots-fp3-fp3-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "0485983fce7b5b9a9aff757326256543b6fd32857a5af7e561596c726f96a3d3",
+      "record_version": "source-0485983fce7b5b9a9aff757326256543b6fd32857a5af7e561596c726f96a3d3"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-arx-l5-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7b3b6ec1bc07c39e3976a9a3b5b1d9167d4de7f32d6dad0c9c5def918743cdf2",
+      "record_version": "source-7b3b6ec1bc07c39e3976a9a3b5b1d9167d4de7f32d6dad0c9c5def918743cdf2"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-talos-talos-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ce2d3af3f1c80e9875e2c8b2e7a0ec6dd3317086e949e0299060ecd725753a92",
+      "record_version": "source-ce2d3af3f1c80e9875e2c8b2e7a0ec6dd3317086e949e0299060ecd725753a92"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "87e8adba0d4e40cc9a994e7ca2264671cc6b6c732649b675b553639cb275a16d",
+      "record_version": "source-87e8adba0d4e40cc9a994e7ca2264671cc6b6c732649b675b553639cb275a16d"
     }
   ]
 }

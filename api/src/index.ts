@@ -6,6 +6,7 @@ import { submitSkill } from './intake.ts';
 import { handlePublicRequest } from './public.ts';
 import { pruneMeasurements, type Background } from './metrics.ts';
 import { readPublication } from './publication.ts';
+import { handleCatalogSync, INTERNAL_HEADERS, HUB_ORIGIN, pruneCatalog } from './catalog.ts';
 
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -18,6 +19,7 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
     let sessionRequest = false;
     try {
       const url = new URL(request.url);
+      if (url.pathname === '/internal/catalog-sync') return await handleCatalogSync(request, env);
       const publicResponse = await handlePublicRequest(request, env, ctx);
       if (publicResponse) return publicResponse;
       memoryRequest = url.pathname.startsWith('/v1/memories');
@@ -41,7 +43,13 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
       if (isMemoryPost) { requireMemoryAdapter(adapter); const result = await saveMemory(request, principal, adapter); return json(result.response, result.status); }
       const publication = async () => {
         if (publicationFetcher) return publicationFetcher(env.PUBLICATION_URL);
-        const response = await fetch(env.PUBLICATION_URL, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: { 'Cache-Control': 'no-cache' } });
+        if (env.PUBLICATION_URL === HUB_ORIGIN + '/catalog/v1/publication.json') {
+          const path = memoryId ? '/catalog/v2/memories/' + memoryId + '.json' : '/catalog/v2/submissions/' + id + '.json';
+          const proof = await fetch(HUB_ORIGIN + path, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: INTERNAL_HEADERS });
+          if (proof.status !== 404) return readPublication(proof, 256 * 1024);
+          await proof.body?.cancel();
+        }
+        const response = await fetch(env.PUBLICATION_URL, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: INTERNAL_HEADERS });
         return readPublication(response);
       };
       if (memoryId) { requireMemoryAdapter(adapter); return json(await memoryStatus(memoryId, principal, adapter, publication)); }
@@ -53,4 +61,4 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
     }
   };
 }
-export default { fetch: createHandler(), scheduled(_event: unknown, env: Env, ctx: Background) { ctx.waitUntil(pruneMeasurements(env)); } };
+export default { fetch: createHandler(), scheduled(_event: unknown, env: Env, ctx: Background) { ctx.waitUntil(pruneMeasurements(env)); ctx.waitUntil(pruneCatalog(env)); } };

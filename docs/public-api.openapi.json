@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "Agent-first robotics source discovery, reviewed contribution intake and exact-version task memory. A reference is not a runtime-verification claim.",
     "license": {
       "name": "MIT",
@@ -104,6 +104,30 @@
               "type": "string",
               "pattern": "^[a-f0-9]{40}$"
             }
+          },
+          {
+            "name": "runtime_version",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "python",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "architecture",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
           }
         ],
         "responses": {
@@ -167,7 +191,8 @@
               }
             }
           }
-        }
+        },
+        "description": "Complete bounded search; all terms match words or prefixes with the D1 backend. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
       }
     },
     "/v1/skills/{skill_id}": {
@@ -1191,6 +1216,194 @@
             "schema": {
               "type": "string",
               "pattern": "^mem_[a-f0-9]{64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Structured JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Pinned catalog or record version changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Read rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Publication temporarily unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/findings": {
+      "get": {
+        "summary": "Read published findings for exact source and record pins",
+        "description": "Data only, contributor-reported trust. All supplied environment fields match the same finding. One complete-query page with exact total and pinned next parameters;409 rejects a changed generation.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "skill_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "record_version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          {
+            "name": "source_commit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 71
+            }
+          },
+          {
+            "name": "runtime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "robot",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "controller",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "observation",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "os",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "hub_commit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          },
+          {
+            "name": "runtime_version",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "python",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "architecture",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
             }
           }
         ],

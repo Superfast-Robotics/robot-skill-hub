@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fp3-fp3-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "4cb73895bafb2170ea5cffda591899b29bec3c8ab44ada6d71293f075ecbee13",
+      "record_version": "source-4cb73895bafb2170ea5cffda591899b29bec3c8ab44ada6d71293f075ecbee13"
+    },
+    {
       "id": "ros2-control-example-15-bringup-launch-rrbot-namespace-launch-py",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "30d54345a00af5a4227a1d494b45bba19d4104cbeda4f94a8cdbc9635fd7eb25",

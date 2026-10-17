@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+      "record_version": "source-8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89"
+    },
+    {
       "id": "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-76f2e6acb01d",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "1c7e54c18f2784c5f4c99df9949535a54b96fc4b867cfa7b3ae08ba4e320ab03",
@@ -18,6 +24,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "5200cabf56c727f362cc2231673167606f196b8a99994308122cfc1dd2c5cc04",
       "record_version": "source-5200cabf56c727f362cc2231673167606f196b8a99994308122cfc1dd2c5cc04"
+    },
+    {
+      "id": "ur-description-artifact-config-ur16e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "20fb7f133426c7182d0eee6442d4cbad4cc733fa9ce2ef1924620961c44c1d81",
+      "record_version": "source-20fb7f133426c7182d0eee6442d4cbad4cc733fa9ce2ef1924620961c44c1d81"
     },
     {
       "id": "webots-projects-robots-k-team-khepera1-controllers-tcpip-tcpip-c",

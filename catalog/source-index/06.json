@@ -14,6 +14,12 @@
       "record_version": "source-d492d032ed955d7dcdfbbd15b450782fc3d13d56a155d778943380b40b52b168"
     },
     {
+      "id": "ur-description-artifact-config-ur12e-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "de6b27680ef8ca8930d1902fc6869f49b9295dabbb40048eaa538f9d4796bc4b",
+      "record_version": "source-de6b27680ef8ca8930d1902fc6869f49b9295dabbb40048eaa538f9d4796bc4b"
+    },
+    {
       "id": "webots-projects-robots-nex-controllers-fire-bird-6-obstacle-avoidan-fb10eb64c307",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "b09546a80b93e82f58b25fe2cc3504cbf0772986b5487606e82344dc1a271217",

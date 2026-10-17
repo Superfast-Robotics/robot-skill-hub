@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fer-dynamics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",
+      "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
+    },
+    {
+      "id": "franka-description-artifact-robots-fp3-dynamics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",
+      "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
+    },
+    {
       "id": "isaaclab-scripts-demos-markers-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "a46f81c75d429a20d2fe43389e786d3db761249b8a925ac022c278941141b5a1",

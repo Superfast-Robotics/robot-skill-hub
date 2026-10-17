@@ -8,6 +8,12 @@
       "record_version": "source-43d1f5d5690cf31c68b053efa3860f60721ce631fa410ec31f39c2e0e7c0b9b5"
     },
     {
+      "id": "mujoco-menagerie-artifact-robotstudio-so101-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d3037f0fd36b61a9b6805b2c79831e7a392276d0f490145d01f718542eee9150",
+      "record_version": "source-d3037f0fd36b61a9b6805b2c79831e7a392276d0f490145d01f718542eee9150"
+    },
+    {
       "id": "ompl-demos-plannerdata-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "d9c179de8a994c0cf657d90159dac6aabdfdb2a9a694c63631376b914d0b461f",

@@ -46,11 +46,11 @@ class CatalogTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()):
             builder.build(args)
 
-    def memory(self):
+    def memory(self, summary='Preserve sources on the unsupported host'):
         record = json.loads(self.record_path().read_text(encoding='utf-8'))
         payload = {'schema_version':'1', 'skill_id':record['id'],
                    'base':{'hub_commit':'1'*40,'record_version':record['maintenance']['record_version'],'source_commit':record['source']['commit']},
-                   'kind':'compatibility_note','summary':'Preserve sources on the unsupported host',
+                   'kind':'compatibility_note','summary':summary,
                    'observation':'Download-only preparation preserved the exact source and recipe without creating a simulator environment.',
                    'resolution':'Use download-only for source preparation, and run the task on the documented host.',
                    'environment':{'runtime':'maniskill','robot':'panda','os':'windows'},
@@ -308,14 +308,10 @@ class CatalogTests(unittest.TestCase):
             builder.load_references()
 
     def test_generated_resources_fail_build_before_exceeding_consumer_budgets(self):
-        # Reducing a real consumer budget exercises each actual build call site
-        # without producing a huge inventory merely to test a size boundary.
-        cases = (("CATALOG_JSON_MAX_BYTES", 1, "index.json"),
-                 ("CATALOG_JSON_MAX_BYTES", 300000, "references.json"),
-                 ("RECORD_JSON_MAX_BYTES", 1, "skill.json"),
-                 ("SEARCH_JSON_MAX_BYTES", 1, "Thin search index"),
-                 ("VERSION_JSON_MAX_BYTES", 1, "version.json"),
-                 ("PUBLICATION_JSON_MAX_BYTES", 1, "publication.json"))
+        # Per-ID documents and the small version pointer remain mandatory.
+        # Large compatibility aggregates now have explicit v2 alternatives.
+        cases = (("RECORD_JSON_MAX_BYTES", 1, "skill.json"),
+                 ("VERSION_JSON_MAX_BYTES", 1, "version.json"))
         for constant, limit, target in cases:
             with self.subTest(resource=target), mock.patch.object(builder, constant, limit):
                 with self.assertRaisesRegex(ValueError, re.escape(target) + r".*UTF-8 budget"):
@@ -324,8 +320,109 @@ class CatalogTests(unittest.TestCase):
     def test_memory_discovery_resource_uses_the_catalog_consumer_budget(self):
         self.memory()
         with mock.patch.object(builder, "CATALOG_JSON_MAX_BYTES", 1):
-            with self.assertRaisesRegex(ValueError, r"memories.json.*UTF-8 budget"):
+            with self.assertRaisesRegex(ValueError, r"Compatibility view metadata.*UTF-8 budget"):
                 builder.publish_memories(builder.load_memories(), self.root / "site", "https://example.test/hub", "1" * 40)
+
+    def test_forced_legacy_limits_keep_complete_v2_inventory_findings_and_receipt_history(self):
+        self.build()  # Leave genuine older legacy aggregates in the reused output.
+        site = self.root / "site"
+        self.assertTrue((site / "catalog/v1/search.json").exists())
+        self.assertTrue((site / "catalog/v1/publication.json").exists())
+        path, added = self.intake("zz-new-pinned-policy", standalone=True)
+        relative = path.relative_to(self.root).as_posix()
+        receipt = {"submission_id": "sub_" + "8" * 64, "skill_id": added["id"], "change_kind": "new_skill",
+                   "new_record_version": added["maintenance"]["record_version"], "base": {"source_commit": added["source"]["revision"]},
+                   "patch_paths": [relative], "patch_hashes": {relative: hashlib.sha256(path.read_bytes()).hexdigest()}}
+        receipts = self.root / ".hub/submissions"
+        receipts.mkdir(parents=True, exist_ok=True)
+        (receipts / "current.json").write_text(json.dumps(receipt), encoding="utf-8")
+        old_path, original, accepted, archive = self.archived_intake("zz-historical-policy", standalone=True)
+        updated = copy.deepcopy(original)
+        updated["maintenance"]["record_version"] = "intake-456"
+        updated["summary"] = "Current metadata differs from the originally accepted source reference."
+        old_path.write_text(json.dumps(updated), encoding="utf-8")
+        memories = [self.memory(summary=f"Distinct useful fixture finding number {i}") for i in range(8)]
+        stale = site / "catalog/v2/submissions" / ("sub_" + "0" * 64 + ".json")
+        stale.write_text("stale generated file", encoding="utf-8")
+        foreign = stale.with_name("operator-note.json")
+        foreign.write_text("preserve unrelated file", encoding="utf-8")
+        with mock.patch.multiple(builder, CATALOG_JSON_MAX_BYTES=12000, SEARCH_JSON_MAX_BYTES=1000,
+                                 PUBLICATION_JSON_MAX_BYTES=1000, V2_PAGE_MAX_BYTES=8192, V2_PAGE_MAX_RECORDS=3):
+            self.build()
+        self.assertFalse((site / "catalog/v1/search.json").exists())
+        self.assertFalse((site / "catalog/v1/publication.json").exists())
+        self.assertFalse(stale.exists())
+        self.assertEqual(foreign.read_text(encoding="utf-8"), "preserve unrelated file")
+        version = json.loads((site / "catalog/v1/version.json").read_text(encoding="utf-8"))
+        self.assertNotIn("search", version["resources"])
+
+        def complete_pages(name):
+            public_path = site / "catalog/v2" / (name + ".json")
+            raw = public_path.read_bytes()
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), version["resources"][name]["sha256"])
+            manifest = json.loads(raw)
+            rows = []
+            for descriptor in manifest["pages"]:
+                leaf = (site / descriptor["path"]).read_bytes()
+                self.assertEqual(descriptor["bytes"], len(leaf))
+                self.assertEqual(descriptor["sha256"], hashlib.sha256(leaf).hexdigest())
+                self.assertLessEqual(len(leaf), 8192)
+                page = json.loads(leaf)
+                self.assertEqual(page["hub_commit"], "1" * 40)
+                self.assertEqual(descriptor["records"], len(page["records"]))
+                self.assertLessEqual(len(page["records"]), 3)
+                rows.extend(page["records"])
+            self.assertEqual(len(rows), manifest["records"])
+            return manifest, rows, raw
+
+        search, rows, _ = complete_pages("search-manifest")
+        findings, finding_rows, finding_raw = complete_pages("memory-manifest")
+        self.assertEqual(search["records"], version["counts"]["recipes"] + version["counts"]["references"])
+        expected_ids = {record["id"] for record in builder.load_records()}
+        expected_ids.update(record["id"] for record in builder.load_references()["records"])
+        self.assertEqual({row["id"] for row in rows}, expected_ids)
+        self.assertEqual(search["counts"], version["counts"])
+        self.assertEqual(search["memory_manifest"], {"path": "catalog/v2/memory-manifest.json", "sha256": hashlib.sha256(finding_raw).hexdigest(),
+                                                   "bytes": len(finding_raw), "records": len(memories)})
+        self.assertEqual(findings["records"], len(memories))
+        selected = next(row for row in rows if row["id"] == added["id"])
+        self.assertEqual(selected["source_url"], added["source"]["url"])
+        self.assertEqual(selected["record_sha256"], hashlib.sha256((site / "references" / added["id"] / "skill.json").read_bytes()).hexdigest())
+        for resource, snapshot, total, complete_name in (
+                ("index", "catalog", version["counts"]["recipes"], "search-manifest"),
+                ("references", "references", version["counts"]["references"], "search-manifest"),
+                ("memories", "memories", len(memories), "memory-manifest")):
+            public = site / "catalog/v1" / (resource + ".json")
+            view = json.loads(public.read_text(encoding="utf-8"))
+            offline = json.loads((self.root / "skills/find-robot-skills/assets" / (snapshot + ".snapshot.json")).read_text(encoding="utf-8"))
+            self.assertLessEqual(public.stat().st_size, 12000)
+            self.assertEqual(view, offline)
+            self.assertEqual(view["hub_commit"], "1" * 40)
+            self.assertFalse(view["coverage"]["complete"])
+            self.assertEqual(view["coverage"]["total_records"], total)
+            self.assertEqual(view["coverage"]["included_records"], len(view["records"]))
+            self.assertLess(len(view["records"]), total)
+            self.assertTrue(view["coverage"]["complete_manifest_url"].endswith("/" + complete_name + ".json"))
+        subset = json.loads((site / "catalog/v1/references.json").read_text(encoding="utf-8"))
+        self.assertNotIn(added["id"], [r["id"] for r in subset["records"]])
+        current = json.loads((site / "catalog/v2/submissions" / (receipt["submission_id"] + ".json")).read_text(encoding="utf-8"))
+        self.assertEqual(current["records"][0]["submission_ids"], [receipt["submission_id"]])
+        self.assertEqual(current["records"][0]["contribution_path_hashes"], receipt["patch_hashes"])
+        historical = json.loads((site / "catalog/v2/submissions" / (accepted["submission_ids"][0] + ".json")).read_text(encoding="utf-8"))
+        self.assertEqual(historical["records"], [])
+        self.assertEqual(historical["history"][0]["hub_commit"], "9" * 40)
+        old_proof = historical["history"][0]["records"][0]
+        for field in ("kind", "record_version", "source_commit", "contribution_path_hashes", "archive_sha256", "submission_ids"):
+            self.assertEqual(old_proof[field], accepted[field])
+        self.assertEqual((site / f"releases/{original['id']}/intake-123/skill.json").read_bytes(), archive.read_bytes())
+        for memory_path, entry in memories:
+            ident = entry["memory_id"]
+            proof = json.loads((site / "catalog/v2/memories" / (ident + ".json")).read_text(encoding="utf-8"))["memories"][0]
+            row = next(r for r in finding_rows if r["memory_id"] == ident)
+            self.assertEqual((site / "memories" / (ident + ".json")).read_bytes(), memory_path.read_bytes())
+            self.assertEqual(proof["content_sha256"], hashlib.sha256(memory_path.read_bytes()).hexdigest())
+            self.assertEqual(row["content_sha256"], proof["content_sha256"])
+            self.assertEqual(row["fingerprint"], entry["fingerprint"])
 
     def test_oversized_reference_metadata_cannot_publish_a_record_the_api_cannot_read(self):
         path = self.root / "catalog/references.json"
@@ -455,7 +552,7 @@ class CatalogTests(unittest.TestCase):
                  "source_commit": record["source"].get("commit") or record["source"]["revision"],
                  "recipe_url": "https://previous.example.org/references/" + ident + "/", "compatibility": record["compatibility"],
                  "contribution_path_hashes": {relative: hashlib.sha256(path.read_bytes()).hexdigest()},
-                 "submission_ids": ["sub_" + "7" * 64], "archive_path": archive_path,
+                 "submission_ids": ["sub_" + hashlib.sha256(ident.encode()).hexdigest()], "archive_path": archive_path,
                  "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest()}
         history_path = self.root / "catalog/publication-history.json"
         history = json.loads(history_path.read_text(encoding="utf-8"))

@@ -18,7 +18,7 @@ const bundled = build({
   bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023'
 }).then(result => result.outputFiles![0].text);
 
-async function runtime(outbound: (request: RuntimeRequest) => RuntimeResponse | Promise<RuntimeResponse>) {
+async function runtime(outbound: (request: RuntimeRequest) => RuntimeResponse | Promise<RuntimeResponse>, publicationURL = PUBLICATION) {
   return new Miniflare({
     telemetry: { enabled: false },
     workers: [{
@@ -28,7 +28,7 @@ async function runtime(outbound: (request: RuntimeRequest) => RuntimeResponse | 
         env: {
           GITHUB_TOKEN: { type: 'text', value: GITHUB_TOKEN },
           SUBMISSION_TOKENS_JSON: { type: 'text', value: JSON.stringify([{ principal_id: PRINCIPAL, sha256: hash(TOKEN) }]) },
-          PUBLICATION_URL: { type: 'text', value: PUBLICATION },
+          PUBLICATION_URL: { type: 'text', value: publicationURL },
           SUBMIT_LIMITER: { type: 'rate-limit', namespace: '78345101', simple: { limit: 10, period: 60 } },
           STATUS_LIMITER: { type: 'rate-limit', namespace: '78345102', simple: { limit: 60, period: 60 } }
         }
@@ -103,6 +103,32 @@ function mergedFixture() {
   return { pull, manifest, merge, head };
 }
 
+for (const proofStatus of ['valid', '404', 'corrupt', 'redirect']) test('native per-receipt publication proof preference: ' + proofStatus, async () => {
+  const fixture = mergedFixture(); const calls: string[] = [];
+  const origin = 'https://hub.superfastrobotics.com', legacy = origin + '/catalog/v1/publication.json';
+  const proof = origin + '/catalog/v2/submissions/' + ID + '.json';
+  const mf = await runtime(request => {
+    calls.push(request.url);
+    if (request.url.startsWith(API + '/pulls?')) return RuntimeResponse.json([fixture.pull]);
+    if (request.url === proof || request.url === legacy) {
+      assert.equal(request.headers.get('DNT'), '1'); assert.equal(request.headers.get('X-RSH-Telemetry'), 'off'); assert.equal(request.headers.has('Authorization'), false);
+      if (request.url === legacy || proofStatus === 'valid') return RuntimeResponse.json(fixture.manifest);
+      if (proofStatus === '404') return new RuntimeResponse(null, { status: 404 });
+      if (proofStatus === 'redirect') return new RuntimeResponse(null, { status: 302, headers: { Location: 'https://evil.invalid/proof' } });
+      return new RuntimeResponse('{broken');
+    }
+    if (request.url === `${API}/commits/${fixture.merge}/check-runs?per_page=100&filter=latest`) return RuntimeResponse.json({ check_runs: [{ name: 'Checks', status: 'completed', conclusion: 'success' }] });
+    if (request.url === `${API}/compare/${fixture.merge}...${fixture.head}`) return RuntimeResponse.json({ status: 'ahead', merge_base_commit: { sha: fixture.merge } });
+    assert.fail('Unexpected native per-receipt request: ' + request.url);
+  }, legacy);
+  try {
+    const result = await status(mf); assert.equal(result.status, 200); const body: any = await result.json();
+    assert.ok(calls.includes(proof)); assert.equal(calls.includes(legacy), proofStatus === '404');
+    assert.equal(body.status, ['valid', '404'].includes(proofStatus) ? 'published' : 'merged');
+    if (['corrupt', 'redirect'].includes(proofStatus)) assert.equal(body.reason_code, 'publication_unavailable');
+  } finally { await mf.dispose(); }
+});
+
 for (const redirected of [true, false]) {
   test(`native publication fetch ${redirected ? 'rejects redirects without following them' : 'confirms matching deployed publication'}`, async () => {
     const fixture = mergedFixture(); const calls: string[] = [];
@@ -146,13 +172,17 @@ for (const redirected of [true, false]) {
 
 test('native memory save stores one bounded finding and confirms its exact merged publication', async () => {
   const hub = 'a'.repeat(40), head = 'c'.repeat(40), source = 'b'.repeat(40), merge = 'e'.repeat(40), deployed = 'f'.repeat(40);
-  const skill = 'maniskill-panda-pick-cube'; let pull: any; let stored = ''; let memoryId = ''; let manifest: any;
+  const skill = 'maniskill-panda-pick-cube'; let pull: any; let stored = ''; let memoryId = ''; let manifest: any; let proofReads = 0;
+  const canonical = 'https://hub.superfastrobotics.com';
   const finding = { schema_version: '1', skill_id: skill, base: { hub_commit: hub, source_commit: source, record_version: '1.0.0' },
     kind: 'failure_observation', summary: 'Report a missing planner package', observation: 'The planner package was missing from the isolated source preparation environment.', resolution: null,
     environment: { runtime: 'maniskill', robot: 'panda' }, evidence: { level: 'contributor_reported', command: null, result: 'Package missing; no robot execution.', reported_by: 'submitter' },
     attribution: { contributor_label: 'Transport test', preserve_upstream_attribution: true }, publication: { public_submission_allowed: true } };
   const mf = await runtime(async request => {
-    if (request.url === PUBLICATION) { assert.equal(request.headers.has('Authorization'), false); return RuntimeResponse.json(manifest); }
+    if (request.url === canonical + '/catalog/v2/memories/' + memoryId + '.json') {
+      proofReads++; assert.equal(request.headers.has('Authorization'), false); assert.equal(request.headers.get('DNT'), '1'); assert.equal(request.headers.get('X-RSH-Telemetry'), 'off');
+      return RuntimeResponse.json(manifest);
+    }
     assert.ok(request.url.startsWith(API + '/'));
     const publicChecks = request.url.includes('/check-runs');
     assert.equal(request.headers.get('Authorization'), publicChecks ? null : `Bearer ${GITHUB_TOKEN}`);
@@ -184,7 +214,7 @@ test('native memory save stores one bounded finding and confirms its exact merge
     }
     if (publicChecks) return RuntimeResponse.json({ check_runs: [{ name: 'Checks', status: 'completed', conclusion: 'success' }] });
     assert.fail('Unexpected memory runtime request: ' + request.url);
-  });
+  }, canonical + '/catalog/v1/publication.json');
   try {
     const response = await mf.dispatchFetch('https://api.example.invalid/v1/memories', { method: 'POST', headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(finding) });
     assert.equal(response.status, 201); const saved: any = await response.json(); assert.equal(saved.memory_id, memoryId); assert.equal(saved.content_sha256, hash(stored));
@@ -195,6 +225,7 @@ test('native memory save stores one bounded finding and confirms its exact merge
       content_sha256: saved.content_sha256, record_version: '1.0.0', source_commit: source, base_hub_commit: hub, entry_url: 'https://catalog.example.invalid/memory.json' }] };
     const published: any = await (await read()).json(); assert.equal(published.status, 'published'); assert.equal(published.hub_validation.runtime, 'not_run');
     assert.equal(published.entry_url, manifest.memories[0].entry_url);
+    assert.equal(proofReads, 1);
   } finally { await mf.dispose(); }
 });
 

@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-sharpa-wave-scene-right-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e79d911711db2164a2199b25ddf3a8704a785a377e4370ce18f9298d1e5d83f6",
+      "record_version": "source-e79d911711db2164a2199b25ddf3a8704a785a377e4370ce18f9298d1e5d83f6"
+    },
+    {
       "id": "pinocchio-examples-kinematics-derivatives-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "c75292efc64b15acdb8f2bb5eac51322d9a4f51076e956b0f1b3c6cf1675816e",
       "record_version": "source-c75292efc64b15acdb8f2bb5eac51322d9a4f51076e956b0f1b3c6cf1675816e"
+    },
+    {
+      "id": "ur-description-artifact-config-ur10-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "7b810504998988821a9a569a444556f1faabfe8b73cc8831abfe68cb50a01056",
+      "record_version": "source-7b810504998988821a9a569a444556f1faabfe8b73cc8831abfe68cb50a01056"
     },
     {
       "id": "webots-projects-robots-k-team-khepera4-controllers-khepera4-khepera4-c",

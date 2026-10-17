@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1m-1-2-no-gripper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "6800e6241b81c177fa56546193da5c8fe7cc6fe6e7627b4a1cc8699e8e9bdc73",
+      "record_version": "source-6800e6241b81c177fa56546193da5c8fe7cc6fe6e7627b4a1cc8699e8e9bdc73"
+    },
+    {
       "id": "pyrobosim-pyrobosim-examples-demo-world-save-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "0e8f7880eb47b836b39b1c918d912b28bdc03f0dec23256b182862d0c42dfe0b",
       "record_version": "source-0e8f7880eb47b836b39b1c918d912b28bdc03f0dec23256b182862d0c42dfe0b"
+    },
+    {
+      "id": "ros2-control-artifact-example-4-description-urdf-rrbot-system-with-dcde2b8b3f41",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "0ba4d96d6f7de1c003e94d19b93273180fb4f2c5cfc39ddb5b0e434f5b79f8f7",
+      "record_version": "source-0ba4d96d6f7de1c003e94d19b93273180fb4f2c5cfc39ddb5b0e434f5b79f8f7"
     },
     {
       "id": "webots-projects-robots-epson-scara-t6-controllers-scara-scara-py",

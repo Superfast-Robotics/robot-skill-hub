@@ -46,6 +46,12 @@
   ],
   "d1_databases": [
     {
+      "binding": "CATALOG",
+      "database_name": "robot-skill-hub-catalog",
+      "database_id": "985b0ae4-dd48-459a-8129-2f49fcc35d7c",
+      "migrations_dir": "migrations-catalog"
+    },
+    {
       "binding": "METRICS",
       "database_name": "robot-skill-hub-metrics",
       "database_id": "2022a8f3-26db-4c9e-b867-021d49dfb75f",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-end-effectors-common-utils-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "29043c9cbd7aa7e0359c1da12c220e78a8ba2467432381ba1975c6295e3e98cd",
+      "record_version": "source-29043c9cbd7aa7e0359c1da12c220e78a8ba2467432381ba1975c6295e3e98cd"
+    },
+    {
       "id": "moveit2-doc-examples-trajopt-planner-src-trajopt-example-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "a5ad02a2b1cd9768b41d93cd45f01210e4d65f365cef99319ad25ad605f2d6cb",
@@ -12,6 +18,12 @@
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "c0bf3a1f0a702770656a5c4e93bcce179f7b373c93a21b6d675438ab732bcc2c",
       "record_version": "source-c0bf3a1f0a702770656a5c4e93bcce179f7b373c93a21b6d675438ab732bcc2c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-aloha-aloha-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "68430b29719bda1b75e63f540953f81991bc3fd136bdf0a43bbe3e04393b78d3",
+      "record_version": "source-68430b29719bda1b75e63f540953f81991bc3fd136bdf0a43bbe3e04393b78d3"
     },
     {
       "id": "roboticstoolbox-examples-vehicle1-py",

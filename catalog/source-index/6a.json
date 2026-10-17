@@ -14,6 +14,12 @@
       "record_version": "source-39aa2b3d1cc27228825be906545224e720152b139f4223b0157302242316867f"
     },
     {
+      "id": "ros2-control-artifact-example-8-description-urdf-rrbot-transmission-6af155b50d8e",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "2b7d734bd4ab68ec27fe6175e25613382a3426c3fad05c366dbf4d2407d4b9c9",
+      "record_version": "source-2b7d734bd4ab68ec27fe6175e25613382a3426c3fad05c366dbf4d2407d4b9c9"
+    },
+    {
       "id": "webots-projects-robots-dji-mavic-controllers-mavic2pro-patrol-mavic-8908b0bf460a",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "f8f3b9f9c7726e7c685a8ff9e342c00a9eff8074a6b4986e377e190d9186bb78",

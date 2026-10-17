@@ -2,16 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-fr3v2-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "5c9e3adc97eb40fcc02d5b8a4d064517dd29ed4e8d972331a93abc02b33fd09c",
+      "record_version": "source-5c9e3adc97eb40fcc02d5b8a4d064517dd29ed4e8d972331a93abc02b33fd09c"
+    },
+    {
       "id": "moveit2-doc-examples-interactivity-src-interactivity-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "92bbbffbef6a6494f3f41738bb36e3f76de6126cadaec85ede25aa91f5448509",
       "record_version": "source-92bbbffbef6a6494f3f41738bb36e3f76de6126cadaec85ede25aa91f5448509"
     },
     {
+      "id": "mujoco-menagerie-artifact-trs-so-arm100-so-arm100-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1901fe7e86d2458e2011390bf52014c1f6f4fcea79abef1788b3108ea9781955",
+      "record_version": "source-1901fe7e86d2458e2011390bf52014c1f6f4fcea79abef1788b3108ea9781955"
+    },
+    {
       "id": "pinocchio-examples-viser-viewer-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "55f6e7e612ae1623bdb3b2f4da9bc4a6e385ca15d9fd9866314518c2c424f294",
       "record_version": "source-55f6e7e612ae1623bdb3b2f4da9bc4a6e385ca15d9fd9866314518c2c424f294"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3e-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "ee8e6db5d031bd7b4bc02d70edcbba4846036187d0ecaeb7b0bbc4d810f1e3ac",
+      "record_version": "source-ee8e6db5d031bd7b4bc02d70edcbba4846036187d0ecaeb7b0bbc4d810f1e3ac"
     }
   ]
 }

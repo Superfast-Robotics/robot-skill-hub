@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "franka-description-artifact-robots-fr3v2-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e2ce373d28fde519aa586c3e9cf3fc4a7d7556abbe1faeec03352d5a38e0d979",
+      "record_version": "source-e2ce373d28fde519aa586c3e9cf3fc4a7d7556abbe1faeec03352d5a38e0d979"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xc-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "9bbaa6d36fe5e72f7367b5456dd725cf903df9aaf765272a8e5ec9f5fb05d5ee",
+      "record_version": "source-9bbaa6d36fe5e72f7367b5456dd725cf903df9aaf765272a8e5ec9f5fb05d5ee"
+    }
+  ]
+}

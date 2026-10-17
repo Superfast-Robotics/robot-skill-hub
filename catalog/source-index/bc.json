@@ -14,6 +14,12 @@
       "record_version": "source-d1a9ff9eae8695601e17988bb5c112f157bbda291de2d1c971b2ffbbae8e1362"
     },
     {
+      "id": "mujoco-menagerie-artifact-ufactory-lite6-lite6-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "89672be1b10bef6ab49850c105f6faf1945bf13d238f8a79df0f200cfe6d7796",
+      "record_version": "source-89672be1b10bef6ab49850c105f6faf1945bf13d238f8a79df0f200cfe6d7796"
+    },
+    {
       "id": "webots-projects-robots-surveyor-controllers-surveyor-surveyor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "5b58cf96196361efc2bb19126cfca968450e62b57123f9e9cdcd0aef321c23d1",

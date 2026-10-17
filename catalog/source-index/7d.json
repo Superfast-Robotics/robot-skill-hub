@@ -20,6 +20,18 @@
       "record_version": "source-38a6b84ab5f01170de51447bac5b9089d3c3e9d4526ef7fe91536701d7508d42"
     },
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-vb-scene-hfield-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "21445748fa28c948e6dcd5e4f7d4bdad2eef74df658e2d9ad0d8f20c458de6bb",
+      "record_version": "source-21445748fa28c948e6dcd5e4f7d4bdad2eef74df658e2d9ad0d8f20c458de6bb"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-wonik-allegro-left-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4c604119947fc7f055247541effdb937e1648e92e17b16512a1593e1c37ef787",
+      "record_version": "source-4c604119947fc7f055247541effdb937e1648e92e17b16512a1593e1c37ef787"
+    },
+    {
       "id": "webots-projects-robots-dji-mavic-controllers-mavic2pro-mavic2pro-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "119991370d17d19dfc9f8391f00cf2a7ca41678928f410a9ee522b54e46de514",

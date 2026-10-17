@@ -6,6 +6,12 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "c6dd23ac07ad2a091b05ee443ee6cf38b378e74eb6766b9600776d02d5ce3046",
       "record_version": "source-c6dd23ac07ad2a091b05ee443ee6cf38b378e74eb6766b9600776d02d5ce3046"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6",
+      "record_version": "source-fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6"
     }
   ]
 }

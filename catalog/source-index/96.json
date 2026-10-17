@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-end-effectors-common-ee-with-one-link-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "6ce352414f20a6b2e89257158a304898cc3d8a9c281db36e94715b5dec27f607",
+      "record_version": "source-6ce352414f20a6b2e89257158a304898cc3d8a9c281db36e94715b5dec27f607"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-frame-transformer-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "6e77a801f622837df00844ea43b6a6b43f3d8ff46fe8e96806faabc86aa400ab",
@@ -26,10 +32,40 @@
       "record_version": "source-301a48c55e9ed0f6160e9d370a5429dc1c9f5b18127f0b8ba36971d80dbf9c79"
     },
     {
+      "id": "mujoco-menagerie-artifact-i2rt-yam-yam-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5ae901629db944abd3e6cbb0eaf28ea78bbda3483c840d6db1167e999cc0348c",
+      "record_version": "source-5ae901629db944abd3e6cbb0eaf28ea78bbda3483c840d6db1167e999cc0348c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-kinova-gen3-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "04c1c30b0568bdba56f49f5f382d4d9cd8522026cdbce660196753919265db4a",
+      "record_version": "source-04c1c30b0568bdba56f49f5f382d4d9cd8522026cdbce660196753919265db4a"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-rethink-robotics-sawyer-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "19bbfff05e5011b1a054c1fc9b6e82190cb48bce401cd8593efb9a7a13e36b3f",
+      "record_version": "source-19bbfff05e5011b1a054c1fc9b6e82190cb48bce401cd8593efb9a7a13e36b3f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xm-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cdef862a9ffb7e24a7f83789a340493c2dcef0245a63987abf34a5259018e2da",
+      "record_version": "source-cdef862a9ffb7e24a7f83789a340493c2dcef0245a63987abf34a5259018e2da"
+    },
+    {
       "id": "pinocchio-examples-codegen-codegen-rnea-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "56c829c793705f9e60a06ad16ef3fb96fe6da810a43d9640cd0221f04f9e064b",
       "record_version": "source-56c829c793705f9e60a06ad16ef3fb96fe6da810a43d9640cd0221f04f9e064b"
+    },
+    {
+      "id": "ur-description-artifact-config-ur20-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "ba2be7ecf42ee235d83aa572ca3743532c45577affef0d75b65d9f0cd40aed66",
+      "record_version": "source-ba2be7ecf42ee235d83aa572ca3743532c45577affef0d75b65d9f0cd40aed66"
     }
   ]
 }

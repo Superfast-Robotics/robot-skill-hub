@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-rby1m-1-2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e4e03716431e5e42ada521dd40775837c5067ed02abdacd6d74beda7c7426848",
+      "record_version": "source-e4e03716431e5e42ada521dd40775837c5067ed02abdacd6d74beda7c7426848"
+    },
+    {
       "id": "pinocchio-examples-collisions-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "387076513788347deeb1b520e02400c13a4a2b3c6600fa8cd61cf4a232035de8",

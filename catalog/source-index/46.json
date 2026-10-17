@@ -8,10 +8,22 @@
       "record_version": "source-e89c8839505247bef46e984453404790411bb1916b12157a7148988b88ef5f86"
     },
     {
+      "id": "franka-description-artifact-robots-fr3v2-accelerometers-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4",
+      "record_version": "source-adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4"
+    },
+    {
       "id": "lerobot-examples-dataset-use-dataset-tools-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "9c5b3babc4aaa1b5243725c98a0177d4ef38b82b2fc14bf9290c6911b0c99d2a",
       "record_version": "source-9c5b3babc4aaa1b5243725c98a0177d4ef38b82b2fc14bf9290c6911b0c99d2a"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-b-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2080f6c06b503f01ac9f092f574bbf75c2ef11e16769b53a10615b540ae5027b",
+      "record_version": "source-2080f6c06b503f01ac9f092f574bbf75c2ef11e16769b53a10615b540ae5027b"
     },
     {
       "id": "webots-projects-robots-robotis-darwin-op-controllers-walk-main-cpp",

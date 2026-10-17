@@ -14,6 +14,12 @@
       "record_version": "source-6661bb80943eab70af753bab1bda2ace2be57679a21b2f4d26c1700e5fc9fe82"
     },
     {
+      "id": "ur-description-artifact-config-ur5-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "c03da5592477f6ba8f115e9ae01fd2bb8a60b1976b8897ef9923dfee81395d13",
+      "record_version": "source-c03da5592477f6ba8f115e9ae01fd2bb8a60b1976b8897ef9923dfee81395d13"
+    },
+    {
       "id": "webots-projects-robots-clearpath-heron-controllers-heron-usv-contro-2b1d78422950",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "cca5c21b10cf7b8eab100dc6a7d3dc6291792887f401403dd93aeb0a82b7f5d9",

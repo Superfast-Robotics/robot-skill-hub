@@ -8,10 +8,34 @@
       "record_version": "source-c070b261915bb67a22862cd2152094861dd24bb6297c06e08a3df6268e2a446b"
     },
     {
+      "id": "franka-description-artifact-robots-tmrv0-2-inertia-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "d17115f4832a0be72d4638ca6c41086a7db3a68cb67d951ffec9a489bcee8067",
+      "record_version": "source-d17115f4832a0be72d4638ca6c41086a7db3a68cb67d951ffec9a489bcee8067"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-03-envs-run-cartpole-rl-env-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "657fff8cb085bc25b8a4835161091f4a808da028232f91733001cf911a5f59de",
       "record_version": "source-657fff8cb085bc25b8a4835161091f4a808da028232f91733001cf911a5f59de"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-tiago-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f91f37c35d21bf0adea4bfac6e6f31a5b9a3667e198e9cc0647bd0799f575b12",
+      "record_version": "source-f91f37c35d21bf0adea4bfac6e6f31a5b9a3667e198e9cc0647bd0799f575b12"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotstudio-so101-so101-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "982c02c027ec0c62d3459d0a6eb00dfb7dc13a451992e72ce99addc71f209805",
+      "record_version": "source-982c02c027ec0c62d3459d0a6eb00dfb7dc13a451992e72ce99addc71f209805"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-trossen-wx250s-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "14142c26537a8bf563368baebcbd5b941fd7a1de38f86a6ff810b35e27df2743",
+      "record_version": "source-14142c26537a8bf563368baebcbd5b941fd7a1de38f86a6ff810b35e27df2743"
     }
   ]
 }

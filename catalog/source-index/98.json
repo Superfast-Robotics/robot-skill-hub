@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-robotiq-2f85-v4-2f85-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "8d4a4f840ff5f928d56e387a8325d1f34437b35f72b82792e4d46f8de879e133",
+      "record_version": "source-8d4a4f840ff5f928d56e387a8325d1f34437b35f72b82792e4d46f8de879e133"
+    },
+    {
       "id": "mujoco-mjx-tutorial",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "9f9512ce0651b90443528553c617852a81ba0886d1267f1a0635bb4c73a68432",
@@ -24,6 +30,18 @@
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "f0985b450ded3b90d5a6343e5d3311adf4d952e36776fb6fb91be42b443e0a40",
       "record_version": "source-f0985b450ded3b90d5a6343e5d3311adf4d952e36776fb6fb91be42b443e0a40"
+    },
+    {
+      "id": "ros2-control-artifact-example-5-bringup-config-rrbot-with-external-7035485242f4",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "dd58ef246c68dab2d08406c4a6011e8c17782e87a1c1bc0eceb84341cbbd64de",
+      "record_version": "source-dd58ef246c68dab2d08406c4a6011e8c17782e87a1c1bc0eceb84341cbbd64de"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "cc0abaa343555c577a374ccdae6aacfbf17cb9cdb526d57b50c8cc18475b4a86",
+      "record_version": "source-cc0abaa343555c577a374ccdae6aacfbf17cb9cdb526d57b50c8cc18475b4a86"
     },
     {
       "id": "webots-projects-samples-devices-controllers-coaxial-rotors-coaxial-rotors-py",

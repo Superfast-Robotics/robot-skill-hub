@@ -14,6 +14,12 @@
       "record_version": "source-49b6a0a7dc6950b8a3bb50382a5943e071eaa2a10c7d0e74e615c6d5538fa1f2"
     },
     {
+      "id": "ur-description-artifact-config-ur30-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "744f2e8e0c1a352aab29061f9c104927444854fe8f5958f0738f98242fce09fe",
+      "record_version": "source-744f2e8e0c1a352aab29061f9c104927444854fe8f5958f0738f98242fce09fe"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-camera-auto-focus-camer-d0f44d0addcd",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "20819b3d81199c46ef325f26735192dd4918e175ea4a5ba65a44228d0fa5bf86",

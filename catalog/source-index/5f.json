@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-aloha-filtered-cartesian-actuators-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f18eac9b529779eaff7623c81e8a0c6fa04d3c7a7fc6eff19c076bca7313b8ff",
+      "record_version": "source-f18eac9b529779eaff7623c81e8a0c6fa04d3c7a7fc6eff19c076bca7313b8ff"
+    },
+    {
       "id": "pinocchio-examples-simulation-lcaba-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "334956809770b3dff9fa80f7fba87c8a15c4ef5de9be8ebf12b4f3bd5bdac2c5",
       "record_version": "source-334956809770b3dff9fa80f7fba87c8a15c4ef5de9be8ebf12b4f3bd5bdac2c5"
+    },
+    {
+      "id": "ros2-control-artifact-example-14-bringup-config-rrbot-modular-actua-01f474bd1f0e",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "7ce1a1068214551c71e1e46b80f9e947c332d06acf8059a894fa604b66321b57",
+      "record_version": "source-7ce1a1068214551c71e1e46b80f9e947c332d06acf8059a894fa604b66321b57"
     },
     {
       "id": "webots-projects-robots-fp-robotics-p-rob3-controllers-p-rob3-p-rob3-c",

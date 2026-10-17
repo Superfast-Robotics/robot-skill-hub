@@ -30,7 +30,12 @@
     "openapi_url": "https://hub.superfastrobotics.com/openapi.json",
     "privacy_url": "https://hub.superfastrobotics.com/privacy.md",
     "new_skills_guide_url": "https://hub.superfastrobotics.com/new-skills.md",
-    "access_metrics_url": "https://api.superfastrobotics.com/v1/metrics"
+    "access_metrics_url": "https://api.superfastrobotics.com/v1/metrics",
+    "findings_url": "https://api.superfastrobotics.com/v1/findings",
+    "search_manifest_url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
+    "memory_manifest_url": "https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json",
+    "submission_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/submissions/{submission_id}.json",
+    "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json"
   },
   "cli": {
     "minimum_python": "3.10",
@@ -43,11 +48,14 @@
       "--catalog FILE_OR_URL"
     ],
     "discovery": {
-      "default": "latest_available_with_local_cache",
+      "default": "bounded_public_search_and_selected_record",
       "offline_fallback": "bundled_snapshot",
       "explicit_catalog": "caller_selected",
       "freshness": "preserve_reported_origin_and_freshness",
-      "prepared_project_locks": "never_silently_updated"
+      "prepared_project_locks": "never_silently_updated",
+      "coverage": "preserve_reported_scope_and_coverage",
+      "search_semantics": "all_terms_word_prefix",
+      "findings": "bounded_exact_source_version_environment_page"
     },
     "actions": [
       {

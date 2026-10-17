@@ -8,6 +8,12 @@
       "record_version": "source-eae4ee1b985e4636524fd3ba2110e85dc815b98af03d84d97977d49ce46328a6"
     },
     {
+      "id": "mujoco-menagerie-artifact-pal-tiago-tiago-motor-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4dcfd84865552744418af57c5a420c80062b661f4d1279615fc1dc4b3f4029df",
+      "record_version": "source-4dcfd84865552744418af57c5a420c80062b661f4d1279615fc1dc4b3f4029df"
+    },
+    {
       "id": "pinocchio-examples-meshcat-viewer-octree-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "0d032d1f8481c75c3fe91497fdd27497e2d5d78c1b5f1bda0ce975eea087adac",
@@ -18,6 +24,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "61d688f3956fe194e0668b9649995b42abf1036798a8846728528e73f70d9d04",
       "record_version": "source-61d688f3956fe194e0668b9649995b42abf1036798a8846728528e73f70d9d04"
+    },
+    {
+      "id": "ur-description-artifact-config-ur7e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "87e8adba0d4e40cc9a994e7ca2264671cc6b6c732649b675b553639cb275a16d",
+      "record_version": "source-87e8adba0d4e40cc9a994e7ca2264671cc6b6c732649b675b553639cb275a16d"
     }
   ]
 }

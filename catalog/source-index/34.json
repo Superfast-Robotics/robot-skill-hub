@@ -8,10 +8,34 @@
       "record_version": "source-3f879f3d2dee81d52dec65bb7e102ca9298797383868ee8a40d8ae58859d1ff4"
     },
     {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-b-anymal-b-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b62042025fc15c331348c1f28f0924f28899bee43ff261a8ce4a34a48e91074d",
+      "record_version": "source-b62042025fc15c331348c1f28f0924f28899bee43ff261a8ce4a34a48e91074d"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-g1-g1-with-hands-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2d41a3c6783fbf9e17349608d9c2222d970163b1db315ce9f30c4a97631fc078",
+      "record_version": "source-2d41a3c6783fbf9e17349608d9c2222d970163b1db315ce9f30c4a97631fc078"
+    },
+    {
+      "id": "ros2-control-artifact-example-1-bringup-config-rrbot-jtc-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "aeb1fe4b0eb4ab3769e0ce8ef503f76bc5fc0f33de9d5118680030f5d455790c",
+      "record_version": "source-aeb1fe4b0eb4ab3769e0ce8ef503f76bc5fc0f33de9d5118680030f5d455790c"
+    },
+    {
       "id": "ros2-control-example-10-bringup-launch-rrbot-launch-py",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "0e1d74de109db6993c856831a1ec53ddeb19db35203e68ffc8782565d0c39a92",
       "record_version": "source-0e1d74de109db6993c856831a1ec53ddeb19db35203e68ffc8782565d0c39a92"
+    },
+    {
+      "id": "ur-description-artifact-urdf-inc-ur-transmissions-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "85096b2102ef26cb11313956e9ba737f3fae63a0b702108f8cf3253de1cdadf3",
+      "record_version": "source-85096b2102ef26cb11313956e9ba737f3fae63a0b702108f8cf3253de1cdadf3"
     }
   ]
 }

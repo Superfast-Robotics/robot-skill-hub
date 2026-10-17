@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-1-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386",
+      "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-04-sensors-run-ray-caster-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466",
       "record_version": "source-3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xc-toddlerbot-2xc-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7ab175c0727fcf8ef5c82a0cd5c19f5ef68e158c41220e5fe1f5777aa8c5dcab",
+      "record_version": "source-7ab175c0727fcf8ef5c82a0cd5c19f5ef68e158c41220e5fe1f5777aa8c5dcab"
     },
     {
       "id": "pinocchio-examples-robot-wrapper-viewer-py",

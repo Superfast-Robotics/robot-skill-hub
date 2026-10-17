@@ -14,6 +14,12 @@
       "record_version": "source-40f1c0c825aa8923ab4a9fd2ef3d4fd10adc04bfbf61ddf804e3b52eee42f0d9"
     },
     {
+      "id": "ur-description-artifact-config-ur10-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "9ebaa1369cf430da76683c38d0cafb101aa27b33997454a3c510046e8aa8a50c",
+      "record_version": "source-9ebaa1369cf430da76683c38d0cafb101aa27b33997454a3c510046e8aa8a50c"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-emitter-receiver-emitter-receiver-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "06ce275219a2322097bdf328fdb49bea3342af3c11625dad54d80b5565807899",

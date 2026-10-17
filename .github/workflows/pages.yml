@@ -39,3 +39,24 @@ jobs:
       - name: Deploy reviewed catalog
         id: deployment
         uses: actions/deploy-pages@v4
+  sync:
+    name: Activate reviewed catalog index
+    needs: deploy
+    if: github.ref == 'refs/heads/main' && github.repository == 'Superfast-Robotics/robot-skill-hub'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Sync one pinned generation after Pages deployment
+        run: python tools/sync_catalog.py --hub-commit "$GITHUB_SHA" --timeout-seconds 540
+        env:
+          CATALOG_SYNC_KEY: ${{ secrets.CATALOG_SYNC_KEY }}
+          RSH_TELEMETRY: 'off'

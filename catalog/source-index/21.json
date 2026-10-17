@@ -8,6 +8,18 @@
       "record_version": "source-a97d1b20351ec276750a64cbd507117805e9d8e42c735b188d52e0c8e34cadf3"
     },
     {
+      "id": "franka-description-artifact-end-effectors-cobot-pump-cobot-pump-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "ab0e935f17c12b40cc32ce1c02c73707368be3f0e4102b48046f7c65432c3ff2",
+      "record_version": "source-ab0e935f17c12b40cc32ce1c02c73707368be3f0e4102b48046f7c65432c3ff2"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-boston-dynamics-spot-scene-arm-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "950b25f9dd4756458fdad475c98221e836422208ad280326e63afcb3ce98bdcb",
+      "record_version": "source-950b25f9dd4756458fdad475c98221e836422208ad280326e63afcb3ce98bdcb"
+    },
+    {
       "id": "ompl-demos-constraint-constrainedplanningtorus-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "69850d8b8b4900fd7d23b55897dc9f9225e69587e7c020411e214a70a63a4617",

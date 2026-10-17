@@ -14,6 +14,12 @@
       "record_version": "source-d9143691e36a888a551629e4a87ccb04fa0d72773459978ddecf508c091b3092"
     },
     {
+      "id": "franka-description-artifact-robots-common-utils-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "b6819d3530d760ae8f4a318348d0125f3a2ae67bf03bfc965060d8388fd060f7",
+      "record_version": "source-b6819d3530d760ae8f4a318348d0125f3a2ae67bf03bfc965060d8388fd060f7"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-05-controllers-run-diff-ik-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "fbd000abdda9fbb5dabb87d718441cca81a536c902f03ffc7ab262b819e99716",

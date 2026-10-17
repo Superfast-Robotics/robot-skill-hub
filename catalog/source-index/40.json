@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-mobile-fr3-duo-v0-2-mobile-fr3-d-1af521d94b99",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "d0d285576adcb60841e637ccb2c0e61b599fb1db3e1c7ca269568f1c1cb6b47f",
+      "record_version": "source-d0d285576adcb60841e637ccb2c0e61b599fb1db3e1c7ca269568f1c1cb6b47f"
+    },
+    {
       "id": "ompl-demos-planarmanipulator-planarmanipulatordemo-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "7fc69dd942c249700a55df07d0ca44f1712d614b0bde1bc3a1a607418f838f2d",

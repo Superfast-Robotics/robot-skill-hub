@@ -14,10 +14,22 @@
       "record_version": "source-adb60909d959f5f2dff10bd4f078348118f5816bc326ab325442d7cce784f821"
     },
     {
+      "id": "ros2-control-artifact-example-13-description-urdf-three-robots-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "29f03803c1762393101d47d5368381928f907f15c3f2347ccbc9fdece637a28c",
+      "record_version": "source-29f03803c1762393101d47d5368381928f907f15c3f2347ccbc9fdece637a28c"
+    },
+    {
       "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-custom-callback-group-py",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "03679a3f78be665ed1f81b6bf9a94b280f8dc3a108a112f47b1b1b4b80b66b36",
       "record_version": "source-03679a3f78be665ed1f81b6bf9a94b280f8dc3a108a112f47b1b1b4b80b66b36"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "4ffc6086bb0118a5a8e4a3576ef41de878de946710799ea4835789063fa9c0bc",
+      "record_version": "source-4ffc6086bb0118a5a8e4a3576ef41de878de946710799ea4835789063fa9c0bc"
     }
   ]
 }

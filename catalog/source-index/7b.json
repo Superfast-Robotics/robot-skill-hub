@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-bitcraze-crazyflie-2-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "6e8ed7902dcf75d312c7ef76549c030bebf105afee0a211860ff48eb622c2310",
+      "record_version": "source-6e8ed7902dcf75d312c7ef76549c030bebf105afee0a211860ff48eb622c2310"
+    },
+    {
       "id": "ompl-demos-multicopter-multicopterplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "19a9a41d1fc8b42766e9931698ec438e276bc2036ea6a676cf8d8fd7cd0517ba",

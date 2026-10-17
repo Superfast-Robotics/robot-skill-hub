@@ -8,6 +8,18 @@
       "record_version": "source-ed22714ef610d33877bd6b567ebae9aaf91d9169be828981b4aeb8a8da6759b6"
     },
     {
+      "id": "mujoco-menagerie-artifact-flexiv-rizon4s-flexiv-rizon4s-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cca07cc4fc5590f340d837a69a49327861f696ba4264ed0f4d4e9b63dc107624",
+      "record_version": "source-cca07cc4fc5590f340d837a69a49327861f696ba4264ed0f4d4e9b63dc107624"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-g1-g1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3c2616550a31f33e84d3c80b8e913ac5618c8888019b0c9490dae93493e647f3",
+      "record_version": "source-3c2616550a31f33e84d3c80b8e913ac5618c8888019b0c9490dae93493e647f3"
+    },
+    {
       "id": "ompl-demos-randomwalkplanner-py",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "0df5ce2157add4dc7f83cfa3c6112847c02c9f68080e5e2ec4cfc0e3860b0265",
@@ -24,6 +36,12 @@
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "9085aa5dcc0119a13b8b1f4c49632a14201519d669cdeed3231656519b68e4cc",
       "record_version": "source-9085aa5dcc0119a13b8b1f4c49632a14201519d669cdeed3231656519b68e4cc"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "2679eda80ff2c0055a6f0db558bb4160bc6d33c7a6267a204133494b36c27abe",
+      "record_version": "source-2679eda80ff2c0055a6f0db558bb4160bc6d33c7a6267a204133494b36c27abe"
     }
   ]
 }

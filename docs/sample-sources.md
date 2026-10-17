@@ -5,9 +5,11 @@ The Hub contains two kinds of entries:
 - **17 preparation recipes** wrap actual official ManiSkill motion-planning
   solvers with a pinned source archive, dependency recipe, isolated preparation,
   and a final JSON result contract.
-- **651 source examples** point to immutable official files across 16 robotics
-  ecosystems. They expose source and license hashes, imports, setup links,
-  execution domains and entrypoints. They do not have a Hub preparation adapter.
+- **1,060 official source references** cover 651 runnable-source examples and
+  409 robot model, description and configuration text artifacts across 19
+  official robotics repositories. They expose immutable source and applicable license
+  hashes, setup links and exact inspection limits. They have no Hub preparation
+  adapter. The published catalog also contains one separately reviewed intake.
 
 Read the [preparation catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
 and [source example index](https://hub.superfastrobotics.com/catalog/v1/references.json)
@@ -76,13 +78,53 @@ These are stable source references, not a claim to use each project's latest
 release. Repository stars, when present, are dated interest measurements rather
 than skill usage or compatibility evidence.
 
-The new manifest contains 611 accepted runnable source artifacts from 13
+The runnable-example manifest contains 611 accepted source artifacts from 13
 additional projects. Static inspection rejects library-only modules, native
 files without `main`, unreviewed straight-line helper scripts and conflicting
 explicit license identifiers. All 651 source files and their license pins were
 downloaded and checked; no upstream example was executed by the importers.
 The Webots portion includes 98 robot-specific controllers across 56 model
 directories, plus device and controller examples.
+
+## Robot models, descriptions and configuration
+
+The [artifact manifest](../catalog/artifact-projects.json) adds **409 official
+text artifacts** beyond executable examples. Each source file has its own
+immutable commit, SHA-256, byte size, artifact kind and format. Its applicable
+license file is pinned and hashed separately. Existing example records and IDs
+are preserved.
+
+| Official repository | Immutable commit | Text artifacts |
+| --- | --- | ---: |
+| [MuJoCo Menagerie](https://github.com/google-deepmind/mujoco_menagerie/tree/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35) | `62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35` | 221: 219 MJCF and 2 URDF |
+| [Universal Robots description](https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/tree/d4042c1f5123c86645cc5dbd650b4f461f697ee9) | `d4042c1f5123c86645cc5dbd650b4f461f697ee9` | 65: 57 YAML and 8 Xacro |
+| [Franka description](https://github.com/frankarobotics/franka_description/tree/7aeeddc449edf8d62b594f9e36a81da53e7796f9) | `7aeeddc449edf8d62b594f9e36a81da53e7796f9` | 72: 33 YAML and 39 Xacro |
+| [ros2_control demos](https://github.com/ros-controls/ros2_control_demos/tree/3c35e783e268e5235bb042a71c68112a3ecb777e) | `3c35e783e268e5235bb042a71c68112a3ecb777e` | 51: 35 YAML and 16 Xacro |
+
+Menagerie entries use **69 model-directory license files**, rather than a
+single repository-wide license. The selection includes model definitions,
+model components and scenes for arms, grippers, legged robots, humanoids,
+mobile manipulators and aerial robots. Model-specific pinned README links
+explain upstream simulator versions and adjacent assets.
+
+The description/configuration selection covers nominal kinematics, inertial
+parameters, joint limits, semantic robot groups and controller parameters.
+Universal Robots' newer meshes have separate graphical-documentation terms;
+the BSD-3-Clause scope recorded here covers selected description/configuration
+text and does not grant rights to those meshes. Nominal kinematics are not
+robot-specific calibration.
+
+The importer downloaded and checked all 409 selected source files and 72
+applicable license files. It parsed XML syntax, recorded direct include/mesh
+references and inspected YAML mapping-key shape. It did not evaluate Xacro,
+resolve includes, load models, deploy controller parameters or run a simulator.
+YAML syntax/semantics and compatibility remain unverified. Source-only evidence
+does not increase the number of runtime-verified preparation recipes.
+
+A [sanitized ingestion receipt](../evidence/sources/robot-artifacts-2026-10-18.json)
+records the exact manifest checksum, immutable repository commits, counts and
+checks performed. This finite selection does not cover every model or parameter
+file in these repositories.
 
 Robot categories inferred from source paths are discovery labels. A project
 supporting several robot families does not make every example compatible with
@@ -116,6 +158,12 @@ python tools/import_ecosystem_examples.py --fetch --check
 
 # Rebuild/validate from the local static-inspection cache without network access.
 python tools/import_ecosystem_examples.py --check
+
+# Verify the explicit robot-description/model/controller text pins upstream.
+python tools/import_robot_artifacts.py --fetch --check
+
+# Check those artifacts and the additive source indexes from local cached text.
+python tools/import_robot_artifacts.py --check
 
 # After reviewing a manifest commit/license change, explicitly inspect its tree.
 python tools/import_ecosystem_examples.py --discover --project nav2 --fetch

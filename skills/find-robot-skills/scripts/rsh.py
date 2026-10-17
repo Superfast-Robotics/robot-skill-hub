@@ -6,7 +6,7 @@ import argparse
 import json
 import sys
 
-from rshlib import contributions, intake, memories, setup
+from rshlib import contributions, intake, memories, remote_catalog, setup
 from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
@@ -52,7 +52,7 @@ def build_parser():
     prep = sub.add_parser("prepare", help="Download pinned source and create an isolated environment; never run task")
     prep.add_argument("skill_id")
     prep.add_argument("--project", required=True)
-    prep.add_argument("--plan", action="store_true", help="Return planned actions; no writes or downloads")
+    prep.add_argument("--plan", action="store_true", help="Read metadata and return a plan; no source download, install or project writes")
     prep.add_argument("--download-only", action="store_true", help="Download verified sources for a documented target; no environment or install")
     prep.add_argument("--source-archive", help="Use an already downloaded archive after checking the catalog SHA-256")
     prep.add_argument("--install-deps", action="store_true", help="Explicitly permit the printed dependency installation commands")
@@ -103,6 +103,9 @@ def build_parser():
     recall.add_argument("skill_id")
     recall.add_argument("--project")
     recall.add_argument("--index", help="Explicit local file or HTTPS published memory index")
+    recall.add_argument("--limit", type=int, default=20, choices=range(1, 51))
+    recall.add_argument("--offset", type=int, default=0)
+    recall.add_argument("--hub-commit", help="Keep finding pagination on the original published Hub generation")
     environment_options(recall)
     sub.add_parser("validate-catalog", help="Validate the chosen catalog without executing recipe code")
     return parser
@@ -145,8 +148,6 @@ def execute(args, catalog_location):
         return memories.status(args.memory_id, api_url=args.api_url)
     if args.command == "flush":
         return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline)
-    latest = args.command in ("find", "inspect", "memories", "register")
-    catalog = load_discovery(catalog_location, offline=args.offline, refresh=args.refresh, latest=latest)
     environment = {}
     if getattr(args, "environment", None):
         environment = read_json(args.environment)
@@ -155,6 +156,38 @@ def execute(args, catalog_location):
     for field in ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture"):
         if getattr(args, field, None) is not None:
             environment[field] = getattr(args, field)
+    fallback_reason = None
+    if args.command == "find" and not catalog_location and not args.offline:
+        try:
+            return remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh)
+        except (RshError, OSError, ValueError, TypeError):
+            fallback_reason = "public_search_unavailable"
+    catalog = None
+    if not catalog_location and args.command == "register" and not args.offline:
+        try:
+            catalog = remote_catalog.current_catalog()
+        except (RshError, OSError, ValueError, TypeError):
+            fallback_reason = "public_version_unavailable"
+    skill_id = getattr(args, "skill_id", None)
+    if args.command == "submit":
+        skill_id = read_json(args.bundle).get("skill_id")
+    if not catalog_location and skill_id:
+        # A prepared project's original source/version wins over later publication.
+        if getattr(args, "project", None):
+            pinned = pinned_project_catalog({"schema_version": "1", "records": []}, args.project, skill_id)
+            if pinned.get("catalog_origin") == "project_lock":
+                catalog = pinned
+        if catalog is None:
+            try:
+                catalog = remote_catalog.selected_catalog(skill_id, offline=args.offline, refresh=args.refresh,
+                                                           persist=not getattr(args, "plan", False))
+            except (RshError, OSError, ValueError, TypeError):
+                fallback_reason = "public_record_unavailable"
+    if catalog is None:
+        latest = args.command in ("find", "inspect", "memories", "register")
+        catalog = load_discovery(catalog_location, offline=args.offline, refresh=args.refresh, latest=latest)
+    if fallback_reason:
+        catalog["discovery_fallback_reasons"] = [fallback_reason]
     if args.command == "find":
         return find(catalog, args.query, environment, args.limit)
     if args.command == "register":
@@ -185,7 +218,7 @@ def execute(args, catalog_location):
                              policy_path=args.policy, api_url=args.api_url, offline=args.offline)
     if args.command == "memories":
         return memories.query(catalog, args.skill_id, environment, project=args.project, index=args.index,
-                              offline=args.offline, refresh=args.refresh)
+                              offline=args.offline, refresh=args.refresh, limit=args.limit, offset=args.offset, hub_commit=args.hub_commit)
     return {"status": "ready", "records": len(catalog["records"]), "reason_code": "catalog_valid",
             "execution_performed": False}
 

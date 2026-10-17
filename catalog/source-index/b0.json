@@ -8,6 +8,18 @@
       "record_version": "source-caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9"
     },
     {
+      "id": "mujoco-menagerie-artifact-kinova-gen3-gen3-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7eb65b8238a649ee3d39d5826f27a091d2e6a6cbb53e179a006b2201dae64438",
+      "record_version": "source-7eb65b8238a649ee3d39d5826f27a091d2e6a6cbb53e179a006b2201dae64438"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotis-omy-3m-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e893456fcb341f10798ee05dec1205eb1ab61efc6cf821999df25096f5609fcc",
+      "record_version": "source-e893456fcb341f10798ee05dec1205eb1ab61efc6cf821999df25096f5609fcc"
+    },
+    {
       "id": "ompl-demos-rigidbodyplanningwithcontrols-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "e1c219d8cc7ffc53d56b80436a88f1dcd3cd7a5c82f6be43434c49b20b5a85f7",

@@ -8,6 +8,12 @@
       "record_version": "source-ba6bf1824900eaa74019b9c54bfd0abdd9e852dd6b15d60ce7fd258fac0da421"
     },
     {
+      "id": "franka-description-artifact-robots-common-franka-arm-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "47a4625f8df6431f1eff8fc0d412c3d21306bb980c768b21d7b652abe4e29743",
+      "record_version": "source-47a4625f8df6431f1eff8fc0d412c3d21306bb980c768b21d7b652abe4e29743"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-00-sim-spawn-prims-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "b3c0675fe6c875bc81d94d64fca657d28d6dcb3f48230c0fae0881515d828fb4",
@@ -20,10 +26,28 @@
       "record_version": "source-2b58ae0d950ef29c57bd15ab06b9621550eba0c0299a6efddf38f669e8d0f062"
     },
     {
+      "id": "mujoco-menagerie-artifact-apptronik-apollo-apptronik-apollo-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "28513f17a37f1cfa384a68e7fb379085561bab34ade8f96fb8ad77bf473087a6",
+      "record_version": "source-28513f17a37f1cfa384a68e7fb379085561bab34ade8f96fb8ad77bf473087a6"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ms-human-700-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b91df0280446bd26ab54f8395986111a62149662a15a0af9f2ef4970fdf39862",
+      "record_version": "source-b91df0280446bd26ab54f8395986111a62149662a15a0af9f2ef4970fdf39862"
+    },
+    {
       "id": "ompl-demos-kinematicchainbenchmark-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "aaf9e1a115bf3de26980c8e0d908151b054685c8cd9410e6e757c446ff16dd37",
       "record_version": "source-aaf9e1a115bf3de26980c8e0d908151b054685c8cd9410e6e757c446ff16dd37"
+    },
+    {
+      "id": "ros2-control-artifact-example-5-description-urdf-rrbot-system-with-f4aa0d661026",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "0cfff31c1cf853fce100ad5e0634b60a705afb6ed24c06da17739014526f3d71",
+      "record_version": "source-0cfff31c1cf853fce100ad5e0634b60a705afb6ed24c06da17739014526f3d71"
     },
     {
       "id": "webots-projects-samples-devices-controllers-axial-and-tail-rotors-a-29b96528f527",

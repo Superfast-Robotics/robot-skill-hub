@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-flybody-fruitfly-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "35541d5312f71e7c96156c345cd90918867513a2b3dafbb07b8684ee59b6f4dc",
+      "record_version": "source-35541d5312f71e7c96156c345cd90918867513a2b3dafbb07b8684ee59b6f4dc"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotis-op3-op3-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "02e07fe80bb0352a0987e14e41be496d045a070dd70444a8277b9272105e44ac",
+      "record_version": "source-02e07fe80bb0352a0987e14e41be496d045a070dd70444a8277b9272105e44ac"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-encoders-encoders-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c5f31ff2d7122499de42842be51a7bd088559a45b62b07c8c003544911828968",

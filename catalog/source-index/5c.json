@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "ur-description-artifact-config-initial-positions-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "19456f7115a4f319ed415c327f19d2834745a6167deaa45efc357c6945d6b5d9",
+      "record_version": "source-19456f7115a4f319ed415c327f19d2834745a6167deaa45efc357c6945d6b5d9"
+    }
+  ]
+}

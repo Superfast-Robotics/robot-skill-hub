@@ -8,6 +8,24 @@
       "record_version": "source-ad457e53ee05acdc2f493c91ffe1478a72883f0307310ff9d57b54e055b86617"
     },
     {
+      "id": "franka-description-artifact-robots-fr3v2-1-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "1b417777982a40ee058a4b9ae5d1a1de2f5c079e96dc4fe730b80eda71bdfbc6",
+      "record_version": "source-1b417777982a40ee058a4b9ae5d1a1de2f5c079e96dc4fe730b80eda71bdfbc6"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-talos-talos-motor-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d6f83a3eacdf0470e34d7292e2087ac067fdbd6201044a200cf1babdff487904",
+      "record_version": "source-d6f83a3eacdf0470e34d7292e2087ac067fdbd6201044a200cf1babdff487904"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-talos-talos-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7e56d19c53fc86a2d1032ca7aed10cc292dd6e327bad4a6173382b33eceb282b",
+      "record_version": "source-7e56d19c53fc86a2d1032ca7aed10cc292dd6e327bad4a6173382b33eceb282b"
+    },
+    {
       "id": "ompl-demos-rigidbodyplanningwithintegrationandcontrols-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "83c501dd2be9a3c1deacd4ddf8ad66e89683a40516ffed6f439e0f85046b8aaf",

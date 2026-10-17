@@ -8,6 +8,12 @@
       "record_version": "source-a7236674dd99cf1851bfe1dd7f179618e1f04689ec77a1019c59ca9026f3c283"
     },
     {
+      "id": "mujoco-menagerie-artifact-tetheria-aero-hand-open-scene-right-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "6cebc5c4350830c8c3a5f547e019682103e385056b862f1532125c3600c7fc10",
+      "record_version": "source-6cebc5c4350830c8c3a5f547e019682103e385056b862f1532125c3600c7fc10"
+    },
+    {
       "id": "ompl-demos-plannerdata-py",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "e7aa524234f01131c2d68a28f8c0c54c2959106d315802c9a97e32a7fdbc7da1",

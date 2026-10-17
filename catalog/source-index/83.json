@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-franka-fr3-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "8f17f883872d6c95b63239bd82ca4374771deca9949b8fc9577356209f662ebe",
+      "record_version": "source-8f17f883872d6c95b63239bd82ca4374771deca9949b8fc9577356209f662ebe"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-rethink-robotics-sawyer-sawyer-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "82bb258641ac945772475a52917a55db7ed67eb6a5cc9ee2446b0fb9ac7d6ffd",
+      "record_version": "source-82bb258641ac945772475a52917a55db7ed67eb6a5cc9ee2446b0fb9ac7d6ffd"
+    },
+    {
       "id": "pyrobosim-pyrobosim-examples-demo-dynamics-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "758350c21aafd3257b114dfc0c739f129851c176d608425e6f59a9c8e98f4bcb",
       "record_version": "source-758350c21aafd3257b114dfc0c739f129851c176d608425e6f59a9c8e98f4bcb"
+    },
+    {
+      "id": "ros2-control-artifact-example-9-bringup-config-rrbot-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "5020ab18fc82812be7513f3f8cf6231d182d91a368dc1c461e00e5e719c95fd5",
+      "record_version": "source-5020ab18fc82812be7513f3f8cf6231d182d91a368dc1c461e00e5e719c95fd5"
     },
     {
       "id": "webots-projects-robots-clearpath-moose-controllers-moose-path-follo-ae6dfab8b66d",

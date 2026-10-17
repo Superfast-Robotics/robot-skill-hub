@@ -14,6 +14,18 @@
       "record_version": "source-54cc9bf9ad77d857677618b46180eaa6bee29804baa28300ccfb94827b43970d"
     },
     {
+      "id": "mujoco-menagerie-artifact-flybody-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "910da8b2c93eb17ea42b569720115cd9d86fbf5a4886df27a520e9f3c507dd32",
+      "record_version": "source-910da8b2c93eb17ea42b569720115cd9d86fbf5a4886df27a520e9f3c507dd32"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-tiago-dual-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5a4947ec2521840219c1a67c08c52447666c77bed4f6b86d8b8404ec2d3cfede",
+      "record_version": "source-5a4947ec2521840219c1a67c08c52447666c77bed4f6b86d8b8404ec2d3cfede"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-commands-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "179425be68425fb5bc564a33357258b0a71cfd4667176482728e9be698e09389",

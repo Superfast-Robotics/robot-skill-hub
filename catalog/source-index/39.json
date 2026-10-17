@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-end-effectors-franka-hand-franka-hand-a-6decfc7b7853",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "496a3b356b31339edeac05f76e08f1a7a34b5794e81419b8c089db74b1942d2c",
+      "record_version": "source-496a3b356b31339edeac05f76e08f1a7a34b5794e81419b8c089db74b1942d2c"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-velocity-publisher-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652",
       "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
+    },
+    {
+      "id": "ros2-control-artifact-example-10-bringup-config-rrbot-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "d5d73dfcfe153f6378ce4342c99d3fa37f18e1b1aaa994ccdd4d06c7ded8dd13",
+      "record_version": "source-d5d73dfcfe153f6378ce4342c99d3fa37f18e1b1aaa994ccdd4d06c7ded8dd13"
     },
     {
       "id": "webots-projects-robots-sony-aibo-controllers-ers7-ers7-c",

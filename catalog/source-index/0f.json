@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-common-franka-robot-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "5f9adfd8570b2f6fea16fb95fc1453f9a6ae2cb382dfd6d1deaf67efa62f90c2",
+      "record_version": "source-5f9adfd8570b2f6fea16fb95fc1453f9a6ae2cb382dfd6d1deaf67efa62f90c2"
+    },
+    {
       "id": "roboticstoolbox-examples-benchmark-ik-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "4f867387b124368939a6ff2b4bc5ebf7a827317c3c2fddc68e2ff27857c2a44f",

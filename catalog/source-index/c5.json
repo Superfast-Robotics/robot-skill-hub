@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-dynamics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",
+      "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
+    },
+    {
       "id": "lerobot-examples-lekiwi-evaluate-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "24d04a08393de4ab46c170a2e1c7d8818d2259d349b6aaacccb1176d2ebdf2fb",
@@ -12,6 +18,18 @@
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "6450f27632d535d12d8ddfc50420545bd5e7b372b0ba567ed8b3e8d900cc5813",
       "record_version": "source-6450f27632d535d12d8ddfc50420545bd5e7b372b0ba567ed8b3e8d900cc5813"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-bitcraze-crazyflie-2-cf2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "c1260dd47cded49edd5c1c02226529a5452a73f70000515f83bf223814037933",
+      "record_version": "source-c1260dd47cded49edd5c1c02226529a5452a73f70000515f83bf223814037933"
+    },
+    {
+      "id": "ros2-control-artifact-example-9-bringup-config-rrbot-forward-positi-4d1a1f2c4734",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
     },
     {
       "id": "webots-projects-samples-devices-controllers-gps-lat-long-gps-lat-long-c",

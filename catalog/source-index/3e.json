@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-ms-human-700-scene-manipulation-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "89b1f6e223eca4f9b1ec1f4c54eb9edba2cb2bfdeb22af13d5123091fcdf50dd",
+      "record_version": "source-89b1f6e223eca4f9b1ec1f4c54eb9edba2cb2bfdeb22af13d5123091fcdf50dd"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pndbotics-adam-lite-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "548348d4c1d8926d998e74410799c4d96890baece45dc4625e50cd8cf7c7786b",
+      "record_version": "source-548348d4c1d8926d998e74410799c4d96890baece45dc4625e50cd8cf7c7786b"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-assisted-teleop-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "c3850f078a09e26a4b279deff42b2209c1f2dca9d15c558fd3d406c8f13dcdcd",

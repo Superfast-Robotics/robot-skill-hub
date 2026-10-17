@@ -8,6 +8,12 @@
       "record_version": "source-badd7bd86a701ade9e8598239a846c6c3323500abd9b1a9da7ec10c8e361c8e4"
     },
     {
+      "id": "mujoco-menagerie-artifact-skydio-x2-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "fc7fb8bf774e9fed9621593f36b239ed66a06ed6e8811132c08344d95df2563e",
+      "record_version": "source-fc7fb8bf774e9fed9621593f36b239ed66a06ed6e8811132c08344d95df2563e"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-force3d-sensor-force3d-sensor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "e000c9815c9137ef065d26832e31c844fd1445c00ebb66d9ec99a53b5b88514e",

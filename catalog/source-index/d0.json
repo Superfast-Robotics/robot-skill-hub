@@ -14,6 +14,18 @@
       "record_version": "source-328c20328289f6587f01f3f0301c78670baa416800553fa77c5741260af8d0d7"
     },
     {
+      "id": "mujoco-menagerie-artifact-trossen-wxai-wxai-follower-biarm-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e091ebbab95f07fe156fb2545175194e9b4b05efa31747f24c87d2636b773b36",
+      "record_version": "source-e091ebbab95f07fe156fb2545175194e9b4b05efa31747f24c87d2636b773b36"
+    },
+    {
+      "id": "ur-description-artifact-urdf-ur-mocked-urdf-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "f194ebc2350b35f325eb17c1c235f10247e81f83a5d6b5a1658962322f90f473",
+      "record_version": "source-f194ebc2350b35f325eb17c1c235f10247e81f83a5d6b5a1658962322f90f473"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-inertial-unit-inertial-unit-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c71f119c2fcd87707d20f09a7d1c4bc4bbfd49a49089dd083703488448ca1e39",

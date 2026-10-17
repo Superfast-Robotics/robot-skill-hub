@@ -6,6 +6,12 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "bededa9abacaa4518edbb81b73f29d06a026fa9d1a42e0ec0ae3e8c433bf9415",
       "record_version": "source-bededa9abacaa4518edbb81b73f29d06a026fa9d1a42e0ec0ae3e8c433bf9415"
+    },
+    {
+      "id": "ros2-control-artifact-example-16-bringup-config-diffbot-chained-controllers-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "42ff4934df6d8a8b0d194d84de7cbe23bc673f4d7d884181ca9eff1056e84c95",
+      "record_version": "source-42ff4934df6d8a8b0d194d84de7cbe23bc673f4d7d884181ca9eff1056e84c95"
     }
   ]
 }

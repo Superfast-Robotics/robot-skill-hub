@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-sharpa-wave-scene-left-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "557dfa0660378470b0282913c42a3809ba97f3ac40799d7543187289ca279a40",
+      "record_version": "source-557dfa0660378470b0282913c42a3809ba97f3ac40799d7543187289ca279a40"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-stanford-tidybot-base-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "66769a2572bda57628afb4469e972fa9eb7aa9a14830e81d45f376ae2fb4beb4",
+      "record_version": "source-66769a2572bda57628afb4469e972fa9eb7aa9a14830e81d45f376ae2fb4beb4"
+    }
+  ]
+}

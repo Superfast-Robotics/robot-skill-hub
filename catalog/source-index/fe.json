@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-unitree-go1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "eceb4231bf2a3b0a190296963b38b904ed77dc14f5770bbcdd67fb0be8c49374",
+      "record_version": "source-eceb4231bf2a3b0a190296963b38b904ed77dc14f5770bbcdd67fb0be8c49374"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-z1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "fbbdd2d5bca491178e864c51414cd9a6f0771f0adea3be06be3be9316ed5572c",
+      "record_version": "source-fbbdd2d5bca491178e864c51414cd9a6f0771f0adea3be06be3be9316ed5572c"
+    },
+    {
+      "id": "ros2-control-artifact-example-4-bringup-config-rrbot-forward-positi-c1ab98150f3a",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b",
+      "record_version": "source-8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-pen-pen-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "4fbc792539941afb0048846e724f0d5a96202b90ede2d9bd7adec2f6ce188ef0",

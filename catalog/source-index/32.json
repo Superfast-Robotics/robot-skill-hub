@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-1-dynamics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",
+      "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-manipulation-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7a74b19a4b6b42633b171257641edf1c023604fe57abe0526aa6cee384864058",
+      "record_version": "source-7a74b19a4b6b42633b171257641edf1c023604fe57abe0526aa6cee384864058"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-follow-path-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "a0ca1de9f0d6f2eb8ffd73e2c73cc3cd71ccfc769cd571f503c38ef196baa4b1",
@@ -12,6 +24,18 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d",
       "record_version": "source-7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d"
+    },
+    {
+      "id": "ros2-control-artifact-example-14-description-urdf-rrbot-modular-act-1a74980c77ab",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "6e03f09e1ac603016d70549dce9bdc58a16272b54bba0c1ddaf5a20fd136e1ce",
+      "record_version": "source-6e03f09e1ac603016d70549dce9bdc58a16272b54bba0c1ddaf5a20fd136e1ce"
+    },
+    {
+      "id": "ur-description-artifact-config-ur10-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "efc60b796682f31b350a30884c01137b743786e4d1d077a7d7958b4483b7f6c1",
+      "record_version": "source-efc60b796682f31b350a30884c01137b743786e4d1d077a7d7958b4483b7f6c1"
     },
     {
       "id": "webots-projects-robots-sony-aibo-controllers-ers7-mimic-ers7-mimic-c",

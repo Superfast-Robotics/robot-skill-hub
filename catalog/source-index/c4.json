@@ -8,6 +8,12 @@
       "record_version": "source-1d10cc801d716f8f8d2baa1886ffdb52b4349adcd642a5871b1fd81536fc184b"
     },
     {
+      "id": "mujoco-menagerie-artifact-agility-cassie-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "9047f5b104f6756fc7f5e365d63a91355295c9e4a85261fb94341d1f2686edb5",
+      "record_version": "source-9047f5b104f6756fc7f5e365d63a91355295c9e4a85261fb94341d1f2686edb5"
+    },
+    {
       "id": "roboticstoolbox-examples-readme-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "bc2e398ad7d7d5e9ce03e7d8548fecdb2ab1ca3c6f546045583089872263ad38",

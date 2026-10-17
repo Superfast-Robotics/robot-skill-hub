@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-locomotion-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2061b0dc1a95189a733a9533e2e7e42fa352cfd477d99c2ad557ba1da52c6880",
+      "record_version": "source-2061b0dc1a95189a733a9533e2e7e42fa352cfd477d99c2ad557ba1da52c6880"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-connector-connector-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "4b594d715e7508fad878c712f9eb0282f7d1a8f26a85d355ff7f364f77f6a28b",

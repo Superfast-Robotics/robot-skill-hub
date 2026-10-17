@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-dynamics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b",
+      "record_version": "source-e65e145114b431bd17cdebc58b88c43505f0658472cca6ffbc9c32b7a198f79b"
+    },
+    {
       "id": "mujoco-compile",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "61b4e5d60decb2667ba3e0394503e3188bb7dccb59dec836021272cf5ef08d28",

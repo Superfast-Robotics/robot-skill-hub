@@ -8,6 +8,24 @@
       "record_version": "source-742e51f3ba5ea6b99c2c1b22a9aac31a99d6d2949b9e78a6d26ab61fb5ce0dc9"
     },
     {
+      "id": "mujoco-menagerie-artifact-berkeley-humanoid-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5d925bddefabb6fbc0214248b4657d23a213a2194d30338d31e69c4df9cb2804",
+      "record_version": "source-5d925bddefabb6fbc0214248b4657d23a213a2194d30338d31e69c4df9cb2804"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-shadow-hand-left-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f095444438615241361bcac3495f797cda81fdd30cab18dd3de905ef1ac28cf4",
+      "record_version": "source-f095444438615241361bcac3495f797cda81fdd30cab18dd3de905ef1ac28cf4"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-umi-gripper-umi-gripper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "12b6bbd5e94758164141d54417cad9cde6acdc073311c7c9657dca1ae3fde6ec",
+      "record_version": "source-12b6bbd5e94758164141d54417cad9cde6acdc073311c7c9657dca1ae3fde6ec"
+    },
+    {
       "id": "pinocchio-examples-simulation-pendulum-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "0d4d0c9f149d0df576a9fbdff0d1d4705fddb1b32c588ec889111c2406dd9567",

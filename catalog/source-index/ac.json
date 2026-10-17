@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "c44f2701cd69abc8d702336a1d54bff41cd716dbe88e84df12b6b660daa791cd",
+      "record_version": "source-c44f2701cd69abc8d702336a1d54bff41cd716dbe88e84df12b6b660daa791cd"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ms-human-700-scene-locomotion-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a87de07bf2b985203ad4ac748d8b5fa3f7ec24f7f58087a17135188799fb918f",
+      "record_version": "source-a87de07bf2b985203ad4ac748d8b5fa3f7ec24f7f58087a17135188799fb918f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotis-op3-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d1bab6d603cff3e66bd0466dd79e0e358462203c88668b6b95c0280ef87d9df5",
+      "record_version": "source-d1bab6d603cff3e66bd0466dd79e0e358462203c88668b6b95c0280ef87d9df5"
+    },
+    {
+      "id": "ur-description-artifact-config-ur12e-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "0e58b93fdce20ef92bf7321d6eb5eaf17aacdf8c146a7b0bf96deb37e0f68cdc",
+      "record_version": "source-0e58b93fdce20ef92bf7321d6eb5eaf17aacdf8c146a7b0bf96deb37e0f68cdc"
+    }
+  ]
+}

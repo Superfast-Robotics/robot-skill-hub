@@ -6,6 +6,24 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "8dfb8cd19ae3d461842a5647853e9b28ca7752c79d9ff286f8f8796eba3e3ad0",
       "record_version": "source-8dfb8cd19ae3d461842a5647853e9b28ca7752c79d9ff286f8f8796eba3e3ad0"
+    },
+    {
+      "id": "franka-description-artifact-end-effectors-franka-hand-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "6f09ae9ac8838e61d33167d0e6358fd3a61082b432028063805ff6625bc69207",
+      "record_version": "source-6f09ae9ac8838e61d33167d0e6358fd3a61082b432028063805ff6625bc69207"
+    },
+    {
+      "id": "franka-description-artifact-robots-fer-fer-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "ad1dfc99db09e9201e37e41b90e5651bf9d54ece070762e9233e2a5ed70fdc58",
+      "record_version": "source-ad1dfc99db09e9201e37e41b90e5651bf9d54ece070762e9233e2a5ed70fdc58"
+    },
+    {
+      "id": "franka-description-artifact-robots-fr3v2-1-accelerometers-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4",
+      "record_version": "source-adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4"
     }
   ]
 }

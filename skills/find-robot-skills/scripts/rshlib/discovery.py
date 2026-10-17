@@ -63,16 +63,16 @@ def client_headers(url):
     return headers
 
 
-def fetch_public(url):
+def fetch_public(url, *, max_bytes=PUBLIC_LIMIT):
     require_url(url, local_http=True)
     request = urllib.request.Request(url, headers=client_headers(url))
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
     with urllib.request.build_opener(NoRedirect()).open(request, timeout=READ_TIMEOUT) as response:
-        data = response.read(PUBLIC_LIMIT + 1)
-    if len(data) > PUBLIC_LIMIT:
-        raise RshError("catalog_too_large", "Public index exceeds 8 MiB.")
+        data = response.read(max_bytes + 1)
+    if len(data) > max_bytes:
+        raise RshError("catalog_too_large", "Public response exceeds its bounded read limit.")
     return json.loads(data)
 
 

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-tetheria-aero-hand-open-right-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f9e136acec1c5e51265bd2d6f21f346449dc7506bb293ee5ebf698d16d4e9692",
+      "record_version": "source-f9e136acec1c5e51265bd2d6f21f346449dc7506bb293ee5ebf698d16d4e9692"
+    },
+    {
       "id": "pyrobosim-pyrobosim-examples-demo-grasping-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "1589a0e39a8890e4d62944b4eac7c4743bc9c9d729b85db39a83c46c8a6fe334",

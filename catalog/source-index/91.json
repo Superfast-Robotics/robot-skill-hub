@@ -8,6 +8,12 @@
       "record_version": "source-649cb86df6aa1ee79ad35ef48c51c0fd7ad5a0080a882423b5e392cd7a20c50a"
     },
     {
+      "id": "mujoco-menagerie-artifact-unitree-g1-g1-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7bf99a486bc3d4f24629dd5ccae30b7c9c3ad595d84e685fbd1e4920d457a61f",
+      "record_version": "source-7bf99a486bc3d4f24629dd5ccae30b7c9c3ad595d84e685fbd1e4920d457a61f"
+    },
+    {
       "id": "pinocchio-examples-constraint-cholesky-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "c305fbcd8c9d0a574fc853c41230934857199cbae369d331ff4206569052f9d7",

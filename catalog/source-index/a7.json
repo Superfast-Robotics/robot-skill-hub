@@ -8,16 +8,34 @@
       "record_version": "source-9abd76c5f9afb3ffbfd34d1f45ecf19b00d7752f898f1a60fcf75d4bd68b8879"
     },
     {
+      "id": "franka-description-artifact-robots-fp3-accelerometers-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "8a0f864ea7a8c1993f64e61f40f6369f204f1bedce23b5a283e16efa815b8bb1",
+      "record_version": "source-8a0f864ea7a8c1993f64e61f40f6369f204f1bedce23b5a283e16efa815b8bb1"
+    },
+    {
       "id": "isaaclab-scripts-demos-multi-asset-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "a4c9b1f80a6ccd3350a587ec0f72cc08e01e91b30acac6aab7bf052c51d12c1c",
       "record_version": "source-a4c9b1f80a6ccd3350a587ec0f72cc08e01e91b30acac6aab7bf052c51d12c1c"
     },
     {
+      "id": "mujoco-menagerie-artifact-sharpa-wave-left-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a21550d231816e45a7e4ac2b91f288d9cd47f4feb8126ca8cf893dcaa1ef3dcd",
+      "record_version": "source-a21550d231816e45a7e4ac2b91f288d9cd47f4feb8126ca8cf893dcaa1ef3dcd"
+    },
+    {
       "id": "robosuite-demo-gripper-interaction",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "5c8005d1c24d1c09219147c95da4af9d3c15163eb21c80af65f0365ca54b909e",
       "record_version": "source-5c8005d1c24d1c09219147c95da4af9d3c15163eb21c80af65f0365ca54b909e"
+    },
+    {
+      "id": "ros2-control-artifact-example-10-bringup-config-rrbot-forward-posit-cc23659c484e",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
     }
   ]
 }

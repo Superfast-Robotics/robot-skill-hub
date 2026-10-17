@@ -8,6 +8,12 @@
       "record_version": "source-ca585c99ca6eede2b2d15fb28b6d63b7c822d4a5e8ea7e031865682a700abddc"
     },
     {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xc-scene-pos-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b13bd9d3b0ba45c0f0f9f6402545b5c26a11c97fe8f4e2155fbee0d8b0f2b373",
+      "record_version": "source-b13bd9d3b0ba45c0f0f9f6402545b5c26a11c97fe8f4e2155fbee0d8b0f2b373"
+    },
+    {
       "id": "pinocchio-examples-codegen-codegen-rnea-cpp",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "fd533a233ac0d45fa7d7128111b033e9c682efd0d1bec334349551ea4aa3d1db",

@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-accessories-fr3-duo-mount-v0-3-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "4b7930ba5901e5dab9cfcfa7228b20c9140ca942380015ef4cb7fa3134a1f08e",
+      "record_version": "source-4b7930ba5901e5dab9cfcfa7228b20c9140ca942380015ef4cb7fa3134a1f08e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-aloha-joint-position-actuators-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ce843cf0cfecea5ec1f117eb4257d4249dc2296e92e5f2ffb40f2e0178109bc6",
+      "record_version": "source-ce843cf0cfecea5ec1f117eb4257d4249dc2296e92e5f2ffb40f2e0178109bc6"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-scene-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2dd670784f284e7138f6fa0a63527b30110254961b5347fb305913ae8c4f5124",
+      "record_version": "source-2dd670784f284e7138f6fa0a63527b30110254961b5347fb305913ae8c4f5124"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-demo-security-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "a91c34d3f21d4578578c152050948916405fe735f8a2647b79c1440f8c7712d4",
@@ -12,6 +30,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "11b6562636c40dcecbf5b1c9cbe8f69c730188140b3128d14172fa2c95a34c98",
       "record_version": "source-11b6562636c40dcecbf5b1c9cbe8f69c730188140b3128d14172fa2c95a34c98"
+    },
+    {
+      "id": "ur-description-artifact-urdf-ros2-control-mock-hardware-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "cf8e5c28d07fbe49bcf61a8f83b19f89aa534a5bb7c4b31832505421609bc234",
+      "record_version": "source-cf8e5c28d07fbe49bcf61a8f83b19f89aa534a5bb7c4b31832505421609bc234"
     }
   ]
 }

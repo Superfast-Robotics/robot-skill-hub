@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-urdf",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "44b988347976c6a90229d95e5dccba0e5a2c75b25d7edb4bdd9433f79de18508",
+      "record_version": "source-44b988347976c6a90229d95e5dccba0e5a2c75b25d7edb4bdd9433f79de18508"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-to-pose-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "7218fe7752d6abb5d4388a7fef583e8e10212c126c3f9028fc2bb1ce35881b5f",
@@ -12,6 +18,12 @@
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b",
       "record_version": "source-f8cd8c905edc8b58f40f58c5ef062ae41c6d2980376a412eca9af531971c1d2b"
+    },
+    {
+      "id": "ur-description-artifact-config-ur10e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "4bf9a0dfdeb73d7a8b43171fd8a2cedffa9eaf6e342857df44229380e4ad2e49",
+      "record_version": "source-4bf9a0dfdeb73d7a8b43171fd8a2cedffa9eaf6e342857df44229380e4ad2e49"
     },
     {
       "id": "webots-projects-samples-devices-controllers-radar-radar-c",

@@ -8,6 +8,18 @@
       "record_version": "source-3431cf4e34af6d7c326192c6cab92711a0897243a27d7f1d674db8929dca9d9c"
     },
     {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-velocity-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ad1602c9d3cc565b6f60b9dd41225281f88582a46de2d40569a54740ea786d72",
+      "record_version": "source-ad1602c9d3cc565b6f60b9dd41225281f88582a46de2d40569a54740ea786d72"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-trossen-wxai-wxai-follower-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a6431f2b6b9af1a5bea0d49eb92e805ad4fae12480de9935105838944ad94a1a",
+      "record_version": "source-a6431f2b6b9af1a5bea0d49eb92e805ad4fae12480de9935105838944ad94a1a"
+    },
+    {
       "id": "ompl-demos-hypercubebenchmark-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "f3fc8aec931c62ce8dda8c9d1326f7ac5e213e53a3cb6390601a595f749cc956",

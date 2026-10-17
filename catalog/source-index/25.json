@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-joint-limits-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c",
+      "record_version": "source-34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-motor-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2d48d996caa63373d6252a56fa9a2d1a3c9a2a967bc8ac2389c516c9de36f32f",
+      "record_version": "source-2d48d996caa63373d6252a56fa9a2d1a3c9a2a967bc8ac2389c516c9de36f32f"
+    },
+    {
+      "id": "ros2-control-artifact-example-1-bringup-config-rrbot-forward-positi-95e55c4f4ae9",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
+    },
+    {
       "id": "webots-projects-robots-kinematics-tinkerbots-controllers-crane-crane-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "414e0b2450e5438fcf05e9e845cdcff66f1a2d09b4f0cc4e01c761e9abe35b34",

@@ -8,6 +8,12 @@
       "record_version": "source-e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14"
     },
     {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-panda-nohand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+      "record_version": "source-e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071"
+    },
+    {
       "id": "pinocchio-examples-inverse-kinematics-3d-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",

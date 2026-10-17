@@ -8,10 +8,22 @@
       "record_version": "source-d430ddc679f887d458375079f0300e0fa10ac3d20f741a53bb424c1802877eeb"
     },
     {
+      "id": "mujoco-menagerie-artifact-iit-softfoot-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7b48f0231522c7a4fd936abdd02665f4cd133e9eed178386461f40602cbfafc6",
+      "record_version": "source-7b48f0231522c7a4fd936abdd02665f4cd133e9eed178386461f40602cbfafc6"
+    },
+    {
       "id": "pybullet-inverse-kinematics",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed",
       "record_version": "source-b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed"
+    },
+    {
+      "id": "ur-description-artifact-config-ur10-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "57decfb27fd0a6616055c151343b54ac8d31906c842ff23225730eb04a99ed80",
+      "record_version": "source-57decfb27fd0a6616055c151343b54ac8d31906c842ff23225730eb04a99ed80"
     },
     {
       "id": "webots-projects-robots-pal-robotics-tiago-controllers-tiago-hey5-ha-777aa6a267b0",

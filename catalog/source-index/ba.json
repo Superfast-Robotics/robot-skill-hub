@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fp3-joint-limits-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65",
+      "record_version": "source-42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-dynamixel-2r-dynamixel-2r-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "14c7abc024d5855b2c7f6f2d6b24d81e044a5e1f3f11633adeb97a8715037ec3",
+      "record_version": "source-14c7abc024d5855b2c7f6f2d6b24d81e044a5e1f3f11633adeb97a8715037ec3"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+      "record_version": "source-50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a"
+    },
+    {
       "id": "ompl-demos-multilevel-multilevelplanningkinematicchain-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "a74bd0c06c6a1456d1f9b995d83529b2e9cda3daf08fcf652125578b601c0be0",

@@ -8,10 +8,28 @@
       "record_version": "source-65ef632ca4a7c0d9cd49e6e4fa96377ad463e623f9f3a7581e1dd741d322d532"
     },
     {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-mjx-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+      "record_version": "source-7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-i2rt-yam-yam-linear-4310-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "beb1ccea8eefc3e181a562459fb55626e4beb7ef63eb0ceac55bdf8f24c63434",
+      "record_version": "source-beb1ccea8eefc3e181a562459fb55626e4beb7ef63eb0ceac55bdf8f24c63434"
+    },
+    {
       "id": "ompl-demos-dubinsairplane-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "97effb8137f7bfda59cf4c8af83df4dff554c904ce0a98fb4a6e4d2c96cf179e",
       "record_version": "source-97effb8137f7bfda59cf4c8af83df4dff554c904ce0a98fb4a6e4d2c96cf179e"
+    },
+    {
+      "id": "ur-description-artifact-config-ur7e-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "0e58b89069d8d87b24cce0c2c02832d88de0f3229baf42916953ce1c71f0fa2d",
+      "record_version": "source-0e58b89069d8d87b24cce0c2c02832d88de0f3229baf42916953ce1c71f0fa2d"
     },
     {
       "id": "webots-projects-robots-robotis-darwin-op-controllers-motion-player-main-cpp",

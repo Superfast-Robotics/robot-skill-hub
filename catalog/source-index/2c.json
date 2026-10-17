@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-boston-dynamics-spot-spot-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f2643c93832f0aaadb29e8e4226357ba89bf1c58e39c373db231bb203406274b",
+      "record_version": "source-f2643c93832f0aaadb29e8e4226357ba89bf1c58e39c373db231bb203406274b"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1a-1-2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "c723b3981a628b05aee2a2eaaf7cdf7e96e69e18dc46b98b6dd080e3fe4f818e",
+      "record_version": "source-c723b3981a628b05aee2a2eaaf7cdf7e96e69e18dc46b98b6dd080e3fe4f818e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-shadow-hand-scene-right-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "182a2b704ab70c91e665864ef58396e5f7cd14fd85a6f32a9cf0ba171adb08a9",
+      "record_version": "source-182a2b704ab70c91e665864ef58396e5f7cd14fd85a6f32a9cf0ba171adb08a9"
+    }
+  ]
+}

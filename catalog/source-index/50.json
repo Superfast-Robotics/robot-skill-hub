@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-ufactory-xarm7-xarm7-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ac6b369e0b9c5abdaca55d2c6c048102f2e1133bf550b059a8622afa4b9da433",
+      "record_version": "source-ac6b369e0b9c5abdaca55d2c6c048102f2e1133bf550b059a8622afa4b9da433"
+    }
+  ]
+}

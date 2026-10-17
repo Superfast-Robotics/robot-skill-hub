@@ -2,10 +2,40 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "19dba18d6a6b2d8e6ce254524c413d8c679e24f83cf43bbe23d4955509d8f3b1",
+      "record_version": "source-19dba18d6a6b2d8e6ce254524c413d8c679e24f83cf43bbe23d4955509d8f3b1"
+    },
+    {
       "id": "isaaclab-scripts-demos-hands-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "fbf9fdd20b4d3fc49c3ded6855f6f1f81a3285894c29b2fe012650517b20fbc2",
       "record_version": "source-fbf9fdd20b4d3fc49c3ded6855f6f1f81a3285894c29b2fe012650517b20fbc2"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-scene-motor-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1bb3ef0cbe0af000ab815dcb8defe3707020a5e32fcf6c9aaea087f27f01390c",
+      "record_version": "source-1bb3ef0cbe0af000ab815dcb8defe3707020a5e32fcf6c9aaea087f27f01390c"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-tiago-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2baa002bfd7a5a0580a7c49452eab7a73c478537e0fb7b19d7cc541ef7699438",
+      "record_version": "source-2baa002bfd7a5a0580a7c49452eab7a73c478537e0fb7b19d7cc541ef7699438"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotstudio-so101-scene-box-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "14c3826f23889587e63b88ef9a0e7d72318ffe13078fad8287c56dbdb9ba9ad8",
+      "record_version": "source-14c3826f23889587e63b88ef9a0e7d72318ffe13078fad8287c56dbdb9ba9ad8"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-stanford-tidybot-scene-base-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ec77b48fd7b9b3a3b35125a8a6586ace8f5650ceb577e63be1bb6746c66ce113",
+      "record_version": "source-ec77b48fd7b9b3a3b35125a8a6586ace8f5650ceb577e63be1bb6746c66ce113"
     },
     {
       "id": "roboticstoolbox-examples-teach-py",

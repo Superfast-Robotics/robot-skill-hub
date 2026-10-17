@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-unitree-z1-z1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "152e97e9df6c35ea846a6b60582ac835720b6e365fd01bd9eb202b776883a33c",
+      "record_version": "source-152e97e9df6c35ea846a6b60582ac835720b6e365fd01bd9eb202b776883a33c"
+    }
+  ]
+}

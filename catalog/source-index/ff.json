@@ -8,10 +8,34 @@
       "record_version": "source-8a7367166b41d20e808746d8d54765003f633c5c25a2e01463a9939838c81c0e"
     },
     {
+      "id": "mujoco-menagerie-artifact-iit-softfoot-softfoot-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "8783502ac1e336a7e154b0a0fbf255473beed9115a0900e6f42549b753a1a5d3",
+      "record_version": "source-8783502ac1e336a7e154b0a0fbf255473beed9115a0900e6f42549b753a1a5d3"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-tiago-dual-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b20f7fc5a208f029ecde7e7932d4bb6c0172c3b3edee36db72f8b7661285bb58",
+      "record_version": "source-b20f7fc5a208f029ecde7e7932d4bb6c0172c3b3edee36db72f8b7661285bb58"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-realsense-d435i-d435i-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4a1dee17959d0f4b087738a2ef0ff417e36291867bda60bcf1296bfb652449f3",
+      "record_version": "source-4a1dee17959d0f4b087738a2ef0ff417e36291867bda60bcf1296bfb652449f3"
+    },
+    {
       "id": "robosuite-demo-random-action",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "1b9e5a0407b26410d907e7d52a52c60e429e1f289b0d334c262c64bd14cec8f8",
       "record_version": "source-1b9e5a0407b26410d907e7d52a52c60e429e1f289b0d334c262c64bd14cec8f8"
+    },
+    {
+      "id": "ur-description-artifact-config-ur18-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "e5115598b07f6f4a876b94056667187ceb3e48c4f9f1edf2922a59c0664be276",
+      "record_version": "source-e5115598b07f6f4a876b94056667187ceb3e48c4f9f1edf2922a59c0664be276"
     }
   ]
 }

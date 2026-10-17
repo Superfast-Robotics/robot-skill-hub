@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-accessories-franka-spine-v0-1-franka-spine-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "71f88790400d371f765d6d79cf3454ebb101603f6320a9052780af4764e33925",
+      "record_version": "source-71f88790400d371f765d6d79cf3454ebb101603f6320a9052780af4764e33925"
+    },
+    {
       "id": "lerobot-examples-tutorial-smolvla-using-smolvla-example-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "1576d9394f5755f61dfed9330821ccef82bb803b41a17eff455e9cf28a7cf9e4",
       "record_version": "source-1576d9394f5755f61dfed9330821ccef82bb803b41a17eff455e9cf28a7cf9e4"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-apptronik-apollo-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d57694726b430548fc2719d5f08440dd6a152cda0f04283a64a4dd4edf546499",
+      "record_version": "source-d57694726b430548fc2719d5f08440dd6a152cda0f04283a64a4dd4edf546499"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-wonik-allegro-right-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cec3efe34be49c8220c23afdae0cfacbce10164a5bc7c34075b6668ee0a862a6",
+      "record_version": "source-cec3efe34be49c8220c23afdae0cfacbce10164a5bc7c34075b6668ee0a862a6"
     }
   ]
 }

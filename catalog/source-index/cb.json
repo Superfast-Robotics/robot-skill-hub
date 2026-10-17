@@ -14,6 +14,24 @@
       "record_version": "source-4f45d5d3196397eb1d928f5f58145dfc7fbca3a794757c80126da48eeba929ed"
     },
     {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-position-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4be40a22f1bef0ef2952534da396c80b97942a43ab4a5e3a37deffd8e52e0880",
+      "record_version": "source-4be40a22f1bef0ef2952534da396c80b97942a43ab4a5e3a37deffd8e52e0880"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xm-toddlerbot-2xm-pos-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "197701ca3733bcde0111453fb941ded3ad38f4e299e0f854c6bfbfb34d6e6999",
+      "record_version": "source-197701ca3733bcde0111453fb941ded3ad38f4e299e0f854c6bfbfb34d6e6999"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-wonik-allegro-scene-right-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "20bbff25303c67625d2052fc377cffa48c14a0785b028c023e16df89d96ca491",
+      "record_version": "source-20bbff25303c67625d2052fc377cffa48c14a0785b028c023e16df89d96ca491"
+    },
+    {
       "id": "pyrobosim-pyrobosim-examples-demo-prm-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "2bf4e3fc13faf18c7ee386779fe87000c335a5de0074b616e4b1b79578384fee",
@@ -24,6 +42,12 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "215cb0b1fd61b9b26b4a55e6045c6cd7d281cadd920bc6a7575ff2370a380d7e",
       "record_version": "source-215cb0b1fd61b9b26b4a55e6045c6cd7d281cadd920bc6a7575ff2370a380d7e"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "4559bd027c93ce7c0e2a343d6f71f742fe4a67ea9d7ef67535189f4efbe9c3ac",
+      "record_version": "source-4559bd027c93ce7c0e2a343d6f71f742fe4a67ea9d7ef67535189f4efbe9c3ac"
     },
     {
       "id": "webots-projects-samples-devices-controllers-laser-pointer-laser-pointer-c",

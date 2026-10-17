@@ -8,6 +8,12 @@
       "record_version": "source-c096a0c8da91786c6e0aa36ba165023c8890b2a00a301c562c93af42c584401f"
     },
     {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-mjx-panda-nohand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+      "record_version": "source-92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075"
+    },
+    {
       "id": "roboticstoolbox-examples-puma-swift-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "e412ab6229c3b63f83aa7122c971462370efd53eb329acc3febed1507fec91da",

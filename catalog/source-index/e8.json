@@ -14,6 +14,12 @@
       "record_version": "source-3ef95f9fa889b5aad7c405d114f70c520b5c1ae02aad75f588edcc7421cc402c"
     },
     {
+      "id": "ros2-control-artifact-example-1-bringup-config-rrbot-joint-trajecto-661043b342a8",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "c2b8ad02f9d9d4b9f318b74670a0a9fec7be6af913792bf22d818df0b2f09ede",
+      "record_version": "source-c2b8ad02f9d9d4b9f318b74670a0a9fec7be6af913792bf22d818df0b2f09ede"
+    },
+    {
       "id": "webots-projects-robots-clearpath-pr2-controllers-pr2-demo-pr2-demo-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "622d98482c55622bcf275b1817a66f2a550da1a5d8c9c583ad40f41ba69b5502",

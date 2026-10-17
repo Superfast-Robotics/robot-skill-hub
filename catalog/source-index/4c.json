@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-boston-dynamics-spot-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3e2094dcba90cd5662efff12e252c6806e8de1317d20d3f2bbd3c54c885a6c68",
+      "record_version": "source-3e2094dcba90cd5662efff12e252c6806e8de1317d20d3f2bbd3c54c885a6c68"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-pddl-planner-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "a2d48c25d78313e7df77cfc17d5697da10bba3a58fbe8bb62961c294501a57cc",
@@ -12,6 +18,18 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "80316781c93439ef58cede6a354b0d53d75e85d1cc0815d6ba0ab1ac940cf24c",
       "record_version": "source-80316781c93439ef58cede6a354b0d53d75e85d1cc0815d6ba0ab1ac940cf24c"
+    },
+    {
+      "id": "ur-description-artifact-config-ur15-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "26f673aa3cda5147f6fe68cc367ed4ee781a6c80726a71f740ea762646a0f4b9",
+      "record_version": "source-26f673aa3cda5147f6fe68cc367ed4ee781a6c80726a71f740ea762646a0f4b9"
+    },
+    {
+      "id": "ur-description-artifact-config-ur16e-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "05d9279f87942504c1d7af4be1c9d30ac447c18f98be2f57307565c519182e3d",
+      "record_version": "source-05d9279f87942504c1d7af4be1c9d30ac447c18f98be2f57307565c519182e3d"
     }
   ]
 }

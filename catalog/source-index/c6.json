@@ -12,6 +12,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "1efbeaf03bdd5d2511f545829620491c419eb73984bbc7d4ef067061c496bc53",
       "record_version": "source-1efbeaf03bdd5d2511f545829620491c419eb73984bbc7d4ef067061c496bc53"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "c0bfd5cb5bafd9df090a71a914bbeb8812a1a3b07f03fb930d6f8fa38fff9de7",
+      "record_version": "source-c0bfd5cb5bafd9df090a71a914bbeb8812a1a3b07f03fb930d6f8fa38fff9de7"
     }
   ]
 }

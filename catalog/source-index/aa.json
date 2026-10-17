@@ -14,6 +14,18 @@
       "record_version": "source-252e1a39d4fb8775d5b6b8f1d7499d27cc73da12c069b1f18498c4417e53e57e"
     },
     {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-c-anymal-c-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "febd69a4d05008f9eb72b4b599700981145dd07eb2382c5f522bd67ed9a58f89",
+      "record_version": "source-febd69a4d05008f9eb72b4b599700981145dd07eb2382c5f522bd67ed9a58f89"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "e51a4e2d59909a963ceee34c47c8fdf71810db5edbac90aed66705f4f7222deb",
+      "record_version": "source-e51a4e2d59909a963ceee34c47c8fdf71810db5edbac90aed66705f4f7222deb"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-vacuum-gripper-vacuum-gripper-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "6cb838ca33399f1800863e3e7f54f2b1da6a34776a3e66890fe1128fbcf24353",

@@ -20,6 +20,12 @@
       "record_version": "source-0c3b7b9d4748699ba5288322ea66d88f8f21ee34b74b63a6f11d367719a61dbc"
     },
     {
+      "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "93a45f651f28e0910f51de69d7f513e750d7e4505af8e674964f22e30a30148e",
+      "record_version": "source-93a45f651f28e0910f51de69d7f513e750d7e4505af8e674964f22e30a30148e"
+    },
+    {
       "id": "webots-projects-robots-k-team-khepera1-controllers-pipe-pipe-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "40951fca82ad5ffb4b01bc69b2c41610e6bd5a05eedf4003961e2be83b68a52c",

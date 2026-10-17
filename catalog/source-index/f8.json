@@ -8,10 +8,34 @@
       "record_version": "source-f72f2836dcf5015cb6a8eb7f3eabb794f52eea42ff75d588be09da68573bc062"
     },
     {
+      "id": "franka-description-artifact-end-effectors-cobot-pump-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "938baf5b8c878ae93c66b29493bc7c6fe40b3859af85553ea642176eff196f5a",
+      "record_version": "source-938baf5b8c878ae93c66b29493bc7c6fe40b3859af85553ea642176eff196f5a"
+    },
+    {
+      "id": "franka-description-artifact-robots-fr3-duo-fr3-duo-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "66096acabf4bf46549a111a31c448184686cbfbb462b9c4b40ac06dd16baf5a6",
+      "record_version": "source-66096acabf4bf46549a111a31c448184686cbfbb462b9c4b40ac06dd16baf5a6"
+    },
+    {
       "id": "moveit2-doc-examples-visualizing-collisions-src-visualizing-collisi-838b72c434fb",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "04a28418d0cd46a5fe810fae56ed351316dd3bf0e8ed2704fde420107b670bc6",
       "record_version": "source-04a28418d0cd46a5fe810fae56ed351316dd3bf0e8ed2704fde420107b670bc6"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-panda-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+      "record_version": "source-96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-h1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5d85babd8a7cce435f125cedbb3f5d82c36e282686be4f965b2353010a4d6bed",
+      "record_version": "source-5d85babd8a7cce435f125cedbb3f5d82c36e282686be4f965b2353010a4d6bed"
     },
     {
       "id": "pinocchio-examples-geometry-models-py",

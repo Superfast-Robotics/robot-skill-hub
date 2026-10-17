@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-agility-cassie-cassie-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "92ec84d23a0f62a848b4d646fc9197cad3b0c518bb6cb1aafe241b3db88dd885",
+      "record_version": "source-92ec84d23a0f62a848b4d646fc9197cad3b0c518bb6cb1aafe241b3db88dd885"
+    },
+    {
       "id": "pinocchio-examples-simulation-inverted-pendulum-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "2f2878f84ea8ac1e3c06dd9f8f83cb233c5d8806351a314747bd8bbf90516d56",
@@ -12,6 +18,24 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "875fe8ec522764166a29655044c98a8fd3f3410d36442efe52a737b378cde080",
       "record_version": "source-875fe8ec522764166a29655044c98a8fd3f3410d36442efe52a737b378cde080"
+    },
+    {
+      "id": "ros2-control-artifact-example-1-description-urdf-rrbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "d207a190802eee26ec783ffcae8e8209753224e859776918422b161804f98a9f",
+      "record_version": "source-d207a190802eee26ec783ffcae8e8209753224e859776918422b161804f98a9f"
+    },
+    {
+      "id": "ros2-control-artifact-example-16-description-urdf-diffbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "ebd727d38afbb71235a9e94548f8978e74b7627e6053f532af4cc4748917aa88",
+      "record_version": "source-ebd727d38afbb71235a9e94548f8978e74b7627e6053f532af4cc4748917aa88"
+    },
+    {
+      "id": "ur-description-artifact-config-ur8long-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "3932589b59ae7443d6c104210de63f2ff3b0dbd0a720d4d213723bd1bc2f0ee3",
+      "record_version": "source-3932589b59ae7443d6c104210de63f2ff3b0dbd0a720d4d213723bd1bc2f0ee3"
     }
   ]
 }

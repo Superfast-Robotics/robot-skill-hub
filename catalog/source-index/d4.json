@@ -1,0 +1,29 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-berkeley-humanoid-berkeley-humanoid-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e5b9396bf23dea75c2d58b22091edd07646c6704f9d3626645e75977f527ace1",
+      "record_version": "source-e5b9396bf23dea75c2d58b22091edd07646c6704f9d3626645e75977f527ace1"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-flexiv-rizon4-flexiv-rizon4-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1c00b6544269df90f85bd2ce851e3d84d0b22b617eff73e24ce0cab631e05fc8",
+      "record_version": "source-1c00b6544269df90f85bd2ce851e3d84d0b22b617eff73e24ce0cab631e05fc8"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-flexiv-rizon4s-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "d6cf8e49e0fcfe847288136e475174f1d2d24dadcfa4b21cbdbcbb0a9d5b0b17",
+      "record_version": "source-d6cf8e49e0fcfe847288136e475174f1d2d24dadcfa4b21cbdbcbb0a9d5b0b17"
+    },
+    {
+      "id": "ur-description-artifact-urdf-inc-ur-sensors-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "d774af270ece1a55b89e688aece885886f48d69d2de912d19d66cf82d294880e",
+      "record_version": "source-d774af270ece1a55b89e688aece885886f48d69d2de912d19d66cf82d294880e"
+    }
+  ]
+}

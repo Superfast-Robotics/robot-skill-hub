@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-accelerometers-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "40fb78a7082e4fb7fc565b5ee3f3be15a4db4a07895cdbadda46c251980320ab",
+      "record_version": "source-40fb78a7082e4fb7fc565b5ee3f3be15a4db4a07895cdbadda46c251980320ab"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-google-robot-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4e0e048dd9a039a22df26fcac42e5e469dbe984e96ff7b720c47ebb2413ad7ba",
+      "record_version": "source-4e0e048dd9a039a22df26fcac42e5e469dbe984e96ff7b720c47ebb2413ad7ba"
+    },
+    {
+      "id": "ros2-control-artifact-example-7-bringup-config-r6bot-controller-yaml",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "8b8a012d40ad816b0d56fbdc9b35dad542568f895e3762664259779a708d9608",
+      "record_version": "source-8b8a012d40ad816b0d56fbdc9b35dad542568f895e3762664259779a708d9608"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-pen-pen-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "f31f32eb4da33c35ff7be15e26f54e3d03417337ac72a088fdc42b4ac766375c",

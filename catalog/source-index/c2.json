@@ -8,6 +8,18 @@
       "record_version": "source-d6d249c7ec2345a3e3d52010a7fba667d028a8355db6f4edb9b81b5abf99f3a9"
     },
     {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1m-1-2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "103c64d9c05de57bed67cbdc6950ceb0e739a3fde7937f368816f2bbf4b99333",
+      "record_version": "source-103c64d9c05de57bed67cbdc6950ceb0e739a3fde7937f368816f2bbf4b99333"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-shadow-dexee-shadow-dexee-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "7d7ad518b01451f58d3e5f3e59e58719741efead2d7730c9cf800f7d766f267a",
+      "record_version": "source-7d7ad518b01451f58d3e5f3e59e58719741efead2d7730c9cf800f7d766f267a"
+    },
+    {
       "id": "robosuite-demo-sensor-corruption",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "9f6828fd293279fc86e61898867fca4823fc42192ac2670009dbd3d36a141f0e",

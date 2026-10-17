@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-fr3-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "4351fe2a301be007ae89291578e68f639e61a8d76c25cefc455e413898b43b20",
+      "record_version": "source-4351fe2a301be007ae89291578e68f639e61a8d76c25cefc455e413898b43b20"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotiq-2f85-v4-mjx-2f85-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a8be05d166de27319fa85002ecb03bda1101318a2af7d3a1c0711dba26e8f51d",
+      "record_version": "source-a8be05d166de27319fa85002ecb03bda1101318a2af7d3a1c0711dba26e8f51d"
+    },
+    {
       "id": "pybullet-racecar",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "5dc233309afa9086f343c1a91ec909ce62d4af46ba937ce6a790cae08c797e8d",

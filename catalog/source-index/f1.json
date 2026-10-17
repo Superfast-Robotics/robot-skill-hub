@@ -6,6 +6,18 @@
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "467dda951ad1f7a8d228cd61778c10f50d12450f02506ed244c1965761a256e9",
       "record_version": "source-467dda951ad1f7a8d228cd61778c10f50d12450f02506ed244c1965761a256e9"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-kuka-iiwa-14-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "46491c7cd161130b684bd8724060cca2777573e431eda04d6becd7e8a1a98045",
+      "record_version": "source-46491c7cd161130b684bd8724060cca2777573e431eda04d6becd7e8a1a98045"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ufactory-xarm7-hand-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2b404c4470c7998003f573cfc90c4fb513ef1b4d34b2fddccecbd3ef4a0e91a2",
+      "record_version": "source-2b404c4470c7998003f573cfc90c4fb513ef1b4d34b2fddccecbd3ef4a0e91a2"
     }
   ]
 }

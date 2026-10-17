@@ -8,6 +8,24 @@
       "record_version": "source-dda2e6726833591662a452225e63cc36e6d1e08fd3d804e0388177e170f8fd8b"
     },
     {
+      "id": "franka-description-artifact-end-effectors-franka-hand-franka-hand-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "6369fbff364bb38ffee0a6b888e782d049a8637ddf2f5c0108ae5f147e8d6689",
+      "record_version": "source-6369fbff364bb38ffee0a6b888e782d049a8637ddf2f5c0108ae5f147e8d6689"
+    },
+    {
+      "id": "franka-description-artifact-robots-fer-joint-limits-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "c531201d06715a3c90a9d793748b14d83f5b512c007dd56e3dc712eee6106ec7",
+      "record_version": "source-c531201d06715a3c90a9d793748b14d83f5b512c007dd56e3dc712eee6106ec7"
+    },
+    {
+      "id": "franka-description-artifact-robots-fr3v2-1-joint-limits-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c",
+      "record_version": "source-34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c"
+    },
+    {
       "id": "lerobot-examples-phone-to-so100-rollout-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba",
@@ -24,6 +42,12 @@
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "1d5a41218bc1fbfc695bfb5e827e3a0c9d05daad2acaa5753201a5de242aa5f5",
       "record_version": "source-1d5a41218bc1fbfc695bfb5e827e3a0c9d05daad2acaa5753201a5de242aa5f5"
+    },
+    {
+      "id": "ur-description-artifact-config-ur8long-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "9f7d3294303f0bea7ed368f7d56eda27a59e088646527f3b792bdfe047780cfa",
+      "record_version": "source-9f7d3294303f0bea7ed368f7d56eda27a59e088646527f3b792bdfe047780cfa"
     }
   ]
 }

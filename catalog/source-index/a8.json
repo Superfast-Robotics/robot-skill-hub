@@ -6,6 +6,12 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "ff3c589b0cd16d75a1c6198158a51c8ac943a9fa4d9d6c45a87452aff128446d",
       "record_version": "source-ff3c589b0cd16d75a1c6198158a51c8ac943a9fa4d9d6c45a87452aff128446d"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3-physical-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "019c14da684526f8ff7f1ca37dcab62edb370859db4e18f6805ec3d5e29a1ceb",
+      "record_version": "source-019c14da684526f8ff7f1ca37dcab62edb370859db4e18f6805ec3d5e29a1ceb"
     }
   ]
 }

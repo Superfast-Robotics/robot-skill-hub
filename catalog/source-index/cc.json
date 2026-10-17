@@ -14,6 +14,30 @@
       "record_version": "source-cb0a8942173f1e16bf5c5b144478ea7a5842eb40ece8511c02414c09fee456eb"
     },
     {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1m-1-3-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a896f0948ccf46bf86c86033191547e09070a8b194a75e04b98f8ceb15225669",
+      "record_version": "source-a896f0948ccf46bf86c86033191547e09070a8b194a75e04b98f8ceb15225669"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-shadow-hand-scene-left-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ac1fd503010770dc6748ad102244209ca547385a2a715798858492c1d5a67722",
+      "record_version": "source-ac1fd503010770dc6748ad102244209ca547385a2a715798858492c1d5a67722"
+    },
+    {
+      "id": "ros2-control-artifact-example-11-description-urdf-carlikebot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "13b3c84e4ffd552bba73741a44dbac1cc2a950c5d2eac4a24c481e478060124e",
+      "record_version": "source-13b3c84e4ffd552bba73741a44dbac1cc2a950c5d2eac4a24c481e478060124e"
+    },
+    {
+      "id": "ros2-control-artifact-example-8-bringup-config-rrbot-forward-positi-6ce5b13b49ad",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
+    },
+    {
       "id": "webots-projects-robots-robotis-bioloid-controllers-bioloid-dog-bioloid-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "3235fdb2277604333a14d327bb5e94c4fa0a26be8a0412b0c96f22069e170b23",

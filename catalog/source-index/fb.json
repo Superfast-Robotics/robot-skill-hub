@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-trossen-wx250s-wx250s-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2475c1f4a4c085d370d3e7e43d56377d07bd44de3bace9371f1b5f08de00c27b",
+      "record_version": "source-2475c1f4a4c085d370d3e7e43d56377d07bd44de3bace9371f1b5f08de00c27b"
+    },
+    {
       "id": "roboticstoolbox-examples-icra2021-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "7415e520b5e06bc9b573e61363422baa6d8293ce789c6f44df71a77b1cf1f129",

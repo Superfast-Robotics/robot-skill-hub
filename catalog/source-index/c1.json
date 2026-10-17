@@ -8,6 +8,30 @@
       "record_version": "source-8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f"
     },
     {
+      "id": "mujoco-menagerie-artifact-stanford-tidybot-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5bde293127bc7063134f641a6f39fd21543cfdceded1dd633ba1b9f671ad63f2",
+      "record_version": "source-5bde293127bc7063134f641a6f39fd21543cfdceded1dd633ba1b9f671ad63f2"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xm-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4283056374895e7a2a4f2649aac3016c00a8479fa62352afe9966ac8dd07f681",
+      "record_version": "source-4283056374895e7a2a4f2649aac3016c00a8479fa62352afe9966ac8dd07f681"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ufactory-lite6-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3e009a1b8105cc1f2c7a5e15352e31827f353b64b1f17e3b696d47818b01c7bf",
+      "record_version": "source-3e009a1b8105cc1f2c7a5e15352e31827f353b64b1f17e3b696d47818b01c7bf"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-go2-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e6754ed3a6e7fbf031edfdffbcc70583a3c46f10d2510f0ac9314789573acf21",
+      "record_version": "source-e6754ed3a6e7fbf031edfdffbcc70583a3c46f10d2510f0ac9314789573acf21"
+    },
+    {
       "id": "pinocchio-examples-meshcat-viewer-dae-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "5145ead105ebed97b41e1df96750a4ae5dc3d373f538590f7969881490899278",
@@ -18,6 +42,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "46e104d83310a2fb72847ac05d60c905094292ac83f8bfd16d8189cad921ba59",
       "record_version": "source-46e104d83310a2fb72847ac05d60c905094292ac83f8bfd16d8189cad921ba59"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "62ccae1768678cfddaee8e2a1b621365d7ac8a58b4a7607aed680ed572c8a423",
+      "record_version": "source-62ccae1768678cfddaee8e2a1b621365d7ac8a58b4a7607aed680ed572c8a423"
     }
   ]
 }

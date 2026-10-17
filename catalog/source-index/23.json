@@ -12,6 +12,18 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "c69a025c9b1341ba00d3fa782c0c611a529229c28cf569f73bc04be19e05a3a5",
       "record_version": "source-c69a025c9b1341ba00d3fa782c0c611a529229c28cf569f73bc04be19e05a3a5"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-seeed-rebot-devarm-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "3ff727bc7bf885bb4e9f3b4293d06ffb611786cfa2cbda4893914cf791345938",
+      "record_version": "source-3ff727bc7bf885bb4e9f3b4293d06ffb611786cfa2cbda4893914cf791345938"
+    },
+    {
+      "id": "ur-description-artifact-config-ur7e-default-kinematics-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "4ffc6086bb0118a5a8e4a3576ef41de878de946710799ea4835789063fa9c0bc",
+      "record_version": "source-4ffc6086bb0118a5a8e4a3576ef41de878de946710799ea4835789063fa9c0bc"
     }
   ]
 }

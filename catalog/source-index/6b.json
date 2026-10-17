@@ -8,6 +8,18 @@
       "record_version": "source-3e32f6c48e5c563943686bc8ac3b5f52c69eb2f883724234f5ab80817272d9e6"
     },
     {
+      "id": "mujoco-menagerie-artifact-agilex-piper-piper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a7b5b5d3b2a68d5c553b2ee9665d54a422bd8bf1fa6f3251bc11834993d37098",
+      "record_version": "source-a7b5b5d3b2a68d5c553b2ee9665d54a422bd8bf1fa6f3251bc11834993d37098"
+    },
+    {
+      "id": "ros2-control-artifact-example-3-description-urdf-rrbot-system-multi-31a36c102f3c",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "b4abf70c79c1e54111a0915e25c84d4615d8a4b949d372e8aa90a05075fa0455",
+      "record_version": "source-b4abf70c79c1e54111a0915e25c84d4615d8a4b949d372e8aa90a05075fa0455"
+    },
+    {
       "id": "webots-projects-robots-bitcraze-crazyflie-controllers-crazyflie-py-c7c06ff8b5e2",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "1dc2a3cc60aab0db87f47deafc33f3cb051065da544816f20026acc37ff730db",

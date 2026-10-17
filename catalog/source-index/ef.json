@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-accessories-fr3-duo-mount-v0-3-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "254e0502fb7fef8d6547a9a09df6486fa545a5b8bd2a8a64d05bfa7cdf1c9249",
+      "record_version": "source-254e0502fb7fef8d6547a9a09df6486fa545a5b8bd2a8a64d05bfa7cdf1c9249"
+    },
+    {
       "id": "pinocchio-examples-kinematics-derivatives-cpp",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "20c97df2e4b137c062315d627173e3731aa808b717b7e3e86635955ebaded7f5",

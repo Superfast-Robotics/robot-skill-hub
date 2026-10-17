@@ -6,6 +6,18 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "d5331351922f6679d724a6c618827c60d127ae7dad14d239cf6064892cfc262e",
       "record_version": "source-d5331351922f6679d724a6c618827c60d127ae7dad14d239cf6064892cfc262e"
+    },
+    {
+      "id": "ros2-control-artifact-example-7-description-urdf-r6bot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "7dfaa7568027ee58dc68058676718f67f8043991ffd210b7beb3a99759f15715",
+      "record_version": "source-7dfaa7568027ee58dc68058676718f67f8043991ffd210b7beb3a99759f15715"
+    },
+    {
+      "id": "ur-description-artifact-config-ur5-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "279609c61e61c2097d3d7f47cc7fca1bfe66c939f1dc096eff8d140f9ec0e22f",
+      "record_version": "source-279609c61e61c2097d3d7f47cc7fca1bfe66c939f1dc096eff8d140f9ec0e22f"
     }
   ]
 }

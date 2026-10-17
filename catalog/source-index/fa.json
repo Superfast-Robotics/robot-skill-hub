@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-dynamixel-2r-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a320cde82a7aa81f9434b5c85d13d1315ac4c363008309d56af324cb893e3c09",
+      "record_version": "source-a320cde82a7aa81f9434b5c85d13d1315ac4c363008309d56af324cb893e3c09"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+      "record_version": "source-4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3"
+    },
+    {
       "id": "ompl-demos-statesampling-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "7c0665e7cfd2b2455773236357a0a852627df4534bb82898c2d4b5d19c0c2a7f",

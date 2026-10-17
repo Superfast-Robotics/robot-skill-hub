@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3v2-kinematics-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386",
+      "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-cameras-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "3bb5958b6ba26cdf2801177851fe45ae8e3e368656406633829e9a0d767deceb",
@@ -12,6 +18,12 @@
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "3dea967f632e968402a1032f236e663d042aba70419f355e0b600e88f966e8cc",
       "record_version": "source-3dea967f632e968402a1032f236e663d042aba70419f355e0b600e88f966e8cc"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-ufactory-lite6-lite6-gripper-narrow-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f2ecb61b8c2bf87bbad2e53a8f6e4d45b6b6aae5ae70de47ef34503a7f7e2dd4",
+      "record_version": "source-f2ecb61b8c2bf87bbad2e53a8f6e4d45b6b6aae5ae70de47ef34503a7f7e2dd4"
     },
     {
       "id": "webots-projects-robots-sony-qrio-controllers-qrio-qrio-c",

@@ -14,6 +14,12 @@
       "record_version": "source-4e3aaa324d1ecce761a77c570c13a1259c88fd605d248cd26b2800532f804450"
     },
     {
+      "id": "ur-description-artifact-config-ur20-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "a43b2b1acf30e60763fd4ef268cbedf20423f81cd83596ed26f7043050fcc81e",
+      "record_version": "source-a43b2b1acf30e60763fd4ef268cbedf20423f81cd83596ed26f7043050fcc81e"
+    },
+    {
       "id": "webots-projects-robots-pal-robotics-tiago-base-controllers-tiago-ba-f849615bee0e",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "21aba10cabb78065879ccd2f6aec9c1e2e12c9eef9ceddd141964f2485583213",

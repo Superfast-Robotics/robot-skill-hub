@@ -8,6 +8,18 @@
       "record_version": "source-1b73b4fb524dce8d29aa1b43389f8b8725d19fed40eff3905db1099e66f4d350"
     },
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3",
+      "record_version": "source-73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-trossen-wxai-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "90c315c4ec91076bbe6922c92993bcdc6efe49d9d18857671516b0cf3ad9c015",
+      "record_version": "source-90c315c4ec91076bbe6922c92993bcdc6efe49d9d18857671516b0cf3ad9c015"
+    },
+    {
       "id": "webots-projects-robots-neuronics-ipr-controllers-ipr-factory-ipr-factory-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "56941091407762996ac1efd4b175031fed794779104d35221c3c5f6571ca2d7a",

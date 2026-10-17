@@ -6,6 +6,30 @@
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca",
       "record_version": "source-3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-hello-robot-stretch-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cab3e96a904486540695b2f51e542fa7f50457966cccaa31f3797640ef789e30",
+      "record_version": "source-cab3e96a904486540695b2f51e542fa7f50457966cccaa31f3797640ef789e30"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robot-soccer-kit-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a05dadca0ada2ecec5e527788e0ce3deb3af4d5ecbc69828bc3b246505730d8f",
+      "record_version": "source-a05dadca0ada2ecec5e527788e0ce3deb3af4d5ecbc69828bc3b246505730d8f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-umi-gripper-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "8290f2de28d5a04805619883fe3de13b52e88603bc44f7f23ec67ac89e41d558",
+      "record_version": "source-8290f2de28d5a04805619883fe3de13b52e88603bc44f7f23ec67ac89e41d558"
+    },
+    {
+      "id": "ur-description-artifact-config-ur3-joint-limits-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "3ca03a6b107fab1d20a18a4e3a967ed0f14de228208a95c4735a6c966ea18534",
+      "record_version": "source-3ca03a6b107fab1d20a18a4e3a967ed0f14de228208a95c4735a6c966ea18534"
     }
   ]
 }

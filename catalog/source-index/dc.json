@@ -2,16 +2,40 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-accessories-franka-head-v0-2-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "732c5c38bb6b2d462adf4291c505f13283064e85fbe99f54729e8eea978894ca",
+      "record_version": "source-732c5c38bb6b2d462adf4291c505f13283064e85fbe99f54729e8eea978894ca"
+    },
+    {
+      "id": "franka-description-artifact-robots-common-group-definition-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "5a8c3957a2a9622df0c6116126450e69f3b769a336392a226049196ab19173ca",
+      "record_version": "source-5a8c3957a2a9622df0c6116126450e69f3b769a336392a226049196ab19173ca"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-imu-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "8ce9e0d092dba0416869c27a72748f108c2db0928c4cd1300957039e3f32a344",
       "record_version": "source-8ce9e0d092dba0416869c27a72748f108c2db0928c4cd1300957039e3f32a344"
     },
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-v0-scene-barkour-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "2f128c1a269a2bf33ac129b365dfd9e966d58c4822528d33c0129438a4fd837a",
+      "record_version": "source-2f128c1a269a2bf33ac129b365dfd9e966d58c4822528d33c0129438a4fd837a"
+    },
+    {
       "id": "pinocchio-examples-admm-constraint-solver-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "d60ab4ae8fe8a4f161e8a8377c44d9f8959744b43a9d5ea1a496efef9401af7a",
       "record_version": "source-d60ab4ae8fe8a4f161e8a8377c44d9f8959744b43a9d5ea1a496efef9401af7a"
+    },
+    {
+      "id": "ros2-control-artifact-example-12-description-urdf-rrbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "9b45aef67ed0accf9d0aa7523a393ba5e799ea6dcb8773af6a01c0bf58764e62",
+      "record_version": "source-9b45aef67ed0accf9d0aa7523a393ba5e799ea6dcb8773af6a01c0bf58764e62"
     }
   ]
 }

@@ -2,10 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-inertials-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "02a39046b36303f748c9755b48610b7600fb819d54828475514c36915ae54a89",
+      "record_version": "source-02a39046b36303f748c9755b48610b7600fb819d54828475514c36915ae54a89"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-04-sensors-run-frame-transformer-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "de6424dc9743e6d536f82c45a2c1f0d79ef0f5ed8bdeb64d19409012a4b7b23a",
       "record_version": "source-de6424dc9743e6d536f82c45a2c1f0d79ef0f5ed8bdeb64d19409012a4b7b23a"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-aloha-keyframe-ctrl-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "960481d23320fb45cd1cdaa75fb48ec69fa0dec46851dabcfac7f00a583c8a45",
+      "record_version": "source-960481d23320fb45cd1cdaa75fb48ec69fa0dec46851dabcfac7f00a583c8a45"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-mjx-single-cube-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+      "record_version": "source-333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b"
+    },
+    {
+      "id": "ur-description-artifact-urdf-inc-ur-common-xacro",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "91b5a8c55c3a0b04ff0d8abe74fbaf7635966e903e9e978cec473bf88234f9fd",
+      "record_version": "source-91b5a8c55c3a0b04ff0d8abe74fbaf7635966e903e9e978cec473bf88234f9fd"
     },
     {
       "id": "webots-projects-robots-adept-pioneer3-controllers-pioneer3dx-obstac-875649697962",

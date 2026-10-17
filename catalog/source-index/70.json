@@ -8,6 +8,18 @@
       "record_version": "source-0b0fca5bd8d1807fe8127eb1d26df572267e0fc06db79cb4c6c24b24e4ff087a"
     },
     {
+      "id": "franka-description-artifact-robots-fer-accelerometers-yaml",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "8a0f864ea7a8c1993f64e61f40f6369f204f1bedce23b5a283e16efa815b8bb1",
+      "record_version": "source-8a0f864ea7a8c1993f64e61f40f6369f204f1bedce23b5a283e16efa815b8bb1"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-google-barkour-vb-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "388db2b392bc0110012fe4cd2de6ac662dc22a0c486cc78c9151c1e4269e3e30",
+      "record_version": "source-388db2b392bc0110012fe4cd2de6ac662dc22a0c486cc78c9151c1e4269e3e30"
+    },
+    {
       "id": "pybullet-saverestorestate",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "9eb0c993428d2589486ed0ee1c2d5af21dd9ec15ca8cf3a26e261382fafde7c6",

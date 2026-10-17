@@ -8,10 +8,22 @@
       "record_version": "source-d395b274eb6c6c7e6a5d707472cc34ec0559790065f0a603b711715dd1d05be3"
     },
     {
+      "id": "franka-description-artifact-robots-fer-fer-urdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "740255b6a268863ea19d02dd93c8cf9cdd176af096eb5bd4185d4bb7ec6d2afc",
+      "record_version": "source-740255b6a268863ea19d02dd93c8cf9cdd176af096eb5bd4185d4bb7ec6d2afc"
+    },
+    {
       "id": "lerobot-examples-tutorial-async-inf-policy-server-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "8fa277d7794448b094346521c6adce10d79057ddc7797ac8bac1f8b6d7c4341f",
       "record_version": "source-8fa277d7794448b094346521c6adce10d79057ddc7797ac8bac1f8b6d7c4341f"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-stanford-tidybot-tidybot-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "cf50d7ad343629475b9cd420a1e98fd68417ebf843956960906bf7e179d6b95e",
+      "record_version": "source-cf50d7ad343629475b9cd420a1e98fd68417ebf843956960906bf7e179d6b95e"
     },
     {
       "id": "webots-projects-samples-devices-controllers-led-led-c",

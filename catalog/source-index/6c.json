@@ -6,6 +6,12 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "61215a0372137aaa5b3d60d9f020509edd74bf5dd7dda0204d47c8f38bc72578",
       "record_version": "source-61215a0372137aaa5b3d60d9f020509edd74bf5dd7dda0204d47c8f38bc72578"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-toddlerbot-2xc-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "705432e2ce7535d809239a5bfff66ab08b0cedb5e167a70c3edcd018dbb01f48",
+      "record_version": "source-705432e2ce7535d809239a5bfff66ab08b0cedb5e167a70c3edcd018dbb01f48"
     }
   ]
 }

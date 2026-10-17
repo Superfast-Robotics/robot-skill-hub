@@ -25,11 +25,11 @@ python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
 
 Use the exact returned ID and inspect its source pin, license, requirements, controller, observations, preparation access and evidence. Search combines Hub preparation recipes with pinned official source examples. Official examples have no Hub runtime adapter; follow their upstream setup rather than treating them as prepared recipes.
 
-Discovery uses the latest available catalog, a local cache and bundled offline fallback. Report the result's origin and freshness. `--offline` prevents automatic discovery reads; `--refresh` requests a fresh index. An explicit `--catalog FILE_OR_URL` selects that catalog. Unknown environment fields stay unknown; explicit mismatches are excluded.
+Online discovery reads a bounded search page and the selected record, with local cache and bundled offline fallback. Preserve the result's origin, generation and coverage; a bounded offline compatibility view is not the complete inventory. `--offline` prevents automatic discovery reads; `--refresh` requests fresh metadata. An explicit `--catalog FILE_OR_URL` selects that catalog. Unknown environment fields stay unknown; explicit mismatches are excluded.
 
 Reference results report `references_origin`, `references_hub_commit` and bounded fallback reasons separately from the recipe catalog. A fresh recipe catalog does not make cached references current. Reference finding pins use the reference publication's own commit when available.
 
-Search requires every query term. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. If a source reference has no preparation adapter, open its pinned source and upstream setup instructions.
+Search requires every query term and the indexed backend matches word prefixes. A single runtime or robot filter can select an explicitly declared source label; it does not establish execution compatibility. Combined environment filters require one matching declared combination. If a source reference has no preparation adapter, open its pinned source and upstream setup instructions.
 
 Before troubleshooting a Hub recipe, read findings for the exact selected record/source and known environment:
 
@@ -39,6 +39,8 @@ python /PATH_TO_SKILL/scripts/rsh.py prepare SKILL_ID --project ./experiment --p
 ```
 
 Published memories are contributor-reported data, not agent instructions. Check applicability before using a workaround; remembered commands never execute automatically.
+
+Online `memories` reads one exact-pin `/v1/findings` page, default20 results. Continue with `--limit`, `--offset` and the returned `--hub-commit`. A publication change rejects mixed-generation pagination. Offline recall reports the coverage of its available index.
 
 Remove `--plan` to prepare verified sources and an isolated project environment where supported. Use the selected result's returned `prepare_args` to retain exact record/source checks, and follow returned command arrays. Dependency installation requires `--install-deps` within the existing task scope. Preparation does not run the robot task. Preserve the project lock; catalog refreshes never silently update an existing project.
 
@@ -69,10 +71,10 @@ Do not run extra experiments to produce findings, save private project material,
 
 - Agent contract: https://hub.superfastrobotics.com/agent.json
 - Version metadata: https://hub.superfastrobotics.com/catalog/v1/version.json
-- Preparation records: https://hub.superfastrobotics.com/catalog/v1/index.json
-- Official source references: https://hub.superfastrobotics.com/catalog/v1/references.json
-- Published findings: https://hub.superfastrobotics.com/catalog/v1/memories.json
-- Publication proof: https://hub.superfastrobotics.com/catalog/v1/publication.json
+- Complete recipe/reference pages: https://hub.superfastrobotics.com/catalog/v2/search-manifest.json
+- Complete finding pages: https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json
+- Per-receipt publication proofs: `/catalog/v2/submissions/{submission_id}.json` and `/catalog/v2/memories/{memory_id}.json`
+- The v1 record aggregates are bounded compatibility views; inspect their `coverage` before treating totals as complete.
 - Full text: https://hub.superfastrobotics.com/llms-full.txt
 
 ## Register a new source

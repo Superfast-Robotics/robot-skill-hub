@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-fourier-n1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1b6753840d9ffe4daf23549cd6d3348197124e6eecd1df2da4497f3d2d11fe7e",
+      "record_version": "source-1b6753840d9ffe4daf23549cd6d3348197124e6eecd1df2da4497f3d2d11fe7e"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robotiq-2f85-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "dbc7255f3e1a5539e59cffac3000a49f19aa3cae384061aa74ec787e6a5760ff",
+      "record_version": "source-dbc7255f3e1a5539e59cffac3000a49f19aa3cae384061aa74ec787e6a5760ff"
+    },
+    {
       "id": "robosuite-demo-gripper-selection",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "acb722b947a495256304e683de2cca8dbb56bf27a377a8b216fd99080a1edd34",

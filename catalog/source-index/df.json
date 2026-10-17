@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-c-scene-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "1dc82e540d922d574c62ea6cdf411618f54d60ce44684fac34d5bd4ae963dbb6",
+      "record_version": "source-1dc82e540d922d574c62ea6cdf411618f54d60ce44684fac34d5bd4ae963dbb6"
+    },
+    {
       "id": "ompl-demos-constraint-constrainedplanningimplicitchain-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "217157a8fc1f48ddd9cb10b3f8240b9d01f7d6f5784a831eef9b95a9f5c21ee1",

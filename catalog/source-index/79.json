@@ -26,6 +26,12 @@
       "record_version": "source-c2d9167780be1138446c68e848786ec73b914102e3409f5c7668000c806eeb8d"
     },
     {
+      "id": "mujoco-menagerie-artifact-anybotics-anymal-c-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "5c9c72a3571734ef892b3b07504d350a6077bcd3810bcb722f6c4db665ddb9b2",
+      "record_version": "source-5c9c72a3571734ef892b3b07504d350a6077bcd3810bcb722f6c4db665ddb9b2"
+    },
+    {
       "id": "mujoco-record",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "6c751d365ebf823970ababffaef1e38e59fb82ee00ab6351fa5057f6460fd967",

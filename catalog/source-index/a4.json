@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-mjx-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "b2c4a8929a64fe88f7580ae1da1d3e0c3c4ed0dd5f3139894107569f86fa8700",
+      "record_version": "source-b2c4a8929a64fe88f7580ae1da1d3e0c3c4ed0dd5f3139894107569f86fa8700"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-pal-tiago-dual-tiago-dual-velocity-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "f4acd79147e3ac53bf7a204764cb9ff6dcf6ee7c5f961753cb2319859e63ba3c",
+      "record_version": "source-f4acd79147e3ac53bf7a204764cb9ff6dcf6ee7c5f961753cb2319859e63ba3c"
+    },
+    {
       "id": "pybullet-pointcloudfromcameraimage",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "6391077f0e1e8290a9f231efa68b84c0831561b3333feab9ddd09d1f87391d16",

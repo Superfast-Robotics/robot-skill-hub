@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-hello-robot-stretch-3-stretch-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "154088989df3b3d01a184b8e2df7cb82481efcd532f2498719acf1d77f001a6d",
+      "record_version": "source-154088989df3b3d01a184b8e2df7cb82481efcd532f2498719acf1d77f001a6d"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-universal-robots-ur5e-ur5e-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0",
+      "record_version": "source-ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0"
+    },
+    {
       "id": "webots-projects-robots-universal-robots-controllers-ure-can-grasper-7f8e2ee7fd58",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "7ca3a0c1ca970e00dff6d1a15ba0034d66ad03e41e952975ccefef74cc6d2e29",

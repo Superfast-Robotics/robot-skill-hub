@@ -8,6 +8,18 @@
       "record_version": "source-517405dfcc79c840ba3f4774d205b182911f467a655ca273d900ac6d5430dbe1"
     },
     {
+      "id": "mujoco-menagerie-artifact-franka-emika-panda-mjx-panda-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+      "record_version": "source-8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-robot-soccer-kit-robot-soccer-kit-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "a1199aac15f36098a4bf5ce021b9077a49c0660cccf80ae1d5e2e95a55aadc71",
+      "record_version": "source-a1199aac15f36098a4bf5ce021b9077a49c0660cccf80ae1d5e2e95a55aadc71"
+    },
+    {
       "id": "ompl-demos-spacetimeplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "4b63aa446b1c05eb01dc030638e71da49e46e2ebdbc2db6c4de9f4f419f412a0",
@@ -30,6 +42,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "b77294f1eb83132eb1ea92b72495a5d0463a82b790e811c4a6057e8d2c262b81",
       "record_version": "source-b77294f1eb83132eb1ea92b72495a5d0463a82b790e811c4a6057e8d2c262b81"
+    },
+    {
+      "id": "ros2-control-artifact-example-15-bringup-config-multi-controller-ma-491e54c19064",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "515880b7695d21cb9b9c7d3341a462fb95ccfbca7569d2dcb0f357167921a72f",
+      "record_version": "source-515880b7695d21cb9b9c7d3341a462fb95ccfbca7569d2dcb0f357167921a72f"
     }
   ]
 }

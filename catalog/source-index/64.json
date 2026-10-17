@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-booster-t1-t1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "78af3f7910e4413894863b6427f44a7daf49e5eb47628e6fe2db775219e346b9",
+      "record_version": "source-78af3f7910e4413894863b6427f44a7daf49e5eb47628e6fe2db775219e346b9"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-hello-robot-stretch-stretch-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4f33408242b90acbe4ca0f4b544ca5efae4f423c92ef71358f0977ec0b03a316",
+      "record_version": "source-4f33408242b90acbe4ca0f4b544ca5efae4f423c92ef71358f0977ec0b03a316"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-unitree-g1-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "e3f3a82afba68e1fbf6546d0d8ec1c9896d7c5117d7f9e2171f2dccd5740f80b",
+      "record_version": "source-e3f3a82afba68e1fbf6546d0d8ec1c9896d7c5117d7f9e2171f2dccd5740f80b"
+    },
+    {
       "id": "roboticstoolbox-examples-rne-dh-convention-check-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "412639e1b52c1479aa2c161b58de98f24dcc2f69abc3c853d8753da53796d1ab",

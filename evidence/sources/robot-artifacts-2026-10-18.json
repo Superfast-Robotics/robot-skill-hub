@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-17T17:24:11.044821+00:00",
+  "manifest": {
+    "path": "catalog/artifact-projects.json",
+    "sha256": "31da5ae840358e884191f694798029228eb0d4e9765c50ea431d40937a10e277",
+    "bytes": 205966
+  },
+  "canonical_references_sha256": "9e292764e12dfdf77c39125a9e65dc58e2c077fb010428d526a61ede1a64ad2f",
+  "counts": {
+    "preexisting_official_records_preserved": 651,
+    "new_official_artifacts": 409,
+    "all_official_references": 1060,
+    "applicable_license_files": 72,
+    "source_text_bytes": 2658911,
+    "builder_assembled_references_including_existing_intake": 1061
+  },
+  "formats": {
+    "mjcf": 219,
+    "urdf": 2,
+    "yaml": 125,
+    "xacro": 63
+  },
+  "artifact_kinds": {
+    "robot_model": 119,
+    "simulation_scene": 100,
+    "robot_description": 55,
+    "robot_configuration": 90,
+    "semantic_description": 10,
+    "control_configuration": 35
+  },
+  "projects": [
+    {
+      "id": "mujoco-menagerie",
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "artifacts": 221,
+      "license_files": 69
+    },
+    {
+      "id": "ur-description",
+      "repository": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description",
+      "commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "artifacts": 65,
+      "license_files": 1
+    },
+    {
+      "id": "franka-description",
+      "repository": "https://github.com/frankarobotics/franka_description",
+      "commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "artifacts": 72,
+      "license_files": 1
+    },
+    {
+      "id": "ros2-control",
+      "repository": "https://github.com/ros-controls/ros2_control_demos",
+      "commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "artifacts": 51,
+      "license_files": 1
+    }
+  ],
+  "verification": {
+    "all_source_and_license_bytes_fetched_and_sha256_checked": true,
+    "xml_syntax_parsed": true,
+    "yaml_mapping_shape_inspected": true,
+    "yaml_semantics_verified": false,
+    "xacro_evaluated": false,
+    "models_loaded": false,
+    "upstream_code_executed": false,
+    "existing_records_json_equal": true,
+    "importer_unit_tests_passed": 10,
+    "offline_check": "python tools/import_robot_artifacts.py --check",
+    "legacy_ecosystem_offline_check_passed": true,
+    "builder_reference_loader_count": 1061,
+    "upstream_recheck_command": "python tools/import_robot_artifacts.py --fetch --check",
+    "upstream_recheck_command_executed": false,
+    "initial_upstream_fetch": "All explicit pinned source/license paths were fetched by source_bytes(fetch=True), hashed into the reviewed manifest, then checked during the canonical/offline build."
+  },
+  "scope": "Finite explicitly selected source/configuration references. Models, meshes, textures, weights and full robot/runtime compatibility were not executed or validated.",
+  "publication_state": "Canonical working-tree source addition; deployment is a separate operation"
+}

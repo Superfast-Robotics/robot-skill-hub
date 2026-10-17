@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "mujoco-menagerie-artifact-i2rt-yam-scene-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "ebaec659011610ad1ab91c6e6ff869a8edf8dcd519ac952a0a4ce44ef89df3ca",
+      "record_version": "source-ebaec659011610ad1ab91c6e6ff869a8edf8dcd519ac952a0a4ce44ef89df3ca"
+    }
+  ]
+}

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-robots-fr3-duo-fr3-duo-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "0c8d2046fb03095f7711b3632856935173567d6b880fd9c182b9e1142320cec9",
+      "record_version": "source-0c8d2046fb03095f7711b3632856935173567d6b880fd9c182b9e1142320cec9"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-scene-rby1a-1-2-no-gripper-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "4f9af6f0ec900703295a246e709c4da9d378bce8602950285ef977579745e439",
+      "record_version": "source-4f9af6f0ec900703295a246e709c4da9d378bce8602950285ef977579745e439"
+    },
+    {
       "id": "mujoco-viewer",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "8954ad166e1865c9844ae6566ebde5aab91376ba514b9406b9f9f7e8f7e4afd8",

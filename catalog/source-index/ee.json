@@ -6,6 +6,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "9574a15f124c5b1117e5671e54578aea13345b59a863e2503c6e83f176f3a31e",
       "record_version": "source-9574a15f124c5b1117e5671e54578aea13345b59a863e2503c6e83f176f3a31e"
+    },
+    {
+      "id": "ros2-control-artifact-example-10-description-urdf-rrbot-urdf-xacro",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "a284a5420e3027811ff438968e51dc70a8735b7e980d11827b1c6614b33dc99f",
+      "record_version": "source-a284a5420e3027811ff438968e51dc70a8735b7e980d11827b1c6614b33dc99f"
     }
   ]
 }

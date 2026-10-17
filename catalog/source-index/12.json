@@ -6,6 +6,18 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "e76ad1f1251f48667807220ab57a30ac4d5941f114a7f85a6f25c68334378a9a",
       "record_version": "source-e76ad1f1251f48667807220ab57a30ac4d5941f114a7f85a6f25c68334378a9a"
+    },
+    {
+      "id": "ros2-control-artifact-example-17-bringup-config-rrbot-forward-posit-f4a94729be72",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726",
+      "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
+    },
+    {
+      "id": "ros2-control-artifact-example-6-description-urdf-rrbot-modular-actu-918b5e97c335",
+      "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
+      "source_sha256": "8ad9c5d76f56bda871c473be034d8985d54cc831937a2c2792f0973c7aec215a",
+      "record_version": "source-8ad9c5d76f56bda871c473be034d8985d54cc831937a2c2792f0973c7aec215a"
     }
   ]
 }

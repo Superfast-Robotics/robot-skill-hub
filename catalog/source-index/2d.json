@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "franka-description-artifact-end-effectors-franka-hand-franka-hand-srdf-xacro",
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_sha256": "aaf62f22ddb75037d2be41be957446c339418f7e2323f658b09d0c1b4c268b8c",
+      "record_version": "source-aaf62f22ddb75037d2be41be957446c339418f7e2323f658b09d0c1b4c268b8c"
+    },
+    {
       "id": "moveit2-doc-examples-subframes-src-subframes-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "e274b88496ec6b32f9dc7b5524b42abe6fa8370ddedaad092c45e5db94460bde",
       "record_version": "source-e274b88496ec6b32f9dc7b5524b42abe6fa8370ddedaad092c45e5db94460bde"
+    },
+    {
+      "id": "mujoco-menagerie-artifact-franka-fr3-v2-fr3v2-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "487c9906e58c969534d26287df98164b4b0c4612b1b734b696358a2c1145e210",
+      "record_version": "source-487c9906e58c969534d26287df98164b4b0c4612b1b734b696358a2c1145e210"
+    },
+    {
+      "id": "ur-description-artifact-config-ur8long-visual-parameters-yaml",
+      "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
+      "source_sha256": "3babb98f3f6b3311cf4864e4af2d5ec96508e5849c8dce206b690d0e1c0b711d",
+      "record_version": "source-3babb98f3f6b3311cf4864e4af2d5ec96508e5849c8dce206b690d0e1c0b711d"
     },
     {
       "id": "webots-projects-robots-epfl-biorob-controllers-ghostdog-ghostdog-c",

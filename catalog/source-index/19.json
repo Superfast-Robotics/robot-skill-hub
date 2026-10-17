@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mujoco-menagerie-artifact-unitree-a1-a1-xml",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_sha256": "492978cb7700b0064bcefbc2b93dba651a828cf9212df91d56e951666890807c",
+      "record_version": "source-492978cb7700b0064bcefbc2b93dba651a828cf9212df91d56e951666890807c"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-pddl-world-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "c9188df8e4fa1f70096fd62d93470e0098fa1cb006687fc22d193d65441a9140",
