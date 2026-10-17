@@ -1,25 +1,28 @@
-# Additional discovery channel readiness
+# Additional discovery channel status
 
-This records a read-only provider check on 2026-10-17. None of the submissions
-below was sent. Search results, submission acceptance, completed indexing,
-client connection and actual task use are separate outcomes.
-Authentication and plan instructions were rechecked against the official docs on
-2026-10-18. The local credential paths below are operator handoff destinations;
-no credentials were created or read during this check.
+The initial readiness checks were read-only. Context7 registration was subsequently
+submitted on 2026-10-17 at 19:56 UTC after the operator supplied its provider key.
+Search results, submission acceptance, completed indexing, client connection and
+actual task use are separate outcomes. Smithery remains prepared and unpublished.
 
 ## Context7 documentation
 
-Context7 accepts public GitHub documentation, and the launch guide explicitly
-names this channel. Its parser reads documentation and code examples; this does
-not install or run the Hub CLI. Anyone can request a public library without
-owning its repository. See [Adding Libraries](https://context7.com/docs/adding-libraries).
+The registration API returned HTTP 200, `Repository submitted successfully`, and
+library ID `/superfast-robotics/robot-skill-hub`. The
+[public library page](https://context7.com/superfast-robotics/robot-skill-hub)
+subsequently returned HTTP 200. A bounded search at 19:57 UTC returned no exact
+library match among its five candidates. A direct documentation query at 19:59 UTC
+returned HTTP 404 with `no_snippets_found`; no Hub snippets were available in that
+response. Processing completion and documentation retrieval are not yet
+established. The [sanitized receipt](../evidence/discovery/v0.3.3/context7-registration.json)
+preserves both observations without credentials.
 
-The public search API returned HTTP 200 without a matching Hub result, and
-`https://context7.com/superfast-robotics/robot-skill-hub` returned HTTP 404.
-This is the observed state for those queries, rather than a claim about every
-possible provider alias.
+Context7 accepts public GitHub documentation. Its parser reads documentation and
+code examples; it does not install or run the Hub CLI. Anyone can request a public
+library. See [Adding Libraries](https://context7.com/docs/adding-libraries).
 
-The documented submission is:
+The submitted request followed the official
+[repository-add API](https://context7.com/docs/api-reference/add-library/add-a-github-repository):
 
 ```http
 POST https://context7.com/api/v2/add/repo/github
@@ -29,36 +32,24 @@ Content-Type: application/json
 {"docsRepoUrl":"https://github.com/Superfast-Robotics/robot-skill-hub","private":false}
 ```
 
-The [repository-add API](https://context7.com/docs/api-reference/add-library/add-a-github-repository)
-requires a Context7 key. A GitHub token is unnecessary for this public repository
-and was not sent. For manual submission, use
-[Add Library](https://context7.com/add-library) → GitHub → repository URL above.
-The browser form itself could not be verified because this session has no
-available browser surface.
+The operator supplied a Context7 key through a private local file. No key was
+included in chat, receipts or commits. No GitHub credential or `gitToken` was sent.
+Provider key management is documented under
+[Manage API Keys](https://context7.com/docs/howto/api-keys).
 
-For the prepared API submission, the operator should:
+The [Free plan](https://context7.com/plans) is $0 and includes public repositories
+and 1,000 API calls per month. This public registration requires no paid plan,
+private-repository access or GitHub permission scopes. No paid upgrade was made.
 
-1. Sign in to [Dashboard](https://context7.com/dashboard). In the **API Keys
-   card**, click **Create API Key** and optionally name it `robot-skill-hub-registration`.
-2. Copy the one-time `ctx7sk-...` value into
-   `.local/context7-api-key.secret` in this checkout, as the raw key on one line.
-   Keep the value out of chat, logs and commits. The documented route is an API
-   Keys card, rather than an assumed Settings menu. See
-   [Manage API Keys](https://context7.com/docs/howto/api-keys).
+The repository provides [`context7.json`](../context7.json) for usage documentation
+and the installable skill. It excludes bulk snapshots, implementation files,
+source-review notes and deployment/campaign history from parsing. The factual
+description and paths were checked against the official schema before submission.
+The earlier readiness receipt retains its historical proposal. The provider's
+[owner configuration](https://context7.com/docs/library-owners) controls parsing.
 
-The [Free plan](https://context7.com/plans) is $0 and includes public
-repositories and 1,000 API calls per month. This public registration needs no
-paid plan, private-repository access, GitHub token or GitHub permission scopes.
-The key guide does not document a per-key registration-only scope selector;
-request a Context7 key, without adding GitHub credentials. The submission uses
-that value as the Context7 bearer credential, with `private:false` and no
-`gitToken`.
-
-The repository now provides [`context7.json`](../context7.json) for usage documentation and the installable skill. It excludes bulk snapshots, implementation files, source-review notes and deployment/campaign history from parsing. The factual description and local paths were checked against the official schema; a provider indexing run has not been performed. The earlier readiness receipt retains its unapplied historical proposal. The provider's [owner configuration](https://context7.com/docs/library-owners) controls parsing and presentation; adding the file alone does not prove registration.
-
-Completion requires a successful submission response, completed library
-indexing, and a documentation query that returns actual Hub instructions and
-source links. Neither submission nor that query was performed in this check.
+Submission is confirmed. Completion still requires completed library processing
+and a documentation query returning actual Hub instructions with source links.
 
 ## Smithery remote MCP
 

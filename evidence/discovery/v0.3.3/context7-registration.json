@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "registration": {
+    "checked_at": "2026-10-17T19:56:43.084326+00:00",
+    "endpoint": "https://context7.com/api/v2/add/repo/github",
+    "method": "POST",
+    "request": {
+      "docsRepoUrl": "https://github.com/Superfast-Robotics/robot-skill-hub",
+      "private": false
+    },
+    "http_status": 200,
+    "response": {
+      "libraryName": "/superfast-robotics/robot-skill-hub",
+      "message": "Repository submitted successfully"
+    },
+    "processing_completed": false,
+    "searchability_verified": false,
+    "github_credentials_sent": false,
+    "paid_upgrade_performed": false
+  },
+  "readback": {
+    "schema_version": 1,
+    "checked_at": "2026-10-17T19:57:49.790677+00:00",
+    "library_id": "/superfast-robotics/robot-skill-hub",
+    "primary_docs_reviewed_before_authenticated_read": {
+      "authentication_and_route": "https://context7.com/docs/api-guide",
+      "search_schema_and_processing_states": "https://context7.com/docs/openapi.json",
+      "adding_libraries": "https://context7.com/docs/adding-libraries"
+    },
+    "page": {
+      "url": "https://context7.com/superfast-robotics/robot-skill-hub",
+      "method": "GET",
+      "status": 200,
+      "bytes": 79124,
+      "sha256": "4db068dc638cf2c34c388ceee6d789e0639667647f88e4467f25120c78f7933e",
+      "authentication_used": false,
+      "redirects_followed": false,
+      "library_marker_found": true
+    },
+    "search": {
+      "url": "https://context7.com/api/v2/libs/search?libraryName=%2Fsuperfast-robotics%2Frobot-skill-hub&query=Find+pinned+robotics+source+references+and+Python+CLI+preparation+plans&fast=true",
+      "method": "GET",
+      "status": 200,
+      "bytes": 2238,
+      "sha256": "40aed62168dcc083664a9a466ab04313c7c87ee269a3fbb877412af10f1ea0c0",
+      "authentication_used": true,
+      "redirects_followed": false,
+      "returned_candidates": 5,
+      "matching_library_results": [],
+      "search_filter_applied": false
+    },
+    "processing_state": null,
+    "processing_completed": null,
+    "exact_library_found_in_this_search": false,
+    "documentation_retrieval_verified": false,
+    "limits": "Two bounded GETs only. A public page/search result does not establish documentation-query retrieval, agent adoption or task use. An absent exact match is limited to this search, not every alias.",
+    "registration_repeated": false,
+    "refresh_triggered": false,
+    "paid_upgrade_or_account_change": false,
+    "github_credentials_read_or_sent": false,
+    "owned_hub_requests": 0,
+    "external_network_writes": 0
+  },
+  "documentation_query": {
+    "checked_at": "2026-10-17T19:59:43.828463+00:00",
+    "primary_route_documentation": "https://context7.com/docs/api-guide",
+    "method": "GET",
+    "url": "https://context7.com/api/v2/context?libraryId=%2Fsuperfast-robotics%2Frobot-skill-hub&query=How+do+agents+find+pinned+robotics+skills%2C+inspect+source+provenance%2C+and+prepare+a+recipe+without+executing+a+simulator%3F&type=json",
+    "http_status": 404,
+    "bytes": 98,
+    "sha256": "32442368abde7534c762b8ea0a7d05439bec9140731de34152e19e2b22f0597c",
+    "response_keys": [
+      "error",
+      "message"
+    ],
+    "error": "no_snippets_found",
+    "message": "Could not fetch documentation snippets from the library.",
+    "code_snippets": 0,
+    "info_snippets": 0,
+    "github_credentials_sent": false,
+    "paid_upgrade_performed": false,
+    "registration_repeated": false,
+    "redirects_followed": false
+  }
+}
