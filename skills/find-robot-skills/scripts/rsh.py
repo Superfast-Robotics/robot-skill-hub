@@ -20,6 +20,8 @@ def environment_options(parser):
     parser.add_argument("--environment", help="JSON object describing the current project environment")
     for option in ("runtime", "runtime-version", "robot", "controller", "observation", "os"):
         parser.add_argument("--" + option)
+    parser.add_argument("--python-version", dest="python", help="Project Python version, for example 3.10.11")
+    parser.add_argument("--architecture", help="Project architecture, for example x86_64")
 
 
 def build_parser():
@@ -91,7 +93,7 @@ def execute(args, catalog_location):
         environment = read_json(args.environment)
         if not isinstance(environment, dict):
             raise RshError("invalid_environment", "Environment file must contain a JSON object.")
-    for field in ("runtime", "runtime_version", "robot", "controller", "observation", "os"):
+    for field in ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture"):
         if getattr(args, field, None) is not None:
             environment[field] = getattr(args, field)
     if args.command == "find":

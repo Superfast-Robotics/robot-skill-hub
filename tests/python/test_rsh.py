@@ -125,6 +125,17 @@ class CatalogTests(unittest.TestCase):
             with self.assertRaises(RshError):
                 validate_record(record)
 
+    def test_python_and_architecture_are_real_compatibility_constraints(self):
+        catalog = fixture_catalog()
+        record = catalog["records"][0]
+        record["compatibility"][0]["python"] = "3.10"
+        record["compatibility"][0]["architecture"] = "x86_64"
+        record["requirements"]["python"] = ">=3.10,<3.11"
+        self.assertEqual(find(catalog, "pick", {"python": "3.11.0"})["results"], [])
+        self.assertEqual(find(catalog, "pick", {"architecture": "arm64"})["results"], [])
+        result = find(catalog, "pick", {"python": "3.10.11", "architecture": "AMD64"})["results"]
+        self.assertEqual(len(result), 1)
+
 
 class SourcePreparationTests(unittest.TestCase):
     def test_download_hash_rejects_tampering(self):

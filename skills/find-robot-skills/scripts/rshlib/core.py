@@ -146,18 +146,27 @@ def lookup(catalog, skill_id):
     raise RshError("skill_not_found", f"No catalog skill named {skill_id}.", status="unsupported", next_action="find_supported_skill")
 
 
-ENVIRONMENT_FIELDS = ("runtime", "runtime_version", "robot", "controller", "observation", "os")
+ENVIRONMENT_FIELDS = ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture")
 
 
 def compatibility(record, environment):
     """Return no match on any explicit conflict; unknowns stay unknown."""
     supplied = {key: str(environment[key]).lower() for key in ENVIRONMENT_FIELDS
                 if environment.get(key) not in (None, "", "unknown")}
+    if "python" in supplied:
+        if not re.fullmatch(r"\d+\.\d+(?:\.\d+)?", supplied["python"]) or not python_satisfies(record["requirements"]["python"], supplied["python"]):
+            return {"compatibility_status": "incompatible", "missing_requirements": [], "combinations": []}
+        supplied["python"] = ".".join(supplied["python"].split(".")[:2])
+    if "architecture" in supplied:
+        supplied["architecture"] = {"amd64": "x86_64", "aarch64": "arm64"}.get(supplied["architecture"], supplied["architecture"])
     candidates = [item for item in record["compatibility"]
-                  if all(str(item.get(key, "")).lower() == value for key, value in supplied.items())]
+                  if all((key in ("python", "architecture") and key not in item)
+                         or str(item.get(key, "")).lower() == value for key, value in supplied.items())]
     if not candidates:
         return {"compatibility_status": "incompatible", "missing_requirements": [], "combinations": []}
-    missing = [key for key in ENVIRONMENT_FIELDS if key not in supplied]
+    relevant_fields = [key for key in ENVIRONMENT_FIELDS if key not in ("python", "architecture")
+                       or any(key in item for item in candidates)]
+    missing = [key for key in relevant_fields if key not in supplied]
     return {"compatibility_status": "unknown" if missing else "documented",
             "missing_requirements": missing, "combinations": candidates}
 

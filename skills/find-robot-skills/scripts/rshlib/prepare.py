@@ -104,19 +104,20 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
     record = validate_record(lookup(catalog, skill_id))
     project = Path(project).expanduser().resolve()
     local = local_environment()
-    supplied = dict(environment) if download_only else {**environment, "os": local["os"]}
+    supplied = dict(environment) if download_only else {**environment, "os": local["os"],
+                                                       "python": local["python"], "architecture": local["architecture"]}
     matched = compatibility(record, supplied)
     details = {"skill_id": skill_id, "execution_performed": False,
                "source_commit": record["source"]["commit"],
                "record_version": record["maintenance"]["record_version"]}
-    if matched["compatibility_status"] == "incompatible":
-        raise RshError("unsupported_environment", "Host or explicit environment does not match any documented combination.",
-                       status="unsupported", next_action="use_documented_environment", local_environment=local,
-                       supported_combinations=record["compatibility"], **details)
     if not download_only and not python_satisfies(record["requirements"]["python"], local["python"]):
         raise RshError("unsupported_python", "The current Python interpreter is outside the reviewed recipe constraint.",
                        status="unsupported", next_action="use_documented_python", required_python=record["requirements"]["python"],
                        local_environment=local, **details)
+    if matched["compatibility_status"] == "incompatible":
+        raise RshError("unsupported_environment", "Host or explicit environment does not match any documented combination.",
+                       status="unsupported", next_action="use_documented_environment", local_environment=local,
+                       supported_combinations=record["compatibility"], **details)
     required_keys = record["requirements"].get("api_keys", [])
     missing_keys = [name for name in required_keys if not os.environ.get(name)]
     if missing_keys and not download_only:
@@ -136,6 +137,9 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
     environment_dir = state / "environments" / skill_id
     recipe_dir = state / "recipes" / skill_id
     lock_path = state / "locks" / (skill_id + ".json")
+    if any(not path.resolve().is_relative_to(project) for path in (state, source_dir, environment_dir, recipe_dir, lock_path)):
+        raise RshError("preparation_path_escape", "An existing preparation path resolves outside the requested project.",
+                       status="blocked", next_action="use_a_project_without_external_preparation_links", **details)
     executable = environment_dir / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     replacements = {"python": str(executable), "source_dir": str(source_dir),
                     "project_dir": str(project), "recipe_dir": str(recipe_dir)}
