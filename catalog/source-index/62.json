@@ -20,6 +20,12 @@
       "record_version": "source-46a9969d925caf7b9ff99762673362c121946f8314752b6938cf2db42ab26aef"
     },
     {
+      "id": "ruckig-examples-05-velocity-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f",
+      "record_version": "source-11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f"
+    },
+    {
       "id": "webots-projects-robots-gctronic-elisa-controllers-elisa3-elisa3-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "deff0560392b808b7fd4b688acedae3ec9d311116342e27b33a5ab093c497a7d",

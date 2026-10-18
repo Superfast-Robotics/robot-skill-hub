@@ -1,0 +1,226 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_first_party_trajectory_source_review",
+  "repository": "https://github.com/pantor/ruckig",
+  "ref": "v0.19.4",
+  "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+  "scope": "Seven distinct Ruckig Community numerical trajectory-generation entrypoints. Helpers and setup files are not additional skills. This finite source selection does not establish robot compatibility, collision safety, real-time performance or task success.",
+  "source_count": 7,
+  "source_bytes": 11810,
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE",
+    "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+    "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms.",
+    "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+    "bytes": 1071
+  },
+  "sources": [
+    {
+      "path": "examples/01_position.py",
+      "sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+      "bytes": 1646,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "online trajectory generation",
+        "jerk-limited position trajectory"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/01_position.py",
+      "main_guard_or_native_main_line": 6,
+      "operation": "res = ruckig.update(inp, out)",
+      "operation_line": 31,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/02_position_offline.py",
+      "sha256": "448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+      "bytes": 1447,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "offline trajectory calculation",
+        "trajectory interpolation",
+        "position extrema"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/02_position_offline.py",
+      "main_guard_or_native_main_line": 4,
+      "operation": "result = ruckig.calculate(inp, trajectory)",
+      "operation_line": 28,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/05_velocity.py",
+      "sha256": "11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f",
+      "bytes": 1609,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "velocity control",
+        "jerk-limited velocity trajectory"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/05_velocity.py",
+      "main_guard_or_native_main_line": 6,
+      "operation": "inp.control_interface = ControlInterface.Velocity",
+      "operation_line": 12,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/06_stop.py",
+      "sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+      "bytes": 2335,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "stop trajectory",
+        "zero target velocity",
+        "independent degree-of-freedom stop"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/06_stop.py",
+      "main_guard_or_native_main_line": 6,
+      "operation": "inp.target_velocity = [0.0, 0.0, 0.0]",
+      "operation_line": 45,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/07_minimum_duration.py",
+      "sha256": "d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2",
+      "bytes": 1693,
+      "entrypoint_kind": "python_main",
+      "aliases": [
+        "minimum trajectory duration",
+        "timed trajectory generation"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/07_minimum_duration.py",
+      "main_guard_or_native_main_line": 6,
+      "operation": "inp.minimum_duration = 5.0",
+      "operation_line": 25,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/09_dynamic_dofs.cpp",
+      "sha256": "792e708d1eeea88e76120edb496af3d726f52830e66fa8070b56fc7fc03d9c2a",
+      "bytes": 1253,
+      "entrypoint_kind": "native_main",
+      "aliases": [
+        "dynamic degrees of freedom",
+        "runtime DoF count"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/09_dynamic_dofs.cpp",
+      "main_guard_or_native_main_line": 8,
+      "operation": "Ruckig<DynamicDOFs> ruckig(degrees_of_freedom, 0.01);",
+      "operation_line": 12,
+      "runtime_verification": "not_run"
+    },
+    {
+      "path": "examples/12_custom_vector_type.cpp",
+      "sha256": "aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111",
+      "bytes": 1827,
+      "entrypoint_kind": "native_main",
+      "aliases": [
+        "custom vector type",
+        "custom C++ vector integration"
+      ],
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/12_custom_vector_type.cpp",
+      "main_guard_or_native_main_line": 41,
+      "operation": "Ruckig<3, MinimalVector> ruckig(0.01);",
+      "operation_line": 43,
+      "runtime_verification": "not_run"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md",
+      "sha256": "8338f50edb9d52db1f722b093d08fcd95897571c2313e9356e1e74e6e2ebecf6",
+      "bytes": 23283
+    },
+    {
+      "path": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/CMakeLists.txt",
+      "sha256": "e4d70bbd0651821fcf9e6df4bb29f5ca335a99ecc570dc6b6cc77982249979e6",
+      "bytes": 6231
+    },
+    {
+      "path": "pyproject.toml",
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/pyproject.toml",
+      "sha256": "610882afcb14120636502993deebcbcaab73a0ed317e40a1d9c310c276bc719f",
+      "bytes": 1310
+    },
+    {
+      "path": "examples/plotter.hpp",
+      "url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/plotter.hpp",
+      "sha256": "03dc9e5beb427e4174f2fd8636dcbac03ab47be1b7782a89f83710bd12b00c6c",
+      "bytes": 383
+    }
+  ],
+  "setup_review": {
+    "python_declaration": "Python >=3.9 in pinned pyproject.toml",
+    "native_declaration": "C++20 and CMake >=3.15 in pinned CMakeLists.txt",
+    "python_build_dependencies": [
+      "scikit-build-core",
+      "nanobind"
+    ],
+    "local_only_build_configuration": [
+      "BUILD_CLOUD_CLIENT=OFF",
+      "BUILD_TESTS=OFF"
+    ],
+    "cloud_client_default": "ON; selected examples do not call intermediate-waypoint/cloud APIs",
+    "python_plotting": "Plotter import and plotting calls are comments in the selected Python examples",
+    "cpp_helper": "Matching examples/plotter.hpp contains only a standard-library vector-to-string formatting helper"
+  },
+  "exclusions": [
+    "03_waypoints, 04_waypoints_online, 08_per_section_minimum_duration and 10_dynamic_dofs_waypoints: intermediate-waypoint/cloud examples",
+    "14_tracking and 15_tracking_offline: upstream README identifies tracking as Pro-only",
+    "16_speed: its source begins with Only with Ruckig Pro",
+    "11_eigen_vector_type and 13_custom_vector_type_dynamic_dofs: outside this finite seven-file selection"
+  ],
+  "upstream_retrieval": {
+    "method": "Bounded anonymous public GitHub metadata and raw text GET; source bytes retained privately and hash-checked before intake",
+    "authentication": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off",
+    "upstream_install_import_build_or_execution": false
+  },
+  "offline_intake_validation": {
+    "baseline_project_count": 14,
+    "candidate_project_count": 15,
+    "baseline_official_reference_count": 1260,
+    "candidate_official_reference_count": 1267,
+    "separately_reviewed_intake_records": 2,
+    "candidate_combined_source_references": 1269,
+    "new_unique_records": 7,
+    "network_requests_during_offline_intake": 0,
+    "actual_first_party_importer_build": "passed",
+    "actual_first_party_importer_check": "passed",
+    "prior_combined_records_preserved": 1262,
+    "prior_project_objects_unchanged": 14,
+    "actual_catalog_builder": "passed",
+    "bundled_snapshots_updated": false,
+    "catalog_contract_tests": {
+      "tests": 39,
+      "result": "passed"
+    },
+    "offline_cli_checks": {
+      "catalog_origin": "Private explicit --catalog fixture assembled from the actual generated recipe index and all generated per-ID source records; not a hosted-publication verification",
+      "fixture_recipes": 17,
+      "fixture_source_references": 1269,
+      "queries": [
+        {
+          "query": "Ruckig",
+          "total": 7
+        },
+        {
+          "query": "Ruckig minimum trajectory duration",
+          "total": 1
+        }
+      ],
+      "inspected_id": "ruckig-examples-06-stop-py",
+      "inspected_source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "inspected_source_sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+      "new_source_download_or_execution": false
+    }
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "method": "Complete selected source text and MIT license bytes checked by SHA-256; Python parsed as inert AST and native main located; upstream setup and API scope reviewed. No upstream code executed."
+  }
+}

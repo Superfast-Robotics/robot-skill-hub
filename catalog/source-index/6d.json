@@ -18,6 +18,12 @@
       "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
       "source_sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
       "record_version": "source-6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c"
+    },
+    {
+      "id": "ruckig-examples-07-minimum-duration-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2",
+      "record_version": "source-d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2"
     }
   ]
 }

@@ -8,6 +8,12 @@
       "record_version": "source-78fb41f893dd8381cb089eb6588fa557d187a27f9485d2132a843647c96eb708"
     },
     {
+      "id": "ruckig-examples-12-custom-vector-type-cpp",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111",
+      "record_version": "source-aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111"
+    },
+    {
       "id": "unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "cbd01239cb2d3cce9922bd5a65cfe83ba2329271a5c437d18292400e5715f9f4",
