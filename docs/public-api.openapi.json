@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Agent-first robotics source discovery, reviewed contribution intake and exact-version task memory. A reference is not a runtime-verification claim.",
     "license": {
       "name": "MIT",
