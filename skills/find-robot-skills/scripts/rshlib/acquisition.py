@@ -29,7 +29,7 @@ SOCKET_TIMEOUT = 10
 TRANSFER_TIMEOUT = 30
 ARTIFACT_NAME = "artifact.source"
 MANIFEST_NAME = "manifest.json"
-GITHUB_REPOSITORY = re.compile(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
+GITHUB_REPOSITORY = re.compile(r"https://github\.com/([A-Za-z0-9_.-]*)/([A-Za-z0-9_.-]*)/?")
 SECRET = re.compile(r"\b(?:github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|rsh_[A-Za-z0-9_-]{43}|sk-[A-Za-z0-9_-]{24,}|AKIA[A-Z0-9]{16})\b|Bearer\s+[A-Za-z0-9._~+/-]{16,}|-----BEGIN [A-Z ]*PRIVATE KEY-----", re.I)
 SECRET_QUERY_KEY = re.compile(r"token|auth|password|passwd|secret|credential|signature|api.?key|access.?key|^sig$|^key$|^x-amz-|^x-goog-", re.I)
 
@@ -143,12 +143,16 @@ def plan_source(record, catalog_hub_commit, expected_source_revision=None, expec
     if license_info.get("url"):
         _url(license_info["url"])
     repository = source.get("repository")
-    if isinstance(repository, str) and GITHUB_REPOSITORY.fullmatch(repository):
-        if any(part in (".", "..") for part in repository.removeprefix("https://github.com/").split("/")):
+    github = GITHUB_REPOSITORY.fullmatch(repository) if isinstance(repository, str) else None
+    if github:
+        owner, repository_name = github.groups()
+        # Normalize only the retrieval URL; original source provenance stays intact.
+        repository_name = repository_name.removesuffix(".git")
+        if any(part in ("", ".", "..") for part in (owner, repository_name)):
             _fail("invalid_source_repository", "The pinned GitHub repository identity is invalid.")
         if not COMMIT.fullmatch(revision):
             _fail("invalid_source_pin", "A GitHub source requires its full Git commit.")
-        source_url = repository.replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + revision + "/" + urllib.parse.quote(path, safe="/")
+        source_url = "https://raw.githubusercontent.com/" + owner + "/" + repository_name + "/" + revision + "/" + urllib.parse.quote(path, safe="/")
         if source.get("raw_url") is not None and source["raw_url"] != source_url:
             _fail("source_url_pin_mismatch", "The raw source URL disagrees with its pinned repository, commit and path.")
     else:
