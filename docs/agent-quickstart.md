@@ -56,7 +56,7 @@ The preparation recipes target the Linux/Python/ManiSkill environment recorded i
 
 ## Remember a useful finding
 
-An operator can configure an already-authorized project scope once, without interactive prompts:
+An operator can configure an already-authorized scope once in an existing project, without interactive prompts:
 
 ```sh
 python /PATH_TO_SKILL/scripts/rsh.py setup --project ./experiment --allow-public-memory --skill SKILL_ID --kind working_workaround --json
