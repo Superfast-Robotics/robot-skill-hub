@@ -73,7 +73,7 @@ export async function activeCatalog(db: CatalogDatabase, commit: string): Promis
   return value ? JSON.parse(value.manifest_json) : null;
 }
 export async function indexedRow(db: CatalogDatabase, commit: string, id: string): Promise<Row | undefined> {
-  const value = await first(db, `SELECT d.row_json FROM catalog_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE m.hub_commit=? AND m.id=?`, commit, id);
+  const value = await first(db, `SELECT d.row_json FROM catalog_all_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE m.hub_commit=? AND m.id=?`, commit, id);
   return value ? JSON.parse(value.row_json) : undefined;
 }
 export const FILTERS = ['runtime', 'runtime_version', 'robot', 'controller', 'observation', 'os', 'python', 'architecture'];
@@ -142,10 +142,12 @@ export async function indexedSearch(db: CatalogDatabase, commit: string, input: 
   const terms = wordTerms(String(input.q || ''));
   if (String(input.q || '').trim() && !terms.length) return { results: [], total: 0, limit, offset };
   const { clauses, values } = sqlFilters(input);
-  const fts = terms.length ? ' JOIN catalog_fts ON catalog_fts.rowid=d.rowid' : '';
-  const where = ['m.hub_commit=?', ...(terms.length ? ['catalog_fts MATCH ?'] : []), ...clauses].join(' AND ');
-  const bound = [commit, ...(terms.length ? [terms.map(term => '"' + term + '"*').join(' AND ')] : []), ...values];
-  const from = `FROM catalog_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash${fts} WHERE ${where}`;
+  // A UNION ALL membership view is useful for browsing, but joining it to FTS
+  // materializes the whole generation. Check membership only for FTS candidates.
+  const membership = `(EXISTS(SELECT 1 FROM catalog_members m WHERE m.doc_hash=d.doc_hash AND m.hub_commit=?) OR EXISTS(SELECT 1 FROM catalog_page_members m JOIN catalog_pages p ON p.group_hash=m.group_hash WHERE m.doc_hash=d.doc_hash AND p.hub_commit=?))`;
+  const where = [...(terms.length ? ['catalog_fts MATCH ?', membership] : ['m.hub_commit=?']), ...clauses].join(' AND ');
+  const bound = [...(terms.length ? [terms.map(term => '"' + term + '"*').join(' AND '), commit, commit] : [commit]), ...values];
+  const from = terms.length ? `FROM catalog_fts JOIN catalog_documents d ON d.rowid=catalog_fts.rowid WHERE ${where}` : `FROM catalog_all_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE ${where}`;
   const noFilters = !terms.length && !input.kind && !FILTERS.some(key => input[key]);
   const results = await db.batch([
     noFilters ? db.prepare('SELECT total_records total FROM catalog_generations WHERE hub_commit=?').bind(commit) : db.prepare(`SELECT count(*) total ${from}`).bind(...bound),
@@ -169,9 +171,10 @@ function findingsResult(commit: string, input: Row, results: Row[], total: numbe
 export async function indexedFindings(db: CatalogDatabase, commit: string, input: Row) {
   const { limit, offset } = findingsInput(input, commit);
   const keys = FILTERS.filter(key => input[key]);
-  const where = ['m.hub_commit=?', 'd.skill_id=?', 'd.record_version=?', 'd.source_commit=?', ...keys.map(key => `lower(json_extract(d.row_json,'$.environment.${key}'))=?`)].join(' AND ');
-  const values = [commit, input.skill_id, input.record_version, input.source_commit, ...keys.map(key => input[key].toLowerCase())];
-  const from = `FROM catalog_memory_documents d JOIN catalog_memory_members m ON m.doc_hash=d.doc_hash WHERE ${where}`;
+  const membership = `(EXISTS(SELECT 1 FROM catalog_memory_members m WHERE m.doc_hash=d.doc_hash AND m.hub_commit=?) OR EXISTS(SELECT 1 FROM catalog_memory_page_members m JOIN catalog_pages p ON p.group_hash=m.group_hash WHERE m.doc_hash=d.doc_hash AND p.hub_commit=?))`;
+  const where = ['d.skill_id=?', 'd.record_version=?', 'd.source_commit=?', membership, ...keys.map(key => `lower(json_extract(d.row_json,'$.environment.${key}'))=?`)].join(' AND ');
+  const values = [input.skill_id, input.record_version, input.source_commit, commit, commit, ...keys.map(key => input[key].toLowerCase())];
+  const from = `FROM catalog_memory_documents d WHERE ${where}`;
   const results = await db.batch([db.prepare(`SELECT count(*) total ${from}`).bind(...values), db.prepare(`SELECT d.row_json ${from} ORDER BY d.memory_id LIMIT ? OFFSET ?`).bind(...values, limit, offset)]);
   return findingsResult(commit, input, results[1].results.map(row => JSON.parse(row.row_json)), Number(results[0].results[0].total), limit, offset, 'd1');
 }
@@ -198,14 +201,17 @@ function compilePython(row: Row) {
   return { ...row, _python_min: minimum, _python_max: maximum, _python_exclude: exclude };
 }
 async function cleanupCatalog(db: CatalogDatabase, commit: string) {
-  const retained = `SELECT hub_commit FROM catalog_generations WHERE hub_commit=? OR hub_commit=(SELECT hub_commit FROM catalog_active WHERE singleton=1) OR hub_commit=(SELECT hub_commit FROM catalog_generations WHERE next_page=total_pages AND hub_commit<>? ORDER BY created_at DESC LIMIT 1) OR hub_commit=(SELECT hub_commit FROM catalog_generations WHERE next_page<total_pages ORDER BY created_at DESC LIMIT 1)`;
+  const retained = `SELECT hub_commit FROM catalog_generations WHERE hub_commit=? OR hub_commit=(SELECT hub_commit FROM catalog_active WHERE singleton=1) OR hub_commit=(SELECT hub_commit FROM catalog_generations WHERE next_page=total_pages AND hub_commit<>? AND hub_commit<>coalesce((SELECT hub_commit FROM catalog_active WHERE singleton=1),'') ORDER BY created_at DESC LIMIT 1) OR hub_commit=(SELECT hub_commit FROM catalog_generations WHERE next_page<total_pages ORDER BY created_at DESC LIMIT 1)`;
   await db.batch([
     db.prepare(`DELETE FROM catalog_members WHERE rowid IN(SELECT rowid FROM catalog_members WHERE hub_commit NOT IN(${retained}) LIMIT 200)`).bind(commit, commit),
     db.prepare(`DELETE FROM catalog_memory_members WHERE rowid IN(SELECT rowid FROM catalog_memory_members WHERE hub_commit NOT IN(${retained}) LIMIT 200)`).bind(commit, commit),
     db.prepare(`DELETE FROM catalog_pages WHERE rowid IN(SELECT rowid FROM catalog_pages WHERE hub_commit NOT IN(${retained}) LIMIT 200)`).bind(commit, commit),
     db.prepare(`DELETE FROM catalog_generations WHERE hub_commit IN(SELECT g.hub_commit FROM catalog_generations g WHERE g.hub_commit NOT IN(${retained}) AND NOT EXISTS(SELECT 1 FROM catalog_members m WHERE m.hub_commit=g.hub_commit) AND NOT EXISTS(SELECT 1 FROM catalog_memory_members m WHERE m.hub_commit=g.hub_commit) AND NOT EXISTS(SELECT 1 FROM catalog_pages p WHERE p.hub_commit=g.hub_commit) LIMIT 10)`).bind(commit, commit),
-    db.prepare(`DELETE FROM catalog_documents WHERE doc_hash IN(SELECT d.doc_hash FROM catalog_documents d WHERE NOT EXISTS(SELECT 1 FROM catalog_members m WHERE m.doc_hash=d.doc_hash) LIMIT 100)`),
-    db.prepare(`DELETE FROM catalog_memory_documents WHERE doc_hash IN(SELECT d.doc_hash FROM catalog_memory_documents d WHERE NOT EXISTS(SELECT 1 FROM catalog_memory_members m WHERE m.doc_hash=d.doc_hash) LIMIT 100)`)
+    // A group has at most 100 members. Cascading two whole groups is bounded
+    // and cannot leave a partially collected group eligible for reuse.
+    db.prepare(`DELETE FROM catalog_page_groups WHERE group_hash IN(SELECT g.group_hash FROM catalog_page_groups g WHERE NOT EXISTS(SELECT 1 FROM catalog_pages p WHERE p.group_hash=g.group_hash) LIMIT 2)`),
+    db.prepare(`DELETE FROM catalog_documents WHERE doc_hash IN(SELECT d.doc_hash FROM catalog_documents d WHERE NOT EXISTS(SELECT 1 FROM catalog_members m WHERE m.doc_hash=d.doc_hash) AND NOT EXISTS(SELECT 1 FROM catalog_page_members m WHERE m.doc_hash=d.doc_hash) LIMIT 100)`),
+    db.prepare(`DELETE FROM catalog_memory_documents WHERE doc_hash IN(SELECT d.doc_hash FROM catalog_memory_documents d WHERE NOT EXISTS(SELECT 1 FROM catalog_memory_members m WHERE m.doc_hash=d.doc_hash) AND NOT EXISTS(SELECT 1 FROM catalog_memory_page_members m WHERE m.doc_hash=d.doc_hash) LIMIT 100)`)
   ]);
 }
 export async function pruneCatalog(env: CatalogEnv): Promise<void> {
@@ -266,6 +272,8 @@ export function createCatalogSync(fetcher: typeof fetch = fetch, now: () => numb
       });
       if (memoryCount !== memory.records || memory.pages.length > 999999) reject(503, 'invalid_publication', 'The memory record count is invalid.');
       const allPages = [...manifest.pages, ...memory.pages];
+      const storage = await first(db, `SELECT (SELECT count(*) FROM sqlite_master WHERE (type='table' AND name IN ('catalog_page_groups','catalog_page_members','catalog_memory_page_members')) OR (type='view' AND name IN ('catalog_all_members','catalog_all_memory_members'))) objects,EXISTS(SELECT 1 FROM pragma_table_info('catalog_pages') WHERE name='group_hash') receipt_column`);
+      if (storage.objects !== 5 || !storage.receipt_column) reject(503, 'catalog_schema_required', 'Apply the catalog page-membership migration before enabling this Worker.');
       let generation = await first(db, 'SELECT g.*,a.hub_commit active_hub_commit FROM catalog_generations g LEFT JOIN catalog_active a ON a.singleton=1 WHERE g.hub_commit=?', commit);
       if (generation && generation.manifest_sha256 !== resource.sha256) reject(503, 'invalid_publication', 'A catalog commit cannot change its manifest.');
       if (generation?.active_hub_commit === commit && generation.next_page === generation.total_pages && generation.total_pages === allPages.length && generation.total_records === manifest.records) {
@@ -285,28 +293,40 @@ export function createCatalogSync(fetcher: typeof fetch = fetch, now: () => numb
         if (page.schema_version !== '2' || page.hub_commit !== commit || !Array.isArray(page.records) || page.records.length !== descriptor.records || page.records.some((row: Row) => !(isMemory ? validMemory(row) : validRow(row))) || new Set(page.records.map((row: Row) => isMemory ? row.memory_id : row.id)).size !== page.records.length) reject(503, 'invalid_publication', 'The page contains invalid or duplicate identities.');
         const rows = await Promise.all(page.records.map(async (row: Row) => ({ hash: await sha256(new TextEncoder().encode(JSON.stringify(row))), row: isMemory ? row : compilePython(row), text: isMemory ? '' : text(row) })));
         const data = JSON.stringify(rows);
-        // Conditional membership insertion plus page receipt/cursor commit is one transaction.
-        // Retried/concurrent calls for the same page cannot skip a cursor or rewrite FTS.
-        await db.batch([
+        const kind = isMemory ? 'memory' : 'search', identity = isMemory ? 'memory_id' : 'id';
+        // Only validated current page bytes reach this identity. The ordered
+        // pairs commit to every complete row hash, without the Hub wrapper.
+        const groupHash = await sha256(new TextEncoder().encode(JSON.stringify(['rsh-catalog-page-members-v1', kind, rows.map(value => [value.row[identity], value.hash])])));
+        const duplicate = await first(db, `SELECT 1 found FROM ${isMemory ? 'catalog_all_memory_members' : 'catalog_all_members'} WHERE hub_commit=? AND ${identity} IN(SELECT value FROM json_each(?)) AND NOT EXISTS(SELECT 1 FROM catalog_pages WHERE hub_commit=? AND page_index=?) LIMIT 1`, commit, JSON.stringify(rows.map(value => value.row[identity])), commit, pageIndex);
+        if (duplicate) reject(503, 'invalid_publication', 'The page repeats an identity from an earlier page.');
+        const group = await first(db, `SELECT kind,records,(SELECT count(*) FROM ${isMemory ? 'catalog_memory_page_members' : 'catalog_page_members'} m WHERE m.group_hash=g.group_hash) members FROM catalog_page_groups g WHERE group_hash=?`, groupHash);
+        if (group && (group.kind !== kind || group.records !== rows.length || group.members !== rows.length)) reject(503, 'invalid_publication', 'The stored page membership group is incomplete or inconsistent.');
+        const statements = group ? [] : [
           db.prepare(isMemory ? `INSERT OR IGNORE INTO catalog_memory_documents(doc_hash,memory_id,skill_id,record_version,source_commit,row_json) SELECT json_extract(value,'$.hash'),json_extract(value,'$.row.memory_id'),json_extract(value,'$.row.skill_id'),json_extract(value,'$.row.base.record_version'),json_extract(value,'$.row.base.source_commit'),json_extract(value,'$.row') FROM json_each(?)` : `INSERT OR IGNORE INTO catalog_documents(doc_hash,id,kind,row_json,search_text) SELECT json_extract(value,'$.hash'),json_extract(value,'$.row.id'),json_extract(value,'$.row.kind'),json_extract(value,'$.row'),json_extract(value,'$.text') FROM json_each(?)`).bind(data),
-          db.prepare(isMemory ? `INSERT INTO catalog_memory_members(hub_commit,memory_id,doc_hash) SELECT ?,json_extract(value,'$.row.memory_id'),json_extract(value,'$.hash') FROM json_each(?) WHERE NOT EXISTS(SELECT 1 FROM catalog_pages WHERE hub_commit=? AND page_index=?)` : `INSERT INTO catalog_members(hub_commit,id,doc_hash) SELECT ?,json_extract(value,'$.row.id'),json_extract(value,'$.hash') FROM json_each(?) WHERE NOT EXISTS(SELECT 1 FROM catalog_pages WHERE hub_commit=? AND page_index=?)`).bind(commit, data, commit, pageIndex),
-          db.prepare(`INSERT OR IGNORE INTO catalog_pages(hub_commit,page_index,sha256,records) VALUES(?,?,?,?)`).bind(commit, pageIndex, descriptor.sha256, descriptor.records),
+          db.prepare(`INSERT OR IGNORE INTO catalog_page_groups(group_hash,kind,records) VALUES(?,?,?)`).bind(groupHash, kind, rows.length),
+          db.prepare(`INSERT OR IGNORE INTO ${isMemory ? 'catalog_memory_page_members' : 'catalog_page_members'}(group_hash,${identity},doc_hash) SELECT ?,json_extract(value,'$.row.${identity}'),json_extract(value,'$.hash') FROM json_each(?)`).bind(groupHash, data)
+        ];
+        // Group creation, full immutable members, generation receipt and cursor
+        // are one transaction. Concurrent retries cannot commit a partial group.
+        await db.batch([...statements,
+          db.prepare(`INSERT OR IGNORE INTO catalog_pages(hub_commit,page_index,sha256,records,group_hash) VALUES(?,?,?,?,?)`).bind(commit, pageIndex, descriptor.sha256, descriptor.records, groupHash),
           db.prepare(`UPDATE catalog_generations SET next_page=next_page+1 WHERE hub_commit=? AND next_page=?`).bind(commit, pageIndex)
         ]);
       }
       const progress = await first(db, 'SELECT next_page,total_pages,total_records FROM catalog_generations WHERE hub_commit=?', commit);
+      // Retire before activation: cleanup/quota failure must not report failure
+      // after replacing the old active generation. Pruning also runs separately.
+      await cleanupCatalog(db, commit);
       if (progress.next_page === progress.total_pages) {
         const latest = await publishedVersion(fetcher);
         if (latest.hub_commit !== commit || latest.resources?.['search-manifest']?.sha256 !== resource.sha256) return response({ reason_code: 'catalog_changed', hub_commit: latest.hub_commit }, 409);
-        const complete = await first(db, `SELECT count(*) total,sum(d.kind='preparation_recipe') recipes FROM catalog_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE m.hub_commit=?`, commit);
+        const complete = await first(db, `SELECT count(*) total,count(DISTINCT m.id) identities,sum(d.kind='preparation_recipe') recipes FROM catalog_all_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE m.hub_commit=?`, commit);
         const receipts = await first(db, 'SELECT count(*) pages,coalesce(sum(records),0) records FROM catalog_pages WHERE hub_commit=?', commit);
-        const memories = await first(db, 'SELECT count(*) total FROM catalog_memory_members WHERE hub_commit=?', commit);
-        if (Number(complete.total) !== manifest.records || Number(complete.recipes || 0) !== manifest.counts.recipes || Number(memories.total) !== memory.records || Number(receipts.pages) !== allPages.length || Number(receipts.records) !== manifest.records + memory.records) reject(503, 'invalid_publication', 'The complete generation count does not match its manifest.');
+        const memories = await first(db, 'SELECT count(*) total,count(DISTINCT memory_id) identities FROM catalog_all_memory_members WHERE hub_commit=?', commit);
+        const invalidGroups = await first(db, `SELECT 1 found FROM catalog_pages p JOIN catalog_page_groups g ON g.group_hash=p.group_hash WHERE p.hub_commit=? AND (g.records<>p.records OR g.kind<>CASE WHEN p.page_index<? THEN 'search' ELSE 'memory' END) LIMIT 1`, commit, manifest.pages.length);
+        if (Number(complete.total) !== manifest.records || Number(complete.identities) !== manifest.records || Number(complete.recipes || 0) !== manifest.counts.recipes || Number(memories.total) !== memory.records || Number(memories.identities) !== memory.records || Number(receipts.pages) !== allPages.length || Number(receipts.records) !== manifest.records + memory.records || invalidGroups) reject(503, 'invalid_publication', 'The complete generation count does not match its manifest.');
         await db.prepare(`INSERT INTO catalog_active(singleton,hub_commit) VALUES(1,?) ON CONFLICT(singleton) DO UPDATE SET hub_commit=excluded.hub_commit WHERE catalog_active.hub_commit<>excluded.hub_commit`).bind(commit).run();
       }
-      // Bounded retirement converges to current/previous plus staging, and continues
-      // on the hourly cron if a post-deploy caller stops immediately after activation.
-      await cleanupCatalog(db, commit);
       return response({ hub_commit: commit, status: progress.next_page === progress.total_pages ? 'active' : 'syncing', next_page: progress.next_page, total_pages: progress.total_pages, records: progress.total_records, memories: memory.records });
     } catch (error) {
       if (isDailyWriteLimit(error)) {

@@ -6,29 +6,33 @@ import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { build } from 'esbuild';
 import { Miniflare, Request as RuntimeRequest, Response as RuntimeResponse } from 'miniflare';
-import { createCatalogSync, pruneCatalog, type CatalogDatabase } from '../../src/catalog.ts';
+import { createCatalogSync, indexedFindings, indexedSearch, pruneCatalog, type CatalogDatabase } from '../../src/catalog.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com', API = 'https://api.example.invalid';
 const KEY = 'local-native-catalog-sync-credential';
 const hash = (text: string) => createHash('sha256').update(text).digest('hex');
 const bundle = build({ entryPoints: [fileURLToPath(new URL('../../src/index.ts', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023' }).then(result => result.outputFiles![0].text);
 const schema = readFile(new URL('../../migrations-catalog/0001_catalog.sql', import.meta.url), 'utf8');
-function publication(commit: string, options: { duplicate?: boolean; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
+const membershipSchema = readFile(new URL('../../migrations-catalog/0002_page_memberships.sql', import.meta.url), 'utf8');
+function publication(commit: string, options: { duplicate?: boolean; duplicateMemory?: boolean; changedSource?: boolean; distinctMemoryPins?: boolean; pageSize?: number; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
   const count = options.records ?? 3;
   const full = Array.from({ length: count }, (_, index) => ({ id: index === 0 ? 'maniskill-panda-pick-cube' : index === 1 ? options.humanoid ? 'h1-locomotion' : 'kuka-grasp' : 'source-' + index, access: { hub_prepare: index === 0 }, source: { commit: 'b'.repeat(40), sha256: 'c'.repeat(64) } }));
+  if (options.changedSource) full[1].source = { commit: 'd'.repeat(40), sha256: 'e'.repeat(64) };
   const combos = [{ runtime: 'maniskill', runtime_version: '3.0', robot: 'panda', controller: 'pd_joint_pos', observation: 'state', os: 'linux', python: '3.10', architecture: 'x86_64' }, { runtime: 'ros2', runtime_version: 'humble', robot: 'ur5', controller: 'torque', observation: 'rgb', os: 'windows' }];
-  const rows = full.map((record, index) => ({ id: record.id, name: index === 0 ? 'PickCube-v1' : index === 1 ? options.humanoid ? 'H1 locomotion' : 'KUKA iiwa grasp' : 'Source ' + index, summary: 'Pinned source for pick cube and robot grasp', kind: index === 0 ? 'preparation_recipe' : 'source_reference', hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + 'c'.repeat(64), record_sha256: hash(JSON.stringify(record)), source_sha256: 'c'.repeat(64), source_commit: 'b'.repeat(40), record_url: ORIGIN + (index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', capabilities: options.humanoid && index === 1 ? ['locomotion'] : ['pick cube'], aliases: [], runtime: index === 0 ? 'maniskill' : options.humanoid && index === 1 ? 'isaaclab' : 'ros2', framework: options.humanoid && index === 1 ? 'isaaclab' : 'maniskill', robots: [index === 1 ? options.humanoid ? 'h1' : 'kuka_iiwa' : 'panda'], ...(options.humanoid && index === 1 ? { robot_types: ['humanoid'] } : {}), compatibility: index === 0 ? combos : [], ...(index === 0 ? { python_requirement: '>=3.10,<3.12' } : {}) }));
+  const rows = full.map((record, index) => ({ id: record.id, name: index === 0 ? 'PickCube-v1' : index === 1 ? options.humanoid ? 'H1 locomotion' : 'KUKA iiwa grasp' : 'Source ' + index, summary: 'Pinned source for pick cube and robot grasp', kind: index === 0 ? 'preparation_recipe' : 'source_reference', hub_prepare: index === 0, record_version: index === 0 ? '1.0.0' : 'source-' + record.source.sha256, record_sha256: hash(JSON.stringify(record)), source_sha256: record.source.sha256, source_commit: record.source.commit, record_url: ORIGIN + (index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', capabilities: options.humanoid && index === 1 ? ['locomotion'] : ['pick cube'], aliases: [], runtime: index === 0 ? 'maniskill' : options.humanoid && index === 1 ? 'isaaclab' : 'ros2', framework: options.humanoid && index === 1 ? 'isaaclab' : 'maniskill', robots: [index === 1 ? options.humanoid ? 'h1' : 'kuka_iiwa' : 'panda'], ...(options.humanoid && index === 1 ? { robot_types: ['humanoid'] } : {}), compatibility: index === 0 ? combos : [], ...(index === 0 ? { python_requirement: '>=3.10,<3.12' } : {}) }));
   options.rowOverrides?.forEach((values, index) => Object.assign(rows[index], values));
   if (options.invalidRow) Object.assign(rows[1], options.invalidRow);
-  const memories = Array.from({ length: options.memories ?? 1 }, (_, i) => ({ schema_version: '1', memory_id: 'mem_' + String(i + 1).repeat(64), skill_id: rows[0]?.id ?? 'absent-skill', base: { record_version: '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) }, environment: { runtime: 'maniskill', robot: i === 0 ? 'panda' : 'ur5', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64), entry_url: ORIGIN + '/memories/mem_' + String(i + 1).repeat(64) + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported', summary: 'Contributor finding', evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }));
+  const memoryHash = (index: number) => index < 9 ? String(index + 1).repeat(64) : hash('finding-' + index);
+  const memories = Array.from({ length: options.memories ?? 1 }, (_, i) => ({ schema_version: '1', memory_id: 'mem_' + memoryHash(i), skill_id: rows[options.distinctMemoryPins ? i : 0]?.id ?? 'absent-skill', base: { record_version: options.distinctMemoryPins ? rows[i].record_version : '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) }, environment: { runtime: 'maniskill', robot: i === 0 ? 'panda' : 'ur5', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64), entry_url: ORIGIN + '/memories/mem_' + memoryHash(i) + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported', summary: 'Contributor finding', evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }));
   const resources = new Map<string, string>();
   full.forEach((record, index) => resources.set((index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', JSON.stringify(record)));
   const pageList = (values: any[], kind: string) => {
     const descriptors: any[] = [];
-    for (let start = 0; start < values.length; start += 2) {
+    const pageSize = options.pageSize ?? 2;
+    for (let start = 0; start < values.length; start += pageSize) {
       const index = descriptors.length, path = `catalog/v2/generations/${commit}/${kind}/${String(index).padStart(6, '0')}.json`;
-      const entries = values.slice(start, start + 2);
-      if (options.duplicate && kind === 'search' && index === 1) entries[0] = values[0];
+      const entries = values.slice(start, start + pageSize);
+      if ((options.duplicate && kind === 'search' || options.duplicateMemory && kind === 'memories') && index === 1) entries[0] = values[kind === 'search' ? 1 : 0];
       const body = JSON.stringify({ schema_version: '2', hub_commit: commit, records: entries }); resources.set('/' + path, body);
       descriptors.push({ path: options.maliciousPath && index === 0 ? 'https://evil.invalid/x' : path, sha256: options.wrongPageHash && index === 0 ? '0'.repeat(64) : hash(body), bytes: Buffer.byteLength(body), records: entries.length });
     }
@@ -43,7 +47,210 @@ function publication(commit: string, options: { duplicate?: boolean; wrongPageHa
   resources.set('/catalog/v1/version.json', JSON.stringify(version));
   return { resources, rows, memories, version, full };
 }
-async function runtime(initial = publication('a'.repeat(40))) {
+
+// Seed exactly the pre-migration storage protocol, including receipts without a
+// group hash. This also proves the additive schema accepts old Worker writes.
+async function seedLegacy(db: Awaited<ReturnType<typeof runtime>>['db'], published: ReturnType<typeof publication>, pages: number, active = false) {
+  const manifestText = published.resources.get('/catalog/v2/search-manifest.json')!, manifest = JSON.parse(manifestText);
+  const memory = JSON.parse(published.resources.get('/catalog/v2/memory-manifest.json')!);
+  const descriptors = [...manifest.pages, ...memory.pages], commit = manifest.hub_commit;
+  await db.prepare('INSERT INTO catalog_generations(hub_commit,manifest_sha256,manifest_json,total_pages,total_records,created_at) VALUES(?,?,?,?,?,?)').bind(commit, hash(manifestText), manifestText, descriptors.length, manifest.records, Date.now()).run();
+  for (let index = 0; index < pages; index++) {
+    const isMemory = index >= manifest.pages.length, descriptor = descriptors[index];
+    const page = JSON.parse(published.resources.get('/' + descriptor.path)!);
+    const data = JSON.stringify(page.records.map((row: any) => ({ hash: hash(JSON.stringify(row)), row: !isMemory && row.kind === 'preparation_recipe' ? { ...row, _python_min: 3010000, _python_max: 3011999, _python_exclude: [] } : row, text: isMemory ? '' : [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ').replace(/[-_/]/g, ' ') })));
+    await db.batch([
+      db.prepare(isMemory ? `INSERT OR IGNORE INTO catalog_memory_documents(doc_hash,memory_id,skill_id,record_version,source_commit,row_json) SELECT json_extract(value,'$.hash'),json_extract(value,'$.row.memory_id'),json_extract(value,'$.row.skill_id'),json_extract(value,'$.row.base.record_version'),json_extract(value,'$.row.base.source_commit'),json_extract(value,'$.row') FROM json_each(?)` : `INSERT OR IGNORE INTO catalog_documents(doc_hash,id,kind,row_json,search_text) SELECT json_extract(value,'$.hash'),json_extract(value,'$.row.id'),json_extract(value,'$.row.kind'),json_extract(value,'$.row'),json_extract(value,'$.text') FROM json_each(?)`).bind(data),
+      db.prepare(isMemory ? `INSERT INTO catalog_memory_members(hub_commit,memory_id,doc_hash) SELECT ?,json_extract(value,'$.row.memory_id'),json_extract(value,'$.hash') FROM json_each(?)` : `INSERT INTO catalog_members(hub_commit,id,doc_hash) SELECT ?,json_extract(value,'$.row.id'),json_extract(value,'$.hash') FROM json_each(?)`).bind(commit, data),
+      db.prepare('INSERT INTO catalog_pages(hub_commit,page_index,sha256,records) VALUES(?,?,?,?)').bind(commit, index, descriptor.sha256, descriptor.records),
+      db.prepare('UPDATE catalog_generations SET next_page=next_page+1 WHERE hub_commit=?').bind(commit)
+    ]);
+  }
+  if (active) { assert.equal(pages, descriptors.length); await db.prepare('INSERT INTO catalog_active(singleton,hub_commit) VALUES(1,?)').bind(commit).run(); }
+}
+
+test('native additive migration preserves old active reads and resumes mixed legacy/group staging without rewriting legacy pages', async () => {
+  const old = publication('a'.repeat(40)), s = await runtime(old, { legacySchemaOnly: true }); try {
+    await seedLegacy(s.db, old, 3, true);
+    const blocked = await s.sync(); assert.equal(blocked.status, 503); assert.equal((await blocked.json() as any).reason_code, 'catalog_schema_required');
+    assert.equal((await s.db.prepare('SELECT next_page FROM catalog_generations').first<any>()).next_page, 3);
+    await s.migrate();
+    const legacyRead = await s.read('/v1/search?q=kuka'); assert.equal(legacyRead.status, 200); assert.equal(legacyRead.body.backend, 'd1_fts5'); assert.equal(legacyRead.body.total, 1);
+    const current = publication('c'.repeat(40)); s.set(current);
+    await seedLegacy(s.db, current, 1);
+    await s.complete();
+    const receipts = await s.db.prepare('SELECT page_index,group_hash FROM catalog_pages WHERE hub_commit=? ORDER BY page_index').bind(current.version.hub_commit).all<any>();
+    assert.equal(receipts.results[0].group_hash, null); assert.ok(receipts.results[1].group_hash); assert.ok(receipts.results[2].group_hash);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_members WHERE hub_commit=?').bind(current.version.hub_commit).first<any>()).total, 2);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_all_members WHERE hub_commit=?').bind(current.version.hub_commit).first<any>()).total, 3);
+    assert.equal((await s.read('/v1/search?runtime=maniskill&robot=panda&python=3.10.11&architecture=amd64')).body.total, 1);
+    assert.equal((await s.read('/v1/skills/kuka-grasp')).body.record.source.sha256, 'c'.repeat(64));
+    assert.equal((await s.read('/v1/findings?skill_id=maniskill-panda-pick-cube&record_version=1.0.0&source_commit=' + 'b'.repeat(40))).body.total, 1);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native new pages reject an identity already staged by the legacy Worker before advancing the cursor', async () => {
+  const current = publication('c'.repeat(40), { duplicate: true }), s = await runtime(); try {
+    await s.complete(); await seedLegacy(s.db, current, 1); s.set(current);
+    const failed = await s.sync(); assert.equal(failed.status, 503); assert.equal((await failed.json() as any).reason_code, 'invalid_publication');
+    assert.equal((await s.db.prepare('SELECT next_page FROM catalog_generations WHERE hub_commit=?').bind(current.version.hub_commit).first<any>()).next_page, 1);
+    assert.equal((await s.db.prepare('SELECT hub_commit FROM catalog_active').first<any>()).hub_commit, 'a'.repeat(40));
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_all_members WHERE hub_commit=?').bind(current.version.hub_commit).first<any>()).total, 2);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native page groups reuse unchanged search/finding contents and isolate a changed source pin', async () => {
+  const s = await runtime(); try {
+    const bindings = async (commit: string) => (await s.db.prepare('SELECT group_hash FROM catalog_pages WHERE hub_commit=? ORDER BY page_index').bind(commit).all<any>()).results.map((row: any) => row.group_hash);
+    await s.complete(); const initial = await bindings('a'.repeat(40));
+    s.set(publication('b'.repeat(40))); await s.complete(); assert.deepEqual(await bindings('b'.repeat(40)), initial);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_page_members').first<any>()).total, 3);
+    s.set(publication('c'.repeat(40), { memories: 2 })); await s.complete(); const moreMemories = await bindings('c'.repeat(40));
+    assert.deepEqual(moreMemories.slice(0, 2), initial.slice(0, 2)); assert.notEqual(moreMemories[2], initial[2]);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_page_members').first<any>()).total, 3);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>()).total, 3);
+    s.set(publication('d'.repeat(40), { memories: 2, changedSource: true })); await s.complete(); const changed = await bindings('d'.repeat(40));
+    assert.notEqual(changed[0], moreMemories[0]); assert.deepEqual(changed.slice(1), moreMemories.slice(1));
+    const found = await s.read('/v1/search?q=kuka'); assert.equal(found.body.results[0].source_commit, 'd'.repeat(40)); assert.equal(found.body.results[0].record_version, 'source-' + 'e'.repeat(64));
+    const full = await s.read('/v1/skills/kuka-grasp?record_version=' + found.body.results[0].record_version); assert.equal(full.status, 200); assert.equal(full.body.record.source.sha256, 'e'.repeat(64));
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>()).total, 4);
+    assert.equal((await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'kuka*'").first<any>()).total, 2, 'Old immutable content remains stored without entering the selected generation twice');
+  } finally { await s.mf.dispose(); }
+});
+
+test('native finding identities cannot repeat across content groups and leave the old generation active', async () => {
+  const s = await runtime(); try {
+    await s.complete(); s.set(publication('c'.repeat(40), { memories: 3, duplicateMemory: true }));
+    for (let i = 0; i < 3; i++) assert.equal((await s.sync()).status, 200);
+    const failed = await s.sync(); assert.equal(failed.status, 503); assert.equal((await failed.json() as any).reason_code, 'invalid_publication');
+    assert.equal((await s.db.prepare('SELECT next_page FROM catalog_generations WHERE hub_commit=?').bind('c'.repeat(40)).first<any>()).next_page, 3);
+    assert.equal((await s.db.prepare('SELECT hub_commit FROM catalog_active').first<any>()).hub_commit, 'a'.repeat(40));
+  } finally { await s.mf.dispose(); }
+});
+
+test('native activation checks distinct identities even when every receipt and total count is complete', async () => {
+  const current = publication('c'.repeat(40), { duplicate: true }), s = await runtime(); try {
+    await s.complete(); s.set(current); assert.equal((await s.sync()).status, 200);
+    const row = current.rows[1], documentHash = hash(JSON.stringify(row));
+    const groupHash = hash(JSON.stringify(['rsh-catalog-page-members-v1', 'search', [[row.id, documentHash]]]));
+    const manifest = JSON.parse(current.resources.get('/catalog/v2/search-manifest.json')!);
+    const memory = JSON.parse(current.resources.get('/catalog/v2/memory-manifest.json')!);
+    const oldMemoryGroup = (await s.db.prepare('SELECT group_hash FROM catalog_pages WHERE hub_commit=? AND page_index=2').bind('a'.repeat(40)).first<any>()).group_hash;
+    // Seed the remaining correctly hashed receipts directly to exercise final
+    // validation independently of the earlier per-page duplicate guard.
+    await s.db.batch([
+      s.db.prepare('INSERT INTO catalog_page_groups(group_hash,kind,records) VALUES(?,?,1)').bind(groupHash, 'search'),
+      s.db.prepare('INSERT INTO catalog_page_members(group_hash,id,doc_hash) VALUES(?,?,?)').bind(groupHash, row.id, documentHash),
+      s.db.prepare('INSERT INTO catalog_pages(hub_commit,page_index,sha256,records,group_hash) VALUES(?,1,?,1,?)').bind(current.version.hub_commit, manifest.pages[1].sha256, groupHash),
+      s.db.prepare('INSERT INTO catalog_pages(hub_commit,page_index,sha256,records,group_hash) VALUES(?,2,?,1,?)').bind(current.version.hub_commit, memory.pages[0].sha256, oldMemoryGroup),
+      s.db.prepare('UPDATE catalog_generations SET next_page=total_pages WHERE hub_commit=?').bind(current.version.hub_commit)
+    ]);
+    const counts = await s.db.prepare("SELECT count(*) total,count(DISTINCT m.id) identities,sum(d.kind='preparation_recipe') recipes FROM catalog_all_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE hub_commit=?").bind(current.version.hub_commit).first<any>();
+    assert.deepEqual(counts, { total: 3, identities: 2, recipes: 1 });
+    const failed = await s.sync(); assert.equal(failed.status, 503); assert.equal((await failed.json() as any).reason_code, 'invalid_publication');
+    assert.equal((await s.db.prepare('SELECT hub_commit FROM catalog_active').first<any>()).hub_commit, 'a'.repeat(40));
+  } finally { await s.mf.dispose(); }
+});
+
+test('native cached memberships never bypass current fixed-page checksum and path validation', async () => {
+  for (const options of [{ wrongPageHash: true }, { maliciousPath: true }]) {
+    const s = await runtime(); try {
+      await s.complete(); const before = await s.db.prepare('SELECT count(*) total FROM catalog_page_groups').first();
+      s.set(publication('c'.repeat(40), options)); const failed = await s.sync(); assert.equal(failed.status, 503);
+      assert.equal((await s.db.prepare('SELECT hub_commit FROM catalog_active').first<any>()).hub_commit, 'a'.repeat(40));
+      assert.deepEqual(await s.db.prepare('SELECT count(*) total FROM catalog_page_groups').first(), before);
+      assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_pages WHERE hub_commit=?').bind('c'.repeat(40)).first<any>()).total, 0);
+    } finally { await s.mf.dispose(); }
+  }
+});
+
+test('native bounded GC keeps shared memberships after their original generation retires and collects whole orphan groups', async () => {
+  const s = await runtime(); try {
+    await s.complete(); const shared = (await s.db.prepare('SELECT group_hash FROM catalog_pages WHERE hub_commit=? ORDER BY page_index').bind('a'.repeat(40)).all<any>()).results.map((row: any) => row.group_hash);
+    s.set(publication('b'.repeat(40))); await s.complete(); s.set(publication('c'.repeat(40))); await s.complete();
+    await pruneCatalog({ CATALOG: s.db as unknown as CatalogDatabase });
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_generations WHERE hub_commit=?').bind('a'.repeat(40)).first<any>()).total, 0);
+    for (const groupHash of shared) assert.ok(await s.db.prepare('SELECT group_hash FROM catalog_page_groups WHERE group_hash=?').bind(groupHash).first());
+    const docs = (await s.db.prepare('SELECT id,doc_hash FROM catalog_documents ORDER BY id').all<any>()).results;
+    const orphans: string[] = [];
+    for (const a of docs) for (const b of docs) {
+      if (a.id === b.id || orphans.length >= 6) continue;
+      const groupHash = hash(JSON.stringify(['rsh-catalog-page-members-v1', 'search', [[a.id, a.doc_hash], [b.id, b.doc_hash]]]));
+      if (await s.db.prepare('SELECT 1 found FROM catalog_page_groups WHERE group_hash=?').bind(groupHash).first()) continue;
+      await s.db.batch([
+        s.db.prepare('INSERT INTO catalog_page_groups(group_hash,kind,records) VALUES(?,?,2)').bind(groupHash, 'search'),
+        s.db.prepare('INSERT INTO catalog_page_members(group_hash,id,doc_hash) VALUES(?,?,?),(?,?,?)').bind(groupHash, a.id, a.doc_hash, groupHash, b.id, b.doc_hash)
+      ]); orphans.push(groupHash);
+    }
+    assert.ok(orphans.length >= 4);
+    const count = async () => (await s.db.prepare('SELECT count(*) total FROM catalog_page_groups').first<any>()).total;
+    const before = await count(); await pruneCatalog({ CATALOG: s.db as unknown as CatalogDatabase });
+    assert.equal(before - await count(), 2, 'One prune deletes at most two complete groups');
+    const partial = await s.db.prepare("SELECT g.group_hash FROM catalog_page_groups g LEFT JOIN catalog_page_members m ON m.group_hash=g.group_hash WHERE g.kind='search' GROUP BY g.group_hash HAVING count(m.id)<>g.records").all();
+    assert.deepEqual(partial.results, [], 'Remaining group headers always describe complete membership');
+    for (let i = 0; i < 4; i++) await pruneCatalog({ CATALOG: s.db as unknown as CatalogDatabase });
+    for (const groupHash of shared) assert.ok(await s.db.prepare('SELECT group_hash FROM catalog_page_groups WHERE group_hash=?').bind(groupHash).first());
+    assert.equal((await s.read('/v1/search?q=kuka')).body.total, 1);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>()).total, 3);
+    assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_fts').first<any>()).total, 3);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native cleanup quota failure before activation retains old active and resumes the already committed page', async () => {
+  const current = publication('c'.repeat(40)), s = await runtime(); try {
+    await s.complete(); s.set(current); await s.sync(); await s.sync();
+    const row = current.rows[1], documentHash = hash(JSON.stringify(row)), groupHash = hash(JSON.stringify(['rsh-catalog-page-members-v1', 'search', [[row.id, documentHash]]]));
+    await s.db.batch([
+      s.db.prepare('INSERT INTO catalog_page_groups(group_hash,kind,records) VALUES(?,?,1)').bind(groupHash, 'search'),
+      s.db.prepare('INSERT INTO catalog_page_members(group_hash,id,doc_hash) VALUES(?,?,?)').bind(groupHash, row.id, documentHash)
+    ]);
+    await s.db.exec("CREATE TRIGGER test_cleanup_quota BEFORE DELETE ON catalog_page_groups BEGIN SELECT RAISE(ABORT, 'Your account has exceeded D1''s free tier daily row write limit.'); END;");
+    const failed = await s.sync(); assert.equal(failed.status, 503); assert.equal((await failed.json() as any).reason_code, 'catalog_write_limit');
+    assert.equal((await s.db.prepare('SELECT next_page FROM catalog_generations WHERE hub_commit=?').bind(current.version.hub_commit).first<any>()).next_page, 3);
+    assert.equal((await s.db.prepare('SELECT hub_commit FROM catalog_active').first<any>()).hub_commit, 'a'.repeat(40));
+    await s.db.exec('DROP TRIGGER test_cleanup_quota;'); await s.complete();
+    assert.equal((await s.read('/v1/search')).body.hub_commit, current.version.hub_commit);
+  } finally { await s.mf.dispose(); }
+});
+
+test('native selective FTS and exact finding pins avoid materializing all shared memberships', async () => {
+  const s = await runtime(publication('a'.repeat(40), { records: 1272, memories: 1272, pageSize: 100, distinctMemoryPins: true })); try {
+    await s.complete();
+    const measurements: { sql: string; values: unknown[]; reads: number; writes: number }[] = [];
+    function statement(sql: string, native: any, values: unknown[] = []): any {
+      return { native, sql, values,
+        bind(...bound: unknown[]) { return statement(sql, native.bind(...bound), bound); },
+        async all() { const result = await native.all(); measurements.push({ sql, values, reads: result.meta.rows_read, writes: result.meta.rows_written }); return result; },
+        async run() { assert.fail('Public reads cannot run a write statement'); }
+      };
+    }
+    const db: CatalogDatabase = {
+      prepare(sql) { return statement(sql, s.db.prepare(sql)); },
+      async batch(statements: any[]) {
+        const results = await s.db.batch(statements.map(value => value.native));
+        results.forEach((result: any, index: number) => measurements.push({ sql: statements[index].sql, values: statements[index].values, reads: result.meta.rows_read, writes: result.meta.rows_written }));
+        return results as any;
+      }
+    };
+    const search = await indexedSearch(db, 'a'.repeat(40), { q: 'source-1271', limit: 2 });
+    assert.equal(search.total, 1); assert.deepEqual(search.results.map(row => row.id), ['source-1271']);
+    const searchReads = measurements.reduce((total, value) => total + value.reads, 0);
+    assert.ok(searchReads < 200, 'Selective native FTS must not read all 1272 generation memberships: ' + searchReads);
+    measurements.length = 0;
+    const findings = await indexedFindings(db, 'a'.repeat(40), { skill_id: 'maniskill-panda-pick-cube', record_version: '1.0.0', source_commit: 'b'.repeat(40), robot: 'panda', limit: 2 });
+    assert.equal(findings.total, 1); assert.equal(findings.results[0].skill_id, 'maniskill-panda-pick-cube');
+    const findingReads = measurements.reduce((total, value) => total + value.reads, 0);
+    assert.ok(findingReads < 200, 'Exact pins must use the native document index rather than scan all 1272 findings: ' + findingReads);
+    assert.ok(measurements.every(value => value.writes === 0));
+    for (const value of measurements) {
+      const plan = await s.db.prepare('EXPLAIN QUERY PLAN ' + value.sql).bind(...value.values as any[]).all<any>();
+      const details = plan.results.map((row: any) => row.detail).join('\n');
+      assert.match(details, /catalog_memory_pins/);
+      assert.doesNotMatch(details, /MATERIALIZE.*catalog_all_memory_members/);
+    }
+  } finally { await s.mf.dispose(); }
+});
+async function runtime(initial = publication('a'.repeat(40)), options: { legacySchemaOnly?: boolean } = {}) {
   let current = initial; const calls: string[] = [];
   const mf = new Miniflare({ telemetry: { enabled: false }, workers: [{ config: { name: 'native-catalog-test', compatibilityDate: '2026-10-17', manifest: { mainModule: 'worker.js', modules: { 'worker.js': { type: 'esm', contents: await bundle } } }, env: { CATALOG: { type: 'd1', id: 'native-catalog-test' }, CATALOG_SYNC_KEY: { type: 'text', value: KEY }, PUBLICATION_URL: { type: 'text', value: ORIGIN + '/catalog/v1/publication.json' } } }, dev: { outboundService: { type: 'fetcher', handler(request: RuntimeRequest) {
     const url = new URL(request.url); calls.push(request.url);
@@ -53,10 +260,12 @@ async function runtime(initial = publication('a'.repeat(40))) {
   const db = await mf.getD1Database('CATALOG');
   // D1 exec accepts SQL statements, including the real FTS5 tables and triggers.
   await db.exec((await schema).replace(/--[^\n]*/g, '').replace(/\s+/g, ' '));
+  const migrate = async () => { await db.exec((await membershipSchema).replace(/--[^\n]*/g, '').replace(/\s+/g, ' ')); };
+  if (!options.legacySchemaOnly) await migrate();
   const sync = (body: any = {}, key = KEY) => mf.dispatchFetch(API + '/internal/catalog-sync', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify(body) });
   async function complete() { for (let i = 0; i < 100; i++) { const response = await sync(), value: any = await response.json(); assert.equal(response.status, 200, JSON.stringify(value)); if (value.status === 'active') return value; } assert.fail('Sync did not finish'); }
   async function read(path: string) { const response = await mf.dispatchFetch(API + path, { headers: { DNT: '1', 'X-RSH-Telemetry': 'off' } }); return { status: response.status, body: await response.json() as any }; }
-  return { mf, db, calls, sync, complete, read, set(value: ReturnType<typeof publication>) { current = value; } };
+  return { mf, db, calls, sync, complete, read, migrate, set(value: ReturnType<typeof publication>) { current = value; } };
 }
 
 test('native D1 FTS stages both search and findings pages before atomically serving the matching generation', async () => {
@@ -120,16 +329,18 @@ test('native D1 quota failure rolls back one page, preserves the active generati
     const before = async () => ({
       generation: await s.db.prepare('SELECT next_page,total_pages FROM catalog_generations WHERE hub_commit=?').bind('c'.repeat(40)).first(),
       active: await s.db.prepare('SELECT hub_commit FROM catalog_active').first(),
-      members: await s.db.prepare('SELECT count(*) total FROM catalog_members WHERE hub_commit=?').bind('c'.repeat(40)).first(),
+      members: await s.db.prepare('SELECT count(*) total FROM catalog_all_members WHERE hub_commit=?').bind('c'.repeat(40)).first(),
       pages: await s.db.prepare('SELECT count(*) total FROM catalog_pages WHERE hub_commit=?').bind('c'.repeat(40)).first(),
       documents: await s.db.prepare('SELECT count(*) total FROM catalog_documents').first(),
-      fts: await s.db.prepare('SELECT count(*) total FROM catalog_fts').first()
+      fts: await s.db.prepare('SELECT count(*) total FROM catalog_fts').first(),
+      groups: await s.db.prepare('SELECT count(*) total FROM catalog_page_groups').first(),
+      groupMembers: await s.db.prepare('SELECT count(*) total FROM catalog_page_members').first()
     });
     const snapshot = await before();
     assert.deepEqual(snapshot.generation, { next_page: 1, total_pages: 3 });
     assert.deepEqual(snapshot.active, { hub_commit: 'a'.repeat(40) });
     const quota = "Your account has exceeded D1's free tier daily row write limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. private-provider-detail";
-    await s.db.exec("CREATE TRIGGER test_write_quota BEFORE INSERT ON catalog_members BEGIN SELECT RAISE(ABORT, '" + quota.replaceAll("'", "''") + "'); END;");
+    await s.db.exec("CREATE TRIGGER test_write_quota BEFORE INSERT ON catalog_page_members BEGIN SELECT RAISE(ABORT, '" + quota.replaceAll("'", "''") + "'); END;");
     for (let attempt = 0; attempt < 2; attempt++) {
       const response = await s.sync(); assert.equal(response.status, 503);
       const seconds = Number(response.headers.get('Retry-After'));
@@ -163,7 +374,7 @@ test('native exact active generation sync performs only reads and leaves retirem
     const handler = createCatalogSync(fetcher);
     const response = await handler(new Request(API + '/internal/catalog-sync', { method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ hub_commit: current.version.hub_commit }) }), { CATALOG: db, CATALOG_SYNC_KEY: KEY });
     assert.equal(response.status, 200); assert.deepEqual(await response.json(), done);
-    assert.equal(statements.length, 1, 'Only the real SQLite generation/active-state lookup is needed');
+    assert.equal(statements.length, 2, 'Only the schema gate and real SQLite generation/active-state lookup are needed');
     assert.equal(response.headers.has('Retry-After'), false);
   } finally { await s.mf.dispose(); }
 });
@@ -194,7 +405,7 @@ for (const options of [{ wrongPageHash: true }, { duplicate: true }, { malicious
     if ('duplicate' in options && options.duplicate) {
       assert.equal((await s.db.prepare('SELECT next_page FROM catalog_generations').first<any>()).next_page, 1);
       assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_pages').first<any>()).total, 1);
-      assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_members').first<any>()).total, 2);
+      assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_all_members').first<any>()).total, 2);
     }
   } finally { await s.mf.dispose(); }
 });
