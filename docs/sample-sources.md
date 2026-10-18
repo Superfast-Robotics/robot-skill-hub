@@ -230,6 +230,13 @@ adds its actual state-interface-to-ROS-message implementation, class header and
 registration/build contracts. It requests no command interfaces and remains
 source-only with unknown compatibility and `runtime_verification: not_run`.
 
+## ViSP image-based visual servoing
+
+The [ViSP source review](../docs/visp-sources.md) adds one four-point IBVS C++
+tutorial using a numerical free-flying camera. GPL project scope and absent
+individual file attribution are explicit. It has no Hub adapter and remains
+`runtime_verification: not_run` with unknown compatibility.
+
 ## Reproduce the index
 
 ```sh

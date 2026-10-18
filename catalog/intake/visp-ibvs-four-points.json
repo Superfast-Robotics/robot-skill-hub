@@ -1,0 +1,90 @@
+{
+  "id": "visp-ibvs-four-points",
+  "name": "ViSP four-point image-based visual servo tutorial",
+  "summary": "Official C++ IBVS example using four projected point features, the current interaction matrix and vpServo to compute camera-frame velocities for a simulated free-flying camera. It runs a fixed 150-iteration numerical loop; image tracking, arm IK and successful robot execution were not verified.",
+  "framework": "visp",
+  "kind": "community_skill",
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "capabilities": [
+    "visual-servoing",
+    "image-based-visual-servo",
+    "point-feature-control",
+    "camera-velocity-control",
+    "kinematic-simulation"
+  ],
+  "aliases": [
+    "IBVS",
+    "image-based visual servo",
+    "vpServo",
+    "vpSimulatorCamera",
+    "EYEINHAND_CAMERA"
+  ],
+  "robots": [
+    "simulated free-flying camera"
+  ],
+  "source": {
+    "repository": "https://github.com/lagadic/visp",
+    "commit": "372e03076373e012f2bec765b026bc1e4e7487bd",
+    "path": "tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+    "url": "https://github.com/lagadic/visp/blob/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+    "sha256": "1d0d3f32617c912e4eafdeb6506b6fc003b5c22c62405a828cda19d418ff767b",
+    "bytes": 1798,
+    "authors": [
+      "ViSP project contributors"
+    ]
+  },
+  "license": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://github.com/lagadic/visp/blob/372e03076373e012f2bec765b026bc1e4e7487bd/LICENSE.txt",
+    "verified": true,
+    "scope": "Selected tutorial distributed in the pinned ViSP project under its root GPL version 2-or-later declaration, corroborated by README and root CMake. The selected file has no individual copyright, author or license header; attribution is project-level only. The complete tree has no additional LICENSE/COPYING/NOTICE/COPYRIGHT file in its ancestor directories. Preserve applicable GPL source, attribution, license and modification obligations. No ViSP Professional Edition grant, dependency/binary clearance or relicensing is asserted."
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete compatible ViSP C++ headers and libraries, including core, robot, visual_features and vs",
+      "C++ toolchain and CMake >= 3.10",
+      "Supplied tutorial CMake requests visp_core, visp_robot, visp_vs, visp_blob, visp_vision, visp_io, visp_gui and visp_ar"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured upstream ViSP build and its target/dependency CMake helpers"
+    ],
+    "notes": "The selected main uses only analytic point projection and vpSimulatorCamera; it has no physical camera acquisition, blob tracking, display, model-file or robot-driver calls. The supplied directory CMake builds additional tutorials and copies their data, so that broader build has additional requirements beyond this one source. Root CMake declares ViSP 3.7.1 and enables BUILD_TUTORIALS; these are source declarations, not tested version/OS/architecture combinations. No package, compiler, simulator or robot was run. Dependency implementations and their transitive behavior were not exhaustively reviewed."
+  },
+  "invocation": {
+    "entrypoint": "C++ main; upstream target tutorial-ibvs-4pts",
+    "notes": "Build in a separately configured complete upstream ViSP project using its tutorial CMake; this inert file is not a standalone dependency bundle. The code configures EYEINHAND_CAMERA, CURRENT interaction matrix and gain 0.5, projects four square-corner points, then calls computeControlLaw and applies CAMERA_FRAME velocity to vpSimulatorCamera at a declared 0.040-second sampling period for 150 iterations. It catches vpException and prints it without an explicit failure return, and contains no final-error threshold or success assertion. This controls a numerical camera model, not an arm IK solver or physical robot. The Hub supplies no preparation/execution adapter and has not tested convergence."
+  },
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned selected source, complete GPL terms and complete upstream build setup before integration. Source retrieval neither builds nor executes the tutorial.",
+    "setup_url": "https://github.com/lagadic/visp/blob/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source, GPL license, README, tutorial CMake and IBVS documentation read as inert text; root build/license and official-mainpage declarations inspected. Seven immutable file byte counts, SHA-256 and Git blob IDs match the nontruncated 4800-entry tree. Eleven bounded anonymous primary GET attempts: ten HTTP 200 and one official-site TLS verification failure, with no retries, redirects, proxy or authentication. No installation, compilation, simulator/robot execution, task success or measured compatibility."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-1d0d3f32617c",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
