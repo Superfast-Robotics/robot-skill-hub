@@ -173,7 +173,7 @@ def missing_token_recovery(skill_path, project, contributor, bundle_path, digest
             "--contributor=" + contributor, "--output", str(bundle_path.resolve()),
             "--expected-bundle-sha256", digest, "--api-url", base.rstrip("/")]
     # Match contributions.read_policy's path selection, including its implicit file.
-    selected_policy = Path(policy_path) if policy_path else Path(project) / ".robot-skill-hub.json"
+    selected_policy = Path(policy_path) if policy_path else Path(project).expanduser().resolve() / ".robot-skill-hub.json"
     args.extend(["--policy", str(selected_policy.resolve())])
     recovery["register_args"] = args + ["--json"]
     return recovery
