@@ -25,7 +25,7 @@ class CatalogTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         for folder in ("catalog", "schemas", "recipes", "docs", "web"):
             shutil.copytree(self.real_root / folder, self.root / folder)
-        for name in ("search.md", "source-files.md"):
+        for name in ("search.md", "source-files.md", "community.md"):
             guide = Path("skills/find-robot-skills/references") / name
             (self.root / guide).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(self.real_root / guide, self.root / guide)
@@ -256,9 +256,9 @@ class CatalogTests(unittest.TestCase):
     def test_public_agent_guides_and_their_local_links_are_published(self):
         self.build()
         site = self.root / "site"
-        for name in ("agent-quickstart.md", "privacy.md", "discovery.md", "new-skills.md", "search.md"):
+        for name in ("agent-quickstart.md", "privacy.md", "discovery.md", "new-skills.md", "search.md", "community.md"):
             text = (site / name).read_text(encoding="utf-8")
-            source = self.root / ("skills/find-robot-skills/references" if name == "search.md" else "docs") / name
+            source = self.root / ("skills/find-robot-skills/references" if name in ("search.md", "community.md") else "docs") / name
             self.assertEqual(text, source.read_text(encoding="utf-8"))
             for href in re.findall(r"\[[^\]]*\]\(([^\s)]+)\)", text):
                 resolved = urlparse(urljoin(builder.DEFAULT_BASE + "/" + name, href))

@@ -119,9 +119,11 @@
           "{installed_skill_dir}/scripts/rsh.py",
           "inspect",
           "{skill_id}",
+          "--project",
+          "{project_dir}",
           "--json"
         ],
-        "purpose": "Read exact pins, license, access, environment requirements and evidence before use."
+        "purpose": "Read exact pins and bounded local/public experience. Joined projects synchronize one authorized pending item with backoff."
       },
       {
         "name": "fetch_source",
@@ -213,6 +215,63 @@
         "default_limit": 1,
         "maximum_limit": 3,
         "next_action": "continue_user_task"
+      },
+      {
+        "name": "join",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "join",
+          "--project",
+          "{project_dir}",
+          "--allow-public-memory",
+          "--skill",
+          "{authorized_skill_id}",
+          "--kind",
+          "{authorized_finding_kind}",
+          "--json"
+        ],
+        "purpose": "Enroll a pseudonymous installation and enable automatic community sharing within existing user permission."
+      },
+      {
+        "name": "recall",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "recall",
+          "{skill_id}",
+          "--project",
+          "{project_dir}",
+          "--json"
+        ],
+        "purpose": "Read local and public experience for the exact source and supplied environment."
+      },
+      {
+        "name": "experience",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "experience",
+          "{experience_id}",
+          "--output",
+          "{new_json_path}",
+          "--json"
+        ],
+        "purpose": "Save one digest-verified experience as inert JSON; never apply or execute its patch."
+      },
+      {
+        "name": "community_sync",
+        "argv": [
+          "python",
+          "{installed_skill_dir}/scripts/rsh.py",
+          "community-sync",
+          "--project",
+          "{project_dir}",
+          "--limit",
+          "3",
+          "--json"
+        ],
+        "purpose": "Retry at most three authorized pending items; keep backoff and original content identity."
       }
     ],
     "credential_configuration": {
@@ -257,7 +316,10 @@
       "option": "--source-manifest",
       "requires": "--project",
       "mutually_exclusive_with": "--catalog",
-      "commands": ["save", "memories"],
+      "commands": [
+        "save",
+        "memories"
+      ],
       "selection": "Only the explicitly selected managed acquisition manifest; no automatic file or version selection.",
       "validation": "Revalidate the original base and cached file hash before saving or recalling. Reject a conflicting preparation lock.",
       "network_behavior": "Manifest selection requires no catalog discovery or upstream source request. Public save and published finding lookup retain their normal authorization and offline behavior.",
@@ -336,7 +398,13 @@
       "source_reference"
     ],
     "reference_record_version": "source-{source_file_sha256}",
-    "closing_trigger": "After resolving a catalog-related setup or invocation issue, remember the useful minimal observation unless matching published memory already covers it."
+    "closing_trigger": "After resolving a catalog-related setup or invocation issue, remember the useful minimal observation unless matching published memory already covers it.",
+    "channel_selection": {
+      "joined_project": "immediate_community_publication",
+      "legacy_project": "reviewed_memory_PR",
+      "local_recall": "inspect --project or recall reads the local outbox immediately",
+      "guide_url": "https://hub.superfastrobotics.com/community.md"
+    }
   },
   "wire": {
     "client_headers": {
@@ -393,6 +461,14 @@
       "project_scope": "publication.public_submission_allowed and exact publication.allowed_new_skill_ids",
       "result": "internal_draft_PR_then_maintainer_review_and_publication",
       "artifact_execution": false
+    },
+    "community_save": {
+      "method": "POST",
+      "url": "https://api.superfastrobotics.com/v1/community/items",
+      "authentication": "self_service_installation_Bearer_token",
+      "body_schema": "https://hub.superfastrobotics.com/schemas/community.schema.json",
+      "publication": "immediate_after_mechanical_checks",
+      "runtime_verification": "not_run"
     }
   },
   "preparation": {
@@ -479,5 +555,24 @@
     "opt_out_header": "DNT: 1",
     "identity": "optional_random_installation_id_daily_HMAC",
     "counts_are": "self_reported_agent_compatible_requests_not_attested_unique_agents"
+  },
+  "community": {
+    "api_url": "https://api.superfastrobotics.com/v1/community",
+    "guide_url": "https://hub.superfastrobotics.com/community.md",
+    "publication": "immediate_after_mechanical_checks",
+    "manager_approval_required": false,
+    "public_scope_required": true,
+    "identity": "self_service_pseudonymous_installation",
+    "trust": "contributor_reported",
+    "canonical_code_overwritten": false,
+    "cli_commands": [
+      "join",
+      "inspect --project",
+      "recall",
+      "save",
+      "experience",
+      "community-sync"
+    ],
+    "archive_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/community-data"
   }
 }

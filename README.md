@@ -12,7 +12,7 @@ Public reads need no account, GPU or simulator. Discovery never executes robot c
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
 python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
-python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
+python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --project . --json
 python /PATH_TO_SKILL/scripts/rsh.py prepare SKILL_ID --project ./experiment --plan --json
 ```
 
@@ -26,7 +26,9 @@ Clients supporting Agent Plugins 1.0.0 can use the small [read-only connection p
 
 References include code, policies and other artifacts with exact source checksums. Use a reference's inspected `fetch_source_args` with `rsh.py` and append `--project DIR --json` to retrieve one verified file as inert data. This does not require a runtime adapter or install the source as an agent skill. Supported recipes use `prepare`; runtime evidence is limited to the exact configuration and seed recorded with each recipe. Existing project locks never silently change.
 
-Preserve useful findings from the actual task with `rsh.py save SKILL_ID --project DIR --finding FILE --json`. Register a newly found pinned source with `rsh.py register FILE --project DIR --contributor LABEL --json`. Both keep local drafts; allowed-agent credentials and a separately authorized sharing scope enable one API submission. An internal draft PR still needs maintainer review and publication.
+Recall previous setup work with `rsh.py inspect SKILL_ID --project DIR --json`. Preserve a useful finding with `save SKILL_ID --project DIR --finding FILE --json`. Local experience is immediately reusable. For already-authorized public project scope, `join` enrolls an installation and enables automatic publication, without a maintainer token or PR approval. Immutable variants and actual reuse outcomes remain tied to exact source pins. See the [community loop](skills/find-robot-skills/references/community.md).
+
+Community data is contributor-reported and archived hourly on the [community-data branch](https://github.com/Superfast-Robotics/robot-skill-hub/tree/community-data). It never silently replaces canonical code or establishes runtime verification. New canonical sources (`register`) and changes to curated recipes retain their separate reviewed PR channel.
 
 [Quickstart](docs/agent-quickstart.md) | [New skills](docs/new-skills.md) | [Task memory](docs/memory.md) | [Patch contributions](docs/contributing.md) | [Privacy](docs/privacy.md)
 

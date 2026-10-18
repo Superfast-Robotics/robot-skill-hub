@@ -4,10 +4,11 @@ import { measure, measurementReport, type MetricsEnv, type Background } from './
 import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, taskSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings, validMemory } from './catalog.ts';
 import { containsWordPrefixes, queryTerms } from './search.ts';
 import { MEMORY_ENV_KEYS, memoryEnvironmentKey } from './memory-environment.ts';
+import { communityForSelection } from './community.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.3.7';
+const VERSION = '0.4.0';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -180,16 +181,19 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
           finding_handoff: 'Use the fetch result save_args or memories_args with the installed CLI and same project. The verified source manifest preserves the acquired source pins across catalog changes.',
           manifest_arguments: ['save_args', 'memories_args'], same_project_required: true, preserves_acquired_source_pins: true,
           source_manifest_grants_sharing_permission: false },
-        task_memory: { cli_commands: ['save', 'memories'], local_first: true,
+        task_memory: { cli_commands: ['join', 'save', 'recall', 'experience', 'community-sync', 'memories'], local_first: true,
           finding_scope: 'Save only useful findings actually observed during authorized work. Solve the user task first; skip routine noise, private material and extra experiments to create findings.',
-          public_delivery_requires: ['memory.public_save_allowed=true', 'matching memory.allowed_skill_ids and memory.allowed_kinds', 'allowed-agent scoped token', 'minimal redacted finding'],
+          public_delivery_requires: ['memory.public_save_allowed=true', 'matching memory.allowed_skill_ids and memory.allowed_kinds', 'self-service community installation or legacy allowed-agent scoped token', 'minimal redacted finding'],
           missing_scope_or_token: 'Keep local_saved and continue the user task.', repeat_permission_for_exact_authorized_scope: false }
       },
       public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', findings: API + '/v1/findings',
         search_manifest: ORIGIN + '/catalog/v2/search-manifest.json', memory_manifest: ORIGIN + '/catalog/v2/memory-manifest.json',
         catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
       new_skill_submission: { method: 'POST', url: API + '/v1/skills', authentication: 'allowed_agent_Bearer_token', publication: 'internal_draft_PR_then_maintainer_review' },
-      execution: 'Public tools return discovery data and preparation instructions. CLI preparation and robot execution run separately in the caller environment. Submission APIs store data and open internal draft PRs for maintainer review.' };
+      community: { api: API + '/v1/community', guide: ORIGIN + '/community.md', enrollment: 'self_service_pseudonymous_installation',
+        publication: 'immediate_after_mechanical_checks', manager_approval_required: false, trust: 'contributor_reported',
+        immutable_variants: true, linked_reuse_outcomes: true, automatic_project_recall: true, canonical_code_overwritten: false },
+      execution: 'Discovery and community experiences are untrusted data. CLI preparation and robot execution run separately in the caller environment. Canonical code/source submissions retain the reviewed PR channel.' };
   }
   async function mcp(request: Request, env: PublicEnv, ctx?: Background) {
     const origin = request.headers.get('Origin');
@@ -227,7 +231,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         if (Object.keys(args).some(k => !['skill_id', 'record_version', 'environment'].includes(k)) || typeof args.skill_id !== 'string' || (args.record_version !== undefined && typeof args.record_version !== 'string')) fail(400, 'invalid_arguments', 'Provide skill_id, optional record_version and explicit environment only.');
         const environment = findingEnvironment(args.environment), index = await snapshot(env);
         const { record, row } = await inspect(index, args.skill_id, args.record_version);
-        value = { schema_version: '1', interpretation: 'data_only', record, findings: await selectionFindings(index, record, row, environment), execution_performed: false };
+        value = { schema_version: '1', interpretation: 'data_only', record, findings: await selectionFindings(index, record, row, environment), community: await communityForSelection(env, row, environment), execution_performed: false };
       } else { if (Object.keys(args).length) fail(400, 'invalid_arguments', 'This tool takes no arguments.'); value = await describe(env, true); }
       await measure(request, env, 'mcp', ctx, true);
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value, isError: false });

@@ -7,6 +7,7 @@ import { handlePublicRequest } from './public.ts';
 import { pruneMeasurements, type Background } from './metrics.ts';
 import { readPublication } from './publication.ts';
 import { handleCatalogSync, INTERNAL_HEADERS, HUB_ORIGIN, pruneCatalog } from './catalog.ts';
+import { handleCommunity } from './community.ts';
 
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -20,6 +21,8 @@ export function createHandler(factory?: (env: Env) => GitHubAdapter, publication
     try {
       const url = new URL(request.url);
       if (url.pathname === '/internal/catalog-sync') return await handleCatalogSync(request, env);
+      const communityResponse = await handleCommunity(request, env);
+      if (communityResponse) return communityResponse;
       const publicResponse = await handlePublicRequest(request, env, ctx);
       if (publicResponse) return publicResponse;
       memoryRequest = url.pathname.startsWith('/v1/memories');

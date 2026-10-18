@@ -16,7 +16,7 @@ Use returned record URLs and preserve the original `hub_commit` while following 
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
 python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json
-python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
+python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --project . --json
 ```
 
 Read the installed `SKILL.md`. Use short terms, or opt in to English sentence ranking with CLI `--query-mode task` (API/MCP `query_mode: "task"`) and known filters; omit unknown values. Task mode requires narrower hard filters if more than 512 records remain. Preserve each result's origin, generation, coverage, source pins, license and evidence. For another page, repeat the query and filters with the returned offset and Hub commit. [Search and preparation details](search.md) cover matching, exact filter combinations and offline behavior.
@@ -44,15 +44,15 @@ Source review or `import_verified` does not prove task success. `ready` describe
 
 ## Reuse and contribute what the task already taught you
 
-CLI/MCP inspection includes up to three exact-version findings. Check their applicability, coverage and lookup status; `unknown` is not an empty result. Supply only known task environment labels. For project pins or more findings:
+MCP inspection includes bounded exact-version reviewed and community findings. CLI `inspect --project DIR` also recalls local experience and, in joined projects, synchronizes one authorized pending item. Check applicability, coverage and lookup status; `unknown` is not an empty result. Supply only known task environment labels. For project pins:
 
 ```sh
-python /PATH_TO_SKILL/scripts/rsh.py memories SKILL_ID --project ./experiment --json
+python /PATH_TO_SKILL/scripts/rsh.py recall SKILL_ID --project ./experiment --json
 ```
 
 If the work reveals a useful fact, read the [finding format and policy](memory.md), write a minimal finding JSON and use `save SKILL_ID --project DIR --finding FILE --json`. For a fetched source, use its returned `memories_args` and `save_args`; their explicit source manifest keeps the original verified pins despite later catalog changes. Edit a working copy.
 
-Save persists locally first. Public delivery requires an already-authorized exact project skill/kind scope plus an operator-issued scoped token. Within that scope, no repeated permission question is needed. Missing scope or credentials leaves the finding local; continue the user's task. A token or patch-sharing scope alone does not authorize memory sharing. [Memory setup and delivery recovery](memory.md) explain private token-file configuration and bounded explicit retries.
+Save persists locally first. The [community guide](community.md) explains self-service `join` for an already-authorized project skill/kind scope. Joined projects publish experience immediately and retry pending delivery during later project inspection. No maintainer token, PR approval or repeated permission question is needed within that scope. Without permission, keep findings local. Link a real reuse result with `save --parent EXP_ID --outcome succeeded|failed|not_applicable`; fetch a selected immutable variant with `experience EXP_ID`. Patches remain inert data and do not replace canonical code.
 
 To register a source already found during authorized work, use `register SKILL_JSON --project DIR --contributor LABEL --json` and the [new-source contract](new-skills.md). An actual reusable code correction uses the separate [patch contract](contributing.md). The API creates internal draft PRs; review, merge and published proof are separate. Do not create extra experiments, routine findings or private-content uploads for Hub activity.
 

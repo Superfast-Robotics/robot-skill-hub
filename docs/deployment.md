@@ -15,6 +15,12 @@ These are deployment targets. See `docs/verification.md` for what was actually c
 
 ## Local checks and deployment
 
+Version 0.4 adds `api/migrations-catalog/0003_community.sql`. Apply this additive migration to the catalog database before deploying the new Worker; it does not change existing catalog tables. Community enrollment uses the existing `METRICS_KEY` with domain-separated HMAC, and stores only credential hashes. It does not require a new GitHub token or an operator-maintained caller list.
+
+`Archive community experience` runs hourly from trusted `main` code with repository contents-write permission. It archives bounded immutable API batches to the isolated `community-data` branch without executing downloaded content, creating per-item PRs or rebuilding Pages. A failed archive leaves the old Git cursor intact; the next run resumes. Immediate API publication remains available during archival lag. Monitor the Actions result and compare the branch cursor with the public export watermark.
+
+Community limits are enforced transactionally in D1: 100 registrations/1,000 new attestations per UTC day globally, tighter installation/address limits, and 64 MiB/20,000 items total. The counters and append-only archive avoid catalog-wide rewrites per save. Capacity errors leave CLI work local; increasing capacity is an explicit operator change. Neither a paid plan nor higher limits provide runtime verification. To contain abuse, an operator may set `community_principals.disabled=1` for an installation hash or `community_items.hidden=1` for an experience ID using an authenticated D1 query. Public Git history can retain earlier copies.
+
 Use Python 3.10 and Node 24. On Windows with restricted PowerShell scripts use `npm.cmd`/`npx.cmd`.
 
 ```powershell

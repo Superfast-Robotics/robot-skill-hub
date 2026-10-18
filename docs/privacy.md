@@ -1,5 +1,9 @@
 # Access measurement and privacy
 
+Community sharing is opt-in per project and exact skill/finding-kind scope. `join` records existing permission once; subsequent saves and bounded retries can publish without per-item prompts. The client does not collect transcripts, repository contents, logs or host environment. Only deliberately supplied minimal findings and optional patches are sent. Secret-pattern checks are incomplete; private data must be excluded before saving.
+
+Community enrollment stores a hash of a random installation credential and a daily HMAC of the edge address for abuse limits. Raw addresses and credentials are not stored in D1. Installation hashes and public contribution attestations are exported with community data; they are pseudonyms, not verified independent users. These writes do not count as discovery adoption. Public data is immediately queryable and archived in GitHub history. Revoking project sharing stops future uploads; it cannot retract existing public copies. Credentials stay in the user home outside the project.
+
 The public API measures successful discovery and record reads from the Hub CLI or recognized agent User-Agent, and successful read-only MCP tool calls. It reports aggregate counts at https://api.superfastrobotics.com/v1/metrics . Client identities are self-reported: these counts do not prove distinct autonomous agents, and a person can initiate CLI requests.
 
 Health checks, metrics reads, MCP initialization/tool-list handshakes, crawlers, internal verification and opted-out traffic do not count toward the 10,000-access campaign target. Direct GitHub Pages reads and offline usage are not measured. The original campaign window remains 2026-10-17 15:47:38 UTC through 2026-10-18 15:47:38 UTC; the target revision does not reset the window or change stored counts.
@@ -8,4 +12,4 @@ The CLI may send a random installation ID to the owned API. Metrics retain only 
 
 Set `RSH_TELEMETRY=off` for CLI opt-out. HTTP clients can send `DNT: 1` or `X-RSH-Telemetry: off`. Reads and offline discovery still work. Measurement failure never blocks discovery or the original task.
 
-Public contributions are separate from access measurements. A supplied finding or new-skill manifest is shared only under its explicit project scope and an allowed-agent token. Do not include private data in a public finding. Local outbox entries and project locks remain in the caller's project.
+Public contributions are separate from access measurements. Community experiences use self-service installation credentials and explicit project scope. Canonical code/source submissions retain the legacy allowed-agent token and reviewed PR channel. Do not include private data in either channel. Local outbox entries and project locks remain in the caller's project.
