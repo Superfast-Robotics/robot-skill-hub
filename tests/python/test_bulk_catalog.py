@@ -17,6 +17,9 @@ import import_official_samples as importer
 
 TRANSPORT_PROOF = ROOT / "evidence/runtime/panda-transport-39097136411"
 TRANSPORT_PROOF_COMMIT = "039c103622c93e79d7b2ddb60dd0fc7345ebeab5"
+STACKING_ID = "maniskill-panda-stack-pyramid"
+STACKING_PROOF = ROOT / "evidence/runtime/panda-stacking-39100095436"
+STACKING_PROOF_COMMIT = "e81d47efc18f98d811e12fea0b8b5622a2dbbeaf"
 TRANSPORT_RESULTS = {
     "maniskill-panda-push-cube": ("PushCube-v1", 71),
     "maniskill-panda-pull-cube": ("PullCube-v1", 67),
@@ -123,7 +126,8 @@ class BulkAdapterTests(unittest.TestCase):
             self.assertEqual(record["source"]["commit"], importer.PIN)
             self.assertEqual(record["source"]["archive_sha256"], importer.ARCHIVE_SHA256)
             proven = record["id"] in TRANSPORT_RESULTS
-            self.assertEqual(record["evidence"]["runtime_verification"], "task_complete" if proven else "not_run")
+            expected_runtime = "task_complete" if proven else "import_verified" if record["id"] == STACKING_ID else "not_run"
+            self.assertEqual(record["evidence"]["runtime_verification"], expected_runtime)
             self.assertEqual(record["compatibility"][0]["status"], "hub_verified" if proven else "source_reviewed")
             self.assertEqual(record["compatibility"][0]["robot"], sample[3])
             if sample[2] == "DrawSVG-v1":
@@ -192,6 +196,62 @@ class BulkAdapterTests(unittest.TestCase):
                              + TRANSPORT_PROOF_COMMIT + "/evidence/runtime/panda-transport-39097136411/manifest.json")
                 self.assertIn(proof_url, evidence["artifacts"])
                 self.assertIsNone(evidence["contributor_reported"])
+
+    def test_failed_stacking_attempt_remains_explicit_without_success_promotion(self):
+        manifest_bytes = (STACKING_PROOF / "manifest.json").read_bytes()
+        self.assertEqual(hashlib.sha256(manifest_bytes).hexdigest(),
+                         "5812c7e0daf44da92f0250b65bdc86236b7d04e5283071b7c01276458735b4e7")
+        manifest = json.loads(manifest_bytes)
+        self.assertEqual(manifest["task_outcome"], "failed")
+        self.assertEqual(manifest["successful_tasks"], 0)
+        self.assertTrue(manifest["provenance_verified"])
+        self.assertTrue(manifest["provider_digest_verified"])
+        self.assertEqual(manifest["requested_skills"], [STACKING_ID])
+        for relative, digest in manifest["files_sha256"].items():
+            self.assertEqual(hashlib.sha256((STACKING_PROOF / relative).read_bytes()).hexdigest(), digest, relative)
+        raw = json.loads((STACKING_PROOF / STACKING_ID / "report.json").read_bytes())
+        result = json.loads((STACKING_PROOF / STACKING_ID / "task.stdout.txt").read_text().splitlines()[-1])
+        command = json.loads((STACKING_PROOF / STACKING_ID / "task.command.json").read_bytes())
+        environment = json.loads((STACKING_PROOF / STACKING_ID / "environment.json").read_bytes())
+        record = json.loads((ROOT / "catalog/records" / (STACKING_ID + ".json")).read_bytes())
+        self.assertEqual(raw["result"], result)
+        self.assertEqual(raw["status"], "failed")
+        self.assertTrue(raw["execution_performed"])
+        self.assertEqual(raw["runtime_verification"], "executed")
+        self.assertEqual(raw["execution"], command)
+        self.assertFalse(raw["success"])
+        self.assertFalse(raw["contract_matches"])
+        self.assertEqual(command["exit_code"], 1)
+        self.assertFalse(command["timed_out"])
+        self.assertEqual(command["duration_seconds"], 5.678)
+        self.assertEqual(result["reason_code"], "task_objective_not_reached")
+        self.assertFalse(result["success"])
+        self.assertFalse(result["terminated"])
+        self.assertFalse(result["truncated"])
+        self.assertEqual(result["elapsed_steps"], 176)
+        self.assertEqual(result["max_episode_steps"], 1000)
+        self.assertEqual(raw["record_version"], record["maintenance"]["record_version"])
+        self.assertEqual(raw["source_commit"], record["source"]["commit"])
+        self.assertEqual(raw["adapter_sha256"], hashlib.sha256((ROOT / "recipes" / STACKING_ID / "run.py").read_bytes()).hexdigest())
+        evidence = record["evidence"]
+        self.assertEqual(evidence["level"], "import_verified")
+        self.assertEqual(evidence["runtime_verification"], "import_verified")
+        self.assertEqual(evidence["environment"]["packages"], environment["packages"])
+        self.assertTrue(all(combination["status"] == "source_reviewed" for combination in record["compatibility"]))
+        attempt = evidence["hub_verification"]["last_task_attempt"]
+        self.assertEqual(attempt["status"], "failed")
+        self.assertEqual(attempt["verified_hub_commit"], manifest["verified_hub_commit"])
+        self.assertEqual(attempt["workflow_run_id"], "39100095436")
+        self.assertEqual(attempt["record_version"], raw["record_version"])
+        self.assertEqual(attempt["source_commit"], raw["source_commit"])
+        for key in ("success", "reason_code", "seed", "elapsed_steps", "terminated", "truncated"):
+            self.assertEqual(attempt[key], result[key], key)
+        self.assertEqual(attempt["exit_code"], command["exit_code"])
+        self.assertEqual(attempt["timed_out"], command["timed_out"])
+        proof_url = ("https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/"
+                     + STACKING_PROOF_COMMIT + "/evidence/runtime/panda-stacking-39100095436/manifest.json")
+        self.assertIn(proof_url, evidence["artifacts"])
+        self.assertIsNone(evidence["contributor_reported"])
 
     def test_reference_examples_do_not_claim_hub_preparation(self):
         path = ROOT / "catalog/references.json"

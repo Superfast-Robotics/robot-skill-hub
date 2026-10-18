@@ -44,5 +44,23 @@ The upstream source pin is unchanged. Completion requires `success=true`,
 `truncated=false` and `0 < elapsed_steps < 1000`; final JSON includes `terminated`,
 `truncated` and the configured horizon. `terminated` alone does not establish
 success. The step budget is separate from the 300-second wall-clock timeout.
-This wrapper has no runtime-verification claim; inspect the current JSON evidence
-for any later exact-version execution.
+
+## Recorded task failure
+
+[Run 39100095436](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39100095436)
+installed and executed this exact `1.1.0` wrapper once at seed 0 on Linux x86_64 /
+Python 3.10.22 with CPU/state observations and Mesa lavapipe. The process returned
+`success=false`, `task_objective_not_reached`, 176 steps, `terminated=false`,
+`truncated=false` and exit 1 after 5.678 seconds. It did not hit the executor's
+180-second timeout or the Hub 1000-step horizon. The pinned task's default horizon
+is 250; this attempt is not a default-horizon benchmark.
+
+The [immutable manifest](https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/manifest.json)
+preserves exact outputs, command metadata, environment, dependency freeze and
+software-device evidence. `import_verified` records the passed setup/import
+stage, while `evidence.hub_verification.last_task_attempt.status=failed` records
+the failed objective. Compatibility remains `source_reviewed`, with no successful
+task-completion claim. The final result contains no detailed objective
+subconditions, and the initial-pose warning does not establish a cause. This is
+one maintainer-selected invocation, with no automatic retry, independent adoption,
+camera, physical GPU or hardware result.

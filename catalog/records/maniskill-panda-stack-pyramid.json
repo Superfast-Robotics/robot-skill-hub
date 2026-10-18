@@ -2,7 +2,7 @@
   "schema_version": "1",
   "id": "maniskill-panda-stack-pyramid",
   "name": "ManiSkill panda StackPyramid-v1 motion planner",
-  "summary": "Arrange three cubes into a pyramid using the official Panda planner.",
+  "summary": "Arrange three cubes into a pyramid using the official Panda planner. The recorded CPU/state seed-0 attempt ran 176 steps but failed the task objective; installation and imports succeeded.",
   "capabilities": [
     "stacking",
     "pick-and-place",
@@ -73,7 +73,7 @@
     "hardware": [
       "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
     ],
-    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
+    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization still used a Vulkan ICD. The recorded StackPyramid attempt initialized Mesa lavapipe on CPU and executed, but failed the task objective; this does not establish camera, output-renderer or GPU compatibility.",
     "api_keys": [],
     "network": [
       "GitHub source archive (~233 MiB)",
@@ -154,24 +154,74 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Robot Skill Hub source review",
-    "date": "2026-10-17",
+    "level": "import_verified",
+    "verified_by": "Robot Skill Hub bounded CPU runtime review",
+    "date": "2026-10-18",
     "environment": {
-      "source": "pinned upstream release",
-      "host": "Windows source inspection"
+      "python": "3.10.22 (main, Oct  1 2026, 14:31:30) [GCC 11.4.0]",
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "architecture": "x86_64",
+      "packages": {
+        "mani_skill": "3.0.0b22",
+        "torch": "2.5.1+cpu",
+        "numpy": "1.26.4",
+        "sapien": "3.0.0",
+        "mplib": "0.1.1",
+        "fast_kinematics": "0.2.2"
+      },
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "software_vulkan": "Mesa 23.2.1 lavapipe / llvmpipe CPU",
+      "physical_gpu_used": false
     },
     "commands": [
       "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
-      "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
+      "python -m unittest discover -s tests/python -p test_bulk_catalog.py",
+      "workflow_dispatch .github/workflows/runtime.yml ref=main batch=panda-stacking (run 39100095436)"
     ],
-    "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "The exact 1.1.0 wrapper was installed, imported and executed once at seed 0 in run 39100095436 at Hub commit 0442ed7b99d78a970e92780a16df793e65039370. It returned success=false, task_objective_not_reached, 176 steps, terminated=false, truncated=false and exit 1 after 5.678 seconds, without hitting the 180-second timeout. import_verified records the passed setup/import stage; last_task_attempt records the failed task outcome. The failed objective was not a step-budget or process-timeout failure. No subcondition measurements were captured, so its precise cause and the causal role of the initial-pose warning remain unknown. This is one maintainer-selected CPU/state attempt under the Hub 1000-step horizon, not the upstream default-250-step benchmark, independent adoption, RGB or hardware validation.",
+    "artifacts": [
+      "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39100095436",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/manifest.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/maniskill-panda-stack-pyramid/report.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/maniskill-panda-stack-pyramid/task.stdout.txt",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/maniskill-panda-stack-pyramid/environment.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/e81d47efc18f98d811e12fea0b8b5622a2dbbeaf/evidence/runtime/panda-stacking-39100095436/orchestration.json"
+    ],
+    "runtime_verification": "import_verified",
     "contributor_reported": null,
     "hub_verification": {
-      "level": "source_reviewed",
-      "runtime": "not_run"
+      "level": "import_verified",
+      "runtime": "import_verified",
+      "verified_hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+      "workflow_run_id": "39100095436",
+      "physical_gpu_used": false,
+      "last_task_attempt": {
+        "status": "failed",
+        "execution_performed": true,
+        "success": false,
+        "reason_code": "task_objective_not_reached",
+        "seed": 0,
+        "elapsed_steps": 176,
+        "terminated": false,
+        "truncated": false,
+        "exit_code": 1,
+        "timed_out": false,
+        "workflow_run_id": "39100095436",
+        "verified_hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+        "record_version": "1.1.0",
+        "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+        "environment": {
+          "runtime": "maniskill",
+          "runtime_version": "3.0.0b22",
+          "robot": "panda",
+          "controller": "pd_joint_pos",
+          "observation": "state",
+          "os": "linux",
+          "architecture": "x86_64",
+          "python": "3.10"
+        }
+      }
     }
   },
   "maintenance": {
