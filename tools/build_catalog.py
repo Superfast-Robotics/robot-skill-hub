@@ -29,7 +29,7 @@ API = "https://api.superfastrobotics.com"
 # overridden by isolated builder tests; the implementation stays in this repo.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/find-robot-skills/scripts"))
 from rshlib.intake import validate_published_reference
-from rshlib.core import RshError
+from rshlib.core import RshError, task_attempt_metadata, validate_last_task_attempt
 from rshlib.acquisition import plan_source
 if __package__:
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
@@ -189,6 +189,10 @@ def load_records():
         if record["evidence"]["level"] == "task_complete":
             if record["evidence"]["runtime_verification"] != "task_complete" or not record["evidence"]["artifacts"]:
                 raise ValueError(f"{ident}: task_complete requires actual runtime evidence and artifacts")
+        try:
+            validate_last_task_attempt(record)
+        except RshError as exc:
+            raise ValueError(f"{ident}: {exc}") from exc
         for command in (record["invocation"]["argv"], record["preparation"]["install_argv"]):
             if not isinstance(command, list) or not command or not all(isinstance(x, str) for x in command):
                 raise ValueError(f"{ident}: commands must be argv arrays")
@@ -665,6 +669,7 @@ def search_row(record, output, base, recipe=False):
            "source_url": source["repository"].rstrip("/") + "/tree/" + source["commit"] if recipe else source["url"],
            "license": {key: record["license"][key] for key in ("spdx", "url", "scope", "verified") if key in record["license"]},
            "evidence_level": record["evidence"]["level"], "runtime_verification": record["evidence"]["runtime_verification"],
+           **task_attempt_metadata(record),
            "hub_prepare": recipe, "record_url": base + "/" + relative,
            "record_sha256": hashlib.sha256((output / relative).read_bytes()).hexdigest()}
     robots = record.get("robots") or list(dict.fromkeys(c["robot"] for c in combinations if c.get("robot") not in (None, "", "unknown")))

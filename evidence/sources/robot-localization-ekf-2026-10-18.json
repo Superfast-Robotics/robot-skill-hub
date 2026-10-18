@@ -1,0 +1,216 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "official_robot_localization_ekf_library_source_and_setup_review",
+  "repository": "https://github.com/cra-ros-pkg/robot_localization",
+  "commit": "3efa714fb9c1ff40966327b7bed7053b2570be4d",
+  "source_count": 1,
+  "source_bytes": 17733,
+  "source": {
+    "repository": "https://github.com/cra-ros-pkg/robot_localization",
+    "commit": "3efa714fb9c1ff40966327b7bed7053b2570be4d",
+    "path": "src/ekf.cpp",
+    "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+    "sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+    "bytes": 17733,
+    "authors": [
+      "Charles River Analytics, Inc.",
+      "Locus Robotics, Inc."
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+    "verified": true,
+    "scope": "Selected src/ekf.cpp has a complete BSD-3-Clause notice, copyright 2014-2016 Charles River Analytics, Inc. and 2017 Locus Robotics, Inc. Preserve its copyright, conditions, disclaimer and non-endorsement requirement. Root LICENSE includes Charles River Analytics and Austin Robot Technology BSD notices, with an organization placeholder in one clause; package.xml instead declares Apache License 2.0. Verification is limited to the explicit, complete selected-file notice. It does not relicense or clear the full package, other components, dependencies or binaries."
+  },
+  "canonical_upstream": {
+    "official_index_url": "https://index.ros.org/p/robot_localization/",
+    "index_body_sha256": "1516b01ac2dff6dee6ea076ef8049f3d08333714b364b9591069166cfeaf27f4",
+    "checkout_URI_observed": "https://github.com/cra-ros-pkg/robot_localization.git",
+    "VCS_version_observed": "jazzy-devel",
+    "commit_metadata_sha256": "7891c3ed5a08639c3528e0a78f8fefccd13cc7da7ce41984b2afbc301ff3e27d",
+    "tree_sha1": "ffae100f0186a2aa93a301ec0469322c673990ea",
+    "complete_tree_entries": 121,
+    "truncated": false,
+    "tree_response_sha256": "802fb5f92de6d3dba64ab032c0c5aaf4231c72d6b97b482c5d93fb9867ab1f89",
+    "branch_tip_is_only_review_time_selection": true
+  },
+  "immutable_file_pins": [
+    {
+      "path": "src/ekf.cpp",
+      "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+      "bytes": 17733,
+      "sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+      "git_blob_sha1": "601e188c85fcdc63ac9d9e49dbb8782a96d8b0a6",
+      "tree_match": true
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/LICENSE",
+      "bytes": 3437,
+      "sha256": "baec7235ef687e028567622e5ef59d5184c70dc03d609039d9ca33ce0695da5a",
+      "git_blob_sha1": "45521a4ae662aeb648b3773cf6f127111e1cdb20",
+      "tree_match": true
+    },
+    {
+      "path": "package.xml",
+      "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/package.xml",
+      "bytes": 2111,
+      "sha256": "c0fe66ad31d8b8b4b4bc5b7cf8605b834fa4a65d6a2db514e8d2ab4245a0605c",
+      "git_blob_sha1": "b9c82d916ad82e9e89d96cadd10d0c63f8c0c051",
+      "tree_match": true
+    },
+    {
+      "path": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/CMakeLists.txt",
+      "bytes": 11149,
+      "sha256": "0d3397cf400f57831a8c3a2e14211b94633136786ceb96b59a93326351e7b513",
+      "git_blob_sha1": "5666432429434b6c375bd6c73cf7110ffd11a1d1",
+      "tree_match": true
+    }
+  ],
+  "declared_setup": {
+    "package_version": "3.8.3",
+    "package_license_text": "Apache License 2.0",
+    "library": "rl_lib",
+    "selected_source_in_library": "src/ekf.cpp",
+    "separate_host_target": "ekf_node",
+    "separate_host_source": "src/ekf_node.cpp",
+    "host_source_reviewed": false,
+    "selected_entrypoints": [
+      "robot_localization::Ekf::correct(const Measurement &)",
+      "robot_localization::Ekf::predict(const rclcpp::Time &, const rclcpp::Duration &)"
+    ],
+    "selected_source_has_main": false,
+    "source_effects": "Mutates internal state and covariance, calls inherited control/noise helpers, wraps state angles and can emit configured debug logs; no ROS sensor subscriptions, publishers or hardware command in this selected file.",
+    "requirements": {
+      "python": null,
+      "packages": [
+        "Complete pinned robot_localization package, rl_lib, headers and FilterBase/Measurement implementations",
+        "ament_cmake",
+        "builtin_interfaces",
+        "rosidl_default_generators",
+        "rosidl_default_runtime",
+        "rosidl_typesupport_cpp",
+        "rclcpp",
+        "rmw_implementation",
+        "angles",
+        "Eigen3 / eigen",
+        "Boost / libboost-dev",
+        "GeographicLib / geographiclib",
+        "geographic_msgs",
+        "geometry_msgs",
+        "diagnostic_msgs",
+        "diagnostic_updater",
+        "message_filters",
+        "nav_msgs",
+        "sensor_msgs",
+        "std_msgs",
+        "std_srvs",
+        "tf2",
+        "tf2_eigen",
+        "tf2_geometry_msgs",
+        "tf2_ros",
+        "yaml_cpp_vendor",
+        "yaml-cpp"
+      ],
+      "hardware": [],
+      "system": [
+        "Caller-provided initialized filter state, covariance, measurement/update masks and process/control settings",
+        "Consistent units, frames, measurement timing and rclcpp Time/Duration values",
+        "C++ toolchain and generated package interfaces required by the reviewed CMake configuration"
+      ],
+      "notes": "correct selects finite measured dimensions, takes the absolute value of negative covariance diagonals, floors very small diagonal variances at 1e-9, computes a Kalman gain by matrix inversion, normalizes angular innovation, applies a Mahalanobis threshold and updates state/covariance using the Joseph form. predict builds an Euler-angle transfer function and analytical Jacobian, calls inherited control preparation, optionally computes dynamic process noise, projects state/covariance and wraps state angles. It uses 1/cos(pitch); numerical conditioning and singularity behavior were not tested. These methods mutate filter internals and can emit configured debug output; this file defines no main, ROS subscriptions/publishers or physical robot command. CMake places src/ekf.cpp in rl_lib and separately builds ekf_node from another source that was not read in this bounded review. CMake selects C++17 for non-WIN32 builds. Package version 3.8.3 and ROS Index jazzy-devel metadata are declarations, not tested ROS, OS, architecture, Python or sensor compatibility. A fetched file alone is insufficient."
+    },
+    "compatibility": "unknown"
+  },
+  "retrieval": {
+    "published_family_fresh_anonymous_GET_attempts": 7,
+    "published_family_HTTP200": 7,
+    "bounded_round_total_anonymous_GET_attempts": 14,
+    "published_family_requests": [
+      {
+        "at": "2026-10-18T05:09:02.981239+00:00",
+        "label": "robot-localization-index",
+        "url": "https://index.ros.org/p/robot_localization/",
+        "status": 200,
+        "bytes": 821721,
+        "sha256": "1516b01ac2dff6dee6ea076ef8049f3d08333714b364b9591069166cfeaf27f4",
+        "git_blob_sha1": "c830716ae59b00cdc3e5fc1d2e72436bfbdc2d1d"
+      },
+      {
+        "at": "2026-10-18T05:09:27.533902+00:00",
+        "label": "robot-localization-commit",
+        "url": "https://api.github.com/repos/cra-ros-pkg/robot_localization/commits/jazzy-devel",
+        "status": 200,
+        "bytes": 10743,
+        "sha256": "7891c3ed5a08639c3528e0a78f8fefccd13cc7da7ce41984b2afbc301ff3e27d",
+        "git_blob_sha1": "03a8309d91db0b70cb64be89ad2a6737233e90d5"
+      },
+      {
+        "at": "2026-10-18T05:09:44.830476+00:00",
+        "label": "robot-localization-tree",
+        "url": "https://api.github.com/repos/cra-ros-pkg/robot_localization/git/trees/ffae100f0186a2aa93a301ec0469322c673990ea?recursive=1",
+        "status": 200,
+        "bytes": 30443,
+        "sha256": "802fb5f92de6d3dba64ab032c0c5aaf4231c72d6b97b482c5d93fb9867ab1f89",
+        "git_blob_sha1": "f8a41767febf8f07c080a46464ba258e328a8bb5"
+      },
+      {
+        "at": "2026-10-18T05:10:11.451132+00:00",
+        "label": "robot-localization-source",
+        "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+        "status": 200,
+        "bytes": 17733,
+        "sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+        "git_blob_sha1": "601e188c85fcdc63ac9d9e49dbb8782a96d8b0a6"
+      },
+      {
+        "at": "2026-10-18T05:10:12.777886+00:00",
+        "label": "robot-localization-license",
+        "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/LICENSE",
+        "status": 200,
+        "bytes": 3437,
+        "sha256": "baec7235ef687e028567622e5ef59d5184c70dc03d609039d9ca33ce0695da5a",
+        "git_blob_sha1": "45521a4ae662aeb648b3773cf6f127111e1cdb20"
+      },
+      {
+        "at": "2026-10-18T05:10:14.450464+00:00",
+        "label": "robot-localization-package",
+        "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/package.xml",
+        "status": 200,
+        "bytes": 2111,
+        "sha256": "c0fe66ad31d8b8b4b4bc5b7cf8605b834fa4a65d6a2db514e8d2ab4245a0605c",
+        "git_blob_sha1": "b9c82d916ad82e9e89d96cadd10d0c63f8c0c051"
+      },
+      {
+        "at": "2026-10-18T05:10:15.934065+00:00",
+        "label": "robot-localization-cmake",
+        "url": "https://raw.githubusercontent.com/cra-ros-pkg/robot_localization/3efa714fb9c1ff40966327b7bed7053b2570be4d/CMakeLists.txt",
+        "status": 200,
+        "bytes": 11149,
+        "sha256": "0d3397cf400f57831a8c3a2e14211b94633136786ceb96b59a93326351e7b513",
+        "git_blob_sha1": "5666432429434b6c375bd6c73cf7110ffd11a1d1"
+      }
+    ],
+    "authentication": false,
+    "cookies": false,
+    "proxy": false,
+    "redirect_following": false,
+    "automatic_retry": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off"
+  },
+  "limits": {
+    "runtime_verification": "not_run",
+    "Hub_preparation_adapter": false,
+    "upstream_compile_load_import_execute_or_install": false,
+    "sensor_numerical_or_compatibility_test": false,
+    "code_redistributed": false,
+    "whole_package_or_dependencies_license_clearance": false,
+    "upstream_main_sensor_IO_reviewed": false,
+    "physical_robot_or_cloud_used": false,
+    "public_API_intake_or_finding_receipt_created": false
+  }
+}

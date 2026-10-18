@@ -354,6 +354,25 @@ test('native D1 FTS stages both search and findings pages before atomically serv
   } finally { await s.mf.dispose(); }
 });
 
+test('native D1 search preserves a failed task attempt without promoting evidence or compatibility', async () => {
+  const attempt = { status: 'failed', execution_performed: true, success: false, reason_code: 'task_objective_not_reached',
+    seed: 0, elapsed_steps: 12, terminated: false, truncated: false, exit_code: 1, timed_out: false,
+    workflow_run_id: '123', verified_hub_commit: 'a'.repeat(40), source_commit: 'b'.repeat(40), record_version: '1.0.0',
+    environment: { runtime: 'maniskill', runtime_version: '3.0', robot: 'panda', controller: 'pd_joint_pos', observation: 'state', os: 'linux' } };
+  const published = publication('a'.repeat(40), { rowOverrides: [{ evidence_level: 'import_verified', runtime_verification: 'import_verified', last_task_attempt: attempt }] });
+  const s = await runtime(published); try {
+    await s.complete();
+    const found = await s.read('/v1/search?q=PickCube');
+    assert.equal(found.status, 200); assert.equal(found.body.backend, 'd1_fts5');
+    assert.deepEqual(found.body.results[0].last_task_attempt, attempt);
+    assert.equal(found.body.results[0].evidence_level, 'import_verified');
+    assert.equal(found.body.results[0].runtime_verification, 'import_verified');
+    assert.ok(found.body.results[0].compatibility.every((c: any) => c.status !== 'hub_verified'));
+    assert.deepEqual(found.body.counts, { recipes: 1, references: 2, memories: 1 });
+    assert.equal(found.body.execution_performed, false);
+  } finally { await s.mf.dispose(); }
+});
+
 test('native D1 concurrent sync retries reuse documents/FTS and stale or partial generations never claim the current commit', async () => {
   const s = await runtime(); try {
     await Promise.all([s.sync(), s.sync(), s.sync()]); await s.complete();

@@ -26,7 +26,9 @@ For source discovery, use task text with one known robot or framework filter. Mu
 
 `find` returns at most three candidates per page. When `next` is present, repeat the same query and filters with its `--offset` and `--hub-commit`. A generation change fails instead of switching the continued search. Mixed or unknown local generations report `pagination_stability: snapshot_required`; use one explicit catalog snapshot for a stable walk.
 
-Inspect the selected source, license, robot, runtime version, controller, observations and evidence. Before troubleshooting a selected recipe, read published findings for that exact record/source and the known project environment:
+Inspect the selected source, license, robot, runtime version, controller, observations and evidence. Positive evidence stages such as `import_verified` describe checks that passed; they do not establish task completion. An optional `evidence.hub_verification.last_task_attempt` records the separate observed task outcome and exact source, recipe, execution and environment pins. For `status: failed`, `execution_performed: true` and `success: false`, inspect its reason and immutable artifacts. That observation does not establish universal failure or a cause. Search, inspection and preparation plans expose the same `last_task_attempt`; `status: ready` describes the inspection or preparation operation, not successful robot execution. Preserve unfamiliar attempt statuses as data without inferring success, compatibility or permission to execute.
+
+Before troubleshooting a selected recipe, read published findings for that exact record/source and the known project environment:
 
 ```sh
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py memories SKILL_ID --project ./experiment --json

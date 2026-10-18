@@ -1,0 +1,71 @@
+{
+  "schema_version": "1",
+  "started_at": "2026-10-18T05:18:50.653639+00:00",
+  "status": "failed",
+  "runtime_verification": "executed",
+  "task_seed": 0,
+  "batch": "panda-stacking",
+  "requested_skills": [
+    "maniskill-panda-stack-pyramid"
+  ],
+  "scope": "One explicit named CPU/state batch, at most three tasks and one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
+  "host": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "python": "3.10.22 (main, Oct  1 2026, 14:31:30) [GCC 11.4.0]"
+  },
+  "recipes": [
+    {
+      "skill_id": "maniskill-panda-stack-pyramid",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "adapter_sha256": "83f9d488d793b36eca0f46282d550ab031f7c1a8315960d62c5c42df682c271b",
+      "status": "failed",
+      "runtime_verification": "executed",
+      "execution_performed": true,
+      "success": false,
+      "contract_matches": false,
+      "result": {
+        "status": "failed",
+        "success": false,
+        "elapsed_steps": 176,
+        "terminated": false,
+        "truncated": false,
+        "reason_code": "task_objective_not_reached",
+        "task": "StackPyramid-v1",
+        "seed": 0,
+        "runtime": "3.0.0b22",
+        "robot": "panda",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "sim_backend": "cpu",
+        "render_backend": "none",
+        "max_episode_steps": 1000
+      },
+      "execution": {
+        "argv": [
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-pyramid/.robot-skill-hub/environments/maniskill-panda-stack-pyramid/bin/python",
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-pyramid/.robot-skill-hub/recipes/maniskill-panda-stack-pyramid/run.py",
+          "--seed",
+          "0"
+        ],
+        "timeout_seconds": 180,
+        "started": true,
+        "timed_out": false,
+        "exit_code": 1,
+        "duration_seconds": 5.678,
+        "stdout_file": "task.stdout.txt",
+        "stderr_file": "task.stderr.txt"
+      }
+    }
+  ],
+  "hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39100095436",
+  "source_archive": {
+    "url": "https://codeload.github.com/haosulab/ManiSkill/tar.gz/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+    "bytes": 243636110
+  },
+  "finished_at": "2026-10-18T05:20:23.073200+00:00"
+}

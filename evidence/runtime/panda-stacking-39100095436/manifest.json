@@ -1,0 +1,49 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39100095436",
+  "verified_hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+  "verified_hub_tree": "3e9d9a44dad5bbe4de6285c338a6502f43c390fb",
+  "batch": "panda-stacking",
+  "requested_skills": [
+    "maniskill-panda-stack-pyramid"
+  ],
+  "scope": "One maintainer-selected Panda CPU/state task at seed 0 under the explicit Hub 1000-step horizon; failed task objective, not a successful runtime promotion or an upstream default-250-step benchmark.",
+  "provenance_verified": true,
+  "task_outcome": "failed",
+  "successful_tasks": 0,
+  "files_sha256": {
+    "report.json": "44781605c31fbfcb6da78b2649de275cda9209839f9c7af1188e2b678ce762d4",
+    "vulkan-summary.txt": "8187fb1842d27f5719eaac8e210a6a2a415bd5d55a2d90aa246f8034cbdae0a9",
+    "maniskill-panda-stack-pyramid/report.json": "74472860f58d8d20e3fa997d439ee7f799af0de8e8e70913a1698c55ff1eaea7",
+    "maniskill-panda-stack-pyramid/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-stack-pyramid/pip-freeze.stdout.txt": "6f871da5783bd51c6d88c7b9a6401870ce385a88dddddbccb540af74fefdd813",
+    "maniskill-panda-stack-pyramid/task.stdout.txt": "6b4d87a84f615dd1abb8557c95fe1b0beb800e02d96b0526468cd33b25f0c739",
+    "maniskill-panda-stack-pyramid/task.stderr.txt": "c5c48c99637491d564246e29c89dfd8a53ae3e674e4d0646a77ce9a505bf1845",
+    "maniskill-panda-stack-pyramid/task.command.json": "6f64a79488af051742c7f62b5e34cc65358b11d579b35d4dbe4222d145cca386",
+    "orchestration.json": "60b9c655d01daa63d76b34b65c02259d158de914734075e0545adb393b4d6fc5"
+  },
+  "original_artifact_id": 12125908908,
+  "original_artifact_sha256": "fff5397601dcc6305ea02f13ce86166fc161d326608673710f6373d78dc75fbf",
+  "original_artifact_bytes": 94691,
+  "provider_digest": "sha256:fff5397601dcc6305ea02f13ce86166fc161d326608673710f6373d78dc75fbf",
+  "provider_digest_verified": true,
+  "original_artifact_files_reviewed": 29,
+  "source_archive_receipt_verified": true,
+  "project_lock_sha256": {
+    "maniskill-panda-stack-pyramid": "5dd149be4beb167e05e0cfb345eceec76ad8d2009100bf6045ac2098ffbeeda9"
+  },
+  "prepared_lock_review": {
+    "id": "maniskill-panda-stack-pyramid",
+    "original_bytes": 210736,
+    "hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+    "record_version": "1.1.0",
+    "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+    "source_files": 1494,
+    "dependencies_installed": true,
+    "robot_execution": "not_run",
+    "interpretation": "The preparation lock was captured before the task invocation; its not_run field is not the later task outcome. Full lock hash and its source/record/embedded-recipe identities were independently checked against H11 and the raw reports."
+  },
+  "preservation": "Eight original report/output/command/environment/freeze/Vulkan files are copied byte for byte. Orchestration and this manifest are maintainer summaries. The full ZIP, catalog, 210736-byte preparation lock, install logs and private operator receipts are not republished."
+}

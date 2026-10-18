@@ -1,0 +1,83 @@
+{
+  "schema_version": "1",
+  "operation": "One disclosed maintainer/operator integration download and a later offline comparison; not installation or adoption.",
+  "provider": "Agent-Skills.md",
+  "download_url": "https://agent-skills.md/api/skills/download/Superfast-Robotics/robot-skill-hub/find-robot-skills",
+  "download": {
+    "response_receipt_at_utc": "2026-10-18T05:09:22.455296+00:00",
+    "receipt_time_scope": "Response-header observation time; the complete body hash was preserved after reading. The download result was compiled at the separate timestamp below.",
+    "result_compiled_at_utc": "2026-10-18T05:09:32.204768+00:00",
+    "http_status": 200,
+    "zip_bytes": 363766,
+    "zip_sha256": "791f65f61b46ae73bad8e5a5d7fffb54b268a619b52cf7a877f451b3e84e2d97",
+    "regular_files": 20,
+    "uncompressed_bytes": 7229698,
+    "archive_extracted": false
+  },
+  "published_Hub_binding": {
+    "commit": "0442ed7b99d78a970e92780a16df793e65039370",
+    "tree": "3e9d9a44dad5bbe4de6285c338a6502f43c390fb",
+    "counts": { "recipes": 17, "references": 1281, "memories": 3 },
+    "GitHub_main_before": "0442ed7b99d78a970e92780a16df793e65039370",
+    "GitHub_main_after": "0442ed7b99d78a970e92780a16df793e65039370",
+    "source_prefix": "skills/find-robot-skills"
+  },
+  "offline_comparison": {
+    "recorded_at_utc": "2026-10-18T05:11:51.672004+00:00",
+    "mapping": "Explicit operator review of the retained ZIP's skill-relative root; no automatic prefix guess or second download.",
+    "regular_file_paths_equal_Hub_folder": true,
+    "matching_files": 17,
+    "missing_files": 0,
+    "extra_files": 0,
+    "content_matches_Hub_commit": false,
+    "different_files": [
+      {
+        "path": "SKILL.md",
+        "Hub_bytes": 9367,
+        "provider_bytes": 9169,
+        "Hub_sha256": "9ac1b2216bc2d57dc696a469fa0669ec2062f4f3368d54367bb2ef841b3562d9",
+        "provider_sha256": "3abdfda900633e5ae7ec3ed853eb59789400686fb40c52757bd870ec1d65fc27"
+      },
+      {
+        "path": "scripts/rshlib/core.py",
+        "Hub_bytes": 24962,
+        "provider_bytes": 24245,
+        "Hub_sha256": "5879637ff7f4ee52fa0afe7108cf1010aabbf2b7e563f22442db429d008d4448",
+        "provider_sha256": "8339ef623d23d26ba3cda91444e6fe70af0ae44f574797f07ade6c70b3f42ec9"
+      },
+      {
+        "path": "scripts/rshlib/remote_catalog.py",
+        "Hub_bytes": 12854,
+        "provider_bytes": 12865,
+        "Hub_sha256": "799714ff21d33d9f600179ae2eba2e637a634d653e14e1ee4e36203d019fac47",
+        "provider_sha256": "8b86f2ed9fa5d9b13a1df3a48465280c9e4df7cd007eda497246b7da0c73c34d"
+      }
+    ]
+  },
+  "separate_historical_folder_comparison": {
+    "commit": "3ba64fee796032c025a9d23dde5cd0efc4d6d388",
+    "all_20_regular_file_paths_and_bytes_equal": true,
+    "meaning": "Offline content equivalence with one known historical Git folder; it does not establish which commit the provider fetched, when it fetched it, or the cause of the current mismatch."
+  },
+  "request_scope": {
+    "original_anonymous_operator_GETs": 3,
+    "provider_download_GETs": 1,
+    "later_offline_compare_HTTP_requests": 0,
+    "independent_review_HTTP_requests": 0,
+    "Hub_requests": 0,
+    "source_installed_imported_or_executed": false,
+    "provider_resubmission_refresh_or_statistics_request": false,
+    "automatic_retry": false
+  },
+  "provider_source_commit": null,
+  "provider_download_counter_effect": "Unknown; the one operator download may affect provider counters and is not organic adoption or independent use.",
+  "refresh_contract_scope": "No refresh/resync procedure was documented in the retained official README, homepage FAQ or submission UI. This limited cache review does not establish that no such procedure exists. An existing-repository frontend response branch was not treated as a refresh contract; no additional request was made.",
+  "official_current_source_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/skills/find-robot-skills",
+  "exact_compared_Hub_source_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/0442ed7b99d78a970e92780a16df793e65039370/skills/find-robot-skills",
+  "limits": [
+    "The earlier public robotics search listing remains independently recorded. Discovery visibility and download equivalence are separate observations.",
+    "The downloaded instructions and local/remote recipe discovery omit the current eight-field environment-filter handoff improvement. The existing 17 recipes each have one compatibility combination; no wrong-robot execution or runtime failure is inferred.",
+    "The ZIP is retained privately and was not published, installed, extracted or executed. Only three differing files' sizes and hashes are included here.",
+    "Provider source revision, mismatch cause, synchronization timing, counter semantics, installation and adoption remain unverified."
+  ]
+}

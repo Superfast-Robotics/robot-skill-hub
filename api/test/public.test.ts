@@ -6,12 +6,12 @@ import { createPublicHandler } from '../src/public.ts';
 const HUB = 'a'.repeat(40), ORIGIN = 'https://hub.superfastrobotics.com';
 const hash = (bytes: string | Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 const env = { PUBLICATION_URL: ORIGIN + '/catalog/v1/publication.json' };
-function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
+function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean; rowOverrides?: Record<string, unknown>[]; recipeEvidence?: Record<string, any> } = {}) {
   let instant = Date.parse('2026-10-18T00:00:00Z');
   const combo = (runtime: string, robot: string, controller = 'pd_joint_pos', observation = 'state', os = 'linux') => ({ runtime, runtime_version: '1', robot, controller, observation, os, status: 'source_reviewed' });
   const source = { repository: 'https://github.com/upstream/robot', commit: 'b'.repeat(40), sha256: 'c'.repeat(64), url: 'https://github.com/upstream/robot/blob/' + 'b'.repeat(40) + '/task.py' };
   const details = [
-    { id: 'alpha-pick', name: 'Alpha pick', summary: 'Pick a cube', source, access: { mode: 'preparation_recipe', hub_prepare: true }, maintenance: { record_version: '1.0.0' }, evidence: { level: 'source_reviewed', runtime_verification: 'not_run' } },
+    { id: 'alpha-pick', name: 'Alpha pick', summary: 'Pick a cube', source, access: { mode: 'preparation_recipe', hub_prepare: true }, maintenance: { record_version: '1.0.0' }, evidence: options.recipeEvidence || { level: 'source_reviewed', runtime_verification: 'not_run' } },
     { id: 'beta-grasp', name: 'Beta grasp', summary: 'ROS grasp source', source, access: { mode: 'source_reference', hub_prepare: false }, evidence: { level: 'source_reviewed', runtime_verification: 'not_run' } },
     { id: 'gamma-policy', name: 'Gamma policy', summary: 'Pinned ONNX policy source', source: { revision: 'sha256:' + 'd'.repeat(64), sha256: 'd'.repeat(64) }, access: { mode: 'source_reference', hub_prepare: false }, evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }
   ];
@@ -56,6 +56,29 @@ test('public search and inspect need no credentials and preserve recipe/referenc
   const reference: any = await (await s.request('/v1/skills/beta-grasp'))!.json(); assert.equal(reference.record.access.hub_prepare, false); assert.equal(reference.record.evidence.runtime_verification, 'not_run');
   const policy: any = await (await s.request('/v1/skills/gamma-policy'))!.json(); assert.equal(policy.record.source.commit, undefined); assert.match(policy.record.source.revision, /^sha256:/);
   assert.ok(s.calls.every(call => !call.url.startsWith('https://attacker.example.org')));
+});
+
+test('HTTP and MCP preserve an observed failed attempt separately from positive checks', async () => {
+  const attempt = { status: 'failed', execution_performed: true, success: false, reason_code: 'task_objective_not_reached',
+    seed: 0, elapsed_steps: 12, terminated: false, truncated: false, exit_code: 1, timed_out: false,
+    workflow_run_id: '123', verified_hub_commit: HUB, source_commit: 'b'.repeat(40), record_version: '1.0.0',
+    environment: { runtime: 'maniskill', runtime_version: '1', robot: 'panda', controller: 'pd_joint_pos', observation: 'state', os: 'linux' } };
+  const evidence = { level: 'import_verified', runtime_verification: 'import_verified', artifacts: ['https://example.org/pinned/report.json'],
+    hub_verification: { level: 'import_verified', runtime: 'import_verified', last_task_attempt: attempt } };
+  const s = fixture({ recipeEvidence: evidence, rowOverrides: [{ evidence_level: evidence.level, runtime_verification: evidence.runtime_verification, last_task_attempt: attempt }] });
+  const found: any = await (await s.request('/v1/search?q=cube'))!.json();
+  assert.deepEqual(found.results[0].last_task_attempt, attempt);
+  assert.equal(found.results[0].evidence_level, 'import_verified');
+  assert.ok(found.results[0].compatibility.every((c: any) => c.status !== 'hub_verified'));
+  assert.deepEqual(found.counts, { recipes: 1, references: 2, memories: 0 }, 'Inventory counts are not success counts');
+  const inspected: any = await (await s.request('/v1/skills/alpha-pick'))!.json();
+  assert.deepEqual(inspected.record.evidence, evidence);
+  for (const [name, args] of [['find_robot_skills', { q: 'cube' }], ['inspect_robot_skill', { skill_id: 'alpha-pick' }]] as const) {
+    const rpc: any = await (await s.rpc('tools/call', { name, arguments: args }))!.json();
+    assert.equal(rpc.result.isError, false);
+    const body = rpc.result.structuredContent;
+    assert.deepEqual(name === 'find_robot_skills' ? body.results[0].last_task_attempt : body.record.evidence.hub_verification.last_task_attempt, attempt);
+  }
 });
 
 test('capabilities expose bounded finding and complete manifest discovery without credentials', async () => {
