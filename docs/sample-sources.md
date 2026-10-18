@@ -267,6 +267,9 @@ python tools/import_robot_workflows.py --check
 # Validate frozen agent instruction/provenance text as inert data offline.
 python tools/import_agent_skill_sources.py --check
 
+# Check reviewed ROS 2 plugin registrations against pinned local files.
+python tools/import_robot_plugins.py --check
+
 # After reviewing a manifest commit/license change, explicitly inspect its tree.
 python tools/import_ecosystem_examples.py --discover --project nav2 --fetch
 ```
@@ -276,3 +279,6 @@ source artifacts and duplicate IDs fail closed. A discovery or source fetch
 failure stops publication; a partial tree is not accepted as complete coverage.
 Import tools do not execute upstream modules, install simulators, download task
 assets or run robots.
+
+For the plugin manifest, cache layout and draft submission commands, see
+[ROS 2 plugin intake](robot-plugin-import.md).
