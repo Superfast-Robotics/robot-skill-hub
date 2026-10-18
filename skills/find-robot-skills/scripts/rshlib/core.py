@@ -114,7 +114,49 @@ def validate_record(record):
         raise RshError("invalid_recipe_file", "Embedded recipe files require safe paths and text content.")
     if record["evidence"].get("level") not in ("not_run", "source_reviewed", "install_verified", "import_verified", "task_complete", "contributor_reported"):
         raise RshError("invalid_evidence", "Unknown verification level.")
+    validate_last_task_attempt(record)
     return record
+
+
+def validate_last_task_attempt(record):
+    """Preserve future outcomes as data; validate the recognized failed contract."""
+    hub = record["evidence"].get("hub_verification", {})
+    if not isinstance(hub, dict) or "last_task_attempt" not in hub:
+        return
+    attempt = hub["last_task_attempt"]
+    if (not isinstance(attempt, dict) or not isinstance(attempt.get("status"), str)
+            or not 1 <= len(attempt["status"]) <= 80 or not attempt["status"].strip()):
+        raise RshError("invalid_task_attempt", "Task attempt status must be a bounded nonempty string.")
+    if attempt["status"] != "failed":
+        return
+    if attempt.get("execution_performed") is not True or attempt.get("success") is not False:
+        raise RshError("invalid_task_attempt", "A failed task attempt requires actual execution and success=false.")
+    for key in ("seed", "elapsed_steps", "exit_code"):
+        if type(attempt.get(key)) is not int or (key != "exit_code" and attempt[key] < 0):
+            raise RshError("invalid_task_attempt", f"Task attempt {key} must be an integer with a valid range.")
+    if any(type(attempt.get(key)) is not bool for key in ("terminated", "truncated", "timed_out")):
+        raise RshError("invalid_task_attempt", "Task attempt termination and timeout flags must be explicit booleans.")
+    if (not COMMIT.fullmatch(str(attempt.get("verified_hub_commit", "")))
+            or not COMMIT.fullmatch(str(attempt.get("source_commit", "")))
+            or not isinstance(attempt.get("workflow_run_id"), str)
+            or not re.fullmatch(r"[1-9][0-9]*", attempt["workflow_run_id"])
+            or any(not isinstance(attempt.get(key), str) or not 1 <= len(attempt[key]) <= 120
+                   for key in ("record_version", "reason_code"))):
+        raise RshError("invalid_task_attempt", "Task attempt requires exact source, record and execution provenance.")
+    environment = attempt.get("environment")
+    if (not isinstance(environment, dict)
+            or any(not isinstance(environment.get(key), str) or not environment[key].strip()
+                   for key in ENVIRONMENT_FIELDS[:6])
+            or any(not isinstance(value, str) or not value.strip() for value in environment.values())):
+        raise RshError("invalid_task_attempt", "Task attempt requires its observed environment.")
+    artifacts = record["evidence"].get("artifacts")
+    if not isinstance(artifacts, list) or not artifacts or not all(isinstance(item, str) and item for item in artifacts):
+        raise RshError("invalid_task_attempt", "Task attempt requires actual runtime artifacts.")
+
+
+def task_attempt_metadata(record):
+    attempt = record.get("evidence", {}).get("hub_verification", {}).get("last_task_attempt")
+    return {"last_task_attempt": attempt} if attempt is not None else {}
 
 
 def load_catalog(location=None):
@@ -318,7 +360,7 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                         + (["Environment is incomplete; compatibility is unconfirmed."] if matched["missing_requirements"] else []),
                         "missing_requirements": matched["missing_requirements"],
                         "compatibility_status": matched["compatibility_status"],
-                        "evidence_level": record["evidence"]["level"], "_score": score})
+                        "evidence_level": record["evidence"]["level"], **task_attempt_metadata(record), "_score": score})
     for record in catalog.get("references", {}).get("records", []):
         if not isinstance(record, dict):
             continue
@@ -381,6 +423,7 @@ def inspect(catalog, skill_id):
                     "next_action": "open_source_reference", "execution_performed": False, **discovery_metadata(catalog)}
     record = lookup(catalog, skill_id)
     return {"status": "ready", **record, "commit": record["source"]["commit"],
+            **task_attempt_metadata(record),
             "kind": "preparation_recipe", "hub_prepare": True,
             "memory_base": selection_base(catalog, record),
             "prepare_args": ["prepare", record["id"], "--expected-source-commit", record["source"]["commit"],

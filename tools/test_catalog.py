@@ -515,6 +515,46 @@ class CatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "actual runtime evidence"):
             builder.load_records()
 
+    def test_failed_attempt_publishes_without_promoting_positive_evidence(self):
+        record = json.loads(self.record_path().read_text(encoding="utf-8"))
+        attempt = {"status": "failed", "execution_performed": True, "success": False,
+                   "reason_code": "task_objective_not_reached", "seed": 0, "elapsed_steps": 12,
+                   "terminated": False, "truncated": False, "exit_code": 1, "timed_out": False,
+                   "workflow_run_id": "123", "verified_hub_commit": "1" * 40,
+                   "record_version": record["maintenance"]["record_version"], "source_commit": record["source"]["commit"],
+                   "environment": {key: record["compatibility"][0][key]
+                                   for key in ("runtime", "runtime_version", "robot", "controller", "observation", "os")}}
+        def change(row):
+            row["evidence"].update(level="import_verified", runtime_verification="import_verified",
+                                   artifacts=["https://example.org/pinned/runtime-report.json"],
+                                   hub_verification={"level": "import_verified", "runtime": "import_verified",
+                                                     "last_task_attempt": attempt})
+            row["compatibility"][0]["status"] = "source_reviewed"
+        self.mutate(change)
+        self.build()
+        search = json.loads((self.root / "site/catalog/v1/search.json").read_text(encoding="utf-8"))
+        row = next(r for r in search["records"] if r["id"] == record["id"])
+        self.assertEqual(row["last_task_attempt"], attempt)
+        self.assertEqual(row["evidence_level"], "import_verified")
+        self.assertEqual(row["runtime_verification"], "import_verified")
+        self.assertNotIn("hub_verified", [c["status"] for c in row["compatibility"]])
+        published = json.loads((self.root / "site/skills" / record["id"] / "skill.json").read_text())
+        self.assertEqual(published["evidence"]["hub_verification"]["last_task_attempt"], attempt)
+        # The publisher enforces semantic consistency beyond the schema's field types.
+        self.mutate(lambda r: r["evidence"]["hub_verification"]["last_task_attempt"].update(success=True))
+        with self.assertRaises(ValueError):
+            builder.load_records()
+        self.mutate(lambda r: (r["evidence"]["hub_verification"]["last_task_attempt"].update(success=False),
+                               r["evidence"].update(artifacts=[])))
+        with self.assertRaisesRegex(ValueError, "actual runtime artifacts"):
+            builder.load_records()
+
+    def test_future_task_attempt_status_remains_data_without_invented_measurements(self):
+        self.mutate(lambda r: r["evidence"]["hub_verification"].update(last_task_attempt={"status": "future_unmeasured_outcome"}))
+        record = next(r for r in builder.load_records() if r["id"] == "maniskill-panda-pick-cube")
+        self.assertEqual(record["evidence"]["hub_verification"]["last_task_attempt"], {"status": "future_unmeasured_outcome"})
+        self.assertEqual(record["evidence"]["level"], "task_complete")
+
     def test_rejects_contribution_paths_to_workflows(self):
         self.mutate(lambda r: r['contribution']['allowed_paths'].append('.github/workflows/pages.yml'))
         with self.assertRaisesRegex(ValueError, "outside allowed recipe"):

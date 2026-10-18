@@ -12,7 +12,7 @@ import venv
 from pathlib import Path
 
 from .core import (RshError, compatibility, format_argv, local_environment, lookup_preparation,
-                   python_satisfies, read_json, safe_relative, validate_record, write_json)
+                   python_satisfies, read_json, safe_relative, task_attempt_metadata, validate_record, write_json)
 
 ARCHIVE_LIMIT = 512 * 1024 * 1024
 EXTRACT_LIMIT = 1536 * 1024 * 1024
@@ -108,6 +108,7 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
                                                        "python": local["python"], "architecture": local["architecture"]}
     matched = compatibility(record, supplied)
     details = {"skill_id": skill_id, "execution_performed": False,
+               **task_attempt_metadata(record),
                "source_commit": record["source"]["commit"],
                "record_version": record["maintenance"]["record_version"]}
     if not download_only and not python_satisfies(record["requirements"]["python"], local["python"]):

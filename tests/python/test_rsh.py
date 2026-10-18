@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "skills/find-robot-skills"
 sys.path.insert(0, str(SKILL / "scripts"))
 from rshlib import contributions
-from rshlib.core import RshError, compatibility, find, load_catalog, local_environment, validate_record
+from rshlib.core import RshError, compatibility, find, inspect, load_catalog, local_environment, validate_record
 from rshlib.prepare import download_archive, extract_archive, prepare
 
 PIN = "a" * 40
@@ -74,6 +74,16 @@ def fixture_catalog(data=None):
     return {"schema_version": "1", "hub_commit": HUB, "records": [fixture_record(data)]}
 
 
+def failed_attempt():
+    return {"status": "failed", "execution_performed": True, "success": False,
+            "reason_code": "task_objective_not_reached", "seed": 0, "elapsed_steps": 12,
+            "terminated": False, "truncated": False, "exit_code": 1, "timed_out": False,
+            "workflow_run_id": "123", "verified_hub_commit": HUB,
+            "record_version": "1.0.0", "source_commit": PIN,
+            "environment": {"runtime": "fixture", "runtime_version": "1.0.0", "robot": "panda",
+                            "controller": "pd_joint_pos", "observation": "state", "os": local_environment()["os"]}}
+
+
 def bundle():
     return {"schema_version": "1", "skill_id": "fixture-pick", "base": {"hub_commit": HUB, "source_commit": PIN, "record_version": "1.0.0"},
             "change_kind": "docs_fix", "summary": "Fix a documented reproduction step", "patch": PATCH,
@@ -84,6 +94,69 @@ def bundle():
 
 
 class CatalogTests(unittest.TestCase):
+    def test_failed_attempt_remains_separate_from_positive_checks_and_is_exposed(self):
+        catalog = fixture_catalog()
+        record = catalog["records"][0]
+        attempt = failed_attempt()
+        record["evidence"].update(level="import_verified", runtime_verification="import_verified",
+                                  artifacts=["https://example.org/immutable/runtime-report.json"],
+                                  hub_verification={"level": "import_verified", "runtime": "import_verified",
+                                                    "last_task_attempt": attempt})
+        validate_record(record)
+        found = find(catalog, "pick", {})["results"][0]
+        self.assertEqual(found["evidence_level"], "import_verified")
+        self.assertEqual(found["last_task_attempt"], attempt)
+        detail = inspect(catalog, record["id"])
+        self.assertEqual(detail["last_task_attempt"], attempt)
+        self.assertEqual(detail["evidence"]["hub_verification"]["last_task_attempt"], attempt)
+        self.assertFalse(detail["execution_performed"])
+        with tempfile.TemporaryDirectory() as temporary, mock.patch("urllib.request.urlopen") as network, \
+                mock.patch("rshlib.prepare.venv.EnvBuilder") as environment, mock.patch("rshlib.prepare.subprocess.run") as process:
+            project = Path(temporary) / "untouched"
+            plan = prepare(catalog, record["id"], project, {}, plan=True)
+            self.assertEqual(plan["last_task_attempt"], attempt)
+            self.assertEqual(plan["evidence_level"], "import_verified")
+            self.assertEqual(plan["reason_code"], "preparation_plan")
+            self.assertFalse(plan["execution_performed"])
+            self.assertFalse(project.exists())
+            network.assert_not_called(); environment.assert_not_called(); process.assert_not_called()
+        # The attempt is scoped data, not a global negation of separately retained positive evidence.
+        record["evidence"].update(level="task_complete", runtime_verification="task_complete")
+        record["compatibility"][0]["status"] = "hub_verified"
+        validate_record(record)
+
+    def test_failed_attempt_rejects_inconsistent_results_or_missing_provenance(self):
+        for change in (lambda a: a.update(success=True), lambda a: a.update(execution_performed=False),
+                       lambda a: a.update(status=""), lambda a: a.pop("source_commit"),
+                       lambda a: a.update(elapsed_steps=True), lambda a: a.update(elapsed_steps=-1),
+                       lambda a: a.update(timed_out="false"), lambda a: a["environment"].pop("robot")):
+            with self.subTest(change=change):
+                record = fixture_record()
+                attempt = failed_attempt()
+                change(attempt)
+                record["evidence"].update(level="import_verified", artifacts=["https://example.org/report"],
+                                          hub_verification={"last_task_attempt": attempt})
+                with self.assertRaises(RshError) as error:
+                    validate_record(record)
+                self.assertEqual(error.exception.result["reason_code"], "invalid_task_attempt")
+        record = fixture_record()
+        record["evidence"]["hub_verification"] = {"last_task_attempt": failed_attempt()}
+        with self.assertRaises(RshError):
+            validate_record(record)
+        self.assertNotIn("last_task_attempt", find(fixture_catalog(), "pick", {})["results"][0])
+
+    def test_future_attempt_status_is_data_and_does_not_infer_success(self):
+        catalog = fixture_catalog()
+        record = catalog["records"][0]
+        attempt = {"status": "future_unmeasured_outcome"}
+        record["evidence"]["hub_verification"] = {"last_task_attempt": attempt}
+        validate_record(record)
+        found = find(catalog, "pick", {})["results"][0]
+        self.assertEqual(found["last_task_attempt"], attempt)
+        self.assertEqual(found["evidence_level"], "not_run")
+        self.assertNotIn("success", found["last_task_attempt"])
+        self.assertEqual(inspect(catalog, record["id"])["last_task_attempt"], attempt)
+
     def test_explicit_framework_and_version_mismatch_return_empty(self):
         catalog = fixture_catalog()
         for environment in ({"runtime": "mujoco"}, {"runtime_version": "99.0.0"}, {"robot": "ur5"},
