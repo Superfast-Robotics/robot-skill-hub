@@ -60,6 +60,26 @@ def reject_obvious_secrets(value):
                        status="blocked", next_action="remove_secrets_from_minimal_patch")
 
 
+def safe_api_error(error, *, token=None):
+    """Allow bounded diagnostics only; an active opaque credential is never safe text."""
+    result = {}
+    if not isinstance(error, dict):
+        return result
+    for key, maximum in (("reason_code", 120), ("message", 500), ("next_action", 160)):
+        value = error.get(key)
+        if (not isinstance(value, str) or not value.strip() or len(value) > maximum or "\0" in value
+                or (token and token in value)):
+            continue
+        try:
+            reject_obvious_secrets(value)
+        except RshError:
+            continue
+        if re.search(r"-----BEGIN [A-Z ]*PRIVATE KEY-----|\brsh_[A-Za-z0-9_-]{43}\b|\bBearer\s+[A-Za-z0-9._~+/-]{16,}=*|https?://[^\s/@:]+:[^\s/@]+@", value, re.IGNORECASE):
+            continue
+        result[key] = value
+    return result
+
+
 def validate_bundle(bundle, record=None):
     if not isinstance(bundle, dict) or bundle.get("schema_version") != "1":
         raise RshError("invalid_bundle", "Contribution schema_version must be 1.")
@@ -183,9 +203,10 @@ def request_json(method, url, token, *, payload=None, idempotency_key=None, time
             error = {}
         reasons = {401: "authentication_required", 403: "permission_denied", 409: "submission_conflict",
                    413: "bundle_too_large", 422: "invalid_submission", 429: "rate_limited", 503: "github_unavailable"}
+        retry_after = safe_api_error({"message": exc.headers.get("Retry-After") if exc.headers else None}, token=token).get("message")
         raise RshError(reasons.get(exc.code, "api_error"), "Submission API rejected the request.", status="blocked",
                        next_action="keep_local_draft_and_follow_api_error", http_status=exc.code,
-                       api_error=error, retry_after=exc.headers.get("Retry-After")) from exc
+                       api_error=safe_api_error(error, token=token), retry_after=retry_after) from exc
     except OSError as exc:
         raise RshError("api_unavailable", "Submission API could not be reached; the local bundle is preserved.",
                        status="blocked", next_action="retry_same_bundle_with_same_idempotency_key") from exc
@@ -197,6 +218,8 @@ def request_json(method, url, token, *, payload=None, idempotency_key=None, time
             raise ValueError()
     except (ValueError, UnicodeError) as exc:
         raise RshError("invalid_api_response", "API did not return a JSON object.") from exc
+    if token and token in json.dumps(parsed, ensure_ascii=False):
+        raise RshError("invalid_api_response", "API response contains credential data and was discarded.")
     return {**parsed, "http_status": code}
 
 

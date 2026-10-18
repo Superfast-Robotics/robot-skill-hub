@@ -123,8 +123,7 @@ def check(project, *, api_url=None, check_api=False, offline=False):
         return result
     except RshError as error:
         credential["authentication"] = "failed"
-        details = memories.safe_api_error(error.result.get("api_error"))
-        details = {key: value for key, value in details.items() if token not in value}
+        details = contributions.safe_api_error(error.result.get("api_error"), token=token)
         return {**result, "status": "blocked", "reason_code": error.result["reason_code"],
                 "api_error": details,
                 "next_action": "keep_findings_local_and_check_api_configuration"}
