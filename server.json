@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Superfast-Robotics/robot-skill-hub",
   "title": "Robot Skill Hub",
-  "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
+  "description": "Search robot code and exact-version findings; check evidence before preparing with the Hub CLI.",
   "version": "0.3.7",
   "repository": {
     "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
