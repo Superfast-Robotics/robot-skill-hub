@@ -10,7 +10,8 @@ import urllib.parse
 from pathlib import Path
 
 from . import contributions
-from .core import COMMIT, RshError, read_json
+from .acquisition import SECRET
+from .core import COMMIT, RshError, read_json, require_url
 
 SOURCE_REVISION = re.compile(r"(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})")
 ARTIFACT_KINDS = {"code", "policy", "model", "dataset", "workflow", "robot_description", "documentation", "tool", "other"}
@@ -148,7 +149,42 @@ def _write(path, value, project=None):
         temporary.unlink(missing_ok=True)
 
 
-def register(catalog, skill_path, project, *, contributor, policy_path=None, api_url=None, output=None, draft=False, offline=False, refresh_base=False):
+def missing_token_recovery(skill_path, project, contributor, bundle_path, digest, *, policy_path=None, api_url=None):
+    """Describe one explicit identity-checked retry without reading credentials."""
+    recovery = {
+        "credential_setup": {
+            "issuer": "Hub operator",
+            "token_file_environment": "RSH_SUBMISSION_TOKEN_FILE",
+            "token_environment": "RSH_SUBMISSION_TOKEN",
+            "message": "Use an operator-issued scoped Hub token. Set RSH_SUBMISSION_TOKEN_FILE to the path of its private one-line UTF-8 file, or set RSH_SUBMISSION_TOKEN in the process environment. No GitHub token is needed; credentials do not grant project sharing permission.",
+        },
+        "documentation_url": "https://hub.superfastrobotics.com/new-skills.md",
+        "automatic_retry": False,
+    }
+    base = api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com"
+    try:
+        require_url(base, local_http=True)
+        if urllib.parse.urlsplit(base).query or SECRET.search(urllib.parse.unquote(base)):
+            raise RshError("invalid_api_url", "Use an API base without credentials or query parameters.")
+    except (RshError, TypeError, ValueError):
+        recovery["api_configuration_required"] = True
+        return recovery
+    args = ["register", str(Path(skill_path).resolve()), "--project", str(Path(project).expanduser().resolve()),
+            "--contributor=" + contributor, "--output", str(bundle_path.resolve()),
+            "--expected-bundle-sha256", digest, "--api-url", base.rstrip("/")]
+    # Match contributions.read_policy's path selection, including its implicit file.
+    selected_policy = Path(policy_path) if policy_path else Path(project) / ".robot-skill-hub.json"
+    args.extend(["--policy", str(selected_policy.resolve())])
+    recovery["register_args"] = args + ["--json"]
+    return recovery
+
+
+def register(catalog, skill_path, project, *, contributor, policy_path=None, api_url=None, output=None, draft=False, offline=False,
+             refresh_base=False, expected_bundle_sha256=None):
+    if expected_bundle_sha256 is not None:
+        _need(isinstance(expected_bundle_sha256, str) and bool(re.fullmatch(r"[a-f0-9]{64}", expected_bundle_sha256)),
+              "invalid_intake_bundle_sha256", "The expected saved bundle SHA-256 must be 64 lowercase hexadecimal characters.")
+        _need(not refresh_base, "invalid_arguments", "An identity-checked retry cannot refresh the saved bundle base.")
     root = Path(project).expanduser().resolve()
     _need(root.is_dir(), "project_unavailable", "Registration requires an existing project directory.")
     skill = read_json(skill_path)
@@ -158,31 +194,52 @@ def register(catalog, skill_path, project, *, contributor, policy_path=None, api
     scope = publication.get("allowed_new_skill_ids", [])
     allowed = (publication.get("public_submission_allowed") is True and isinstance(scope, list) and skill["id"] in scope
                and contributions.sharing_allowed(policy, skill["id"], ["catalog/intake/" + skill["id"] + ".json"]))
-    bundle = {"schema_version": "1", "base": {"hub_commit": catalog.get("hub_commit")}, "skill": skill,
-              "attribution": {"contributor_label": contributor, "preserve_upstream_attribution": True},
-              "publication": {"public_submission_allowed": allowed}}
-    validate_bundle(bundle)
+    attribution = {"contributor_label": contributor, "preserve_upstream_attribution": True}
     path = Path(output) if output else root / ".robot-skill-hub/intake" / (skill["id"] + ".json")
     boundary = None if output else root
     if boundary and not path.resolve().is_relative_to(boundary):
         raise RshError("intake_path_escape", "Local intake storage resolves outside the project.")
+    previous = None
     if path.is_file() and not refresh_base:
         previous = read_json(path)
         validate_bundle(previous)
+    if expected_bundle_sha256 is not None:
+        if (previous is None or hashlib.sha256(contributions.canonical_bytes(previous)).hexdigest() != expected_bundle_sha256
+                or previous["skill"] != skill or previous["attribution"] != attribution):
+            raise RshError("intake_bundle_changed", "The retained bundle or registration inputs differ from the explicitly selected identity.",
+                           status="blocked", network_performed=False, next_action="inspect_original_saved_bundle_before_retry")
+        # A guarded retry never rewrites the retained draft or substitutes a new base.
+        bundle = previous
+        allowed = allowed and bundle["publication"]["public_submission_allowed"] is True
+    else:
+        bundle = {"schema_version": "1", "base": {"hub_commit": catalog.get("hub_commit")}, "skill": skill,
+                  "attribution": attribution, "publication": {"public_submission_allowed": allowed}}
+        validate_bundle(bundle)
         # Retrying an accepted-to-send local identity must survive a newer catalog.
         # Changing its base is an explicit operation after inspecting a conflict.
-        if (previous["publication"]["public_submission_allowed"] is True
+        if (previous and previous["publication"]["public_submission_allowed"] is True
                 and previous["skill"] == bundle["skill"] and previous["attribution"] == bundle["attribution"]):
             bundle["base"] = previous["base"]
-    _write(path, bundle, boundary)
+        _write(path, bundle, boundary)
+    payload = contributions.canonical_bytes(bundle)
+    key = hashlib.sha256(payload).hexdigest()
     if draft or offline or not allowed:
         return {"status": "local_saved", "reason_code": "intake_draft_saved" if allowed else "sharing_not_allowed",
                 "bundle_path": str(path.resolve()), "public_submission_allowed": allowed, "network_performed": False,
-                "next_action": "submit_when_authorized" if not allowed else "register_when_ready"}
-    base, token = contributions.api_configuration(api_url)
+                **({"bundle_sha256": key, "idempotency_key": key} if expected_bundle_sha256 is not None else {}),
+                "next_action": ("continue_user_task" if expected_bundle_sha256 is not None and not allowed
+                                else "submit_when_authorized" if not allowed else "register_when_ready")}
+    try:
+        base, token = contributions.api_configuration(api_url)
+    except RshError as error:
+        if error.result.get("reason_code") != "missing_submission_token":
+            raise
+        return {"status": "local_saved", "reason_code": "missing_submission_token", "bundle_path": str(path.resolve()),
+                "bundle_sha256": key, "idempotency_key": key, "public_submission_allowed": allowed,
+                "network_performed": False, "next_action": "continue_user_task",
+                "delivery_recovery": missing_token_recovery(skill_path, project, contributor, path, key,
+                                                            policy_path=policy_path, api_url=api_url)}
     _need(token not in json.dumps(bundle), "potential_secret", "The active credential cannot appear in public metadata.")
-    payload = contributions.canonical_bytes(bundle)
-    key = hashlib.sha256(payload).hexdigest()
     receipt_path = path.with_name(path.stem + ".receipt.json")
     _write(receipt_path, {"bundle_sha256": key, "idempotency_key": key, "api_url": base, "submission_id": None, "status": "sending"}, boundary)
     response = contributions.request_json("POST", base + "/v1/skills", token, payload=payload, idempotency_key=key)
