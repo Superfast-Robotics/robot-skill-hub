@@ -136,8 +136,8 @@ def validate_last_task_attempt(record):
             raise RshError("invalid_task_attempt", f"Task attempt {key} must be an integer with a valid range.")
     if any(type(attempt.get(key)) is not bool for key in ("terminated", "truncated", "timed_out")):
         raise RshError("invalid_task_attempt", "Task attempt termination and timeout flags must be explicit booleans.")
-    if (not COMMIT.fullmatch(str(attempt.get("verified_hub_commit", "")))
-            or not COMMIT.fullmatch(str(attempt.get("source_commit", "")))
+    if (any(not isinstance(attempt.get(key), str) or not COMMIT.fullmatch(attempt[key])
+            for key in ("verified_hub_commit", "source_commit"))
             or not isinstance(attempt.get("workflow_run_id"), str)
             or not re.fullmatch(r"[1-9][0-9]*", attempt["workflow_run_id"])
             or any(not isinstance(attempt.get(key), str) or not 1 <= len(attempt[key]) <= 120
@@ -155,7 +155,10 @@ def validate_last_task_attempt(record):
 
 
 def task_attempt_metadata(record):
-    attempt = record.get("evidence", {}).get("hub_verification", {}).get("last_task_attempt")
+    hub = record.get("evidence", {}).get("hub_verification", {})
+    if not isinstance(hub, dict):
+        return {}
+    attempt = hub.get("last_task_attempt")
     return {"last_task_attempt": attempt} if attempt is not None else {}
 
 

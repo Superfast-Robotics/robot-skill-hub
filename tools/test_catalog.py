@@ -550,9 +550,10 @@ class CatalogTests(unittest.TestCase):
             builder.load_records()
 
     def test_future_task_attempt_status_remains_data_without_invented_measurements(self):
-        self.mutate(lambda r: r["evidence"]["hub_verification"].update(last_task_attempt={"status": "future_unmeasured_outcome"}))
+        attempt = {"status": "future_unmeasured_outcome", "environment": {"os": "linux"}}
+        self.mutate(lambda r: r["evidence"]["hub_verification"].update(last_task_attempt=attempt))
         record = next(r for r in builder.load_records() if r["id"] == "maniskill-panda-pick-cube")
-        self.assertEqual(record["evidence"]["hub_verification"]["last_task_attempt"], {"status": "future_unmeasured_outcome"})
+        self.assertEqual(record["evidence"]["hub_verification"]["last_task_attempt"], attempt)
         self.assertEqual(record["evidence"]["level"], "task_complete")
 
     def test_rejects_contribution_paths_to_workflows(self):

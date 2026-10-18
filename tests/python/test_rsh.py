@@ -128,6 +128,7 @@ class CatalogTests(unittest.TestCase):
     def test_failed_attempt_rejects_inconsistent_results_or_missing_provenance(self):
         for change in (lambda a: a.update(success=True), lambda a: a.update(execution_performed=False),
                        lambda a: a.update(status=""), lambda a: a.pop("source_commit"),
+                       lambda a: a.update(source_commit=10 ** 39), lambda a: a.update(verified_hub_commit=10 ** 39),
                        lambda a: a.update(elapsed_steps=True), lambda a: a.update(elapsed_steps=-1),
                        lambda a: a.update(timed_out="false"), lambda a: a["environment"].pop("robot")):
             with self.subTest(change=change):
@@ -148,7 +149,7 @@ class CatalogTests(unittest.TestCase):
     def test_future_attempt_status_is_data_and_does_not_infer_success(self):
         catalog = fixture_catalog()
         record = catalog["records"][0]
-        attempt = {"status": "future_unmeasured_outcome"}
+        attempt = {"status": "future_unmeasured_outcome", "environment": {"os": "linux"}}
         record["evidence"]["hub_verification"] = {"last_task_attempt": attempt}
         validate_record(record)
         found = find(catalog, "pick", {})["results"][0]
@@ -156,6 +157,15 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(found["evidence_level"], "not_run")
         self.assertNotIn("success", found["last_task_attempt"])
         self.assertEqual(inspect(catalog, record["id"])["last_task_attempt"], attempt)
+
+    def test_task_attempt_extractor_preserves_legacy_non_object_hub_metadata(self):
+        for hub in (None, [], "legacy"):
+            catalog = fixture_catalog()
+            record = catalog["records"][0]
+            record["evidence"]["hub_verification"] = hub
+            validate_record(record)
+            self.assertNotIn("last_task_attempt", find(catalog, "pick", {})["results"][0])
+            self.assertNotIn("last_task_attempt", inspect(catalog, record["id"]))
 
     def test_explicit_framework_and_version_mismatch_return_empty(self):
         catalog = fixture_catalog()
