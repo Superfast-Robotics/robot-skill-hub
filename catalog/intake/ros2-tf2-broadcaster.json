@@ -1,0 +1,97 @@
+{
+  "id": "ros2-tf2-broadcaster",
+  "name": "ROS 2 tf2 turtle-pose transform broadcaster node",
+  "summary": "Official ROS geometry tutorial node that subscribes to a turtle pose and broadcasts a timestamped world-to-turtle transform, including a derived Euler-to-quaternion helper. It is an installed ROS 2 console entrypoint; the selected file has Apache-2.0 and BSD-2-Clause component terms.",
+  "framework": "ros2-tf2",
+  "kind": "community_skill",
+  "capabilities": [
+    "coordinate-transforms",
+    "transform-broadcasting",
+    "pose-conversion",
+    "robotics-middleware"
+  ],
+  "aliases": [
+    "ROS 2",
+    "tf2",
+    "TransformBroadcaster",
+    "TransformStamped",
+    "world frame",
+    "yaw quaternion",
+    "turtlesim"
+  ],
+  "robots": [
+    "turtlesim"
+  ],
+  "source": {
+    "repository": "https://github.com/ros/geometry_tutorials",
+    "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+    "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+    "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+    "sha256": "87928f4e427dc4166e936e262d4f519c915faa1ff2d59998540bc0d4c96ac61f",
+    "bytes": 3511,
+    "authors": [
+      "Open Source Robotics Foundation, Inc.",
+      "Matthew Brett",
+      "Christoph Gohlke"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0 AND BSD-2-Clause",
+    "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+    "scope": "Selected file has an Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc., plus a quaternion helper derived from transforms3d under BSD-2-Clause, copyright 2009-2019 Matthew Brett and Christoph Gohlke. Both notice sets apply to their components; retain attribution, terms, disclaimers and applicable notices when redistributing. Pinned BSD terms: https://github.com/matthew-brett/transforms3d/blob/f185e866ecccb66c545559bc9f2e19cb5025e0ab/LICENSE . This is not a choice between licenses or blanket package/dependency clearance.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Compatible ROS 2 rclpy environment with the context-manager init API used by this source",
+      "tf2_ros",
+      "geometry_msgs",
+      "turtlesim_msgs",
+      "numpy",
+      "Installed turtle_tf2_py package exposing the reviewed console entrypoint"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured ROS graph publishing the intended absolute /<turtlename>/pose topic",
+      "Reviewed turtlename parameter, world/child frame naming and node clock"
+    ],
+    "notes": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The turtlename parameter defaults to turtle. Pose callbacks subscribe to /<turtlename>/pose, stamp transforms with current node time, set parent frame world and child frame turtlename, copy x/y with z=0, convert yaw to quaternion and call sendTransform. Set intended parameters and provide matching pose publishers; this node alone does not create a complete following demo. The exact source imports turtlesim_msgs, whose availability must be resolved in the chosen environment. The copied helper's pinned transforms3d terms were reviewed, but mathematical correctness, clock/frame behavior, package installation and ROS graph compatibility were not executed or tested."
+  },
+  "invocation": {
+    "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_broadcaster",
+    "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_broadcaster:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy and broadcasts transforms from incoming pose messages. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node, package installer or simulator. A single fetched Python file is insufficient."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned node, both component license terms, package declarations and setup registration before use. This source reference does not install or execute code.",
+    "setup_url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete ROS node read as inert text and Python AST parsed without import or execution. Source, package, setup and Apache license pins matched the complete immutable tree. A separate three-GET review checked the exact linked transforms3d tree, BSD-2-Clause license and Euler source/helper attribution. Component source terms and registered console entrypoint were reviewed; no runtime or physical-controller compatibility is claimed."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-87928f4e427d",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
