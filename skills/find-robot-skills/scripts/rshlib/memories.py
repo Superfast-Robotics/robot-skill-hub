@@ -460,7 +460,8 @@ def query(catalog, skill_id, environment, *, project=None, index=None, offline=F
         raise RshError("invalid_hub_commit", "Use the exact published Hub commit returned by the previous page.")
     base, locked_environment = base_for(catalog, skill_id, project)
     supplied = {**locked_environment, **environment}
-    supplied = {key: str(value).lower() for key, value in supplied.items() if key != "status" and value not in (None, "", "unknown")}
+    supplied = {key: str(value).lower() for key, value in supplied.items() if key != "status" and value not in (None, "")}
+    supplied = {key: value for key, value in supplied.items() if value != "unknown"}
     fallback = []
     native_environment = (len(supplied) <= 16 and all(
         (key in ENV_KEYS or re.fullmatch(r"package\.[A-Za-z_][A-Za-z0-9_]{0,79}", key))
