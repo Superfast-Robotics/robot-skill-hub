@@ -87,15 +87,53 @@ class SelectionFindingsTests(unittest.TestCase):
         self.assertFalse((self.root / "cache").exists())
 
     def test_explicit_environment_only_and_wrong_source_or_version_is_excluded(self):
-        first = published()
-        variants = [first, published(base={**first["base"], "source_commit": "f" * 40}),
-                    published(base={**first["base"], "record_version": "2.0.0"}),
-                    published(environment={"runtime": "fixture", "robot": "ur5"})]
+        catalog = fixture_catalog()
+        catalog["records"][0]["maintenance"]["record_version"] = "2.0.0"
+        first = published(catalog)
+        variants = [first, published(catalog, base={**first["base"], "source_commit": "f" * 40}),
+                    published(catalog, base={**first["base"], "record_version": "1.0.0"}),
+                    published(catalog, environment={"runtime": "fixture", "robot": "ur5"})]
+        variants = [{**entry, "memory_id": "mem_" + str(i) * 64} for i, entry in enumerate(variants, 1)]
         with mock.patch.object(memories, "public_index", return_value=(self.index(variants), "cache")):
-            _, detail = self.cli(["inspect", "fixture-pick", "--offline", "--robot", "panda"])
-        self.assertEqual(detail["findings"]["total"], 1)
-        self.assertEqual(detail["findings"]["environment_filter"], {"robot": "panda"})
-        self.assertEqual(detail["findings"]["applicability"], "needs_applicability_check")
+            for value in ("Unknown", "UNKNOWN", "unknown"):
+                with self.subTest(runtime=value):
+                    _, detail = self.cli(["inspect", "fixture-pick", "--offline", "--runtime", value, "--robot", "PANDA"], catalog)
+                    recalled = detail["findings"]
+                    self.assertEqual(recalled["total"], 1)
+                    self.assertEqual(recalled["results"][0]["memory_id"], first["memory_id"])
+                    self.assertEqual(recalled["base"], first["base"])
+                    self.assertEqual(recalled["environment_filter"], {"robot": "panda"})
+                    self.assertEqual(recalled["applicability"], "needs_applicability_check")
+            missing = memories.query(catalog, "fixture-pick", {"runtime": None, "robot": "PANDA"}, offline=True, strict=True)
+            self.assertEqual(missing["total"], 1)
+            self.assertEqual(missing["environment_filter"], {"robot": "panda"})
+            padded = memories.query(catalog, "fixture-pick", {"runtime": " Unknown ", "robot": "panda"}, offline=True, strict=True)
+            self.assertEqual(padded["total"], 0)
+            self.assertEqual(padded["environment_filter"], {"runtime": " unknown ", "robot": "panda"})
+
+    def test_unknown_runtime_spellings_share_exact_native_request_and_cache(self):
+        catalog = fixture_catalog()
+        catalog["records"][0]["maintenance"]["record_version"] = "2.0.0"
+        entry = published(catalog)
+        page = {"schema_version": "1", "interpretation": "data_only", "execution_performed": False,
+                "hub_commit": HUB, "results": [entry], "total": 1, "limit": 3, "offset": 0,
+                "next": None, "coverage": {"complete": True}}
+        origins = []
+        with mock.patch.object(discovery, "fetch_public", return_value=page) as http, \
+                mock.patch.object(memories, "public_index", side_effect=AssertionError("unexpected aggregate")), \
+                mock.patch.object(contributions, "api_configuration", side_effect=AssertionError("credential access")):
+            for value in ("Unknown", "UNKNOWN", "unknown", None):
+                recalled = memories.query(catalog, "fixture-pick", {"runtime": value, "robot": "PANDA"}, limit=3, hub_commit=HUB)
+                self.assertEqual((recalled["total"], recalled["results"][0]["memory_id"]), (1, entry["memory_id"]))
+                self.assertEqual(recalled["environment_filter"], {"robot": "panda"})
+                self.assertEqual(recalled["base"], entry["base"])
+                origins.append(recalled["index_origin"])
+        self.assertEqual(origins, ["remote_api", "api_cache", "api_cache", "api_cache"])
+        self.assertEqual(http.call_count, 1)
+        url = urllib.parse.urlsplit(http.call_args.args[0])
+        self.assertEqual((url.scheme, url.netloc, url.path), ("https", "api.superfastrobotics.com", "/v1/findings"))
+        self.assertEqual(urllib.parse.parse_qs(url.query), {"skill_id": ["fixture-pick"], "record_version": ["2.0.0"],
+            "source_commit": [PIN], "robot": ["panda"], "limit": ["3"], "offset": ["0"], "hub_commit": [HUB]})
 
     def test_online_inspect_reads_one_anonymous_exact_pin_page(self):
         entry = published()
