@@ -1,0 +1,193 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_official_genesis_tutorial_source_review",
+  "scope": "One maintainer-reviewed, source-only Genesis World tutorial. Review is finite and does not establish dependency installation, asset license clearance, runtime compatibility or successful simulation.",
+  "repository": "https://github.com/Genesis-Embodied-AI/genesis-world",
+  "requested_repository": "https://github.com/Genesis-Embodied-AI/Genesis",
+  "commit": "50a2aa19cba6f3e1afdceb0fac239a56a0ef5502",
+  "canonical_repository_evidence": "The original official GitHub API commit endpoint returned HTTP 301 to repository ID 712225112; its explicitly requested official endpoint returned canonical genesis-world commit/tree URLs. Automatic redirects were disabled.",
+  "immutable_tree": {
+    "sha1": "8560c592896c8c7dc8bb66f266d8a1da11afad36",
+    "truncated": false,
+    "entry_count": 1198,
+    "response_sha256": "2ddf4b5c43932ffe78c00dbb60888ad811b1cb701637cab7b60704f73201818c"
+  },
+  "source_count": 1,
+  "source_bytes": 2508,
+  "source": {
+    "path": "examples/tutorials/IK_motion_planning_grasp.py",
+    "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/examples/tutorials/IK_motion_planning_grasp.py",
+    "sha256": "985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+    "bytes": 2508,
+    "git_blob_sha1": "bc6db7f5ace6ffe8d4c1b845066fde1ec63345f3",
+    "immutable_tree_match": true
+  },
+  "source_authors": [
+    "Genesis Authors"
+  ],
+  "source_author_evidence": {
+    "path": "README.md",
+    "sha256": "d0d2206b9bbb9cf615798342f491f3405cf5576b9ab645b1bab0dc4bf21b9b01",
+    "declaration": "author = {Genesis Authors}"
+  },
+  "license": {
+    "path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/LICENSE",
+    "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+    "bytes": 11356,
+    "git_blob_sha1": "f49a4e16e68b128803cc2dcea614603632b04eac",
+    "immutable_tree_match": true,
+    "spdx": "Apache-2.0",
+    "scope": "Selected Python tutorial source under the pinned Genesis repository Apache-2.0 declaration. Preserve upstream attribution, license and applicable notices when redistributing. Robot descriptions, meshes, binaries and third-party dependencies retain their own terms and were not cleared by this source review.",
+    "source_review_verified": true,
+    "model_assets_or_third_party_terms_reviewed": false
+  },
+  "setup": {
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/README.md",
+    "sha256": "d0d2206b9bbb9cf615798342f491f3405cf5576b9ab645b1bab0dc4bf21b9b01",
+    "bytes": 23419,
+    "git_blob_sha1": "097020529b8b5faa2b80147e13f4b8836cdc33c0",
+    "immutable_tree_match": true,
+    "python_requirement_declaration": ">=3.10,<3.14",
+    "PyTorch_before_Genesis_declared": true,
+    "CPU_and_CUDA_install_options_documented": true,
+    "direct_source_imports": [
+      "os",
+      "numpy",
+      "genesis"
+    ],
+    "installation_performed": false,
+    "transitive_package_versions_or_planning_implementation_reviewed": false
+  },
+  "source_behavior": {
+    "entrypoint_kind": "straightline_python_script",
+    "main_guard": false,
+    "backend": "Explicit gs.cpu; no CLI backend switch. Framework-wide default not reviewed.",
+    "viewer": "show_viewer=True; working display/graphics support required.",
+    "simulation_dt_seconds_declared": 0.01,
+    "operations": [
+      "Initialize CPU Genesis and create a viewer-enabled scene.",
+      "Create a plane and cube and load the Panda MJCF.",
+      "Build the simulation and set nine DOF gains and force limits.",
+      "Solve pre-grasp inverse kinematics, open fingers, plan and draw the default 200-waypoint joint path.",
+      "Command joint positions and advance simulation, clear debug path, solve reach IK, apply finger force and solve lift IK.",
+      "Print two joint configurations."
+    ],
+    "PYTEST_VERSION_branch": "Reduces path and later loop counts; not a runtime test result.",
+    "hardware_controller_connection_in_selected_source": false,
+    "explicit_network_shell_or_file_write_call_in_selected_source": false,
+    "library_side_effects_exhaustively_reviewed": false
+  },
+  "assets": {
+    "source_path_reference": "xml/franka_emika_panda/panda.xml",
+    "tree_model_path": "genesis/assets/xml/franka_emika_panda/panda.xml",
+    "tree_model_blob_sha1": "f2c9f3f3d4cec647ad58647d2f2bc587da5589ef",
+    "directory_blob_files": 77,
+    "directory_mesh_OBJ_STL_files": 67,
+    "directory_declared_bytes": 36562081,
+    "evidence_level": "Tree metadata only; model and mesh bytes not fetched or SHA-256 reviewed.",
+    "model_license_reviewed": false,
+    "standalone_source_sufficient_for_execution": false
+  },
+  "review_method": "Read all selected source as inert text and parsed its Python AST. Reverified raw source, license and README SHA-256, byte counts and Git blob IDs against the pinned nontruncated tree before curation. No upstream code imported or executed.",
+  "runtime_verification": "not_run",
+  "compatibility": {
+    "status": "unknown",
+    "all_six_required_dimensions": "unknown",
+    "README_python_range_is_requirement_not_tested_combination": true
+  },
+  "integration": {
+    "path": "catalog/intake/genesis-ik-motion-planning-grasp.json",
+    "kind": "community_skill",
+    "access": "source_reference",
+    "hub_prepare": false,
+    "record_version": "reviewed-20261018-985537566f01",
+    "maintainer_curation": true,
+    "API_submission_or_receipt_created": false,
+    "ecosystem_importer_changed": false,
+    "popularity_metric_claimed": false
+  },
+  "retrieval_history": {
+    "research_GET_attempts": 6,
+    "research_GET_successes": 5,
+    "research_redirect_responses": 1,
+    "requests": [
+      {
+        "url": "https://api.github.com/repos/Genesis-Embodied-AI/Genesis/commits/main",
+        "status": 301,
+        "bytes": 211,
+        "sha256": "862fa898fadf833813618f5bd3e97ff1cd0b2f67f4f71b54d09ea813320518ed",
+        "at": "2026-10-18T02:58:47.831389+00:00",
+        "max_body_bytes": 131072,
+        "redirect_location": "https://api.github.com/repositories/712225112/commits/main"
+      },
+      {
+        "url": "https://api.github.com/repositories/712225112/commits/main",
+        "status": 200,
+        "bytes": 36674,
+        "sha256": "4aa254742b3f6954378a55fce7f5a7d2e1c4818fb8ade9e238760c1fa84d0bb1",
+        "at": "2026-10-18T02:59:00.505562+00:00",
+        "max_body_bytes": 131072,
+        "redirect_location": null
+      },
+      {
+        "url": "https://api.github.com/repos/Genesis-Embodied-AI/genesis-world/git/trees/8560c592896c8c7dc8bb66f266d8a1da11afad36?recursive=1",
+        "status": 200,
+        "bytes": 315235,
+        "sha256": "2ddf4b5c43932ffe78c00dbb60888ad811b1cb701637cab7b60704f73201818c",
+        "at": "2026-10-18T02:59:06.046114+00:00",
+        "max_body_bytes": 8388608,
+        "redirect_location": null
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/LICENSE",
+        "status": 200,
+        "bytes": 11356,
+        "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+        "at": "2026-10-18T02:59:17.703327+00:00",
+        "max_body_bytes": 65536,
+        "redirect_location": null
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/README.md",
+        "status": 200,
+        "bytes": 23419,
+        "sha256": "d0d2206b9bbb9cf615798342f491f3405cf5576b9ab645b1bab0dc4bf21b9b01",
+        "at": "2026-10-18T02:59:17.661911+00:00",
+        "max_body_bytes": 131072,
+        "redirect_location": null
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Genesis-Embodied-AI/genesis-world/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/examples/tutorials/IK_motion_planning_grasp.py",
+        "status": 200,
+        "bytes": 2508,
+        "sha256": "985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+        "at": "2026-10-18T02:59:23.700433+00:00",
+        "max_body_bytes": 65536,
+        "redirect_location": null
+      }
+    ],
+    "current_curation_GETs": 0,
+    "cached_bytes_reverified": true,
+    "transport": {
+      "anonymous": true,
+      "DNT": "1",
+      "X-RSH-Telemetry": "off",
+      "cookies": false,
+      "proxy": false,
+      "automatic_redirects": false,
+      "identity_encoding": true,
+      "bounded_bodies": true,
+      "timeout_seconds": 30
+    }
+  },
+  "review_actions": {
+    "upstream_import_install_or_execution": false,
+    "simulator_run": false,
+    "controller_or_robot_contact": false,
+    "GPU_cloud_or_paid_service": false,
+    "secrets_or_authentication": false
+  }
+}
