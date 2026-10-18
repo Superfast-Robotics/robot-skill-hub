@@ -1,0 +1,52 @@
+{
+  "schema_version": "1",
+  "operation": "Operator-initiated read-only unbranded directory search; not a new submission or adoption.",
+  "provider": "Agent-Skills.md",
+  "observed_at_utc": "2026-10-18T04:34:37.286418+00:00",
+  "search_url": "https://agent-skills.md/?q=robotics",
+  "listing_url": "https://agent-skills.md/skills/Superfast-Robotics/robot-skill-hub/find-robot-skills",
+  "request": {
+    "url": "https://agent-skills.md/rpc/skills/search",
+    "method": "POST",
+    "body": {
+      "json": {
+        "query": "robotics",
+        "page": 1,
+        "pageSize": 50
+      }
+    },
+    "body_sha256": "41e254cfa87cc6b785816c290d149d2b96353c3c5277afe26155e5dcff5f0478",
+    "request_count": 1,
+    "operation_kind": "read-only search RPC",
+    "automatic_retry": false,
+    "authentication": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off"
+  },
+  "response": {
+    "http_status": 200,
+    "bytes": 26466,
+    "sha256": "ecfaf3cad313d287f45259c30bfe987effa01eca4c6de42b7d30efabf71d3984",
+    "returned_items": 38,
+    "query_total_reported": 38,
+    "page": 1,
+    "page_size": 50,
+    "query_total_pages_reported": 1,
+    "exact_owned_id_matches": 1,
+    "owned_entry": {
+      "id": "Superfast-Robotics/robot-skill-hub/find-robot-skills",
+      "repoId": "Superfast-Robotics/robot-skill-hub",
+      "name": "find-robot-skills",
+      "description": "Find reusable robotics code, policies and artifacts for manipulation, navigation, locomotion, control and motion planning across robot frameworks. Inspect exact sources and requirements, prepare supported recipes, register new sources, and reuse task findings. Does not provide physical robot execution.",
+      "authorName": "Superfast-Robotics",
+      "authorUrl": "https://github.com/Superfast-Robotics"
+    }
+  },
+  "Hub_requests": 0,
+  "limits": [
+    "The retained backend response establishes visibility for one robotics query at the recorded time. Provider-wide coverage, ordering stability and other queries were not measured.",
+    "The query contains neither the Hub brand nor its exact skill name. No second submission, download, installation, Hub visit or robot execution was performed.",
+    "Directory search visibility does not establish independent agent use, traffic, task success or adoption.",
+    "The full response is retained privately with its exact byte hash; this public receipt includes only the owned listing, not other directory entries. It was prepared offline without another request."
+  ]
+}

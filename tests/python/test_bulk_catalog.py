@@ -1,5 +1,6 @@
 """Check source provenance and adapters with fake modules, without a simulator."""
 import contextlib
+import hashlib
 import importlib.metadata
 import io
 import json
@@ -13,6 +14,14 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 import import_official_samples as importer
+
+TRANSPORT_PROOF = ROOT / "evidence/runtime/panda-transport-39097136411"
+TRANSPORT_PROOF_COMMIT = "039c103622c93e79d7b2ddb60dd0fc7345ebeab5"
+TRANSPORT_RESULTS = {
+    "maniskill-panda-push-cube": ("PushCube-v1", 71),
+    "maniskill-panda-pull-cube": ("PullCube-v1", 67),
+    "maniskill-panda-lift-peg-upright": ("LiftPegUpright-v1", 176),
+}
 
 
 class Scalar:
@@ -107,16 +116,82 @@ class BulkAdapterTests(unittest.TestCase):
                 self.assertNotIn("success", report)
                 env.close.assert_called_once()
 
-    def test_added_records_keep_source_only_evidence_and_special_requirements(self):
+    def test_added_records_keep_pins_review_scope_and_special_requirements(self):
         for sample in importer.SAMPLES:
             record = json.loads((ROOT / "catalog/records" / ("maniskill-" + sample[0] + ".json")).read_text())
             self.assertEqual(record["invocation"]["entrypoint"], importer.solver_module(sample) + ":solve")
             self.assertEqual(record["source"]["commit"], importer.PIN)
             self.assertEqual(record["source"]["archive_sha256"], importer.ARCHIVE_SHA256)
-            self.assertEqual(record["evidence"]["runtime_verification"], "not_run")
+            proven = record["id"] in TRANSPORT_RESULTS
+            self.assertEqual(record["evidence"]["runtime_verification"], "task_complete" if proven else "not_run")
+            self.assertEqual(record["compatibility"][0]["status"], "hub_verified" if proven else "source_reviewed")
             self.assertEqual(record["compatibility"][0]["robot"], sample[3])
             if sample[2] == "DrawSVG-v1":
                 self.assertIn("svgpathtools==1.6.1", record["requirements"]["packages"])
+
+    def test_transport_promotion_matches_immutable_execution_evidence(self):
+        manifest = json.loads((TRANSPORT_PROOF / "manifest.json").read_bytes())
+        self.assertEqual(manifest["requested_skills"], list(TRANSPORT_RESULTS))
+        self.assertEqual(manifest["original_artifact_id"], 12125411457)
+        self.assertEqual(manifest["original_artifact_sha256"],
+                         "a6714f527caad7a112451f940f5617dfc5173a286c42429847e877eb4e958257")
+        self.assertTrue(manifest["provider_digest_verified"])
+        for relative, digest in manifest["files_sha256"].items():
+            self.assertEqual(hashlib.sha256((TRANSPORT_PROOF / relative).read_bytes()).hexdigest(), digest, relative)
+        summary = json.loads((TRANSPORT_PROOF / "report.json").read_bytes())
+        orchestration = json.loads((TRANSPORT_PROOF / "orchestration.json").read_bytes())
+        self.assertEqual(summary["batch"], "panda-transport")
+        self.assertEqual(summary["hub_commit"], manifest["verified_hub_commit"])
+        self.assertFalse(orchestration["fresh_blind_context"])
+        self.assertEqual(orchestration["orchestrator"], "same_maintainer_agent_explicit_named_batch")
+        self.assertEqual(len(summary["recipes"]), 3)
+        for ident, (task, steps) in TRANSPORT_RESULTS.items():
+            with self.subTest(skill=ident):
+                report = json.loads((TRANSPORT_PROOF / ident / "report.json").read_bytes())
+                stdout = (TRANSPORT_PROOF / ident / "task.stdout.txt").read_text().splitlines()
+                result = json.loads(stdout[-1])
+                command = json.loads((TRANSPORT_PROOF / ident / "task.command.json").read_bytes())
+                environment = json.loads((TRANSPORT_PROOF / ident / "environment.json").read_bytes())
+                record = json.loads((ROOT / "catalog/records" / (ident + ".json")).read_bytes())
+                evidence = record["evidence"]
+                verified = evidence["hub_verification"]
+                self.assertEqual(report["result"], result)
+                self.assertIn(report, summary["recipes"])
+                self.assertEqual(report["execution"], command)
+                self.assertTrue(report["execution_performed"])
+                self.assertTrue(report["contract_matches"])
+                self.assertEqual(result["task"], task)
+                self.assertEqual(result["elapsed_steps"], steps)
+                self.assertTrue(result["success"])
+                self.assertTrue(result["terminated"])
+                self.assertFalse(result["truncated"])
+                self.assertEqual(result["max_episode_steps"], 1000)
+                self.assertGreater(steps, 0)
+                self.assertLess(steps, result["max_episode_steps"])
+                self.assertEqual(result["seed"], 0)
+                self.assertEqual(result["sim_backend"], "cpu")
+                self.assertEqual(result["render_backend"], "none")
+                self.assertEqual(command["exit_code"], 0)
+                self.assertTrue(command["started"])
+                self.assertFalse(command["timed_out"])
+                self.assertEqual(command["timeout_seconds"], 180)
+                self.assertEqual(report["source_commit"], record["source"]["commit"])
+                self.assertEqual(report["source_archive_sha256"], record["source"]["archive_sha256"])
+                self.assertEqual(report["record_version"], record["maintenance"]["record_version"])
+                adapter = ROOT / "recipes" / ident / "run.py"
+                self.assertEqual(report["adapter_sha256"], hashlib.sha256(adapter.read_bytes()).hexdigest())
+                for key in ("source_commit", "adapter_sha256", "record_version"):
+                    self.assertEqual(verified[key], report[key])
+                self.assertEqual(verified["verified_hub_commit"], summary["hub_commit"])
+                self.assertEqual(verified["workflow_run_id"], "39097136411")
+                self.assertEqual(verified["elapsed_steps"], steps)
+                self.assertFalse(verified["physical_gpu_used"])
+                self.assertEqual(evidence["level"], "task_complete")
+                self.assertEqual(evidence["environment"]["packages"], environment["packages"])
+                proof_url = ("https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/"
+                             + TRANSPORT_PROOF_COMMIT + "/evidence/runtime/panda-transport-39097136411/manifest.json")
+                self.assertIn(proof_url, evidence["artifacts"])
+                self.assertIsNone(evidence["contributor_reported"])
 
     def test_reference_examples_do_not_claim_hub_preparation(self):
         path = ROOT / "catalog/references.json"

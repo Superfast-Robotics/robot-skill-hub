@@ -1,0 +1,120 @@
+{
+  "id": "nav2-smac-hybrid-planner",
+  "name": "Nav2 Smac Hybrid-A* global planner plugin",
+  "summary": "Official C++ Nav2 global-planner plugin that configures hybrid search, footprint/costmap collision checking, optional downsampling and smoothing, then returns a path. It requires the complete Nav2 package and host planner server; it is not a standalone or executed navigation task.",
+  "framework": "nav2",
+  "kind": "community_skill",
+  "capabilities": [
+    "navigation",
+    "global-path-planning",
+    "hybrid-a-star",
+    "costmap-planning",
+    "planner-plugin"
+  ],
+  "aliases": [
+    "SmacPlannerHybrid",
+    "Hybrid-A*",
+    "hybrid A star",
+    "astar",
+    "hybrid astar",
+    "createPlan",
+    "NodeHybrid",
+    "DUBIN",
+    "REEDS_SHEPP",
+    "nav2_core::GlobalPlanner"
+  ],
+  "robots": [
+    "unspecified mobile robot"
+  ],
+  "source": {
+    "repository": "https://github.com/ros-navigation/navigation2",
+    "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+    "path": "nav2_smac_planner/src/smac_planner_hybrid.cpp",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+    "sha256": "0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+    "bytes": 31578,
+    "authors": [
+      "Samsung Research America",
+      "Open Navigation LLC"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+    "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Samsung Research America and 2023 Open Navigation LLC; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review does not clear helper/third-party implementations, model assets, dependencies, binaries or deployment; CMake also references separately licensed third-party material outside this selected file.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned nav2_smac_planner ROS 2 package and ament_cmake build environment",
+      "rclcpp",
+      "rclcpp_action",
+      "rclcpp_lifecycle",
+      "std_msgs",
+      "visualization_msgs",
+      "nav2_util",
+      "nav2_msgs",
+      "nav_msgs",
+      "geometry_msgs",
+      "builtin_interfaces",
+      "nav2_common",
+      "tf2_ros",
+      "nav2_costmap_2d",
+      "nav2_core",
+      "pluginlib",
+      "eigen3_cmake_module",
+      "eigen",
+      "ompl",
+      "nlohmann-json-dev",
+      "angles",
+      "OMPL",
+      "Eigen3",
+      "Complete Smac AStarAlgorithm, NodeHybrid, collision, downsampling and smoothing sources/headers",
+      "C++ toolchain compatible with the package CMake configuration"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured Nav2 planner server and lifecycle node loading this plugin",
+      "Start/goal poses in the configured global frame, footprint and active global costmap",
+      "Reviewed motion model, turning radius, unknown-space policy and search limits for the intended application"
+    ],
+    "notes": "configure creates AStarAlgorithm<NodeHybrid>, a footprint collision checker, optional smoother/downsampler and lifecycle path/debug publishers. Defaults include DUBIN motion model, allow_unknown=true, 72 angle bins and max_planning_time=5.0 seconds; these are source settings, not measured performance or universal robot parameters. createPlan locks the costmap, converts start/goal to grid bins, requests a path using the supplied cancellation callback, returns world-frame poses and may smooth within remaining configured time. Outside-map, occupied-start and search failures raise planner exceptions. A same-cell start/goal special case returns one pose. It can publish unsmoothed_plan, optional expansions/footprint markers and downsampled costmaps. Activation adds dynamic parameter and global-costmap resolution callbacks. CMake defaults C++17 when no standard is set and links OMPL/Eigen. No search helper, motion model, task result, controller or ROS/OS compatibility was executed or verified."
+  },
+  "invocation": {
+    "entrypoint": "pluginlib nav2_smac_planner::SmacPlannerHybrid (nav2_core::GlobalPlanner)",
+    "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_smac_planner/smac_plugin_hybrid.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+    "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-0cb74d083ffb",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

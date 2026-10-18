@@ -238,9 +238,21 @@ See the [sanitized live integration proof](https://github.com/Superfast-Robotics
 - Both final results satisfy the current acceptance condition: `success=true`, `truncated=false` and `0 < elapsed_steps < 1000`. CPU/state simulation used Panda with `pd_joint_pos` and a Mesa lavapipe software Vulkan device, with no physical GPU or output rendering. Neither task hit the external process timeout. This establishes only the recorded seed and configuration under the Hub budget, not completion within the upstream 50-step benchmark horizon.
 - Exact new outputs, command metadata, dependency/environment records and orchestration evidence are preserved in [evidence/runtime/llm-bounded-39045603320](../evidence/runtime/llm-bounded-39045603320). The old outputs accepted without truncation checks remain separately preserved and qualified above; matching 74/107 step counts do not make those older artifacts validation of the new wrappers.
 
+## Named Panda transport CPU batch
+
+- [Run 39097136411](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411) executed the exact `1.1.0` PushCube, PullCube and LiftPegUpright wrappers at Hub commit `a248d21d5cd09afedb93461ca5208298b6123dd3` on 2026-10-18. The same maintainer agent explicitly selected the `panda-transport` named batch; this was one authorized dispatch, not a fresh blind-selection or public-adoption experiment. Each task ran once at seed 0.
+
+| Task | success | terminated | truncated | elapsed_steps / Hub limit | Exit | Task process time |
+| --- | --- | --- | --- | --- | --- | --- |
+| PushCube-v1 | true | true | false | 71 / 1000 | 0 | 4.575 s |
+| PullCube-v1 | true | true | false | 67 / 1000 | 0 | 3.272 s |
+| LiftPegUpright-v1 | true | true | false | 176 / 1000 | 0 | 3.327 s |
+
+- All three satisfy `success=true`, `truncated=false` and `0 < elapsed_steps < 1000`, without hitting the 180-second executor timeout. The captured configuration is Linux x86_64 / Ubuntu 22.04, Python 3.10.22, ManiSkill 3.0.0b22, Panda, `pd_joint_pos`, state observations, CPU simulation and `render_backend=none`. Mesa 23.2.1 lavapipe supplied software Vulkan initialization; no physical GPU or camera/output rendering was used. The [immutable manifest](https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/manifest.json) binds the exact copied outputs, command metadata, environments and explicit-batch orchestration to the provider-verified artifact. This evidence covers one seed per task under the Hub 1000-step horizon, not the upstream default benchmark, other environments or physical hardware. Prior run failures and the earlier two-task evidence remain preserved above.
+
 ## Pending / unverified
 
-- The two initial `1.1.0` recipes have the bounded runtime evidence above. Standard 50-step benchmark completion remains unverified. The other 15 preparation recipes and source-reference catalog have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
+- Five of the 17 `1.1.0` preparation recipes have the bounded runtime evidence above. Upstream default benchmark completion remains unverified. The remaining 12 preparation recipes and source-reference catalog have no new runtime execution evidence. Multiple seeds, other distributions, camera/RGB modes, physical GPUs and real hardware remain unverified.
 - Context7 registration, a finalized library search result and retrieval of actual Hub instructions with source links were confirmed at 2026-10-17 20:05 UTC in the [provider receipt](../evidence/discovery/v0.3.3/context7-registration.json). The then-unpublished source-file update is outside that indexing check. Platform automatic activation, general unbranded discovery, other search-engine indexing and skills.sh search inclusion remain **unverified**. Maintainer validation and repository install tests do not establish general model adoption.
 
 The original supplied planning documents remain local and were not published. No tokens, private datasets, session transcripts or full project logs were uploaded.

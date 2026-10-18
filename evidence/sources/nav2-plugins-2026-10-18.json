@@ -1,0 +1,296 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "finite_official_nav2_controller_and_planner_plugin_source_review",
+  "scope": "Three distinct implementation references beyond the existing nine Simple Commander clients. Source-only metadata; no code redistribution, complete-package license clearance, runtime or physical-controller compatibility claim.",
+  "repository": "https://github.com/ros-navigation/navigation2",
+  "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+  "source_count": 3,
+  "source_bytes": 57716,
+  "sources": [
+    {
+      "id": "nav2-mppi-controller",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_mppi_controller/src/controller.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "sha256": "4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+        "bytes": 4475,
+        "authors": [
+          "Samsung Research America",
+          "Alexey Budyakov"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "scope": "Selected controller.cpp explicitly declares Apache-2.0, copyright 2022 Samsung Research America and Alexey Budyakov. Its package.xml instead declares MIT. The pinned root LICENSE directs existing files to retain their file license; Apache verification is limited to this explicitly marked file. Preserve copyright, license and applicable notices. This does not resolve or clear the whole MIT-declared package, optimizer, critics, dependencies, binaries or deployment.",
+        "verified": true
+      },
+      "source_role": "C++ shared-library plugin implementation; not a standalone executable",
+      "plugin_class": "nav2_mppi_controller::MPPIController",
+      "base_class": "nav2_core::Controller",
+      "library": "mppi_controller",
+      "plugin_registration": "nav2_mppi_controller/mppic.xml",
+      "package_version_declared": "1.3.14",
+      "package_license_declared": [
+        "MIT"
+      ],
+      "observed_functions": [
+        "configure",
+        "activate",
+        "deactivate",
+        "cleanup",
+        "reset",
+        "computeVelocityCommands",
+        "visualize",
+        "setPlan",
+        "setSpeedLimit"
+      ],
+      "source_effects": [
+        "Returns TwistStamped from optimizer_.evalControl for the host controller server",
+        "Configures and controls parameter/trajectory visualization lifecycle; optional visualization can publish trajectories",
+        "Locks parameter and costmap state; delegates plan and speed-limit changes"
+      ],
+      "limits": "The selected file initializes Optimizer, PathHandler, ParametersHandler and TrajectoryVisualizer. computeVelocityCommands locks parameter and costmap state, transforms the goal/path, calls optimizer_.evalControl and returns TwistStamped; optimizer and critic algorithm bodies are not this selected file. Visualization defaults to false here and may publish trajectories when enabled. Lifecycle callbacks activate/deactivate visualization and parameter handling; setPlan and setSpeedLimit delegate to composed objects. Complete headers, optimizer, critics, transforms, costmap, goal checker and configured Nav2 controller server are required. The source returns a command to its host; this file does not itself publish cmd_vel. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. CMake enables toolchain-conditional SIMD flags and links xtensor/xsimd; no architecture, rate, robot or safe stopping was verified.",
+      "runtime_verification": "not_run",
+      "compatibility": "unknown"
+    },
+    {
+      "id": "nav2-regulated-pure-pursuit-controller",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "sha256": "9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+        "bytes": 21663,
+        "authors": [
+          "Shrijit Singh",
+          "Samsung Research America"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Shrijit Singh and Samsung Research America; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review covers only the selected source and does not clear other package files, helper implementations, dependencies, binaries or physical-robot deployment.",
+        "verified": true
+      },
+      "source_role": "C++ shared-library plugin implementation; not a standalone executable",
+      "plugin_class": "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController",
+      "base_class": "nav2_core::Controller",
+      "library": "nav2_regulated_pure_pursuit_controller",
+      "plugin_registration": "nav2_regulated_pure_pursuit_controller/nav2_regulated_pure_pursuit_controller.xml",
+      "package_version_declared": "1.3.14",
+      "package_license_declared": [
+        "Apache-2.0"
+      ],
+      "observed_functions": [
+        "configure",
+        "computeVelocityCommands",
+        "getLookAheadDistance",
+        "getLookAheadPoint",
+        "applyConstraints",
+        "rotateToHeading",
+        "cancel",
+        "setPlan",
+        "setSpeedLimit",
+        "reset"
+      ],
+      "source_effects": [
+        "Returns linear x and angular z TwistStamped to the host controller server",
+        "Publishes plan, lookahead-point and rotation-state diagnostic topics",
+        "Conditional collision checker throws NoValidControl; cancellation and speed-limit callbacks alter state"
+      ],
+      "limits": "computeVelocityCommands locks parameter/costmap state, transforms the plan, selects and publishes lookahead points, calculates curvature, handles heading rotation/reversing and applies curvature, cost and goal-approach velocity constraints. Configured collision detection can throw NoValidControl through a separate collision checker; its presence is not a measured safety guarantee. The source returns TwistStamped to its host rather than publishing cmd_vel itself. It creates lifecycle publishers for received_global_plan, lookahead_point, curvature_lookahead_point and is_rotating_to_heading. Cancellation can use configured deceleration; plan/reset/speed-limit methods change internal state. CMake explicitly requests C++17. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. Headers, path/parameter/collision helpers, ROS graph, transforms, footprint and host server must be supplied and reviewed.",
+      "runtime_verification": "not_run",
+      "compatibility": "unknown"
+    },
+    {
+      "id": "nav2-smac-hybrid-planner",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "sha256": "0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+        "bytes": 31578,
+        "authors": [
+          "Samsung Research America",
+          "Open Navigation LLC"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Samsung Research America and 2023 Open Navigation LLC; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review does not clear helper/third-party implementations, model assets, dependencies, binaries or deployment; CMake also references separately licensed third-party material outside this selected file.",
+        "verified": true
+      },
+      "source_role": "C++ shared-library plugin implementation; not a standalone executable",
+      "plugin_class": "nav2_smac_planner::SmacPlannerHybrid",
+      "base_class": "nav2_core::GlobalPlanner",
+      "library": "nav2_smac_planner",
+      "plugin_registration": "nav2_smac_planner/smac_plugin_hybrid.xml",
+      "package_version_declared": "1.3.14",
+      "package_license_declared": [
+        "Apache-2.0"
+      ],
+      "observed_functions": [
+        "configure",
+        "activate",
+        "deactivate",
+        "cleanup",
+        "createPlan",
+        "dynamicParametersCallback"
+      ],
+      "source_effects": [
+        "Returns nav_msgs::msg::Path; it does not drive a robot or publish cmd_vel",
+        "Publishes unsmoothed paths and optional expansions/footprint markers/downsampled costmaps",
+        "Registers dynamic parameter and remote global-costmap resolution callbacks; changes search/collision/smoother state"
+      ],
+      "limits": "configure creates AStarAlgorithm<NodeHybrid>, a footprint collision checker, optional smoother/downsampler and lifecycle path/debug publishers. Defaults include DUBIN motion model, allow_unknown=true, 72 angle bins and max_planning_time=5.0 seconds; these are source settings, not measured performance or universal robot parameters. createPlan locks the costmap, converts start/goal to grid bins, requests a path using the supplied cancellation callback, returns world-frame poses and may smooth within remaining configured time. Outside-map, occupied-start and search failures raise planner exceptions. A same-cell start/goal special case returns one pose. It can publish unsmoothed_plan, optional expansions/footprint markers and downsampled costmaps. Activation adds dynamic parameter and global-costmap resolution callbacks. CMake defaults C++17 when no standard is set and links OMPL/Eigen. No search helper, motion model, task result, controller or ROS/OS compatibility was executed or verified.",
+      "runtime_verification": "not_run",
+      "compatibility": "unknown"
+    }
+  ],
+  "retrieval": {
+    "fresh_anonymous_GET_attempts": 12,
+    "successful_HTTP_200": 12,
+    "bounded_body_bytes_per_GET": 131072,
+    "immutable_urls_only": true,
+    "automatic_retry": false,
+    "authentication": false,
+    "cookies": false,
+    "proxy": false,
+    "redirect_following": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off",
+    "files": [
+      {
+        "path": "nav2_mppi_controller/src/controller.cpp",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "status": 200,
+        "bytes": 4475,
+        "sha256": "4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+        "git_blob_sha1": "d0cadcf14b4055ae85ef0e676df6e1235c8ef5fc"
+      },
+      {
+        "path": "nav2_mppi_controller/package.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/package.xml",
+        "status": 200,
+        "bytes": 1421,
+        "sha256": "14a4173677eea7c5a0ed77ebc9abb5d9db9a7962efc47e71d89bedeb6fc16bca",
+        "git_blob_sha1": "0bd9e6253996b1cd3d2c94de51a865dd6b29b6aa"
+      },
+      {
+        "path": "nav2_mppi_controller/mppic.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/mppic.xml",
+        "status": 200,
+        "bytes": 252,
+        "sha256": "56c34be47d0854eb1c511eccc205750dedd7e6b9706a1d6a6e9ce09151b403aa",
+        "git_blob_sha1": "021a3be8eb096261bae10d68e58173bed6318747"
+      },
+      {
+        "path": "nav2_mppi_controller/CMakeLists.txt",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/CMakeLists.txt",
+        "status": 200,
+        "bytes": 3402,
+        "sha256": "c3d55c911334584731d224ce1dea5c529262ef050980e0be9b51fb40f8ae114d",
+        "git_blob_sha1": "391923eaf719a7cebf236b10942d09c0f460ef96"
+      },
+      {
+        "path": "nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "status": 200,
+        "bytes": 21663,
+        "sha256": "9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+        "git_blob_sha1": "fe8521550c5a604a986145a12404c7f394d84ce6"
+      },
+      {
+        "path": "nav2_regulated_pure_pursuit_controller/package.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/package.xml",
+        "status": 200,
+        "bytes": 1166,
+        "sha256": "908093ce1be05f890b099064ed885e69bf70f445a9ed3137c8f04e04f550c8cf",
+        "git_blob_sha1": "d24b4285ac11efe0ae39452b3d178a6dd6620e69"
+      },
+      {
+        "path": "nav2_regulated_pure_pursuit_controller/nav2_regulated_pure_pursuit_controller.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/nav2_regulated_pure_pursuit_controller.xml",
+        "status": 200,
+        "bytes": 372,
+        "sha256": "6d903da447c019f3edee595cef9d9cdb6d6d1c331ef01e5765ecdb88d7b1709b",
+        "git_blob_sha1": "d695bcec7f8b14fb91ca9cec1139422daa1b4605"
+      },
+      {
+        "path": "nav2_regulated_pure_pursuit_controller/CMakeLists.txt",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/CMakeLists.txt",
+        "status": 200,
+        "bytes": 1667,
+        "sha256": "b6737f72572345d39377c3ec14b65b7626e401cd23126187aacdc5681eac5908",
+        "git_blob_sha1": "e0340a131c974a3a086532293011a0d027943787"
+      },
+      {
+        "path": "nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "status": 200,
+        "bytes": 31578,
+        "sha256": "0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+        "git_blob_sha1": "8ad0960ade7d73bc4ad8c249d6e68399d20791a8"
+      },
+      {
+        "path": "nav2_smac_planner/package.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/package.xml",
+        "status": 200,
+        "bytes": 1504,
+        "sha256": "cfecc10c9cafc4dd58e84900d5b8e8d7e2c0939513d01e97e227593d7e69a36d",
+        "git_blob_sha1": "ccb312c3643feca4e1bb6b693a355e1d201a2866"
+      },
+      {
+        "path": "nav2_smac_planner/smac_plugin_hybrid.xml",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/smac_plugin_hybrid.xml",
+        "status": 200,
+        "bytes": 205,
+        "sha256": "dca4ef79921dc79cad3384997d9a4903a8283b998021c0a194c4a25347b8e2a9",
+        "git_blob_sha1": "dec7fd1b7fcac50f1bf5a1a7fbcd137d93b972f4"
+      },
+      {
+        "path": "nav2_smac_planner/CMakeLists.txt",
+        "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/CMakeLists.txt",
+        "status": 200,
+        "bytes": 3846,
+        "sha256": "aa7d5e186621171ebe56c5f2f217293c326335b3514424c27dcc448022cb57cb",
+        "git_blob_sha1": "d9da9fd14749fd4d120192f89437b700326f6672"
+      }
+    ]
+  },
+  "cached_complete_tree": {
+    "repository": "ros-navigation/navigation2",
+    "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+    "ref_recorded": "jazzy",
+    "truncated": false,
+    "sha256": "d2cb251f11feb2a1c0b79d6eca87eeafc4f571bf3ee87e1a8e08db450c5b2287",
+    "interpretation": "Previously retained complete official tree at the existing catalog pin; no current branch-tip or popularity claim. All twelve fresh file bodies matched their exact tree Git blobs and sizes."
+  },
+  "reused_license_index": {
+    "path": "LICENSE",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+    "bytes": 524,
+    "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+    "git_blob_sha1": "ce2ed3dff819a38de11b17883e38dace87fb4922",
+    "tree_match": true,
+    "new_fetch": false,
+    "meaning": "Repository-wide multi-license index delegates package declarations and preserves existing-file licenses. It is not blanket Apache clearance. MPPI selected-file Apache header and MIT package declaration are both retained explicitly."
+  },
+  "verification_boundary": {
+    "upstream_import_compile_load_or_execution": false,
+    "dependency_installation": false,
+    "ROS_simulator_robot_controller_GPU_or_cloud_used": false,
+    "Hub_preparation_adapter": false,
+    "runtime_verification": "not_run",
+    "compatibility": "all unknown",
+    "public_API_submission_receipt_created": false,
+    "popularity_or_adoption_measured": false
+  }
+}

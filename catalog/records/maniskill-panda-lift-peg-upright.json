@@ -51,7 +51,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -73,7 +73,7 @@
     "hardware": [
       "Linux x86_64 CPU; SAPIEN wheel needs glibc >=2.28"
     ],
-    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization may still require a usable Vulkan ICD. CPU Mesa lavapipe initialization was verified for the initial PickCube/StackCube recipes, not for this task.",
+    "rendering": "Output rendering disabled: render_backend=none, render_mode=None, state observations and CPU simulation. Pinned SAPIEN material initialization still needs a usable Vulkan ICD; this task was verified CPU-only with Mesa 23.2.1 lavapipe on Ubuntu 22.04. Camera/graphics modes remain separate and unverified.",
     "api_keys": [],
     "network": [
       "GitHub source archive (~233 MiB)",
@@ -154,24 +154,61 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Robot Skill Hub source review",
-    "date": "2026-10-17",
+    "level": "task_complete",
+    "verified_by": "Robot Skill Hub maintainer review of exact explicitly selected named-batch GitHub Actions execution artifacts",
+    "date": "2026-10-18",
     "environment": {
-      "source": "pinned upstream release",
-      "host": "Windows source inspection"
+      "os": "linux",
+      "distribution": "Ubuntu 22.04",
+      "architecture": "x86_64",
+      "python": "3.10.22",
+      "packages": {
+        "mani_skill": "3.0.0b22",
+        "torch": "2.5.1+cpu",
+        "numpy": "1.26.4",
+        "sapien": "3.0.0",
+        "mplib": "0.1.1",
+        "fast_kinematics": "0.2.2"
+      },
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "vulkan_device": "Mesa 23.2.1 llvmpipe LLVM 15.0.7, PHYSICAL_DEVICE_TYPE_CPU",
+      "physical_gpu_used": false,
+      "max_episode_steps": 1000
     },
     "commands": [
-      "python tools/import_official_samples.py --archive .local/upstream/maniskill-33967b9.tar.gz --check",
-      "python -m unittest discover -s tests/python -p test_bulk_catalog.py"
+      "python tools/run_runtime_verification.py --batch panda-transport --output \"$RUNNER_TEMP/runtime-artifacts\" --work-dir \"$RUNNER_TEMP/runtime-work\"",
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/environments/maniskill-panda-lift-peg-upright/bin/python /home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/recipes/maniskill-panda-lift-peg-upright/run.py --seed 0"
     ],
-    "result": "Inspected the pinned solver signature, task registration, source license and wrapper contract. No simulator invocation evidence is attached. Version 1.1.0 explicitly sets a Hub 1000-step horizon and rejects truncated results; this updated wrapper has not been run in a simulator.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "LiftPegUpright-v1 seed 0 completed in the explicit Hub 1000-step motion-planning episode: success=true, terminated=true, truncated=false, elapsed_steps=176, exit=0 and no 180-second process timeout (3.327 seconds task process time). The same maintainer agent explicitly selected the panda-transport named batch; each task ran once. This verifies only the recorded CPU/state configuration and seed, not the upstream default benchmark, multiple-seed reliability, fresh blind discovery, public adoption, hardware or camera modes.",
+    "artifacts": [
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/manifest.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/maniskill-panda-lift-peg-upright/report.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/maniskill-panda-lift-peg-upright/task.stdout.txt",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/maniskill-panda-lift-peg-upright/environment.json",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/vulkan-summary.txt",
+      "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/orchestration.json",
+      "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "level": "source_reviewed",
-      "runtime": "not_run"
+      "level": "task_complete",
+      "runtime": "task_complete",
+      "workflow_run_id": "39097136411",
+      "verified_hub_commit": "a248d21d5cd09afedb93461ca5208298b6123dd3",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "adapter_sha256": "27cb16f115fb30a98660c5d466ace29f90dac993fe3023d72a1ac312d62b2d67",
+      "record_version": "1.1.0",
+      "seed": 0,
+      "max_episode_steps": 1000,
+      "terminated": true,
+      "truncated": false,
+      "elapsed_steps": 176,
+      "physical_gpu_used": false
     }
   },
   "maintenance": {

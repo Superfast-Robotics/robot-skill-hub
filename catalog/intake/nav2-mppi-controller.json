@@ -1,0 +1,112 @@
+{
+  "id": "nav2-mppi-controller",
+  "name": "Nav2 MPPI controller plugin integration",
+  "summary": "Official C++ Nav2 controller plugin that configures MPPI components, transforms a supplied path and delegates velocity computation to the optimizer. This selected integration source is a plugin implementation, not the optimizer algorithm or a standalone navigation task.",
+  "framework": "nav2",
+  "kind": "community_skill",
+  "capabilities": [
+    "navigation",
+    "path-following",
+    "velocity-command",
+    "controller-plugin"
+  ],
+  "aliases": [
+    "MPPI",
+    "model predictive path integral",
+    "MPPIController",
+    "computeVelocityCommands",
+    "evalControl",
+    "nav2_core::Controller",
+    "mppi_controller"
+  ],
+  "robots": [
+    "unspecified mobile robot"
+  ],
+  "source": {
+    "repository": "https://github.com/ros-navigation/navigation2",
+    "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+    "path": "nav2_mppi_controller/src/controller.cpp",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+    "sha256": "4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+    "bytes": 4475,
+    "authors": [
+      "Samsung Research America",
+      "Alexey Budyakov"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+    "scope": "Selected controller.cpp explicitly declares Apache-2.0, copyright 2022 Samsung Research America and Alexey Budyakov. Its package.xml instead declares MIT. The pinned root LICENSE directs existing files to retain their file license; Apache verification is limited to this explicitly marked file. Preserve copyright, license and applicable notices. This does not resolve or clear the whole MIT-declared package, optimizer, critics, dependencies, binaries or deployment.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned nav2_mppi_controller ROS 2 package and ament_cmake build environment",
+      "ament_cmake_ros",
+      "rclcpp",
+      "nav2_common",
+      "nav2_core",
+      "nav2_util",
+      "nav2_costmap_2d",
+      "geometry_msgs",
+      "visualization_msgs",
+      "nav2_msgs",
+      "nav_msgs",
+      "pluginlib",
+      "tf2_geometry_msgs",
+      "tf2",
+      "tf2_eigen",
+      "tf2_ros",
+      "std_msgs",
+      "xtensor",
+      "libomp-dev",
+      "benchmark",
+      "xsimd",
+      "Compatible C++ toolchain for the package compiler and optimization flags"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured Nav2 controller server and lifecycle node loading this plugin",
+      "Valid robot pose/speed, plan, goal checker, tf2 buffer and active costmap"
+    ],
+    "notes": "The selected file initializes Optimizer, PathHandler, ParametersHandler and TrajectoryVisualizer. computeVelocityCommands locks parameter and costmap state, transforms the goal/path, calls optimizer_.evalControl and returns TwistStamped; optimizer and critic algorithm bodies are not this selected file. Visualization defaults to false here and may publish trajectories when enabled. Lifecycle callbacks activate/deactivate visualization and parameter handling; setPlan and setSpeedLimit delegate to composed objects. Complete headers, optimizer, critics, transforms, costmap, goal checker and configured Nav2 controller server are required. The source returns a command to its host; this file does not itself publish cmd_vel. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. CMake enables toolchain-conditional SIMD flags and links xtensor/xsimd; no architecture, rate, robot or safe stopping was verified."
+  },
+  "invocation": {
+    "entrypoint": "pluginlib nav2_mppi_controller::MPPIController (nav2_core::Controller)",
+    "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_mppi_controller/mppic.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+    "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-4a666ff612d0",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

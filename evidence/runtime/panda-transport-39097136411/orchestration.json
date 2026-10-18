@@ -1,0 +1,106 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "orchestrator": "same_maintainer_agent_explicit_named_batch",
+  "fresh_blind_context": false,
+  "batch": "panda-transport",
+  "requested_skills": [
+    "maniskill-panda-push-cube",
+    "maniskill-panda-pull-cube",
+    "maniskill-panda-lift-peg-upright"
+  ],
+  "selection": "The same maintainer agent explicitly selected the panda-transport named batch and dispatched one authorized GitHub Actions run.",
+  "selected": [
+    {
+      "id": "maniskill-panda-push-cube",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "d6e938a9db227e073d990086ff4cea74d19031c03ee113fa85889426d4185884",
+      "max_episode_steps": 1000
+    },
+    {
+      "id": "maniskill-panda-pull-cube",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "59ae96c44716d30f6d0d7781b6d73a2c2c46972ef54592cd2583e382040053fd",
+      "max_episode_steps": 1000
+    },
+    {
+      "id": "maniskill-panda-lift-peg-upright",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "27cb16f115fb30a98660c5d466ace29f90dac993fe3023d72a1ac312d62b2d67",
+      "max_episode_steps": 1000
+    }
+  ],
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411",
+  "executed_hub_commit": "a248d21d5cd09afedb93461ca5208298b6123dd3",
+  "runtime_control": "The maintainer agent selected and orchestrated reusable code. Python/MPlib generated numerical trajectories; the simulator PD controller followed joint targets.",
+  "observed_actions": [
+    "explicitly_select_named_batch",
+    "dispatch_one_authorized_Linux_CPU_workflow",
+    "review_provider_verified_artifact_and_exact_outputs_flags_and_pins"
+  ],
+  "observed_results": [
+    {
+      "status": "task_complete",
+      "success": true,
+      "elapsed_steps": 71,
+      "terminated": true,
+      "truncated": false,
+      "task": "PushCube-v1",
+      "seed": 0,
+      "runtime": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "max_episode_steps": 1000
+    },
+    {
+      "status": "task_complete",
+      "success": true,
+      "elapsed_steps": 67,
+      "terminated": true,
+      "truncated": false,
+      "task": "PullCube-v1",
+      "seed": 0,
+      "runtime": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "max_episode_steps": 1000
+    },
+    {
+      "status": "task_complete",
+      "success": true,
+      "elapsed_steps": 176,
+      "terminated": true,
+      "truncated": false,
+      "task": "LiftPegUpright-v1",
+      "seed": 0,
+      "runtime": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "sim_backend": "cpu",
+      "render_backend": "none",
+      "max_episode_steps": 1000
+    }
+  ],
+  "scope": "Explicitly selected named Panda transport CPU/state batch, one seed per task, Hub 1000-step motion-planning horizon; not the upstream default benchmark horizon.",
+  "all_result_checks_pass": true,
+  "limits": [
+    "One seed per task; no claim about other seeds or broader reliability.",
+    "Hub 1000-step horizon, not the upstream default benchmark.",
+    "CPU state observations with software Vulkan initialization; no camera/output rendering or physical GPU.",
+    "No fresh blind selection, public user/adoption, public execution API, or physical robot evidence.",
+    "This preservation and metadata promotion did not rerun code, submit a finding, or register a new source."
+  ]
+}

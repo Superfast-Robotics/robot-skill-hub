@@ -203,6 +203,13 @@ console-entrypoint nodes for transform broadcasting and frame-based turtle
 following. Component Apache/BSD terms and ROS graph effects are explicit. These
 source references have no Hub adapter and remain `runtime_verification: not_run`.
 
+## Nav2 controller and planner plugins
+
+The [Nav2 plugin source review](../docs/nav2-plugin-sources.md) adds MPPI controller
+integration, regulated pure pursuit and Smac Hybrid-A* implementation references
+beyond the existing Simple Commander clients. These C++ plugins require configured
+Nav2 hosts, have no Hub adapter and remain `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh
