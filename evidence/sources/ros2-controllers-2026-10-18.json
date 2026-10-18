@@ -1,0 +1,341 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "scope": "Two implementation source references from one official ros2_controllers family; no upstream execution or publication receipt.",
+  "base_hub_commit": "1c4c1e1533ff364fd4a35cddc8750b9306b0a5ba",
+  "canonical_evidence": {
+    "ROS_package_index": "https://index.ros.org/p/joint_trajectory_controller/",
+    "ROS_index_sha256": "2a2902ae7b137025e0d0d7404557c587f519e2e62efe282ae0039735129e0bc6",
+    "observed_repository": "https://github.com/ros-controls/ros2_controllers",
+    "observed_indexed_branch": "jazzy",
+    "observed_default_branch": "master",
+    "repository_metadata_sha256": "1ec8d47d30b6fcfb2684674e1e894f1ad95310701425b77ba8dfd89618669711",
+    "commit_metadata_sha256": "4fa6021f0ebecf5709b0d3109c337b88df7f9a893656b1a402a16d737d3677c7"
+  },
+  "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+  "complete_tree": {
+    "git_tree_sha1": "876344a37b0919d58174e3330972fe300b6b23e6",
+    "entries": 768,
+    "truncated": false,
+    "response_sha256": "1b703f5676a961b1b5f8b40f0d68f641d627e93d78a1238027d40462dd93d3fa"
+  },
+  "coverage_before": {
+    "managed_references": 1267,
+    "intakes": 15,
+    "total_references": 1282,
+    "ros2_control_demo_refs": 72,
+    "ros2_controllers_implementation_refs": 0,
+    "selection_reason": "Existing controller coverage indexes demo launch/configuration files. These selected plugin implementations add joint-space trajectory execution and differential-drive command/odometry integration across unspecified robot configurations."
+  },
+  "records": [
+    "ros2-joint-trajectory-controller",
+    "ros2-diff-drive-controller"
+  ],
+  "reviewed_files": [
+    {
+      "path": "LICENSE",
+      "role": "full license",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+      "role": "selected implementation",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+      "bytes": 77779,
+      "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+      "git_blob_sha1": "2f4a83ed70a93f1ac8390fff69b374a943382028",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "diff_drive_controller/src/diff_drive_controller.cpp",
+      "role": "selected implementation",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/src/diff_drive_controller.cpp",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/src/diff_drive_controller.cpp",
+      "bytes": 28146,
+      "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+      "git_blob_sha1": "477c73342e643b489120927ea7f9d729bf64c842",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_trajectory_controller/package.xml",
+      "role": "dependency/license manifest",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/package.xml",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/package.xml",
+      "bytes": 1707,
+      "sha256": "96473fd8ebe98d8e8192b7f57bb65bdc9e09b76a926e800f26a6e87765cb59ac",
+      "git_blob_sha1": "ddb3e27ba1ae2187ea6bb80cbab68eacd7733b99",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_trajectory_controller/CMakeLists.txt",
+      "role": "build and plugin export",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/CMakeLists.txt",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/CMakeLists.txt",
+      "bytes": 4208,
+      "sha256": "303f4921fd6206f25b504dbbd9692152e41f90446bc3baf3baaf1e1c536c5c03",
+      "git_blob_sha1": "53a20bfbf4eb07d0937d4840fb15916021910969",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_trajectory_controller/joint_trajectory_plugin.xml",
+      "role": "plugin registration",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/joint_trajectory_plugin.xml",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/joint_trajectory_plugin.xml",
+      "bytes": 382,
+      "sha256": "29a73d5a5644ea46223a2ff14567f2ce70c3b173e51a1831317319184311e895",
+      "git_blob_sha1": "27930380ea49cd02a874f7cb17507191385f1968",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "diff_drive_controller/package.xml",
+      "role": "dependency/license manifest",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/package.xml",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/package.xml",
+      "bytes": 1843,
+      "sha256": "c2a36238d8f8abf6727aa2cd2a941ee447731275b2748005a901a374e3cdf0d8",
+      "git_blob_sha1": "c20bb1b5bbda64dcb2ca7c6e0191ce23a430f327",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "diff_drive_controller/CMakeLists.txt",
+      "role": "build and plugin export",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/CMakeLists.txt",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/CMakeLists.txt",
+      "bytes": 3053,
+      "sha256": "a76b3c6c17e5351fb75920c209af80db038cd1be9d779a60f418557681b9a4ff",
+      "git_blob_sha1": "7d57720a26dbea56d8983f9afb2cae8c208dec95",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "diff_drive_controller/diff_drive_plugin.xml",
+      "role": "plugin registration",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/diff_drive_plugin.xml",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/diff_drive_plugin.xml",
+      "bytes": 421,
+      "sha256": "0c688bcdaa94a288c59c5d3dc503f8ea0304c48afcbbd67083910329953dc17c",
+      "git_blob_sha1": "88fdfd9ecbfeb335c6106d7f32ef46bb7e8d4f78",
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "README.md",
+      "role": "official family/branch description",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/README.md",
+      "raw_url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/README.md",
+      "bytes": 6417,
+      "sha256": "f0a335e3f25a3f7e58c06d3c433f82b594d794e5c1fb7c05382b82b33dd9ce31",
+      "git_blob_sha1": "7176cc85e6445fcbd8a4f886f7cf7f9489abdb72",
+      "complete_text_reviewed": true
+    }
+  ],
+  "dependency_manifests": {
+    "ros2-joint-trajectory-controller": {
+      "package": "joint_trajectory_controller",
+      "declared_version": "4.43.0",
+      "license": "Apache License 2.0",
+      "dependencies": {
+        "buildtool_depend": [
+          "ament_cmake"
+        ],
+        "build_depend": [
+          "ros2_control_cmake"
+        ],
+        "depend": [
+          "angles",
+          "backward_ros",
+          "controller_interface",
+          "control_msgs",
+          "control_toolbox",
+          "generate_parameter_library",
+          "hardware_interface",
+          "libexpected-dev",
+          "pluginlib",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "realtime_tools",
+          "rsl",
+          "trajectory_msgs",
+          "urdf"
+        ],
+        "test_depend": [
+          "ament_cmake_gmock",
+          "controller_manager",
+          "hardware_interface_testing",
+          "ros2_control_test_assets"
+        ]
+      },
+      "cmake_cpp_standard": "cxx_std_17",
+      "plugin_manifest": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/joint_trajectory_plugin.xml",
+      "source_only": true
+    },
+    "ros2-diff-drive-controller": {
+      "package": "diff_drive_controller",
+      "declared_version": "4.43.0",
+      "license": "Apache License 2.0",
+      "dependencies": {
+        "buildtool_depend": [
+          "ament_cmake"
+        ],
+        "build_depend": [
+          "generate_parameter_library",
+          "ros2_control_cmake"
+        ],
+        "depend": [
+          "backward_ros",
+          "control_toolbox",
+          "controller_interface",
+          "geometry_msgs",
+          "hardware_interface",
+          "nav_msgs",
+          "pluginlib",
+          "rclcpp",
+          "rclcpp_lifecycle",
+          "rcpputils",
+          "realtime_tools",
+          "tf2",
+          "tf2_msgs"
+        ],
+        "test_depend": [
+          "ament_cmake_gmock",
+          "controller_manager",
+          "hardware_interface_testing",
+          "ros2_control_test_assets"
+        ]
+      },
+      "cmake_cpp_standard": "cxx_std_17",
+      "plugin_manifest": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/diff_drive_plugin.xml",
+      "source_only": true
+    }
+  },
+  "license_review": {
+    "spdx": "Apache-2.0",
+    "scope": "Explicit Apache headers in both selected files plus complete root LICENSE and matching package declarations. No whole-package, dependency, binary or hardware clearance.",
+    "root_or_selected_package_NOTICE_files": [],
+    "selected_copyrights": [
+      "Copyright 2021 ros2_control Development Team.",
+      "Copyright 2020 PAL Robotics S.L.; selected-file author notice names Bence Magyar, Enrique Fernández and Manuel Meraz."
+    ]
+  },
+  "source_behavior": {
+    "ros2-joint-trajectory-controller": {
+      "entrypoint": "pluginlib joint_trajectory_controller/JointTrajectoryController (controller_interface::ControllerInterface)",
+      "effects": "The selected update reads joint states, samples the companion Trajectory implementation, checks configured tolerances and writes position, velocity, acceleration or effort commands according to selected interfaces. Velocity-only or effort-only configurations can use the PID/feedforward adapter. Configuration creates ~/joint_trajectory input, ~/controller_state output, follow_joint_trajectory action, query_state service and conditional speed-scaling input. It handles goal preemption/cancellation and configured hold/deceleration paths; stopping safety and real-time performance were not tested. Companion trajectory.cpp, headers, generated parameter YAML/validators and their behavior are required but were not reviewed. lifecycle_msgs is explicitly included in this source; the other listed build/runtime dependencies come from package.xml/CMake. Optional BUILD_TESTING has additional declared test dependencies. CMake requests C++17; package 4.43.0 and the jazzy checkout are declarations, not tested ROS, OS, architecture, controller or robot combinations."
+    },
+    "ros2-diff-drive-controller": {
+      "entrypoint": "pluginlib diff_drive_controller/DiffDriveController (controller_interface::ChainableControllerInterface)",
+      "effects": "The subscriber path uses the package TwistStamped alias on ~/cmd_vel and checks timestamp age; timeout 0 disables this timeout. The chainable class exposes linear/angular velocity reference interfaces. update_and_write_commands applies speed limiters, computes wheel rates from linear x/angular z and configured geometry, and writes loaned wheel command handles. It delegates odometry to odometry.cpp, publishes ~/odom and conditional /tf and ~/cmd_vel_out, and halt writes zero wheel commands during deactivation. These are source operations, not verified stopping, odometry accuracy or timing. Complete headers, odometry/speed-limiter helpers and generated parameter YAML/validators were not reviewed and remain required. Package/CMake declare the listed build/runtime dependencies; lifecycle_msgs, class_loader and rosidl_runtime_cpp also appear directly in this source. Optional BUILD_TESTING has additional declared test dependencies. C++17, package 4.43.0 and the jazzy checkout are declarations, not tested environment combinations."
+    }
+  },
+  "retrieval": {
+    "maximum_GETs": 14,
+    "actual_GETs": 14,
+    "all_status_200": true,
+    "auth_proxy_cookie_redirect_retry": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off",
+    "receipts": [
+      {
+        "url": "https://index.ros.org/p/joint_trajectory_controller/",
+        "status": 200,
+        "bytes": 913103,
+        "sha256": "2a2902ae7b137025e0d0d7404557c587f519e2e62efe282ae0039735129e0bc6"
+      },
+      {
+        "url": "https://api.github.com/repos/ros-controls/ros2_controllers",
+        "status": 200,
+        "bytes": 6959,
+        "sha256": "1ec8d47d30b6fcfb2684674e1e894f1ad95310701425b77ba8dfd89618669711"
+      },
+      {
+        "url": "https://api.github.com/repos/ros-controls/ros2_controllers/commits/jazzy",
+        "status": 200,
+        "bytes": 7510,
+        "sha256": "4fa6021f0ebecf5709b0d3109c337b88df7f9a893656b1a402a16d737d3677c7"
+      },
+      {
+        "url": "https://api.github.com/repos/ros-controls/ros2_controllers/git/trees/876344a37b0919d58174e3330972fe300b6b23e6?recursive=1",
+        "status": 200,
+        "bytes": 205150,
+        "sha256": "1b703f5676a961b1b5f8b40f0d68f641d627e93d78a1238027d40462dd93d3fa"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "status": 200,
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+        "status": 200,
+        "bytes": 77779,
+        "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/src/diff_drive_controller.cpp",
+        "status": 200,
+        "bytes": 28146,
+        "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/package.xml",
+        "status": 200,
+        "bytes": 1707,
+        "sha256": "96473fd8ebe98d8e8192b7f57bb65bdc9e09b76a926e800f26a6e87765cb59ac"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/CMakeLists.txt",
+        "status": 200,
+        "bytes": 4208,
+        "sha256": "303f4921fd6206f25b504dbbd9692152e41f90446bc3baf3baaf1e1c536c5c03"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/joint_trajectory_plugin.xml",
+        "status": 200,
+        "bytes": 382,
+        "sha256": "29a73d5a5644ea46223a2ff14567f2ce70c3b173e51a1831317319184311e895"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/package.xml",
+        "status": 200,
+        "bytes": 1843,
+        "sha256": "c2a36238d8f8abf6727aa2cd2a941ee447731275b2748005a901a374e3cdf0d8"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/CMakeLists.txt",
+        "status": 200,
+        "bytes": 3053,
+        "sha256": "a76b3c6c17e5351fb75920c209af80db038cd1be9d779a60f418557681b9a4ff"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/diff_drive_plugin.xml",
+        "status": 200,
+        "bytes": 421,
+        "sha256": "0c688bcdaa94a288c59c5d3dc503f8ea0304c48afcbbd67083910329953dc17c"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/README.md",
+        "status": 200,
+        "bytes": 6417,
+        "sha256": "f0a335e3f25a3f7e58c06d3c433f82b594d794e5c1fb7c05382b82b33dd9ce31"
+      }
+    ]
+  },
+  "runtime_verification": "not_run",
+  "compatibility": "Every required dimension and status unknown; Python requirement null. Package/ref/compiler declarations are not tested environments.",
+  "not_performed": [
+    "upstream import or execution",
+    "compilation or installation",
+    "controller manager or plugin loading",
+    "ROS graph/simulator/robot contact",
+    "GPU or cloud operation",
+    "performance or safe-stop validation",
+    "API intake or submission receipt creation"
+  ],
+  "preservation_scope": "Existing 17 recipes, 1282 references and bundled snapshots remain unchanged; these are two separate maintainer-curated source records."
+}

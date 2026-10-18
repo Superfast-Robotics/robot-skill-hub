@@ -1,0 +1,101 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "package": "robot-skill-hub",
+  "package_version": "0.1.0",
+  "package_path": "plugins/robot-skill-hub",
+  "result": "passed_static_configuration_validation",
+  "validation_at": "2026-10-18T06:16:26.770Z",
+  "scope": "Offline JSON-schema validation of plugin.json and mcp.json, with package metadata review. This is not a GitHub Copilot install or tool-use result.",
+  "validator": {
+    "runtime": "Node.js",
+    "name": "Ajv",
+    "version": "8.20.0",
+    "draft": "2020-12",
+    "options": {
+      "allErrors": true,
+      "strict": true,
+      "validateFormats": false
+    },
+    "preexisting_dependency": true,
+    "dependency_installed_for_check": false,
+    "remote_schema_loader": false
+  },
+  "official_schemas": {
+    "plugin.json": {
+      "url": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+      "bytes": 1805,
+      "sha256": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883",
+      "result": "passed"
+    },
+    "mcp.json": {
+      "url": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+      "bytes": 3408,
+      "sha256": "6539175bfcdf43085855183e86da40ea94b166547a72b47ae9a0a390516d3acb",
+      "result": "passed"
+    }
+  },
+  "package_files": {
+    "plugins/robot-skill-hub/LICENSE": {
+      "bytes": 1075,
+      "sha256": "a36626d945a25e7f2bcf1054b7798b22a2528b48bc5251d3fab34f36e56eeba2"
+    },
+    "plugins/robot-skill-hub/README.md": {
+      "bytes": 3422,
+      "sha256": "c45b4b7a664f5f31c0997d0cd2b4d53f655cb055c8e029baf93a7a62175bc05f"
+    },
+    "plugins/robot-skill-hub/mcp.json": {
+      "bytes": 215,
+      "sha256": "2f55123efe1c6e44efd7c6239a3417a50b07254d2bb3d123074ec74859bbc7c3"
+    },
+    "plugins/robot-skill-hub/plugin.json": {
+      "bytes": 725,
+      "sha256": "39c5eb46c191476d5066cf6dec7c9ae7ce2264bc0f6256bec2d7a38ee87c1d54"
+    }
+  },
+  "package_bytes": 5437,
+  "accepted_format_example": {
+    "repository": "https://github.com/jdubois/boot-ui",
+    "commit": "7d4bf29eb48e2016e17ec13087a2618eedb74416",
+    "path": "plugins/bootui",
+    "files": {
+      "plugin.json": {
+        "url": "https://raw.githubusercontent.com/jdubois/boot-ui/7d4bf29eb48e2016e17ec13087a2618eedb74416/plugins/bootui/plugin.json",
+        "bytes": 703,
+        "sha256": "e29bf4907bce2671ed8100691da57561e44796094f4b89f021ddeabc31d04a6a",
+        "result": "passed_same_schema"
+      },
+      "mcp.json": {
+        "url": "https://raw.githubusercontent.com/jdubois/boot-ui/7d4bf29eb48e2016e17ec13087a2618eedb74416/plugins/bootui/mcp.json",
+        "bytes": 205,
+        "sha256": "919a11fb46e49724c7f5c692e0d291373fe4c4abb1110225e2d9ced5cb4c0894",
+        "result": "passed_same_schema"
+      }
+    }
+  },
+  "validation_result_sha256": "99fba368ae4e564fa552c3d25d0f39a46275e25ef8ad6d22630e4ef53ad08c6c",
+  "input_preservation": {
+    "validated_JSON_hashes_unchanged": true,
+    "four_package_Git_blobs_unchanged_through_integration": true,
+    "note": "The README received a later optional opt-out clarification; it and the license are inventoried above, not schema-validated. Both JSON files are byte-identical to the actual validation inputs. File hashes bind the package independently of cherry-picked commit IDs."
+  },
+  "configuration_checks": {
+    "single_streamable_http_endpoint": true,
+    "local_command_or_scripts": false,
+    "hooks": false,
+    "environment_variables": false,
+    "authentication_or_identity_headers": false,
+    "forced_optout_headers": false,
+    "CLI_or_catalog_snapshots_bundled": false,
+    "license": "Unchanged Hub MIT license; discovered upstream code retains separate licenses."
+  },
+  "validation_HTTP_requests": 0,
+  "reproduction": "Retrieve the two package JSON files from this published revision and verify their hashes above. Retrieve and hash-check the two official schemas, then use Ajv 8.20.0 in Draft 2020-12 mode with the recorded options and no remote loader to validate each matching file. Schema/example retrieval occurred separately before the offline validation.",
+  "not_established_by_this_receipt": [
+    "GitHub Copilot installation or client tool/content compatibility",
+    "vally lint or owner intake/install-smoke gates",
+    "compilation, simulator execution or robot task success",
+    "agent installation, adoption or physical hardware compatibility"
+  ],
+  "agent_adoption_claimed": false
+}

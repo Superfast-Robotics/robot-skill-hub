@@ -14,7 +14,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "skills/find-robot-skills"
 sys.path.insert(0, str(SKILL / "scripts"))
-from rshlib import acquisition
+from rshlib import acquisition, intake
 from rshlib.core import RshError
 
 COMMIT = "a" * 40
@@ -153,6 +153,141 @@ class SourceAcquisitionTests(unittest.TestCase):
             self.assertEqual(download.call_args.args[0], url)
             self.assertEqual(result["base"]["source_commit"], revision)
             self.assertEqual(Path(result["source_file"]).read_bytes(), body)
+
+    def test_accepted_github_repository_spellings_fetch_canonical_bytes_without_rewriting_provenance(self):
+        body = b"<robot name='inert-intake-fixture'/>\n"
+        record = reference(body, "robots/arm.urdf")
+        skill = {key: value for key, value in record.items() if key not in ("access", "evidence")}
+        skill.update(name="Fixture robot description", summary="One pinned robot description for source review.",
+                     framework="custom-robot", kind="community_skill", capabilities=["robot-description"],
+                     aliases=[], robots=["fixture-arm"], artifact={"kind": "robot_description", "format": "urdf"},
+                     requirements={"python": None, "packages": [], "hardware": [], "system": [],
+                                   "notes": "Inspect upstream integration requirements."},
+                     invocation={"entrypoint": "robots/arm.urdf", "notes": "Read as data; no execution adapter."},
+                     compatibility=[{key: "unknown" for key in
+                                     ("runtime", "runtime_version", "robot", "controller", "observation", "os")}],
+                     setup_url="https://github.com/example/robot/blob/" + COMMIT + "/README.md")
+        skill["source"]["url"] = "https://github.com/example/robot/blob/" + COMMIT + "/robots/arm.urdf"
+        expected_url = "https://raw.githubusercontent.com/example/robot/" + COMMIT + "/robots/arm.urdf"
+        identities = set()
+        for number, suffix in enumerate(("", "/", ".git", ".git/")):
+            with self.subTest(repository_suffix=suffix):
+                submitted = copy.deepcopy(skill)
+                submitted["source"]["repository"] += suffix
+                intake.validate_skill(submitted)
+                # The server's generated fields grant source-only access, not runtime trust.
+                published = copy.deepcopy(submitted)
+                published.update(access={"mode": "source_reference", "hub_prepare": False,
+                                         "instructions": "Inspect the exact pinned source.",
+                                         "setup_url": published.pop("setup_url")},
+                                 evidence={"level": "contributor_reported", "runtime_verification": "not_run",
+                                           "checked_at": "2026-10-18", "inspection": "Data-only fixture intake."},
+                                 maintenance={"record_version": "intake-fixture", "last_checked": "2026-10-18",
+                                              "upstream_status": "contributor_reported"})
+                published["license"]["verified"] = False
+                for combo in published["compatibility"]:
+                    combo["status"] = "contributor_reported"
+                intake.validate_published_reference(published)
+                original = copy.deepcopy(published)
+                with mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("No DNS for plan")):
+                    plan = acquisition.plan_source(published, HUB)
+                self.assertEqual(plan["source_url"], expected_url)
+                self.assertFalse(plan["source_request_performed"])
+                project = self.root / ("github-spelling-" + str(number))
+                def acquire(*unused):
+                    return acquisition.fetch_source(catalog(published), published["id"], project,
+                        expected_source_revision=COMMIT, expected_source_sha256=published["source"]["sha256"])
+                result, wire, context, resolver, sockets = self.transport(body, callback=acquire)
+                self.assertIn(("GET /example/robot/" + COMMIT + "/robots/arm.urdf HTTP/1.1\r\n").encode(), wire.sent)
+                self.assertIn(b"Host: raw.githubusercontent.com\r\n", wire.sent)
+                self.assertEqual(bytes(wire.sent).count(b"GET "), 1)
+                self.assertEqual(resolver.call_count, 1)
+                sockets.assert_called_once_with(socket.AF_INET, socket.SOCK_STREAM)
+                context.wrap_socket.assert_called_once_with(wire, server_hostname="raw.githubusercontent.com")
+                self.assertEqual(Path(result["source_file"]).read_bytes(), body)
+                self.assertEqual(published, original)
+                manifest = json.loads(Path(result["manifest_path"]).read_bytes())
+                self.assertEqual(manifest["source"], submitted["source"])
+                self.assertEqual(manifest["license"], published["license"])
+                self.assertEqual(manifest["base"], plan["base"])
+                self.assertEqual(manifest["source_url"], expected_url)
+                self.assertEqual(manifest["acquisition_id"], plan["acquisition_id"])
+                selected = acquisition.catalog_from_manifest(result["manifest_path"], project, published["id"])
+                self.assertEqual(selected["references"]["records"][0]["source"], submitted["source"])
+                self.assertTrue(result["source_download_performed"])
+                for flag in ("execution_performed", "environment_created", "installed_as_skill"):
+                    self.assertFalse(result[flag])
+                identities.add(plan["acquisition_id"])
+        self.assertEqual(len(identities), 4)  # Original metadata still defines each immutable identity.
+
+    def test_github_repository_aliases_preserve_identity_and_pin_rejections(self):
+        canonical_raw = "https://raw.githubusercontent.com/example/robot/" + COMMIT + "/examples/main.py"
+        record = reference()
+        record["source"]["repository"] += ".git/"
+        record["source"]["raw_url"] = canonical_raw
+        self.assertEqual(acquisition.plan_source(record, HUB)["source_url"], canonical_raw)
+        changes = [("invalid_source_repository", {"repository": "https://github.com//robot"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/./robot.git/"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/../robot"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/./"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/.."}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/.git/"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/..git"}),
+                   ("invalid_source_repository", {"repository": "https://github.com/example/...git/"}),
+                   ("invalid_source_pin", {"commit": "main"}),
+                   ("source_url_pin_mismatch", {"raw_url": canonical_raw.replace("/robot/", "/robot.git/")})]
+        with mock.patch.object(acquisition, "_download") as download, mock.patch.object(socket, "getaddrinfo") as dns:
+            for code, change in changes:
+                changed = copy.deepcopy(record)
+                changed["source"].update(change)
+                with self.subTest(change=change):
+                    error = self.assert_error(code, acquisition.fetch_source, catalog(changed), changed["id"], self.project)
+                    self.assertFalse(error["source_request_performed"])
+            for pins in ({"expected_source_revision": "f" * 40}, {"expected_source_sha256": "f" * 64}):
+                self.assert_error("selected_source_changed", acquisition.fetch_source, catalog(record), record["id"], self.project, **pins)
+        download.assert_not_called()
+        dns.assert_not_called()
+        self.assertFalse(self.project.exists())
+
+    def test_github_alias_normalization_does_not_apply_to_other_repository_forms(self):
+        direct = "https://mirror.example.org/pinned/" + COMMIT + "/source.py"
+        for repository in (None, "https://other.example.org/example/robot.git/",
+                           "https://github.com/example/robot/tree/branch",
+                           "https://github.com/example/robot.git//"):
+            with self.subTest(repository=repository):
+                record = reference()
+                record["source"]["url"] = direct
+                if repository is None:
+                    record["source"].pop("repository")  # Retain the existing legacy direct-source contract.
+                else:
+                    record["source"]["repository"] = repository
+                plan = acquisition.plan_source(record, HUB)
+                self.assertEqual(plan["source_url"], direct)
+                self.assertEqual(plan["source"], record["source"])
+
+    def test_unsafe_repository_metadata_is_rejected_before_plan_output_or_project_writes(self):
+        repositories = ["https://user:private-value@github.com/example/robot.git/",
+                        "https://private-value@github.com/example/robot",
+                        "https://example.com/robot?token=private-value",
+                        "https://localhost/robot", "https://private.internal/robot",
+                        "https://127.0.0.1/robot", "https://169.254.169.254/robot", None, ""]
+        with mock.patch.object(acquisition, "_download") as download, mock.patch.object(socket, "getaddrinfo") as dns, mock.patch.object(
+                Path, "mkdir", side_effect=AssertionError("Unsafe provenance must not create directories")):
+            for repository in repositories:
+                with self.subTest(repository=repository):
+                    record = reference()
+                    record["source"]["repository"] = repository
+                    plan_error = self.assert_error("unsafe_source_url", acquisition.plan_source, record, HUB)
+                    fetch_error = self.assert_error("unsafe_source_url", acquisition.fetch_source,
+                                                   catalog(record), record["id"], self.project)
+                    for error in (plan_error, fetch_error):
+                        self.assertFalse(error["source_request_performed"])
+                        self.assertFalse(error["source_download_performed"])
+                        self.assertNotIn("private-value", json.dumps(error))
+        download.assert_not_called()
+        dns.assert_not_called()
+        self.assertFalse(self.project.exists())
 
     def test_invalid_pins_paths_sizes_and_raw_url_binding_fail_before_network_or_writes(self):
         mutations = [("invalid_source_pin", {"sha256": "A" * 64}), ("invalid_source_pin", {"commit": "main"}),
