@@ -170,14 +170,14 @@ or robot compatibility. All entries remain `not_run` and have no Hub adapter.
 
 ## Ruckig Community trajectories
 
-The [Ruckig source review](ruckig-sources.md) adds seven pinned Community
+The [Ruckig source review](../docs/ruckig-sources.md) adds seven pinned Community
 trajectory-generation examples for position, velocity, stopping, minimum
 duration and C++ integration. These numerical examples have no Hub execution
 adapter and remain `runtime_verification: not_run`.
 
 ## UR RTDE control and I/O
 
-The [UR RTDE source review](ur-rtde-sources.md) describes three pinned SDU
+The [UR RTDE source review](../docs/ur-rtde-sources.md) describes three pinned SDU
 Robotics examples: the existing basic-motion reference plus joint-servo and
 digital/analog I/O sources. These GitLab-hosted references use upstream setup,
 have no Hub execution adapter and remain `runtime_verification: not_run`.
