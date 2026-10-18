@@ -14,6 +14,12 @@
       "record_version": "source-328c20328289f6587f01f3f0301c78670baa416800553fa77c5741260af8d0d7"
     },
     {
+      "id": "libfranka-joint-position",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920",
+      "record_version": "source-93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920"
+    },
+    {
       "id": "mujoco-menagerie-artifact-trossen-wxai-wxai-follower-biarm-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e091ebbab95f07fe156fb2545175194e9b4b05efa31747f24c87d2636b773b36",

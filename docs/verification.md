@@ -1,4 +1,16 @@
-# Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
+# Verification record — 2026-10-17 to 2026-10-19 (Asia/Seoul)
+
+## Community robustness and controlled reuse audit
+
+The [local verification receipt](../evidence/integration/v0.4.2/local-verification.json) records 355 Python passes with four Windows symlink-privilege skips, 102 API unit passes, 53 native workerd/D1 passes and 60 publication/sync passes. TypeScript and own Python compilation passed. These checks are local; hosted deployment is recorded separately.
+
+The 0.4.2 audit reproduced a capacity defect in native workerd/D1: an outer `INSERT OR IGNORE` suppressed a CHECK failure in an AFTER accounting trigger, allowing content insertion at the configured byte ceiling. Migration `0004_community_capacity_guards.sql` adds explicit BEFORE triggers with `RAISE(ABORT)` for item bytes/count, installation count and attestation count. Native tests cover simultaneous final-capacity submissions, atomic rollback and idempotent retries at capacity. Daily quota enforcement remains separate. The migration must be applied before the updated Worker is deployed.
+
+The audit also reproduced CLI failures caused by malformed local content or malformed remote result rows. Recall now skips damaged local entries, reports incomplete local coverage, validates the complete remote page before merging and preserves usable local experience during protocol failure. Patches targeting agent instructions, case-folded repository metadata and trailing-dot paths are rejected. Native tests also cover revocation, quarantine, oversized input and preservation of storage counters.
+
+A controlled local numerical experiment exercises the real Worker/D1 publication and recall path with an authored two-link IK fixture. A quadrant bug passed 4/8 development targets and 12/24 separate held-out targets. Another installation retrieved the exact immutable correction through anonymous recall; a separate CPU process passed 24/24 held-out targets at residual tolerance 1e-9 and reported the outcome against the selected variant. The harness executes only its exact authored fixture bytes, never arbitrary downloaded patches. This demonstrates correction transfer and outcome linkage, not autonomous LLM discovery, measured token savings, upstream skill verification, simulator success or independent adoption. It creates no production findings or activity counts.
+
+The [source expansion](aspire-real-platform-sources.md) adds 32 frozen ASPIRE/Franka/Stretch references. No existing runtime evidence is promoted by these source or system tests.
 
 ## Immediate community publication and local reuse
 

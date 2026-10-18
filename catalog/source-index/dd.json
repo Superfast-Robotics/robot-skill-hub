@@ -8,6 +8,12 @@
       "record_version": "source-49c952d4e72464f42457fde53eb1a9f98568bf2f0dea58870172b3ab8885467f"
     },
     {
+      "id": "libfranka-joint-poses",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412",
+      "record_version": "source-835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412"
+    },
+    {
       "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-rby1a-1-2-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7a8f80dd827c15e6691f78faf5cb1fd0c6f96cb567e25ac7d3db233dfbe33620",

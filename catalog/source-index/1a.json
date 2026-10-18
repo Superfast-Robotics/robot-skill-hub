@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-behavior-debugging",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67",
+      "record_version": "source-19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67"
+    },
+    {
       "id": "drake-examples-hardware-sim-hardware-sim-py",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "0278ec60af6deeaca47aaaf53b580b145d928ba79cf0380dfd6f2e2aca1cee64",

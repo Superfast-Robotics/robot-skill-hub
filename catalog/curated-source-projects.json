@@ -1,0 +1,990 @@
+{
+  "schema_version": "1",
+  "description": "Finite reviewed ASPIRE, Franka and Stretch sources. Instruction documents and robot programs remain source references, not verified executable Hub recipes.",
+  "projects": [
+    {
+      "id": "aspire",
+      "name": "NVIDIA ASPIRE",
+      "authors": [
+        "NVIDIA CORPORATION & AFFILIATES",
+        "ASPIRE contributors"
+      ],
+      "setup_path": "README.md",
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Simulation embodiments and real dual-arm YAM are distinct. Each selected source identifies its domain; no cross-embodiment or physical compatibility was tested.",
+      "requirements": {
+        "python": "Use the pinned pyproject and benchmark-specific environments; BEHAVIOR uses Python 3.11.",
+        "packages": [
+          "ASPIRE cap-harness from this exact checkout",
+          "Benchmark/provider extras, submodules and assets under separate terms"
+        ],
+        "display": "Simulation provider stack requires NVIDIA CUDA, perception/planner services and gated SAM3 access. Real YAM needs station calibration, CAN motor servers, cameras and matching hardware; --allow-motion is an upstream actuation interlock. No GPU, weights, provider or robot was provisioned."
+      },
+      "repository": "https://github.com/NVlabs/ASPIRE",
+      "commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "checked_at": "2026-10-19",
+      "license": {
+        "path": "LICENSE",
+        "bytes": 11432,
+        "sha256": "4f321b887d0350e672e06c8a8bc85cff17ee2d1f3c360617079041ceee324c81",
+        "git_blob": "001a3281169d6ade30cd1a44544029254ba490a8",
+        "spdx": "Apache-2.0",
+        "scope": "Selected first-party source/instruction text only, under its pinned license and author notices. Preserve upstream attribution. Referenced runtimes, third-party components, model weights, data, firmware and hardware retain their own terms."
+      },
+      "evidence_files": [
+        {
+          "path": "NOTICE",
+          "bytes": 334,
+          "sha256": "720ea9aa05340560f996e73d9890e7e312d1e078ee363960a936ecd72864a809",
+          "git_blob": "7632fc29eac0444c9b772c1b17b1929c9888ccfc"
+        },
+        {
+          "path": "README.md",
+          "bytes": 12004,
+          "sha256": "1bd5d2f58fb5fc2576512412add2fba4649f7d2d9c577592bda077b1cdea4562",
+          "git_blob": "bed28b1e3e541ba89f3868f93176f7f87eaddd54"
+        },
+        {
+          "path": "pyproject.toml",
+          "bytes": 13698,
+          "sha256": "47a50a3bb55abce39c600a8eff6daa7ac8d374eac4d25fccd74028d8ee48a8e9",
+          "git_blob": "272be8676e803fb7ff42ffb1bd4b607110f50ec7"
+        },
+        {
+          "path": "docs/yam-real.md",
+          "bytes": 4190,
+          "sha256": "b56834d55b3e9db0b312796caf0923ec00cf60ce96a69b45d6d9af4afcadc2b1",
+          "git_blob": "6e7d5300d49d1cfd584b6cda4a95e9d7698e528c"
+        },
+        {
+          "path": "docs/host-setup.md",
+          "bytes": 2535,
+          "sha256": "f4390a01693a6b46a4b5e7752a227a4c64d322ac1c1500201d81d353b07642fe",
+          "git_blob": "06df7ccd019028bd2abf824b68a59684aaeb7a8b"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": ".claude/skills/iterative-debugging/SKILL.md",
+          "bytes": 4573,
+          "sha256": "645502be26898cb729a01683c4c4cc86e9ad08807ea4f6f1861daf2e324d560c",
+          "git_blob": "fa636d9fd807144631414ae73c5c1e3c21e5af9d",
+          "id": "aspire-iterative-debugging",
+          "name": "NVIDIA ASPIRE: Iterative debugging and verified skill refinement",
+          "summary": "Iterative debugging and verified skill refinement. Pinned instruction reference; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "self-improvement",
+            "iterative-debugging",
+            "skill-refinement"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "agent-skill-markdown",
+          "execution_domain": "simulation",
+          "role": "instruction-reference",
+          "entrypoint": ".claude/skills/iterative-debugging/SKILL.md",
+          "invocation_notes": "Data-only agent guide; review and install the complete upstream bundle in its own context. This catalog does not load or follow these instructions.",
+          "contains": [
+            "name: iterative-debugging"
+          ]
+        },
+        {
+          "path": ".claude/skills/evosearch/SKILL.md",
+          "bytes": 3145,
+          "sha256": "7f7f4b86a35c46566d5dd8484e0532718304960153e2463411c6e96f2bf2202d",
+          "git_blob": "ea1fb22325b81f0fe08129198a0ebb332912c666",
+          "id": "aspire-evolutionary-search",
+          "name": "NVIDIA ASPIRE: Evolutionary search over robot programs",
+          "summary": "Evolutionary search over robot programs. Pinned instruction reference; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "self-improvement",
+            "evolutionary-search",
+            "program-search"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "agent-skill-markdown",
+          "execution_domain": "simulation",
+          "role": "instruction-reference",
+          "entrypoint": ".claude/skills/evosearch/SKILL.md",
+          "invocation_notes": "Data-only agent guide; review and install the complete upstream bundle in its own context. This catalog does not load or follow these instructions.",
+          "contains": [
+            "name: evosearch"
+          ]
+        },
+        {
+          "path": ".claude/skills/iterative-debugging/behavior/SKILL.md",
+          "bytes": 7738,
+          "sha256": "19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67",
+          "git_blob": "44afa0183db50c27c0c013434b3e300e6f08fc57",
+          "id": "aspire-behavior-debugging",
+          "name": "NVIDIA ASPIRE: BEHAVIOR iterative debugging protocol",
+          "summary": "BEHAVIOR iterative debugging protocol. Pinned instruction reference; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "self-improvement",
+            "behavior",
+            "long-horizon"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "agent-skill-markdown",
+          "execution_domain": "simulation",
+          "role": "instruction-reference",
+          "entrypoint": ".claude/skills/iterative-debugging/behavior/SKILL.md",
+          "invocation_notes": "Data-only agent guide; review and install the complete upstream bundle in its own context. This catalog does not load or follow these instructions.",
+          "contains": [
+            "BEHAVIOR"
+          ]
+        },
+        {
+          "path": ".agents/skills/cap-tool-usage/SKILL.md",
+          "bytes": 6401,
+          "sha256": "04656145e0cde3d99ee9b28374449c689d008915d1abff6dfdce5f58cddc0787",
+          "git_blob": "b8e326e1fb9749b59cd3c8638429737d53ffb5f2",
+          "id": "aspire-cap-tool-usage",
+          "name": "NVIDIA ASPIRE: Real YAM CAP motion and perception tools",
+          "summary": "Real YAM CAP motion and perception tools. Pinned instruction reference; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "motion-planning",
+            "inverse-kinematics",
+            "perception"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "agent-skill-markdown",
+          "execution_domain": "real_robot",
+          "role": "instruction-reference",
+          "entrypoint": ".agents/skills/cap-tool-usage/SKILL.md",
+          "invocation_notes": "Data-only agent guide; review and install the complete upstream bundle in its own context. This catalog does not load or follow these instructions.",
+          "contains": [
+            "cap_move_to_pose"
+          ]
+        },
+        {
+          "path": ".agents/skills/manipulation-tasks/SKILL.md",
+          "bytes": 1386,
+          "sha256": "fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13",
+          "git_blob": "87cb6c041ac3b6dc600d2c13c206dc2120fa98eb",
+          "id": "aspire-real-manipulation-tasks",
+          "name": "NVIDIA ASPIRE: Real YAM cube, bottle and cup task guidance",
+          "summary": "Real YAM cube, bottle and cup task guidance. Pinned instruction reference; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "manipulation",
+            "task-planning"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "agent-skill-markdown",
+          "execution_domain": "real_robot",
+          "role": "instruction-reference",
+          "entrypoint": ".agents/skills/manipulation-tasks/SKILL.md",
+          "invocation_notes": "Data-only agent guide; review and install the complete upstream bundle in its own context. This catalog does not load or follow these instructions.",
+          "contains": [
+            "name: manipulation-tasks"
+          ]
+        },
+        {
+          "path": "examples/libero/close_microwave.py",
+          "bytes": 1514,
+          "sha256": "44317b0890eabced20729d5bba1e0ff901daf498900afc75175da81298a1e476",
+          "git_blob": "1e4d01f09e2abff9d9129aefd19d57d62b7c2e99",
+          "id": "aspire-close-microwave",
+          "name": "NVIDIA ASPIRE: LIBERO microwave door closing program",
+          "summary": "LIBERO microwave door closing program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "manipulation",
+            "articulated-object"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "simulation",
+          "role": "upstream-program",
+          "entrypoint": "examples/libero/close_microwave.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "move_to_pose("
+          ]
+        },
+        {
+          "path": "examples/libero/open_middle_drawer.py",
+          "bytes": 4055,
+          "sha256": "ad66c2bb4da612b8f3200ded89ca915398fd717f1e56f6c58004dfe003836ef9",
+          "git_blob": "4de0156611d47459760e1eb7cede66153069a405",
+          "id": "aspire-open-drawer",
+          "name": "NVIDIA ASPIRE: LIBERO middle drawer opening program",
+          "summary": "LIBERO middle drawer opening program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "manipulation",
+            "drawer-opening",
+            "perception"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "simulation",
+          "role": "upstream-program",
+          "entrypoint": "examples/libero/open_middle_drawer.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "segment_text("
+          ]
+        },
+        {
+          "path": "examples/libero/put_bowl_in_bottom_drawer.py",
+          "bytes": 6929,
+          "sha256": "bd1595570f9e52d0c0b580d0f9841e112c27523ee6e1d9bc2e1c6edb18ac7cd9",
+          "git_blob": "f633ae2e4ae50ff250fe8762e2020ce73c4de7b7",
+          "id": "aspire-bowl-in-drawer",
+          "name": "NVIDIA ASPIRE: LIBERO bowl placement in bottom drawer",
+          "summary": "LIBERO bowl placement in bottom drawer. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "manipulation",
+            "pick-and-place",
+            "motion-planning"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "simulation",
+          "role": "upstream-program",
+          "entrypoint": "examples/libero/put_bowl_in_bottom_drawer.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "plan_motion("
+          ]
+        },
+        {
+          "path": "examples/robosuite/two_arm_handover_seed1.py",
+          "bytes": 15912,
+          "sha256": "9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968",
+          "git_blob": "6094fb400d677162435447e716198eb4c9ae742c",
+          "id": "aspire-two-arm-handover",
+          "name": "NVIDIA ASPIRE: Robosuite two-arm handover program",
+          "summary": "Robosuite two-arm handover program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "manipulation",
+            "bimanual",
+            "handover"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "simulation",
+          "role": "upstream-program",
+          "entrypoint": "examples/robosuite/two_arm_handover_seed1.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "move_to_pose("
+          ]
+        },
+        {
+          "path": "examples/robosuite/cube_lifting_seed1.py",
+          "bytes": 1583,
+          "sha256": "1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8",
+          "git_blob": "de8ea940aeebeb25da81e4dcbdcca333c54377b6",
+          "id": "aspire-cube-lifting",
+          "name": "NVIDIA ASPIRE: Robosuite cube lifting program",
+          "summary": "Robosuite cube lifting program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "manipulation",
+            "grasping",
+            "perception"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "simulation",
+          "role": "upstream-program",
+          "entrypoint": "examples/robosuite/cube_lifting_seed1.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "localize_object("
+          ]
+        },
+        {
+          "path": "examples/yam_real/go_home.py",
+          "bytes": 19,
+          "sha256": "91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb",
+          "git_blob": "8a46a2c822472968dd74cd9547d241b8c1e983e5",
+          "id": "aspire-yam-go-home",
+          "name": "NVIDIA ASPIRE: Real YAM home motion program",
+          "summary": "Real YAM home motion program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "homing"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/yam_real/go_home.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "go_home("
+          ]
+        },
+        {
+          "path": "examples/yam_real/joint_motion.py",
+          "bytes": 147,
+          "sha256": "54e2e1836a76ff5b3d7059e41b237b761ba28b72e776bdb30d7dd6c2072c6e31",
+          "git_blob": "180efc2e297070f0feaff583c41a8ac7d513f10e",
+          "id": "aspire-yam-joint-motion",
+          "name": "NVIDIA ASPIRE: Real YAM joint motion program",
+          "summary": "Real YAM joint motion program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "joint-control"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/yam_real/joint_motion.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "move_to_joints("
+          ]
+        },
+        {
+          "path": "examples/yam_real/observe_station.py",
+          "bytes": 115,
+          "sha256": "793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f",
+          "git_blob": "9677473e2f7d67e44438ba6e0b76501ebdf62171",
+          "id": "aspire-yam-observe-station",
+          "name": "NVIDIA ASPIRE: Real YAM station observation program",
+          "summary": "Real YAM station observation program. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "perception",
+            "robot-state"
+          ],
+          "aliases": [
+            "ASPIRE"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/yam_real/observe_station.py",
+          "invocation_notes": "CAP program fragment requires the pinned cap-harness runner and its injected API; it is not a standalone Python script.",
+          "contains": [
+            "get_observation("
+          ]
+        }
+      ]
+    },
+    {
+      "id": "libfranka",
+      "name": "Franka libfranka",
+      "authors": [
+        "Franka Robotics GmbH"
+      ],
+      "setup_path": "README.rst",
+      "robot_types": [
+        "manipulator"
+      ],
+      "robot_scope": "Franka client examples. Controller/FCI version compatibility, robot model, collision settings and payload require the pinned upstream setup; none were tested on hardware.",
+      "requirements": {
+        "python": "Native C++17 examples; CMake >=3.16.",
+        "packages": [
+          "Pinned libfranka 0.21.3 source",
+          "Eigen3, Poco Net/Foundation, console_bridge, Pinocchio, TinyXML2 and Threads from pinned CMake declarations"
+        ],
+        "display": "Configured Franka FCI controller, authorized robot IP, compatible firmware/library and real-time host. Motion examples change control/collision settings; numeric targets are upstream examples, not validated values for an installed robot."
+      },
+      "repository": "https://github.com/frankarobotics/libfranka",
+      "commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "checked_at": "2026-10-19",
+      "license": {
+        "path": "LICENSE",
+        "bytes": 10173,
+        "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+        "git_blob": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+        "spdx": "Apache-2.0",
+        "scope": "Selected first-party source/instruction text only, under its pinned license and author notices. Preserve upstream attribution. Referenced runtimes, third-party components, model weights, data, firmware and hardware retain their own terms."
+      },
+      "evidence_files": [
+        {
+          "path": "NOTICE",
+          "bytes": 572,
+          "sha256": "a7dcae538ac4983582406437c91e87c9100e7027420a8c1f275053de9f4289cf",
+          "git_blob": "0afe549bbdbc1fa9a513e38eca5b438b1bdec787"
+        },
+        {
+          "path": "README.rst",
+          "bytes": 25152,
+          "sha256": "77301c9429631d80d367c787de335bdd54ccff4d2ae7ff563736252bb4951d58",
+          "git_blob": "80d12a2352edc141766e93bbb485ab99789e501f"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "bytes": 10428,
+          "sha256": "624d36c838b08dc8882a93497d81e6387e939598c6fcd550c8f5d5d8046d18b4",
+          "git_blob": "06e282a76fa9dc1cb3e00158beca1271c61e968a"
+        },
+        {
+          "path": "examples/CMakeLists.txt",
+          "bytes": 2170,
+          "sha256": "b60dc61c336507a37180450c19c9355ce5c4ec65d24d0d05419900ba897c67c4",
+          "git_blob": "437ecea329c9caa46fc1379d32946d85df3f43ff"
+        },
+        {
+          "path": "examples/examples_common.h",
+          "bytes": 2177,
+          "sha256": "fe3da5241e1d6c332ae35abddd353c7b48bb0c7d615127c9d2a68ca5c54b445a",
+          "git_blob": "7f3861d9c682cc2c2b0b79f75289d389e13a74bf"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "examples/echo_robot_state.cpp",
+          "bytes": 964,
+          "sha256": "61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4",
+          "git_blob": "6a658be598b841d4a28cb3d6c89922660bd01d81",
+          "id": "libfranka-robot-state",
+          "name": "Franka libfranka: Robot state stream",
+          "summary": "Robot state stream. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "robot-state"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/echo_robot_state.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "robot.read("
+          ]
+        },
+        {
+          "path": "examples/grasp_object.cpp",
+          "bytes": 1887,
+          "sha256": "f6bb825048738b64de31e0b7d546d33215e33225bbc5d46c062e4299c3a9b34b",
+          "git_blob": "ca027db72fc31e91e2092aa53126d9cbba20bf7f",
+          "id": "libfranka-grasp-object",
+          "name": "Franka libfranka: Gripper homing and grasping",
+          "summary": "Gripper homing and grasping. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "grasping",
+            "gripper"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/grasp_object.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "gripper.grasp("
+          ]
+        },
+        {
+          "path": "examples/generate_joint_position_motion.cpp",
+          "bytes": 2868,
+          "sha256": "93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920",
+          "git_blob": "722ba06b28a6644c5e66b66e8aaac73f1f3cd93b",
+          "id": "libfranka-joint-position",
+          "name": "Franka libfranka: Joint position motion",
+          "summary": "Joint position motion. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "joint-control",
+            "trajectory"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/generate_joint_position_motion.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "robot.control("
+          ]
+        },
+        {
+          "path": "examples/generate_cartesian_pose_motion.cpp",
+          "bytes": 2758,
+          "sha256": "63553d28ad1ce6f046d888097eae582b7ea5672d7d9e21b2107cb2aead0e9f0f",
+          "git_blob": "0e91206f185ec7db834492f5943355203ef54f18",
+          "id": "libfranka-cartesian-pose",
+          "name": "Franka libfranka: Cartesian pose motion",
+          "summary": "Cartesian pose motion. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "cartesian-control",
+            "trajectory"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/generate_cartesian_pose_motion.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "robot.control("
+          ]
+        },
+        {
+          "path": "examples/generate_cartesian_velocity_motion.cpp",
+          "bytes": 3665,
+          "sha256": "aea5223cdd546bec504f63aa46c5ba0f069bb341eb49c6455640bf50904accb5",
+          "git_blob": "590edc9e0b50f95a8087bb433fdb85c57abdb80d",
+          "id": "libfranka-cartesian-velocity",
+          "name": "Franka libfranka: Cartesian velocity motion",
+          "summary": "Cartesian velocity motion. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "velocity-control",
+            "trajectory"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/generate_cartesian_velocity_motion.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "robot.control("
+          ]
+        },
+        {
+          "path": "examples/cartesian_impedance_control.cpp",
+          "bytes": 5217,
+          "sha256": "c6d28928eb032848cb7eb59051c603f813e22076c17ff9bcadead24e7db7c700",
+          "git_blob": "81d6c13ce723dff6bc6e519d0a6169fa167576d0",
+          "id": "libfranka-cartesian-impedance",
+          "name": "Franka libfranka: Cartesian impedance control",
+          "summary": "Cartesian impedance control. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "impedance-control",
+            "cartesian-control"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/cartesian_impedance_control.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "model.zeroJacobian("
+          ]
+        },
+        {
+          "path": "examples/joint_impedance_control.cpp",
+          "bytes": 8820,
+          "sha256": "d41863cab01e4d734989f3ab7509c0d8b9f36a0c708894a2bea39391e5a9d93f",
+          "git_blob": "25290bb60d63b1590280ba4631e5afe89d132df5",
+          "id": "libfranka-joint-impedance",
+          "name": "Franka libfranka: Joint impedance control",
+          "summary": "Joint impedance control. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "impedance-control",
+            "joint-control"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/joint_impedance_control.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "model.coriolis("
+          ]
+        },
+        {
+          "path": "examples/force_control.cpp",
+          "bytes": 4893,
+          "sha256": "218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7",
+          "git_blob": "8e427052b4af15209225d7602d6eb5e363c77ba8",
+          "id": "libfranka-force-control",
+          "name": "Franka libfranka: End-effector force control",
+          "summary": "End-effector force control. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "force-control",
+            "torque-control"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/force_control.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "model.gravity("
+          ]
+        },
+        {
+          "path": "examples/print_joint_poses.cpp",
+          "bytes": 1311,
+          "sha256": "835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412",
+          "git_blob": "4d267382e77a3e0fb335646dd28d235af7b19ccc",
+          "id": "libfranka-joint-poses",
+          "name": "Franka libfranka: Joint frame pose inspection",
+          "summary": "Joint frame pose inspection. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "forward-kinematics",
+            "robot-state"
+          ],
+          "aliases": [
+            "Franka"
+          ],
+          "format": "cpp",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "examples/print_joint_poses.cpp",
+          "invocation_notes": "Compile the exact upstream example with its adjacent helper files and use the upstream controller setup.",
+          "contains": [
+            "model.pose("
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stretch-body",
+      "name": "Hello Robot Stretch Body",
+      "authors": [
+        "Hello Robot Inc."
+      ],
+      "setup_path": "README.md",
+      "robot_types": [
+        "mobile-manipulator"
+      ],
+      "robot_scope": "The pinned README explicitly covers Stretch 1-3; it points Stretch 4 to a separate repository. This is not a tested model/firmware/payload matrix.",
+      "requirements": {
+        "python": "Python 3 and the pinned body/tools package declarations; no combined dependency environment was resolved.",
+        "packages": [
+          "hello-robot-stretch-body",
+          "hello-robot-stretch-body-tools",
+          "Per-tool and body/setup.py dependencies, robot parameters and calibrated devices"
+        ],
+        "display": "Configured Stretch 1-3 hardware, device permissions, calibration and applicable tool/firmware setup. Several scripts execute at import time. Home also checks remote package/firmware metadata. Arm/lift jog scripts can disable runstop handling; review the complete upstream procedure before authorized use."
+      },
+      "repository": "https://github.com/hello-robot/stretch_body",
+      "commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "checked_at": "2026-10-19",
+      "license": {
+        "path": "tools/LICENSE.md",
+        "bytes": 923,
+        "sha256": "828d224ce889a5e9dd519823ce736eb10b4d5457e4a483accacaff3a6ff28bf2",
+        "git_blob": "8833f048262ac658f2ed5a99e103eaa41f798562",
+        "spdx": "Apache-2.0",
+        "scope": "Selected first-party source/instruction text only, under its pinned license and author notices. Preserve upstream attribution. Referenced runtimes, third-party components, model weights, data, firmware and hardware retain their own terms."
+      },
+      "evidence_files": [
+        {
+          "path": "README.md",
+          "bytes": 1913,
+          "sha256": "18219237e0b1281c073595eb1cefaf0ab40884ed3191b1953ddeb7abcaa94502",
+          "git_blob": "dbeb640f3dda914543e8b9f65056f7d270a03a2e"
+        },
+        {
+          "path": "body/LICENSE.md",
+          "bytes": 918,
+          "sha256": "8efc25c9c53f386639839db38e8b90b4993eaac0a27f054404b4554c180c8c3a",
+          "git_blob": "89fb5abc0e33d557209f531bab721bea871d0b33"
+        },
+        {
+          "path": "body/setup.py",
+          "bytes": 1875,
+          "sha256": "6684328b7140b9ce332c4e68cb8e56f367c73fbe0f938f7400950888305ef160",
+          "git_blob": "929d525f54515e0e59eab8ff5823243a028661b1"
+        },
+        {
+          "path": "tools/setup.py",
+          "bytes": 1501,
+          "sha256": "b7d0b33d60eda535f1af7fc22c8e72809a280a21787ee29ab8efda1a90bc968d",
+          "git_blob": "e3fb7890eee30cf329434616fe2eb8464fd18d2e"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "tools/bin/stretch_robot_home.py",
+          "bytes": 5296,
+          "sha256": "52e4133a8d7bd46d46dbdc57520b89350cd84fb20b0a8f1d26eca6ba151c654b",
+          "git_blob": "183d6f55cb90f5a8ad580ba9a57fcbea69c8d874",
+          "id": "stretch-body-home",
+          "name": "Hello Robot Stretch Body: Robot homing",
+          "summary": "Robot homing. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "homing"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_robot_home.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "r.home("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_robot_stow.py",
+          "bytes": 448,
+          "sha256": "1b9cc2defab225369d4edb30480cbe9abc34c2ddd5a9304b4594101cd8db846d",
+          "git_blob": "2ee130470a8a42dab0535190da5682158e6b2164",
+          "id": "stretch-body-stow",
+          "name": "Hello Robot Stretch Body: Robot stow motion",
+          "summary": "Robot stow motion. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "stow"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_robot_stow.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "robot.stow("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_robot_monitor.py",
+          "bytes": 597,
+          "sha256": "62b64c213233791f6cb82026863a935c8765879273d79f4e8390b9cbf220bf8f",
+          "git_blob": "5c6e0c3f8d7c8bc3b32bab22fc882605daf1bba5",
+          "id": "stretch-body-monitor",
+          "name": "Hello Robot Stretch Body: Robot monitoring",
+          "summary": "Robot monitoring. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "robot-state"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_robot_monitor.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "r.startup("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_robot_battery_check.py",
+          "bytes": 1049,
+          "sha256": "84bf3382260f74e9edac80739d931f428edfc935a10b723a0ddd9050820f62b7",
+          "git_blob": "b197e897f99f2db17ba5bb09a3a2856fd89d180c",
+          "id": "stretch-body-battery",
+          "name": "Hello Robot Stretch Body: Battery status check",
+          "summary": "Battery status check. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "battery",
+            "diagnostics"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_robot_battery_check.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "r.pimu.pull_status("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_robot_keyboard_teleop.py",
+          "bytes": 4461,
+          "sha256": "5bd469c86231717d37d7ccf9f5db5bf187fb098566128c630408360778383d97",
+          "git_blob": "5f0eeb105540db56e5d96e7661c09837c03c4051",
+          "id": "stretch-body-keyboard-teleop",
+          "name": "Hello Robot Stretch Body: Keyboard mobile-manipulator teleoperation",
+          "summary": "Keyboard mobile-manipulator teleoperation. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "teleoperation"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_robot_keyboard_teleop.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "robot.push_command("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_gripper_jog.py",
+          "bytes": 3015,
+          "sha256": "d43d664c87f8d26fc63e5fd4cfd409d00df1b047b3ca7a8d711e050584e47e86",
+          "git_blob": "6f3f0eae39c689be199ac4d281d5d922f151944e",
+          "id": "stretch-body-gripper-jog",
+          "name": "Hello Robot Stretch Body: Gripper jogging",
+          "summary": "Gripper jogging. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "gripper",
+            "teleoperation"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_gripper_jog.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "g.move_by("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_arm_jog.py",
+          "bytes": 3240,
+          "sha256": "33ba3897f3a13d1257497a56747a7edaca854b4aa53c056ac76a818648c09b9a",
+          "git_blob": "5137b256c4e806d7ed29853acdf9acf00be189c2",
+          "id": "stretch-body-arm-jog",
+          "name": "Hello Robot Stretch Body: Arm jogging",
+          "summary": "Arm jogging. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "arm-control",
+            "teleoperation"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_arm_jog.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata. This script explicitly calls disable_runstop; this is not a safe default autonomous invocation.",
+          "contains": [
+            "a.move_by("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_base_jog.py",
+          "bytes": 6582,
+          "sha256": "88f8eead0d7029e3091a254b267e1be82a7d8f3fd1f7bf024b2f055a2ab99aba",
+          "git_blob": "41afa742e60520c81444601a73322d2dde4aacc7",
+          "id": "stretch-body-base-jog",
+          "name": "Hello Robot Stretch Body: Mobile base jogging",
+          "summary": "Mobile base jogging. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "mobile-base",
+            "teleoperation"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_base_jog.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "b.translate_by("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_lift_jog.py",
+          "bytes": 3245,
+          "sha256": "3918f0a75544ccccd0c928e591e268f59f5c6478816df01f0273a40d5e95ff5a",
+          "git_blob": "14dbc12d2a07b12439f12177880ad6280dc80b20",
+          "id": "stretch-body-lift-jog",
+          "name": "Hello Robot Stretch Body: Lift jogging",
+          "summary": "Lift jogging. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "lift-control",
+            "teleoperation"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_lift_jog.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata. This script explicitly calls disable_runstop; this is not a safe default autonomous invocation.",
+          "contains": [
+            "l.move_by("
+          ]
+        },
+        {
+          "path": "tools/bin/stretch_trajectory_jog.py",
+          "bytes": 17476,
+          "sha256": "2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156",
+          "git_blob": "23fa20687e8ed392edaaad5113dc9365f0574e04",
+          "id": "stretch-body-trajectory-jog",
+          "name": "Hello Robot Stretch Body: Interactive joint trajectories",
+          "summary": "Interactive joint trajectories. Pinned upstream source; source reviewed only, without Hub execution evidence.",
+          "capabilities": [
+            "real-robot",
+            "trajectory",
+            "joint-control"
+          ],
+          "aliases": [
+            "Stretch"
+          ],
+          "format": "python",
+          "execution_domain": "real_robot",
+          "role": "upstream-program",
+          "entrypoint": "tools/bin/stretch_trajectory_jog.py",
+          "invocation_notes": "Use the exact upstream tool after hardware setup. It can connect to hardware at module import; do not import it merely to inspect metadata.",
+          "contains": [
+            "j.follow_trajectory("
+          ]
+        }
+      ]
+    }
+  ]
+}

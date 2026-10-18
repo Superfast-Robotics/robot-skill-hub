@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "libfranka-robot-state",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4",
+      "record_version": "source-61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4"
+    },
+    {
       "id": "octo-examples-04-eval-finetuned-on-robot-py",
       "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
       "source_sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",

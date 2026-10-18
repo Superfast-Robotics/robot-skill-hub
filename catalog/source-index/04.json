@@ -26,6 +26,12 @@
       "record_version": "source-090d02b68f74bac699775604ef89e90aab7f1799e6ae2e996f4faacea4fccc75"
     },
     {
+      "id": "stretch-body-trajectory-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156",
+      "record_version": "source-2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-gps-gps-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "7a3946db50f1df96d0e6914b3d49c348f6ef464098ee84848336ea5b5d9b5c2f",

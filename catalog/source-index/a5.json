@@ -26,6 +26,18 @@
       "record_version": "source-b74720fe9223a95b0cadfbc3e3fbc83b7eadbfba518d6e36e3fb27828188a8ed"
     },
     {
+      "id": "stretch-body-battery",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "84bf3382260f74e9edac80739d931f428edfc935a10b723a0ddd9050820f62b7",
+      "record_version": "source-84bf3382260f74e9edac80739d931f428edfc935a10b723a0ddd9050820f62b7"
+    },
+    {
+      "id": "stretch-body-stow",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "1b9cc2defab225369d4edb30480cbe9abc34c2ddd5a9304b4594101cd8db846d",
+      "record_version": "source-1b9cc2defab225369d4edb30480cbe9abc34c2ddd5a9304b4594101cd8db846d"
+    },
+    {
       "id": "ur-description-artifact-config-ur10-physical-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "57decfb27fd0a6616055c151343b54ac8d31906c842ff23225730eb04a99ed80",

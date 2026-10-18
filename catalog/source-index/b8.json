@@ -14,6 +14,12 @@
       "record_version": "source-67e5b2436ad03b8f4aeb248f5622e9418873e612c2739e31db4f5f3a36f0adcc"
     },
     {
+      "id": "libfranka-cartesian-velocity",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "aea5223cdd546bec504f63aa46c5ba0f069bb341eb49c6455640bf50904accb5",
+      "record_version": "source-aea5223cdd546bec504f63aa46c5ba0f069bb341eb49c6455640bf50904accb5"
+    },
+    {
       "id": "mujoco-menagerie-artifact-universal-robots-ur10e-ur10e-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a8f709df340788033d497ff7d892fdecab4f6cc9c36299a00f57efa9f25e0744",

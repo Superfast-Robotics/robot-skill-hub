@@ -20,6 +20,12 @@
       "record_version": "source-487c9906e58c969534d26287df98164b4b0c4612b1b734b696358a2c1145e210"
     },
     {
+      "id": "stretch-body-keyboard-teleop",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "5bd469c86231717d37d7ccf9f5db5bf187fb098566128c630408360778383d97",
+      "record_version": "source-5bd469c86231717d37d7ccf9f5db5bf187fb098566128c630408360778383d97"
+    },
+    {
       "id": "ur-description-artifact-config-ur8long-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "3babb98f3f6b3311cf4864e4af2d5ec96508e5849c8dce206b690d0e1c0b711d",

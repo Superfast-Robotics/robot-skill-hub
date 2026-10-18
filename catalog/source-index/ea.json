@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-real-manipulation-tasks",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13",
+      "record_version": "source-fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13"
+    },
+    {
       "id": "isaaclab-scripts-demos-arms-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "b783b65552f52ae7f9a18d7feea261a12a4469ca5a077ae6861f9e2f3b2ad6af",

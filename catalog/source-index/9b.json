@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-yam-observe-station",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f",
+      "record_version": "source-793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f"
+    },
+    {
       "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-composed-py",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "b3a3a322951de2c3d3eebb2650d4e43017af5c52b8e750f8108d39736dd508ec",

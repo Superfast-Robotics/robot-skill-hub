@@ -287,3 +287,8 @@ assets or run robots.
 
 For the plugin manifest, cache layout and draft submission commands, see
 [ROS 2 plugin intake](robot-plugin-import.md).
+
+The [ASPIRE and real-platform expansion](aspire-real-platform-sources.md) adds 32
+source references from NVIDIA ASPIRE, Franka libfranka and Hello Robot Stretch
+Body. Its [manifest](../catalog/curated-source-projects.json) separately identifies
+agent instruction documents, simulation programs and real-platform code.

@@ -38,6 +38,12 @@
       "record_version": "source-1b9e5a0407b26410d907e7d52a52c60e429e1f289b0d334c262c64bd14cec8f8"
     },
     {
+      "id": "stretch-body-home",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "52e4133a8d7bd46d46dbdc57520b89350cd84fb20b0a8f1d26eca6ba151c654b",
+      "record_version": "source-52e4133a8d7bd46d46dbdc57520b89350cd84fb20b0a8f1d26eca6ba151c654b"
+    },
+    {
       "id": "ur-description-artifact-config-ur18-physical-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "e5115598b07f6f4a876b94056667187ceb3e48c4f9f1edf2922a59c0664be276",

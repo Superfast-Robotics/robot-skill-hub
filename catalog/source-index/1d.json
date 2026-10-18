@@ -6,6 +6,12 @@
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0",
       "record_version": "source-3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0"
+    },
+    {
+      "id": "stretch-body-arm-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "33ba3897f3a13d1257497a56747a7edaca854b4aa53c056ac76a818648c09b9a",
+      "record_version": "source-33ba3897f3a13d1257497a56747a7edaca854b4aa53c056ac76a818648c09b9a"
     }
   ]
 }

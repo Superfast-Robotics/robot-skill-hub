@@ -12,6 +12,12 @@
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77",
       "record_version": "source-c8913987745bc41b66c98782e7f0d316f2721a150c1053189c2c7f5d31a21c77"
+    },
+    {
+      "id": "stretch-body-monitor",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "62b64c213233791f6cb82026863a935c8765879273d79f4e8390b9cbf220bf8f",
+      "record_version": "source-62b64c213233791f6cb82026863a935c8765879273d79f4e8390b9cbf220bf8f"
     }
   ]
 }
