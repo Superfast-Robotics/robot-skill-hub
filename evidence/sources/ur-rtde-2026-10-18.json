@@ -1,0 +1,331 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_official_non_github_control_and_io_source_review",
+  "scope": "Two maintainer-reviewed source-only additions to an existing UR RTDE basic-motion reference. Coverage is finite. Static source inspection does not establish installation, native CLI acquisition, runtime compatibility, robot success or real-time performance.",
+  "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+  "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+  "new_source_count": 2,
+  "fresh_source_bytes": 2325,
+  "sources": [
+    {
+      "id": "ur-rtde-servoj",
+      "source": {
+        "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+        "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+        "path": "examples/py/servoj_example.py",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/servoj_example.py",
+        "sha256": "411f67e9b556b2d18f599592b153ce01ba71b9895466ac25ff291f2ba9e736d2",
+        "bytes": 1201,
+        "authors": [
+          "SDU Robotics"
+        ]
+      },
+      "entrypoint_kind": "straightline_python_script",
+      "main_guard": false,
+      "imports": [
+        {
+          "line": 1,
+          "text": "import time"
+        },
+        {
+          "line": 2,
+          "text": "import numpy as np"
+        },
+        {
+          "line": 3,
+          "text": "from rtde_control import RTDEControlInterface as RTDEControl"
+        }
+      ],
+      "calls": [
+        {
+          "line": 5,
+          "function": "RTDEControl"
+        },
+        {
+          "line": 14,
+          "function": "rtde_c.moveJ"
+        },
+        {
+          "line": 17,
+          "function": "np.array"
+        },
+        {
+          "line": 18,
+          "function": "np.array"
+        },
+        {
+          "line": 19,
+          "function": "np.array"
+        },
+        {
+          "line": 20,
+          "function": "np.array"
+        },
+        {
+          "line": 21,
+          "function": "time.time"
+        },
+        {
+          "line": 25,
+          "function": "rtde_c.initPeriod"
+        },
+        {
+          "line": 26,
+          "function": "time.time"
+        },
+        {
+          "line": 28,
+          "function": "(joint_q_start + amplitudes * np.sin(sine_argument)).tolist"
+        },
+        {
+          "line": 28,
+          "function": "np.sin"
+        },
+        {
+          "line": 29,
+          "function": "rtde_c.servoJ"
+        },
+        {
+          "line": 30,
+          "function": "rtde_c.waitPeriod"
+        },
+        {
+          "line": 32,
+          "function": "print"
+        },
+        {
+          "line": 34,
+          "function": "rtde_c.servoStop"
+        },
+        {
+          "line": 35,
+          "function": "rtde_c.stopScript"
+        }
+      ],
+      "runtime_verification": "not_run",
+      "curated_record": {
+        "path": "catalog/intake/ur-rtde-servoj.json",
+        "sha256": "b25b922d0340025e35b04dc9e64eaef6ee2e7cb8c060840f9f397a72ade88f99",
+        "record_version": "reviewed-20261018-411f67e9b556"
+      },
+      "per_file_license_override_found": false
+    },
+    {
+      "id": "ur-rtde-io",
+      "source": {
+        "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+        "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+        "path": "examples/py/io_example.py",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/io_example.py",
+        "sha256": "b21a319dda832712cf2f403aaab674e82906b3837f5189160a54179918a8d0fc",
+        "bytes": 1124,
+        "authors": [
+          "SDU Robotics"
+        ]
+      },
+      "entrypoint_kind": "straightline_python_script",
+      "main_guard": false,
+      "imports": [
+        {
+          "line": 1,
+          "text": "from rtde_io import RTDEIOInterface as RTDEIO"
+        },
+        {
+          "line": 2,
+          "text": "from rtde_receive import RTDEReceiveInterface as RTDEReceive"
+        },
+        {
+          "line": 3,
+          "text": "import time"
+        }
+      ],
+      "calls": [
+        {
+          "line": 5,
+          "function": "RTDEIO"
+        },
+        {
+          "line": 6,
+          "function": "RTDEReceive"
+        },
+        {
+          "line": 12,
+          "function": "rtde_receive_.getDigitalOutState"
+        },
+        {
+          "line": 13,
+          "function": "print"
+        },
+        {
+          "line": 15,
+          "function": "print"
+        },
+        {
+          "line": 17,
+          "function": "rtde_receive_.getDigitalOutState"
+        },
+        {
+          "line": 18,
+          "function": "print"
+        },
+        {
+          "line": 20,
+          "function": "print"
+        },
+        {
+          "line": 22,
+          "function": "rtde_io_.setStandardDigitalOut"
+        },
+        {
+          "line": 23,
+          "function": "rtde_io_.setToolDigitalOut"
+        },
+        {
+          "line": 24,
+          "function": "time.sleep"
+        },
+        {
+          "line": 26,
+          "function": "rtde_receive_.getDigitalOutState"
+        },
+        {
+          "line": 27,
+          "function": "print"
+        },
+        {
+          "line": 29,
+          "function": "print"
+        },
+        {
+          "line": 31,
+          "function": "rtde_receive_.getDigitalOutState"
+        },
+        {
+          "line": 32,
+          "function": "print"
+        },
+        {
+          "line": 34,
+          "function": "print"
+        },
+        {
+          "line": 37,
+          "function": "rtde_io_.setAnalogOutputCurrent"
+        }
+      ],
+      "runtime_verification": "not_run",
+      "curated_record": {
+        "path": "catalog/intake/ur-rtde-io.json",
+        "sha256": "de9484d52b6850a414e79a09295130371e0a3f43e4b788b9f840e65d3baceb3e",
+        "record_version": "reviewed-20261018-b21a319dda83"
+      },
+      "per_file_license_override_found": false
+    }
+  ],
+  "existing_basic_motion_history": {
+    "id": "ur-rtde-basic-move",
+    "catalog_path": "catalog/intake/ur-rtde-basic-move.json",
+    "record_sha256": "925d4c2f4c8583fb960d59afe3e60c53fd432c3845c9235a300966d63176938d",
+    "record_version": "intake-755f1279caa67565",
+    "source": {
+      "authors": [
+        "SDU Robotics"
+      ],
+      "bytes": 1108,
+      "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+      "path": "examples/py/basic_move.py",
+      "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+      "sha256": "25f397b34ae604607717159deb053d44e708553eaf2874d43f6ab6acc0b1239f",
+      "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/basic_move.py"
+    },
+    "prior_source_retrieved_at": "2026-10-18T02:13:44.125551+00:00",
+    "fresh_gets_in_this_curation": 0,
+    "record_bytes_unchanged": true,
+    "review_basis": "Previously retrieved pinned source rechecked by SHA-256. Its existing intake verification fields are preserved; this curation does not assert a new API submission or change its runtime trust."
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+    "sha256": "1277836eec59b2a54250c6f2273825f19fe56b7a091d2a5e4518c19a3ef5232e",
+    "bytes": 1092,
+    "copyright": "Copyright (c) 2025 Anders Prier Lindvig - SDU Robotics",
+    "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms."
+  },
+  "setup": {
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md",
+    "sha256": "0750cee0a3d02aafe38377b07b9ceddec8584e5e27cdd13516b6df96d8b8b7db",
+    "bytes": 6363,
+    "observations": [
+      "Pinned README describes the UR RTDE C++ interface and Python bindings.",
+      "Its unversioned installation example and robot/platform declarations are not resolved or tested environments for these files.",
+      "NumPy is imported by the servo example but not by the I/O example."
+    ]
+  },
+  "commit_metadata": {
+    "url": "https://gitlab.com/api/v4/projects/sdurobotics%2Fur_rtde/repository/commits/f5492109848a9fa6582df76dffa09c510ac36393",
+    "sha256": "6cf45aab54d23a4200d184d699cad6aa388681fb3f1a28700bc46f5c02c290a7",
+    "bytes": 1072
+  },
+  "static_behavior": {
+    "ur-rtde-servoj": [
+      "Control connection and initial joint movement occur at module top level before the loop cleanup block.",
+      "The indefinite loop computes sinusoidal six-joint targets using elapsed wall-clock time.",
+      "The requested period is 1/500 seconds; no achieved frequency or real-time scheduling is measured.",
+      "The loop cleanup calls servoStop and stopScript. The loopback demonstration address does not establish a simulator-only environment."
+    ],
+    "ur-rtde-io": [
+      "Top-level connection uses the embedded demonstration controller address.",
+      "Output-state indices 7 and 16 are read; standard output 7 and tool output 0 are set high.",
+      "After a 0.01-second wait and another state read, analog output 1 is set to current ratio 0.25.",
+      "Prior output values are not restored. Connected peripherals may actuate."
+    ]
+  },
+  "source_only_mapping": {
+    "artifact_kind": "code",
+    "artifact_format": "python",
+    "access_mode": "source_reference",
+    "hub_prepare": false,
+    "runtime_verification": "not_run",
+    "known_compatibility_combinations": 0,
+    "required_unknown_compatibility_placeholder": [
+      {
+        "runtime": "unknown",
+        "runtime_version": "unknown",
+        "robot": "unknown",
+        "controller": "unknown",
+        "observation": "unknown",
+        "os": "unknown"
+      }
+    ],
+    "optional_compatibility_dimensions_omitted": [
+      "python",
+      "architecture"
+    ],
+    "requirements_python": null,
+    "new_record_origin": "Maintainer-reviewed catalog curation; no API submission or receipt is asserted for the two additions.",
+    "license_hash_boundary": "The strict record license object has spdx/url/scope/verified; the immutable license hash is preserved separately in this evidence."
+  },
+  "retrieval_observations": {
+    "fresh_official_source_gets": 2,
+    "all_http_status": 200,
+    "source_bytes_match_prior_pins": true,
+    "source_content_encoding": "identity",
+    "cached_support_rechecked_by_sha256": true,
+    "supporting_gets": 0,
+    "authentication": false,
+    "cookies": false,
+    "proxy": false,
+    "redirects": false,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off"
+  },
+  "runtime_boundary": {
+    "upstream_modules_imported": false,
+    "upstream_code_executed_or_compiled": false,
+    "package_installation": false,
+    "controller_or_robot_contact": false,
+    "simulator_or_gpu_execution": false,
+    "runtime_verification": "not_run"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "id": "ur-rtde-servoj",
+  "name": "UR RTDE joint servo motion example",
+  "summary": "SDU Robotics Python example that connects an RTDE control interface, moves to an initial joint target and repeatedly sends sinusoidal six-joint servoJ targets. Importing or running the original script can start physical motion; this reference supplies inert source metadata only.",
+  "framework": "ur-rtde",
+  "kind": "community_skill",
+  "capabilities": [
+    "robot-control",
+    "joint-servo",
+    "joint-motion"
+  ],
+  "aliases": [
+    "UR RTDE",
+    "Universal Robots",
+    "servoJ",
+    "joint servo control",
+    "sinusoidal joint targets"
+  ],
+  "robots": [
+    "ur"
+  ],
+  "source": {
+    "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+    "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+    "path": "examples/py/servoj_example.py",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/servoj_example.py",
+    "sha256": "411f67e9b556b2d18f599592b153ce01ba71b9895466ac25ff291f2ba9e736d2",
+    "bytes": 1201,
+    "authors": [
+      "SDU Robotics"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+    "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "ur_rtde Python bindings providing rtde_control",
+      "numpy"
+    ],
+    "hardware": [
+      "Operator-authorized UR robot/controller with a configured RTDE endpoint; model and software versions are unverified"
+    ],
+    "system": [
+      "Network access to the intended RTDE controller endpoint",
+      "An operator-reviewed Python environment for the pinned source and its bindings"
+    ],
+    "notes": "This straight-line script constructs RTDEControlInterface with an embedded loopback address and calls moveJ before entering its try/finally block. A loopback address does not establish a simulator environment. Inspect and adapt the address, six-joint start target, sinusoidal amplitudes/frequencies/phases, lookahead and gain for the authorized installation. The loop uses dt=1/500 seconds with initPeriod, servoJ and waitPeriod; this is a requested control period, not measured real-time or 500 Hz performance. It continues until interruption or another exception. The finally block calls servoStop and stopScript after leaving that loop; startup operations occur before it. The pinned README provides project-level installation and robot/OS declarations; no Python/package version, controller, firmware, robot, operating-system or timing combination was resolved or tested for this source."
+  },
+  "invocation": {
+    "entrypoint": "python examples/py/servoj_example.py",
+    "notes": "Upstream invocation only after separate operator authorization and configuration. There is no main guard, and executing or importing the file can connect and move hardware. The source defines an indefinite servo loop and does not verify reachability, collision safety or real-time scheduling. The Hub supplies no execution/preparation adapter. No upstream execution, controller contact, simulator or package installation was performed during source review."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+    "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Applicable MIT license and pinned README bytes checked independently. Hardware effects and setup declarations are source observations; no controller, robot, simulator or runtime environment was tested."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-411f67e9b556",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

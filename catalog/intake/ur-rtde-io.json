@@ -1,0 +1,92 @@
+{
+  "id": "ur-rtde-io",
+  "name": "UR RTDE digital and analog I/O example",
+  "summary": "SDU Robotics Python example that reads standard/tool digital-output states, sets a standard and tool digital output high, and sets an analog-output current ratio through RTDE. Importing or running the original script can change physical outputs and actuate connected peripherals.",
+  "framework": "ur-rtde",
+  "kind": "community_skill",
+  "capabilities": [
+    "robot-io",
+    "digital-output",
+    "analog-output",
+    "io-state"
+  ],
+  "aliases": [
+    "UR RTDE",
+    "Universal Robots",
+    "RTDEIOInterface",
+    "RTDEReceiveInterface",
+    "standard digital output",
+    "tool digital output",
+    "analog current output"
+  ],
+  "robots": [
+    "ur"
+  ],
+  "source": {
+    "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+    "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+    "path": "examples/py/io_example.py",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/io_example.py",
+    "sha256": "b21a319dda832712cf2f403aaab674e82906b3837f5189160a54179918a8d0fc",
+    "bytes": 1124,
+    "authors": [
+      "SDU Robotics"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+    "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "ur_rtde Python bindings providing rtde_io and rtde_receive"
+    ],
+    "hardware": [
+      "Operator-authorized UR controller with reviewed standard/tool digital and analog output wiring; connected peripherals may actuate"
+    ],
+    "system": [
+      "Network access to the intended RTDE controller endpoint",
+      "An operator-reviewed Python environment for the pinned source and its bindings"
+    ],
+    "notes": "The source constructs RTDEIOInterface and RTDEReceiveInterface at module top level using an embedded demonstration address. Review the controller address, channel mapping, wiring and analog-current configuration before any execution. It reads digital-output state indices 7 and 16, sets standard digital output 7 and tool digital output 0 high, waits 0.01 seconds, reads those states again, then sets analog output 1 to current ratio 0.25. It has no restore step for the previous output values. These commands can affect connected hardware even though this source sends no joint or Cartesian motion command. The pinned README provides project-level installation and robot/OS declarations; no Python/package version, controller, firmware, robot, operating-system or timing combination was resolved or tested for this source."
+  },
+  "invocation": {
+    "entrypoint": "python examples/py/io_example.py",
+    "notes": "Upstream invocation only after separate operator authorization and I/O configuration. There is no main guard; importing or executing the file can connect to the controller and change outputs. The Hub supplies no execution/preparation adapter. No upstream execution, I/O change, controller contact, simulator or package installation was performed during source review."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+    "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Applicable MIT license and pinned README bytes checked independently. Hardware effects and setup declarations are source observations; no controller, robot, simulator or runtime environment was tested."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-b21a319dda83",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
