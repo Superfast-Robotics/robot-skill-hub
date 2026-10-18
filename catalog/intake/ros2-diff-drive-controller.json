@@ -1,0 +1,114 @@
+{
+  "id": "ros2-diff-drive-controller",
+  "name": "ros2_controllers differential-drive controller implementation",
+  "summary": "Official C++ ros2_control chainable plugin that consumes stamped linear/angular velocity references, applies configured limits and computes left/right wheel velocity commands. It integrates odometry through a companion helper and publishes configured odometry/TF output; runtime and physical behavior remain untested.",
+  "framework": "ros2-controllers",
+  "kind": "community_skill",
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "capabilities": [
+    "differential-drive",
+    "wheel-velocity-command",
+    "odometry-integration",
+    "velocity-command",
+    "chainable-controller-plugin"
+  ],
+  "aliases": [
+    "ros2_control",
+    "diff_drive_controller",
+    "DiffDriveController",
+    "TwistStamped",
+    "cmd_vel",
+    "differential drive",
+    "wheel odometry",
+    "linear angular velocity"
+  ],
+  "robots": [
+    "unspecified differential-drive mobile base"
+  ],
+  "source": {
+    "repository": "https://github.com/ros-controls/ros2_controllers",
+    "commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+    "path": "diff_drive_controller/src/diff_drive_controller.cpp",
+    "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/src/diff_drive_controller.cpp",
+    "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+    "bytes": 28146,
+    "authors": [
+      "PAL Robotics S.L.",
+      "Bence Magyar",
+      "Enrique Fernández",
+      "Manuel Meraz"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+    "verified": true,
+    "scope": "Copyright 2020 PAL Robotics S.L.; selected-file author notice names Bence Magyar, Enrique Fernández and Manuel Meraz. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned diff_drive_controller package, companion sources/headers and a C++17 toolchain",
+      "ament_cmake",
+      "ros2_control_cmake",
+      "generate_parameter_library",
+      "backward_ros",
+      "control_toolbox",
+      "controller_interface",
+      "geometry_msgs",
+      "hardware_interface",
+      "nav_msgs",
+      "pluginlib",
+      "rclcpp",
+      "rclcpp_lifecycle",
+      "rcpputils",
+      "realtime_tools",
+      "tf2",
+      "tf2_msgs",
+      "lifecycle_msgs",
+      "class_loader",
+      "rosidl_runtime_cpp"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured ros2_control lifecycle/controller manager host and matching left/right wheel velocity command interfaces",
+      "Configured wheel names, radii/separation, velocity limits, timing and odometry frames; position/velocity feedback unless configured open_loop"
+    ],
+    "notes": "The subscriber path uses the package TwistStamped alias on ~/cmd_vel and checks timestamp age; timeout 0 disables this timeout. The chainable class exposes linear/angular velocity reference interfaces. update_and_write_commands applies speed limiters, computes wheel rates from linear x/angular z and configured geometry, and writes loaned wheel command handles. It delegates odometry to odometry.cpp, publishes ~/odom and conditional /tf and ~/cmd_vel_out, and halt writes zero wheel commands during deactivation. These are source operations, not verified stopping, odometry accuracy or timing. Complete headers, odometry/speed-limiter helpers and generated parameter YAML/validators were not reviewed and remain required. Package/CMake declare the listed build/runtime dependencies; lifecycle_msgs, class_loader and rosidl_runtime_cpp also appear directly in this source. Optional BUILD_TESTING has additional declared test dependencies. C++17, package 4.43.0 and the jazzy checkout are declarations, not tested environment combinations."
+  },
+  "invocation": {
+    "entrypoint": "pluginlib diff_drive_controller/DiffDriveController (controller_interface::ChainableControllerInterface)",
+    "notes": "The plugin XML registers type diff_drive_controller::DiffDriveController, base controller_interface::ChainableControllerInterface and shared library diff_drive_controller. This source registers that class with CLASS_LOADER_REGISTER_CLASS; CMake exports diff_drive_plugin.xml. A complete configured controller manager/lifecycle host supplies interfaces and invokes subscriber/reference and command updates. This is not a standalone executable or Hub adapter. When loaded by an authorized host it can command actual wheels and publish ROS messages; fetching this reference never loads or executes it."
+  },
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the immutable source, complete license, package/CMake/plugin registration and complete upstream configuration before integration. This source-only reference supplies no build, install or execution adapter.",
+    "setup_url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source, root Apache 2.0 license, package XML, CMake and plugin registration read as inert text. Official ROS Index canonical/jazzy metadata, exact commit, complete 768-entry tree and all ten selected immutable file bodies verified by Git blob identity, byte count and SHA-256. Fourteen bounded anonymous primary GETs total, all HTTP 200. No compilation, installation, plugin load, ROS/simulator/robot execution or measured compatibility/performance."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-6d19b817443f",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

@@ -217,6 +217,14 @@ adds the EKF prediction/correction library implementation with explicit selected
 BSD and package-level Apache declarations. It is not a standalone sensor-fusion
 node, has no Hub adapter and remains `runtime_verification: not_run`.
 
+## ros2_controllers implementations
+
+The [ros2_controllers source review](../docs/ros2-controller-sources.md) adds
+joint trajectory and differential-drive plugin implementations beyond the
+existing demo configuration/launch references. Their command-interface writes,
+ROS graph effects and complete-package requirements are explicit. Both remain
+source-only with unknown compatibility and `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh

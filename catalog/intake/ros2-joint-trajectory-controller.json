@@ -1,0 +1,112 @@
+{
+  "id": "ros2-joint-trajectory-controller",
+  "name": "ros2_controllers joint trajectory controller implementation",
+  "summary": "Official C++ ros2_control lifecycle plugin that accepts joint-space trajectory topic/action input, samples trajectories and writes claimed joint command interfaces. The selected source includes goal validation, tolerances and action/state feedback; no robot or successful task execution was verified.",
+  "framework": "ros2-controllers",
+  "kind": "community_skill",
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "capabilities": [
+    "joint-trajectory-execution",
+    "joint-space-control",
+    "trajectory-validation",
+    "action-feedback",
+    "controller-plugin"
+  ],
+  "aliases": [
+    "ros2_control",
+    "joint_trajectory_controller",
+    "JointTrajectoryController",
+    "follow_joint_trajectory",
+    "joint_trajectory",
+    "joint-space trajectory",
+    "position velocity acceleration effort",
+    "PID feedforward",
+    "FollowJTrajAction"
+  ],
+  "robots": [
+    "unspecified jointed robot"
+  ],
+  "source": {
+    "repository": "https://github.com/ros-controls/ros2_controllers",
+    "commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+    "path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+    "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+    "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+    "bytes": 77779,
+    "authors": [
+      "ros2_control Development Team"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+    "verified": true,
+    "scope": "Copyright 2021 ros2_control Development Team. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned joint_trajectory_controller package, companion sources/headers and a C++17 toolchain",
+      "ament_cmake",
+      "ros2_control_cmake",
+      "angles",
+      "backward_ros",
+      "controller_interface",
+      "control_msgs",
+      "control_toolbox",
+      "generate_parameter_library",
+      "hardware_interface",
+      "libexpected-dev",
+      "pluginlib",
+      "rclcpp",
+      "rclcpp_action",
+      "rclcpp_lifecycle",
+      "realtime_tools",
+      "rsl",
+      "trajectory_msgs",
+      "urdf",
+      "lifecycle_msgs"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured ros2_control controller manager/lifecycle host, named joints and matching claimed command/state interfaces",
+      "Complete generated parameters, trajectory helpers, robot description and applicable joint/goal constraints"
+    ],
+    "notes": "The selected update reads joint states, samples the companion Trajectory implementation, checks configured tolerances and writes position, velocity, acceleration or effort commands according to selected interfaces. Velocity-only or effort-only configurations can use the PID/feedforward adapter. Configuration creates ~/joint_trajectory input, ~/controller_state output, follow_joint_trajectory action, query_state service and conditional speed-scaling input. It handles goal preemption/cancellation and configured hold/deceleration paths; stopping safety and real-time performance were not tested. Companion trajectory.cpp, headers, generated parameter YAML/validators and their behavior are required but were not reviewed. lifecycle_msgs is explicitly included in this source; the other listed build/runtime dependencies come from package.xml/CMake. Optional BUILD_TESTING has additional declared test dependencies. CMake requests C++17; package 4.43.0 and the jazzy checkout are declarations, not tested ROS, OS, architecture, controller or robot combinations."
+  },
+  "invocation": {
+    "entrypoint": "pluginlib joint_trajectory_controller/JointTrajectoryController (controller_interface::ControllerInterface)",
+    "notes": "The plugin XML registers type joint_trajectory_controller::JointTrajectoryController and shared library joint_trajectory_controller. The source exports that class with PLUGINLIB_EXPORT_CLASS. A configured controller manager/lifecycle host calls on_configure/on_activate/update; this is not a standalone ros2 run program or a Hub recipe. Joint-space trajectory construction and kinematics remain caller/package responsibilities. Loading an appropriately configured host can write actual hardware command interfaces. The Hub retrieves one inert file only and did not build, load or execute the plugin."
+  },
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the immutable source, complete license, package/CMake/plugin registration and complete upstream configuration before integration. This source-only reference supplies no build, install or execution adapter.",
+    "setup_url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source, root Apache 2.0 license, package XML, CMake and plugin registration read as inert text. Official ROS Index canonical/jazzy metadata, exact commit, complete 768-entry tree and all ten selected immutable file bodies verified by Git blob identity, byte count and SHA-256. Fourteen bounded anonymous primary GETs total, all HTTP 200. No compilation, installation, plugin load, ROS/simulator/robot execution or measured compatibility/performance."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-da42c65b96e0",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
