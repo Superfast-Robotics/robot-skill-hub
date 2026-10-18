@@ -15,12 +15,20 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
   const record = JSON.stringify({ id: 'panda-source-policy', name: 'Panda policy source', summary: 'Pinned policy artifact reference.',
     source: { revision: 'sha256:' + 'b'.repeat(64), sha256: 'b'.repeat(64) }, access: { mode: 'source_reference', hub_prepare: false },
     evidence: { level: 'source_reviewed', runtime_verification: 'not_run' } });
-  const search = JSON.stringify({ schema_version: '1', hub_commit: hub, counts: { recipes: 0, references: 1, memories: 0 }, records: [
+  const search = JSON.stringify({ schema_version: '1', hub_commit: hub, counts: { recipes: 0, references: 1, memories: 1 }, records: [
     { id: 'panda-source-policy', name: 'Panda policy source', summary: 'Pinned policy artifact reference.', kind: 'source_reference', hub_prepare: false,
-      capabilities: ['grasp'], aliases: [], robots: ['panda'], runtime: 'onnx', compatibility: [], record_version: 'source-' + 'b'.repeat(64), record_sha256: hash(record) }
+      capabilities: ['grasp'], aliases: [], robots: ['panda'], runtime: 'onnx', compatibility: [], record_version: 'source-' + 'b'.repeat(64), record_sha256: hash(record), source_commit: 'sha256:' + 'b'.repeat(64), source_sha256: 'b'.repeat(64) }
   ] });
+  const memory_id = 'mem_' + 'c'.repeat(64);
+  const memories = JSON.stringify({ schema_version: '1', hub_commit: hub, records: [{ schema_version: '1', memory_id,
+    skill_id: 'panda-source-policy', base: { record_version: 'source-' + 'b'.repeat(64), source_commit: 'sha256:' + 'b'.repeat(64), hub_commit: hub },
+    environment: { runtime: 'onnx', robot: 'panda' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64),
+    entry_url: 'https://hub.superfastrobotics.com/memories/' + memory_id + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported',
+    summary: 'Observed policy input requirement', observation: 'Input shapes must be checked for the selected model.', resolution: null,
+    evidence: { level: 'contributor_reported', reported_by: 'submitter' } }] });
   const bundle = await build({ entryPoints: [fileURLToPath(new URL('../../src/index.ts', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023' });
   const outbound: string[] = [];
+  let corruptMemory = false;
   const mf = new Miniflare({ telemetry: { enabled: false }, workers: [{ config: {
     name: 'robot-skill-hub-public-sdk-test', compatibilityDate: '2026-10-17',
     manifest: { mainModule: 'worker.js', modules: { 'worker.js': { type: 'esm', contents: bundle.outputFiles![0].text } } },
@@ -30,9 +38,10 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     assert.equal(request.method, 'GET'); assert.equal(request.headers.get('DNT'), '1');
     assert.equal(request.headers.get('X-RSH-Telemetry'), 'off');
     const url = new URL(request.url); assert.equal(url.origin, 'https://hub.superfastrobotics.com');
-    if (url.pathname === '/catalog/v1/version.json') return RuntimeResponse.json({ schema_version: '1', hub_commit: hub, resources: { search: { sha256: hash(search) } } });
+    if (url.pathname === '/catalog/v1/version.json') return RuntimeResponse.json({ schema_version: '1', hub_commit: hub, resources: { search: { sha256: hash(search) } , memories: { sha256: hash(memories) } } });
     if (url.pathname === '/catalog/v1/search.json') return new RuntimeResponse(search);
     if (url.pathname === '/references/panda-source-policy/skill.json') return new RuntimeResponse(record);
+    if (url.pathname === '/catalog/v1/memories.json') return new RuntimeResponse(corruptMemory ? memories + ' ' : memories);
     assert.fail('An MCP read attempted an unexpected upstream resource: ' + request.url);
   } } } }] });
   const client = new Client({ name: 'robot-skill-hub-independent-sdk-test', version: '1.0.0' }, { capabilities: {} });
@@ -77,8 +86,19 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     const found = await client.callTool({ name: 'find_robot_skills', arguments: { q: 'panda grasp', limit: 1 } }, undefined, { timeout: 5000 });
     assert.equal(found.isError, false); const value: any = found.structuredContent;
     assert.equal(value.execution_performed, false); assert.equal(value.results[0].id, 'panda-source-policy'); assert.equal(value.results[0].hub_prepare, false);
-    const inspected = await client.callTool({ name: 'inspect_robot_skill', arguments: { skill_id: value.results[0].id, record_version: value.results[0].record_version } }, undefined, { timeout: 5000 });
+    assert.equal(outbound.filter(url => url.includes('/memories.json')).length, 0, 'Search does not fan out finding queries');
+    const inspected = await client.callTool({ name: 'inspect_robot_skill', arguments: { skill_id: value.results[0].id, record_version: value.results[0].record_version, environment: { robot: 'panda' } } }, undefined, { timeout: 5000 });
     const detail: any = inspected.structuredContent; assert.equal(detail.record.evidence.runtime_verification, 'not_run'); assert.equal(detail.record.access.hub_prepare, false);
+    assert.deepEqual(detail.record, JSON.parse(record));
+    assert.equal(detail.findings.status, 'ready'); assert.equal(detail.findings.total, 1);
+    assert.equal(detail.findings.results[0].memory_id, memory_id); assert.equal(detail.findings.applicability, 'needs_applicability_check');
+    assert.deepEqual(detail.findings.environment_filter, { robot: 'panda' });
+    corruptMemory = true;
+    const degraded = await client.callTool({ name: 'inspect_robot_skill', arguments: { skill_id: value.results[0].id } }, undefined, { timeout: 5000 });
+    assert.equal(degraded.isError, false); const partial: any = degraded.structuredContent;
+    assert.deepEqual(partial.record, detail.record); assert.equal(partial.findings.status, 'unknown');
+    assert.equal(partial.findings.reason_code, 'publication_changed'); assert.equal(partial.findings.total, null);
+    assert.equal(outbound.filter(url => url.includes('/memories.json')).length, 2, 'One fixed resource read per inspection, without a retry');
     assert.equal(outbound.filter(url => url.includes('/version.json')).length, 1); assert.equal(outbound.filter(url => url.includes('/search.json')).length, 1);
     assert.deepEqual(errors.map(error => error.message), []);
   } finally { await client.close(); await mf.dispose(); }

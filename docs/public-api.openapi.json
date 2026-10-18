@@ -1017,7 +1017,7 @@
     "/mcp": {
       "post": {
         "summary": "Stateless read-only Model Context Protocol over Streamable HTTP",
-        "description": "Public tools find_robot_skills, inspect_robot_skill and get_hub_capabilities. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25.",
+        "description": "Public tools find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25.",
         "security": [],
         "requestBody": {
           "required": true,

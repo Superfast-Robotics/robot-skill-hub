@@ -53,6 +53,7 @@ def build_parser():
     environment_options(search)
     detail = sub.add_parser("inspect", help="Read source, requirements and verification evidence")
     detail.add_argument("skill_id")
+    environment_options(detail)
     fetch = sub.add_parser("fetch-source", help="Save one checksum-verified source-reference file as inert data; never install or run it")
     fetch.add_argument("skill_id")
     fetch.add_argument("--project", required=True)
@@ -270,7 +271,10 @@ def execute(args, catalog_location):
         return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
                                api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
-        return catalog_handoff(inspect(catalog, args.skill_id), catalog_location, args.offline)
+        result = inspect(catalog, args.skill_id)
+        result["findings"] = memories.for_selection(catalog, args.skill_id, environment,
+                                                   offline=args.offline, refresh=args.refresh)
+        return catalog_handoff(result, catalog_location, args.offline)
     if args.command == "fetch-source":
         return catalog_handoff(acquisition.fetch_source(catalog, args.skill_id, args.project,
                                         expected_source_revision=args.expected_source_revision,

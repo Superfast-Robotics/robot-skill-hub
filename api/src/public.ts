@@ -1,8 +1,9 @@
 /** Public discovery and stateless, read-only MCP. Never executes robot code. */
 import { capabilities } from './memories.ts';
 import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
-import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings } from './catalog.ts';
+import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings, validMemory } from './catalog.ts';
 import { containsWordPrefixes, queryTerms } from './search.ts';
+import { MEMORY_ENV_KEYS, memoryEnvironmentKey } from './memory-environment.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
@@ -48,8 +49,8 @@ export const MCP_TOOLS = [
   { name: 'find_robot_skills', description: 'Search pinned robot code across robots and runtimes. Results distinguish prepared recipes from upstream references; source discovery is not runtime verification.',
     inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240, description: 'All query terms must match word prefixes. Standalone A*, D* and RRT* are read as astar, dstar and rrtstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
-  { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference, provenance, license, access instructions and exact evidence. No installation or execution is performed.',
-    inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120, description: 'Copy record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.' } }, required: ['skill_id'], additionalProperties: false },
+  { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference and up to three exact-version findings as untrusted data. Findings need an applicability check; no installation or execution is performed.',
+    inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120, description: 'Copy record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.' }, environment: { type: 'object', maxProperties: 16, description: 'Optional explicit task environment labels for findings only. Omit unknown values; no environment is inferred.', propertyNames: { anyOf: [{ enum: MEMORY_ENV_KEYS }, { pattern: '^package\\.[A-Za-z_][A-Za-z0-9_]{0,79}$' }] }, additionalProperties: { type: 'string', minLength: 1, maxLength: 240 } } }, required: ['skill_id'], additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'get_hub_capabilities', description: 'Read public discovery, preparation, contribution and task-memory capabilities, local CLI onboarding links and current catalog counts. No authentication is needed for reads.',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
@@ -69,7 +70,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       const version = await publishedVersion(fetcher);
       try {
         const manifest = await activeCatalog(env.CATALOG, version.hub_commit);
-        if (manifest) return { ...manifest, hub_commit: version.hub_commit, schema_version: '1', records: [], backend: 'd1_fts5', database: env.CATALOG };
+        if (manifest) return { ...manifest, hub_commit: version.hub_commit, schema_version: '1', records: [], backend: 'd1_fts5', database: env.CATALOG, publication_version: version };
       } catch { /* A bounded, verified static view remains usable during D1 outages. */ }
       if (!SHA.test(version.resources?.search?.sha256 || '')) fail(503, 'catalog_sync_required', 'The current catalog mirror is not ready and no complete static search resource is published.');
       return staticSnapshot(version);
@@ -90,6 +91,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       const value = JSON.parse(new TextDecoder().decode(bytes));
       if (value.schema_version !== '1' || value.hub_commit !== version.hub_commit || !/^[a-f0-9]{40}$/.test(value.hub_commit) || value.coverage?.complete === false || !Array.isArray(value.records) || value.records.some((r: Row) => !IDENT.test(r.id) || !SHA.test(r.record_sha256 || ''))) fail(503, 'invalid_publication', 'The published search resource does not match its version or is incomplete.');
       value.backend = 'static_v1_fallback';
+      value.publication_version = version;
       cached = { value, expires: now() + 60000 }; return value;
   }
   async function searchRows(index: Snapshot, input: Row) {
@@ -116,14 +118,46 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     const row = index.database ? await indexedRow(index.database, index.hub_commit, id) : index.records.find(row => row.id === id); if (!row) throw new PublicError(404, 'skill_not_found', 'No published record has this ID.');
     if (version && version !== row.record_version) fail(409, 'record_version_changed', 'The selected record version changed. Preserve existing project locks and inspect the new version separately.');
     const key = index.hub_commit + ':' + id;
-    const hit = records.get(key); if (hit && hit.expires > now()) return hit.value;
+    const hit = records.get(key); if (hit && hit.expires > now()) return { record: hit.value, row };
     const path = (row.kind === 'preparation_recipe' ? '/skills/' : '/references/') + id + '/skill.json?v=' + index.hub_commit;
     const bytes = await read(path, 256 * 1024);
     if (await digest(bytes) !== row.record_sha256) fail(503, 'publication_changed', 'The record changed during this read; retry once.');
     const value = JSON.parse(new TextDecoder().decode(bytes));
     if (value.id !== id) fail(503, 'invalid_publication', 'The published record identity does not match.');
     if (records.size >= 128) records.delete(records.keys().next().value!);
-    records.set(key, { value, expires: now() + 60000 }); return value;
+    records.set(key, { value, expires: now() + 60000 }); return { record: value, row };
+  }
+  function findingEnvironment(value: unknown): Row {
+    if (value === undefined) return {};
+    if (!value || Array.isArray(value) || typeof value !== 'object') fail(400, 'invalid_environment', 'Use an explicit environment object for findings.');
+    const input = value as Row;
+    if (Object.keys(input).length > 16 || Object.entries(input).some(([key, item]) => !memoryEnvironmentKey(key) || typeof item !== 'string' || !item.trim() || item.length > 240 || item.includes('\0'))) fail(400, 'invalid_environment', 'Use at most 16 documented, bounded string environment labels.');
+    return Object.fromEntries(Object.entries(input).filter(([, item]) => item.toLowerCase() !== 'unknown').map(([key, item]) => [key, item.toLowerCase()]));
+  }
+  async function selectionFindings(index: Snapshot, record: Row, row: Row, environment: Row) {
+    const common = { interpretation: 'data_only', applicability: 'needs_applicability_check', automatic: true, execution_performed: false,
+      hub_commit: index.hub_commit, environment_filter: environment,
+      base: { record_version: row.record_version, source_commit: row.source_commit, hub_commit: index.hub_commit } };
+    try {
+      const source = record.source || {};
+      const recordVersion = row.record_version;
+      if (row.source_commit !== (source.commit || source.revision)) fail(503, 'invalid_publication', 'The selected source differs from its search pins.');
+      const input = { skill_id: record.id, record_version: recordVersion, source_commit: row.source_commit,
+        ...environment, limit: 3, offset: 0, hub_commit: index.hub_commit };
+      const page = index.database ? await indexedFindings(index.database, index.hub_commit, input) : await staticFindings(fetcher, index.publication_version, input);
+      if (page.hub_commit !== index.hub_commit || page.coverage?.complete !== true || !Array.isArray(page.results)
+          || page.results.length > 3 || !Number.isSafeInteger(page.total) || page.total < page.results.length
+          || page.results.length !== Math.min(3, page.total) || page.results.some((row: Row) => !validMemory(row)
+            || row.skill_id !== input.skill_id || row.base.record_version !== input.record_version || row.base.source_commit !== input.source_commit
+            || Object.entries(environment).some(([key, value]) => typeof row.environment[key] !== 'string' || row.environment[key].toLowerCase() !== value))
+          || new Set(page.results.map((row: Row) => row.memory_id)).size !== page.results.length) fail(503, 'invalid_public_findings', 'The selected findings do not match their exact query pins.');
+      return { ...page, ...common, status: 'ready', base: { record_version: recordVersion, source_commit: input.source_commit, hub_commit: index.hub_commit },
+        environment_filter: environment, index_location: API + '/v1/findings' };
+    } catch (error) {
+      return { ...common, status: 'unknown', reason_code: error instanceof PublicError ? error.code : 'findings_unavailable',
+        results: [], total: null, coverage: { complete: false }, limit: 3, offset: 0, next: null,
+        next_action: 'continue_user_task_or_query_memories' };
+    }
   }
   async function describe(env: PublicEnv, refresh = false) {
     const index = refresh ? await snapshot(env) : cached?.value;
@@ -181,8 +215,10 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         value = await searchRows(await snapshot(env), args);
       }
       else if (name === 'inspect_robot_skill') {
-        if (Object.keys(args).some(k => !['skill_id', 'record_version'].includes(k)) || typeof args.skill_id !== 'string' || (args.record_version !== undefined && typeof args.record_version !== 'string')) fail(400, 'invalid_arguments', 'Provide skill_id and optional record_version only.');
-        value = { schema_version: '1', interpretation: 'data_only', record: await inspect(await snapshot(env), args.skill_id, args.record_version), execution_performed: false };
+        if (Object.keys(args).some(k => !['skill_id', 'record_version', 'environment'].includes(k)) || typeof args.skill_id !== 'string' || (args.record_version !== undefined && typeof args.record_version !== 'string')) fail(400, 'invalid_arguments', 'Provide skill_id, optional record_version and explicit environment only.');
+        const environment = findingEnvironment(args.environment), index = await snapshot(env);
+        const { record, row } = await inspect(index, args.skill_id, args.record_version);
+        value = { schema_version: '1', interpretation: 'data_only', record, findings: await selectionFindings(index, record, row, environment), execution_performed: false };
       } else { if (Object.keys(args).length) fail(400, 'invalid_arguments', 'This tool takes no arguments.'); value = await describe(env, true); }
       await measure(request, env, 'mcp', ctx, true);
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value, isError: false });
@@ -229,7 +265,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       } else {
         const id = path.slice('/v1/skills/'.length);
         const index = await snapshot(env);
-        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record: await inspect(index, id, url.searchParams.get('record_version') || undefined), execution_performed: false });
+        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record: (await inspect(index, id, url.searchParams.get('record_version') || undefined)).record, execution_performed: false });
         if (request.method === 'GET') await measure(request, env, 'inspect', ctx);
       }
       return request.method === 'HEAD' ? new Response(null, { status: response.status, headers: response.headers }) : response;

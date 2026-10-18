@@ -44,7 +44,7 @@ Source review or `import_verified` does not prove task success. `ready` describe
 
 ## Reuse and contribute what the task already taught you
 
-Before repeating a diagnosis, recall findings for the selected source/version and known environment:
+CLI/MCP inspection includes up to three exact-version findings. Check their applicability, coverage and lookup status; `unknown` is not an empty result. Supply only known task environment labels. For project pins or more findings:
 
 ```sh
 python /PATH_TO_SKILL/scripts/rsh.py memories SKILL_ID --project ./experiment --json

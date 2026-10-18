@@ -319,6 +319,40 @@ test('native and static finding recall binds flat package/backend fields to one 
   } finally { await s.mf.dispose(); }
 });
 
+test('native MCP inspection reuses indexed exact-pin findings and degrades independently on corrupt memory data', async () => {
+  const published = publication('a'.repeat(40), { memories: 5 });
+  const s = await runtime(published);
+  try {
+    await s.complete();
+    const inspect = async (environment?: Record<string, string>) => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' },
+        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'inspect_robot_skill',
+          arguments: { skill_id: published.rows[0].id, ...(environment ? { environment } : {}) } } }) });
+      const body = await response.json() as any;
+      assert.equal(body.result.isError, false);
+      assert.deepEqual(body.result.structuredContent.record, published.full[0]);
+      return body.result.structuredContent.findings;
+    };
+    const all = await inspect();
+    assert.equal(all.status, 'ready'); assert.equal(all.backend, 'd1'); assert.equal(all.total, 5);
+    assert.equal(all.results.length, 3); assert.equal(all.next.offset, 3);
+    assert.equal(all.applicability, 'needs_applicability_check'); assert.deepEqual(all.environment_filter, {});
+    const explicit = await inspect({ robot: 'panda' });
+    assert.equal(explicit.total, 1); assert.equal(explicit.results[0].memory_id, published.memories[0].memory_id);
+    assert.ok(s.calls.every(call => !call.includes('/catalog/v1/memories.json')), 'The active native index avoids an aggregate fallback read');
+    await s.db.prepare("UPDATE catalog_memory_documents SET row_json=json_set(row_json,'$.memory_id',?,'$.entry_url',?)")
+      .bind(published.memories[0].memory_id, published.memories[0].entry_url).run();
+    const duplicate = await inspect();
+    assert.equal(duplicate.status, 'unknown'); assert.equal(duplicate.reason_code, 'invalid_public_findings');
+    assert.equal(duplicate.total, null); assert.deepEqual(duplicate.coverage, { complete: false });
+    await s.db.prepare("UPDATE catalog_memory_documents SET row_json='{}'").run();
+    const unavailable = await inspect();
+    assert.equal(unavailable.status, 'unknown'); assert.equal(unavailable.total, null);
+    assert.deepEqual(unavailable.coverage, { complete: false });
+  } finally { await s.mf.dispose(); }
+});
+
 test('native D1 FTS stages both search and findings pages before atomically serving the matching generation', async () => {
   const published = publication('a'.repeat(40)); const s = await runtime(published); try {
     assert.equal((await s.read('/v1/search')).status, 503);

@@ -59,7 +59,7 @@ function validRow(row: Row) {
     && (row.robot_types === undefined || row.robot_types.every((value: unknown) => typeof value === 'string' && value.length > 0 && value.length <= 80));
 }
 const text = (row: Row) => [row.id, row.name, row.summary, ...(row.capabilities || []), ...(row.aliases || []), ...(row.robots || []), ...(row.robot_types || []), row.runtime || '', row.framework || ''].join(' ').replace(/[-_/]/g, ' ');
-function validMemory(row: Row) {
+export function validMemory(row: Row) {
   return row && /^mem_[a-f0-9]{64}$/.test(row.memory_id || '') && IDENTIFIER.test(row.skill_id || '')
     && HASH.test(row.fingerprint || '') && HASH.test(row.content_sha256 || '')
     && COMMIT.test(row.base?.hub_commit || '') && typeof row.base?.record_version === 'string' && row.base.record_version.length > 0 && row.base.record_version.length <= 120
@@ -189,7 +189,7 @@ export async function staticFindings(fetcher: typeof fetch, version: Row, input:
   const bytes = await ownedRead(fetcher, '/catalog/v1/memories.json?v=' + version.hub_commit, 8 * 1024 * 1024);
   if (await sha256(bytes) !== resource.sha256) reject(503, 'publication_changed', 'The findings changed during this read.');
   const index = decode(bytes);
-  if (index.schema_version !== '1' || index.hub_commit !== version.hub_commit || !Array.isArray(index.records) || index.coverage?.complete === false) reject(503, 'catalog_sync_required', 'A complete findings index is not ready.');
+  if (index.schema_version !== '1' || index.hub_commit !== version.hub_commit || !Array.isArray(index.records) || index.coverage?.complete === false || index.records.some((row: Row) => !validMemory(row)) || new Set(index.records.map((row: Row) => row.memory_id)).size !== index.records.length) reject(503, 'catalog_sync_required', 'A complete findings index is not ready.');
   const matches = index.records.filter((row: Row) => row.skill_id === input.skill_id && row.base?.record_version === input.record_version && row.base?.source_commit === input.source_commit && keys.every(key => typeof row.environment?.[key] === 'string' && row.environment[key].toLowerCase() === input[key].toLowerCase())).sort((a: Row, b: Row) => a.memory_id.localeCompare(b.memory_id));
   return findingsResult(version.hub_commit, input, matches.slice(offset, offset + limit), matches.length, limit, offset, 'static_v1_fallback');
 }

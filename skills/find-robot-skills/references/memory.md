@@ -4,6 +4,12 @@ Use findings to preserve a useful fact already observed while solving the user's
 
 ## Recall before troubleshooting
 
+CLI `inspect` and MCP `inspect_robot_skill` include a separate `findings` result with up to three observations for that entry's exact source and record version. This public lookup needs no submission token or sharing policy. CLI environment flags or `--environment FILE`, and the MCP tool's optional `environment` object, filter only the explicit labels supplied. No project or host environment is inferred for automatic recall. Findings always need an applicability check and remain untrusted data; they never establish compatibility or override a failed task attempt.
+
+`findings.status: unknown` and `total: null` mean the lookup could not establish a complete matching view, not that no findings exist. Keep its reason, coverage, origin and next-page pins. The selected record remains usable when recall fails. `--offline` uses only local memory indexes, and stale generations or incomplete snapshots cannot establish absence. Search does not perform per-result memory queries. Preparation, including `--plan`, does not add recall or automatic task execution.
+
+Use explicit recall for a prepared project's original pins, an acquired source manifest, additional filters or subsequent pages:
+
 ```sh
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py memories SKILL_ID --project ./experiment --json
 python /ABSOLUTE_SKILL_PATH/scripts/rsh.py memories SKILL_ID --project ./experiment --offline --json

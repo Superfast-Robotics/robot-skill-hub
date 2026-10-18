@@ -365,24 +365,32 @@ def validate_payload(payload):
         raise RshError("finding_too_large", "Local finding exceeds 16 KiB.")
 
 
-def _matching_entries(entries, skill_id, base, supplied):
+def _matching_entries(entries, skill_id, base, supplied, *, strict=False):
     matches = []
     for entry in entries:
         if not isinstance(entry, dict) or entry.get("skill_id") != skill_id:
             continue
         if not re.fullmatch(r"mem_[a-f0-9]{64}", str(entry.get("memory_id", ""))):
+            if strict:
+                raise RshError("invalid_public_findings", "A selected finding has an invalid identity.")
             continue
         if (entry.get("curation") != "maintainer_merged" or entry.get("interpretation") != "data_only"
                 or not re.fullmatch(r"[a-f0-9]{64}", str(entry.get("content_sha256", "")))
                 or not re.fullmatch(r"[a-f0-9]{64}", str(entry.get("fingerprint", "")))):
+            if strict:
+                raise RshError("invalid_public_findings", "A selected finding has invalid publication metadata.")
             continue
         try:
             payload = {key: entry[key] for key in ("schema_version", "skill_id", "base", "kind", "summary", "observation",
                                                    "resolution", "environment", "evidence", "attribution", "publication")}
             validate_payload(payload)
             if payload["publication"].get("public_submission_allowed") is not True or fingerprint(payload) != entry.get("fingerprint"):
+                if strict:
+                    raise RshError("invalid_public_findings", "A selected finding does not match its fingerprint.")
                 continue
         except (RshError, KeyError, TypeError):
+            if strict:
+                raise RshError("invalid_public_findings", "A selected finding does not match its bounded payload contract.") from None
             continue
         target = entry.get("base", {})
         if target.get("record_version") != base["record_version"] or target.get("source_commit") != base["source_commit"]:
@@ -406,7 +414,7 @@ def _finding_page(value, skill_id, base, supplied, limit, offset, hub_commit):
             or not isinstance(value.get("coverage"), dict) or value["coverage"].get("complete") is not True):
         raise RshError("invalid_public_findings", "Finding discovery must retain complete, bounded version and environment pins.")
     matches = _matching_entries(value["results"], skill_id, base, supplied)
-    if len(matches) != len(value["results"]):
+    if len(matches) != len(value["results"]) or len({entry["memory_id"] for entry in matches}) != len(matches):
         raise RshError("invalid_public_findings", "A finding does not match its exact identity, fingerprint or query constraints.")
     expected_next = {"skill_id": skill_id, "record_version": base["record_version"], "source_commit": base["source_commit"],
                      **supplied, "limit": limit, "offset": offset + limit, "hub_commit": value["hub_commit"]}
@@ -445,7 +453,7 @@ def _remote_findings(skill_id, base, supplied, limit, offset, hub_commit, refres
         raise
 
 
-def query(catalog, skill_id, environment, *, project=None, index=None, offline=False, refresh=False, limit=20, offset=0, hub_commit=None):
+def query(catalog, skill_id, environment, *, project=None, index=None, offline=False, refresh=False, limit=20, offset=0, hub_commit=None, strict=False):
     if type(limit) is not int or not 1 <= limit <= 50 or type(offset) is not int or not 0 <= offset <= 1000000:
         raise RshError("invalid_pagination", "Findings require limit 1..50 and offset 0..1000000.")
     if hub_commit is not None and not COMMIT.fullmatch(hub_commit):
@@ -479,7 +487,11 @@ def query(catalog, skill_id, environment, *, project=None, index=None, offline=F
         values, origin = public_index("memories", url=catalog.get("memories_url"), offline=offline, refresh=refresh)
     if hub_commit and values.get("hub_commit") != hub_commit:
         raise RshError("catalog_changed", "The available finding index differs from the requested generation.")
-    matches = _matching_entries(values["records"], skill_id, base, supplied)
+    if strict and (origin == "empty_snapshot" or values.get("coverage", {}).get("complete") is False):
+        raise RshError("findings_coverage_unknown", "A complete finding view is unavailable for the selected generation.")
+    matches = _matching_entries(values["records"], skill_id, base, supplied, strict=strict)
+    if strict and len({entry["memory_id"] for entry in matches}) != len(matches):
+        raise RshError("invalid_public_findings", "The selected finding view repeats a finding identity.")
     matches.sort(key=lambda value: value["memory_id"])
     next_page = {"limit": limit, "offset": offset + limit, "hub_commit": values.get("hub_commit")} if offset + limit < len(matches) else None
     return {"status": "ready", "skill_id": skill_id, "base": base, "results": matches[offset:offset + limit],
@@ -489,6 +501,28 @@ def query(catalog, skill_id, environment, *, project=None, index=None, offline=F
             "limit": limit, "offset": offset, "next": next_page, "fallback_reasons": fallback,
             "index_location": str(index) if index else catalog.get("memories_url", "https://hub.superfastrobotics.com/catalog/v1/memories.json"),
             "execution_performed": False, "next_action": "inspect_relevant_observation" if matches else "continue_user_task"}
+
+
+def for_selection(catalog, skill_id, environment, *, offline=False, refresh=False):
+    """Optional inspect recall. Use explicit labels only, never project or host discovery."""
+    common = {"interpretation": "data_only", "applicability": "needs_applicability_check",
+              "automatic": True, "execution_performed": False}
+    try:
+        if (not isinstance(environment, dict) or len(environment) > 16 or any(
+                not isinstance(key, str) or (key not in ENV_KEYS and not re.fullmatch(r"package\.[A-Za-z_][A-Za-z0-9_]{0,79}", key))
+                or not text(value, 1, 240) for key, value in environment.items())):
+            raise RshError("invalid_environment", "Finding recall accepts only explicit bounded environment labels.")
+        base, _ = base_for(catalog, skill_id)
+        common.update(base=base, hub_commit=base["hub_commit"], environment_filter={key: value.lower()
+                      for key, value in environment.items() if value.lower() != "unknown"})
+        result = query(catalog, skill_id, environment, offline=offline, refresh=refresh,
+                       limit=3, hub_commit=base["hub_commit"], strict=True)
+        return {**result, **common}
+    except (RshError, OSError, ValueError, TypeError, KeyError, AttributeError) as error:
+        # Optional recall must not turn a readable source into an inspect failure.
+        return {**common, "status": "unknown", "reason_code": error.result["reason_code"] if isinstance(error, RshError) else "findings_unavailable",
+                "results": [], "total": None, "coverage": {"complete": False}, "limit": 3, "offset": 0,
+                "next": None, "next_action": "continue_user_task_or_query_memories"}
 
 
 def status(memory_id, *, api_url=None):
