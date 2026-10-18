@@ -1,0 +1,365 @@
+{
+  "schema_version": "1",
+  "recorded_at": "2026-10-18T10:44:48.307196+00:00",
+  "scope": "Maintainer production verification of 0.3.7 from recorded captures. No new robot execution, external adoption or complete self-improvement loop is established.",
+  "source_commit": "1c5a252fba5d1499b3530ceab90c69cd4f7eee48",
+  "source_tree": "c576981b7f88231bc5bbae59a520f8957af6c187",
+  "worker": {
+    "version": "0.3.7",
+    "cloudflare_version_id": "13c2bfa4-e954-4fcc-99e3-6a2f3f11a2c8",
+    "paid_plan_change": false
+  },
+  "catalog_counts": {
+    "recipes": 17,
+    "references": 1298,
+    "memories": 3
+  },
+  "runtime_verification_counts": {
+    "task_complete": 5,
+    "import_verified": 1,
+    "not_run": 11
+  },
+  "source_references_runtime_status": {
+    "not_run": 1298
+  },
+  "public_http": {
+    "observed_at": "2026-10-18T10:26:35.410582+00:00",
+    "checks": [
+      {
+        "at": "2026-10-18T10:26:09.493037+00:00",
+        "method": "GET",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "bytes": 1906,
+        "sha256": "42de71151dd94c5f1633b5a6224a1340c4aea69c29323ef9b2de677dacc42502",
+        "check": "01-version"
+      },
+      {
+        "at": "2026-10-18T10:26:09.558185+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "bytes": 97,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db",
+        "check": "02-health"
+      },
+      {
+        "at": "2026-10-18T10:26:10.043288+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/capabilities",
+        "status": 200,
+        "bytes": 4439,
+        "sha256": "694dc93e5f0ccf8fab4b0ff7c03ed8ac95a6dfb95bbec297e11b46267d26f02a",
+        "check": "03-capabilities"
+      },
+      {
+        "at": "2026-10-18T10:26:10.490469+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/metrics",
+        "status": 200,
+        "bytes": 1500,
+        "sha256": "176902142e95194cb013dc36fc0ee50e250046676b8c0391c4313e45e4b8daba",
+        "check": "04-metrics"
+      },
+      {
+        "at": "2026-10-18T10:26:18.605965+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "bytes": 412,
+        "sha256": "962c79362a7d73cad79ef55c44a13e875e6bc98af71965e6ec4f154df42c07ac",
+        "check": "05-initialize",
+        "protocol_method": "initialize"
+      },
+      {
+        "at": "2026-10-18T10:26:19.085228+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 202,
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "check": "06-initialized",
+        "protocol_method": "notifications/initialized"
+      },
+      {
+        "at": "2026-10-18T10:26:19.548946+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "bytes": 3074,
+        "sha256": "93bfb8a9f5489e3ce6d6b893d07e3e90503d31750995682ae73d949d38031254",
+        "check": "07-tools-list",
+        "protocol_method": "tools/list"
+      },
+      {
+        "at": "2026-10-18T10:26:20.014207+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "bytes": 12050,
+        "sha256": "1447fbf07423b76ce56223270cf68c3575df45e91c96ad395b1d88a1517cdb01",
+        "check": "08-task-find",
+        "protocol_method": "tools/call",
+        "tool": "find_robot_skills"
+      },
+      {
+        "at": "2026-10-18T10:26:22.464498+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "bytes": 12246,
+        "sha256": "e91a002c01baf6f39552bc5e61d26e45ba28a7b9115d6a12d1a1c88110a97783",
+        "check": "09-task-next-page",
+        "protocol_method": "tools/call",
+        "tool": "find_robot_skills"
+      },
+      {
+        "at": "2026-10-18T10:26:23.902699+00:00",
+        "method": "POST",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "bytes": 26463,
+        "sha256": "0ab9b258a3aaadd5af58a1d00685c0dd84a25ab36b1899af819178ad852d4f4c",
+        "check": "10-inspect-current",
+        "protocol_method": "tools/call",
+        "tool": "inspect_robot_skill"
+      },
+      {
+        "at": "2026-10-18T10:26:29.595643+00:00",
+        "method": "GET",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "bytes": 1906,
+        "sha256": "42de71151dd94c5f1633b5a6224a1340c4aea69c29323ef9b2de677dacc42502",
+        "check": "11-version-after"
+      },
+      {
+        "at": "2026-10-18T10:26:11.155003+00:00",
+        "method": "GET",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
+        "status": 200,
+        "bytes": 212034,
+        "sha256": "f7dbe189a3390147e014d9e01966a7bc42e14e856c1b29473eb224d9ef56aa01",
+        "check": "01-catalog-index"
+      },
+      {
+        "at": "2026-10-18T10:26:11.222645+00:00",
+        "method": "GET",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
+        "status": 200,
+        "bytes": 9404,
+        "sha256": "04c9e4e3505f18e1c523e62d32deadcdb8b69534d50e260ed30cfe9bfaf9b233",
+        "check": "02-memories"
+      },
+      {
+        "at": "2026-10-18T10:26:14.244454+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/skills/maniskill-panda-pick-cube?record_version=1.1.0",
+        "status": 200,
+        "bytes": 12208,
+        "sha256": "5049a44ae917f14e705f321fb38e59528157ba9c29120546e70aa64367d24af7",
+        "check": "03-current-record"
+      },
+      {
+        "at": "2026-10-18T10:26:15.343389+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/skills/maniskill-panda-stack-pyramid?record_version=1.1.0",
+        "status": 200,
+        "bytes": 12421,
+        "sha256": "dc9e0403731b7830d68653581ef59082ea8898caecea928edb90623b6ca17d4f",
+        "check": "04-failed-record"
+      },
+      {
+        "at": "2026-10-18T10:26:16.424119+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/search?q=Describe+a+Franka+FR3+arm+with+a+URDF+xacro+model&runtime=franka-description&limit=3&offset=0&hub_commit=1c5a252fba5d1499b3530ceab90c69cd4f7eee48",
+        "status": 200,
+        "bytes": 473,
+        "sha256": "ee327489122add0a2e2b39f2231424a6a62ec006b8d7720536579badcba858f9",
+        "check": "05-strict-natural-query"
+      },
+      {
+        "at": "2026-10-18T10:26:17.423091+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/search?q=Describe+a+Franka+FR3+arm+with+a+URDF+xacro+model&runtime=franka-description&query_mode=task&limit=3&offset=0&hub_commit=1c5a252fba5d1499b3530ceab90c69cd4f7eee48",
+        "status": 200,
+        "bytes": 5740,
+        "sha256": "b8de5a33b5d6b9182f24910be5c8ad66dc24f038f0775ae20258b1435750205a",
+        "check": "06-task-natural-query"
+      },
+      {
+        "at": "2026-10-18T10:26:21.545470+00:00",
+        "method": "GET",
+        "url": "https://api.superfastrobotics.com/v1/search?q=Describe+a+Franka+FR3+arm+with+a+URDF+xacro+model&runtime=franka-description&query_mode=task&limit=3&offset=3&hub_commit=1c5a252fba5d1499b3530ceab90c69cd4f7eee48",
+        "status": 200,
+        "bytes": 5841,
+        "sha256": "6518c81e944b156ccac6d74fdbab61875cde58e46faf71084bd87266c3a6ff5e",
+        "check": "07-task-next-page"
+      }
+    ],
+    "telemetry_opt_out": true,
+    "direct_requests": 18
+  },
+  "cli": {
+    "actual_invocations": 3,
+    "cases": [
+      "task search through selected API",
+      "current-version inspection with automatic exact findings",
+      "offline explicit catalog inspection without implicit findings lookup"
+    ],
+    "HTTP_wire_count_observed": null,
+    "source_modified_or_instrumented": false,
+    "telemetry_opt_out": true
+  },
+  "task_search": {
+    "query": {
+      "q": "Describe a Franka FR3 arm with a URDF xacro model",
+      "runtime": "franka-description",
+      "query_mode": "task",
+      "limit": 3,
+      "offset": 0,
+      "hub_commit": "1c5a252fba5d1499b3530ceab90c69cd4f7eee48"
+    },
+    "strict_query_total": 0,
+    "task_query_total": 72,
+    "first_page_ids": [
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro",
+      "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+      "franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro"
+    ],
+    "next_page_ids": [
+      "franka-description-artifact-robots-fr3v2-fr3v2-urdf-xacro",
+      "franka-description-artifact-accessories-fr3-duo-mount-v0-3-fr3-duo-mount-xacro",
+      "franka-description-artifact-robots-common-franka-arm-srdf-xacro"
+    ],
+    "MCP_REST_ordered_parity": true,
+    "algorithm": "Bounded lexical task ranking; not semantic embeddings.",
+    "benchmark_before": "../../search/h15-baseline-01/result.json",
+    "benchmark_after": "../../search/task-mode-v1-01/result.json",
+    "benchmark_limit": "Twenty maintainer-authored tasks do not establish representative precision or external task success; the FR3 single-arm target ranked second after a dual-arm model."
+  },
+  "findings": {
+    "current_recipe": {
+      "record_version": "1.1.0",
+      "status": "ready",
+      "total": 0,
+      "exact_base": {
+        "hub_commit": "1c5a252fba5d1499b3530ceab90c69cd4f7eee48",
+        "record_version": "1.1.0",
+        "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907"
+      }
+    },
+    "historical_published_total": 3,
+    "historical_PickCube_ids_preserved": [
+      "mem_63eb7c608c662840d1a97fdbedf9529111b94026186d2ae12e4bc901b26ef350",
+      "mem_fe36a37f4dc82345cb771ca2c21555acf280e2c988a304cc36d78a79e265cf21"
+    ],
+    "offline_explicit_catalog": {
+      "status": "unknown",
+      "reason_code": "explicit_catalog_requires_findings_selection",
+      "automatic": false,
+      "network_performed": false,
+      "total": null,
+      "reason": "Explicit catalog selection disables implicit Hub and shared-cache finding lookup."
+    },
+    "nonempty_automatic_recall": "Local fixtures only; not demonstrated against current production recipe findings.",
+    "external_task_donation_review_reuse_loop": "not_established"
+  },
+  "failed_task_preserved": {
+    "status": "failed",
+    "execution_performed": true,
+    "success": false,
+    "reason_code": "task_objective_not_reached",
+    "seed": 0,
+    "elapsed_steps": 176,
+    "terminated": false,
+    "truncated": false,
+    "exit_code": 1,
+    "timed_out": false,
+    "workflow_run_id": "39100095436",
+    "verified_hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+    "record_version": "1.1.0",
+    "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "environment": {
+      "runtime": "maniskill",
+      "runtime_version": "3.0.0b22",
+      "robot": "panda",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10"
+    }
+  },
+  "readback_history": {
+    "first_attempt": {
+      "status": "failed_native_origin_assertion",
+      "direct_HTTP_requests": 17,
+      "CLI_invocations": 2,
+      "observed": "CLI returned the exact record and generation via compatibility_view instead of selected remote_api."
+    },
+    "isolated_diagnostic": "One unmodified selected-record call returned the expected remote_api record.",
+    "controlled_second_attempt": {
+      "status": "passed",
+      "direct_HTTP_requests": 18,
+      "CLI_invocations": 3
+    },
+    "changes_between_attempts": false,
+    "automatic_retries": false,
+    "original_fallback_root_cause": "unknown"
+  },
+  "ci": {
+    "original_failed": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39117770503",
+    "final_PR_success": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39118460425",
+    "main_success": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39118642926",
+    "Pages_all3_success": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39118642980",
+    "registry_success": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39119365195"
+  },
+  "registry": {
+    "observed_at": "2026-10-18T10:29:03.970140+00:00",
+    "version": "0.3.7",
+    "status": "active",
+    "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.7",
+    "body_sha256": "2427d855ac292fa116c1457be4f2454b43cf411cc69c06a622a4a186a11af5bc",
+    "adoption_established": false
+  },
+  "indexnow": {
+    "observed_at": "2026-10-18T10:28:34.241622+00:00",
+    "http_status": 200,
+    "URLs_notified": 15,
+    "meaning": "notification_receipt_only",
+    "indexing_ranking_or_adoption_verified": false
+  },
+  "community_submission": {
+    "observed_at": "2026-10-18T10:33:41.238787+00:00",
+    "url": "https://github.com/openai/community-plugins/pull/40",
+    "draft": true,
+    "merged": false,
+    "head_commit": "6335bd40cb300e9bcf6383f6986ba275c0eb47f2",
+    "local_package_checks": "12 passed; 1 live test skipped",
+    "CLA_check": "failed: PR opener needs an authored commit linked to their GitHub account",
+    "CLA_check_url": "https://github.com/openai/community-plugins/actions/runs/39119516971/job/117652066912",
+    "legal_signature_performed": false,
+    "acceptance_or_native_client_use_established": false
+  },
+  "campaign": {
+    "observed_at": "2026-10-18T10:27:39.143057Z",
+    "window_start": "2026-10-17T15:47:38Z",
+    "window_end": "2026-10-18T15:47:38Z",
+    "target": 10000,
+    "eligible_API_accesses": 15,
+    "target_reached": false,
+    "window_reset": false,
+    "distinct_agents_established": false,
+    "best_effort_lower_bound": true,
+    "operator_eligible_traffic_generated": false
+  },
+  "limits": [
+    "Preparation recipes and source references are different record types. A reference is not an executed or hardware-compatible skill.",
+    "Runtime completion remains limited to five recorded configurations; all 1298 source references remain not_run.",
+    "Three historical findings do not match current recipe versions and are not silently carried forward.",
+    "The first native-origin fallback remains unexplained despite a successful diagnostic and controlled follow-up.",
+    "Registry presence, notification receipt and an external draft PR do not establish adoption.",
+    "Internet-wide completeness, representative semantic retrieval and an autonomous improvement loop remain unproven."
+  ]
+}
