@@ -252,14 +252,42 @@ class SourceAcquisitionTests(unittest.TestCase):
 
     def test_github_alias_normalization_does_not_apply_to_other_repository_forms(self):
         direct = "https://mirror.example.org/pinned/" + COMMIT + "/source.py"
-        for repository in ("https://other.example.org/example/robot.git/",
+        for repository in (None, "https://other.example.org/example/robot.git/",
                            "https://github.com/example/robot/tree/branch",
-                           "https://github.com/example/robot.git//",
-                           "https://user:private-value@github.com/example/robot.git/"):
+                           "https://github.com/example/robot.git//"):
             with self.subTest(repository=repository):
                 record = reference()
-                record["source"].update(repository=repository, url=direct)
-                self.assertEqual(acquisition.plan_source(record, HUB)["source_url"], direct)
+                record["source"]["url"] = direct
+                if repository is None:
+                    record["source"].pop("repository")  # Retain the existing legacy direct-source contract.
+                else:
+                    record["source"]["repository"] = repository
+                plan = acquisition.plan_source(record, HUB)
+                self.assertEqual(plan["source_url"], direct)
+                self.assertEqual(plan["source"], record["source"])
+
+    def test_unsafe_repository_metadata_is_rejected_before_plan_output_or_project_writes(self):
+        repositories = ["https://user:private-value@github.com/example/robot.git/",
+                        "https://private-value@github.com/example/robot",
+                        "https://example.com/robot?token=private-value",
+                        "https://localhost/robot", "https://private.internal/robot",
+                        "https://127.0.0.1/robot", "https://169.254.169.254/robot", None, ""]
+        with mock.patch.object(acquisition, "_download") as download, mock.patch.object(socket, "getaddrinfo") as dns, mock.patch.object(
+                Path, "mkdir", side_effect=AssertionError("Unsafe provenance must not create directories")):
+            for repository in repositories:
+                with self.subTest(repository=repository):
+                    record = reference()
+                    record["source"]["repository"] = repository
+                    plan_error = self.assert_error("unsafe_source_url", acquisition.plan_source, record, HUB)
+                    fetch_error = self.assert_error("unsafe_source_url", acquisition.fetch_source,
+                                                   catalog(record), record["id"], self.project)
+                    for error in (plan_error, fetch_error):
+                        self.assertFalse(error["source_request_performed"])
+                        self.assertFalse(error["source_download_performed"])
+                        self.assertNotIn("private-value", json.dumps(error))
+        download.assert_not_called()
+        dns.assert_not_called()
+        self.assertFalse(self.project.exists())
 
     def test_invalid_pins_paths_sizes_and_raw_url_binding_fail_before_network_or_writes(self):
         mutations = [("invalid_source_pin", {"sha256": "A" * 64}), ("invalid_source_pin", {"commit": "main"}),

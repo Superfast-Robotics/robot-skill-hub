@@ -143,6 +143,8 @@ def plan_source(record, catalog_hub_commit, expected_source_revision=None, expec
     if license_info.get("url"):
         _url(license_info["url"])
     repository = source.get("repository")
+    if "repository" in source:
+        _url(repository)
     github = GITHUB_REPOSITORY.fullmatch(repository) if isinstance(repository, str) else None
     if github:
         owner, repository_name = github.groups()
