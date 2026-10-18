@@ -14,6 +14,12 @@
       "record_version": "source-47402cbcc448e93e3b218e74084ad0c91a90a19780e4eaa113b634fc44bdf8b1"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-time-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782",
+      "record_version": "source-1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782"
+    },
+    {
       "id": "ompl-demos-multilevel-multilevelplanninghypercubebenchmark-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "042e40b420a1435aa7019dceed9a5ef4b102b1e7981cd72033db64e24d1ed17a",

@@ -20,6 +20,12 @@
       "record_version": "source-d6cf8e49e0fcfe847288136e475174f1d2d24dadcfa4b21cbdbcbb0a9d5b0b17"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-follow-point-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced",
+      "record_version": "source-edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced"
+    },
+    {
       "id": "ur-description-artifact-urdf-inc-ur-sensors-xacro",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "d774af270ece1a55b89e688aece885886f48d69d2de912d19d66cf82d294880e",

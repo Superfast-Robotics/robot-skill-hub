@@ -14,6 +14,18 @@
       "record_version": "source-b56123ea2bf09070bf4054f0be9aa418e49041ddddce44dbbf7ab35e8b732641"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-21b0f553d79b",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16",
+      "record_version": "source-af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-68f170dd32a2",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070",
+      "record_version": "source-5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070"
+    },
+    {
       "id": "ompl-demos-thunderlightning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6",

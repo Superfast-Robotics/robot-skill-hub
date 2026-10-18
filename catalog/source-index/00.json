@@ -8,6 +8,12 @@
       "record_version": "source-a9c12faaf360ca7a5580c9b9ff53f9c1c3202c93fe4e6af8fbfb2ce0f7b243fb"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-odometry-calibration-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555",
+      "record_version": "source-a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555"
+    },
+    {
       "id": "ros2-control-example-15-bringup-launch-multi-controller-manager-exa-773f065ca4cd",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "49b6a0a7dc6950b8a3bb50382a5943e071eaa2a10c7d0e74e615c6d5538fa1f2",

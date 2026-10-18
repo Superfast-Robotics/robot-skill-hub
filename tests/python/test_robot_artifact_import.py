@@ -1,5 +1,6 @@
 """Source/configuration provenance and static-only ingestion checks."""
 import copy
+import io
 import json
 from pathlib import Path
 import sys
@@ -156,6 +157,126 @@ class RobotArtifactImportTests(unittest.TestCase):
                 self.assertFalse(record["access"]["hub_prepare"])
                 count += 1
         self.assertEqual(len(managed), count)
+
+    def bt_fixture(self):
+        source = b'<root BTCPP_format="4" main_tree_to_execute="MainTree"><BehaviorTree ID="MainTree"><PipelineSequence><ComputePathToPose goal="{goal}" path="{path}"/><FollowPath path="{path}"/></PipelineSequence></BehaviorTree></root>'
+        package = b'<package><name>fixture_package</name><license>Apache-2.0</license><maintainer>Package maintainer, not XML author</maintainer></package>'
+        index = b'Package-specific licenses apply.\nFor files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.\n'
+        files = {'fixture_package/trees/nav.xml': source, 'LICENSE': index, 'other_package/LICENSE': b'Apache License\nVersion 2.0\nEND OF TERMS AND CONDITIONS\n',
+                 'fixture_package/package.xml': package, 'fixture_package/CMakeLists.txt': b'install(DIRECTORY trees DESTINATION share/${PROJECT_NAME})\n',
+                 'fixture_package/README.md': b'A configured upstream host loads the XML.\n'}
+        def pin(path): return {'path':path,'sha256':importer.digest(files[path]),'bytes':len(files[path])}
+        project, *_ = self.fixture()
+        project['licenses'] = {'LICENSE': {'spdx':'Apache-2.0','sha256':importer.digest(index),'bytes':len(index),'scope':'Selected otherwise-unmarked XML only.',
+             'binding':{'kind':'package_with_unmarked_file_fallback','package':pin('fixture_package/package.xml'),'package_name':'fixture_package',
+                        'unmarked_file_quote':'For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.','terms':pin('other_package/LICENSE')}}}
+        project['evidence_files'] = [{**pin('fixture_package/CMakeLists.txt'),'quotes':['install(DIRECTORY trees']}, {**pin('fixture_package/README.md'),'quotes':['configured upstream host']}]
+        project['artifacts'] = [{**pin('fixture_package/trees/nav.xml'),'kind':'workflow','format':importer.BT_FORMAT,'license_path':'LICENSE','name':'Reviewed tree','summary':'Declares planning and following; not run.'}]
+        return project, files
+
+    def bt_build(self, project, files, fetch=False):
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory)
+            if not fetch:
+                for path, raw in files.items():
+                    target = importer.cache_path(cache, project, path); target.parent.mkdir(parents=True, exist_ok=True); target.write_bytes(raw)
+            return importer.build({'schema_version':'1','projects':[project]},cache,{'records':[]},fetch=fetch)['records'][0]
+
+    def test_behavior_tree_is_a_literal_inventory_with_separate_grant_and_terms(self):
+        project, files = self.bt_fixture()
+        with mock.patch.object(importer.urllib.request,'urlopen',side_effect=AssertionError('No network for cached XML')):
+            record = self.bt_build(project,files)
+        structure = record['artifact']['structure']
+        self.assertEqual(3,structure['node_count'])
+        self.assertEqual(['{goal}','{path}'],structure['blackboard_references'])
+        self.assertEqual({'tag':'FollowPath','attributes':{'path':'{path}'},'children':0},structure['nodes'][-1])
+        self.assertTrue(record['license']['url'].endswith('/LICENSE'))
+        self.assertEqual(importer.digest(files['LICENSE']),record['license']['sha256'])
+        self.assertIn('/other_package/LICENSE',record['license']['binding']['terms']['url'])
+        self.assertIn('terms text only',record['license']['binding']['terms']['scope'])
+        self.assertNotIn('Package maintainer',json.dumps(record))
+        self.assertNotIn('authors',record['source'])
+        self.assertEqual('source_reference',record['access']['mode'])
+        self.assertFalse(record['access']['hub_prepare'])
+        self.assertEqual('not_run',record['evidence']['runtime_verification'])
+        self.assertIsNone(record['requirements']['python'])
+        self.assertNotIn('compatibility',record)
+
+    def test_behavior_tree_rejects_unsupported_graphs_namespaces_and_external_input(self):
+        project, files = self.bt_fixture(); source = files[project['artifacts'][0]['path']]
+        invalid = [source.replace(b'BTCPP_format="4"',b'BTCPP_format="3"'), source.replace(b'ID="MainTree"',b'ID="Other"'),
+                   source.replace(b'<BehaviorTree',b'<root/><BehaviorTree',1), source.replace(b'</BehaviorTree>',b'<Wait/></BehaviorTree>'),
+                   source.replace(b'<FollowPath path="{path}"/>',b'<SubTree ID="Elsewhere"/>'), source.replace(b'<FollowPath path="{path}"/>',b'<include path="https://invalid.test/tree.xml"/>'),
+                   source.replace(b'<FollowPath path="{path}"/>',b'<TreeNodesModel/>'), source.replace(b'<FollowPath',b'<x:FollowPath xmlns:x="urn:foreign"'),
+                   source.replace(b'path="{path}"/>',b'x:path="{path}" xmlns:x="urn:foreign"/>'), source.replace(b'<root ',b'<root xmlns="urn:foreign" ',1),
+                   b'<!DOCTYPE root [<!ENTITY ext SYSTEM "https://invalid.test/data">]>'+source,
+                   source.replace(b'main_tree_to_execute="MainTree"',b'main_tree_to_execute="{dynamic}"'), source.replace(b'<PipelineSequence>',b'<PipelineSequence>not attribute data',1)]
+        with mock.patch.object(importer.urllib.request,'urlopen',side_effect=AssertionError('External data must not be fetched')):
+            for raw in invalid:
+                with self.subTest(raw=raw[:100]), self.assertRaises(ValueError):
+                    importer.inspect_artifact('tree.xml',raw)
+
+    def test_behavior_tree_resource_bounds_cover_depth_nodes_and_output_bytes(self):
+        wrap = lambda body: b'<root BTCPP_format="4" main_tree_to_execute="MainTree"><BehaviorTree ID="MainTree">'+body+b'</BehaviorTree></root>'
+        cases = [b'<Sequence>'*65+b'<Wait/>'+b'</Sequence>'*65,
+                 b'<Sequence>'+b'<Wait/>'*importer.BT_MAX_NODES+b'</Sequence>',
+                 b'<Sequence>'+b'<Wait value="'+b'a'*1000+b'"/>' + (b'<Wait value="'+b'a'*1000+b'"/>')*40+b'</Sequence>']
+        for body in cases:
+            with self.subTest(bytes=len(body)), self.assertRaises(ValueError): importer.inspect_artifact('tree.xml',wrap(body))
+
+    def test_behavior_tree_kind_and_format_cannot_be_mispaired(self):
+        project, _ = self.bt_fixture()
+        for key,value in [('kind','robot_description'),('format','urdf'),('path','fixture_package/tree.yaml')]:
+            changed=copy.deepcopy(project);changed['artifacts'][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError): importer.validate_project(changed)
+
+    def test_package_fallback_requires_package_rule_and_terms_not_just_a_license_marker(self):
+        project,files=self.bt_fixture()
+        for mode in ('missing_rule','wrong_package_license','duplicate_package_license','duplicate_package_name','sibling_prefix','late_file_notice','wrong_terms'):
+            p,f=copy.deepcopy(project),copy.deepcopy(files);binding=p['licenses']['LICENSE']['binding']
+            if mode=='missing_rule':
+                f['LICENSE']=b'Apache License Version 2.0; no fallback grant.';p['licenses']['LICENSE'].update(sha256=importer.digest(f['LICENSE']),bytes=len(f['LICENSE']))
+            elif mode in ('wrong_package_license','duplicate_package_license','duplicate_package_name'):
+                path=binding['package']['path'];f[path]=f[path].replace(b'<license>Apache-2.0</license>',b'<license>MIT</license>' if mode=='wrong_package_license' else b'<license>Apache-2.0</license><license>MIT</license>') if mode!='duplicate_package_name' else f[path].replace(b'</package>',b'<name>other_package</name></package>')
+                binding['package'].update(sha256=importer.digest(f[path]),bytes=len(f[path]))
+            elif mode=='sibling_prefix':
+                artifact=p['artifacts'][0];raw=f.pop(artifact['path']);artifact['path']='fixture_package_other/trees/nav.xml';f[artifact['path']]=raw
+            elif mode=='late_file_notice':
+                artifact=p['artifacts'][0];f[artifact['path']]+=b' '*6500+b'<!-- SPDX-License-Identifier: MIT -->';artifact.update(sha256=importer.digest(f[artifact['path']]),bytes=len(f[artifact['path']]))
+            else:
+                path=binding['terms']['path'];f[path]=b'No full Apache terms';binding['terms'].update(sha256=importer.digest(f[path]),bytes=len(f[path]))
+            with self.subTest(mode=mode),self.assertRaises(ValueError):self.bt_build(p,f)
+
+    def test_all_support_bytes_and_reviewed_anchors_are_required(self):
+        project,files=self.bt_fixture()
+        for path in ('fixture_package/package.xml','fixture_package/CMakeLists.txt','fixture_package/README.md','other_package/LICENSE'):
+            changed=copy.deepcopy(files);changed[path]+=b' changed'
+            with self.subTest(path=path),self.assertRaisesRegex(ValueError,'checksum/size'):self.bt_build(project,changed)
+        p,f=copy.deepcopy(project),copy.deepcopy(files);pin=p['evidence_files'][1];f[pin['path']]=b'No approved setup statement';pin.update(sha256=importer.digest(f[pin['path']]),bytes=len(f[pin['path']]))
+        with self.assertRaisesRegex(ValueError,'anchor'):self.bt_build(p,f)
+
+    def test_explicit_fetch_collects_all_fixed_support_paths_without_discovery(self):
+        project,files=self.bt_fixture();requested=[]
+        def response(request,timeout):
+            path=request.full_url.split(project['commit']+'/',1)[1];requested.append(path);return io.BytesIO(files[path])
+        with mock.patch.object(importer.urllib.request,'urlopen',side_effect=response):record=self.bt_build(project,files,fetch=True)
+        self.assertEqual(set(files),set(requested));self.assertEqual(len(files),len(requested))
+        self.assertEqual('not_run',record['evidence']['runtime_verification'])
+
+    def test_pinned_nav2_inventory_preserves_literal_discrepancies_and_unknown_runtime(self):
+        manifest=json.loads((ROOT/'catalog/artifact-projects.json').read_text(encoding='utf-8'))
+        project=next(p for p in manifest['projects'] if p['id']=='nav2')
+        refs=json.loads((ROOT/'catalog/references.json').read_text(encoding='utf-8'))['records']
+        selected={r['source']['path']:r for r in refs if r.get('source_registry')==importer.REGISTRY and r['framework']=='nav2'}
+        self.assertEqual(12,len(selected));self.assertEqual(12,len(project['artifacts']))
+        self.assertEqual('58e4019eb149ed4387938d9cd13f38659b86f754',project['commit'])
+        for record in selected.values():
+            self.assertFalse(record['access']['hub_prepare']);self.assertEqual('not_run',record['evidence']['runtime_verification']);self.assertIsNone(record['requirements']['python'])
+            self.assertTrue(record['license']['url'].endswith('/LICENSE'));self.assertEqual('nav2_bt_navigator',record['license']['binding']['package']['name'])
+        through=next(r for p,r in selected.items() if p.endswith('/navigate_through_poses_w_replanning_and_recovery.xml'))
+        self.assertEqual(['0.333'],[n['attributes']['hz'] for n in through['artifact']['structure']['nodes'] if n['tag']=='RateController'])
+        pose=next(r for p,r in selected.items() if p.endswith('/navigate_to_pose_w_replanning_and_recovery.xml'))
+        self.assertEqual(['{backup_code_id}'],[n['attributes']['error_code_id'] for n in pose['artifact']['structure']['nodes'] if n['tag']=='BackUp'])
 
 
 if __name__ == "__main__":

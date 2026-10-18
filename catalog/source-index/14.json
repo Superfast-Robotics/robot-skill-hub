@@ -8,6 +8,12 @@
       "record_version": "source-0c925d2cffc853a5e06b69394d782d7fba2f302d08e1c8bcc9ed1a324469e83a"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-nav-to-pose-with-con-161da3951c6f",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d",
+      "record_version": "source-7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d"
+    },
+    {
       "id": "pinocchio-examples-overview-lie-cpp",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "51c5cd1df7f0d41b74e30818471b35311e6c52e05efc2a144b9bc6381e43abeb",

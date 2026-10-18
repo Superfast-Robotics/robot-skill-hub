@@ -3524,6 +3524,78 @@
       "record_version": "source-8954ad166e1865c9844ae6566ebde5aab91376ba514b9406b9f9f7e8f7e4afd8"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-follow-point-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced",
+      "record_version": "source-edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-nav-to-pose-with-con-161da3951c6f",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d",
+      "record_version": "source-7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-through-pos-e868b0be139c",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876",
+      "record_version": "source-bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-to-pose-w-r-58589cd2f7d6",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4",
+      "record_version": "source-93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-to-pose-w-r-e80996af9524",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "5895b63840d54c6d7eee3d3b3f3ee177680af9e58a14cbf61c4df39fe5db2a90",
+      "record_version": "source-5895b63840d54c6d7eee3d3b3f3ee177680af9e58a14cbf61c4df39fe5db2a90"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-recovery-9bce0cc8b39f",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
+      "record_version": "source-684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-21b0f553d79b",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16",
+      "record_version": "source-af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-323ac7863380",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819",
+      "record_version": "source-9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-68f170dd32a2",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070",
+      "record_version": "source-5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-speed-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab",
+      "record_version": "source-329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-time-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782",
+      "record_version": "source-1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782"
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-odometry-calibration-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555",
+      "record_version": "source-a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555"
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-demo-inspection-py",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "86f44895cc4b766a255334c4f31c9699a76a5531aa3e937592cd3548c0a5fbf8",
