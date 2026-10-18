@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Run two reviewed CPU/state recipes on Linux; never publish or submit evidence."""
+"""Run one explicit reviewed CPU/state recipe batch; never publish or submit evidence."""
 from __future__ import annotations
+
+import sys
+# A metadata-only plan must not populate publisher/CLI bytecode caches.
+sys.dont_write_bytecode = True
 
 import argparse
 from datetime import datetime, timezone
@@ -12,22 +16,50 @@ import platform
 import shutil
 import signal
 import subprocess
-import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CLI = ROOT / "skills/find-robot-skills/scripts/rsh.py"
-SKILLS = ("maniskill-panda-pick-cube", "maniskill-panda-stack-cube")
+BATCHES = {
+    "initial-two": ("maniskill-panda-pick-cube", "maniskill-panda-stack-cube"),
+    "panda-transport": ("maniskill-panda-push-cube", "maniskill-panda-pull-cube", "maniskill-panda-lift-peg-upright"),
+    "panda-insertion": ("maniskill-panda-peg-insertion-side", "maniskill-panda-place-sphere", "maniskill-panda-plug-charger"),
+    "panda-tools": ("maniskill-panda-pull-cube-tool", "maniskill-panda-stick-draw-triangle", "maniskill-panda-stick-draw-svg"),
+    "panda-stacking": ("maniskill-panda-stack-pyramid",),
+    "xarm6-basic": ("maniskill-xarm6-pick-cube", "maniskill-xarm6-push-cube", "maniskill-xarm6-stack-cube"),
+    "xarm6-insertion": ("maniskill-xarm6-plug-charger",),
+    "so100-basic": ("maniskill-so100-pick-cube",),
+}
+SKILLS = BATCHES["initial-two"]
 TASK_TIMEOUT = 180
 
 
-def load_runtime_records():
+def load_runtime_records(batch="initial-two"):
     # Use the publisher's validated, self-contained records, including the
     # reviewed recipe files that the installed preparation CLI consumes.
     sys.path.insert(0, str(ROOT / "tools"))
     from build_catalog import load_records
+    if batch not in BATCHES:
+        raise ValueError("Choose one named reviewed runtime batch")
     records = {record["id"]: record for record in load_records()}
-    return [records[skill_id] for skill_id in SKILLS]
+    selected = [records[skill_id] for skill_id in BATCHES[batch]]
+    for record in selected:
+        inputs = record["invocation"]["inputs"]
+        if (inputs.get("sim_backend") != "cpu" or inputs.get("render_backend") != "none"
+                or inputs.get("obs_mode") != "state" or inputs.get("seed") != 0
+                or inputs.get("max_episode_steps") != 1000):
+            raise ValueError("Runtime batches require the reviewed CPU/state seed-0 contract")
+    return selected
+
+
+def plan_batch(batch):
+    records = load_runtime_records(batch)
+    return {"status": "planned", "batch": batch, "execution_performed": False,
+            "network_performed": False, "project_created": False,
+            "task_timeout_seconds": TASK_TIMEOUT,
+            "recipes": [{"skill_id": record["id"], "inputs": record["invocation"]["inputs"],
+                         "record_version": record["maintenance"]["record_version"],
+                         "source_commit": record["source"]["commit"]} for record in records]}
 
 
 def write_json(path, value):
@@ -84,10 +116,11 @@ def assess_result(record, execution, stdout):
         result = json.loads(stdout.strip().splitlines()[-1])
     except (ValueError, IndexError):
         result = None
-    expected = {"task": record["invocation"]["inputs"]["task"], "seed": 0,
-                "runtime": "3.0.0b22", "robot": "panda", "controller": "pd_joint_pos",
-                "observation": "state", "sim_backend": "cpu", "render_backend": "none",
-                "max_episode_steps": record["invocation"]["inputs"]["max_episode_steps"]}
+    inputs = record["invocation"]["inputs"]
+    expected = {"task": inputs["task"], "seed": inputs["seed"],
+                "runtime": "3.0.0b22", "robot": inputs["robot"], "controller": inputs["controller"],
+                "observation": inputs["obs_mode"], "sim_backend": inputs["sim_backend"],
+                "render_backend": inputs["render_backend"], "max_episode_steps": inputs["max_episode_steps"]}
     valid = (isinstance(result, dict) and result.get("status") == "task_complete"
              and result.get("success") is True and all(result.get(k) == v for k, v in expected.items())
              and type(result.get("terminated")) is bool and result.get("truncated") is False
@@ -157,17 +190,25 @@ def verify_recipe(record, catalog_path, archive_path, output, work):
     return report
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--work-dir", required=True)
-    args = parser.parse_args()
+    parser.add_argument("--batch", choices=tuple(BATCHES), default="initial-two")
+    parser.add_argument("--plan", action="store_true", help="Read the selected metadata without network, writes or execution")
+    parser.add_argument("--output")
+    parser.add_argument("--work-dir")
+    args = parser.parse_args(argv)
+    if args.plan:
+        print(json.dumps(plan_batch(args.batch)))
+        return 0
+    if not args.output or not args.work_dir:
+        parser.error("--output and --work-dir are required for execution")
     output, work = Path(args.output).resolve(), Path(args.work_dir).resolve()
     output.mkdir(parents=True, exist_ok=True)
     work.mkdir(parents=True, exist_ok=True)
     report = {"schema_version": "1", "started_at": datetime.now(timezone.utc).isoformat(),
               "status": "failed", "runtime_verification": "not_run", "task_seed": 0,
-              "scope": "Two CPU/state tasks, one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
+              "batch": args.batch, "requested_skills": list(BATCHES[args.batch]),
+              "scope": "One explicit named CPU/state batch, at most three tasks and one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
               "host": {"os": platform.system(), "architecture": platform.machine(), "python": sys.version},
               "recipes": []}
     try:
@@ -177,7 +218,7 @@ def main():
         report["hub_commit"] = sha
         report["workflow_run_url"] = ("https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" +
                                       os.environ["GITHUB_RUN_ID"]) if os.environ.get("GITHUB_RUN_ID") else None
-        records = load_runtime_records()
+        records = load_runtime_records(args.batch)
         catalog_path = output / "catalog.json"
         write_json(catalog_path, {"schema_version": "1", "hub_commit": sha, "records": records})
         source = records[0]["source"]
