@@ -67,6 +67,12 @@ test('capabilities expose bounded finding and complete manifest discovery withou
   assert.equal(body.public_discovery.search_manifest, ORIGIN + '/catalog/v2/search-manifest.json');
   assert.equal(body.memories.complete_manifest, ORIGIN + '/catalog/v2/memory-manifest.json');
   assert.equal(body.public_discovery.authentication_required, false);
+  assert.equal(s.calls.length, 0, 'HTTP capability metadata does not fetch or install onboarding resources');
+  const mcp: any = await (await s.rpc('tools/call', { name: 'get_hub_capabilities', arguments: {} }))!.json();
+  assert.equal(mcp.result.isError, false);
+  assert.deepEqual(mcp.result.structuredContent.onboarding, body.onboarding, 'HTTP and MCP clients receive the same local handoff');
+  assert.equal(body.onboarding.source_acquisition.cli_command, 'fetch-source');
+  assert.equal(body.onboarding.source_acquisition.source_manifest_grants_sharing_permission, false);
   assert.ok(s.calls.every(call => !new Headers(call.init?.headers).has('Authorization')));
 });
 
