@@ -210,6 +210,13 @@ integration, regulated pure pursuit and Smac Hybrid-A* implementation references
 beyond the existing Simple Commander clients. These C++ plugins require configured
 Nav2 hosts, have no Hub adapter and remain `runtime_verification: not_run`.
 
+## robot_localization state estimation
+
+The [robot_localization source review](../docs/robot-localization-sources.md)
+adds the EKF prediction/correction library implementation with explicit selected-file
+BSD and package-level Apache declarations. It is not a standalone sensor-fusion
+node, has no Hub adapter and remains `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh

@@ -1,0 +1,118 @@
+{
+  "id": "robot-localization-ekf",
+  "name": "robot_localization extended Kalman filter implementation",
+  "summary": "Official C++ Ekf library implementation for selective measurement correction and nonlinear state/covariance prediction in robot_localization. This source mutates filter state and covariance; it is not a standalone ROS node, sensor-interface implementation or verified localization task.",
+  "framework": "robot-localization",
+  "kind": "community_skill",
+  "capabilities": [
+    "state-estimation",
+    "extended-kalman-filter",
+    "measurement-fusion",
+    "covariance-propagation"
+  ],
+  "aliases": [
+    "robot_localization",
+    "Ekf::predict",
+    "Ekf::correct",
+    "Kalman gain",
+    "Joseph covariance update",
+    "Mahalanobis threshold",
+    "sensor fusion"
+  ],
+  "robots": [
+    "unspecified robot"
+  ],
+  "source": {
+    "repository": "https://github.com/cra-ros-pkg/robot_localization",
+    "commit": "3efa714fb9c1ff40966327b7bed7053b2570be4d",
+    "path": "src/ekf.cpp",
+    "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+    "sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+    "bytes": 17733,
+    "authors": [
+      "Charles River Analytics, Inc.",
+      "Locus Robotics, Inc."
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+    "verified": true,
+    "scope": "Selected src/ekf.cpp has a complete BSD-3-Clause notice, copyright 2014-2016 Charles River Analytics, Inc. and 2017 Locus Robotics, Inc. Preserve its copyright, conditions, disclaimer and non-endorsement requirement. Root LICENSE includes Charles River Analytics and Austin Robot Technology BSD notices, with an organization placeholder in one clause; package.xml instead declares Apache License 2.0. Verification is limited to the explicit, complete selected-file notice. It does not relicense or clear the full package, other components, dependencies or binaries."
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned robot_localization package, rl_lib, headers and FilterBase/Measurement implementations",
+      "ament_cmake",
+      "builtin_interfaces",
+      "rosidl_default_generators",
+      "rosidl_default_runtime",
+      "rosidl_typesupport_cpp",
+      "rclcpp",
+      "rmw_implementation",
+      "angles",
+      "Eigen3 / eigen",
+      "Boost / libboost-dev",
+      "GeographicLib / geographiclib",
+      "geographic_msgs",
+      "geometry_msgs",
+      "diagnostic_msgs",
+      "diagnostic_updater",
+      "message_filters",
+      "nav_msgs",
+      "sensor_msgs",
+      "std_msgs",
+      "std_srvs",
+      "tf2",
+      "tf2_eigen",
+      "tf2_geometry_msgs",
+      "tf2_ros",
+      "yaml_cpp_vendor",
+      "yaml-cpp"
+    ],
+    "hardware": [],
+    "system": [
+      "Caller-provided initialized filter state, covariance, measurement/update masks and process/control settings",
+      "Consistent units, frames, measurement timing and rclcpp Time/Duration values",
+      "C++ toolchain and generated package interfaces required by the reviewed CMake configuration"
+    ],
+    "notes": "correct selects finite measured dimensions, takes the absolute value of negative covariance diagonals, floors very small diagonal variances at 1e-9, computes a Kalman gain by matrix inversion, normalizes angular innovation, applies a Mahalanobis threshold and updates state/covariance using the Joseph form. predict builds an Euler-angle transfer function and analytical Jacobian, calls inherited control preparation, optionally computes dynamic process noise, projects state/covariance and wraps state angles. It uses 1/cos(pitch); numerical conditioning and singularity behavior were not tested. These methods mutate filter internals and can emit configured debug output; this file defines no main, ROS subscriptions/publishers or physical robot command. CMake places src/ekf.cpp in rl_lib and separately builds ekf_node from another source that was not read in this bounded review. CMake selects C++17 for non-WIN32 builds. Package version 3.8.3 and ROS Index jazzy-devel metadata are declarations, not tested ROS, OS, architecture, Python or sensor compatibility. A fetched file alone is insufficient."
+  },
+  "invocation": {
+    "entrypoint": "robot_localization::Ekf::predict / robot_localization::Ekf::correct (rl_lib C++ library)",
+    "notes": "Library methods, not a shell command or standalone source-file executable. The selected file defines predict(const rclcpp::Time &, const rclcpp::Duration &) and correct(const Measurement &). Its complete package supplies class declarations, inherited filter state/utilities and caller integration. Reviewed CMake links rl_lib into a separate ekf_node target, but that target main and ROS filter I/O were not reviewed here. No Hub build, install or execution adapter is provided; no upstream library, ROS node, simulator or robot was compiled, loaded or run."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the selected implementation, complete per-file notice, package declarations and CMake configuration before integrating the full upstream library. This source reference only retrieves one inert file; it does not provide a prepared sensor-fusion node or run a localization task.",
+    "setup_url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Official ROS Index canonical repository/ref evidence, exact commit and complete tree reviewed. Complete EKF implementation, root license, package XML and CMake read as inert text; all four immutable file bodies matched tree Git blobs and sizes. Library entrypoints, mutation boundaries, declared dependencies and BSD-file/Apache-package distinction inspected. No compiler, imports, installation, ROS execution, sensor data, numerical test or physical compatibility verification."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-431331568e9c",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
