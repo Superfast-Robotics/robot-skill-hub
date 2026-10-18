@@ -11,14 +11,16 @@ registration, successful compilation, active controller loading or runtime
 compatibility. A correct registration alone says nothing about task success or
 physical behavior.
 
-## Check the two existing examples
+## Check the three existing examples
 
 The finite [manifest](../catalog/plugin-projects.json) describes the existing
-`ros2-joint-trajectory-controller` and `ros2-diff-drive-controller` intake records
+`ros2-joint-trajectory-controller`, `ros2-diff-drive-controller` and
+`ros2-joint-state-broadcaster` intake records
 at `ros-controls/ros2_controllers` commit
 `8ce934536c6404750fb8aafc0b62b7d365049143`. Their implementation effects and source
-review remain in [the controller guide](ros2-controller-sources.md) and its
-linked evidence. No canonical record is moved, rewritten or re-owned by this
+review remain in [the controller guide](ros2-controller-sources.md), the
+[joint-state broadcaster guide](ros2-joint-state-broadcaster-source.md) and
+their linked evidence. No canonical record is moved, rewritten or re-owned by this
 tool.
 
 Supply a cache containing only the reviewed files listed by the manifest:
@@ -28,14 +30,16 @@ CACHE/ros2-controllers/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE
 CACHE/ros2-controllers/8ce934536c6404750fb8aafc0b62b7d365049143/README.md
 CACHE/ros2-controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/...
 CACHE/ros2-controllers/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/...
+CACHE/ros2-controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/...
 ```
 
 ```sh
 python tools/import_robot_plugins.py --cache /path/to/reviewed-cache --check
 ```
 
-The ten exact files are the selected C++ implementations, their package XML,
-CMake and plugin XML, the complete shared license and reviewed README. Each
+The fifteen exact files are the selected C++ implementations, their package XML,
+CMake and plugin XML, the broadcaster's class header, the complete shared license
+and reviewed README. Each
 cache file must match its declared bytes, SHA-256 and Git blob SHA-1. A missing
 or changed file fails; the tool never fills a missing cache from the network.
 `--check` also binds each existing intake's exact JSON bytes and normalized
@@ -80,7 +84,7 @@ python skills/find-robot-skills/scripts/rsh.py register /path/to/fresh-drafts/ne
 Draft generation rejects an ID or normalized immutable source identity already
 present in managed references, intake records or preparation records. The
 default demonstration manifest therefore works with `--check`; draft mode
-rejects its two already published entries. Renaming an existing source ID does
+rejects its three already owned entries. Renaming an existing source ID does
 not evade source duplication checks. GitHub repository case and a trailing
 `.git/` are normalized for duplicate detection only; source provenance is not
 rewritten.
@@ -124,8 +128,8 @@ generic artifact types remain available through ordinary reviewed intake.
 The source header must contain the reviewed copyright/license notice quotes.
 Each credited author has explicit `author_provenance`: either a `source_header`
 quote containing that credit, or `package_author` with the pinned package XML
-path and exact `<author>` text. Package maintainers, partial-name matches and
-unlisted files do not supply author credit. A package author is not thereby
+path and exact `<author>` text. Package maintainers, partial package-author name
+matches and unlisted files do not supply author credit. A package author is not thereby
 identified as the selected file's author or copyright holder; that provenance
 remains distinct in the manifest and does not replace the source notice.
 Recognized source-comment declarations, package declarations and the pinned

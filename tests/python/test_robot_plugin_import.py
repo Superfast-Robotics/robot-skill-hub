@@ -264,13 +264,13 @@ class RobotPluginImportTests(unittest.TestCase):
         self.project["files"]["../escape.cpp"] = self.project["files"]["LICENSE"]
         self.rejected("Unsafe")
 
-    def test_real_manifest_preserves_two_existing_h13_intake_metadata_identities(self):
+    def test_real_manifest_preserves_three_existing_intake_metadata_identities(self):
         manifest = importer.read_json(ROOT / "catalog/plugin-projects.json")
         self.assertEqual(1, len(manifest["projects"]))
         project = manifest["projects"][0]
-        self.assertEqual(10, len(project["files"]))
+        self.assertEqual(15, len(project["files"]))
         self.assertEqual("8ce934536c6404750fb8aafc0b62b7d365049143", project["commit"])
-        self.assertEqual({"ros2-joint-trajectory-controller", "ros2-diff-drive-controller"}, {p["id"] for p in project["plugins"]})
+        self.assertEqual({"ros2-joint-trajectory-controller", "ros2-diff-drive-controller", "ros2-joint-state-broadcaster"}, {p["id"] for p in project["plugins"]})
         for plugin in project["plugins"]:
             path = ROOT / "catalog/intake" / (plugin["id"] + ".json")
             raw = path.read_bytes()

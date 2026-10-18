@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "description": "Finite maintainer-reviewed registration checks for two existing source-only intake records. Cache-only; no discovery, fetch, compilation, loading or automatic publication. YAML mapping is outside this version.",
+  "description": "Finite maintainer-reviewed registration checks for three existing source-only intake records. Cache-only; no discovery, fetch, compilation, loading or automatic publication. YAML mapping is outside this version.",
   "projects": [
     {
       "id": "ros2-controllers",
@@ -56,6 +56,31 @@
           "sha256": "f0a335e3f25a3f7e58c06d3c433f82b594d794e5c1fb7c05382b82b33dd9ce31",
           "bytes": 6417,
           "git_blob_sha1": "7176cc85e6445fcbd8a4f886f7cf7f9489abdb72"
+        },
+        "joint_state_broadcaster/src/joint_state_broadcaster.cpp": {
+          "sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+          "bytes": 15833,
+          "git_blob_sha1": "292d8c468bdad156cfdcff642d150ac8ccdc1021"
+        },
+        "joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp": {
+          "sha256": "5f294bbc71d7a6c30a142d73716e6d4b0769f442aee19077cb754ff095a76738",
+          "bytes": 5445,
+          "git_blob_sha1": "7e344bf2724548f85c9ebb6f5545f8fd191d0658"
+        },
+        "joint_state_broadcaster/package.xml": {
+          "sha256": "343c3f6b1b4508f0aae9507042a147ae653fb1ae5d5f7031d082c6137d24d7a5",
+          "bytes": 1702,
+          "git_blob_sha1": "da61f0102ed92041ab4372fbbc3f3ad11748031d"
+        },
+        "joint_state_broadcaster/CMakeLists.txt": {
+          "sha256": "d20ab7eb2a722fa537b1710bfea31cfec9017e5e0ecd118b4f12111fa6e23758",
+          "bytes": 2846,
+          "git_blob_sha1": "d7f58906594d7d8049d9764bb6751655170a32a6"
+        },
+        "joint_state_broadcaster/joint_state_plugin.xml": {
+          "sha256": "640f17a563037677c4c315f256ae81cf0398d232685da2b6478fb7d696c8e567",
+          "bytes": 360,
+          "git_blob_sha1": "03060845f9c88c8a506e50cdda8474e0f6dfd4a5"
         }
       },
       "plugins": [
@@ -254,6 +279,105 @@
             "Manuel Meraz": {
               "kind": "source_header",
               "quote": "Author: Bence Magyar, Enrique Fernández, Manuel Meraz"
+            }
+          }
+        },
+        {
+          "id": "ros2-joint-state-broadcaster",
+          "owned_intake_sha256": "07d02b4d5921a738326c368068e7b98f0b4eb89d17cfdcc9b6acabf1e6d48926",
+          "source_path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+          "package_path": "joint_state_broadcaster/package.xml",
+          "cmake_path": "joint_state_broadcaster/CMakeLists.txt",
+          "registration": {
+            "path": "joint_state_broadcaster/joint_state_plugin.xml",
+            "name": "joint_state_broadcaster/JointStateBroadcaster",
+            "type": "joint_state_broadcaster::JointStateBroadcaster",
+            "base_class_type": "controller_interface::ControllerInterface",
+            "library": "joint_state_broadcaster",
+            "export_package": "controller_interface",
+            "macro": "PLUGINLIB_EXPORT_CLASS"
+          },
+          "license": {
+            "path": "LICENSE",
+            "spdx": "Apache-2.0",
+            "scope": "Selected C++ source: Copyright 2021 ros2_control development team, Apache License 2.0. Package authors Jordan Palacios and Karsten Knese are preserved separately from the reviewed header notice (Copyright 2017 Open Source Robotics Foundation, Inc.). The complete pinned root Apache 2.0 license and matching package declaration were read. Preserve applicable copyright, license, modification and notice obligations. Review covers these selected texts, not all dependencies, generated code, binaries, hardware drivers or deployment.",
+            "source_notice_quotes": [
+              "Copyright 2021 ros2_control development team",
+              "Licensed under the Apache License, Version 2.0"
+            ]
+          },
+          "reviewed_metadata": {
+            "name": "ros2_controllers joint-state broadcaster implementation",
+            "summary": "Official C++ ros2_control plugin that claims no command interfaces, reads configured DOUBLE state interfaces and publishes JointState plus optional DynamicJointState ROS messages. Interface mapping, URDF filtering and incomplete readings have explicit source-defined behavior; runtime and hardware behavior remain untested.",
+            "framework": "ros2-controllers",
+            "capabilities": [
+              "joint-state-broadcast",
+              "joint-state-interface-read",
+              "joint-state-publish",
+              "dynamic-joint-state-publish",
+              "controller-plugin"
+            ],
+            "aliases": [
+              "ros2_control",
+              "joint_state_broadcaster",
+              "JointStateBroadcaster",
+              "joint state broadcaster",
+              "joint_states",
+              "dynamic_joint_states",
+              "sensor_msgs/JointState",
+              "control_msgs/DynamicJointState"
+            ],
+            "robots": [
+              "unspecified ros2_control system exposing joint state interfaces"
+            ],
+            "requirements": {
+              "python": null,
+              "packages": [
+                "Complete pinned joint_state_broadcaster package, generated parameter header/YAML and a C++17 toolchain",
+                "ament_cmake",
+                "ros2_control_cmake",
+                "backward_ros",
+                "builtin_interfaces",
+                "control_msgs",
+                "controller_interface",
+                "generate_parameter_library",
+                "pluginlib",
+                "rclcpp_lifecycle",
+                "rclcpp",
+                "realtime_tools",
+                "sensor_msgs",
+                "urdf",
+                "hardware_interface",
+                "std_msgs"
+              ],
+              "hardware": [],
+              "system": [
+                "Configured ros2_control controller manager/lifecycle host and DOUBLE joint state interfaces",
+                "Matching joint/interface selections, topic namespace, frame and mapping parameters; robot description for optional URDF-based filtering"
+              ],
+              "notes": "command_interface_configuration returns NONE; the plugin reads loaned state interfaces and publishes ROS messages. Empty joints or interfaces selects all available state interfaces; otherwise the configured cross-product is requested. Non-DOUBLE interfaces are ignored. The selected source supports custom interface mapping, optional URDF filtering/order and configured extra joints initialized to zero. update attempts get_optional(0) once per DOUBLE interface and retains prior values on failed reads; never-read values can remain NaN. JointState carries position/velocity/effort; DynamicJointState is conditional. Unprefixed or ~/ topic names depend on use_local_topics. Complete source/header/package/CMake/plugin XML were read; parameter YAML/generated header and dependency implementations were not. Parameter defaults, timing, publication success, data freshness and physical compatibility were not tested. CMake >=3.16, C++17 and package 4.43.0 are declarations, not tested environment combinations. Optional BUILD_TESTING has additional declared dependencies."
+            },
+            "authors": [
+              "ros2_control development team",
+              "Jordan Palacios",
+              "Karsten Knese"
+            ],
+            "invocation_notes": "joint_state_plugin.xml registers type joint_state_broadcaster::JointStateBroadcaster, base controller_interface::ControllerInterface and shared library joint_state_broadcaster. This selected source exports that same pair with PLUGINLIB_EXPORT_CLASS; CMake builds that shared library and exports the XML. A configured controller manager invokes its lifecycle and update callbacks. This is not a standalone executable or Hub adapter. Loading it can expose hardware state through joint_states and optional dynamic_joint_states ROS topics; this source requests no command interface. Fetching the reference neither loads the plugin nor executes it."
+          },
+          "author_provenance": {
+            "ros2_control development team": {
+              "kind": "source_header",
+              "quote": "Copyright 2021 ros2_control development team"
+            },
+            "Jordan Palacios": {
+              "kind": "package_author",
+              "path": "joint_state_broadcaster/package.xml",
+              "name": "Jordan Palacios"
+            },
+            "Karsten Knese": {
+              "kind": "package_author",
+              "path": "joint_state_broadcaster/package.xml",
+              "name": "Karsten Knese"
             }
           }
         }
