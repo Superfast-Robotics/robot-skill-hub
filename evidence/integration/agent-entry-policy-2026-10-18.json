@@ -46,12 +46,13 @@
     },
     "docs/agent-quickstart.md": {
       "before_bytes": 13709,
-      "after_bytes": 5324,
+      "after_bytes": 5360,
       "before_words": 1730,
-      "after_words": 647
+      "after_words": 651
     }
   },
   "guide_validation": {
+    "scope": "Initial shortened guide, before the explicit fetch-source command-name correction. The later native SDK check is recorded separately.",
     "skill_frontmatter_validator": "passed",
     "public_guide_link_and_byte_integrity_test": "passed",
     "tests": 1,
@@ -85,6 +86,32 @@
     "No simulator, controller, upstream source, installation, GPU or paid resource was executed.",
     "API/Worker code and version are unchanged."
   ],
+  "native_sdk_guide_correction": {
+    "failed_CI": {
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39109969493",
+      "head": "c2eaa653c9dcadd5e964ec5d32489a414246d5b8",
+      "native_Workers_group_tests": 43,
+      "passed": 42,
+      "failed": 1,
+      "failure": "The SDK onboarding smoke test required the literal fetch-source command in the quickstart. The shortened guide retained only fetch_source_args. All preceding Python and catalog test steps passed.",
+      "job_log_sha256": "ab3ccc0b04eff3a0bb26942f2d75a288485a18b8fff89531b62ead8a295e7e5d"
+    },
+    "correction": "The source-reference paragraph now explicitly names fetch-source alongside its returned fetch_source_args. No test or API implementation changed.",
+    "post_correction_local_check": {
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "scope": "Actual official MCP SDK over local native Workers HTTP with stubbed upstream fixtures only.",
+      "quickstart_bytes": 5360,
+      "quickstart_sha256": "7c9186cf1a40cd2463e6f42060d18336d5bdcceda8efe278fa48353798aae454",
+      "unchanged_test_sha256": "e8a0abb0eb2010da261e7361abe85a6bc651bc5e11a5ef3dbac9857fc12f014c",
+      "stdout_sha256": "5f28f1d4f4cd120a12d93a9ad778b4904c897cac2692ceca54fcec46df60b186",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "live_Hub_API_requests": 0,
+      "new_dependency_installation": false,
+      "source_or_robot_execution": false
+    }
+  },
   "plugin_manifest_identity": {
     "manifest_sha256": "da353de06d4aa58271274464ec87bb3678ed608bd580edd49c53e2a246194da8",
     "change": "Only the JSB owned metadata checksum and reviewed alias mirror were updated. All upstream file pins, registrations, authors and licenses remain unchanged.",
