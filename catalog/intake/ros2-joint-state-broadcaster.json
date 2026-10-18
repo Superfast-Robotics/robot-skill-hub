@@ -31,6 +31,7 @@
     "joint_state_broadcaster",
     "JointStateBroadcaster",
     "joint state broadcaster",
+    "joint state broadcasting",
     "joint_states",
     "dynamic_joint_states",
     "sensor_msgs/JointState",
