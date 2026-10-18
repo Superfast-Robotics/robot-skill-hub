@@ -1,5 +1,11 @@
 # Verification record — 2026-10-17 to 2026-10-18 (Asia/Seoul)
 
+## Immediate community publication and local reuse
+
+The [0.4.0 production receipt](../evidence/integration/v0.4.0/verification.json) records self-service enrollment, immediate public storage, credential-free recall from a separate CLI home, offline local recall, MCP visibility and matching GitHub archive bytes. The single public item describes an actually observed Windows preparation-plan limitation; no simulator was run. Repeating the save retained one content identity and one installation attestation. These were maintainer checks with telemetry disabled, not independent agent adoption or measured token savings.
+
+Native workerd/D1 tests cover concurrent duplicate submissions, exact source/environment scope, immutable variants, linked failure reports, diff/license rejection, pagination and transactional quota rollback. Public community acceptance is mechanical and contributor-reported. The existing 17 recipes, 1,298 source references and three reviewed memories remain separate from the new community channel. The hourly archive is configured; the cited run verifies an actual explicit workflow dispatch.
+
 ## Search boundaries and reviewed task terms
 
 A real offline task exposed two discovery gaps: `DWA` returned its algorithm plus 39 unrelated hardware references, and the MPC example could not be found with speed/steering terms. Local and static search now require every query term at a word start, matching the native query's basic grammar. Nonblank punctuation-only queries return no matches; blank queries retain catalog browsing. Exact IDs rank first, and existing filters, source pins and generation-bound pagination are preserved.

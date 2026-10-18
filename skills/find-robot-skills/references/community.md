@@ -22,11 +22,15 @@ python /PATH_TO_SKILL/scripts/rsh.py join --project DIR --allow-public-memory --
 
 Repeat `--skill` and `--kind` for the exact authorized scope. Enrollment performs a small CPU proof with a 15-second client bound; no GPU, payment or maintainer token is needed. The generated credential is stored in the user home, outside the project. It identifies a pseudonymous installation, not a verified person or independent agent. Do not copy credentials into findings, commits or prompts.
 
-Joined projects use `save` for immediate community publication without PR approval. Project inspection and `recall` retry one pending item with a 15-minute backoff. `community-sync --project DIR --limit 3 --json` drains up to three eligible pending items explicitly. Network failure never removes local experience. `setup --project DIR --local-only --json` revokes future automatic sharing. Previously published data remains public, including Git history.
+Joined projects use `save` for immediate community publication without PR approval. Project inspection and `recall` retry one pending item with a 15-minute backoff. `community-sync --project DIR --limit 3 --json` drains up to three eligible pending items explicitly. A rotating cursor reads at most 1,000 outbox bodies per call, so delivered history cannot permanently hide later entries. Permanent API rejections pause automatic delivery; correct the cause and use `community-sync --retry-blocked` for an explicit retry. Network failure never removes local experience. `setup --project DIR --local-only --json` revokes future automatic sharing. Previously published data remains public, including Git history.
+
+Recall favors recent local experience while leaving room for new shared candidates. When a local item also has public reuse reports, those reports appear with the local item. Original source/version pins remain unchanged across catalog documentation releases; retired generations can still publish when their exact source and record version match the active catalog. Different source versions are never silently substituted.
 
 Write only a minimal structured finding intentionally selected for reuse. Do not upload the task transcript, repository, logs, host environment, private source, user data or credentials. Secret-pattern checks cannot establish that arbitrary text is safe to publish. The CLI reads only the supplied finding/patch and its own bounded outbox.
 
 ## Finding, variant and reuse report
+
+Automatic patch publication requires a verified upstream catalog license. An unknown or unverified license can still have a structured finding, but does not qualify for automatic code-patch publication.
 
 Example finding format (replace all observations with facts from the actual task):
 
