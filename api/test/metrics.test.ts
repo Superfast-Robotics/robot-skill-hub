@@ -4,7 +4,7 @@ import { accessFamily, measure, measurementReport, pruneMeasurements, recordAcce
 import { createPublicHandler } from '../src/public.ts';
 import { createHash } from 'node:crypto';
 
-const NOW = Date.parse('2026-10-18T12:00:00Z'), START = NOW - 3600000;
+const NOW = Date.parse('2026-10-18T12:00:00Z'), START = Date.parse('2026-10-17T15:47:38Z');
 type Event = { ts: number; route: string; family: string; client_hash: string | null };
 class Database {
   events: Event[] = []; queries: { sql: string; values: unknown[] }[] = []; fail = false;
@@ -74,8 +74,12 @@ test('campaign totals use the exact 24-hour window and only eligible request fam
   for (let n = 0; n < 200; n++) { add('crawler'); add('unclassified'); }
   add('mcp_tool', start - 1); add('recognized_agent', deadline); add('rsh_cli', deadline + 1);
   let report = await measurementReport(s.env, NOW); assert.equal(report.observed_agent_accesses, 99); assert.equal(report.target_reached, false); assert.equal(report.window_closed, false);
-  add('mcp_tool'); report = await measurementReport(s.env, NOW); assert.equal(report.observed_agent_accesses, 100); assert.equal(report.target_reached, true);
-  report = await measurementReport(s.env, START + 86400000 + 5000); assert.equal(report.observed_agent_accesses, 100); assert.equal(report.window_closed, true);
+  add('mcp_tool'); report = await measurementReport(s.env, NOW); assert.equal(report.observed_agent_accesses, 100); assert.equal(report.target_reached, false);
+  for (let n = 0; n < 9899; n++) add('rsh_cli');
+  report = await measurementReport(s.env, NOW); assert.equal(report.observed_agent_accesses, 9999); assert.equal(report.target_reached, false); assert.equal(report.target_agent_accesses, 10000);
+  add('mcp_tool'); report = await measurementReport(s.env, NOW); assert.equal(report.observed_agent_accesses, 10000); assert.equal(report.target_reached, true);
+  report = await measurementReport(s.env, START + 86400000 + 5000); assert.equal(report.observed_agent_accesses, 10000); assert.equal(report.target_reached, true); assert.equal(report.window_closed, true);
+  assert.equal(report.window_start, '2026-10-17T15:47:38.000Z'); assert.equal(report.window_end, '2026-10-18T15:47:38.000Z');
   assert.equal(Date.parse(report.window_end) - Date.parse(report.window_start), 86400000);
   const absent = await measurementReport({}, NOW); assert.equal(absent.observed_agent_accesses, null); assert.equal(absent.target_reached, false); assert.equal(absent.measurement_configured, false);
 });

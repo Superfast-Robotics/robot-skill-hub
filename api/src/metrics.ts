@@ -11,6 +11,7 @@ export interface MetricsEnv {
   CAMPAIGN_STARTED_AT?: string;
 }
 export interface Background { waitUntil(promise: Promise<unknown>): void }
+const TARGET_AGENT_ACCESSES = 10000;
 
 export function accessFamily(request: Request, mcpTool = false): string | null {
   if (request.headers.get('DNT') === '1' || request.headers.get('X-RSH-Telemetry') === 'off') return null;
@@ -59,8 +60,8 @@ export async function measurementReport(env: MetricsEnv, now = Date.now()) {
   return {
     schema_version: '1', interpretation: 'data_only', measurement_configured: configured,
     observed_at: new Date(now).toISOString(), window_start: new Date(start).toISOString(), window_end: new Date(deadline).toISOString(),
-    window_closed: now >= deadline, target_agent_accesses: 100, observed_agent_accesses: configured ? count : null,
-    target_reached: configured && count >= 100, groups,
+    window_closed: now >= deadline, target_agent_accesses: TARGET_AGENT_ACCESSES, observed_agent_accesses: configured ? count : null,
+    target_reached: configured && count >= TARGET_AGENT_ACCESSES, groups,
     counting_rule: 'Successful public discovery/record reads from the Hub CLI or recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count toward the target.',
     limitations: ['Client identity is self-reported; CLI use can be initiated by a person. Counts do not prove distinct autonomous agents.',
       'Direct GitHub Pages reads and offline uses are not measured. Anonymous clients have no installation identifier.',

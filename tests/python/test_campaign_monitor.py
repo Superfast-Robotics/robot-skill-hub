@@ -19,7 +19,7 @@ class CampaignMonitorTests(unittest.TestCase):
         self.metrics = {
             "measurement_configured": True, "observed_at": MONITOR.iso(self.now),
             "window_start": MONITOR.iso(MONITOR.WINDOW_START), "window_end": MONITOR.iso(MONITOR.WINDOW_END),
-            "target_agent_accesses": 100, "observed_agent_accesses": 7, "target_reached": False,
+            "target_agent_accesses": 10000, "observed_agent_accesses": 7, "target_reached": False,
             "groups": [{"family": "rsh_cli", "requests": 4}, {"family": "mcp_tool", "requests": 3},
                        {"family": "crawler", "requests": 1000}, {"family": "unclassified", "requests": 90}],
         }
@@ -32,8 +32,26 @@ class CampaignMonitorTests(unittest.TestCase):
         self.assertEqual(result["observed_agent_accesses"], 7)
         self.assertIs(result["target_reached"], False)
         self.metrics["groups"].append({"family": "recognized_agent", "requests": 93})
-        self.metrics.update(observed_agent_accesses=100, target_reached=True)
-        self.assertIs(self.assess()["target_reached"], True)
+        self.metrics.update(observed_agent_accesses=100, target_reached=False)
+        self.assertIs(self.assess()["target_reached"], False)
+
+    def test_target_boundary_requires_10000_eligible_accesses(self):
+        for count, reached in ((100, False), (9999, False), (10000, True)):
+            data = {**self.metrics, "observed_agent_accesses": count, "target_reached": reached,
+                    "groups": [{"family": "rsh_cli", "requests": count}, {"family": "crawler", "requests": 100000}]}
+            with self.subTest(count=count):
+                result = self.assess(data)
+                self.assertEqual(result["status"], "target_reached" if reached else "below_target")
+                self.assertEqual(result["observed_agent_accesses"], count)
+                self.assertIs(result["target_reached"], reached)
+
+    def test_legacy_100_target_is_rejected_even_when_counts_and_reached_flag_agree(self):
+        legacy = {**self.metrics, "target_agent_accesses": 100, "observed_agent_accesses": 10000,
+                  "target_reached": True, "groups": [{"family": "mcp_tool", "requests": 10000}]}
+        result = self.assess(legacy)
+        self.assertEqual(result["status"], "invalid_report")
+        self.assertIsNone(result["observed_agent_accesses"])
+        self.assertIsNone(result["target_reached"])
 
     def test_unconfigured_or_missing_metrics_are_unknown(self):
         self.assertIsNone(MONITOR.assess_metrics({"ok": False}, self.now)["observed_agent_accesses"])
@@ -44,6 +62,8 @@ class CampaignMonitorTests(unittest.TestCase):
         self.assertIsNone(result["target_reached"])
 
     def test_fixed_window_cannot_slide_with_a_new_deployment(self):
+        self.assertEqual(MONITOR.iso(MONITOR.WINDOW_START), "2026-10-17T15:47:38Z")
+        self.assertEqual(MONITOR.iso(MONITOR.WINDOW_END), "2026-10-18T15:47:38Z")
         self.metrics["window_start"] = MONITOR.iso(MONITOR.WINDOW_START + timedelta(minutes=1))
         result = self.assess()
         self.assertEqual(result["status"], "window_mismatch")

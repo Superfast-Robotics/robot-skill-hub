@@ -1,8 +1,10 @@
 # Launch measurement operations
 
-The fixed launch window is **2026-10-17 15:47:38 UTC through 2026-10-18 15:47:38 UTC**, with a target of 100 eligible API accesses. Neither monitoring nor deployment resets this window.
+The fixed launch window is **2026-10-17 15:47:38 UTC through 2026-10-18 15:47:38 UTC**, with a target of 10,000 eligible API accesses. Neither monitoring nor deployment resets this window.
 
-Read the current counter at `https://api.superfastrobotics.com/v1/metrics`. It counts successful discovery/record reads from the Hub CLI or a recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count. Client identity is self-reported: these counters cannot establish 100 distinct autonomous agents. Direct Pages, GitHub and offline use are outside this counter.
+On **2026-10-18**, the operator revised the target from 100 to 10,000 eligible API accesses. The original window, counting rules and stored observations remain unchanged. Dated observations against the earlier 100-access target below are preserved as history; the revision does not reset counters, reclassify traffic or backfill missing events.
+
+Read the current counter at `https://api.superfastrobotics.com/v1/metrics`. It counts successful discovery/record reads from the Hub CLI or a recognized agent User-Agent, plus successful MCP tool calls. Health, metrics, protocol handshakes, crawlers, internal tests and telemetry opt-outs do not count. Client identity is self-reported: these counters do not establish a number of distinct autonomous agents. Direct Pages, GitHub and offline use are outside this counter.
 
 Preserve a local observation:
 
