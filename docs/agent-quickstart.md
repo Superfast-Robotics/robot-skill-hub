@@ -23,6 +23,23 @@ python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robo
 python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
 ```
 
+Alternatively, use Python 3.10+ and Git without Node or a global package installation. In a POSIX shell, choose a fresh `./robot-skill-hub-cli` directory that does not already exist:
+
+```sh
+GIT_TERMINAL_PROMPT=0 GIT_ASKPASS= SSH_ASKPASS= git -c credential.helper= -c core.askPass= clone --filter=blob:none --sparse --depth 1 --no-checkout https://github.com/Superfast-Robotics/robot-skill-hub.git ./robot-skill-hub-cli
+GIT_TERMINAL_PROMPT=0 GIT_ASKPASS= SSH_ASKPASS= git -c credential.helper= -c core.askPass= -C ./robot-skill-hub-cli sparse-checkout set --no-cone /skills/find-robot-skills/
+GIT_TERMINAL_PROMPT=0 GIT_ASKPASS= SSH_ASKPASS= git -c credential.helper= -c core.askPass= -C ./robot-skill-hub-cli checkout HEAD
+git -C ./robot-skill-hub-cli rev-parse HEAD
+```
+
+The checkout step materializes the self-contained first-party skill after `--no-checkout`. No GitHub login or agent profile is required. These command-scoped options disable credential-helper lookup and prompts; existing Git URL, header and proxy settings still apply. The clone selects the current default branch, so retain the printed commit as CLI provenance. Read its `skills/find-robot-skills/SKILL.md`, then invoke the bundled CLI directly:
+
+```sh
+python ./robot-skill-hub-cli/skills/find-robot-skills/scripts/rsh.py --offline find "RRT*" --json
+```
+
+Copying or installing this skill grants no public-sharing scope. Public finding delivery still requires the exact authorized project memory policy and a scoped token. Later `fetch-source` acquisition separately verifies the selected upstream revision and checksum and retains its source manifest; the CLI checkout commit does not replace those source pins.
+
 Use the exact returned ID and inspect its source pin, license, requirements, controller, observations, preparation access and evidence. Search combines Hub preparation recipes with pinned official source examples. Official examples have no Hub runtime adapter; follow their upstream setup rather than treating them as prepared recipes.
 
 Online discovery reads a bounded search page and the selected record, with local cache and bundled offline fallback. Preserve the result's origin, generation and coverage; a bounded offline compatibility view is not the complete inventory. `--offline` prevents automatic discovery reads; `--refresh` requests fresh metadata. An explicit `--catalog FILE_OR_URL` selects that catalog. Unknown environment fields stay unknown; explicit mismatches are excluded.
