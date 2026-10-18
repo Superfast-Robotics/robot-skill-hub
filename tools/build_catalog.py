@@ -797,6 +797,7 @@ Current catalog: {counts}. Search matches and source references do not establish
 - [Source compatibility view]({base}/catalog/v1/references.json): inspect coverage; use the complete search manifest for enumeration
 - [Publication proof contract]({base}/agent.json): per-receipt published versions, exact hashes and historical anchors
 - [Source-file retrieval]({base}/source-files.md): one pinned inert file, independent of runtime preparation
+- [Search and preparation guide]({base}/search.md): exact selections, pagination, offline coverage and execution evidence
 - [Shared finding guide]({base}/memory.md): save minimal observations under exact project scope and an allowed-agent token
 - [Usage guide collection]({base}/llms-full.txt): quickstart first, source retrieval, findings and reviewable contributions
 - [Record schema]({base}/schemas/skill.schema.json)
@@ -821,9 +822,10 @@ def full_text(records, base, hub_commit, references=None, *, memory_count=None):
     quickstart = ROOT / "docs/agent-quickstart.md"
     parts = [quickstart.read_text(encoding="utf-8") if quickstart.exists() else
              f"# Agent quickstart\n\nRead {base}/agent.json, search {API}/v1/search, and inspect a selected ID before use. Public reads need no account. Runtime execution and authenticated sharing remain separate.\n"]
-    source_guide = ROOT / "skills/find-robot-skills/references/source-files.md"
-    if source_guide.exists():
-        parts.append(source_guide.read_text(encoding="utf-8"))
+    for name in ("search.md", "source-files.md"):
+        guide = ROOT / "skills/find-robot-skills/references" / name
+        if guide.exists():
+            parts.append(guide.read_text(encoding="utf-8"))
     for name in ("memory.md", "new-skills.md", "contributing.md", "compatibility.md", "discovery.md", "privacy.md"):
         path = ROOT / "docs" / name
         if path.exists():
@@ -926,9 +928,10 @@ def build(args):
         write(output / "agent-quickstart.md", quickstart.read_text(encoding="utf-8"))
     else:
         write(output / "agent-quickstart.md", "# Agent quickstart\n\nInstall `npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills`. Read the installed SKILL.md, then run its bundled scripts/rsh.py. Use find → inspect → prepare; execution is separate.\n")
-    source_guide = ROOT / "skills/find-robot-skills/references/source-files.md"
-    if source_guide.exists():
-        write(output / "source-files.md", source_guide.read_text(encoding="utf-8"))
+    for name in ("search.md", "source-files.md"):
+        guide = ROOT / "skills/find-robot-skills/references" / name
+        if guide.exists():
+            write(output / name, guide.read_text(encoding="utf-8"))
     for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
         document = ROOT / "docs" / name
         if document.exists():
@@ -1039,6 +1042,8 @@ def build(args):
     write_json(output / "agent.json", contract)
     write_json(output / ".well-known/robot-skill-hub.json", contract)
     urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/source-files.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", search_manifest_url, memory_manifest_url] + [base+"/skills/"+r['id']+"/" for r in records]
+    if (output / "search.md").is_file():
+        urls.append(base+"/search.md")
     if legacy_search:
         urls.append(base+"/catalog/v1/search.json")
     if legacy_publication:

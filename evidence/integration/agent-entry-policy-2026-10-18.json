@@ -1,0 +1,145 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "scope": "Maintainer local evaluation of agent instructions, exact project policy binding and a reviewed search alias. Not external adoption or robot execution.",
+  "base_commit": "734a99755f851c9bea46cdd1fce089ef3b4bfe62",
+  "source_files": {
+    "skills/find-robot-skills/scripts/rshlib/contributions.py": {
+      "bytes": 17083,
+      "sha256": "f91c149418d2585990c116a94dfb1a0e89e48afe7ac721788ab736f109a1957b"
+    },
+    "skills/find-robot-skills/scripts/rshlib/intake.py": {
+      "bytes": 17558,
+      "sha256": "8790cc40ceceb64655a75e436453c5179f049f4eaa3addae571611490109f4f5"
+    },
+    "tests/python/test_project_policy_paths.py": {
+      "bytes": 11522,
+      "sha256": "8705aa3c1fa6d2a96f4b3f5d01091c08e8d746804a1708628526bc0d891617a6"
+    }
+  },
+  "project_policy_case": {
+    "input_project": "~/work",
+    "expanded_project": "isolated home/work fixture",
+    "decoy": "isolated working-directory ~/work fixture",
+    "fixed": "Implicit policy, patch lock and registration recovery select the same expanded project as setup/save/outbox. Explicit policy selection retains its current working-directory and literal-tilde behavior.",
+    "before": {
+      "tests": 5,
+      "failed": 4,
+      "passed": 1,
+      "observed": "A decoy allow policy could cause mocked delivery for a local-only actual project, and decoy lock pins entered a patch bundle. No real public delivery occurred."
+    },
+    "after": {
+      "tests": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "transport": "mocked only",
+      "stderr_sha256": "31b05553eb47d191f3133a4f33cde018a15467649bc51596ff9d7474ced654a0"
+    }
+  },
+  "agent_guides": {
+    "skills/find-robot-skills/SKILL.md": {
+      "before_bytes": 10117,
+      "after_bytes": 4963,
+      "before_words": 1328,
+      "after_words": 620
+    },
+    "docs/agent-quickstart.md": {
+      "before_bytes": 13709,
+      "after_bytes": 5360,
+      "before_words": 1730,
+      "after_words": 651
+    }
+  },
+  "guide_validation": {
+    "scope": "Initial shortened guide, before the explicit fetch-source command-name correction. The later native SDK check is recorded separately.",
+    "skill_frontmatter_validator": "passed",
+    "public_guide_link_and_byte_integrity_test": "passed",
+    "tests": 1,
+    "stderr_sha256": "190270a08c6aa6622c51f677c5950a80cbb225e6be8f974afb4452fa6f2f8dff"
+  },
+  "forward_evaluation": {
+    "report_sha256": "cf1953bb7879491d4b9158283fa4fde8071c6f6c55551e3d973c1ca583d7a25d",
+    "fixture": "One selected record from the local H14 build, not a public network read. Its selected bytes equal the H14 base Git record. Its local candidate generation does not claim a deployed generation.",
+    "CLI_invocations": 4,
+    "source_route": "find, inspect and returned fetch-source arguments with plan/offline",
+    "project_created": false,
+    "source_downloaded_or_executed": false,
+    "public_share_or_prompt": false,
+    "observed_friction": "joint state broadcasting returned zero; joint state matched the selected record."
+  },
+  "reviewed_alias": {
+    "skill_id": "ros2-joint-state-broadcaster",
+    "added": "joint state broadcasting",
+    "record_before_sha256": "07d02b4d5921a738326c368068e7b98f0b4eb89d17cfdcc9b6acabf1e6d48926",
+    "record_after_sha256": "47409bef575521d27334a89940bd0771aea78a046909506bf3995ce75f0af0f7",
+    "post_change_valid_offline_query_total": 1,
+    "post_change_valid_cli_invocations": 1,
+    "initial_invalid_fixture_invocations": 1,
+    "initial_invalid_fixture": "Source reference in recipe records was rejected; retained separately before fixing the test wrapper.",
+    "stdout_sha256": "bff33fcf122c4244fb60930d9c756376501b35bade06c7e35ac5fa6c6ea7c027",
+    "source_license_requirements_compatibility_evidence_unchanged": true
+  },
+  "limits": [
+    "Source references remain source-only with unknown compatibility and runtime not_run.",
+    "Local test findings and synthetic credentials were never submitted publicly.",
+    "No simulator, controller, upstream source, installation, GPU or paid resource was executed.",
+    "API/Worker code and version are unchanged."
+  ],
+  "native_sdk_guide_correction": {
+    "failed_CI": {
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39109969493",
+      "head": "c2eaa653c9dcadd5e964ec5d32489a414246d5b8",
+      "native_Workers_group_tests": 43,
+      "passed": 42,
+      "failed": 1,
+      "failure": "The SDK onboarding smoke test required the literal fetch-source command in the quickstart. The shortened guide retained only fetch_source_args. All preceding Python and catalog test steps passed.",
+      "job_log_sha256": "ab3ccc0b04eff3a0bb26942f2d75a288485a18b8fff89531b62ead8a295e7e5d"
+    },
+    "correction": "The source-reference paragraph now explicitly names fetch-source alongside its returned fetch_source_args. No test or API implementation changed.",
+    "post_correction_local_check": {
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "scope": "Actual official MCP SDK over local native Workers HTTP with stubbed upstream fixtures only.",
+      "quickstart_bytes": 5360,
+      "quickstart_sha256": "7c9186cf1a40cd2463e6f42060d18336d5bdcceda8efe278fa48353798aae454",
+      "unchanged_test_sha256": "e8a0abb0eb2010da261e7361abe85a6bc651bc5e11a5ef3dbac9857fc12f014c",
+      "stdout_sha256": "5f28f1d4f4cd120a12d93a9ad778b4904c897cac2692ceca54fcec46df60b186",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "live_Hub_API_requests": 0,
+      "new_dependency_installation": false,
+      "source_or_robot_execution": false
+    }
+  },
+  "plugin_manifest_identity": {
+    "manifest_sha256": "da353de06d4aa58271274464ec87bb3678ed608bd580edd49c53e2a246194da8",
+    "change": "Only the JSB owned metadata checksum and reviewed alias mirror were updated. All upstream file pins, registrations, authors and licenses remain unchanged.",
+    "owned_intake_sha256": "47409bef575521d27334a89940bd0771aea78a046909506bf3995ce75f0af0f7",
+    "post_correction_unit_tests": 16,
+    "post_correction_actual_plugins_checked": 3,
+    "post_correction_actual_pinned_files_checked": 15,
+    "checks": [
+      {
+        "label": "unit",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "9ed380a43b3ae825169d003aeaa2a3753284fc9bf977eab2d08a5b13659ae39e"
+      },
+      {
+        "label": "actual",
+        "exit_code": 0,
+        "stdout_sha256": "6ad8918920d5c6efda97256abf79c66d0afdcd862dd01dc8e2cad75e0e4e41d1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "initial_PR_CI": {
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39109057088",
+      "head": "a41e07a62b6ad8f1a9b02e25dfe03adc873275bf",
+      "tests": 311,
+      "failures": 1,
+      "failure": "The real-manifest test caught the omitted owned metadata checksum update after adding the alias. This failure was preserved; no test was weakened or skipped.",
+      "job_log_sha256": "66c6dc085034ddfe9d8ca9b39fdb210c6e8be531302f15bf4cbd415a0c60b0d4"
+    }
+  }
+}

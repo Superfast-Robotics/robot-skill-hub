@@ -128,7 +128,7 @@ def canonical_bytes(bundle):
 
 
 def read_policy(project, policy_path=None):
-    path = Path(policy_path) if policy_path else Path(project) / ".robot-skill-hub.json"
+    path = Path(policy_path) if policy_path else Path(project).expanduser().resolve() / ".robot-skill-hub.json"
     return read_json(path) if path.is_file() else {}
 
 
@@ -158,7 +158,7 @@ def create_bundle(catalog, skill_id, patch_file, metadata_file, output, project,
     metadata = read_json(metadata_file)
     policy = read_policy(project, policy_path)
     allowed = sharing_allowed(policy, skill_id, paths)
-    lock_file = Path(project) / ".robot-skill-hub/locks" / (skill_id + ".json")
+    lock_file = Path(project).expanduser().resolve() / ".robot-skill-hub/locks" / (skill_id + ".json")
     lock = read_json(lock_file) if lock_file.is_file() else {}
     base = {"record_version": lock.get("record_version", record["maintenance"]["record_version"]),
             "hub_commit": hub_commit or lock.get("hub_commit") or catalog.get("hub_commit"),
