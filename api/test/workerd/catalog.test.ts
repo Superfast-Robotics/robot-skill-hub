@@ -477,6 +477,93 @@ test('native and static MCP/search agree on basic word prefixes, strict filters,
   } finally { await s.mf.dispose(); }
 });
 
+test('native FTS and static/MCP agree on query-only A*/D* literals and rejected embedded spellings', async () => {
+  const current = publication('a'.repeat(40), { rowOverrides: [
+    { name: 'Hybrid AStar grid planner', summary: 'Grid route', aliases: ['AStar', 'A*', 'Hybrid AStar'] },
+    { name: 'DStarLite incremental planner', summary: 'Incremental route', aliases: ['DStarLite', 'D* Lite'] },
+    { name: 'Algebra dynamics', summary: 'Ordinary algorithm terms and literal A* D* text',
+      aliases: ['RA', 'A B', 'D B', 'A variable', '\u00e9A', '\uB85C\uBD07A', 'A*', 'D*'] }
+  ] });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 2, memories: 1 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) }; current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const cases: [string, string[]][] = [
+    ...['A*', 'a*', '!!!A*!!!', '(A*)/grid', 'AStar grid', 'Hybrid A*'].map(q => [q, ['maniskill-panda-pick-cube']] as [string, string[]]),
+    ...['D*', 'd* lite', '(D*)/incremental', 'DStarLite'].map(q => [q, ['kuka-grasp']] as [string, string[]]),
+    ...['RA*', 'A*B', 'D*B', 'a_variable*', '\u00e9A*', '\uB85C\uBD07A*', 'algebra dynamics'].map(q => [q, ['source-2']] as [string, string[]]),
+    ...['A**', '*A*', '_A*', 'A*_', '\u0301A*', 'A*\u0301', 'a'].map(q => [q, ['maniskill-panda-pick-cube', 'source-2']] as [string, string[]]),
+    ['D**', ['kuka-grasp', 'source-2']], ['A* impossible', []], ['A* OR dynamics', []]
+  ];
+  const s = await runtime(current); try {
+    const outputs = new Map<string, any>();
+    const mcp = async (q: string) => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { q } } }) });
+      assert.equal(response.status, 200); const body = await response.json() as any; assert.equal(body.result.isError, false); return body.result.structuredContent;
+    };
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'static_v1_fallback');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Static ' + q);
+      outputs.set(q, result.body);
+    }
+    const staticMcp = await mcp('D* Lite'); assert.equal(staticMcp.backend, 'static_v1_fallback'); assert.deepEqual(staticMcp.results.map((row: any) => row.id), ['kuka-grasp']);
+    await s.complete();
+    const withoutBackend = ({ backend, ...body }: any) => body;
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'd1_fts5');
+      assert.equal(result.body.search_semantics, 'all_terms_word_prefix');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Native ' + q);
+      assert.deepEqual(withoutBackend(result.body), withoutBackend(outputs.get(q)), q);
+    }
+    const nativeMcp = await mcp('D* Lite'); assert.equal(nativeMcp.backend, 'd1_fts5'); assert.deepEqual(withoutBackend(nativeMcp), withoutBackend(staticMcp));
+    const literalOnly = await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'astar*'").first<any>();
+    assert.equal(literalOnly.total, 1, 'Document A* literals remain ordinary a tokens; only a declared AStar word matches');
+  } finally { await s.mf.dispose(); }
+});
+
+test('native FTS and MCP preserve plain RRT prefixes while canonical RRT* selects its named variant', async () => {
+  const current = publication('a'.repeat(40), { rowOverrides: [
+    { name: 'RRT planner', summary: 'Sampling routes', aliases: ['RRT', 'Rapidlyexploring random tree'] },
+    { name: 'RRTStar planner', summary: 'Optimal routes', aliases: ['RRTStar', 'RRT*', 'Rapidlyexploring random tree star'] },
+    { name: 'Query syntax notes', summary: 'Literal RRT* notation', aliases: ['RRRT', 'RRT B', '2RRT', '\u00e9RRT', '\uB85C\uBD07RRT', 'RRT*'] }
+  ] });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 2, memories: 1 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) }; current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const cases: [string, string[]][] = [
+    ...['RRT*', 'rrt*', 'rRt*', '!!!RRT*!!!', '(RRT*)/planner', 'RRTStar', 'RRT Star'].map(q => [q, ['kuka-grasp']] as [string, string[]]),
+    ...['RRRT*', 'RRT*B', '2RRT*', '\u00e9RRT*', '\uB85C\uBD07RRT*'].map(q => [q, ['source-2']] as [string, string[]]),
+    ...['RRT', 'rr', 'RRT**', '*RRT*', '_RRT*', 'RRT*_', '\u0301RRT*', 'RRT*\u0301'].map(q => [q, ['maniskill-panda-pick-cube', 'kuka-grasp', 'source-2']] as [string, string[]]),
+    ['RRT planner', ['maniskill-panda-pick-cube', 'kuka-grasp']], ['RRT* sampling', []], ['RRT* impossible', []], ['RRT* OR sampling', []]
+  ];
+  const s = await runtime(current); try {
+    const outputs = new Map<string, any>();
+    const mcp = async (q: string) => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { q } } }) });
+      assert.equal(response.status, 200); const body = await response.json() as any; assert.equal(body.result.isError, false); return body.result.structuredContent;
+    };
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'static_v1_fallback');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Static ' + q); assert.equal(result.body.total, expected.length);
+      outputs.set(q, result.body);
+    }
+    const staticMcp = await mcp('RRT*'); assert.equal(staticMcp.backend, 'static_v1_fallback'); assert.deepEqual(staticMcp.results.map((row: any) => row.id), ['kuka-grasp']);
+    await s.complete();
+    const withoutBackend = ({ backend, ...body }: any) => body;
+    for (const [q, expected] of cases) {
+      const result = await s.read('/v1/search?q=' + encodeURIComponent(q));
+      assert.equal(result.status, 200); assert.equal(result.body.backend, 'd1_fts5');
+      assert.equal(result.body.search_semantics, 'all_terms_word_prefix');
+      assert.deepEqual(result.body.results.map((row: any) => row.id), expected, 'Native ' + q);
+      assert.deepEqual(withoutBackend(result.body), withoutBackend(outputs.get(q)), q);
+    }
+    const nativeMcp = await mcp('RRT*'); assert.equal(nativeMcp.backend, 'd1_fts5'); assert.deepEqual(withoutBackend(nativeMcp), withoutBackend(staticMcp));
+    const literalOnly = await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'rrtstar*'").first<any>();
+    assert.equal(literalOnly.total, 1, 'Literal-only RRT* documents do not acquire the RRTStar word');
+    const filtered = await s.read('/v1/search?q=RRT*&kind=preparation_recipe'); assert.equal(filtered.body.total, 0);
+  } finally { await s.mf.dispose(); }
+});
+
 test('native mirror accepts the complete current publisher output', { skip: !process.env.RSH_CATALOG_NATIVE_FIXTURE }, async () => {
   const directory = process.env.RSH_CATALOG_NATIVE_FIXTURE!;
   const current = publication('a'.repeat(40)); current.resources.clear();
@@ -490,6 +577,38 @@ test('native mirror accepts the complete current publisher output', { skip: !pro
     const pick = await s.read('/v1/search?q=PickCube'); const recipe = pick.body.results.find((row: any) => row.id === 'maniskill-panda-pick-cube'); assert.ok(recipe);
     assert.ok(recipe.python_requirement); assert.match(recipe.source_url, /^https:\/\//);
     const kuka = await s.read('/v1/search?q=kuka'); assert.ok(kuka.body.total > 0);
+    const algorithmQueries: Array<[string, string[]]> = [
+      ['A*', ['pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py']],
+      ['D* Lite', ['pythonrobotics-pathplanning-dstarlite-d-star-lite-py']],
+      ['Hybrid A* path planning', ['pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py']],
+      ['rapidly exploring random tree', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrt-rrt-py']],
+      ['RRT*', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py']],
+      ['SLAM', ['pythonrobotics-slam-ekfslam-ekf-slam-py', 'pythonrobotics-slam-fastslam1-fast-slam1-py']],
+      ['EKF localization PythonRobotics', ['pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py']],
+      ['pure pursuit', ['pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py']],
+      ['Stanley steering', ['pythonrobotics-pathtracking-stanley-control-stanley-control-py']],
+      ['IK pinocchio', ['pinocchio-examples-inverse-kinematics-3d-cpp', 'pinocchio-examples-inverse-kinematics-3d-py', 'pinocchio-examples-inverse-kinematics-cpp', 'pinocchio-examples-inverse-kinematics-py']],
+    ];
+    for (const [query, expectedIds] of algorithmQueries) {
+      const result = await s.read('/v1/search?' + new URLSearchParams({ q: query, limit: '50' }));
+      assert.equal(result.body.backend, 'd1_fts5', query);
+      assert.equal(result.body.total, expectedIds.length, query);
+      assert.deepEqual(result.body.results.map((row: any) => row.id).sort(), [...expectedIds].sort(), query);
+    }
+    const newSourceIds = [
+      'pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py',
+      'pythonrobotics-pathplanning-rrt-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py',
+      'pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py',
+      'pythonrobotics-pathtracking-stanley-control-stanley-control-py',
+      'pythonrobotics-slam-ekfslam-ekf-slam-py', 'pythonrobotics-slam-fastslam1-fast-slam1-py',
+    ];
+    for (const id of newSourceIds) {
+      const record = await load('references/' + id + '/skill.json');
+      const inspected = await s.read('/v1/skills/' + id + '?record_version=source-' + record.source.sha256);
+      assert.equal(inspected.status, 200, id);
+      assert.deepEqual(inspected.body.record, record, id);
+      assert.equal(inspected.body.record.evidence.runtime_verification, 'not_run', id);
+    }
     const docs = await s.db.prepare('SELECT count(*) total FROM catalog_documents').first<any>(); assert.equal(docs.total, manifest.records);
     assert.equal((await s.db.prepare('SELECT count(*) total FROM catalog_memory_documents').first<any>()).total, memories.records);
   } finally { await s.mf.dispose(); }

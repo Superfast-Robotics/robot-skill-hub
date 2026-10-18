@@ -1,0 +1,197 @@
+{
+  "schema_version": "1",
+  "evidence_kind": "production_publication_and_page_membership_reuse",
+  "publication_commit": "4a5502eb31eb222b4284c00ee9fc329e8f6edf3b",
+  "publication_url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+  "API_url": "https://api.superfastrobotics.com",
+  "MCP_url": "https://api.superfastrobotics.com/mcp",
+  "API_MCP_version": "0.3.3",
+  "Worker_name": "robot-skill-hub-api",
+  "Worker_version": "5c5d3619-4b42-4dc6-bc5f-e6a88c57c042",
+  "counts": {
+    "recipes": 17,
+    "references": 1255,
+    "memories": 3
+  },
+  "initial_group_backfill": {
+    "publication_commit": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+    "activation_observed_at": "2026-10-18T00:10:44.146817+00:00",
+    "active_pages": 16,
+    "total_search_records": 1272,
+    "findings": 3,
+    "meaning": "The first group-aware activation populated reusable page memberships for this existing publication after the additive schema migration. It was a one-time backfill, not a measured steady-state billing result.",
+    "recovery_did_not_reset_migrate_or_redeploy": true,
+    "native_twelve_request_proof_sha256": "0f5457fdc18bfad6e1e2dc391f1db3e74ae614da79819abb3a9fdd78e637fa45"
+  },
+  "next_identical_content_generation": {
+    "observed_at": "2026-10-18T00:17:25.052222+00:00",
+    "publication_commit": "4a5502eb31eb222b4284c00ee9fc329e8f6edf3b",
+    "reused_from_publication": "bee2df6672c145beeff064d2a203cebdbd3c5bf3",
+    "active_cursor": {
+      "next_page": 16,
+      "total_pages": 16,
+      "total_search_records": 1272
+    },
+    "current_page_receipts": 16,
+    "group_backed_page_receipts": 16,
+    "page_receipts_reusing_the_same_prior_group": 16,
+    "probe": "Read-only query against the owned Cloudflare D1 database; all sixteen current search/finding page receipts reference the same groups at the same page indices as the prior publication.",
+    "query_sha256": "f4f0a3bf91fd185451ec798e9be9b176d3916ff994ff4432f373acb6a5064d8a",
+    "response_sha256": "4d469cc4c652bd59a2936db39bc3577c8098b5b896f1fb0b5e81b0939fe284f6",
+    "billing_limit": "Group reuse was observed. Production indexing row-write reduction and Cloudflare billing savings were not measured. The zero-write read-only observation query is not an indexing cost measurement."
+  },
+  "native_API_MCP_readback": {
+    "observed_at": "2026-10-18T00:17:08.522894+00:00",
+    "HTTP_requests": 12,
+    "search_backend": "d1_fts5",
+    "findings_backend": "d1",
+    "DWA_query_total": 1,
+    "natural_MPC_query_total": 1,
+    "punctuation_query_total": 0,
+    "MPC_complete_record_API_MCP_sha256": "ce1a386672fd85b85d817c2c31fcc8ff67d208642e009a0e144fe69be928a0aa",
+    "two_distinct_findings_pages_verified": true,
+    "all_three_read_only_MCP_tools_called": true,
+    "result_sha256": "0d5f562fac474f77ce3468293a67a286957ac6991e66af42c0e11db96e97ed20",
+    "request_ledger_sha256": "bbc0093298afa95c4e5454c4e357c474500822e605d420855411ee27c0beab77",
+    "responses": [
+      {
+        "check": "01-version",
+        "HTTP_status": 200,
+        "response_bytes": 1906,
+        "response_sha256": "883f0c8e2ac6dbd418d86bd5b0ea93bbb3c58b680ee818a3de95fef4de1c861f"
+      },
+      {
+        "check": "02-api-dwa",
+        "HTTP_status": 200,
+        "response_bytes": 2341,
+        "response_sha256": "b6ad5dcafddb33efd43597c8bd5b7368fe47ef44fb219ea5280d86fb7e4a3de7"
+      },
+      {
+        "check": "03-api-natural-mpc",
+        "HTTP_status": 200,
+        "response_bytes": 2455,
+        "response_sha256": "1b89b6a28d821d439d089b1e66093c69b1e630fd74fe71c84552de445714859f"
+      },
+      {
+        "check": "04-api-punctuation",
+        "HTTP_status": 200,
+        "response_bytes": 473,
+        "response_sha256": "41323368f610ea22b183b02e90d86a7bc394b2cdf8c0def82ce60919f3d20dc8"
+      },
+      {
+        "check": "05-api-mpc-inspect",
+        "HTTP_status": 200,
+        "response_bytes": 5748,
+        "response_sha256": "568175e8eb34c159b6b985709c5cc5641ec6d8b501d903bc2b9125ddc6d55936"
+      },
+      {
+        "check": "06-mcp-initialize",
+        "HTTP_status": 200,
+        "response_bytes": 343,
+        "response_sha256": "ad595502307353a3cb29faf49e4b22449193fe4141b5a18211350e9de6bd2041"
+      },
+      {
+        "check": "07-mcp-tools-list",
+        "HTTP_status": 200,
+        "response_bytes": 2056,
+        "response_sha256": "0890cd006acda89af05b3907ee3af1a35965b7a087dc80cf6d7d64a5938fea8e"
+      },
+      {
+        "check": "08-mcp-dwa",
+        "HTTP_status": 200,
+        "response_bytes": 4934,
+        "response_sha256": "a106112b96e0eb85e8a48c4792613ff0cadfc922150d17cf92c6a755c394435e"
+      },
+      {
+        "check": "09-mcp-mpc-inspect",
+        "HTTP_status": 200,
+        "response_bytes": 11684,
+        "response_sha256": "15cc3eb173cee83f3a5d43df8ac0a54927a6b6693af4df57867536472efce053"
+      },
+      {
+        "check": "10-mcp-capabilities",
+        "HTTP_status": 200,
+        "response_bytes": 6264,
+        "response_sha256": "22581a09e6c766680b2811c824425fdbdad069ccdef77eba32d2dbd37c290148"
+      },
+      {
+        "check": "11-findings-first",
+        "HTTP_status": 200,
+        "response_bytes": 3360,
+        "response_sha256": "7ad1c52d6cec20761983d1cda2de3e919df0acd043b830f9483e0a57a0a45c2c"
+      },
+      {
+        "check": "12-findings-next",
+        "HTTP_status": 200,
+        "response_bytes": 3238,
+        "response_sha256": "af7ab8313911fcc929bfd586629e192478f61150a7471662227e2cabb6deb01a"
+      }
+    ],
+    "telemetry": {
+      "DNT": "1",
+      "X-RSH-Telemetry": "off",
+      "external_adoption_claim": false
+    }
+  },
+  "checks_and_publication": [
+    {
+      "run_id": 39082105061,
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39082105061",
+      "head_commit": "4a5502eb31eb222b4284c00ee9fc329e8f6edf3b",
+      "workflow": ".github/workflows/checks.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_jobs": [
+        {
+          "id": 117540997738,
+          "name": "Structure and contract tests",
+          "completed_at": "2026-10-18T00:17:24Z",
+          "conclusion": "success"
+        }
+      ],
+      "run_response_sha256": "194667592e48594abf68e57e19a23b6db1cc68329e253d75efe18c8da6197d5c",
+      "jobs_response_sha256": "7c1be0ebaec349cd4692cb299049a7cfbb260fab44f705ff5308fe8f514a8144"
+    },
+    {
+      "run_id": 39082105096,
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39082105096",
+      "head_commit": "4a5502eb31eb222b4284c00ee9fc329e8f6edf3b",
+      "workflow": ".github/workflows/pages.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_jobs": [
+        {
+          "id": 117540997768,
+          "name": "build",
+          "completed_at": "2026-10-18T00:15:50Z",
+          "conclusion": "success"
+        },
+        {
+          "id": 117541040383,
+          "name": "deploy",
+          "completed_at": "2026-10-18T00:16:11Z",
+          "conclusion": "success"
+        },
+        {
+          "id": 117541105804,
+          "name": "Activate reviewed catalog index",
+          "completed_at": "2026-10-18T00:16:48Z",
+          "conclusion": "success"
+        }
+      ],
+      "run_response_sha256": "f87809962593339da4c08851e9031da0c3d0601df3b956c1923d42c795408c77",
+      "jobs_response_sha256": "2f85121577eeb086f146fc4fb2eff894046fafa1108438e9d4675ee3a195b997"
+    }
+  ],
+  "local_profile_reference": "evidence/integration/v0.3.3/catalog-page-membership-local.json",
+  "limitations": [
+    "This is an internal publication/provenance/index-reuse observation, not an external agent access or adoption measurement.",
+    "Production billing-row savings were not measured. The separate normalized local profile is local evidence, not a Cloudflare invoice or production billing estimate.",
+    "No upstream source, robot, simulator, model or policy was executed by these publication checks. Runtime verification remains not_run.",
+    "The native readback checked selected DWA/MPC records and two preserved historical findings; it does not verify every catalog source or robot/runtime combination.",
+    "No paid plan or resource upgrade was performed. Catalog counts describe the observed publication, not exhaustive Internet coverage."
+  ],
+  "source_or_robot_execution": false,
+  "paid_plan_or_resource_upgrade": false,
+  "production_billing_savings_measured": false
+}

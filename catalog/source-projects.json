@@ -2198,7 +2198,11 @@
           "path": "pyrobosim/examples/demo_rrt.py",
           "sha256": "49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
           "bytes": 912,
-          "entrypoint_kind": "python_main"
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "Rapidly exploring random tree",
+            "RRTStar configuration"
+          ]
         },
         {
           "path": "pyrobosim/examples/demo_world_save.py",
@@ -2523,25 +2527,37 @@
           "path": "examples/inverse-kinematics-3d.cpp",
           "sha256": "8a103e867556989b1a66eb679b4becdbb129610d9938313fbcc6cf624dc573a4",
           "bytes": 2531,
-          "entrypoint_kind": "native_main"
+          "entrypoint_kind": "native_main",
+          "aliases": [
+            "IK"
+          ]
         },
         {
           "path": "examples/inverse-kinematics-3d.py",
           "sha256": "1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",
           "bytes": 1124,
-          "entrypoint_kind": "python_script"
+          "entrypoint_kind": "python_script",
+          "aliases": [
+            "IK"
+          ]
         },
         {
           "path": "examples/inverse-kinematics.cpp",
           "sha256": "598306f3807ec03d7ca360c38365a3af3af5792880a6815bac7a1875b696baff",
           "bytes": 2544,
-          "entrypoint_kind": "native_main"
+          "entrypoint_kind": "native_main",
+          "aliases": [
+            "IK"
+          ]
         },
         {
           "path": "examples/inverse-kinematics.py",
           "sha256": "2369f306f4b838693eefcbbcef6dd02e9cab6ad725e33969b06648db3349ceb8",
           "bytes": 1160,
-          "entrypoint_kind": "python_script"
+          "entrypoint_kind": "python_script",
+          "aliases": [
+            "IK"
+          ]
         },
         {
           "path": "examples/kinematics-derivatives.cpp",
@@ -5002,7 +5018,14 @@
           "PathPlanning/DStarLite/d_star_lite.py",
           "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
           "PathPlanning/HybridAStar/hybrid_a_star.py",
-          "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py"
+          "PathTracking/model_predictive_speed_and_steer_control/model_predictive_speed_and_steer_control.py",
+          "SLAM/EKFSLAM/ekf_slam.py",
+          "SLAM/FastSLAM1/fast_slam1.py",
+          "Localization/extended_kalman_filter/extended_kalman_filter.py",
+          "PathPlanning/RRT/rrt.py",
+          "PathPlanning/RRTStar/rrt_star.py",
+          "PathTracking/pure_pursuit/pure_pursuit.py",
+          "PathTracking/stanley_control/stanley_control.py"
         ],
         "exclude": [],
         "allow_straightline_scripts": false
@@ -5018,17 +5041,17 @@
       "requirements": {
         "python": "Upstream README and requirements/environment.yml declare Python 3.13.x; no interpreter/package combination was installed or tested.",
         "packages": [
-          "matplotlib==3.11.2 (repository requirements declaration; all five scripts import pyplot)",
-          "numpy==2.5.3 (repository requirements declaration; four selected entrypoints import numpy)",
-          "scipy==1.18.1 (repository requirements declaration; Hybrid A* imports scipy.spatial)",
-          "cvxpy==1.9.3 (repository requirements declaration; selected MPC source only, which calls solver=cvxpy.CLARABEL)",
-          "ecos==2.0.14 (repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
-          "Matching pinned in-repository helpers for Hybrid A* and MPC; this individual source-file reference is not a full runnable bundle"
+          "matplotlib==3.11.2 (pinned repository requirements declaration; selected entrypoints use pyplot)",
+          "numpy==2.5.3 (pinned repository requirements declaration; applicable selected sources import NumPy directly or through local dependencies)",
+          "scipy==1.18.1 (pinned repository requirements declaration; selected Hybrid A* source imports scipy.spatial)",
+          "cvxpy==1.9.3 (pinned repository requirements declaration; selected MPC source calls solver=cvxpy.CLARABEL)",
+          "ecos==2.0.14 (pinned repository requirements declaration; not substituted for the selected MPC source's CLARABEL solver)",
+          "Matching pinned in-repository helpers for applicable selected sources, including SLAM, localization, RRT*, Hybrid A*, and tracking; a single source-file reference is not a complete runnable bundle"
         ],
-        "environment": "Mathematical planning/tracking demonstrations with hard-coded maps, goals and simulated dynamics; no hardware controller or exact robot model is identified. Matplotlib animation is enabled in source and requires suitable display/backend configuration. A*/D* Lite/DWA imports are stdlib/Matplotlib/NumPy; Hybrid A* also imports local dynamic_programming_heuristic, car, ReedsSheppPath.reeds_shepp_path_planning and SciPy; MPC imports utils.angle, PathPlanning.CubicSpline.cubic_spline_planner and cvxpy/CLARABEL. Use the exact upstream checkout/layout and read its setup. Dependency versions and optional GUI/solver support are declarations, not verified runtime compatibility."
+        "environment": "Mathematical planning, tracking, localization and SLAM demonstrations with hard-coded maps, trajectories, landmark observations or simulated dynamics; no physical robot controller or exact supported robot model is identified. Matplotlib animation is enabled in selected sources and needs suitable display/backend setup. Inspect each record's source_imports. SLAM/tracking sources import local utils.angle; EKF localization imports utils.plot; RRT* imports RRT.rrt; Stanley imports PathPlanning.CubicSpline; Hybrid A* and MPC also need their original local helpers and declared SciPy/cvxpy dependencies. These local helper dependencies are not newly downloaded or counted as additional skills. The pure-pursuit/Stanley headers use the term PID speed control, but their complete reviewed speed-control functions implement only Kp * (target - current), without integral or derivative terms. Use the exact upstream checkout/layout and read its setup. EKF SLAM and FastSLAM1 import utils.angle without modifying sys.path; the pinned project root must be available on Python's module search path. Python/package versions, GUI/backend availability and transitive dependency compatibility were not tested."
       },
       "setup_url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/README.md",
-      "invocation_notes": "Run the selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout for local imports. Five sources were only read, hashed and parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted.",
+      "invocation_notes": "Run a selected Python main only after independent upstream dependency, GUI/backend and local-helper setup review. These are numerical algorithm demonstrations, not commands for physical robots or ready deployment policies. The repository recommends pip requirements/requirements.txt or conda requirements/environment.yml; those are upstream declarations and were not executed. Keep the exact checkout layout and the upstream project root on Python's module search path for local imports. Sources were only read, hashed and statically parsed; no Hub adapter, installation, simulation result, robot-model support or compatible runtime combination is asserted.",
       "artifacts": [
         {
           "path": "PathPlanning/AStar/a_star.py",
@@ -5037,7 +5060,8 @@
           "entrypoint_kind": "python_main",
           "aliases": [
             "AStar",
-            "A*"
+            "A*",
+            "AStar path planning"
           ],
           "authors": [
             "Atsushi Sakai",
@@ -5051,7 +5075,8 @@
           "entrypoint_kind": "python_main",
           "aliases": [
             "DStarLite",
-            "D* Lite"
+            "D* Lite",
+            "DStar Lite path planning"
           ],
           "authors": [
             "vss2sn"
@@ -5078,7 +5103,8 @@
           "entrypoint_kind": "python_main",
           "aliases": [
             "HybridAStar",
-            "Hybrid A*"
+            "Hybrid A*",
+            "Hybrid AStar path planning"
           ],
           "authors": [
             "Zheng Zh"
@@ -5093,6 +5119,104 @@
             "MPC",
             "model predictive control",
             "steering control",
+            "path tracking"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        },
+        {
+          "path": "SLAM/EKFSLAM/ekf_slam.py",
+          "sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+          "bytes": 6924,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "EKF SLAM",
+            "Extended Kalman Filter SLAM"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        },
+        {
+          "path": "SLAM/FastSLAM1/fast_slam1.py",
+          "sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",
+          "bytes": 10321,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "FastSLAM",
+            "FastSLAM 1.0",
+            "feature based SLAM"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        },
+        {
+          "path": "Localization/extended_kalman_filter/extended_kalman_filter.py",
+          "sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+          "bytes": 4279,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "EKF localization",
+            "Extended Kalman Filter localization"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        },
+        {
+          "path": "PathPlanning/RRT/rrt.py",
+          "sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+          "bytes": 9047,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "RRT",
+            "Rapidly-Exploring Random Trees"
+          ],
+          "authors": [
+            "AtsushiSakai"
+          ]
+        },
+        {
+          "path": "PathPlanning/RRTStar/rrt_star.py",
+          "sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+          "bytes": 9512,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "RRTStar",
+            "RRT*",
+            "RRT Star"
+          ],
+          "authors": [
+            "Atsushi Sakai"
+          ]
+        },
+        {
+          "path": "PathTracking/pure_pursuit/pure_pursuit.py",
+          "sha256": "d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb",
+          "bytes": 10821,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "pure pursuit",
+            "pure pursuit steering",
+            "proportional speed control",
+            "path tracking"
+          ],
+          "authors": [
+            "Atsushi Sakai",
+            "Guillaume Jacquenot"
+          ]
+        },
+        {
+          "path": "PathTracking/stanley_control/stanley_control.py",
+          "sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+          "bytes": 5859,
+          "entrypoint_kind": "python_main",
+          "aliases": [
+            "Stanley steering control",
+            "Stanley control",
+            "proportional speed control",
             "path tracking"
           ],
           "authors": [

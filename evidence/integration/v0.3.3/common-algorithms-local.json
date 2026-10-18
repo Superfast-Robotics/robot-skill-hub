@@ -1,0 +1,438 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "timezone": "Asia/Seoul",
+  "verification_kind": "internal_offline_publisher_and_native_contract_checks",
+  "scope": "Unpublished local integration; no hosted activation, outside adoption, upstream algorithm execution or robot task completion is established.",
+  "observed_at_UTC": "2026-10-17T23:32:45.549937+00:00",
+  "API_code_version_under_test": "0.3.3",
+  "unpublished_fixture_commit": "0000000000000000000000000000000000000000",
+  "counts": {
+    "recipes": 17,
+    "references": 1262,
+    "memories": 3
+  },
+  "official_reference_records": 1260,
+  "separate_existing_intake_references": 2,
+  "source_review": "evidence/sources/pythonrobotics-common-algorithms-2026-10-18.json",
+  "source_review_sha256": "9767c2e9d91cfb3d2a36b32655270ae18ca50c6b440a423ee0a82956a515c7bf",
+  "CLI": {
+    "queries": [
+      {
+        "query": "A*",
+        "total": 3,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-astar-py",
+          "pythonrobotics-pathplanning-astar-a-star-py",
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "D*",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "D* Lite",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "Hybrid A*",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "A* path planning",
+        "total": 2,
+        "ids": [
+          "pythonrobotics-pathplanning-astar-a-star-py",
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "hybrid astar",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "RRT",
+        "total": 3,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-rrt-py",
+          "pythonrobotics-pathplanning-rrt-rrt-py",
+          "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "RRT*",
+        "total": 2,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-rrt-py",
+          "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "rapidly exploring random tree",
+        "total": 2,
+        "ids": [
+          "pyrobosim-pyrobosim-examples-demo-rrt-py",
+          "pythonrobotics-pathplanning-rrt-rrt-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "SLAM",
+        "total": 2,
+        "ids": [
+          "pythonrobotics-slam-ekfslam-ekf-slam-py",
+          "pythonrobotics-slam-fastslam1-fast-slam1-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "EKF localization PythonRobotics",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "pure pursuit",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "Stanley steering",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathtracking-stanley-control-stanley-control-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "IK pinocchio",
+        "total": 4,
+        "ids": [
+          "pinocchio-examples-inverse-kinematics-3d-cpp",
+          "pinocchio-examples-inverse-kinematics-3d-py",
+          "pinocchio-examples-inverse-kinematics-cpp",
+          "pinocchio-examples-inverse-kinematics-py"
+        ],
+        "actual_pages": 2
+      },
+      {
+        "query": "MPC path tracking",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathtracking-model-predictive-speed-and-steer-contro-0c8264bec4bc"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "DWA",
+        "total": 1,
+        "ids": [
+          "pythonrobotics-pathplanning-dynamicwindowapproach-dynamic-window-approach-py"
+        ],
+        "actual_pages": 1
+      },
+      {
+        "query": "---",
+        "total": 0,
+        "ids": [],
+        "actual_pages": 1
+      },
+      {
+        "query": "PID",
+        "total": 0,
+        "ids": [],
+        "actual_pages": 1
+      }
+    ],
+    "actual_search_calls": 19,
+    "inspects_and_metadata_only_acquisition_plans": [
+      {
+        "id": "pythonrobotics-slam-ekfslam-ekf-slam-py",
+        "path": "SLAM/EKFSLAM/ekf_slam.py",
+        "sha256": "8014f978a7b044213c46670334b98cbb5ef18935ceef4ebda0ddf6a266196575",
+        "source_bytes": 6924,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-slam-fastslam1-fast-slam1-py",
+        "path": "SLAM/FastSLAM1/fast_slam1.py",
+        "sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",
+        "source_bytes": 10321,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py",
+        "path": "Localization/extended_kalman_filter/extended_kalman_filter.py",
+        "sha256": "fa9bb52dbb63e6e959ba4e7bcf20cbe8d6ce69e88453ad0f605a21fc6979a28e",
+        "source_bytes": 4279,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-pathplanning-rrt-rrt-py",
+        "path": "PathPlanning/RRT/rrt.py",
+        "sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+        "source_bytes": 9047,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-pathplanning-rrtstar-rrt-star-py",
+        "path": "PathPlanning/RRTStar/rrt_star.py",
+        "sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+        "source_bytes": 9512,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py",
+        "path": "PathTracking/pure_pursuit/pure_pursuit.py",
+        "sha256": "d6702311927cb44cbe27546e6e76ba0b7371a6b0715013ac2a40735b299779eb",
+        "source_bytes": 10821,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      },
+      {
+        "id": "pythonrobotics-pathtracking-stanley-control-stanley-control-py",
+        "path": "PathTracking/stanley_control/stanley_control.py",
+        "sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+        "source_bytes": 5859,
+        "metadata_plan": "PASS",
+        "network_or_project_writes": false
+      }
+    ],
+    "empty_existing_project_preserved": true
+  },
+  "native_complete_publisher": {
+    "search_rows_ingested": 1279,
+    "findings_ingested": 3,
+    "backend": "real local workerd D1 FTS5",
+    "exact_algorithm_totals_and_ID_sets_asserted": true,
+    "new_complete_records_inspected": 7
+  },
+  "checks": {
+    "python": {
+      "run": 255,
+      "passed": 251,
+      "skipped": 4,
+      "skip_reason": "Existing Windows symlink privilege limitations"
+    },
+    "API_unit": {
+      "passed": 97,
+      "skipped": 0
+    },
+    "native_workerd": {
+      "passed": 41,
+      "skipped": 0
+    },
+    "catalog_publication": {
+      "passed": 39
+    },
+    "v2_wire": {
+      "passed": 5
+    },
+    "catalog_sync": {
+      "passed": 14
+    },
+    "TypeScript": "PASS",
+    "own_recipe_and_CLI_compilation_without_simulator_imports": "PASS"
+  },
+  "command_results": [
+    {
+      "label": "inspect-00",
+      "exit_code": 0,
+      "stdout_sha256": "baffcd6e9383d573bf92c73538b81433d1dae7131b9f50b3f1ccfdaf18cb1cd9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-00",
+      "exit_code": 0,
+      "stdout_sha256": "e6556eaf026d000ecdb945cc12223b3641664f89dfffa5e7593e30e535558dfc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-01",
+      "exit_code": 0,
+      "stdout_sha256": "a20a99e29d68e126327a163884193f07326174f75a0427597f04d929f7f7eb1b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-01",
+      "exit_code": 0,
+      "stdout_sha256": "0751e507c913a43808267c237d89f9cdb42c39a03bd6a71cc00108d27028e127",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-02",
+      "exit_code": 0,
+      "stdout_sha256": "71081eb80a6d2dd6760e296530b5be519ce25397390b73ae5afb12aa6127d188",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-02",
+      "exit_code": 0,
+      "stdout_sha256": "68b807a669ac7705cddf179174ab00c8e97dae39c14f10c402ce50c9ef73fab5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-03",
+      "exit_code": 0,
+      "stdout_sha256": "adeff64e6f56e8e6817c3b57d18641d39436e39e85b3f62c60b275b335eefb9c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-03",
+      "exit_code": 0,
+      "stdout_sha256": "ddf52a5bbd5846068e008270032dd39ff9d598da81308fa0941377c52ba95342",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-04",
+      "exit_code": 0,
+      "stdout_sha256": "40409822e76a19691bb182c887cc5a0f39e524bdd3f0210a6d088c299c0dcc90",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-04",
+      "exit_code": 0,
+      "stdout_sha256": "0ab87e046b2482bede5db8d66d62d979978d45fb217ea6a3b1f04ebffc070c08",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-05",
+      "exit_code": 0,
+      "stdout_sha256": "e483e7fd9e9d530d830d7eff08fed972a3ce6e6ba8a36d584e827756c87760bb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-05",
+      "exit_code": 0,
+      "stdout_sha256": "9bb9476093413b907d33f24d9fa8490cf3622840777d3311f6194855b5502489",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "inspect-06",
+      "exit_code": 0,
+      "stdout_sha256": "1e5f15f84ef0543cd1191d1243ad99240a88b05462ed48e084d2c38b90bac477",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "plan-06",
+      "exit_code": 0,
+      "stdout_sha256": "1bde2b9f16fba65bc0134676fa7923914791f8d31299073166d7d34276a8e7f0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "python-unittest",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3d7dc0173f336e6bb814dd67e79bb451ae5f62647da3e11f4c379481605f93ae"
+    },
+    {
+      "label": "catalog-tests",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d411283b37296e5ac742a292aadd958837e82cb1d7474e383a0c470dacd45c58"
+    },
+    {
+      "label": "catalog-v2-tests",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a482485b7b89c9aa4a7068fd046939a221a5212276abb5f266aa09938a01dea4"
+    },
+    {
+      "label": "catalog-sync-tests",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4f5ca4421921f527d20d5aaaeb5b34bcfa7c06380f1396a2af465493d070732a"
+    },
+    {
+      "label": "typescript",
+      "exit_code": 0,
+      "stdout_sha256": "d88bd5dd02823eeb6e8d3efb38fcc6797f82c599692dd1828db0b0bb9b77f92e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "API-unit-native",
+      "exit_code": 0,
+      "stdout_sha256": "4253d1ebfc15629708c219788d9fef1a200614493acd6127b658adbc3c6a3fc2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "compile-no-import",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "fixture_manifest_sha256": {
+    "catalog/v1/version.json": "131ed4751d1a2e7949d01207c54938e644246e99a88528d9c19dc518e4134c93",
+    "catalog/v2/search-manifest.json": "d3f01fe138e08baea1bb2ccae7ad500453b8deaf93bec4cd580449491bc7b13c",
+    "catalog/v2/memory-manifest.json": "bb4714f1077c574c0ebffa56bd341daf12cb53b8c0a7c14e7332044d1b714d6d"
+  },
+  "tested_code_and_data_sha256": {
+    "api/src/public.ts": "125e0dc8ce88695ed2e600c19a36aa498c60c5e19888f9e11d07a504c735793f",
+    "api/src/search.ts": "463c2e9a8e66188c4bd606464f45803368231d815e108e2447386ff7674fe633",
+    "api/test/public.test.ts": "f2c74d934b19b025cf272d005dea6bfe7386b64ffc02e620ef3eab9f521c2875",
+    "api/test/workerd/catalog.test.ts": "4e5847181400e5a06260ed8512f4a5c5d9e3145838e40711a98e5280e98e1e62",
+    "catalog/references.json": "a0190b62de8ffe1becaf7004a5d41b63d123f3d7a5a0780bee6f856ea1def598",
+    "catalog/source-index-manifest.json": "e83d987edb7521766746cf4d70d66a5265ef6a7fdb9f98ea3b831e758939e316",
+    "catalog/source-index.json": "c2bcce488a4fb8b49ea95d1f1954f1c553df5a6a2107ac04c3224da6782e1169",
+    "catalog/source-index/08.json": "66bc896ae03da39a09a112c358cd72c9d166832be1163bbc5f1dfa3f805c5e25",
+    "catalog/source-index/28.json": "5f391e88f97c4e4a82c4c9cc85ec4d09b3c03703ff2999ec669875daf2969c43",
+    "catalog/source-index/78.json": "7a1a48fc461e355730629940abdcd7f338f1de5dfc8b8e8e1f55a46cb8719ebe",
+    "catalog/source-index/7f.json": "af670e56312a084cfd1a6bebe87aba697c4579fd1838008224e2c44d64486d6e",
+    "catalog/source-index/b1.json": "71b9cfa04806be6d8c0a61492bc462c336b6f91adebbb2171982c6c577aa04ab",
+    "catalog/source-index/bf.json": "9ea71246b1604dd5f91f22cc73ac62442dc4484edfa603d725974d4e27c53483",
+    "catalog/source-index/df.json": "a62fa9b0214472b38cd6ffa2d7e83c16a1dccdd45fecf143efc92b4d3f99181c",
+    "catalog/source-projects.json": "bfccb41b13470d904bc0a09ff5d26c05c8beb255b3f5109d46d4f8394d2fc26a",
+    "docs/public-api.openapi.json": "b8c6e9cef17e61c781d31b640db7988a6e81b201d4c525416d54386026fa5027",
+    "evidence/sources/pythonrobotics-common-algorithms-2026-10-18.json": "9767c2e9d91cfb3d2a36b32655270ae18ca50c6b440a423ee0a82956a515c7bf",
+    "skills/find-robot-skills/scripts/rshlib/core.py": "8339ef623d23d26ba3cda91444e6fe70af0ae44f574797f07ade6c70b3f42ec9",
+    "tests/python/test_reference_discovery.py": "db2b41f6ad80727a87c9a93480596c1a6bf3fa9aad595cc42933f75f374921f0"
+  },
+  "tracked_offline_snapshot_commit_preserved": "850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492",
+  "offline_builder_and_CLI_network_guard": true,
+  "production_API_requests": 0,
+  "upstream_source_imports": 0,
+  "upstream_source_execution": false,
+  "source_runtime_verification": "not_run",
+  "preserved_harness_errors": "Initial inspect checker assumed the HTTP record wrapper; its first continuation incorrectly compared stored official_example kind with the CLI source_reference presentation. Both CLI responses exited 0. Corrected inspection asserted all other canonical fields and the explicit presentation kind. Successful publisher/search captures were preserved and independently rechecked without rerunning.",
+  "local_raw_receipt_sha256": "fb429ac35df0a5b659b488a9c538c27946576a21a9668d4fb7eba44716dd0500",
+  "private_paths_or_credentials_included": false,
+  "limits": [
+    "Installed dependency tree was reused; no fresh npm ci is claimed.",
+    "Native requests used local intercepted resources and dummy credentials.",
+    "Source acquisition plans validate metadata; they do not download a complete upstream project or validate runtime dependencies.",
+    "Documentation-only wording and this receipt were added after the recorded code/data checks; they do not change those tested inputs.",
+    "Hosted activation and refreshed offline snapshots remain separate publication gates."
+  ]
+}

@@ -26,6 +26,12 @@
       "record_version": "source-97effb8137f7bfda59cf4c8af83df4dff554c904ce0a98fb4a6e4d2c96cf179e"
     },
     {
+      "id": "pythonrobotics-pathplanning-rrt-rrt-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e",
+      "record_version": "source-ed8844dba554c6a27cc18137c2214dd066145701216d0aeab974cc4e4fea5d6e"
+    },
+    {
       "id": "robomimic-examples-simple-train-loop-py",
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "79cebf377c7385dfb849f7e0650880f8747c48337bb2ca580d9ea5be7e05b0de",

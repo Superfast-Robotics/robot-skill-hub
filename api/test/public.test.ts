@@ -160,6 +160,66 @@ test('static word-prefix search retains exact-ID priority, pinned pagination and
   assert.equal((await (await s.request('/v1/search?q=cafe'))!.json() as any).total, 0, 'Static tokenization does not claim native Latin accent folding');
 });
 
+test('static search recognizes standalone A*/D* queries without rewriting identifiers or document symbols', async () => {
+  const s = fixture({ rowOverrides: [
+    { name: 'AStar grid planner', summary: 'Grid route', aliases: ['AStar', 'A*'] },
+    { name: 'DStarLite incremental planner', summary: 'Incremental route', aliases: ['DStarLite', 'D* Lite'] },
+    { name: 'Algebra dynamics', summary: 'Ordinary algorithm terms and literal A* D* text',
+      aliases: ['RA', 'A B', 'D B', 'A variable', '\u00e9A', '\uB85C\uBD07A', 'A*', 'D*'] }
+  ] });
+  const read = async (q: string) => {
+    const response = await s.request('/v1/search?q=' + encodeURIComponent(q));
+    assert.equal(response!.status, 200); const body = await response!.json() as any;
+    assert.equal(body.backend, 'static_v1_fallback'); assert.equal(body.search_semantics, 'all_terms_word_prefix');
+    return body.results.map((row: any) => row.id);
+  };
+  for (const q of ['A*', 'a*', '!!!A*!!!', '(A*)/grid', 'AStar grid']) {
+    assert.deepEqual(await read(q), ['alpha-pick'], q);
+  }
+  for (const q of ['D*', 'd* lite', '(D*)/incremental', 'DStarLite']) {
+    assert.deepEqual(await read(q), ['beta-grasp'], q);
+  }
+  assert.deepEqual(await read('A* impossible'), [], 'Every normalized query term is still required');
+  assert.deepEqual(await read('A* OR dynamics'), [], 'Algorithm spelling does not add OR search');
+  for (const q of ['RA*', 'A*B', 'a_variable*', '\u00e9A*', '\uB85C\uBD07A*']) {
+    assert.deepEqual(await read(q), ['gamma-policy'], q + ' keeps ordinary word tokens');
+  }
+  assert.deepEqual(await read('D*B'), ['beta-grasp', 'gamma-policy'], 'Existing beta ID supplies the ordinary b prefix');
+  for (const q of ['A**', '*A*', '_A*', 'A*_', '\u0301A*', 'A*\u0301', 'a']) {
+    assert.deepEqual(await read(q), ['alpha-pick', 'gamma-policy'], q + ' does not become astar');
+  }
+  assert.deepEqual(await read('D**'), ['beta-grasp', 'gamma-policy']);
+  assert.deepEqual(await read('algebra dynamics'), ['gamma-policy'], 'Ordinary words retain word-prefix matching');
+  const hybrid = fixture({ rowOverrides: [
+    { name: 'Hybrid AStar planner', summary: 'Curvature route', aliases: ['Hybrid AStar'] }
+  ] });
+  const found = await (await hybrid.request('/v1/search?q=Hybrid%20A*'))!.json() as any;
+  assert.deepEqual(found.results.map((row: any) => row.id), ['alpha-pick']);
+});
+
+test('static discovery distinguishes canonical RRT* from ordinary RRT words and literal-only text', async () => {
+  const s = fixture({ rowOverrides: [
+    { name: 'RRT planner', summary: 'Sampling routes', aliases: ['RRT', 'Rapidlyexploring random tree'] },
+    { name: 'RRTStar planner', summary: 'Optimal routes', aliases: ['RRTStar', 'RRT*', 'Rapidlyexploring random tree star'] },
+    { name: 'Query syntax notes', summary: 'Literal RRT* notation', aliases: ['RRRT', 'RRT B', '2RRT', '\u00e9RRT', '\uB85C\uBD07RRT', 'RRT*'] }
+  ] });
+  const cases: [string, string[]][] = [
+    ...['RRT*', 'rrt*', 'rRt*', '!!!RRT*!!!', '(RRT*)/planner', 'RRTStar', 'RRT Star'].map(q => [q, ['beta-grasp']] as [string, string[]]),
+    ...['RRRT*', '2RRT*', '\u00e9RRT*', '\uB85C\uBD07RRT*'].map(q => [q, ['gamma-policy']] as [string, string[]]),
+    ...['RRT', 'rr', 'RRT**', '*RRT*', '_RRT*', 'RRT*_', '\u0301RRT*', 'RRT*\u0301'].map(q => [q, ['alpha-pick', 'beta-grasp', 'gamma-policy']] as [string, string[]]),
+    ['RRT*B', ['beta-grasp', 'gamma-policy']], ['RRT planner', ['alpha-pick', 'beta-grasp']],
+    ['RRT* sampling', []], ['RRT* impossible', []], ['RRT* OR sampling', []]
+  ];
+  for (const [q, expected] of cases) {
+    const response = await s.request('/v1/search?q=' + encodeURIComponent(q));
+    assert.equal(response!.status, 200); const body = await response!.json() as any;
+    assert.equal(body.backend, 'static_v1_fallback'); assert.equal(body.search_semantics, 'all_terms_word_prefix');
+    assert.deepEqual(body.results.map((row: any) => row.id), expected, q); assert.equal(body.total, expected.length);
+  }
+  const tools: any = await (await s.rpc('tools/list'))!.json();
+  assert.match(tools.result.tools.find((tool: any) => tool.name === 'find_robot_skills').inputSchema.properties.q.description, /RRT\*/);
+});
+
 test('record version conflicts and absent IDs never fall through to arbitrary upstream fetches', async () => {
   const s = fixture(); assert.equal((await s.request('/v1/skills/alpha-pick?record_version=older'))!.status, 409);
   assert.equal((await s.request('/v1/skills/nonexistent'))!.status, 404);

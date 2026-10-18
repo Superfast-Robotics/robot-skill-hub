@@ -1,5 +1,5 @@
 /** Fixed-source, bounded D1 mirror. Catalog metadata is data, never executable. */
-import { wordTerms } from './search.ts';
+import { queryTerms } from './search.ts';
 
 export const HUB_ORIGIN = 'https://hub.superfastrobotics.com';
 export const INTERNAL_HEADERS = { Accept: 'application/json', 'Cache-Control': 'no-cache', DNT: '1', 'X-RSH-Telemetry': 'off', 'User-Agent': 'robot-skill-hub-api/catalog' };
@@ -139,7 +139,7 @@ function sqlFilters(input: Row) {
 }
 export async function indexedSearch(db: CatalogDatabase, commit: string, input: Row) {
   const { limit, offset } = validateSearch(input, commit);
-  const terms = wordTerms(String(input.q || ''));
+  const terms = queryTerms(String(input.q || ''));
   if (String(input.q || '').trim() && !terms.length) return { results: [], total: 0, limit, offset };
   const { clauses, values } = sqlFilters(input);
   // A UNION ALL membership view is useful for browsing, but joining it to FTS

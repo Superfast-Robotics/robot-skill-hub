@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "Agent-first robotics source discovery, reviewed contribution intake and exact-version task memory. A reference is not a runtime-verification claim.",
     "license": {
       "name": "MIT",
@@ -192,7 +192,7 @@
             }
           }
         },
-        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
+        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A*, D* and RRT* algorithm symbols become astar, dstar and rrtstar before matching; other terms remain required. Embedded identifiers and repeated stars keep ordinary tokenization; plain RRT remains a word-prefix query. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
       }
     },
     "/v1/skills/{skill_id}": {

@@ -10,9 +10,27 @@ An [independent offline comparison](../evidence/integration/v0.3.3/search-prefix
 
 All 251 Python tests completed with 247 passes and four Windows symlink-privilege skips. TypeScript checking, 95 Worker unit tests and 30 native workerd tests passed. A native regression compared the same publication before and after D1 activation across 26 search paths, MCP, source pins, strict filters and pagination. New production verification remains separate from these local checks.
 
+## Canonical algorithm query follow-up
+
+An offline audit found that `A*` became the broad prefix `a` and returned 1,267 records; `D*` returned 945. Query processing now rewrites standalone `A*` and `D*` to `astar` and `dstar` before the existing word-prefix grammar. Identifiers, adjacent Unicode letters/numbers/marks, repeated stars and document tokenization retain their prior behavior. Eight [source-reviewed aliases](../evidence/sources/robotics-query-aliases-2026-10-18.json) add plain planning terms, four exact Pinocchio IK examples and the pinned PyRoboSim RRT implementation's expanded name. Source pins, requirements, compatibility and runtime evidence are unchanged.
+
+The [local follow-up receipt](../evidence/integration/v0.3.3/robotics-query-symbols-local.json) preserves separate suite and current-fixture scopes. Fourteen actual compact CLI invocations over a newly built 17-recipe/1,255-reference/3-finding fixture returned three A* sources, one D* source, the exact Hybrid A* and expanded RRT targets, and all four Pinocchio IK examples across two pages. A native local D1 test ingested every fixture record and asserted exact query totals and IDs. TypeScript passed; the separate full suite passed 96 API unit tests, 40 native tests and 249 Python tests, with four existing Windows symlink skips. This is an unpublished local fixture. Hosted activation and refreshed offline snapshots require later publication; no upstream algorithm, simulator or robot was executed.
+
+The same eight aliases also live in the source-project artifact inputs. An [exact offline importer rebuild](../evidence/sources/robotics-query-alias-inputs-2026-10-18.json) passed against the unchanged generated catalog, so later source imports retain the reviewed discovery terms.
+
+## Common algorithm source follow-up
+
+Seven additional [pinned PythonRobotics entrypoints](../evidence/sources/pythonrobotics-common-algorithms-2026-10-18.json) cover EKF localization, EKF SLAM, FastSLAM1, RRT, RRTStar, pure pursuit and Stanley control. Complete selected files, their Git blob identities, SHA-256, byte counts, author notices and repository MIT text were reviewed. They remain source-only with `runtime_verification: not_run`; dependencies, plotting and local helper imports require upstream setup. The two speed helpers implement proportional control only, despite upstream PID wording. No full PID capability is inferred.
+
+The source-project inputs persist all seven selections and an existing PyRoboSim demo's source-proven `RRTStar configuration` alias. All 1,253 earlier source/license objects and index pins remain unchanged; 1,247 complete earlier records remain identical. Five PythonRobotics descriptions and the one PyRoboSim alias are the reviewed exceptions. The offline importer and all 254 source-index shards agree on 1,260 official references.
+
+The [combined local receipt](../evidence/integration/v0.3.3/common-algorithms-local.json) records an unpublished 17-recipe/1,262-reference/3-finding fixture. Nineteen compact CLI search calls covered 18 queries, including generation-pinned IK continuation. Plain `RRT` returned three sources, canonical `RRT*` two, and `SLAM` two. Seven inspections and metadata-only acquisition plans retained exact source/license pins without network requests or project writes. Real local D1 ingested all 1,279 search rows and three findings, then checked exact algorithm result sets and all seven new full records.
+
+TypeScript passed, as did 97 API unit tests, 41 native workerd tests, 39 publication tests, five v2 wire tests and 14 sync tests. The Python suite completed 255 tests with 251 passes and four existing Windows symlink-privilege skips. Own recipe/CLI files compiled without importing simulator dependencies. All three tracked offline snapshots retain their earlier published `850eb9bdf28ed739ecfbe8fea33ff84a2d0ef492` generation. These checks used API code version 0.3.3; hosted activation, refreshed snapshots and any later release require separate publication evidence. No new upstream algorithm, simulator or robot was executed.
+
 ## Compact agent entry and classical planning sources
 
-The catalog contains 17 preparation recipes, 1,255 source references and 3 findings. Five [PythonRobotics algorithm demonstrations](../evidence/sources/pythonrobotics-classical-planning-2026-10-18.json) add A*, D* Lite, Dynamic Window Approach, Hybrid A* and MPC path tracking. The offline importer preserved all 1,248 earlier official records exactly. Each new record retains reviewed file-specific aliases and header authors; no robot model, compatible runtime or execution result is inferred. Dependencies, plotting and local helpers still require upstream setup.
+At the compact-entry publication, the catalog contained 17 preparation recipes, 1,255 source references and 3 findings. Five [PythonRobotics algorithm demonstrations](../evidence/sources/pythonrobotics-classical-planning-2026-10-18.json) added A*, D* Lite, Dynamic Window Approach, Hybrid A* and MPC path tracking. The offline importer preserved all 1,248 earlier official records exactly. Each new record retains reviewed file-specific aliases and header authors; no robot model, compatible runtime or execution result is inferred. Dependencies, plotting and local helpers still require upstream setup.
 
 The earlier agent directory rendered 414,007 bytes before usage, and its full-text route rendered 7,312,527 bytes by repeating the catalog. The compact-entry publication at `f02a4c11fe4b912a775b13637159e18b1dadeca5` rendered a 4,249-byte directory and a 42,264-byte usage guide with the quickstart first; later guidance edits can change those bytes. Complete catalog records remain accessible through the same checksum-bound paginated manifests and per-ID pages. Explicit 16 KiB/128 KiB publication budgets reject oversized entry documents without truncation. A synthetic 10,000-recipe/25,000-reference regression verifies that document size grows only with the count text, while real UTF-8 overflow preserves the previous affected file.
 
@@ -56,7 +74,7 @@ An isolated installed-skill forward test initially found a server-close transpor
 
 A directed offline pagination follow-up reached the previously hidden MoveIt and Franka targets on pages two and four through returned continuation metadata. It used six bounded search pages and one wrong-generation refusal with zero network attempts, retaining the original queries and the honest `e138db5a` snapshot. The first-page usability limitation and original failed downloads remain separately recorded.
 
-The final local Python suite ran 235 tests: 232 passed and three Windows symlink-privilege checks were skipped. The installed skill's format validator, targeted publication/link checks, five wire-contract tests and eleven sync tests passed. The API implementation and MCP server version remain 0.3.3; this follow-up changes the installed CLI, published guidance and catalog data. Earlier release receipts below retain their immutable scopes.
+The final local Python suite ran 235 tests: 232 passed and three Windows symlink-privilege checks were skipped. The installed skill's format validator, targeted publication/link checks, five wire-contract tests and eleven sync tests passed. At that follow-up, the API implementation and MCP server version remained 0.3.3; it changed the installed CLI, published guidance and catalog data. Earlier release receipts below retain their immutable scopes.
 
 ## CLI follow-up: exact finding recovery
 
@@ -64,7 +82,7 @@ After the 0.3.3 preview, the CLI adds `flush --fingerprint` and returns the save
 
 The [targeted recovery receipt](../evidence/integration/v0.3.3/targeted-recovery.json) binds the exact source files. All 32 memory CLI tests passed; the full Python suite ran 199 tests with 197 passes and two existing Windows privilege skips. A separate guarded `rsh.main` harness passed 26 checks and 18 CLI cases, including pre-POST and post-POST persistence failures and known/unknown transport flags. Its two transport calls were in-memory mocks: zero external HTTP/socket attempts, real credential reads, live flushes or public findings. Delivery is explicit and does not retry automatically.
 
-This is a CLI-only follow-up on main. The API version and catalog data remain 0.3.3 and 17/1,237/3. Earlier production and fresh-clone receipts below keep their original immutable release scope; their 128 requests are not presented as verification of this later patch.
+That was a CLI-only follow-up on main. At that follow-up, the API version and catalog data remained 0.3.3 and 17/1,237/3. Earlier production and fresh-clone receipts below keep their original immutable release scope; their 128 requests are not presented as verification of that later patch.
 
 ## Platform discovery and finding recovery 0.3.3
 

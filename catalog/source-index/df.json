@@ -14,6 +14,12 @@
       "record_version": "source-217157a8fc1f48ddd9cb10b3f8240b9d01f7d6f5784a831eef9b95a9f5c21ee1"
     },
     {
+      "id": "pythonrobotics-pathtracking-stanley-control-stanley-control-py",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_sha256": "ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0",
+      "record_version": "source-ec426a511821620d798a46a35f0ab64382bd79ff417e0f59fb0c1f7873d8c7a0"
+    },
+    {
       "id": "webots-projects-robots-boston-dynamics-atlas-controllers-hello-worl-c5c76dc80e11",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c2c06c8cb19f13305600e696c2062ce6b56b3a393b4c3361d63e62d365349749",

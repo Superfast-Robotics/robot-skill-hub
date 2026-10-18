@@ -255,6 +255,23 @@ def validate_find_pagination(limit, offset, hub_commit, *, maximum_limit=50):
         raise RshError("invalid_hub_commit", "Use the exact published Hub commit returned by the previous search page.")
 
 
+def query_terms(value):
+    """Rewrite only standalone A*/D*/RRT* queries; document words stay unchanged."""
+    import unicodedata
+
+    def adjacent_identifier(character):
+        return character in "_*" or unicodedata.category(character)[0] in "LNM"
+
+    def algorithm(match):
+        before = value[match.start() - 1] if match.start() else None
+        after = value[match.end()] if match.end() < len(value) else None
+        if any(character is not None and adjacent_identifier(character) for character in (before, after)):
+            return match.group()
+        return match.group()[:-1].lower() + "star"
+
+    return re.findall(r"[^\W_]+", re.sub(r"(?:[rR][rR][tT]|[aAdD])\*", algorithm, value).lower())
+
+
 def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
     validate_find_pagination(limit, offset, hub_commit)
     recipe_hub = catalog.get("hub_commit")
@@ -265,7 +282,7 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                        expected_hub_commit=hub_commit, catalog_hub_commit=recipe_hub, references_hub_commit=reference_hub)
     # Match whole-word prefixes, never arbitrary substrings such as DWA inside
     # hardware. Keep Unicode words and distinguish punctuation from browsing.
-    tokens = re.findall(r"[^\W_]+", query.lower())
+    tokens = query_terms(query)
     punctuation_only = bool(query.strip()) and not tokens
     results = []
     for record in catalog["records"]:
