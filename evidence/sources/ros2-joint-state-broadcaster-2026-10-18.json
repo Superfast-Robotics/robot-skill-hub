@@ -1,0 +1,202 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "base_hub_commit": "dd6ab5cb07becf8a7c963b83202266977265cee8",
+  "scope": "One additional actual plugin implementation, source review only. No execution or publication receipt.",
+  "repository": "https://github.com/ros-controls/ros2_controllers",
+  "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+  "prior_canonical_review": "https://github.com/Superfast-Robotics/robot-skill-hub/blob/dd6ab5cb07becf8a7c963b83202266977265cee8/evidence/sources/ros2-controllers-2026-10-18.json",
+  "reused_offline_evidence": {
+    "repository_metadata_sha256": "1ec8d47d30b6fcfb2684674e1e894f1ad95310701425b77ba8dfd89618669711",
+    "commit_metadata_sha256": "4fa6021f0ebecf5709b0d3109c337b88df7f9a893656b1a402a16d737d3677c7",
+    "complete_tree_sha256": "1b703f5676a961b1b5f8b40f0d68f641d627e93d78a1238027d40462dd93d3fa",
+    "git_tree_sha1": "876344a37b0919d58174e3330972fe300b6b23e6",
+    "tree_entries": 768,
+    "tree_truncated": false,
+    "new_metadata_tree_license_GETs": 0
+  },
+  "coverage_before": {
+    "managed_references": 1267,
+    "intakes": 17,
+    "total_references": 1284,
+    "selected_id_or_exact_source_or_source_sha256_duplicate": false
+  },
+  "record": "ros2-joint-state-broadcaster",
+  "reviewed_files": [
+    {
+      "path": "LICENSE",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "reused_cached_body": true,
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+      "bytes": 15833,
+      "sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "git_blob_sha1": "292d8c468bdad156cfdcff642d150ac8ccdc1021",
+      "reused_cached_body": false,
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp",
+      "bytes": 5445,
+      "sha256": "5f294bbc71d7a6c30a142d73716e6d4b0769f442aee19077cb754ff095a76738",
+      "git_blob_sha1": "7e344bf2724548f85c9ebb6f5545f8fd191d0658",
+      "reused_cached_body": false,
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_state_broadcaster/package.xml",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/package.xml",
+      "bytes": 1702,
+      "sha256": "343c3f6b1b4508f0aae9507042a147ae653fb1ae5d5f7031d082c6137d24d7a5",
+      "git_blob_sha1": "da61f0102ed92041ab4372fbbc3f3ad11748031d",
+      "reused_cached_body": false,
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_state_broadcaster/CMakeLists.txt",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/CMakeLists.txt",
+      "bytes": 2846,
+      "sha256": "d20ab7eb2a722fa537b1710bfea31cfec9017e5e0ecd118b4f12111fa6e23758",
+      "git_blob_sha1": "d7f58906594d7d8049d9764bb6751655170a32a6",
+      "reused_cached_body": false,
+      "complete_text_reviewed": true
+    },
+    {
+      "path": "joint_state_broadcaster/joint_state_plugin.xml",
+      "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/joint_state_plugin.xml",
+      "bytes": 360,
+      "sha256": "640f17a563037677c4c315f256ae81cf0398d232685da2b6478fb7d696c8e567",
+      "git_blob_sha1": "03060845f9c88c8a506e50cdda8474e0f6dfd4a5",
+      "reused_cached_body": false,
+      "complete_text_reviewed": true
+    }
+  ],
+  "registration": {
+    "plugin_name": "joint_state_broadcaster/JointStateBroadcaster",
+    "class_type": "joint_state_broadcaster::JointStateBroadcaster",
+    "base_class": "controller_interface::ControllerInterface",
+    "library": "joint_state_broadcaster",
+    "export_macro": "PLUGINLIB_EXPORT_CLASS",
+    "CMake_export": "pluginlib_export_plugin_description_file(controller_interface joint_state_plugin.xml)"
+  },
+  "declared_package": {
+    "name": "joint_state_broadcaster",
+    "version": "4.43.0",
+    "license": "Apache License 2.0",
+    "authors": [
+      "Jordan Palacios",
+      "Karsten Knese"
+    ],
+    "maintainers": [
+      "Bence Magyar",
+      "Denis Štogl",
+      "Christoph Froehlich",
+      "Sai Kishor Kothakota"
+    ],
+    "buildtool_dependencies": [
+      "ament_cmake"
+    ],
+    "build_dependencies": [
+      "ros2_control_cmake"
+    ],
+    "dependencies": [
+      "backward_ros",
+      "builtin_interfaces",
+      "control_msgs",
+      "controller_interface",
+      "generate_parameter_library",
+      "pluginlib",
+      "rclcpp_lifecycle",
+      "rclcpp",
+      "realtime_tools",
+      "sensor_msgs",
+      "urdf"
+    ],
+    "test_dependencies": [
+      "ament_cmake_gmock",
+      "controller_manager",
+      "hardware_interface_testing",
+      "hardware_interface",
+      "ros2_control_test_assets"
+    ],
+    "source_direct_additional_interfaces": [
+      "hardware_interface",
+      "std_msgs"
+    ],
+    "cmake_minimum": "3.16",
+    "cpp_standard": "17"
+  },
+  "source_behavior": [
+    "No command interface requests; state-interface reads and ROS publication.",
+    "All available interfaces if joints or interfaces is empty; otherwise their configured cross-product.",
+    "Non-DOUBLE interfaces are ignored; custom mapping, conditional URDF filtering and zero-valued extra joints are supported.",
+    "Optional failed reads preserve old values; never-read movement-state values may remain NaN.",
+    "JointState and optional DynamicJointState publication attempts are source behavior, not measured success."
+  ],
+  "outside_review": [
+    "Parameter YAML and generated parameter header/defaults",
+    "Dependency implementations and complete host/hardware configuration",
+    "Compilation, installation, plugin load, ROS/simulator/robot execution",
+    "Runtime environment, timing, physical compatibility and automated plugin-importer support"
+  ],
+  "new_HTTP_requests": [
+    {
+      "at": "2026-10-18T06:48:25.302850+00:00",
+      "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+      "status": 200,
+      "bytes": 15833,
+      "sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "git_blob": "292d8c468bdad156cfdcff642d150ac8ccdc1021"
+    },
+    {
+      "at": "2026-10-18T06:48:25.568862+00:00",
+      "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp",
+      "status": 200,
+      "bytes": 5445,
+      "sha256": "5f294bbc71d7a6c30a142d73716e6d4b0769f442aee19077cb754ff095a76738",
+      "git_blob": "7e344bf2724548f85c9ebb6f5545f8fd191d0658"
+    },
+    {
+      "at": "2026-10-18T06:48:25.816747+00:00",
+      "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/package.xml",
+      "status": 200,
+      "bytes": 1702,
+      "sha256": "343c3f6b1b4508f0aae9507042a147ae653fb1ae5d5f7031d082c6137d24d7a5",
+      "git_blob": "da61f0102ed92041ab4372fbbc3f3ad11748031d"
+    },
+    {
+      "at": "2026-10-18T06:48:26.085642+00:00",
+      "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/CMakeLists.txt",
+      "status": 200,
+      "bytes": 2846,
+      "sha256": "d20ab7eb2a722fa537b1710bfea31cfec9017e5e0ecd118b4f12111fa6e23758",
+      "git_blob": "d7f58906594d7d8049d9764bb6751655170a32a6"
+    },
+    {
+      "at": "2026-10-18T06:48:26.331875+00:00",
+      "url": "https://raw.githubusercontent.com/ros-controls/ros2_controllers/8ce934536c6404750fb8aafc0b62b7d365049143/joint_state_broadcaster/joint_state_plugin.xml",
+      "status": 200,
+      "bytes": 360,
+      "sha256": "640f17a563037677c4c315f256ae81cf0398d232685da2b6478fb7d696c8e567",
+      "git_blob": "03060845f9c88c8a506e50cdda8474e0f6dfd4a5"
+    }
+  ],
+  "new_HTTP_count": 5,
+  "new_HTTP_limit": 10,
+  "auth_proxy_cookie_redirect_retry": false,
+  "operator_optout": {
+    "DNT": "1",
+    "X-RSH-Telemetry": "off"
+  },
+  "source_execution_or_installation": false,
+  "Hub_requests": 0,
+  "runtime_verification": "not_run",
+  "hub_prepare": false
+}

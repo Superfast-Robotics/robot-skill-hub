@@ -225,6 +225,11 @@ existing demo configuration/launch references. Their command-interface writes,
 ROS graph effects and complete-package requirements are explicit. Both remain
 source-only with unknown compatibility and `runtime_verification: not_run`.
 
+The [joint-state broadcaster review](../docs/ros2-joint-state-broadcaster-source.md)
+adds its actual state-interface-to-ROS-message implementation, class header and
+registration/build contracts. It requests no command interfaces and remains
+source-only with unknown compatibility and `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh
