@@ -95,6 +95,7 @@ def build_parser():
     register.add_argument("--output")
     register.add_argument("--draft", action="store_true", help="Save a local bundle without API delivery")
     register.add_argument("--refresh-base", action="store_true", help="Explicitly create a new intake identity at the selected hub base after review")
+    register.add_argument("--expected-bundle-sha256", help="Retry only the retained bundle with this canonical SHA-256; never rewrite it")
     memory_status = sub.add_parser("memory-status", help="Read the saved finding's own review and publication status")
     memory_status.add_argument("memory_id")
     memory_status.add_argument("--api-url")
@@ -203,6 +204,11 @@ def execute(args, catalog_location):
     if args.command == "flush":
         return memories.flush(args.project, policy_path=args.policy, api_url=args.api_url, limit=args.limit, offline=args.offline,
                               selected_fingerprint=args.selected_fingerprint)
+    if args.command == "register" and args.expected_bundle_sha256 is not None:
+        # This retry selects an already saved identity; no catalog refresh is needed.
+        return intake.register({}, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
+                               api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline,
+                               refresh_base=args.refresh_base, expected_bundle_sha256=args.expected_bundle_sha256)
     source_manifest = getattr(args, "source_manifest", None)
     if source_manifest and (catalog_location or not getattr(args, "project", None)):
         raise RshError("invalid_arguments", "--source-manifest requires --project and cannot be combined with --catalog.",
