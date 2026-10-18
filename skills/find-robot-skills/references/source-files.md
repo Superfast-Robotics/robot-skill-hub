@@ -3,10 +3,12 @@
 Use this route for a `source_reference`, including Python, C++, instruction documents, robot models, configuration and binary artifacts. A `preparation_recipe` uses `prepare` instead.
 
 1. Run `inspect ID --json` and review the exact source, license and setup requirements.
-2. Use the returned `fetch_source_args` with `rsh.py`; append `--project DIR --json`. The arguments retain the selected source revision and SHA-256. Changed pins fail before a source request.
+2. Use the returned `fetch_source_args` with `rsh.py`; append `--project DIR --json`. CLI-returned arguments retain the selected source revision, SHA-256, explicit `--catalog` and `--offline` mode. Local catalog paths become absolute; other flags and credentials are not copied. Changed pins fail before a source request.
 3. Read the returned provenance and original path before deciding how to use the file within the user's task.
 
 `--plan` validates the source metadata without source-network access, DNS lookup or project writes. Catalog discovery still works as described in the skill: online by default, optional anonymous client-ID cache, `RSH_TELEMETRY=off` to avoid that identifier, `--offline` to prevent discovery reads. The plan's `source_request_performed` describes the upstream file request, separately from catalog discovery.
+
+Public/API-generated arguments have no local catalog context. The CLI adds only its caller's selected catalog/offline options, including to a plan's `fetch_args`; recipe `prepare_args` follow the same rule. If a URL selector contains recognizable credentials or credential query parameters, `catalog_handoff` reports `catalog_selector_contains_credentials` and omits rerunnable acquisition arguments. Reapply that original selector privately instead of copying it into output. Inspection metadata and manifest-based finding arguments are otherwise unchanged.
 
 An actual fetch accepts one file of at most 8 MiB and checks the declared byte count and SHA-256 before publishing the cache. It derives GitHub raw URLs from the exact repository, commit and path. Standalone sources need their declared content-hash revision; other supported commit URLs must contain the exact revision as a path segment. Redirects, credential-bearing URLs and local/private network destinations are refused. No authentication, cookies or proxy credentials are sent to source hosts.
 

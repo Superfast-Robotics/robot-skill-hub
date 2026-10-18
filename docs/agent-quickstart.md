@@ -52,6 +52,8 @@ Search requires every query term as a word prefix, including in offline and stat
 
 For a source reference with available `fetch_source_args`, inspect its upstream setup and use those arguments with `rsh.py`, appending `--project DIR --json`, to save one pinned, checksum-verified file of at most 8 MiB. This works independently of a runtime adapter. Unavailable retrieval reports a reason such as `source_too_large`; use that artifact's pinned upstream acquisition instructions. Add `--plan` for metadata validation with no upstream source request or project writes. `--offline` permits only an already verified local source-file cache. Fetching creates no environment, installs no skill and runs no downloaded code. See the installed skill's [source-file guide](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/skills/find-robot-skills/references/source-files.md).
 
+CLI-returned acquisition arguments preserve the explicit `--catalog` selector and `--offline` mode used for discovery; local catalog paths are absolute so a later command can use a different working directory. This also applies to recipe `prepare_args` from `find` and `inspect`. Only those two global options are retained. A credential-bearing URL selector is not echoed: `catalog_handoff` reports that the original selector must be reapplied privately. Manifest-based `save_args` and `memories_args` remain independent of the catalog selector.
+
 Robot types such as `humanoid` are searchable classifications, not robot-model filter values. For example, search `humanoid locomotion`; use a source-declared model such as `g1` for the robot filter.
 
 Before troubleshooting a Hub recipe, read findings for the exact selected record/source and known environment:
