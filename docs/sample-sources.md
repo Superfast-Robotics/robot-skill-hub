@@ -168,6 +168,13 @@ from the repository's Apache-2.0 declaration and remain `NOASSERTION` with
 declarations; the Hub followed no bundle instructions and verified no runtime
 or robot compatibility. All entries remain `not_run` and have no Hub adapter.
 
+## Ruckig Community trajectories
+
+The [Ruckig source review](ruckig-sources.md) adds seven pinned Community
+trajectory-generation examples for position, velocity, stopping, minimum
+duration and C++ integration. These numerical examples have no Hub execution
+adapter and remain `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh

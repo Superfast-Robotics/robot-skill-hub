@@ -8,6 +8,12 @@
       "record_version": "source-4fbda702df6f19245412264aa0707c987e99e3627fcc0cc9fc878598a1b804d1"
     },
     {
+      "id": "ruckig-examples-06-stop-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+      "record_version": "source-ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a"
+    },
+    {
       "id": "ur-description-artifact-config-ur15-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "9f7d3294303f0bea7ed368f7d56eda27a59e088646527f3b792bdfe047780cfa",

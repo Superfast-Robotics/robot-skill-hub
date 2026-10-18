@@ -12,6 +12,12 @@
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1",
       "record_version": "source-6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1"
+    },
+    {
+      "id": "ruckig-examples-01-position-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+      "record_version": "source-a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be"
     }
   ]
 }

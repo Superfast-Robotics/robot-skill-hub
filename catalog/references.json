@@ -91865,6 +91865,532 @@
       }
     },
     {
+      "id": "ruckig-examples-01-position-py",
+      "name": "Ruckig Community: 01 position",
+      "summary": "Official Ruckig Community python main example for 01 position. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/01_position.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/01_position.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/01_position.py",
+        "sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+        "bytes": 1646
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/01_position.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "online trajectory generation",
+        "jerk-limited position trajectory"
+      ]
+    },
+    {
+      "id": "ruckig-examples-02-position-offline-py",
+      "name": "Ruckig Community: 02 position offline",
+      "summary": "Official Ruckig Community python main example for 02 position offline. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/02_position_offline.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/02_position_offline.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/02_position_offline.py",
+        "sha256": "448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+        "bytes": 1447
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/02_position_offline.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "offline trajectory calculation",
+        "trajectory interpolation",
+        "position extrema"
+      ]
+    },
+    {
+      "id": "ruckig-examples-05-velocity-py",
+      "name": "Ruckig Community: 05 velocity",
+      "summary": "Official Ruckig Community python main example for 05 velocity. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/05_velocity.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/05_velocity.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/05_velocity.py",
+        "sha256": "11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f",
+        "bytes": 1609
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/05_velocity.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "velocity control",
+        "jerk-limited velocity trajectory"
+      ]
+    },
+    {
+      "id": "ruckig-examples-06-stop-py",
+      "name": "Ruckig Community: 06 stop",
+      "summary": "Official Ruckig Community python main example for 06 stop. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/06_stop.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/06_stop.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/06_stop.py",
+        "sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+        "bytes": 2335
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/06_stop.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "stop trajectory",
+        "zero target velocity",
+        "independent degree-of-freedom stop"
+      ]
+    },
+    {
+      "id": "ruckig-examples-07-minimum-duration-py",
+      "name": "Ruckig Community: 07 minimum duration",
+      "summary": "Official Ruckig Community python main example for 07 minimum duration. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/07_minimum_duration.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/07_minimum_duration.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/07_minimum_duration.py",
+        "sha256": "d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2",
+        "bytes": 1693
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/07_minimum_duration.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "minimum trajectory duration",
+        "timed trajectory generation"
+      ]
+    },
+    {
+      "id": "ruckig-examples-09-dynamic-dofs-cpp",
+      "name": "Ruckig Community: 09 dynamic dofs",
+      "summary": "Official Ruckig Community native main example for 09 dynamic dofs. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/09_dynamic_dofs.cpp",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/09_dynamic_dofs.cpp",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/09_dynamic_dofs.cpp",
+        "sha256": "792e708d1eeea88e76120edb496af3d726f52830e66fa8070b56fc7fc03d9c2a",
+        "bytes": 1253
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "plotter.hpp",
+          "ruckig/ruckig.hpp"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Native main: examples/09_dynamic_dofs.cpp; build the target declared by the pinned upstream build files",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "native_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "dynamic degrees of freedom",
+        "runtime DoF count"
+      ]
+    },
+    {
+      "id": "ruckig-examples-12-custom-vector-type-cpp",
+      "name": "Ruckig Community: 12 custom vector type",
+      "summary": "Official Ruckig Community native main example for 12 custom vector type. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/12_custom_vector_type.cpp",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/12_custom_vector_type.cpp",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/12_custom_vector_type.cpp",
+        "sha256": "aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111",
+        "bytes": 1827
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "plotter.hpp",
+          "ruckig/ruckig.hpp"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Native main: examples/12_custom_vector_type.cpp; build the target declared by the pinned upstream build files",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "native_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "custom vector type",
+        "custom C++ vector integration"
+      ]
+    },
+    {
       "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
       "name": "Boston Dynamics Spot SDK: Arm gaze commands",
       "summary": "Send arm gaze targets and trajectories. Inspect exact upstream setup and terms before use.",

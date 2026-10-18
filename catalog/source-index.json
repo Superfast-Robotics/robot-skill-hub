@@ -5726,6 +5726,48 @@
       "record_version": "source-d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c"
     },
     {
+      "id": "ruckig-examples-01-position-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+      "record_version": "source-a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be"
+    },
+    {
+      "id": "ruckig-examples-02-position-offline-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+      "record_version": "source-448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8"
+    },
+    {
+      "id": "ruckig-examples-05-velocity-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f",
+      "record_version": "source-11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f"
+    },
+    {
+      "id": "ruckig-examples-06-stop-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+      "record_version": "source-ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a"
+    },
+    {
+      "id": "ruckig-examples-07-minimum-duration-py",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2",
+      "record_version": "source-d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2"
+    },
+    {
+      "id": "ruckig-examples-09-dynamic-dofs-cpp",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "792e708d1eeea88e76120edb496af3d726f52830e66fa8070b56fc7fc03d9c2a",
+      "record_version": "source-792e708d1eeea88e76120edb496af3d726f52830e66fa8070b56fc7fc03d9c2a"
+    },
+    {
+      "id": "ruckig-examples-12-custom-vector-type-cpp",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_sha256": "aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111",
+      "record_version": "source-aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111"
+    },
+    {
       "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
