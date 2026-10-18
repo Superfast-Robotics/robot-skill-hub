@@ -1,0 +1,192 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "scope": "Finite reviewed Nav2 declarative workflow XML source references, not task completion or runtime compatibility.",
+  "repository": "https://github.com/ros-navigation/navigation2",
+  "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+  "source_files": 12,
+  "source_bytes": 19916,
+  "selected_source_and_support_files": 17,
+  "selected_text_bytes": 37479,
+  "sources": [
+    {
+      "path": "nav2_bt_navigator/behavior_trees/follow_point.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/follow_point.xml",
+      "bytes": 1141,
+      "sha256": "edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced",
+      "git_blob_sha1": "9f55ecd66ec35fbc75cdd86db19f7ac53a056db6"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+      "bytes": 2556,
+      "sha256": "7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d",
+      "git_blob_sha1": "b2cb86113e59504ccb578f604d063d5fe7d41862"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+      "bytes": 2878,
+      "sha256": "bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876",
+      "git_blob_sha1": "501034d67400620174bdfa6babca65351fdaa169"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+      "bytes": 2733,
+      "sha256": "5895b63840d54c6d7eee3d3b3f3ee177680af9e58a14cbf61c4df39fe5db2a90",
+      "git_blob_sha1": "f135107c5b1c5267bf2190549d8b55eaafe0dc7d"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+      "bytes": 2741,
+      "sha256": "93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4",
+      "git_blob_sha1": "0b9bccf3abe82aeb69e5783d6f00e5c291bcb036"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+      "bytes": 2569,
+      "sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
+      "git_blob_sha1": "3575740252dc500bd23b23fb9c1c7ec2e1a5f706"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+      "bytes": 833,
+      "sha256": "5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070",
+      "git_blob_sha1": "16f7ede4b3e21498cb78dd76ff8c397b31fbd5e0"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+      "bytes": 840,
+      "sha256": "af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16",
+      "git_blob_sha1": "a214c9b64fd16d4acb490439d2a7526fd30ff938"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+      "bytes": 1058,
+      "sha256": "9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819",
+      "git_blob_sha1": "effe9a2bf82c06d8472789934573aa1508fd3b82"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+      "bytes": 896,
+      "sha256": "329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab",
+      "git_blob_sha1": "e0d5d6a5a4154f32fbcb1aa7d1747873d50533fb"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+      "bytes": 826,
+      "sha256": "1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782",
+      "git_blob_sha1": "11332fb24e9e88236cd2c32fa2370a4a5c387ad2"
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+      "bytes": 845,
+      "sha256": "a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555",
+      "git_blob_sha1": "fdc459f40ffd83d3acff816f3d097cfb862ceb4e"
+    }
+  ],
+  "supporting_files": [
+    {
+      "path": "nav2_bt_navigator/package.xml",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+      "bytes": 1792,
+      "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+      "git_blob_sha1": "2f43378fc8759399e769153e381728584025435d"
+    },
+    {
+      "path": "nav2_bt_navigator/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt",
+      "bytes": 2492,
+      "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+      "git_blob_sha1": "7de1592106a23895ff121224a59c068bafcbfac3"
+    },
+    {
+      "path": "nav2_bt_navigator/README.md",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md",
+      "bytes": 1398,
+      "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+      "git_blob_sha1": "48787a9473a50d17c090580ca3b7dd47eccedea5"
+    },
+    {
+      "path": "nav2_docking/LICENSE",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 524,
+      "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+      "git_blob_sha1": "ce2ed3dff819a38de11b17883e38dace87fb4922",
+      "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+      "retrieval": "existing_cache_rechecked_no_new_GET"
+    }
+  ],
+  "retrieval": {
+    "original_anonymous_GETs": 17,
+    "original_GET_limit": 20,
+    "original_all_HTTP_200_and_cached_tree_size_Git_blob_match": true,
+    "original_included_extra_project_README_context": true,
+    "extension_new_GETs": 0,
+    "source_bodies_modified": false,
+    "operator_headers": {
+      "DNT": "1",
+      "X-RSH-Telemetry": "off"
+    },
+    "auth_proxy_cookies_redirect_retry": false
+  },
+  "license_binding": {
+    "declared_spdx": "Apache-2.0",
+    "primary": "Root LICENSE index plus exact selected nav2_bt_navigator package.xml declaration and otherwise-unmarked-file rule.",
+    "full_terms": "Separately pinned nav2_docking/LICENSE is complete standard terms text only. Its source scope or attribution is not transferred to navigator XML.",
+    "selected_scope": "Exactly these twelve otherwise-unmarked XML texts. No conflicting or individual author/copyright notice appears in them.",
+    "attribution": "No XML author is declared. Michael Jeronimo is a package maintainer, not an inferred XML author; terms Appendix placeholders and citation authors are not source authors.",
+    "not_cleared": "Complete packages, node implementations, dependencies, binaries, firmware, assets, maps, trademarks or hardware deployment."
+  },
+  "static_source_findings": [
+    {
+      "path": "nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+      "observation": "Comment says once every 15 seconds; XML instead contains RateController hz=2.0 and PathExpiringTimer seconds=10. Preserve the literal XML values and comment discrepancy; no effective runtime rate was measured."
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+      "observation": "Comment says 1 Hz; RateController hz is 0.333. Preserve the actual attribute without rewriting or inferring measured rate."
+    },
+    {
+      "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+      "observation": "BackUp writes error_code_id={backup_code_id}; another selected tree uses {backup_error_code}. Preserve exact port values and do not assert application wiring correctness."
+    }
+  ],
+  "parser_scope": {
+    "format": "BTCPP XML format 4",
+    "single_literal_selected_tree": true,
+    "inventory_only": "Parsed node tags, literal attributes and blackboard references; node availability, arity, port correctness, expressions, scheduling, safety and task behavior are not validated.",
+    "unsupported": "DTD/entity, external include, SubTree variants, TreeNodesModel, namespaces, mixed text, unknown root/version or excessive node/depth/output bounds.",
+    "limits": {
+      "nodes": 512,
+      "depth": 64,
+      "inventory_bytes": 32768
+    }
+  },
+  "setup_scope": "Pinned package.xml, CMake and README declarations only. Package1.3.14/jazzy label/CMake>=3.5 are not tested environments. Complete configured upstream BT Navigator and referenced node plugins/servers, lifecycle, TF, odometry, costmaps/maps and applicable hardware permissions remain prerequisites.",
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "compatibility": "unknown",
+    "hub_prepare": false,
+    "upstream_source_or_ROS_or_simulator_execution": false,
+    "dependency_installation": false,
+    "API_Worker_or_runtime_status_change": false,
+    "public_intake_or_finding_receipt_created": false
+  }
+}

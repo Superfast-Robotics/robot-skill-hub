@@ -14,6 +14,12 @@
       "record_version": "source-1c40dfb484e3e4a727310b7639f2a97238dc5e83e520006b2753954c8464c476"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-recovery-9bce0cc8b39f",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
+      "record_version": "source-684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4"
+    },
+    {
       "id": "pinocchio-examples-build-reduced-model-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "25647dd409c7ccb6345e0baf7d20fee3d58e425148c270c16497c2e10bd8ae92",

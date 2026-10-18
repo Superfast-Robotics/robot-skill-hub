@@ -38,6 +38,12 @@
       "record_version": "source-6c751d365ebf823970ababffaef1e38e59fb82ee00ab6351fa5057f6460fd967"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-323ac7863380",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819",
+      "record_version": "source-9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819"
+    },
+    {
       "id": "webots-projects-robots-k-team-hemisson-controllers-hemisson-hemisson-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "d29563043f3f54350fdc478e1e2fa0bf085f3843b59386a277f0c3b6207513f0",

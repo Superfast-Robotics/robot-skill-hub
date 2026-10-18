@@ -26,6 +26,12 @@
       "record_version": "source-ce2d3af3f1c80e9875e2c8b2e7a0ec6dd3317086e949e0299060ecd725753a92"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-through-pos-e868b0be139c",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876",
+      "record_version": "source-bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876"
+    },
+    {
       "id": "ur-description-artifact-config-ur5e-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "87e8adba0d4e40cc9a994e7ca2264671cc6b6c732649b675b553639cb275a16d",

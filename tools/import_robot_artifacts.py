@@ -30,11 +30,28 @@ LICENSE_MARKERS = {
     "BSD-3-Clause": ("Redistribution and use", "Neither the name"),
     "BSD-3-Clause-Clear": ("The Clear BSD License", "NO EXPRESS OR IMPLIED LICENSES"),
 }
-KINDS = {"robot_model", "simulation_scene", "robot_description", "semantic_description", "control_configuration", "robot_configuration"}
+KINDS = {"robot_model", "simulation_scene", "robot_description", "semantic_description", "control_configuration", "robot_configuration", "workflow"}
+BT_FORMAT = "behaviortree-cpp-xml"
+BT_MAX_NODES, BT_MAX_DEPTH, BT_MAX_INVENTORY_BYTES = 512, 64, 32 * 1024
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def validate_pin(pin):
+    safe_relative(pin["path"])
+    if (not re.fullmatch(r"[a-f0-9]{64}", pin["sha256"]) or type(pin["bytes"]) is not int
+            or not 0 < pin["bytes"] <= MAX_BYTES):
+        raise ValueError("Supporting text needs an exact bounded checksum and size")
+
+
+def support_pins(project):
+    pins = list(project.get("evidence_files", []))
+    for info in project["licenses"].values():
+        if info.get("binding"):
+            pins.extend([info["binding"]["package"], info["binding"]["terms"]])
+    return pins
 
 
 def validate_project(project):
@@ -52,6 +69,25 @@ def validate_project(project):
             raise ValueError("A reviewed license identity and SHA-256 are required")
         if not license_info.get("scope"):
             raise ValueError("License scope is required")
+        binding = license_info.get("binding")
+        if binding is not None:
+            if (not isinstance(binding, dict) or set(binding) != {"kind", "package", "package_name", "unmarked_file_quote", "terms"}
+                    or binding["kind"] != "package_with_unmarked_file_fallback"
+                    or not re.fullmatch(r"[a-z][a-z0-9_]*", binding["package_name"])
+                    or PurePosixPath(binding["package"]["path"]).name != "package.xml"):
+                raise ValueError("Unsupported package license binding")
+            expected = f"For files that are not otherwise marked, they are provided under the {license_info['spdx']} license."
+            if " ".join(binding["unmarked_file_quote"].split()) != expected:
+                raise ValueError("An explicit matching otherwise-unmarked license rule is required")
+            validate_pin({"path": path, "sha256": license_info["sha256"], "bytes": license_info["bytes"]})
+    if not isinstance(project.get("evidence_files", []), list) or len(project.get("evidence_files", [])) > 20:
+        raise ValueError("Supporting evidence must be finite")
+    seen_support = {}
+    for pin in support_pins(project):
+        validate_pin(pin)
+        if pin["path"] in seen_support and (pin["sha256"], pin["bytes"]) != seen_support[pin["path"]]:
+            raise ValueError("Conflicting supporting file identity")
+        seen_support[pin["path"]] = (pin["sha256"], pin["bytes"])
     paths = []
     for artifact in project["artifacts"]:
         safe_relative(artifact["path"])
@@ -63,6 +99,11 @@ def validate_project(project):
         if (artifact["kind"] not in KINDS or not re.fullmatch(r"[a-f0-9]{64}", artifact["sha256"])
                 or type(artifact["bytes"]) is not int or not 0 < artifact["bytes"] <= MAX_BYTES):
             raise ValueError("Invalid artifact kind, checksum or byte size")
+        if artifact["kind"] == "workflow" or artifact["format"] == BT_FORMAT:
+            if artifact["kind"] != "workflow" or artifact["format"] != BT_FORMAT or not artifact["path"].endswith(".xml"):
+                raise ValueError("Workflow kind requires the reviewed behavior-tree XML format")
+            if any(not isinstance(artifact.get(key), str) or not 0 < len(artifact[key]) <= limit for key, limit in (("name", 150), ("summary", 1000))):
+                raise ValueError("A reviewed workflow name and source-only summary are required")
     if len(paths) != len(set(paths)):
         raise ValueError("Duplicate artifact path in project manifest")
 
@@ -96,6 +137,8 @@ def inspect_artifact(path, data):
         if re.search(r"<!\s*(?:DOCTYPE|ENTITY)\b", text, re.I):
             raise ValueError("XML DTD/entity declarations are not accepted")
         root = ET.fromstring(text)
+        if root.tag == "root":
+            return inspect_behavior_tree(root)
         tag = root.tag.rsplit("}", 1)[-1]
         if tag not in ("robot", "mujoco", "mujocoinclude"):
             raise ValueError("Not a reviewed robot/model XML root")
@@ -116,15 +159,69 @@ def inspect_artifact(path, data):
     raise ValueError("Only reviewed XML, URDF, SRDF, Xacro and YAML text artifacts are supported")
 
 
+def inspect_behavior_tree(root):
+    """Inventory one bounded literal BTCPP4 tree; no node/port/runtime validation."""
+    name = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,79}")
+    main = root.get("main_tree_to_execute", "")
+    trees = list(root)
+    if (set(root.attrib) != {"BTCPP_format", "main_tree_to_execute"} or root.get("BTCPP_format") != "4"
+            or not name.fullmatch(main) or len(trees) != 1 or trees[0].tag != "BehaviorTree"
+            or trees[0].attrib != {"ID": main} or len(trees[0]) != 1):
+        raise ValueError("Unsupported behavior-tree root/version/main tree/body structure")
+    nodes, references = [], set()
+    stack = [(trees[0][0], 1)]
+    while stack:
+        node, depth = stack.pop()
+        if (not name.fullmatch(node.tag) or node.tag.lower() in {"root", "behaviortree", "include", "subtree", "subtreeplus", "treenodesmodel"}
+                or depth > BT_MAX_DEPTH or len(nodes) >= BT_MAX_NODES or len(node.attrib) > 32
+                or any(not name.fullmatch(key) or len(value) > 4096 for key, value in node.attrib.items())
+                or (node.text and node.text.strip()) or (node.tail and node.tail.strip())):
+            raise ValueError("Unsupported behavior-tree node/namespace/include/subtree or graph bound")
+        nodes.append({"tag": node.tag, "attributes": dict(node.attrib), "children": len(node)})
+        references.update(token for value in node.attrib.values() for token in re.findall(r"\{[^{}]+\}", value))
+        stack.extend((child, depth + 1) for child in reversed(list(node)))
+    if (root.text and root.text.strip()) or (trees[0].text and trees[0].text.strip()) or (trees[0].tail and trees[0].tail.strip()):
+        raise ValueError("Unsupported behavior-tree text content")
+    result = {"format": BT_FORMAT, "root": "root", "BTCPP_format": "4", "main_tree": main,
+              "nodes": nodes, "node_count": len(nodes), "blackboard_references": sorted(references),
+              "inspection": "Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated."}
+    if len(json.dumps(result, ensure_ascii=False).encode("utf-8")) > BT_MAX_INVENTORY_BYTES:
+        raise ValueError("Behavior-tree inventory exceeds its byte budget")
+    return result
+
+
+def checked_pin(project, cache, pin):
+    data = source_bytes(cache, project, pin["path"])
+    if len(data) != pin["bytes"] or digest(data) != pin["sha256"]:
+        raise ValueError("Supporting file checksum/size mismatch: " + pin["path"])
+    text = data.decode("utf-8-sig")
+    if "\0" in text or any(quote not in text for quote in pin.get("quotes", [])):
+        raise ValueError("Supporting text/anchor differs: " + pin["path"])
+    return text
+
+
 def checked_licenses(project, cache):
     for path, info in project["licenses"].items():
         data = source_bytes(cache, project, path)
         text = data.decode("utf-8-sig")
-        if digest(data) != info["sha256"] or not all(marker in text for marker in LICENSE_MARKERS[info["spdx"]]):
+        binding = info.get("binding")
+        terms = text
+        if binding:
+            if len(data) != info["bytes"] or binding["unmarked_file_quote"] not in text:
+                raise ValueError("Package fallback license index/quote differs")
+            package_text = checked_pin(project, cache, binding["package"])
+            if re.search(r"<!\s*(?:DOCTYPE|ENTITY)\b", package_text, re.I):
+                raise ValueError("Package XML DTD/entity is unsupported")
+            package = ET.fromstring(package_text)
+            if (package.tag != "package" or [n.text for n in package.findall("name")] != [binding["package_name"]]
+                    or [n.text for n in package.findall("license")] != [info["spdx"]]):
+                raise ValueError("Selected package name/license declaration differs")
+            terms = checked_pin(project, cache, binding["terms"])
+        if digest(data) != info["sha256"] or not all(marker in terms for marker in LICENSE_MARKERS[info["spdx"]]):
             raise ValueError(f"{project['id']}:{path}: license checksum or reviewed text mismatch")
-        if info["spdx"] == "BSD-2-Clause" and re.search(r"Neither the name", text, re.I):
+        if info["spdx"] == "BSD-2-Clause" and re.search(r"Neither the name", terms, re.I):
             raise ValueError("Three-clause BSD notice cannot be labeled BSD-2-Clause")
-        if info["spdx"] == "BSD-3-Clause" and "The Clear BSD License" in text:
+        if info["spdx"] == "BSD-3-Clause" and "The Clear BSD License" in terms:
             raise ValueError("Clear BSD notice requires its own license identity")
 
 
@@ -137,6 +234,15 @@ def make_record(project, artifact, cache):
     if inspection["format"] != artifact["format"]:
         raise ValueError("Artifact format changed from reviewed manifest")
     license_info = project["licenses"][artifact["license_path"]]
+    binding = license_info.get("binding")
+    if binding:
+        directory = str(PurePosixPath(binding["package"]["path"]).parent)
+        if directory != "." and not path.startswith(directory + "/"):
+            raise ValueError("Selected artifact escapes the bound package")
+        # This opt-in rule covers otherwise-unmarked files only. Marked files
+        # require their own explicit review, even when their declaration agrees.
+        if re.search(r"\b(?:SPDX-License-Identifier|copyright|licen[cs](?:e|ed|ing))\b", data.decode("utf-8-sig"), re.I):
+            raise ValueError("Package fallback requires an unmarked file; review its per-file notice")
     explicit = re.findall(r"SPDX-License-Identifier:\s*([^\r\n<>]+)", data.decode("utf-8-sig")[:6000])
     if any(value.strip().rstrip("*/ -") != license_info["spdx"] for value in explicit):
         raise ValueError("Conflicting explicit per-file license requires review")
@@ -177,6 +283,20 @@ def make_record(project, artifact, cache):
     }
     if artifact.get("robots"):
         record["robots"] = artifact["robots"]
+    if binding:
+        def declaration(pin):
+            return {"path": pin["path"], "url": f"{project['repository']}/blob/{project['commit']}/{pin['path']}",
+                    "sha256": pin["sha256"], "bytes": pin["bytes"]}
+        record["license"]["binding"] = {"kind": binding["kind"], "package": {**declaration(binding["package"]), "name": binding["package_name"], "declared_spdx": license_info["spdx"]},
+                                         "unmarked_file_quote": binding["unmarked_file_quote"], "terms": {**declaration(binding["terms"]), "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."}}
+    if inspection["format"] == BT_FORMAT:
+        record["name"], record["summary"] = artifact["name"], artifact["summary"]
+        record["requirements"]["python"] = None
+        record["artifact"]["role"] = "Declarative upstream workflow source; not an executable Hub skill"
+        record["invocation"]["notes"] = "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+        if artifact.get("notes"):
+            record["invocation"]["notes"] += " " + artifact["notes"]
+        record["evidence"]["setup_evidence"] = [{"path": pin["path"], "sha256": pin["sha256"], "bytes": pin["bytes"], "url": f"{project['repository']}/blob/{project['commit']}/{pin['path']}"} for pin in project.get("evidence_files", [])]
     return record
 
 
@@ -198,10 +318,12 @@ def build(manifest, cache, existing, fetch=False):
     for project in projects:
         validate_project(project)
         if fetch:
-            paths = sorted(set(project["licenses"]) | {a["path"] for a in project["artifacts"]})
+            paths = sorted(set(project["licenses"]) | {a["path"] for a in project["artifacts"]} | {pin["path"] for pin in support_pins(project)})
             with ThreadPoolExecutor(max_workers=8) as pool:
                 list(pool.map(lambda path: source_bytes(cache, project, path, True), paths))
         checked_licenses(project, cache)
+        for pin in project.get("evidence_files", []):
+            checked_pin(project, cache, pin)
         generated.extend(make_record(project, artifact, cache) for artifact in project["artifacts"])
     return {**existing, "checked_at": max([existing.get("checked_at", "")] + [p["checked_at"] for p in manifest["projects"]]),
             "artifact_manifest": "artifact-projects.json", "records": merge_records(existing["records"], generated)}

@@ -14,6 +14,12 @@
       "record_version": "source-1678a23318ef5a541ebd4b3720a3b3d7121c86b9b718e549e4d27fc854d2d59c"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-speed-xml",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab",
+      "record_version": "source-329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab"
+    },
+    {
       "id": "ompl-demos-multilevel-multilevelplanningrigidbody2d-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "8371d9de00db89a06a128fb4c227b5762bd0dca8620064f6c236262c96581156",

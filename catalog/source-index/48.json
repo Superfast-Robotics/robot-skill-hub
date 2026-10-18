@@ -8,6 +8,12 @@
       "record_version": "source-d9ec12eadefd18e2f56f04cf18d3c9691cc908ada28c1a4d93ba5af73dbd7f11"
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-to-pose-w-r-58589cd2f7d6",
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_sha256": "93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4",
+      "record_version": "source-93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4"
+    },
+    {
       "id": "roboticstoolbox-examples-plot-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "3d245f7adff7c505e30deb11312ff21231b9d665bf6589ac81f0b6b551919ef6",

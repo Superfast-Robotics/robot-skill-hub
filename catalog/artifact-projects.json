@@ -5655,6 +5655,261 @@
         "excluded_files": [],
         "selection": "Finite explicitly reviewed text roots and extensions; excludes meshes, textures, binaries, weights, test files and executable entrypoints. No exhaustive repository/internet coverage claim."
       }
+    },
+    {
+      "id": "nav2",
+      "name": "Nav2 behavior-tree workflows",
+      "repository": "https://github.com/ros-navigation/navigation2",
+      "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "ref": "jazzy",
+      "stars": 4829,
+      "checked_at": "2026-10-18",
+      "robot_types": [
+        "source-defined"
+      ],
+      "capabilities": [
+        "navigation",
+        "behavior-tree",
+        "workflow"
+      ],
+      "packages": [
+        "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+        "ament_cmake",
+        "nav2_common",
+        "rclcpp",
+        "rclcpp_action",
+        "rclcpp_lifecycle",
+        "rclcpp_components",
+        "std_msgs",
+        "geometry_msgs",
+        "nav2_behavior_tree",
+        "nav_msgs",
+        "nav2_msgs",
+        "behaviortree_cpp",
+        "std_srvs",
+        "nav2_util",
+        "nav2_core",
+        "tf2_ros",
+        "pluginlib",
+        "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+      ],
+      "environment": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+      "execution_domain": "upstream-configured-navigation",
+      "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md",
+      "licenses": {
+        "LICENSE": {
+          "spdx": "Apache-2.0",
+          "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+          "bytes": 524,
+          "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+          "binding": {
+            "kind": "package_with_unmarked_file_fallback",
+            "package": {
+              "path": "nav2_bt_navigator/package.xml",
+              "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+              "bytes": 1792
+            },
+            "package_name": "nav2_bt_navigator",
+            "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+            "terms": {
+              "path": "nav2_docking/LICENSE",
+              "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+              "bytes": 11357
+            }
+          }
+        }
+      },
+      "evidence_files": [
+        {
+          "path": "nav2_bt_navigator/CMakeLists.txt",
+          "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+          "bytes": 2492,
+          "quotes": [
+            "install(DIRECTORY behavior_trees DESTINATION share/${PROJECT_NAME})"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/README.md",
+          "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+          "bytes": 1398,
+          "quotes": [
+            "The BT XML can also be specified on a per-task basis"
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "nav2_bt_navigator/behavior_trees/follow_point.xml",
+          "sha256": "edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced",
+          "bytes": 1141,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Dynamic goal following",
+          "summary": "Declares dynamic goal update, path planning/truncation and following until failure. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "dynamic-goal-following"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+          "sha256": "7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d",
+          "bytes": 2556,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Consistent/path-validity replanning and recovery",
+          "summary": "Declares timed/path-validity/goal-update checks, planning and following with contextual and round-robin recovery. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "path-validity",
+            "replanning",
+            "navigation-recovery"
+          ],
+          "notes": "Comment says once every 15 seconds; XML instead contains RateController hz=2.0 and PathExpiringTimer seconds=10. Preserve the literal XML values and comment discrepancy; no effective runtime rate was measured."
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+          "sha256": "bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876",
+          "bytes": 2878,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Through-poses replanning and recovery",
+          "summary": "Declares removal of passed goals, planning through poses, following and contextual/general recovery. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "multi-pose-navigation",
+            "replanning",
+            "navigation-recovery"
+          ],
+          "notes": "Comment says 1 Hz; RateController hz is 0.333. Preserve the actual attribute without rewriting or inferring measured rate."
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+          "sha256": "5895b63840d54c6d7eee3d3b3f3ee177680af9e58a14cbf61c4df39fe5db2a90",
+          "bytes": 2733,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: To-pose replanning and recovery",
+          "summary": "Declares planning to a pose, following and contextual/general recovery. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "pose-navigation",
+            "replanning",
+            "navigation-recovery"
+          ],
+          "notes": "BackUp writes error_code_id={backup_code_id}; another selected tree uses {backup_error_code}. Preserve exact port values and do not assert application wiring correctness."
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+          "sha256": "93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4",
+          "bytes": 2741,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Goal patience and recovery",
+          "summary": "Declares path-longer-on-approach monitoring, control cancellation and waiting before continuing, plus recovery. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "goal-patience",
+            "control-cancellation",
+            "navigation-recovery"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+          "sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
+          "bytes": 2569,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Path-invalidity replanning with recovery",
+          "summary": "Declares goal/path-validity gating of planning, following and recovery. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "path-validity",
+            "replanning",
+            "navigation-recovery"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+          "sha256": "5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070",
+          "bytes": 833,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Distance-controlled replanning",
+          "summary": "Declares distance-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "distance-controlled-replanning"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+          "sha256": "af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16",
+          "bytes": 840,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Goal-update replanning",
+          "summary": "Declares goal-update-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "goal-update-replanning"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+          "sha256": "9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819",
+          "bytes": 1058,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Path-invalidity replanning",
+          "summary": "Declares goal/path-validity gating of path planning and path following without a general recovery branch. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "path-validity",
+            "replanning"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+          "sha256": "329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab",
+          "bytes": 896,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Speed-controlled replanning",
+          "summary": "Declares speed-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "speed-controlled-replanning"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+          "sha256": "1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782",
+          "bytes": 826,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Time-controlled replanning",
+          "summary": "Declares rate-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "time-controlled-replanning"
+          ]
+        },
+        {
+          "path": "nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+          "sha256": "a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555",
+          "bytes": 845,
+          "kind": "workflow",
+          "format": "behaviortree-cpp-xml",
+          "license_path": "LICENSE",
+          "name": "Nav2 BT: Odometry calibration motion experiment",
+          "summary": "Declares three repetitions of four DriveOnHeading/Spin pairs; this can command robot motion when loaded by a configured host. Static source reference only; no task, timing or robot behavior was tested.",
+          "capabilities": [
+            "odometry-calibration-experiment",
+            "motion-sequence"
+          ]
+        }
+      ]
     }
   ]
 }

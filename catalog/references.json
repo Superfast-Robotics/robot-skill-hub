@@ -54733,6 +54733,3134 @@
       ]
     },
     {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-follow-point-xml",
+      "name": "Nav2 BT: Dynamic goal following",
+      "summary": "Declares dynamic goal update, path planning/truncation and following until failure. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdater",
+              "attributes": {
+                "input_goal": "{goal}",
+                "output_goal": "{updated_goal}"
+              },
+              "children": 1
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{updated_goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "TruncatePath",
+              "attributes": {
+                "distance": "1.0",
+                "input_path": "{path}",
+                "output_path": "{truncated_path}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "KeepRunningUntilFailure",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{truncated_path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 10,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}",
+            "{truncated_path}",
+            "{updated_goal}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "dynamic-goal-following",
+        "navigation",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/follow_point.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/follow_point.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/follow_point.xml",
+        "sha256": "edf0c33699dd41f62b568130412f112f3333480c93c56cf8b0f8f730eeca4ced",
+        "bytes": 1141
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/follow_point.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-nav-to-pose-with-con-161da3951c6f",
+      "name": "Nav2 BT: Consistent/path-validity replanning and recovery",
+      "summary": "Declares timed/path-validity/goal-update checks, planning and following with contextual and round-robin recovery. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "6",
+                "name": "NavigateRecovery"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "2.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "ComputePathToPose"
+              },
+              "children": 2
+            },
+            {
+              "tag": "Fallback",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "ReactiveSequence",
+              "attributes": {},
+              "children": 3
+            },
+            {
+              "tag": "Inverter",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "PathExpiringTimer",
+              "attributes": {
+                "seconds": "10",
+                "path": "{path}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Inverter",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "GlobalUpdatedGoal",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "IsPathValid",
+              "attributes": {
+                "path": "{path}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Context",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "FollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Context",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveFallback",
+              "attributes": {
+                "name": "RecoveryFallback"
+              },
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdated",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "RoundRobin",
+              "attributes": {
+                "name": "RecoveryActions"
+              },
+              "children": 4
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "ClearingActions"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Subtree",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Subtree",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.57"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "BackUp",
+              "attributes": {
+                "backup_dist": "0.30",
+                "backup_speed": "0.15"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 27,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "navigation-recovery",
+        "path-validity",
+        "replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml",
+        "sha256": "7315111b4dfee3ad3b9245828e3e3a510cb640858d59f425e9b8128ce08e2b6d",
+        "bytes": 2556
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility. Comment says once every 15 seconds; XML instead contains RateController hz=2.0 and PathExpiringTimer seconds=10. Preserve the literal XML values and comment discrepancy; no effective runtime rate was measured."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-through-pos-e868b0be139c",
+      "name": "Nav2 BT: Through-poses replanning and recovery",
+      "summary": "Declares removal of passed goals, planning through poses, following and contextual/general recovery. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "6",
+                "name": "NavigateRecovery"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "0.333"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "ComputePathThroughPoses"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ReactiveSequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "RemovePassedGoals",
+              "attributes": {
+                "input_goals": "{goals}",
+                "output_goals": "{goals}",
+                "radius": "0.7"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ComputePathThroughPoses",
+              "attributes": {
+                "goals": "{goals}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAPlannerRecoveryHelp",
+              "attributes": {
+                "error_code": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Context",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "FollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAControllerRecoveryHelp",
+              "attributes": {
+                "error_code": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Context",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "Fallback",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAControllerRecoveryHelp",
+              "attributes": {
+                "error_code": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "WouldAPlannerRecoveryHelp",
+              "attributes": {
+                "error_code": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveFallback",
+              "attributes": {
+                "name": "RecoveryFallback"
+              },
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdated",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "RoundRobin",
+              "attributes": {
+                "name": "RecoveryActions"
+              },
+              "children": 4
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "ClearingActions"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Subtree",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Subtree",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.57",
+                "error_code_id": "{spin_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "BackUp",
+              "attributes": {
+                "backup_dist": "0.30",
+                "backup_speed": "0.15",
+                "error_code_id": "{backup_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 30,
+          "blackboard_references": [
+            "{backup_error_code}",
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goals}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}",
+            "{spin_error_code}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "multi-pose-navigation",
+        "navigation",
+        "navigation-recovery",
+        "replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml",
+        "sha256": "bccb78a1f06cea2a88dd86b028c0e2c7c167ac1ab3b0b799f87099b5181a2876",
+        "bytes": 2878
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility. Comment says 1 Hz; RateController hz is 0.333. Preserve the actual attribute without rewriting or inferring measured rate."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-to-pose-w-r-58589cd2f7d6",
+      "name": "Nav2 BT: Goal patience and recovery",
+      "summary": "Declares path-longer-on-approach monitoring, control cancellation and waiting before continuing, plus recovery. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "6",
+                "name": "NavigateRecovery"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "ComputePathToPose"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Context",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveSequence",
+              "attributes": {
+                "name": "MonitorAndFollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PathLongerOnApproach",
+              "attributes": {
+                "path": "{path}",
+                "prox_len": "3.0",
+                "length_factor": "2.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RetryUntilSuccessful",
+              "attributes": {
+                "num_attempts": "1"
+              },
+              "children": 1
+            },
+            {
+              "tag": "SequenceWithMemory",
+              "attributes": {
+                "name": "CancelingControlAndWait"
+              },
+              "children": 2
+            },
+            {
+              "tag": "CancelControl",
+              "attributes": {
+                "name": "ControlCancel"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "FollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Context",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveFallback",
+              "attributes": {
+                "name": "RecoveryFallback"
+              },
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdated",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "RoundRobin",
+              "attributes": {
+                "name": "RecoveryActions"
+              },
+              "children": 4
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "ClearingActions"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Subtree",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Subtree",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.57"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "BackUp",
+              "attributes": {
+                "backup_dist": "0.30",
+                "backup_speed": "0.15"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 26,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "control-cancellation",
+        "goal-patience",
+        "navigation",
+        "navigation-recovery",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml",
+        "sha256": "93682d580147c422db3e7212c7f6f8a1943dc947ba3e99e73e804ce1b666cce4",
+        "bytes": 2741
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-to-pose-w-r-e80996af9524",
+      "name": "Nav2 BT: To-pose replanning and recovery",
+      "summary": "Declares planning to a pose, following and contextual/general recovery. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "6",
+                "name": "NavigateRecovery"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "ComputePathToPose"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAPlannerRecoveryHelp",
+              "attributes": {
+                "error_code": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Context",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "FollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAControllerRecoveryHelp",
+              "attributes": {
+                "error_code": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Context",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "Fallback",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "WouldAControllerRecoveryHelp",
+              "attributes": {
+                "error_code": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "WouldAPlannerRecoveryHelp",
+              "attributes": {
+                "error_code": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveFallback",
+              "attributes": {
+                "name": "RecoveryFallback"
+              },
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdated",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "RoundRobin",
+              "attributes": {
+                "name": "RecoveryActions"
+              },
+              "children": 4
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "ClearingActions"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Subtree",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Subtree",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.57",
+                "error_code_id": "{spin_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "BackUp",
+              "attributes": {
+                "backup_dist": "0.30",
+                "backup_speed": "0.15",
+                "error_code_id": "{backup_code_id}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 28,
+          "blackboard_references": [
+            "{backup_code_id}",
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}",
+            "{spin_error_code}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "navigation-recovery",
+        "pose-navigation",
+        "replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml",
+        "sha256": "5895b63840d54c6d7eee3d3b3f3ee177680af9e58a14cbf61c4df39fe5db2a90",
+        "bytes": 2733
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility. BackUp writes error_code_id={backup_code_id}; another selected tree uses {backup_error_code}. Preserve exact port values and do not assert application wiring correctness."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-recovery-9bce0cc8b39f",
+      "name": "Nav2 BT: Path-invalidity replanning with recovery",
+      "summary": "Declares goal/path-validity gating of planning, following and recovery. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "6",
+                "name": "NavigateRecovery"
+              },
+              "children": 2
+            },
+            {
+              "tag": "PipelineSequence",
+              "attributes": {},
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0",
+                "name": "RateControllerComputePathToPose"
+              },
+              "children": 1
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "RecoveryComputePathToPose"
+              },
+              "children": 2
+            },
+            {
+              "tag": "Fallback",
+              "attributes": {
+                "name": "FallbackComputePathToPose"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ReactiveSequence",
+              "attributes": {
+                "name": "CheckIfNewPathNeeded"
+              },
+              "children": 2
+            },
+            {
+              "tag": "Inverter",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "GlobalUpdatedGoal",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "IsPathValid",
+              "attributes": {
+                "path": "{path}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Context",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RecoveryNode",
+              "attributes": {
+                "number_of_retries": "1",
+                "name": "RecoveryFollowPath"
+              },
+              "children": 2
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Context",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ReactiveFallback",
+              "attributes": {
+                "name": "FallbackRecoveries"
+              },
+              "children": 2
+            },
+            {
+              "tag": "GoalUpdated",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "RoundRobin",
+              "attributes": {
+                "name": "RecoveryActions"
+              },
+              "children": 4
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "ClearingActions"
+              },
+              "children": 2
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearLocalCostmap-Subtree",
+                "service_name": "local_costmap/clear_entirely_local_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ClearEntireCostmap",
+              "attributes": {
+                "name": "ClearGlobalCostmap-Subtree",
+                "service_name": "global_costmap/clear_entirely_global_costmap"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "name": "SpinRecovery",
+                "spin_dist": "1.57"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Wait",
+              "attributes": {
+                "name": "WaitRecovery",
+                "wait_duration": "5.0"
+              },
+              "children": 0
+            },
+            {
+              "tag": "BackUp",
+              "attributes": {
+                "name": "BackUpRecovery",
+                "backup_dist": "0.30",
+                "backup_speed": "0.15"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 25,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "navigation-recovery",
+        "path-validity",
+        "replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+        "sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
+        "bytes": 2569
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-21b0f553d79b",
+      "name": "Nav2 BT: Goal-update replanning",
+      "summary": "Declares goal-update-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "GoalUpdatedController",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 6,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "goal-update-replanning",
+        "navigation",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml",
+        "sha256": "af2641f321720efb0e1350815d7989603d408d4560d0378110a4bdbd9dfccd16",
+        "bytes": 840
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-323ac7863380",
+      "name": "Nav2 BT: Path-invalidity replanning",
+      "summary": "Declares goal/path-validity gating of path planning and path following without a general recovery branch. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "Fallback",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "ReactiveSequence",
+              "attributes": {},
+              "children": 2
+            },
+            {
+              "tag": "Inverter",
+              "attributes": {},
+              "children": 1
+            },
+            {
+              "tag": "GlobalUpdatedGoal",
+              "attributes": {},
+              "children": 0
+            },
+            {
+              "tag": "IsPathValid",
+              "attributes": {
+                "path": "{path}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 11,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "path-validity",
+        "replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml",
+        "sha256": "9c7394c9f2cf0314a88267a8578b3a213384b0f600aeccb233d791f2ba68a819",
+        "bytes": 1058
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replannin-68f170dd32a2",
+      "name": "Nav2 BT: Distance-controlled replanning",
+      "summary": "Declares distance-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "DistanceController",
+              "attributes": {
+                "distance": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 6,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "distance-controlled-replanning",
+        "navigation",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml",
+        "sha256": "5ba616c88625e86671a781b34df8b20d04175abb85782e73ab5ff8f4ea3e3070",
+        "bytes": 833
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_replanning_distance.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-speed-xml",
+      "name": "Nav2 BT: Speed-controlled replanning",
+      "summary": "Declares speed-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "SpeedController",
+              "attributes": {
+                "min_rate": "0.1",
+                "max_rate": "1.0",
+                "min_speed": "0.0",
+                "max_speed": "0.26"
+              },
+              "children": 1
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 6,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "speed-controlled-replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml",
+        "sha256": "329b9d5aae34611f7bd342ab00a226fa03f4a756937a702ec48cc160f78f75ab",
+        "bytes": 896
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_replanning_speed.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-time-xml",
+      "name": "Nav2 BT: Time-controlled replanning",
+      "summary": "Declares rate-controlled path planning and path following. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "PipelineSequence",
+              "attributes": {
+                "name": "NavigateWithReplanning"
+              },
+              "children": 4
+            },
+            {
+              "tag": "ControllerSelector",
+              "attributes": {
+                "selected_controller": "{selected_controller}",
+                "default_controller": "FollowPath",
+                "topic_name": "controller_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "PlannerSelector",
+              "attributes": {
+                "selected_planner": "{selected_planner}",
+                "default_planner": "GridBased",
+                "topic_name": "planner_selector"
+              },
+              "children": 0
+            },
+            {
+              "tag": "RateController",
+              "attributes": {
+                "hz": "1.0"
+              },
+              "children": 1
+            },
+            {
+              "tag": "ComputePathToPose",
+              "attributes": {
+                "goal": "{goal}",
+                "path": "{path}",
+                "planner_id": "{selected_planner}",
+                "error_code_id": "{compute_path_error_code}"
+              },
+              "children": 0
+            },
+            {
+              "tag": "FollowPath",
+              "attributes": {
+                "path": "{path}",
+                "controller_id": "{selected_controller}",
+                "error_code_id": "{follow_path_error_code}"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 6,
+          "blackboard_references": [
+            "{compute_path_error_code}",
+            "{follow_path_error_code}",
+            "{goal}",
+            "{path}",
+            "{selected_controller}",
+            "{selected_planner}"
+          ]
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "navigation",
+        "time-controlled-replanning",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml",
+        "sha256": "1e5c47087a7f728e46e7bb25b00784477d83962e2094e9d5c3e94f4b0c3fb782",
+        "bytes": 826
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/navigate_w_replanning_time.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-odometry-calibration-xml",
+      "name": "Nav2 BT: Odometry calibration motion experiment",
+      "summary": "Declares three repetitions of four DriveOnHeading/Spin pairs; this can command robot motion when loaded by a configured host. Static source reference only; no task, timing or robot behavior was tested.",
+      "framework": "nav2",
+      "kind": "official_example",
+      "source_registry": "official-robot-artifacts-v1",
+      "artifact": {
+        "kind": "workflow",
+        "format": "behaviortree-cpp-xml",
+        "role": "Declarative upstream workflow source; not an executable Hub skill",
+        "structure": {
+          "root": "root",
+          "BTCPP_format": "4",
+          "main_tree": "MainTree",
+          "nodes": [
+            {
+              "tag": "Repeat",
+              "attributes": {
+                "num_cycles": "3"
+              },
+              "children": 1
+            },
+            {
+              "tag": "Sequence",
+              "attributes": {
+                "name": "Drive in a square"
+              },
+              "children": 8
+            },
+            {
+              "tag": "DriveOnHeading",
+              "attributes": {
+                "dist_to_travel": "2.0",
+                "speed": "0.2",
+                "time_allowance": "12"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.570796",
+                "is_recovery": "false"
+              },
+              "children": 0
+            },
+            {
+              "tag": "DriveOnHeading",
+              "attributes": {
+                "dist_to_travel": "2.0",
+                "speed": "0.2",
+                "time_allowance": "12"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.570796",
+                "is_recovery": "false"
+              },
+              "children": 0
+            },
+            {
+              "tag": "DriveOnHeading",
+              "attributes": {
+                "dist_to_travel": "2.0",
+                "speed": "0.2",
+                "time_allowance": "12"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.570796",
+                "is_recovery": "false"
+              },
+              "children": 0
+            },
+            {
+              "tag": "DriveOnHeading",
+              "attributes": {
+                "dist_to_travel": "2.0",
+                "speed": "0.2",
+                "time_allowance": "12"
+              },
+              "children": 0
+            },
+            {
+              "tag": "Spin",
+              "attributes": {
+                "spin_dist": "1.570796",
+                "is_recovery": "false"
+              },
+              "children": 0
+            }
+          ],
+          "node_count": 10,
+          "blackboard_references": []
+        }
+      },
+      "capabilities": [
+        "behavior-tree",
+        "motion-sequence",
+        "navigation",
+        "odometry-calibration-experiment",
+        "workflow"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Labels identify this description/configuration source; they do not establish runtime, controller or physical-robot compatibility.",
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "tag": "jazzy",
+        "path": "nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+        "raw_url": "https://raw.githubusercontent.com/ros-navigation/navigation2/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/behavior_trees/odometry_calibration.xml",
+        "sha256": "a4eeb10cc1f424ca39d43fdec2cabad5118553e6865ad2b9f6548c968dbe6555",
+        "bytes": 845
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/LICENSE",
+        "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+        "scope": "Exactly these otherwise-unmarked nav2_bt_navigator workflow XML texts. The selected package declares Apache-2.0 and the root index explicitly supplies that default for otherwise unmarked files. nav2_docking/LICENSE supplies complete standard terms only, not a grant or author attribution transferred from docking. Preserve applicable license, notices and modification obligations. No individual XML author is declared; the package maintainer is not inferred as author. Dependencies, node implementations, binaries, maps, assets and hardware retain their own terms.",
+        "binding": {
+          "kind": "package_with_unmarked_file_fallback",
+          "package": {
+            "path": "nav2_bt_navigator/package.xml",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/package.xml",
+            "sha256": "7d18fdea20dc695dc74095b93f280b1cf1591d3e36c61544d55449648b949793",
+            "bytes": 1792,
+            "name": "nav2_bt_navigator",
+            "declared_spdx": "Apache-2.0"
+          },
+          "unmarked_file_quote": "For files that are not otherwise marked, they are provided under the Apache-2.0\nlicense.",
+          "terms": {
+            "path": "nav2_docking/LICENSE",
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_docking/LICENSE",
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+            "bytes": 11357,
+            "scope": "Complete standard terms text only; the selected package and root index supply the source-license binding."
+          }
+        }
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect this checksum-pinned text in the full upstream checkout. Resolve adjacent definitions/assets and their separate licenses using upstream instructions. The Hub does not load or execute this artifact.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_bt_navigator package, BehaviorTree.CPP and referenced Nav2 node plugins",
+          "ament_cmake",
+          "nav2_common",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "rclcpp_components",
+          "std_msgs",
+          "geometry_msgs",
+          "nav2_behavior_tree",
+          "nav_msgs",
+          "nav2_msgs",
+          "behaviortree_cpp",
+          "std_srvs",
+          "nav2_util",
+          "nav2_core",
+          "tf2_ros",
+          "pluginlib",
+          "Configured planner/controller/behavior servers, costmaps, transforms, odometry and task-specific goals"
+        ],
+        "display": "Package 1.3.14, CMake >=3.5 and the jazzy ref are source declarations, not tested runtime combinations. A complete configured upstream BT Navigator selects this XML by parameter or per task. Node implementations, lifecycle setup, map/costmap/TF/odometry configuration and any hardware access remain operator prerequisites; none was installed, loaded or tested. Optional BUILD_TESTING separately declares ament_lint_auto and ament_lint_common.",
+        "execution_domain": "upstream-configured-navigation",
+        "source_imports": []
+      },
+      "invocation": {
+        "entrypoint": "Data/configuration artifact: nav2_bt_navigator/behavior_trees/odometry_calibration.xml; use its upstream loader or package integration after inspection",
+        "notes": "A complete configured upstream BT host loads this XML. Its action/service node implementations can command hardware; fetching this inert file does not load a host, validate ports or establish task success, timing, stopping or robot compatibility."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 4829,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not artifact use or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Verified exact source and applicable license SHA-256 bytes. Inventoried one bounded BTCPP4 XML tree and parsed literal attributes. Node availability, ports, blackboard expressions, timing and runtime behavior were not evaluated.",
+        "inspection_method": "automated_static",
+        "artifact_kind": "workflow",
+        "setup_evidence": [
+          {
+            "path": "nav2_bt_navigator/CMakeLists.txt",
+            "sha256": "1edd5c1e748da4406d7036a8d29ede109ff8d4230a6818b7cbad1f1536b40c3a",
+            "bytes": 2492,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/CMakeLists.txt"
+          },
+          {
+            "path": "nav2_bt_navigator/README.md",
+            "sha256": "30e5e916a54785ed7d24a74e9db2a5c48889333323a964466349f5e5550c1620",
+            "bytes": 1398,
+            "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_bt_navigator/README.md"
+          }
+        ]
+      }
+    },
+    {
       "id": "nav2-nav2-simple-commander-nav2-simple-commander-demo-inspection-py",
       "name": "Nav2 Simple Commander: demo inspection",
       "summary": "Official Nav2 Simple Commander python main example for demo inspection. Inspect the pinned source and upstream setup before use.",

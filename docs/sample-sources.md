@@ -91,9 +91,14 @@ downloaded and checked; no upstream example was executed by the importers.
 The Webots portion includes 98 robot-specific controllers across 56 model
 directories, plus device and controller examples.
 
-## Robot models, descriptions and configuration
+## Robot models, descriptions, configuration and workflows
 
-The [artifact manifest](../catalog/artifact-projects.json) adds **409 official
+Twelve [Nav2 behavior-tree workflow sources](../docs/nav2-bt-sources.md) add
+declarative navigation composition through the same bounded artifact importer.
+They retain separate package/index/terms license evidence and have no Hub
+preparation adapter or runtime verification.
+
+The [artifact manifest](../catalog/artifact-projects.json) adds **421 official
 text artifacts** beyond executable examples. Each source file has its own
 immutable commit, SHA-256, byte size, artifact kind and format. Its applicable
 license file is pinned and hashed separately. Existing example records and IDs
