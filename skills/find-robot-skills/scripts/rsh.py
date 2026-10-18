@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 import urllib.parse
 
-from rshlib import acquisition, contributions, intake, memories, remote_catalog, setup
+from rshlib import acquisition, contributions, intake, memories, remote_catalog, setup, community
 from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json, require_url
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
@@ -41,6 +41,21 @@ def build_parser():
     mode.add_argument("--allow-public-memory", action="store_true", help="Record public scope already authorized by the user")
     configure.add_argument("--skill", action="append", default=[], help="Explicit allowed skill ID; repeat for each authorized skill")
     configure.add_argument("--kind", action="append", default=[], choices=sorted(memories.KINDS), help="Explicit allowed finding kind; repeat as needed")
+    join = sub.add_parser("join", help="Enroll a community installation and enable automatic sharing within an already-authorized scope")
+    join.add_argument("--project", required=True)
+    join.add_argument("--allow-public-memory", action="store_true", required=True)
+    join.add_argument("--skill", action="append", required=True)
+    join.add_argument("--kind", action="append", required=True, choices=sorted(memories.KINDS))
+    sync = sub.add_parser("community-sync", help="Deliver at most three pending, consent-scoped experiences")
+    sync.add_argument("--project", required=True)
+    sync.add_argument("--limit", type=int, choices=(1, 2, 3), default=1)
+    experience = sub.add_parser("experience", help="Read or save one hash-verified experience as inert JSON; never apply or execute")
+    experience.add_argument("experience_id")
+    experience.add_argument("--output")
+    recall = sub.add_parser("recall", help="Combine local and public experience for exact source and environment")
+    recall.add_argument("skill_id")
+    recall.add_argument("--project", required=True)
+    environment_options(recall)
     check = sub.add_parser("setup-check", help="Read project scope and local credentials; network access requires --check-api")
     check.add_argument("--project", required=True)
     check.add_argument("--check-api", action="store_true", help="Perform one authenticated, read-only API session request")
@@ -55,6 +70,7 @@ def build_parser():
     environment_options(search)
     detail = sub.add_parser("inspect", help="Read source, requirements and verification evidence")
     detail.add_argument("skill_id")
+    detail.add_argument("--project", help="Recall local experience; joined projects also sync one authorized pending item")
     environment_options(detail)
     fetch = sub.add_parser("fetch-source", help="Save one checksum-verified source-reference file as inert data; never install or run it")
     fetch.add_argument("skill_id")
@@ -109,6 +125,10 @@ def build_parser():
     save.add_argument("--source-manifest", help="Use the exact verified fetch-source manifest and its original pins")
     save.add_argument("--policy")
     save.add_argument("--api-url")
+    save.add_argument("--patch", help="Optional bounded unified diff for an immutable community variant")
+    save.add_argument("--license", dest="license_spdx", help="Applicable upstream SPDX license for the patch")
+    save.add_argument("--parent", dest="parent_id", help="Exact exp_ ID being improved or reused")
+    save.add_argument("--outcome", choices=("succeeded", "failed", "not_applicable"), help="Actual reuse outcome; requires --parent")
     flush = sub.add_parser("flush", help="Explicitly retry at most three locally saved findings with their original identity")
     flush.add_argument("--project", required=True)
     flush.add_argument("--policy")
@@ -190,6 +210,14 @@ def catalog_handoff(result, catalog_location, offline):
 
 def execute(args, catalog_location):
     catalog_location = catalog_location or args.catalog
+    if args.command == "join":
+        return community.join(args.project, skill_ids=args.skill, kinds=args.kind, allow_public_memory=args.allow_public_memory, offline=args.offline)
+    if args.command == "community-sync":
+        return community.sync(args.project, offline=args.offline, limit=args.limit)
+    if args.command == "experience":
+        if args.offline:
+            raise RshError("offline_experience", "Read the previously saved experience JSON while offline.")
+        return community.get(args.experience_id, args.output)
     if args.offline and args.command in ("submit", "submission-status"):
         raise RshError("offline_submission_unavailable", "Patch submission and its remote status require an explicit online request.",
                        status="blocked", network_performed=False, next_action="keep_local_draft_and_retry_without_offline")
@@ -287,6 +315,11 @@ def execute(args, catalog_location):
         else:
             result["findings"] = memories.for_selection(catalog, args.skill_id, environment,
                                                        offline=args.offline, refresh=args.refresh)
+        if args.project:
+            if args.project and not catalog_location and community.automatic_sync_allowed(args.project):
+                result["community_sync"] = community.sync(args.project, offline=args.offline)
+            result["community"] = community.recall(catalog, args.skill_id, environment, project=args.project,
+                                                    offline=args.offline or bool(catalog_location))
         return catalog_handoff(result, catalog_location, args.offline)
     if args.command == "fetch-source":
         return catalog_handoff(acquisition.fetch_source(catalog, args.skill_id, args.project,
@@ -312,8 +345,17 @@ def execute(args, catalog_location):
         return contributions.submit(catalog, args.bundle, args.project, policy_path=args.policy,
                                     api_url=args.api_url, idempotency_key=args.idempotency_key)
     if args.command == "save":
+        if community.enabled(args.project) or args.patch or args.parent_id or args.outcome or args.license_spdx:
+            if args.policy or args.api_url:
+                raise RshError("community_fixed_origin", "Community delivery uses its fixed origin and project policy.")
+            return community.save(catalog, args.skill_id, args.project, args.finding, offline=args.offline,
+                                  patch=args.patch, license_spdx=args.license_spdx, parent_id=args.parent_id, outcome=args.outcome)
         return memories.save(catalog, args.skill_id, args.project, args.finding,
                              policy_path=args.policy, api_url=args.api_url, offline=args.offline)
+    if args.command == "recall":
+        if not catalog_location and community.automatic_sync_allowed(args.project):
+            community.sync(args.project, offline=args.offline)
+        return community.recall(catalog, args.skill_id, environment, project=args.project, offline=args.offline or bool(catalog_location))
     if args.command == "memories":
         return memories.query(catalog, args.skill_id, environment, project=args.project, index=args.index,
                               offline=args.offline, refresh=args.refresh, limit=args.limit, offset=args.offset, hub_commit=args.hub_commit)

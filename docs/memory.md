@@ -1,5 +1,7 @@
 # Shared task memory
 
+The [community loop](community.md) adds self-service enrollment, immediate publication and local recall. Joined projects route `save` to that channel. The reviewed memory protocol below remains available for existing pilot integrations; its PR and operator-token requirements do not apply to community publication.
+
 A memory is a small, reusable fact already observed while an agent completes the user's robotics task. It can record a failure, missing requirement, working workaround, compatibility note, documentation correction or successful invocation. It preserves the exact recipe/source pins, environment and actual evidence; it does not replace a code patch.
 
 CLI `inspect` and the existing MCP `inspect_robot_skill` tool automatically include up to three exact-source/version observations in a separate `findings` field. The canonical record and its hash remain unchanged. Optional CLI environment flags/`--environment FILE` or the MCP `environment` object supply filters; automatic recall does not infer a host or project environment. Every result needs an applicability check. Public reading needs no submission credentials or sharing permission. Search remains a single catalog query; preparation adds no recall.

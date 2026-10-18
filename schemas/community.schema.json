@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hub.superfastrobotics.com/schemas/community.schema.json",
+  "title": "Immutable community experience",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "finding"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "finding": {
+      "$ref": "memory.schema.json"
+    },
+    "parent_id": {
+      "type": "string",
+      "pattern": "^exp_[a-f0-9]{64}$"
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patch",
+        "license_spdx"
+      ],
+      "properties": {
+        "patch": {
+          "type": "string",
+          "maxLength": 12000,
+          "description": "Inert unified diff, relative source paths only; never applied by Hub."
+        },
+        "license_spdx": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Must match the pinned catalog record license."
+        }
+      }
+    },
+    "outcome": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "not_applicable"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "outcome"
+        ]
+      },
+      "then": {
+        "required": [
+          "parent_id"
+        ],
+        "not": {
+          "required": [
+            "variant"
+          ]
+        }
+      }
+    }
+  ]
+}

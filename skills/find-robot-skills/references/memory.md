@@ -1,5 +1,7 @@
 # Reusable task findings
 
+For automatic public sharing and local reuse, use [community.md](community.md). Joined projects route `save` to the community channel. The finding format below is shared; its legacy operator-token/PR workflow applies only to projects that have not joined.
+
 Use findings to preserve a useful fact already observed while solving the user's task. They are small shared memories about an exact recipe and source version, not code patches or a request for more experiments.
 
 ## Recall before troubleshooting

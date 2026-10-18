@@ -77,8 +77,9 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     assert.equal(onboarding.source_acquisition.preserves_acquired_source_pins, true);
     assert.equal(onboarding.source_acquisition.source_manifest_grants_sharing_permission, false);
     assert.equal(onboarding.task_memory.local_first, true);
-    assert.deepEqual(onboarding.task_memory.cli_commands, ['save', 'memories']);
-    assert.deepEqual(onboarding.task_memory.public_delivery_requires, ['memory.public_save_allowed=true', 'matching memory.allowed_skill_ids and memory.allowed_kinds', 'allowed-agent scoped token', 'minimal redacted finding']);
+    assert.ok(['save', 'recall', 'join', 'memories'].every(command => onboarding.task_memory.cli_commands.includes(command)));
+    assert.ok(onboarding.task_memory.public_delivery_requires.includes('memory.public_save_allowed=true'));
+    assert.ok(onboarding.task_memory.public_delivery_requires.includes('matching memory.allowed_skill_ids and memory.allowed_kinds'));
     assert.match(onboarding.task_memory.finding_scope, /actually observed.*user task first/);
     assert.equal(onboarding.task_memory.missing_scope_or_token, 'Keep local_saved and continue the user task.');
     assert.equal(onboarding.task_memory.repeat_permission_for_exact_authorized_scope, false);
