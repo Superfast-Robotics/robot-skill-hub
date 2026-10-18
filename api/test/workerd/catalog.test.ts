@@ -629,9 +629,9 @@ test('native mirror accepts the complete current publisher output', { skip: !pro
     assert.ok(recipe.python_requirement); assert.match(recipe.source_url, /^https:\/\//);
     const kuka = await s.read('/v1/search?q=kuka'); assert.ok(kuka.body.total > 0);
     const algorithmQueries: Array<[string, string[]]> = [
-      ['A*', ['pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py']],
+      ['A*', ['pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py', 'nav2-smac-hybrid-planner']],
       ['D* Lite', ['pythonrobotics-pathplanning-dstarlite-d-star-lite-py']],
-      ['Hybrid A* path planning', ['pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py']],
+      ['Hybrid A* path planning', ['pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'nav2-smac-hybrid-planner']],
       ['rapidly exploring random tree', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrt-rrt-py']],
       ['RRT*', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py']],
       ['SLAM', ['pythonrobotics-slam-ekfslam-ekf-slam-py', 'pythonrobotics-slam-fastslam1-fast-slam1-py']],
