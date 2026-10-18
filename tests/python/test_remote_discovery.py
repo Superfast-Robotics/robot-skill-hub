@@ -247,6 +247,55 @@ class RemoteDiscoveryTests(unittest.TestCase):
         with self.assertRaises(core.RshError):
             memories._finding_page(page, "fixture-pick", page["results"][0]["base"], {}, 20, 0, None)
 
+    def test_cli_rich_finding_environment_uses_complete_native_pages_without_aggregate(self):
+        environment = {"runtime": "fixture", "robot": "panda", "sim_backend": "CPU", "render_backend": "none",
+                       "package.optional_parser": "1.0", "package.long_name": "x" * 240}
+        supplied = {key: value.lower() for key, value in environment.items()}
+        environment_file = Path(self.temporary.name) / "environment.json"
+        environment_file.write_text(json.dumps(environment), encoding="utf-8")
+        pages = []
+        for index in range(2):
+            page = finding_page()
+            row = page["results"][0]
+            row.update(environment=environment, summary="Observed dependency workaround " + str(index), memory_id="mem_" + str(index + 1) * 64)
+            row["fingerprint"] = memories.fingerprint({key: row[key] for key in (
+                "schema_version", "skill_id", "base", "kind", "summary", "observation", "resolution",
+                "environment", "evidence", "attribution", "publication")})
+            page.update(total=2, limit=1, offset=index, next={"skill_id": "fixture-pick", "record_version": "1.0.0",
+                        "source_commit": PIN, **supplied, "limit": 1, "offset": 1, "hub_commit": HUB} if index == 0 else None)
+            pages.append(page)
+        with mock.patch.object(remote_catalog, "selected_catalog", return_value=fixture_catalog()), \
+                mock.patch.object(discovery, "fetch_public", side_effect=pages) as fetch, \
+                mock.patch.object(memories, "public_index", side_effect=AssertionError("aggregate findings download")), \
+                mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("global catalog download")):
+            first = rsh.execute(self.args("memories", "fixture-pick", "--environment", str(environment_file), "--limit", "1"), None)
+            second = rsh.execute(self.args("memories", "fixture-pick", "--environment", str(environment_file), "--limit", "1",
+                                           "--offset", "1", "--hub-commit", HUB), None)
+        self.assertEqual(2, fetch.call_count)
+        self.assertEqual(("remote_api", 2, True), (first["index_origin"], first["total"], first["coverage"]["complete"]))
+        self.assertNotEqual(first["results"][0]["memory_id"], second["results"][0]["memory_id"])
+        self.assertIsNone(second["next"])
+        for call, offset in zip(fetch.call_args_list, (0, 1)):
+            url = urllib.parse.urlsplit(call.args[0])
+            self.assertEqual(discovery.API_BASE + "findings", urllib.parse.urlunsplit((url.scheme, url.netloc, url.path, "", "")))
+            params = urllib.parse.parse_qs(url.query)
+            self.assertEqual({**{key: [value] for key, value in supplied.items()}, "skill_id": ["fixture-pick"],
+                              "record_version": ["1.0.0"], "source_commit": [PIN], "limit": ["1"], "offset": [str(offset)],
+                              **({"hub_commit": [HUB]} if offset else {})}, params)
+            self.assertEqual(1024 * 1024, call.kwargs["max_bytes"])
+
+    def test_rich_finding_environment_outage_retains_partial_fallback_coverage(self):
+        environment = {"runtime": "fixture", "robot": "panda", "package.optional_parser": "1.0", "sim_backend": "cpu"}
+        partial = {"schema_version": "1", "hub_commit": HUB, "records": [],
+                   "coverage": {"complete": False, "total_records": 100, "included_records": 0}}
+        with mock.patch.object(discovery, "fetch_public", side_effect=OSError("unavailable")) as fetch, \
+                mock.patch.object(memories, "public_index", return_value=(partial, "bundled_snapshot")):
+            result = memories.query(fixture_catalog(), "fixture-pick", environment)
+        self.assertEqual(1, fetch.call_count)
+        self.assertFalse(result["coverage"]["complete"])
+        self.assertEqual("available_view", result["total_scope"])
+        self.assertEqual(["public_findings_unavailable"], result["fallback_reasons"])
+
     def test_failure_reports_fallback_and_respects_explicit_coverage(self):
         fallback = {**fixture_catalog(), "coverage": {"complete": False, "total_records": 100, "included_records": 1}}
         with mock.patch.object(remote_catalog, "search", side_effect=OSError()), mock.patch.object(rsh, "load_discovery", return_value=fallback):

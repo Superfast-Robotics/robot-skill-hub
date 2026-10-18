@@ -1,5 +1,6 @@
 /** Fixed-source, bounded D1 mirror. Catalog metadata is data, never executable. */
 import { queryTerms } from './search.ts';
+import { memoryEnvironmentKey } from './memory-environment.ts';
 
 export const HUB_ORIGIN = 'https://hub.superfastrobotics.com';
 export const INTERNAL_HEADERS = { Accept: 'application/json', 'Cache-Control': 'no-cache', DNT: '1', 'X-RSH-Telemetry': 'off', 'User-Agent': 'robot-skill-hub-api/catalog' };
@@ -156,37 +157,40 @@ export async function indexedSearch(db: CatalogDatabase, commit: string, input: 
   return { results: results[1].results.map(value => cleanRow(JSON.parse(value.row_json))), total: Number(results[0].results[0].total), limit, offset };
 }
 function findingsInput(input: Row, commit: string) {
-  const allowed = ['skill_id', 'record_version', 'source_commit', ...FILTERS, 'limit', 'offset', 'hub_commit'];
-  if (Object.keys(input).some(key => !allowed.includes(key)) || !IDENTIFIER.test(input.skill_id || '') || typeof input.record_version !== 'string' || !input.record_version || input.record_version.length > 120 || !/^(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})$/.test(input.source_commit || '')) reject(400, 'invalid_findings', 'Exact skill_id, record_version and source_commit pins are required.');
-  for (const key of [...FILTERS, 'hub_commit']) if (input[key] !== undefined && (typeof input[key] !== 'string' || input[key].length > 80)) reject(400, 'invalid_findings', 'Environment filters must be bounded strings.');
+  const parameters = ['skill_id', 'record_version', 'source_commit', 'limit', 'offset', 'hub_commit'];
+  const keys = Object.keys(input).filter(key => !parameters.includes(key));
+  if (keys.some(key => !memoryEnvironmentKey(key)) || !IDENTIFIER.test(input.skill_id || '') || typeof input.record_version !== 'string' || !input.record_version || input.record_version.length > 120 || !/^(?:[a-f0-9]{40}|sha256:[a-f0-9]{64})$/.test(input.source_commit || '')) reject(400, 'invalid_findings', 'Exact skill_id, record_version and source_commit pins and documented environment fields are required.');
+  if (keys.length > 16 || keys.some(key => typeof input[key] !== 'string' || !input[key].trim() || input[key].length > 240 || input[key].includes('\0'))) reject(400, 'invalid_findings', 'Use at most 16 nonempty environment filters of at most 240 characters.');
+  if (input.hub_commit !== undefined && (typeof input.hub_commit !== 'string' || input.hub_commit.length > 80)) reject(400, 'invalid_findings', 'The Hub generation must be a bounded string.');
   const limit = input.limit === undefined ? 10 : Number(input.limit), offset = input.offset === undefined ? 0 : Number(input.offset);
   if (!Number.isInteger(limit) || limit < 1 || limit > 50 || !Number.isInteger(offset) || offset < 0 || offset > 1000000) reject(400, 'invalid_pagination', 'limit must be 1..50 and offset a nonnegative bounded integer.');
   if (input.hub_commit && input.hub_commit !== commit) reject(409, 'catalog_changed', 'Refresh findings before continuing pagination on a new catalog version.');
-  return { limit, offset };
+  return { limit, offset, keys };
 }
 function findingsResult(commit: string, input: Row, results: Row[], total: number, limit: number, offset: number, backend: string) {
   return { schema_version: '1', interpretation: 'data_only', trust: 'contributor_reported', hub_commit: commit, backend, coverage: { complete: true }, results, total, limit, offset,
     next: offset + limit < total ? { ...input, limit, offset: offset + limit, hub_commit: commit } : null, execution_performed: false };
 }
 export async function indexedFindings(db: CatalogDatabase, commit: string, input: Row) {
-  const { limit, offset } = findingsInput(input, commit);
-  const keys = FILTERS.filter(key => input[key]);
+  const { limit, offset, keys } = findingsInput(input, commit);
   const membership = `(EXISTS(SELECT 1 FROM catalog_memory_members m WHERE m.doc_hash=d.doc_hash AND m.hub_commit=?) OR EXISTS(SELECT 1 FROM catalog_memory_page_members m JOIN catalog_pages p ON p.group_hash=m.group_hash WHERE m.doc_hash=d.doc_hash AND p.hub_commit=?))`;
-  const where = ['d.skill_id=?', 'd.record_version=?', 'd.source_commit=?', membership, ...keys.map(key => `lower(json_extract(d.row_json,'$.environment.${key}'))=?`)].join(' AND ');
-  const values = [input.skill_id, input.record_version, input.source_commit, commit, commit, ...keys.map(key => input[key].toLowerCase())];
+  const where = ['d.skill_id=?', 'd.record_version=?', 'd.source_commit=?', membership, ...keys.map(() => 'lower(json_extract(d.row_json,?))=?')].join(' AND ');
+  // Bind each quoted flat key: package.numpy is not the nested path package -> numpy.
+  const values = [input.skill_id, input.record_version, input.source_commit, commit, commit,
+    ...keys.flatMap(key => ['$.environment.' + JSON.stringify(key), input[key].toLowerCase()])];
   const from = `FROM catalog_memory_documents d WHERE ${where}`;
   const results = await db.batch([db.prepare(`SELECT count(*) total ${from}`).bind(...values), db.prepare(`SELECT d.row_json ${from} ORDER BY d.memory_id LIMIT ? OFFSET ?`).bind(...values, limit, offset)]);
   return findingsResult(commit, input, results[1].results.map(row => JSON.parse(row.row_json)), Number(results[0].results[0].total), limit, offset, 'd1');
 }
 export async function staticFindings(fetcher: typeof fetch, version: Row, input: Row) {
-  const { limit, offset } = findingsInput(input, version.hub_commit);
+  const { limit, offset, keys } = findingsInput(input, version.hub_commit);
   const resource = version.resources?.memories;
   if (!HASH.test(resource?.sha256 || '')) reject(503, 'catalog_sync_required', 'The findings mirror is not ready and no verified complete static view is published.');
   const bytes = await ownedRead(fetcher, '/catalog/v1/memories.json?v=' + version.hub_commit, 8 * 1024 * 1024);
   if (await sha256(bytes) !== resource.sha256) reject(503, 'publication_changed', 'The findings changed during this read.');
   const index = decode(bytes);
   if (index.schema_version !== '1' || index.hub_commit !== version.hub_commit || !Array.isArray(index.records) || index.coverage?.complete === false) reject(503, 'catalog_sync_required', 'A complete findings index is not ready.');
-  const matches = index.records.filter((row: Row) => row.skill_id === input.skill_id && row.base?.record_version === input.record_version && row.base?.source_commit === input.source_commit && FILTERS.every(key => !input[key] || String(row.environment?.[key] || '').toLowerCase() === input[key].toLowerCase())).sort((a: Row, b: Row) => a.memory_id.localeCompare(b.memory_id));
+  const matches = index.records.filter((row: Row) => row.skill_id === input.skill_id && row.base?.record_version === input.record_version && row.base?.source_commit === input.source_commit && keys.every(key => typeof row.environment?.[key] === 'string' && row.environment[key].toLowerCase() === input[key].toLowerCase())).sort((a: Row, b: Row) => a.memory_id.localeCompare(b.memory_id));
   return findingsResult(version.hub_commit, input, matches.slice(offset, offset + limit), matches.length, limit, offset, 'static_v1_fallback');
 }
 function cleanRow(row: Row) { const { _python_min, _python_max, _python_exclude, ...value } = row; return value; }

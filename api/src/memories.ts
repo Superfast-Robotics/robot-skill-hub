@@ -1,13 +1,12 @@
 import { ApiError, MEMORY_KINDS, SHA, SOURCE_REVISION, memoryPath, type GitHubAdapter, type JsonObject, type MemoryEntry, type MemoryFinding, type MemoryGitHubAdapter } from './types.ts';
 import { assert, canonical, fromBase64, rejectSubmissionSecrets, sha256, toBase64 } from './util.ts';
 import { sourceIdentity } from './references.ts';
+import { memoryEnvironmentKey } from './memory-environment.ts';
 
 const MAX_BYTES = 16 * 1024;
 const object = (value: any): value is JsonObject => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = (value: any, min: number, max: number): value is string => typeof value === 'string' && value.trim().length >= min && value.length <= max && !value.includes('\0');
 const fields = (value: JsonObject, allowed: string[]) => Object.keys(value).every(key => allowed.includes(key));
-const ENV_KEYS = ['runtime', 'runtime_version', 'robot', 'controller', 'observation', 'os', 'python', 'architecture', 'sim_backend', 'render_backend'];
-const PACKAGE_KEY = /^package\.[A-Za-z_][A-Za-z0-9_]{0,79}$/;
 const OBVIOUS_SECRETS = [/-----BEGIN (?:[A-Z ]*PRIVATE KEY)-----/, /\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})\b/, /\bsk-[A-Za-z0-9_-]{24,}\b/, /\bAKIA[A-Z0-9]{16}\b/, /\brsh_[A-Za-z0-9_-]{43}\b/, /\bBearer\s+[A-Za-z0-9._~+/-]{16,}=*/i, /https?:\/\/[^\s/@:]+:[^\s/@]+@/i];
 
 export function validateMemory(value: any): asserts value is MemoryFinding {
@@ -16,7 +15,7 @@ export function validateMemory(value: any): asserts value is MemoryFinding {
   assert(object(value.base) && fields(value.base, ['record_version', 'hub_commit', 'source_commit']) && text(value.base.record_version, 1, 120) && typeof value.base.hub_commit === 'string' && SHA.test(value.base.hub_commit) && typeof value.base.source_commit === 'string' && SOURCE_REVISION.test(value.base.source_commit), 'invalid_base', 'Exact catalog record, hub and source versions are required.');
   assert(MEMORY_KINDS.includes(value.kind), 'invalid_memory_kind', 'Unsupported finding kind.');
   assert(text(value.summary, 5, 300) && text(value.observation, 20, 4000) && (value.resolution === null || text(value.resolution, 1, 4000)), 'invalid_memory', 'Provide a short summary, bounded observation and optional resolution.');
-  assert(object(value.environment) && Object.keys(value.environment).length <= 16 && text(value.environment.runtime, 1, 240) && text(value.environment.robot, 1, 240) && Object.entries(value.environment).every(([key, val]) => (ENV_KEYS.includes(key) || PACKAGE_KEY.test(key)) && text(val, 1, 240)), 'invalid_environment', 'Environment accepts only bounded runtime/robot fields and package versions as strings.');
+  assert(object(value.environment) && Object.keys(value.environment).length <= 16 && text(value.environment.runtime, 1, 240) && text(value.environment.robot, 1, 240) && Object.entries(value.environment).every(([key, val]) => memoryEnvironmentKey(key) && text(val, 1, 240)), 'invalid_environment', 'Environment accepts only bounded runtime/robot fields and package versions as strings.');
   assert(object(value.evidence) && fields(value.evidence, ['level', 'command', 'result', 'reported_by']) && ['not_run', 'contributor_reported'].includes(value.evidence.level) && (value.evidence.command === null || text(value.evidence.command, 1, 2000)) && text(value.evidence.result, 1, 4000) && value.evidence.reported_by === 'submitter', 'invalid_evidence', 'Evidence must describe the actual, self-reported scope.');
   assert(object(value.attribution) && fields(value.attribution, ['contributor_label', 'preserve_upstream_attribution']) && text(value.attribution.contributor_label, 1, 150) && value.attribution.preserve_upstream_attribution === true, 'invalid_attribution', 'Preserve upstream attribution.');
   assert(object(value.publication) && fields(value.publication, ['public_submission_allowed']) && value.publication.public_submission_allowed === true, 'public_sharing_not_allowed', 'Public sharing must be explicitly permitted by project policy.', 403);

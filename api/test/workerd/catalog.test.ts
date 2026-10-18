@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { build } from 'esbuild';
 import { Miniflare, Request as RuntimeRequest, Response as RuntimeResponse } from 'miniflare';
-import { createCatalogSync, indexedFindings, indexedSearch, pruneCatalog, type CatalogDatabase } from '../../src/catalog.ts';
+import { createCatalogSync, indexedFindings, indexedSearch, pruneCatalog, staticFindings, type CatalogDatabase } from '../../src/catalog.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com', API = 'https://api.example.invalid';
 const KEY = 'local-native-catalog-sync-credential';
@@ -14,7 +14,7 @@ const hash = (text: string) => createHash('sha256').update(text).digest('hex');
 const bundle = build({ entryPoints: [fileURLToPath(new URL('../../src/index.ts', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'esm', target: 'es2023' }).then(result => result.outputFiles![0].text);
 const schema = readFile(new URL('../../migrations-catalog/0001_catalog.sql', import.meta.url), 'utf8');
 const membershipSchema = readFile(new URL('../../migrations-catalog/0002_page_memberships.sql', import.meta.url), 'utf8');
-function publication(commit: string, options: { duplicate?: boolean; duplicateMemory?: boolean; changedSource?: boolean; distinctMemoryPins?: boolean; pageSize?: number; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean; rowOverrides?: Record<string, unknown>[] } = {}) {
+function publication(commit: string, options: { duplicate?: boolean; duplicateMemory?: boolean; changedSource?: boolean; distinctMemoryPins?: boolean; pageSize?: number; wrongPageHash?: boolean; maliciousPath?: boolean; records?: number; memories?: number; invalidRow?: Record<string, unknown>; humanoid?: boolean; rowOverrides?: Record<string, unknown>[]; memoryOverrides?: Record<string, unknown>[] } = {}) {
   const count = options.records ?? 3;
   const full = Array.from({ length: count }, (_, index) => ({ id: index === 0 ? 'maniskill-panda-pick-cube' : index === 1 ? options.humanoid ? 'h1-locomotion' : 'kuka-grasp' : 'source-' + index, access: { hub_prepare: index === 0 }, source: { commit: 'b'.repeat(40), sha256: 'c'.repeat(64) } }));
   if (options.changedSource) full[1].source = { commit: 'd'.repeat(40), sha256: 'e'.repeat(64) };
@@ -24,6 +24,7 @@ function publication(commit: string, options: { duplicate?: boolean; duplicateMe
   if (options.invalidRow) Object.assign(rows[1], options.invalidRow);
   const memoryHash = (index: number) => index < 9 ? String(index + 1).repeat(64) : hash('finding-' + index);
   const memories = Array.from({ length: options.memories ?? 1 }, (_, i) => ({ schema_version: '1', memory_id: 'mem_' + memoryHash(i), skill_id: rows[options.distinctMemoryPins ? i : 0]?.id ?? 'absent-skill', base: { record_version: options.distinctMemoryPins ? rows[i].record_version : '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) }, environment: { runtime: 'maniskill', robot: i === 0 ? 'panda' : 'ur5', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64), entry_url: ORIGIN + '/memories/mem_' + memoryHash(i) + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported', summary: 'Contributor finding', evidence: { level: 'contributor_reported', runtime_verification: 'not_run' } }));
+  options.memoryOverrides?.forEach((values, index) => Object.assign(memories[index], values));
   const resources = new Map<string, string>();
   full.forEach((record, index) => resources.set((index === 0 ? '/skills/' : '/references/') + record.id + '/skill.json', JSON.stringify(record)));
   const pageList = (values: any[], kind: string) => {
@@ -267,6 +268,56 @@ async function runtime(initial = publication('a'.repeat(40)), options: { legacyS
   async function read(path: string) { const response = await mf.dispatchFetch(API + path, { headers: { DNT: '1', 'X-RSH-Telemetry': 'off' } }); return { status: response.status, body: await response.json() as any }; }
   return { mf, db, calls, sync, complete, read, migrate, set(value: ReturnType<typeof publication>) { current = value; } };
 }
+
+test('native and static finding recall binds flat package/backend fields to one exact-pin finding and preserves pagination', async () => {
+  const environment = { runtime: 'maniskill', robot: 'panda', sim_backend: 'cpu', render_backend: 'none', 'package.mesa': '23.2.1' };
+  const base = { record_version: '1.0.0', source_commit: 'b'.repeat(40), hub_commit: 'a'.repeat(40) };
+  const published = publication('a'.repeat(40), { memories: 9, memoryOverrides: [
+    { environment }, { environment: { ...environment, sim_backend: 'CPU' } },
+    { environment: { ...environment, sim_backend: 'gpu' } },
+    // A nested lookalike must not satisfy the approved flat package.mesa key.
+    { environment: { runtime: 'maniskill', robot: 'panda', sim_backend: 'cpu', render_backend: 'none', package: { mesa: '23.2.1' } } },
+    { environment: { ...environment, 'package.mesa': 'other' } },
+    { environment, base: { ...base, source_commit: 'f'.repeat(40) } },
+    { environment, base: { ...base, record_version: '1.0.1' } },
+    { environment, skill_id: 'kuka-grasp' },
+    { environment: { runtime: 'maniskill', robot: 'panda', 'package.long_name': 'x'.repeat(240) } }
+  ] });
+  const s = await runtime(published); try {
+    await s.complete();
+    const aggregate = JSON.stringify({ schema_version: '1', hub_commit: 'a'.repeat(40), records: published.memories });
+    const fallbackVersion = { hub_commit: 'a'.repeat(40), resources: { memories: { sha256: hash(aggregate) } } };
+    const staticFetch: typeof fetch = async input => { assert.equal(new URL(String(input)).pathname, '/catalog/v1/memories.json'); return new Response(aggregate); };
+    const pins = { skill_id: 'maniskill-panda-pick-cube', record_version: '1.0.0', source_commit: 'b'.repeat(40) };
+    const query = { ...pins, ...environment, limit: '1' };
+    const read = (input: Record<string, string>) => s.read('/v1/findings?' + new URLSearchParams(input));
+    const first = await read(query); assert.equal(first.status, 200); assert.equal(first.body.backend, 'd1');
+    assert.equal(first.body.total, 2); assert.equal(first.body.results[0].memory_id, published.memories[0].memory_id);
+    assert.deepEqual(first.body.next, { ...query, limit: 1, offset: 1, hub_commit: 'a'.repeat(40) });
+    const secondQuery = Object.fromEntries(Object.entries(first.body.next).map(([key, value]) => [key, String(value)]));
+    const second = await read(secondQuery); assert.equal(second.body.total, 2); assert.equal(second.body.next, null);
+    assert.equal(second.body.results[0].memory_id, published.memories[1].memory_id);
+    for (const input of [query, secondQuery, { ...query, 'package.mesa': 'unavailable' }, { ...query, sim_backend: 'metal' },
+      { ...pins, 'package.long_name': 'x'.repeat(240) }]) {
+      const native = await read(input); assert.equal(native.status, 200);
+      const fallback = await staticFindings(staticFetch, fallbackVersion, input);
+      assert.deepEqual({ ...native.body, backend: 'static_v1_fallback' }, fallback);
+    }
+    assert.equal((await read({ ...query, hub_commit: 'f'.repeat(40) })).status, 409);
+    for (const bad of [{ ...query, 'package.mesa': 'x'.repeat(241) }, { ...query, 'package.mesa': '' },
+      { ...query, 'package.mesa': '  ' }, { ...query, 'package.mesa': '\0' }, { ...query, 'package.mesa.extra': 'x' },
+      { ...query, 'package.mesa-name': 'x' }, { ...query, 'package.mesa" OR 1=1 --': 'x' },
+      { ...pins, ...Object.fromEntries(Array.from({ length: 17 }, (_, i) => ['package.p' + i, '1'])) }]) {
+      assert.equal((await read(bad)).status, 400);
+      await assert.rejects(staticFindings(staticFetch, fallbackVersion, bad), (error: any) => error.code === 'invalid_findings');
+    }
+    assert.equal((await read({ ...pins, ...Object.fromEntries(Array.from({ length: 16 }, (_, i) => ['package.p' + i, '1'])) })).status, 200);
+    assert.equal((await read({ ...pins, ['package.' + 'x'.repeat(80)]: '1' })).status, 200);
+    assert.equal((await read({ ...pins, ['package.' + 'x'.repeat(81)]: '1' })).status, 400);
+    assert.equal((await s.read('/v1/search?sim_backend=cpu')).status, 400);
+    assert.equal((await s.read('/v1/search?package.mesa=23.2.1')).status, 400);
+  } finally { await s.mf.dispose(); }
+});
 
 test('native D1 FTS stages both search and findings pages before atomically serving the matching generation', async () => {
   const published = publication('a'.repeat(40)); const s = await runtime(published); try {

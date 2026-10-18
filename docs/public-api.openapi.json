@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "description": "Agent-first robotics source discovery, reviewed contribution intake and exact-version task memory. A reference is not a runtime-verification claim.",
     "license": {
       "name": "MIT",
@@ -1287,7 +1287,7 @@
     "/v1/findings": {
       "get": {
         "summary": "Read published findings for exact source and record pins",
-        "description": "Data only, contributor-reported trust. All supplied environment fields match the same finding. One complete-query page with exact total and pinned next parameters;409 rejects a changed generation.",
+        "description": "Data only, contributor-reported trust. All supplied environment fields match the same finding, with case-insensitive string values. Accepts at most 16 environment filters, each a nonempty string of at most 240 characters without NUL. Package versions use flat package.NAME keys, never nested objects. One complete-query page with exact total and pinned next parameters; 409 rejects a changed generation.",
         "security": [],
         "parameters": [
           {
@@ -1322,7 +1322,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1330,7 +1332,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1338,7 +1342,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1346,7 +1352,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1354,7 +1362,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1388,7 +1398,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1396,7 +1408,9 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
             }
           },
           {
@@ -1404,7 +1418,52 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "maxLength": 80
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+            }
+          },
+          {
+            "name": "sim_backend",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+            }
+          },
+          {
+            "name": "render_backend",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240,
+              "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+            }
+          },
+          {
+            "name": "package_versions",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "description": "Exploded query object: send flat keys such as package.mesa=23.2.1. No literal package_versions parameter is sent. Package identifiers match [A-Za-z_][A-Za-z0-9_]{0,79}; these entries count toward the combined 16 environment-filter limit.",
+            "schema": {
+              "type": "object",
+              "maxProperties": 16,
+              "patternProperties": {
+                "^package\\.[A-Za-z_][A-Za-z0-9_]{0,79}$": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240,
+                  "pattern": "^(?![\\s\\S]*\\u0000)\\s*\\S(?:[\\s\\S]*\\S)?\\s*$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "example": {
+              "package.mesa": "23.2.1"
             }
           }
         ],
