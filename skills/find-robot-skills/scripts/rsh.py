@@ -146,6 +146,9 @@ def extract_global(argv):
 
 
 def execute(args, catalog_location):
+    if args.offline and args.command in ("submit", "submission-status"):
+        raise RshError("offline_submission_unavailable", "Patch submission and its remote status require an explicit online request.",
+                       status="blocked", network_performed=False, next_action="keep_local_draft_and_retry_without_offline")
     if args.command == "setup":
         return setup.configure(args.project, allow_public_memory=args.allow_public_memory, local_only=args.local_only,
                                skill_ids=args.skill, kinds=args.kind)

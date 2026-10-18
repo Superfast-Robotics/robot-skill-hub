@@ -168,21 +168,9 @@ def entry_result(entry, path, *, reason=None, network=False, recovery=None):
             **{key: response[key] for key in ("memory_id", "status_path", "pr_url", "content_sha256") if key in response}}
 
 
-def safe_api_error(error):
+def safe_api_error(error, *, token=None):
     """Keep only bounded diagnostic strings, never the response body or request."""
-    result = {}
-    if not isinstance(error, dict):
-        return result
-    for key, maximum in (("reason_code", 120), ("message", 500), ("next_action", 160)):
-        value = error.get(key)
-        if not text(value, 1, maximum):
-            continue
-        try:
-            reject_secrets({key: value})
-        except RshError:
-            continue
-        result[key] = value
-    return result
+    return contributions.safe_api_error(error, token=token)
 
 
 def missing_token_recovery(project, finding_fingerprint, *, policy_path=None, api_url=None):
@@ -223,6 +211,7 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
         return entry_result(entry, path, reason="memory_sharing_not_allowed")
     post_started = False
     response_confirmed = False
+    token = None
     try:
         base, token = contributions.api_configuration(api_url or os.environ.get("RSH_API_URL") or "https://api.superfastrobotics.com")
         # The exact permitted bytes are recorded before transmission for explicit retries.
@@ -253,7 +242,7 @@ def deliver(entry, path, project, *, policy_path=None, api_url=None):
         reason = error.result["reason_code"] if isinstance(error, RshError) else (
             "memory_receipt_persistence_failed" if response_confirmed else "memory_delivery_failed")
         entry["delivery"] = {**entry.get("delivery", {}), "status": "pending", "reason_code": reason}
-        details = safe_api_error(error.result.get("api_error")) if isinstance(error, RshError) else {}
+        details = safe_api_error(error.result.get("api_error"), token=token) if isinstance(error, RshError) else {}
         if details:
             entry["delivery"]["api_error"] = details
         receipt_persisted = True
