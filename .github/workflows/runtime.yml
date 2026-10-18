@@ -1,6 +1,21 @@
 name: Verify pinned CPU runtime
 on:
   workflow_dispatch:
+    inputs:
+      batch:
+        description: Reviewed CPU/state batch (at most three recipes, seed 0)
+        type: choice
+        required: true
+        default: initial-two
+        options:
+          - initial-two
+          - panda-transport
+          - panda-insertion
+          - panda-tools
+          - panda-stacking
+          - xarm6-basic
+          - xarm6-insertion
+          - so100-basic
 permissions:
   contents: read
 concurrency:
@@ -16,6 +31,8 @@ jobs:
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
       PYTHONUNBUFFERED: '1'
+      RSH_TELEMETRY: 'off'
+      RSH_RUNTIME_BATCH: ${{ inputs.batch || 'initial-two' }}
       VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +50,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/runtime-artifacts"
           vulkaninfo --summary > "$RUNNER_TEMP/runtime-artifacts/vulkan-summary.txt"
       - name: Prepare isolated recipes and run one seed per task
-        run: python tools/run_runtime_verification.py --output "$RUNNER_TEMP/runtime-artifacts" --work-dir "$RUNNER_TEMP/runtime-work"
+        run: python tools/run_runtime_verification.py --batch "$RSH_RUNTIME_BATCH" --output "$RUNNER_TEMP/runtime-artifacts" --work-dir "$RUNNER_TEMP/runtime-work"
       - name: Preserve execution evidence, including failures
         if: always()
         uses: actions/upload-artifact@v4
@@ -41,4 +58,4 @@ jobs:
           name: pinned-cpu-runtime-${{ github.run_id }}
           path: ${{ runner.temp }}/runtime-artifacts
           if-no-files-found: warn
-          retention-days: 7
+          retention-days: 1

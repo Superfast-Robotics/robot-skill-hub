@@ -1,0 +1,327 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "official_ros_tf2_console_node_source_and_derived_component_terms_review",
+  "scope": "Two source-only node references; console registration and component source terms inspected. No full-package license clearance, installation, runtime or physical-controller compatibility claim.",
+  "repository": "https://github.com/ros/geometry_tutorials",
+  "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+  "source_count": 2,
+  "source_bytes": 7930,
+  "sources": [
+    {
+      "id": "ros2-tf2-broadcaster",
+      "source": {
+        "repository": "https://github.com/ros/geometry_tutorials",
+        "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "sha256": "87928f4e427dc4166e936e262d4f519c915faa1ff2d59998540bc0d4c96ac61f",
+        "bytes": 3511,
+        "authors": [
+          "Open Source Robotics Foundation, Inc.",
+          "Matthew Brett",
+          "Christoph Gohlke"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0 AND BSD-2-Clause",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "scope": "Selected file has an Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc., plus a quaternion helper derived from transforms3d under BSD-2-Clause, copyright 2009-2019 Matthew Brett and Christoph Gohlke. Both notice sets apply to their components; retain attribution, terms, disclaimers and applicable notices when redistributing. Pinned BSD terms: https://github.com/matthew-brett/transforms3d/blob/f185e866ecccb66c545559bc9f2e19cb5025e0ab/LICENSE . This is not a choice between licenses or blanket package/dependency clearance.",
+        "verified": true
+      },
+      "role": "installed_ROS2_console_script_node_without_main_guard",
+      "invocation": {
+        "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_broadcaster",
+        "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_broadcaster:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy and broadcasts transforms from incoming pose messages. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node, package installer or simulator. A single fetched Python file is insufficient."
+      },
+      "requirements_and_source_effects": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The turtlename parameter defaults to turtle. Pose callbacks subscribe to /<turtlename>/pose, stamp transforms with current node time, set parent frame world and child frame turtlename, copy x/y with z=0, convert yaw to quaternion and call sendTransform. Set intended parameters and provide matching pose publishers; this node alone does not create a complete following demo. The exact source imports turtlesim_msgs, whose availability must be resolved in the chosen environment. The copied helper's pinned transforms3d terms were reviewed, but mathematical correctness, clock/frame behavior, package installation and ROS graph compatibility were not executed or tested."
+    },
+    {
+      "id": "ros2-tf2-listener",
+      "source": {
+        "repository": "https://github.com/ros/geometry_tutorials",
+        "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+        "bytes": 4419,
+        "authors": [
+          "Open Source Robotics Foundation, Inc."
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "scope": "Selected listener source under its explicit Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc. Preserve attribution, license and applicable notices. The package also declares BSD for other material; this source review does not clear the full package, dependencies or physical-robot use.",
+        "verified": true
+      },
+      "role": "installed_ROS2_console_script_node_without_main_guard",
+      "invocation": {
+        "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_listener",
+        "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_listener:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy, calls a spawn service and can publish velocity commands to the configured graph. No physical-controller compatibility or safe stopping is established. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node or simulator."
+      },
+      "requirements_and_source_effects": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The node defaults target_frame to turtle1, requests turtle2 at x=4.0, y=2.0, theta=0.0 and, after spawning, queries a transform into turtle2 with rclpy.time.Time(). On a nominal one-second timer it publishes angular z from atan2 and linear x as 0.5 times translation distance. The period and gains are source settings, not measurements. Transform failures are logged and return without an explicit zero-velocity stop. No obstacle check or speed clamp is present. This node does not generate its required transforms, and a single source file is insufficient. ROS graph dependencies, shutdown behavior, hardware remappings and compatibility remain untested."
+    }
+  ],
+  "ROS_source_license_package_setup_pins": {
+    "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+    "tree_sha1": "3a495a7993a3ff449f94e5afa6d99f763de127d2",
+    "files": [
+      {
+        "path": "LICENSE",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+        "raw_url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "tree_match": true
+      },
+      {
+        "path": "turtle_tf2_py/package.xml",
+        "bytes": 1303,
+        "sha256": "a3cf25d62108d90656e1c11c9f22017beaa84ca972b29470271bd9c00a478428",
+        "git_blob_sha1": "f6d009980084d6b617fb24d4fc99c13999cf3a11",
+        "raw_url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/package.xml",
+        "tree_match": true
+      },
+      {
+        "path": "turtle_tf2_py/setup.py",
+        "bytes": 1772,
+        "sha256": "28f5cf6535cb907ed696077a7877227db7c87f6bd9cebf7e6cc1919adbf3796f",
+        "git_blob_sha1": "99f56577166cfb86493939efd21e6c7be587c787",
+        "raw_url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py",
+        "tree_match": true
+      },
+      {
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "bytes": 3511,
+        "sha256": "87928f4e427dc4166e936e262d4f519c915faa1ff2d59998540bc0d4c96ac61f",
+        "git_blob_sha1": "0c95d1ac2bbbd257b9c5c8b358af9023eaefe999",
+        "raw_url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "tree_match": true
+      },
+      {
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "bytes": 4419,
+        "sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+        "git_blob_sha1": "c8904b7f56d4929798c6d83990b583bf9bc05e30",
+        "raw_url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "tree_match": true
+      }
+    ],
+    "static_sources": [
+      {
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "AST": "PASS",
+        "main_function": true,
+        "main_guard": false,
+        "imports": [
+          "import math",
+          "from geometry_msgs.msg import TransformStamped",
+          "import numpy as np",
+          "import rclpy",
+          "from rclpy.executors import ExternalShutdownException",
+          "from rclpy.node import Node",
+          "from tf2_ros import TransformBroadcaster",
+          "from turtlesim_msgs.msg import Pose"
+        ]
+      },
+      {
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "AST": "PASS",
+        "main_function": true,
+        "main_guard": false,
+        "imports": [
+          "import math",
+          "from geometry_msgs.msg import Twist",
+          "import rclpy",
+          "from rclpy.executors import ExternalShutdownException",
+          "from rclpy.node import Node",
+          "from tf2_ros import TransformException",
+          "from tf2_ros.buffer import Buffer",
+          "from tf2_ros.transform_listener import TransformListener",
+          "from turtlesim_msgs.srv import Spawn"
+        ]
+      }
+    ],
+    "console_scripts": [
+      "static_turtle_tf2_broadcaster = turtle_tf2_py.static_turtle_tf2_broadcaster:main",
+      "turtle_tf2_broadcaster = turtle_tf2_py.turtle_tf2_broadcaster:main",
+      "turtle_tf2_listener = turtle_tf2_py.turtle_tf2_listener:main",
+      "fixed_frame_tf2_broadcaster = turtle_tf2_py.fixed_frame_tf2_broadcaster:main",
+      "dynamic_frame_tf2_broadcaster = turtle_tf2_py.dynamic_frame_tf2_broadcaster:main",
+      "turtle_tf2_message_broadcaster = turtle_tf2_py.turtle_tf2_message_broadcaster:main"
+    ],
+    "package_version": "0.7.0",
+    "package_licenses": [
+      "Apache License, Version 2.0",
+      "BSD"
+    ],
+    "exec_dependencies": [
+      "geometry_msgs",
+      "launch",
+      "launch_ros",
+      "python3-numpy",
+      "rclpy",
+      "tf2_ros",
+      "turtlesim_msgs"
+    ],
+    "runtime_verification": "not_run",
+    "setup_not_executed": true
+  },
+  "derived_component": {
+    "linked_revision": "f185e866ecccb66c545559bc9f2e19cb5025e0ab",
+    "Git_tree_response_sha1": "f185e866ecccb66c545559bc9f2e19cb5025e0ab",
+    "tree_truncated": false,
+    "pins": [
+      {
+        "path": "LICENSE",
+        "raw_url": "https://raw.githubusercontent.com/matthew-brett/transforms3d/f185e866ecccb66c545559bc9f2e19cb5025e0ab/LICENSE",
+        "bytes": 3587,
+        "sha256": "978b231893230afc105bacea5c88235b9b2cd9a63804c8670e16350eda51036c",
+        "git_blob_sha1": "11e5166dfb63bd36b0868a503b9b7af73cb85e90",
+        "tree_match": true
+      },
+      {
+        "path": "transforms3d/euler.py",
+        "raw_url": "https://raw.githubusercontent.com/matthew-brett/transforms3d/f185e866ecccb66c545559bc9f2e19cb5025e0ab/transforms3d/euler.py",
+        "bytes": 17442,
+        "sha256": "d240e7c64dbaf23620fdde49a4d8bc4f6a4523e8e7485868beb3c8117012b916",
+        "git_blob_sha1": "7f5d7b4eeb4755bf7fb843be73d9c491f8e432b0",
+        "tree_match": true
+      }
+    ],
+    "derived_function": "euler2quat",
+    "function_lines": [
+      306,
+      375
+    ],
+    "component_spdx": "BSD-2-Clause",
+    "notice": "Copyright (c) 2009-2019, Matthew Brett and Christoph Gohlke",
+    "separate_Sphinx_extension_terms_not_in_selected_helper": true,
+    "review_scope": "Read license, module header and relevant Euler function as inert text; SHA checked complete fetched module. No mathematical or runtime test.",
+    "GETs": 3,
+    "upstream_execution": false
+  },
+  "derived_terms_scope": "The referenced transforms3d euler.py helper is under the package BSD-2-Clause terms, including copyright 2009-2019 Matthew Brett and Christoph Gohlke. Separate Sphinx-extension terms concern other material, not the selected helper. The linked Git revision/tree was verified without a separate commit-type claim.",
+  "license_disposition": {
+    "listener": "Apache-2.0 source header plus pinned root text",
+    "broadcaster": "Apache-2.0 AND BSD-2-Clause; both component notice sets retained, not an OR choice",
+    "package_XML_context": [
+      "Apache License, Version 2.0",
+      "BSD"
+    ],
+    "other_package_dependencies_or_assets_cleared": false
+  },
+  "retrieval": {
+    "initial_ROS_GETs": 8,
+    "separate_derived_terms_GETs": 3,
+    "current_curation_GETs": 0,
+    "requests": [
+      {
+        "url": "https://api.github.com/repos/ros/geometry_tutorials",
+        "status": 200,
+        "bytes": 6342,
+        "sha256": "25a6cfbb4eda266452eab259874a18d07a2795a50ee37212558dcc8b78ae806e",
+        "at": "2026-10-18T03:56:53.419110+00:00",
+        "max_body_bytes": 131072
+      },
+      {
+        "url": "https://api.github.com/repos/ros/geometry_tutorials/commits/rolling",
+        "status": 200,
+        "bytes": 10566,
+        "sha256": "dbf5c3d0eaee46cd5d039f543ebe6d37ea8ddd695ae24bb99232cf7b9e3ea2d0",
+        "at": "2026-10-18T03:57:02.116540+00:00",
+        "max_body_bytes": 131072
+      },
+      {
+        "url": "https://api.github.com/repos/ros/geometry_tutorials/git/trees/3a495a7993a3ff449f94e5afa6d99f763de127d2?recursive=1",
+        "status": 200,
+        "bytes": 12738,
+        "sha256": "8cb18435ba0e3cff8deb1b5bdc33e14e1433d8b97d4befc74619c24df48d8a1d",
+        "at": "2026-10-18T03:57:02.492557+00:00",
+        "max_body_bytes": 2097152
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "status": 200,
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "at": "2026-10-18T03:57:20.460702+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/package.xml",
+        "status": 200,
+        "bytes": 1303,
+        "sha256": "a3cf25d62108d90656e1c11c9f22017beaa84ca972b29470271bd9c00a478428",
+        "at": "2026-10-18T03:57:20.421700+00:00",
+        "max_body_bytes": 32768
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py",
+        "status": 200,
+        "bytes": 1772,
+        "sha256": "28f5cf6535cb907ed696077a7877227db7c87f6bd9cebf7e6cc1919adbf3796f",
+        "at": "2026-10-18T03:57:20.420700+00:00",
+        "max_body_bytes": 32768
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "status": 200,
+        "bytes": 3511,
+        "sha256": "87928f4e427dc4166e936e262d4f519c915faa1ff2d59998540bc0d4c96ac61f",
+        "at": "2026-10-18T03:57:26.601800+00:00",
+        "max_body_bytes": 32768
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ros/geometry_tutorials/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "status": 200,
+        "bytes": 4419,
+        "sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+        "at": "2026-10-18T03:57:26.563747+00:00",
+        "max_body_bytes": 32768
+      },
+      {
+        "url": "https://api.github.com/repos/matthew-brett/transforms3d/git/trees/f185e866ecccb66c545559bc9f2e19cb5025e0ab?recursive=1",
+        "status": 200,
+        "bytes": 21171,
+        "sha256": "4582da3b984bf924c783b6a56a7b65c9f2b8bddfeaf986f656477dd741e5ec77",
+        "at": "2026-10-18T04:02:05.509478+00:00",
+        "max_body_bytes": 1048576
+      },
+      {
+        "url": "https://raw.githubusercontent.com/matthew-brett/transforms3d/f185e866ecccb66c545559bc9f2e19cb5025e0ab/LICENSE",
+        "status": 200,
+        "bytes": 3587,
+        "sha256": "978b231893230afc105bacea5c88235b9b2cd9a63804c8670e16350eda51036c",
+        "at": "2026-10-18T04:02:23.599368+00:00",
+        "max_body_bytes": 32768
+      },
+      {
+        "url": "https://raw.githubusercontent.com/matthew-brett/transforms3d/f185e866ecccb66c545559bc9f2e19cb5025e0ab/transforms3d/euler.py",
+        "status": 200,
+        "bytes": 17442,
+        "sha256": "d240e7c64dbaf23620fdde49a4d8bc4f6a4523e8e7485868beb3c8117012b916",
+        "at": "2026-10-18T04:02:23.619807+00:00",
+        "max_body_bytes": 65536
+      }
+    ],
+    "DNT": "1",
+    "X-RSH-Telemetry": "off",
+    "anonymous_no_cookies_proxy_or_redirect_following": true,
+    "bounded_bodies": true
+  },
+  "verification": {
+    "Python_AST_and_console_registration": "Static only; no setup execution",
+    "compatibility": "All six required dimensions and status unknown",
+    "runtime_verification": "not_run",
+    "mathematical_correctness_or_timing_tested": false
+  },
+  "actions": {
+    "source_redistributed": false,
+    "upstream_import_install_execute": false,
+    "ROS_simulator_controller_or_robot_run": false,
+    "GPU_cloud_paid_auth_secret_or_brand_use": false,
+    "API_receipts_or_adapter_or_importer_changes": false
+  }
+}

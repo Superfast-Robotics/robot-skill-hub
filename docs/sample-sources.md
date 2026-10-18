@@ -196,6 +196,13 @@ module from two guarded planning and pose-control programs. The pose interface
 may control hardware; examples retain unresolved upstream attribution. These
 source references have no Hub adapter and remain `runtime_verification: not_run`.
 
+## ROS 2 tf2 frames and following
+
+The [ROS 2 tf2 source review](../docs/ros2-tf2-sources.md) describes two registered
+console-entrypoint nodes for transform broadcasting and frame-based turtle
+following. Component Apache/BSD terms and ROS graph effects are explicit. These
+source references have no Hub adapter and remain `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh

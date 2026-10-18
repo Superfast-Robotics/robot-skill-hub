@@ -1,0 +1,94 @@
+{
+  "id": "ros2-tf2-listener",
+  "name": "ROS 2 tf2 transform listener and turtle-following node",
+  "summary": "Official ROS geometry tutorial node that spawns turtle2, looks up its transform relative to a target frame and publishes Twist velocity commands to follow that target. It is an installed ROS 2 console entrypoint with ROS graph effects, not a direct Python-file main or a verified robot controller.",
+  "framework": "ros2-tf2",
+  "kind": "community_skill",
+  "capabilities": [
+    "coordinate-transforms",
+    "frame-following",
+    "velocity-command",
+    "robotics-middleware"
+  ],
+  "aliases": [
+    "ROS 2",
+    "tf2",
+    "TransformListener",
+    "Buffer",
+    "lookup_transform",
+    "turtlesim",
+    "Twist"
+  ],
+  "robots": [
+    "turtlesim"
+  ],
+  "source": {
+    "repository": "https://github.com/ros/geometry_tutorials",
+    "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+    "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+    "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+    "sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+    "bytes": 4419,
+    "authors": [
+      "Open Source Robotics Foundation, Inc."
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+    "scope": "Selected listener source under its explicit Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc. Preserve attribution, license and applicable notices. The package also declares BSD for other material; this source review does not clear the full package, dependencies or physical-robot use.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Compatible ROS 2 rclpy environment with the context-manager init API used by this source",
+      "tf2_ros",
+      "geometry_msgs",
+      "turtlesim_msgs",
+      "Installed turtle_tf2_py package exposing the reviewed console entrypoint"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured ROS graph providing the relative spawn service and appropriate turtle1/turtle2 transforms",
+      "Reviewed namespace, target_frame parameter and intended turtle2/cmd_vel subscribers"
+    ],
+    "notes": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The node defaults target_frame to turtle1, requests turtle2 at x=4.0, y=2.0, theta=0.0 and, after spawning, queries a transform into turtle2 with rclpy.time.Time(). On a nominal one-second timer it publishes angular z from atan2 and linear x as 0.5 times translation distance. The period and gains are source settings, not measurements. Transform failures are logged and return without an explicit zero-velocity stop. No obstacle check or speed clamp is present. This node does not generate its required transforms, and a single source file is insufficient. ROS graph dependencies, shutdown behavior, hardware remappings and compatibility remain untested."
+  },
+  "invocation": {
+    "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_listener",
+    "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_listener:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy, calls a spawn service and can publish velocity commands to the configured graph. No physical-controller compatibility or safe stopping is established. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node or simulator."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned node, package declarations and setup registration before configuring the intended ROS graph. This source reference does not install or execute code.",
+    "setup_url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete node read as inert text and Python AST parsed without import or execution. Source, license, package XML and setup bytes matched SHA-256, lengths and immutable-tree Git blob pins. Installed console registration and ROS graph effects were inspected; no ROS/Python/OS combination, controller, simulator or task result was tested."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-bb2c9f91a430",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

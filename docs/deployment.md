@@ -129,6 +129,12 @@ Keep the Cloudflare account on the existing free plan and the GitHub repository 
 
 [D1 free quotas](https://developers.cloudflare.com/d1/platform/pricing/) include 100,000 written rows per day and reset at 00:00 UTC. They apply across the account, including catalog indexing and access measurements. Measurements are best-effort and may lose events during storage failures. Stored counts are lower bounds during a known interruption; do not estimate missing accesses, reclassify unrelated traffic or replay requests to fill the gap. Reduce unnecessary catalog publications and resume the existing generation after the quota resets. No paid fallback is configured.
 
+## CPU runtime verification
+
+The manual `Verify pinned CPU runtime` workflow runs one named batch on the standard public Ubuntu runner, never a GPU or larger runner. `initial-two` remains the default. The other explicit batches are `panda-transport`, `panda-insertion`, `panda-tools`, `panda-stacking`, `xarm6-basic`, `xarm6-insertion` and `so100-basic`. Together these non-overlapping batches cover the 17 reviewed preparation recipes, with at most three tasks per run and seed 0. No batch starts on push or on a schedule.
+
+Preview metadata locally with `python tools/run_runtime_verification.py --batch xarm6-basic --plan`. This creates no project and performs no download, installation or execution. An actual workflow prepares isolated environments, installs the pinned CPU dependencies, and records each selected robot/controller and actual result under the explicit 1000-step Hub horizon and 180-second task timeout. The 25-minute job limit still applies. Logs, environment and source/adapter pins are retained as artifacts for one day; preserve inspected evidence before expiry. Failed, timed-out and unexecuted tasks remain distinct from successful task completion. The harness never publishes findings or promotes catalog evidence automatically.
+
 ## Task-memory operations
 
 Memory requests use the same repository-scoped Worker credential and caller token; no broader GitHub permission is required. `POST /v1/memories` accepts at most 16 KiB of structured JSON, checks exact historical catalog pins, and creates an internal draft PR. `GET /v1/memories/MEMORY_ID` is owner-scoped. Public API capabilities describe the current endpoints and limits.
