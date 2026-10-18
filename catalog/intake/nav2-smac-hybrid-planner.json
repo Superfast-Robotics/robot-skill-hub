@@ -53,6 +53,7 @@
       "rclcpp",
       "rclcpp_action",
       "rclcpp_lifecycle",
+      "std_msgs",
       "visualization_msgs",
       "nav2_util",
       "nav2_msgs",

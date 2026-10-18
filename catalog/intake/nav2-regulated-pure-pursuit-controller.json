@@ -57,6 +57,8 @@
       "rclcpp",
       "geometry_msgs",
       "nav2_msgs",
+      "nav_msgs",
+      "std_msgs",
       "pluginlib",
       "tf2",
       "tf2_geometry_msgs",
