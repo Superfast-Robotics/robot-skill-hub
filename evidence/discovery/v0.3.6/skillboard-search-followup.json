@@ -1,0 +1,112 @@
+{
+  "status": "COMPLETE_BOUNDED_SKILLBOARD_FOLLOWUP_NO_OWNED_SEARCH_CARD_QUEUE_UNKNOWN",
+  "compiled_at_utc": "2026-10-18T09:31:21.441310+00:00",
+  "channel": "Skillboard",
+  "reason_due": "First six-hour cadence after original response03:04:10UTC passed; one bounded follow-up round only.",
+  "original_submission": {
+    "source_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/skills/find-robot-skills",
+    "response_observed_at_utc": "2026-10-18T03:04:10.138948+00:00",
+    "http_status": 201,
+    "response": {
+      "status": "accepted",
+      "id": "61683293-cb3b-44d7-85bb-435aaaa51c19"
+    },
+    "response_sha256": "ca0de95b7d9fe22ccce7f93bdfd60e776c0dd747100a0d7435c397035070a6aa",
+    "meaning": "Last actually observed backend receipt is accepted for review at that historical time; this is not current pending-state proof."
+  },
+  "search_contract": {
+    "source": "https://www.skillboard.lol/_next/static/chunks/app/skills/page-0f3070f7fb044772.js?dpl=dpl_EKv9sH1kzLUkhCVHTo3HsK59qdZY",
+    "sha256": "b2cd0583c819fc82e31325de2f09c13528ec519aa0fc7e074d96f738b206099d",
+    "meaning": "Official linked frontend uses URLSearchParams q and navigates to /skills?<query>; the two GET search URLs derive from this observed contract. No guessed API or script evaluation.",
+    "official_placeholder": "name or description"
+  },
+  "exact_name_search": {
+    "query": "find-robot-skills",
+    "provider_reported_matching_skills": 0,
+    "rendered_card_links": 0,
+    "owned_identity_card_links": 0,
+    "correct_owned_repo_artifact_verified": false,
+    "scope": "Only this returned official SSR search response; no provider-wide listing absence or queue-state claim."
+  },
+  "natural_robotics_search": {
+    "query": "robotics",
+    "provider_reported_matching_skills": 6,
+    "rendered_card_links": 6,
+    "owned_identity_card_links": 0,
+    "correct_owned_repo_artifact_verified": false,
+    "scope": "Only this returned official SSR search response; no provider-wide listing absence or queue-state claim."
+  },
+  "current_review_queue": {
+    "state": "unknown",
+    "status_GET_performed": false,
+    "reason": "Retained official submission frontend exposes POST receipt handling only, not a documented status lookup. Current public catalog/search contract inspected here likewise supplies no submission-ID status route. No endpoint was invented or POST reused."
+  },
+  "observations": [
+    {
+      "label": "01-catalog-contract",
+      "url": "https://www.skillboard.lol/skills",
+      "requested_at_utc": "2026-10-18T09:29:51.052726+00:00",
+      "observed_at_utc": "2026-10-18T09:29:51.559609+00:00",
+      "http_status": 200,
+      "bytes": 165756,
+      "response_sha256": "695d9e2b785ccb88e5ef7204e39a10e6eb71eb136a92cc7cd6d91b73b366a49f",
+      "request_receipt_sha256": "008c11a986d4a00fb46bdecc73126f17ecc9251111e19644f576e974d6d10694",
+      "response_receipt_sha256": "91555bb71f0d1f6acfd15f0b38314ef94b600fcb2c504f6270fb61b1201bdd16"
+    },
+    {
+      "label": "02-search-frontend-contract",
+      "url": "https://www.skillboard.lol/_next/static/chunks/app/skills/page-0f3070f7fb044772.js?dpl=dpl_EKv9sH1kzLUkhCVHTo3HsK59qdZY",
+      "requested_at_utc": "2026-10-18T09:30:08.383999+00:00",
+      "observed_at_utc": "2026-10-18T09:30:08.911372+00:00",
+      "http_status": 200,
+      "bytes": 8427,
+      "response_sha256": "b2cd0583c819fc82e31325de2f09c13528ec519aa0fc7e074d96f738b206099d",
+      "request_receipt_sha256": "e5afa1acdfd6d812882295a681269290d30b7504da2d1a73b9a370d95daf1376",
+      "response_receipt_sha256": "57d3a8aedec9f5271703374bc0c6e7b15f6399aaf6ad256bbdeffb4061cbb8b5"
+    },
+    {
+      "label": "03-exact-skill-search",
+      "url": "https://www.skillboard.lol/skills?q=find-robot-skills",
+      "requested_at_utc": "2026-10-18T09:30:16.062065+00:00",
+      "observed_at_utc": "2026-10-18T09:30:16.563098+00:00",
+      "http_status": 200,
+      "bytes": 40394,
+      "response_sha256": "b9bdd3df024a450154af40cfa62b866dfecd7d4217e2ac4dc8a899aa7e22f4da",
+      "request_receipt_sha256": "1731a2020624b028c09944cd234b95f81e9f83dbdaced63c9880994ce507368b",
+      "response_receipt_sha256": "7328346da8f5bd736a9b07edbbed3fed4912648030554cb832e0383be6cd6972"
+    },
+    {
+      "label": "04-natural-robotics-search",
+      "url": "https://www.skillboard.lol/skills?q=robotics",
+      "requested_at_utc": "2026-10-18T09:30:30.534634+00:00",
+      "observed_at_utc": "2026-10-18T09:30:30.899415+00:00",
+      "http_status": 200,
+      "bytes": 78994,
+      "response_sha256": "13324939ac4888c35f2659f75b30c62a6583578dcb1c92dca84de86a81e0f62c",
+      "request_receipt_sha256": "b70df653bf13fe0fe2b3da42769084bb30d2621cea3ff10ff75490cbea6a0d54",
+      "response_receipt_sha256": "a270bcd33738ba5f57c9c9465646a210429f8a8f8311f1f8d925d069fee4d6af"
+    }
+  ],
+  "limits": {
+    "public_listing_currentness": "No matching owned card in two actual returned searches. A differently named/nonmatching listing elsewhere, internal review decision, rejection, queue state, provider source commit and current download are not established.",
+    "search_visibility_verified": false,
+    "client_installation_or_robot_execution": false,
+    "adoption_or_traffic": false,
+    "provider_script_execution": false
+  },
+  "budget": {
+    "anonymous_official_GETs": 4,
+    "maximum_authorized": 5,
+    "POSTs": 0,
+    "Hub_or_API_requests": 0,
+    "auth": false,
+    "cookies": false,
+    "proxy": false,
+    "redirects_followed": false,
+    "retries": 0,
+    "resubmissions": 0,
+    "messages_or_nudges": 0,
+    "tracked_or_Git_mutations": false
+  },
+  "next_action": "Preserve this result. No resubmission, nudge, guessed status call, workaround or additional polling in this round. A later cadence/read-only scope can check if needed; current queue remains unknown."
+}
