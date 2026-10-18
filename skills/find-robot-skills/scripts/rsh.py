@@ -276,8 +276,17 @@ def execute(args, catalog_location):
                                api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
         result = inspect(catalog, args.skill_id)
-        result["findings"] = memories.for_selection(catalog, args.skill_id, environment,
-                                                   offline=args.offline, refresh=args.refresh)
+        if catalog_location:
+            # A private/custom catalog is not permission to send its identities
+            # to the Hub or associate it with a shared local finding index.
+            result["findings"] = {"status": "unknown", "reason_code": "explicit_catalog_requires_findings_selection",
+                "interpretation": "data_only", "applicability": "needs_applicability_check", "automatic": False,
+                "results": [], "total": None, "coverage": {"complete": False}, "limit": 3, "offset": 0, "next": None,
+                "execution_performed": False, "network_performed": False,
+                "next_action": "choose_findings_index_and_query_memories"}
+        else:
+            result["findings"] = memories.for_selection(catalog, args.skill_id, environment,
+                                                       offline=args.offline, refresh=args.refresh)
         return catalog_handoff(result, catalog_location, args.offline)
     if args.command == "fetch-source":
         return catalog_handoff(acquisition.fetch_source(catalog, args.skill_id, args.project,

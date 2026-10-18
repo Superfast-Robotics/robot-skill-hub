@@ -13,7 +13,7 @@ from unittest import mock
 
 from test_rsh import fixture_catalog, failed_attempt, HUB, PIN, SKILL
 from test_memory_cli import finding, reference_catalog
-from rshlib import contributions, discovery, memories
+from rshlib import contributions, discovery, memories, remote_catalog
 
 
 def published(catalog=None, skill_id="fixture-pick", **changes):
@@ -37,18 +37,39 @@ class SelectionFindingsTests(unittest.TestCase):
         self.env.stop()
         self.tmp.cleanup()
 
-    def cli(self, args, catalog=None):
+    def cli(self, args, catalog=None, *, explicit_catalog=False):
         cli = runpy.run_path(str(SKILL / "scripts/rsh.py"), run_name="selection_test")
         path = self.root / "catalog.json"
-        path.write_text(json.dumps(catalog or fixture_catalog()), encoding="utf-8")
+        selected = catalog or fixture_catalog()
+        path.write_text(json.dumps(selected), encoding="utf-8")
         output = io.StringIO()
         with redirect_stdout(output):
-            code = cli["main"]([*args, "--catalog", str(path), "--json"])
+            if args[0] == "inspect" and not explicit_catalog:
+                with mock.patch.object(remote_catalog, "selected_catalog", return_value=selected):
+                    code = cli["main"]([*args, "--json"])
+            else:
+                code = cli["main"]([*args, "--catalog", str(path), "--json"])
         return code, json.loads(output.getvalue())
 
     def index(self, records, **changes):
         return {"schema_version": "1", "hub_commit": HUB, "coverage": {"complete": True},
                 "records": records, **changes}
+
+    def test_explicit_local_catalog_never_queries_hub_or_shared_local_findings(self):
+        for flags in ([], ["--offline"]):
+            with self.subTest(flags=flags), \
+                    mock.patch.object(memories, "for_selection", side_effect=AssertionError("implicit shared lookup")) as recall, \
+                    mock.patch.object(discovery, "fetch_public", side_effect=AssertionError("HTTP")) as http:
+                code, detail = self.cli(["inspect", "fixture-pick", *flags], explicit_catalog=True)
+            self.assertEqual((0, "ready"), (code, detail["status"]))
+            self.assertEqual(PIN, detail["source"]["commit"])
+            self.assertEqual("explicit_catalog_requires_findings_selection", detail["findings"]["reason_code"])
+            self.assertEqual("unknown", detail["findings"]["status"])
+            self.assertIsNone(detail["findings"]["total"])
+            self.assertEqual({"complete": False}, detail["findings"]["coverage"])
+            self.assertFalse(detail["findings"]["network_performed"])
+            recall.assert_not_called()
+            http.assert_not_called()
 
     def test_inspect_automatically_recalls_exact_version_without_credentials_or_project(self):
         entry = published()
