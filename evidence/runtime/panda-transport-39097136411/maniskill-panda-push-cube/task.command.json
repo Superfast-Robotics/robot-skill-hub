@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-push-cube/.robot-skill-hub/environments/maniskill-panda-push-cube/bin/python",
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-push-cube/.robot-skill-hub/recipes/maniskill-panda-push-cube/run.py",
+    "--seed",
+    "0"
+  ],
+  "timeout_seconds": 180,
+  "started": true,
+  "timed_out": false,
+  "exit_code": 0,
+  "duration_seconds": 4.575,
+  "stdout_file": "task.stdout.txt",
+  "stderr_file": "task.stderr.txt"
+}

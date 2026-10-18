@@ -1,0 +1,13 @@
+{
+  "python": "3.10.22 (main, Oct  1 2026, 14:31:30) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+  "architecture": "x86_64",
+  "packages": {
+    "mani_skill": "3.0.0b22",
+    "torch": "2.5.1+cpu",
+    "numpy": "1.26.4",
+    "sapien": "3.0.0",
+    "mplib": "0.1.1",
+    "fast_kinematics": "0.2.2"
+  }
+}

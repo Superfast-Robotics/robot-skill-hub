@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/environments/maniskill-panda-lift-peg-upright/bin/python",
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/recipes/maniskill-panda-lift-peg-upright/run.py",
+    "--seed",
+    "0"
+  ],
+  "timeout_seconds": 180,
+  "started": true,
+  "timed_out": false,
+  "exit_code": 0,
+  "duration_seconds": 3.327,
+  "stdout_file": "task.stdout.txt",
+  "stderr_file": "task.stderr.txt"
+}
