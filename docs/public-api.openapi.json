@@ -29,6 +29,19 @@
             }
           },
           {
+            "name": "query_mode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all_terms",
+                "task"
+              ],
+              "default": "all_terms"
+            },
+            "description": "all_terms keeps word-prefix matching. task opts into bounded ASCII English lexical ranking with at most16 content terms over at most512 hard-filtered records before text matching. query_too_broad requires narrower runtime/robot/environment filters; more text alone does not reduce scope. Task results expose query_terms, candidate_scope=hard_filtered_records, candidate_count, candidate_limit and per-row query_match scores. Preserve query_mode and hub_commit for pagination. Matches do not establish runtime compatibility."
+          },
+          {
             "name": "runtime",
             "in": "query",
             "schema": {

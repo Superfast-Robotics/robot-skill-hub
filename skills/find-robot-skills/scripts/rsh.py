@@ -47,6 +47,8 @@ def build_parser():
     check.add_argument("--api-url")
     search = sub.add_parser("find", help="Find at most three candidate recipes without running their code")
     search.add_argument("query")
+    search.add_argument("--query-mode", choices=("all_terms", "task"), default="all_terms",
+                        help="Opt in to bounded English task ranking; default requires every query term")
     search.add_argument("--limit", type=int, default=3, choices=(1, 2, 3))
     search.add_argument("--offset", type=int, default=0, help="Read a later bounded search page (0..1000000)")
     search.add_argument("--hub-commit", help="Keep search pagination on the exact Hub generation returned by the previous page")
@@ -226,10 +228,11 @@ def execute(args, catalog_location):
     if args.command == "find" and not catalog_location and not args.offline:
         try:
             return catalog_handoff(remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh,
-                                         offset=args.offset, hub_commit=args.hub_commit), None, args.offline)
+                                         offset=args.offset, hub_commit=args.hub_commit, query_mode=args.query_mode), None, args.offline)
         except (RshError, OSError, ValueError, TypeError) as error:
             if isinstance(error, RshError) and error.result.get("reason_code") in (
-                    "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit"):
+                    "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit", "query_too_broad",
+                    "invalid_query_mode", "invalid_task_query", "unsupported_task_query"):
                 raise
             fallback_reason = "public_search_unavailable"
     catalog = None
@@ -265,7 +268,8 @@ def execute(args, catalog_location):
     if fallback_reason:
         catalog["discovery_fallback_reasons"] = [fallback_reason]
     if args.command == "find":
-        return catalog_handoff(find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit),
+        return catalog_handoff(find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit,
+                                    query_mode=args.query_mode),
                                catalog_location, args.offline)
     if args.command == "register":
         return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,

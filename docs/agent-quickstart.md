@@ -19,7 +19,7 @@ python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robo
 python /PATH_TO_SKILL/scripts/rsh.py inspect SKILL_ID --json
 ```
 
-Read the installed `SKILL.md`. Use short task terms and known filters; omit unknown environment values. Preserve each result's origin, generation, coverage, source pins, license and evidence. For another page, repeat the query and filters with the returned offset and Hub commit. [Search and preparation details](search.md) cover matching, exact filter combinations and offline behavior.
+Read the installed `SKILL.md`. Use short terms, or opt in to English sentence ranking with CLI `--query-mode task` (API/MCP `query_mode: "task"`) and known filters; omit unknown values. Task mode requires narrower hard filters if more than 512 records remain. Preserve each result's origin, generation, coverage, source pins, license and evidence. For another page, repeat the query and filters with the returned offset and Hub commit. [Search and preparation details](search.md) cover matching, exact filter combinations and offline behavior.
 
 Without Node, use Git and Python. In a POSIX shell, select a fresh directory that does not already exist:
 

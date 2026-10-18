@@ -1,5 +1,5 @@
 /** Fixed-source, bounded D1 mirror. Catalog metadata is data, never executable. */
-import { queryTerms } from './search.ts';
+import { queryTerms, taskTerms, rankTaskRows, taskMetadata, TaskQueryError, TASK_LIMIT } from './search.ts';
 import { memoryEnvironmentKey } from './memory-environment.ts';
 
 export const HUB_ORIGIN = 'https://hub.superfastrobotics.com';
@@ -79,12 +79,13 @@ export async function indexedRow(db: CatalogDatabase, commit: string, id: string
 }
 export const FILTERS = ['runtime', 'runtime_version', 'robot', 'controller', 'observation', 'os', 'python', 'architecture'];
 export function validateSearch(input: Row, commit: string) {
-  if (Object.keys(input).some(key => !['q', ...FILTERS, 'kind', 'limit', 'offset', 'hub_commit'].includes(key))) reject(400, 'invalid_search', 'Use only documented search parameters.');
+  if (Object.keys(input).some(key => !['q', ...FILTERS, 'kind', 'limit', 'offset', 'hub_commit', 'query_mode'].includes(key))) reject(400, 'invalid_search', 'Use only documented search parameters.');
   const limit = input.limit === undefined ? 10 : Number(input.limit), offset = input.offset === undefined ? 0 : Number(input.offset);
   if (!Number.isInteger(limit) || limit < 1 || limit > 50 || !Number.isInteger(offset) || offset < 0 || offset > 1000000) reject(400, 'invalid_pagination', 'limit must be 1..50 and offset a nonnegative bounded integer.');
   for (const [key, value] of Object.entries(input)) if (!['limit', 'offset'].includes(key) && (typeof value !== 'string' || value.length > (key === 'q' ? 240 : 80))) reject(400, 'invalid_search', 'Search values must be bounded strings.');
   if (input.hub_commit && input.hub_commit !== commit) reject(409, 'catalog_changed', 'Refresh the query before continuing pagination on a new catalog version.');
   if (input.kind && !['preparation_recipe', 'source_reference'].includes(input.kind)) reject(400, 'invalid_kind', 'kind must be preparation_recipe or source_reference.');
+  if (input.query_mode !== undefined && !['all_terms', 'task'].includes(input.query_mode)) reject(400, 'invalid_query_mode', 'query_mode must be all_terms or task.');
   return { limit, offset };
 }
 function versionNumber(value: string) { const parts = value.split('.').map(Number); return parts[0] * 1000000 + (parts[1] || 0) * 1000 + (parts[2] || 0); }
@@ -140,6 +141,13 @@ function sqlFilters(input: Row) {
 }
 export async function indexedSearch(db: CatalogDatabase, commit: string, input: Row) {
   const { limit, offset } = validateSearch(input, commit);
+  if (input.query_mode === 'task') {
+    const { clauses, values } = sqlFilters(input);
+    // Bound the entire hard-filtered set before text matching. No FTS recall
+    // approximation: the same rows reach the static and Python scorers.
+    const rows = (await db.prepare(`SELECT d.row_json FROM catalog_all_members m JOIN catalog_documents d ON d.doc_hash=m.doc_hash WHERE m.hub_commit=?${clauses.length ? ' AND ' + clauses.join(' AND ') : ''} ORDER BY d.id COLLATE BINARY LIMIT ?`).bind(commit, ...values, TASK_LIMIT + 1).all()).results.map(value => cleanRow(JSON.parse(value.row_json)));
+    return taskSearch(rows, input, limit, offset);
+  }
   const terms = queryTerms(String(input.q || ''));
   if (String(input.q || '').trim() && !terms.length) return { results: [], total: 0, limit, offset };
   const { clauses, values } = sqlFilters(input);
@@ -155,6 +163,15 @@ export async function indexedSearch(db: CatalogDatabase, commit: string, input: 
     db.prepare(`SELECT d.row_json ${from} ORDER BY (d.id=?) DESC,(d.kind='preparation_recipe') DESC,d.id LIMIT ? OFFSET ?`).bind(...bound, String(input.q || '').toLowerCase(), limit, offset)
   ]);
   return { results: results[1].results.map(value => cleanRow(JSON.parse(value.row_json))), total: Number(results[0].results[0].total), limit, offset };
+}
+export function taskSearch(rows: Row[], input: Row, limit: number, offset: number) {
+  try {
+    const terms = taskTerms(String(input.q || '')), matches = rankTaskRows(rows, String(input.q || ''), terms);
+    return { results: matches.slice(offset, offset + limit), total: matches.length, limit, offset, ...taskMetadata(terms, rows.length) };
+  } catch (error) {
+    if (error instanceof TaskQueryError) return reject(400, error.code, error.message);
+    throw error;
+  }
 }
 function findingsInput(input: Row, commit: string) {
   const parameters = ['skill_id', 'record_version', 'source_commit', 'limit', 'offset', 'hub_commit'];

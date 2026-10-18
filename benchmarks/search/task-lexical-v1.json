@@ -1,0 +1,50 @@
+{
+  "version": "task_lexical_v1",
+  "frozen_before_after_evaluation": true,
+  "query_mode": "task",
+  "default_query_mode": "all_terms",
+  "query_characters_max": 240,
+  "content_terms_max": 16,
+  "candidate_limit": 512,
+  "candidate_overflow_probe": 513,
+  "query_language": "ASCII query characters only; existing Unicode document word tokenization, ASCII-only stemming",
+  "stopwords": ["a", "an", "the", "and", "or", "to", "of", "for", "from", "with", "by", "in", "on", "at", "as", "is", "are", "be", "been", "being", "was", "were", "it", "its", "this", "that", "these", "those", "i", "me", "my", "we", "our", "you", "your", "please", "find", "show", "help", "need", "want", "use", "using"],
+  "stemming": {
+    "protected": ["astar", "dstar", "rrtstar"],
+    "eligible": "ASCII letters only, original length>=5",
+    "ordered_first_suffix": [["ies", 3], ["ing", 3], ["ed", 3], ["es", 3], ["s", 3]],
+    "suffix_rule": "Delete the first matching suffix only when the remaining prefix has at least the listed length. Do not strip s from a word ending ss.",
+    "after_ing": "If the remaining final two letters are identical and belong to bdfgmnprt, delete the last letter.",
+    "then_derivation": "Delete ion or ment if the remaining prefix length is at least4; first match only.",
+    "then_terminal": "Delete terminal e or y if the remaining current word length>=5.",
+    "required_invariant": "Every stem is a nonempty prefix of its original token. Match query stems against original candidate words. Document stems are used only for exact-morphology/phrase bonuses."
+  },
+  "field_weights": {"id": 8, "name": 8, "aliases": 8, "capabilities": 6, "robots": 5, "framework": 5, "summary": 2},
+  "exact_morphology_bonus_per_term": 1,
+  "complete_name_or_alias_phrase_bonus": 12,
+  "unmatched_content_term_penalty": 1,
+  "eligibility": "At least min(2,content_term_count) distinct content terms match and at least one matched term has best field weight>=5; no-content query returns no matches, not browse.",
+  "candidate_predicate": "At least one original candidate word starts with any query stem, after existing hard filters. Apply the same512 cap before scoring on every engine. Overflow is query_too_broad; never truncate silently.",
+  "order": ["exact original query equals id (lowercase)", "integer score descending", "preparation_recipe on score ties", "ASCII id ascending"],
+  "normalization_vectors": [
+    {"query": "Please find rotating wheels for a robot", "terms": ["rotat", "wheel", "robot"]},
+    {"query": "Tracking velocities and positions", "terms": ["track", "velocit", "posit"]},
+    {"query": "A* and D* Lite / RRT*", "terms": ["astar", "dstar", "lite", "rrtstar"]},
+    {"query": "arm_7 joint2", "terms": ["arm", "7", "joint2"]},
+    {"query": "A*B", "terms": ["b"]},
+    {"query": "the and please", "terms": []},
+    {"query": "café", "error": "unsupported_task_query"}
+  ],
+  "ranking_vectors": [
+    {"query": "red robot", "rows": [
+      {"id": "red-robot", "name": "Red robot", "summary": "", "kind": "source_reference"},
+      {"id": "tool-b", "name": "Red instrument", "capabilities": ["robot"], "kind": "source_reference"},
+      {"id": "tool-c", "name": "Instrument", "summary": "red robot", "kind": "source_reference"},
+      {"id": "tool-d", "name": "Instrument", "aliases": ["red robot"], "kind": "preparation_recipe"}
+    ], "expected_ids": ["tool-d", "red-robot", "tool-b"], "expected_scores": [30, 30, 16]},
+    {"query": "oak urdf", "rows": [
+      {"id": "accessory-oak-yaml", "name": "Oak inertials YAML", "capabilities": ["urdf"], "kind": "source_reference"},
+      {"id": "robot-oak-urdf", "name": "Oak URDF model", "kind": "source_reference"}
+    ], "expected_ids": ["robot-oak-urdf", "accessory-oak-yaml"], "expected_scores": [30, 16]}
+  ]
+}

@@ -1,7 +1,7 @@
 /** Public discovery and stateless, read-only MCP. Never executes robot code. */
 import { capabilities } from './memories.ts';
 import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
-import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings, validMemory } from './catalog.ts';
+import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, taskSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings, validMemory } from './catalog.ts';
 import { containsWordPrefixes, queryTerms } from './search.ts';
 import { MEMORY_ENV_KEYS, memoryEnvironmentKey } from './memory-environment.ts';
 
@@ -47,7 +47,7 @@ async function digest(bytes: Uint8Array): Promise<string> {
 
 export const MCP_TOOLS = [
   { name: 'find_robot_skills', description: 'Search pinned robot code across robots and runtimes. Results distinguish prepared recipes from upstream references; source discovery is not runtime verification.',
-    inputSchema: { type: 'object', properties: { q: { type: 'string', maxLength: 240, description: 'All query terms must match word prefixes. Standalone A*, D* and RRT* are read as astar, dstar and rrtstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
+    inputSchema: { type: 'object', properties: { query_mode: { type: 'string', enum: ['all_terms', 'task'], default: 'all_terms', description: 'task opts into ASCII English lexical ranking over at most512 hard-filtered records; narrow runtime/robot when query_too_broad. No execution or compatibility inference.' }, q: { type: 'string', maxLength: 240, description: 'Default all_terms: all query terms must match word prefixes. Standalone A*, D* and RRT* are read as astar, dstar and rrtstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference and up to three exact-version findings as untrusted data. Findings need an applicability check; no installation or execution is performed.',
     inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120, description: 'Copy record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.' }, environment: { type: 'object', maxProperties: 16, description: 'Optional explicit task environment labels for findings only. Omit unknown values; no environment is inferred.', propertyNames: { anyOf: [{ enum: MEMORY_ENV_KEYS }, { pattern: '^package\\.[A-Za-z_][A-Za-z0-9_]{0,79}$' }] }, additionalProperties: { type: 'string', minLength: 1, maxLength: 240 } } }, required: ['skill_id'], additionalProperties: false },
@@ -96,6 +96,15 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   async function searchRows(index: Snapshot, input: Row) {
     const { limit, offset } = validateSearch(input, index.hub_commit);
+    if (input.query_mode === 'task') {
+      const candidates = index.records.filter(row => (!input.kind || row.kind === input.kind) && combinationMatches(row, input));
+      const found = index.database ? await indexedSearch(index.database, index.hub_commit, input) : taskSearch(candidates, input, limit, offset);
+      return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts,
+        backend: index.database ? 'd1_filtered_lexical' : 'static_v1_task', coverage: { complete: true }, ...found,
+        next: offset + limit < found.total ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
+        execution_performed: false, next_action: found.results.length ? 'inspect_selected_record' : 'broaden_or_correct_query',
+        evidence_rule: 'A lexical task match does not establish runtime compatibility or task completion.' };
+    }
     const query = String(input.q || ''), terms = queryTerms(query);
     const matches = index.records.filter(row => {
       if (query.trim() && !terms.length) return false;
@@ -270,7 +279,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       }
       return request.method === 'HEAD' ? new Response(null, { status: response.status, headers: response.headers }) : response;
     } catch (error) {
-      return json({ status: 'failed', reason_code: error instanceof PublicError ? error.code : 'catalog_unavailable', message: error instanceof PublicError ? error.message : 'The published catalog is temporarily unavailable.', next_action: 'retry_or_use_static_catalog', catalog_url: ORIGIN + '/catalog/v1/index.json' }, error instanceof PublicError ? error.status : 503);
+      return json({ status: 'failed', reason_code: error instanceof PublicError ? error.code : 'catalog_unavailable', message: error instanceof PublicError ? error.message : 'The published catalog is temporarily unavailable.', next_action: error instanceof PublicError && error.code === 'query_too_broad' ? 'narrow_environment_filters' : 'retry_or_use_static_catalog', catalog_url: ORIGIN + '/catalog/v1/index.json' }, error instanceof PublicError ? error.status : 503);
     }
   };
 }

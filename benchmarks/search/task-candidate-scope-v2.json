@@ -1,0 +1,14 @@
+{
+  "version": "task_candidate_scope_v2",
+  "frozen_before_after_evaluation": true,
+  "amends_spec_sha256": "b40a2f135e61da7dcf34117cf5160bcf44d0d2f6891b0941623a39ff870e0612",
+  "unchanged": "All normalization, coefficients, eligibility and ranking vectors in task-lexical-v1.json remain fixed.",
+  "candidate_scope": "hard_filtered_records",
+  "candidate_limit": 512,
+  "candidate_overflow_probe": 513,
+  "candidate_predicate": "All records in the selected generation satisfying the existing hard environment and kind filters, BEFORE any text matching. No FTS preselection in task mode.",
+  "native_retrieval": "Current-generation membership joined to row_json, existing hard SQL filters, ASCII ID ordering, LIMIT 513. Strict all_terms FTS is unchanged.",
+  "overflow": "query_too_broad on every engine when more than512 hard-filtered records remain. Narrow runtime, robot, kind or other hard filters; adding text alone does not reduce this bound. Never silently truncate or fall back.",
+  "scope_limitation": "Unfiltered whole-catalog task search can exceed512 records. This is an explicit v1 resource bound, not a complete-catalog ranked result.",
+  "pagination": "Score the complete bounded hard-filtered set before pagination; preserve query_mode and exact generation in next-page arguments."
+}

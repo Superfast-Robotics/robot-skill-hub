@@ -331,8 +331,15 @@ def query_terms(value):
     return re.findall(r"[^\W_]+", re.sub(r"(?:[rR][rR][tT]|[aAdD])\*", algorithm, value).lower())
 
 
-def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
+def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None, query_mode="all_terms"):
     validate_find_pagination(limit, offset, hub_commit)
+    if query_mode not in ("all_terms", "task"):
+        raise RshError("invalid_query_mode", "query_mode must be all_terms or task.")
+    from . import task_search
+    try:
+        task_terms = task_search.terms(query, query_terms) if query_mode == "task" else None
+    except task_search.TaskQueryError as error:
+        raise RshError(error.code, str(error)) from error
     recipe_hub = catalog.get("hub_commit")
     reference_hub = catalog.get("references", {}).get("hub_commit", recipe_hub)
     if hub_commit is not None and (recipe_hub != hub_commit or reference_hub != hub_commit):
@@ -344,15 +351,20 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
     tokens = query_terms(query)
     punctuation_only = bool(query.strip()) and not tokens
     results = []
+    task_records = []
     for record in catalog["records"]:
         matched = compatibility(record, environment)
         if matched["compatibility_status"] == "incompatible":
             continue
-        words = re.findall(r"[^\W_]+", " ".join([record["id"], record["name"], record["summary"],
-                           *record["capabilities"], *record.get("aliases", [])]).lower())
-        score = sum(any(word.startswith(token) for word in words) for token in tokens)
-        if punctuation_only or score != len(tokens):
+        score = 0
+        if query_mode == "all_terms":
+            words = re.findall(r"[^\W_]+", " ".join([record["id"], record["name"], record["summary"],
+                               *record["capabilities"], *record.get("aliases", [])]).lower())
+            score = sum(any(word.startswith(token) for word in words) for token in tokens)
+        if query_mode == "all_terms" and (punctuation_only or score != len(tokens)):
             continue
+        if query_mode == "task":
+            task_records.append({**record, "kind": "preparation_recipe"})
         results.append({"id": record["id"], "name": record["name"], "summary": record["summary"],
                         "kind": "preparation_recipe", "hub_prepare": True, "next_action": "inspect_recipe",
                         "source_commit": record["source"]["commit"], "record_version": record["maintenance"]["record_version"],
@@ -373,12 +385,16 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
         if (not IDENTIFIER.fullmatch(str(record.get("id", ""))) or not isinstance(record.get("source"), dict)
                 or not SOURCE_REVISION.fullmatch(str(record["source"].get("commit") or record["source"].get("revision", "")))):
             continue
-        words = re.findall(r"[^\W_]+", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
-                          framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", []),
-                          *record.get("robot_types", [])]).lower())
-        score = sum(any(word.startswith(token) for word in words) for token in tokens)
-        if punctuation_only or score != len(tokens):
+        score = 0
+        if query_mode == "all_terms":
+            words = re.findall(r"[^\W_]+", " ".join([record["id"], str(record.get("name", "")), str(record.get("summary", "")),
+                              framework, *record.get("capabilities", []), *record.get("aliases", []), *record.get("robots", []),
+                              *record.get("robot_types", [])]).lower())
+            score = sum(any(word.startswith(token) for word in words) for token in tokens)
+        if query_mode == "all_terms" and (punctuation_only or score != len(tokens)):
             continue
+        if query_mode == "task":
+            task_records.append({**record, "kind": "source_reference"})
         results.append({"id": record["id"], "name": record.get("name", record["id"]),
                         "summary": record.get("summary", ""), "kind": "source_reference", "hub_prepare": False,
                         "next_action": "open_source_reference", "source_url": record["source"].get("url"),
@@ -389,6 +405,15 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                         "match_reason": ["Pinned upstream source reference; no Hub preparation adapter or environment compatibility claim."],
                         "evidence_level": record.get("evidence", {}).get("level", "source_reviewed"), "_score": score})
     results.sort(key=lambda item: (item["id"] != query.lower(), -item["_score"], not item["hub_prepare"], item["id"]))
+    task_meta = {}
+    if query_mode == "task":
+        try:
+            ranked = task_search.rank(task_records, query, task_terms)
+        except task_search.TaskQueryError as error:
+            raise RshError(error.code, str(error), next_action="narrow_environment_filters") from error
+        by_id = {item["id"]: item for item in results}
+        results = [{**by_id[record["id"]], "query_match": match} for record, match in ranked]
+        task_meta = task_search.metadata(task_terms, len(task_records))
     for item in results:
         item.pop("_score")
     stable_hub = recipe_hub if isinstance(recipe_hub, str) and COMMIT.fullmatch(recipe_hub) and recipe_hub == reference_hub else None
@@ -396,9 +421,10 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
     if offset + limit < len(results):
         next_page = {"q": query, **{key: str(environment[key]) for key in ENVIRONMENT_FIELDS
                      if environment.get(key) not in (None, "", "unknown")}, "limit": limit, "offset": offset + limit,
-                     **({"hub_commit": stable_hub} if stable_hub else {})}
+                     **({"hub_commit": stable_hub} if stable_hub else {}),
+                     **({"query_mode": "task"} if query_mode == "task" else {})}
     return {"status": "ready", "results": results[offset:offset + limit], "total": len(results),
-            "search_semantics": "all_terms_word_prefix",
+            "search_semantics": "all_terms_word_prefix", **task_meta,
             "offset": offset, "limit": limit, "next": next_page,
             "pagination_stability": "single_generation" if stable_hub else "snapshot_required",
             **({"pagination_note": "Recipe and reference generations differ or are unknown; use one catalog snapshot for stable pagination."}
