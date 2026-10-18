@@ -44,5 +44,18 @@ The upstream source pin is unchanged. Completion requires `success=true`,
 `truncated=false` and `0 < elapsed_steps < 1000`; final JSON includes `terminated`,
 `truncated` and the configured horizon. `terminated` alone does not establish
 success. The step budget is separate from the 300-second wall-clock timeout.
-This wrapper has no runtime-verification claim; inspect the current JSON evidence
-for any later exact-version execution.
+
+## Recorded CPU execution
+
+[Run 39097136411](https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411) executed this exact `1.1.0` wrapper at Hub commit
+`a248d21d5cd09afedb93461ca5208298b6123dd3` once at seed 0: `success=true`,
+`terminated=true`, `truncated=false`, `176 / 1000` steps, exit 0,
+and 3.327 seconds task process time without hitting the 180-second executor timeout.
+The same maintainer agent explicitly selected the `panda-transport` named batch.
+Ubuntu 22.04 CPU/state simulation used Mesa 23.2.1 lavapipe for Vulkan initialization,
+with no physical GPU or output rendering. Exact outputs, environment and pins are
+preserved in the [immutable evidence manifest](https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/039c103622c93e79d7b2ddb60dd0fc7345ebeab5/evidence/runtime/panda-transport-39097136411/manifest.json).
+
+This establishes only the recorded seed and configuration under the Hub horizon.
+Other seeds, upstream default benchmark completion, camera modes and physical robots
+remain unverified. This maintainer run does not establish fresh blind discovery or public adoption.

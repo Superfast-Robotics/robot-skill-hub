@@ -1,0 +1,158 @@
+{
+  "schema_version": "1",
+  "started_at": "2026-10-18T04:27:33.330938+00:00",
+  "status": "passed",
+  "runtime_verification": "executed",
+  "task_seed": 0,
+  "batch": "panda-transport",
+  "requested_skills": [
+    "maniskill-panda-push-cube",
+    "maniskill-panda-pull-cube",
+    "maniskill-panda-lift-peg-upright"
+  ],
+  "scope": "One explicit named CPU/state batch, at most three tasks and one seed each, explicit Hub 1000-step motion-planning horizon; not the default benchmark horizon. No hardware, camera/output rendering, physical GPU, publication or submission.",
+  "host": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "python": "3.10.22 (main, Oct  1 2026, 14:31:30) [GCC 11.4.0]"
+  },
+  "recipes": [
+    {
+      "skill_id": "maniskill-panda-push-cube",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "adapter_sha256": "d6e938a9db227e073d990086ff4cea74d19031c03ee113fa85889426d4185884",
+      "status": "task_complete",
+      "runtime_verification": "executed",
+      "execution_performed": true,
+      "success": true,
+      "contract_matches": true,
+      "result": {
+        "status": "task_complete",
+        "success": true,
+        "elapsed_steps": 71,
+        "terminated": true,
+        "truncated": false,
+        "task": "PushCube-v1",
+        "seed": 0,
+        "runtime": "3.0.0b22",
+        "robot": "panda",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "sim_backend": "cpu",
+        "render_backend": "none",
+        "max_episode_steps": 1000
+      },
+      "execution": {
+        "argv": [
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-push-cube/.robot-skill-hub/environments/maniskill-panda-push-cube/bin/python",
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-push-cube/.robot-skill-hub/recipes/maniskill-panda-push-cube/run.py",
+          "--seed",
+          "0"
+        ],
+        "timeout_seconds": 180,
+        "started": true,
+        "timed_out": false,
+        "exit_code": 0,
+        "duration_seconds": 4.575,
+        "stdout_file": "task.stdout.txt",
+        "stderr_file": "task.stderr.txt"
+      }
+    },
+    {
+      "skill_id": "maniskill-panda-pull-cube",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "adapter_sha256": "59ae96c44716d30f6d0d7781b6d73a2c2c46972ef54592cd2583e382040053fd",
+      "status": "task_complete",
+      "runtime_verification": "executed",
+      "execution_performed": true,
+      "success": true,
+      "contract_matches": true,
+      "result": {
+        "status": "task_complete",
+        "success": true,
+        "elapsed_steps": 67,
+        "terminated": true,
+        "truncated": false,
+        "task": "PullCube-v1",
+        "seed": 0,
+        "runtime": "3.0.0b22",
+        "robot": "panda",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "sim_backend": "cpu",
+        "render_backend": "none",
+        "max_episode_steps": 1000
+      },
+      "execution": {
+        "argv": [
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-pull-cube/.robot-skill-hub/environments/maniskill-panda-pull-cube/bin/python",
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-pull-cube/.robot-skill-hub/recipes/maniskill-panda-pull-cube/run.py",
+          "--seed",
+          "0"
+        ],
+        "timeout_seconds": 180,
+        "started": true,
+        "timed_out": false,
+        "exit_code": 0,
+        "duration_seconds": 3.272,
+        "stdout_file": "task.stdout.txt",
+        "stderr_file": "task.stderr.txt"
+      }
+    },
+    {
+      "skill_id": "maniskill-panda-lift-peg-upright",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "adapter_sha256": "27cb16f115fb30a98660c5d466ace29f90dac993fe3023d72a1ac312d62b2d67",
+      "status": "task_complete",
+      "runtime_verification": "executed",
+      "execution_performed": true,
+      "success": true,
+      "contract_matches": true,
+      "result": {
+        "status": "task_complete",
+        "success": true,
+        "elapsed_steps": 176,
+        "terminated": true,
+        "truncated": false,
+        "task": "LiftPegUpright-v1",
+        "seed": 0,
+        "runtime": "3.0.0b22",
+        "robot": "panda",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "sim_backend": "cpu",
+        "render_backend": "none",
+        "max_episode_steps": 1000
+      },
+      "execution": {
+        "argv": [
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/environments/maniskill-panda-lift-peg-upright/bin/python",
+          "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/recipes/maniskill-panda-lift-peg-upright/run.py",
+          "--seed",
+          "0"
+        ],
+        "timeout_seconds": 180,
+        "started": true,
+        "timed_out": false,
+        "exit_code": 0,
+        "duration_seconds": 3.327,
+        "stdout_file": "task.stdout.txt",
+        "stderr_file": "task.stderr.txt"
+      }
+    }
+  ],
+  "hub_commit": "a248d21d5cd09afedb93461ca5208298b6123dd3",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411",
+  "source_archive": {
+    "url": "https://codeload.github.com/haosulab/ManiSkill/tar.gz/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+    "sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+    "bytes": 243636110
+  },
+  "finished_at": "2026-10-18T04:30:51.717575+00:00"
+}

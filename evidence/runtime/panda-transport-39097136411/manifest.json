@@ -1,0 +1,49 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39097136411",
+  "verified_hub_commit": "a248d21d5cd09afedb93461ca5208298b6123dd3",
+  "verified_hub_tree": "bf36e8fe045407a6552043bbd39046477a2ccb74",
+  "batch": "panda-transport",
+  "requested_skills": [
+    "maniskill-panda-push-cube",
+    "maniskill-panda-pull-cube",
+    "maniskill-panda-lift-peg-upright"
+  ],
+  "scope": "Explicitly selected named Panda transport CPU/state batch, one seed per task, Hub 1000-step motion-planning horizon; not the upstream default benchmark horizon.",
+  "files_sha256": {
+    "report.json": "4cdd92bcd8a7dd3036b16393ffaee2af38f4f3ee611fd065aed0db863fcff93f",
+    "vulkan-summary.txt": "8187fb1842d27f5719eaac8e210a6a2a415bd5d55a2d90aa246f8034cbdae0a9",
+    "maniskill-panda-push-cube/report.json": "08b6ec4e1c869ac01f035569551802ad911f171950a62f1a03082c832e66da0c",
+    "maniskill-panda-push-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-push-cube/pip-freeze.stdout.txt": "03b99c7417124251796eb5b1c9d55ce0c6e05caa42074a787cda21c298e9966b",
+    "maniskill-panda-push-cube/task.stdout.txt": "064d4d2a9122b1379fe1586fa2034eb7a7f228e1c49fa0fa34f3325fa5364f65",
+    "maniskill-panda-push-cube/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-push-cube/task.command.json": "325b31c5222bb5b52091fdc17baa38b29541d1552cc8273009fb51fa60065852",
+    "maniskill-panda-pull-cube/report.json": "6d2623d5a52ab74b1ea4a43ad924580df711a724f21a3057729a75017f99b61f",
+    "maniskill-panda-pull-cube/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-pull-cube/pip-freeze.stdout.txt": "6e3996fec6c3b9be33203527604cd3ddd6d56c835fce786bfba091c5fa8a8622",
+    "maniskill-panda-pull-cube/task.stdout.txt": "e0a6b2f4c42023382c6ffeb1434deb13b851e3b3c5be618b72a8807e55464cb3",
+    "maniskill-panda-pull-cube/task.stderr.txt": "5535837625397f1d0a8107c5c84c4b8ad295ef5862582d71e96730a31a30f1fb",
+    "maniskill-panda-pull-cube/task.command.json": "993e74980b981a0636e9aebac546accd2abc3b0b3774b89086afd8b60c025f6a",
+    "maniskill-panda-lift-peg-upright/report.json": "8a8e5bb970fd1d6c50c06d204125eee9a6e1fa80922612901feb4154edd59d33",
+    "maniskill-panda-lift-peg-upright/environment.json": "f604b331bcd9898630c1a7ddb44bea860ddadf17e57bc29363eb528e8adf9614",
+    "maniskill-panda-lift-peg-upright/pip-freeze.stdout.txt": "74926a4608df0b273b10983789e754185ddb7a4140c883db6cd3d4c2125e72ae",
+    "maniskill-panda-lift-peg-upright/task.stdout.txt": "fa4b28f38a1720a8bd8ac30f6c891fbfca2076821ab26d5fe629fb4c88d5cc93",
+    "maniskill-panda-lift-peg-upright/task.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maniskill-panda-lift-peg-upright/task.command.json": "392c9def14bcc09368631f9555ae6e62567b676598dd1c850ece127ba9618fea",
+    "orchestration.json": "b07bbfbb945b70a3dd277d7c4f9e0f45144290d2abfb4bdc8bd950398769ce1c"
+  },
+  "original_artifact_id": 12125411457,
+  "original_artifact_sha256": "a6714f527caad7a112451f940f5617dfc5173a286c42429847e877eb4e958257",
+  "original_artifact_bytes": 271054,
+  "provider_digest": "sha256:a6714f527caad7a112451f940f5617dfc5173a286c42429847e877eb4e958257",
+  "provider_digest_verified": true,
+  "source_archive_receipt_verified": true,
+  "project_lock_sha256": {
+    "maniskill-panda-push-cube": "80d411fe2e431abaf9f1dea9f2619072c89387b2f304c560147b654e64b4d115",
+    "maniskill-panda-pull-cube": "8901fa4590371c6b16eef7f129bd6638b20cec8243092c95adf3ae298c73ebdc",
+    "maniskill-panda-lift-peg-upright": "6722145aae8c243afb6a50cb1494cf32273dd72ed1d4a6c01b8b11b3dc35b025"
+  },
+  "preservation": "The 20 listed original artifact files are byte-for-byte copies. Orchestration is a maintainer summary. The full ZIP, install logs, project locks and private operator receipts are not republished."
+}

@@ -1,0 +1,43 @@
+{
+  "skill_id": "maniskill-panda-lift-peg-upright",
+  "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+  "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+  "record_version": "1.1.0",
+  "adapter_sha256": "27cb16f115fb30a98660c5d466ace29f90dac993fe3023d72a1ac312d62b2d67",
+  "status": "task_complete",
+  "runtime_verification": "executed",
+  "execution_performed": true,
+  "success": true,
+  "contract_matches": true,
+  "result": {
+    "status": "task_complete",
+    "success": true,
+    "elapsed_steps": 176,
+    "terminated": true,
+    "truncated": false,
+    "task": "LiftPegUpright-v1",
+    "seed": 0,
+    "runtime": "3.0.0b22",
+    "robot": "panda",
+    "controller": "pd_joint_pos",
+    "observation": "state",
+    "sim_backend": "cpu",
+    "render_backend": "none",
+    "max_episode_steps": 1000
+  },
+  "execution": {
+    "argv": [
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/environments/maniskill-panda-lift-peg-upright/bin/python",
+      "/home/runner/work/_temp/runtime-work/maniskill-panda-lift-peg-upright/.robot-skill-hub/recipes/maniskill-panda-lift-peg-upright/run.py",
+      "--seed",
+      "0"
+    ],
+    "timeout_seconds": 180,
+    "started": true,
+    "timed_out": false,
+    "exit_code": 0,
+    "duration_seconds": 3.327,
+    "stdout_file": "task.stdout.txt",
+    "stderr_file": "task.stderr.txt"
+  }
+}
