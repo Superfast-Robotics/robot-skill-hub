@@ -636,7 +636,7 @@ test('native mirror accepts the complete current publisher output', { skip: !pro
       ['RRT*', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py']],
       ['SLAM', ['pythonrobotics-slam-ekfslam-ekf-slam-py', 'pythonrobotics-slam-fastslam1-fast-slam1-py']],
       ['EKF localization PythonRobotics', ['pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py']],
-      ['pure pursuit', ['pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py']],
+      ['pure pursuit', ['pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py', 'nav2-regulated-pure-pursuit-controller']],
       ['Stanley steering', ['pythonrobotics-pathtracking-stanley-control-stanley-control-py']],
       ['IK pinocchio', ['pinocchio-examples-inverse-kinematics-3d-cpp', 'pinocchio-examples-inverse-kinematics-3d-py', 'pinocchio-examples-inverse-kinematics-cpp', 'pinocchio-examples-inverse-kinematics-py']],
     ];
