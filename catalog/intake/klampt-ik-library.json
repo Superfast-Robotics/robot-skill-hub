@@ -1,0 +1,89 @@
+{
+  "id": "klampt-ik-library",
+  "name": "Klampt inverse kinematics helpers (library source)",
+  "summary": "Klampt package module defining IK objectives, native solver wrappers, residual/Jacobian access, and local, random-restart and nearby solving for caller-provided robot models. This is library source, not a standalone executable or completed robot task.",
+  "framework": "klampt",
+  "kind": "community_skill",
+  "capabilities": [
+    "inverse-kinematics",
+    "kinematics",
+    "jacobian",
+    "robot-model"
+  ],
+  "aliases": [
+    "Klampt",
+    "Klamp't",
+    "IKSolver",
+    "Newton-Raphson IK",
+    "random-restart IK",
+    "nearby IK",
+    "SubRobotIKSolver"
+  ],
+  "robots": [
+    "source-defined"
+  ],
+  "source": {
+    "repository": "https://github.com/krishauser/Klampt",
+    "commit": "371bb98478eb5edf170dc21c8c3f0aa200ce7bac",
+    "path": "Python/klampt/model/ik.py",
+    "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/klampt/model/ik.py",
+    "sha256": "d6256c944f0be7510c0e1e3428320f9ff15ffbfa19aa3a9528ec5fc3e3576172",
+    "bytes": 28004,
+    "authors": [
+      "Klampt contributors"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/LICENSE",
+    "scope": "Selected Python library source under the pinned repository BSD-3-Clause license, copyright 2025 the Trustees of University of Illinois. Retain copyright, conditions and disclaimer and respect the non-endorsement clause. Models, meshes, binaries and third-party dependencies remain outside this review.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete compatible Klampt Python package with compiled robotsim bindings and sibling modules"
+    ],
+    "hardware": [],
+    "system": [
+      "Caller-provided robot models and configured IK objectives"
+    ],
+    "notes": "This module has relative imports and no standalone main entrypoint. Solving and random-start sampling can modify the supplied robot model configuration, including unsuccessful solves. Feasibility callbacks default to true; these wrappers do not independently establish collision clearance. Generalized object/link IK is documented as unimplemented, and nearby solving restricts to one robot. Tuple annotations are used without an explicit typing.Tuple import in this file; whether wildcard imports provide that symbol was not investigated. Native imports, transitive effects, model assets and solver correctness remain untested. The pinned README declares pip install klampt, but no exact Python/native-package or robot-model combination was resolved or tested."
+  },
+  "invocation": {
+    "entrypoint": "Library API: klampt.model.ik.objective / solver / solve / solve_global / solve_nearby",
+    "notes": "Use within a separately configured Klampt application with caller-provided models and objectives. Do not run this relative-import file as a standalone script or treat a fetched copy as a runnable task. The Hub supplies inert source metadata and no preparation/execution adapter. No upstream module was imported or executed, and no successful IK, collision clearance or physical-controller compatibility is claimed."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned library source and upstream setup. This maintainer-reviewed reference does not install or execute code.",
+    "setup_url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete module read as inert text and Python AST parsed without importing or executing it. Source, applicable license and setup README SHA-256, byte sizes and Git blob IDs matched the immutable nontruncated tree. This establishes a library source reference, not runtime, asset clearance or robot compatibility."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-d6256c944f0b",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

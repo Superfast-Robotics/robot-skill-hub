@@ -1,0 +1,91 @@
+{
+  "id": "klampt-waypoint-planning",
+  "name": "Klampt joint-waypoint planning example",
+  "summary": "Guarded Python 3 Klampt example that loads a world, edits joint waypoints, plans a trajectory, saves resources and visualizes the result. It also defines optional Cartesian IK-goal and closed-loop planning branches, disabled by default.",
+  "framework": "klampt",
+  "kind": "community_skill",
+  "capabilities": [
+    "motion-planning",
+    "waypoint-planning",
+    "inverse-kinematics",
+    "trajectory"
+  ],
+  "aliases": [
+    "Klampt",
+    "Klamp't",
+    "SBL",
+    "joint waypoint planning",
+    "Cartesian IK goals",
+    "configuration space",
+    "Jaco example model"
+  ],
+  "robots": [
+    "jaco"
+  ],
+  "source": {
+    "repository": "https://github.com/krishauser/Klampt-examples",
+    "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+    "path": "Python3/demos/plan/planning_test.py",
+    "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/plan/planning_test.py",
+    "sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+    "bytes": 19209,
+    "authors": [
+      "Klampt-examples contributors"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+    "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+    "verified": false
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": "Python 3.x (upstream directory declaration; exact version untested)",
+    "packages": [
+      "Complete compatible Klampt Python/native package",
+      "PyOpenGL and PyQt6 for visualization as declared by the reviewed core README"
+    ],
+    "hardware": [],
+    "system": [
+      "Working GUI and graphics environment for interactive waypoint editing and visualization",
+      "Configured world/robot model and adjacent assets from the upstream examples checkout"
+    ],
+    "notes": "Run from Python3/demos/plan or supply an explicit world path. The default loads ../../../data/robots/jaco.rob; this Jaco discovery label does not establish model compatibility. Default SBL planning uses restart/shortcutting, active DOFs auto, a 500-iteration limit and a nominal 10-second budget. CLOSED_LOOP_TEST and PLAN_CARTESIAN_TEST are both zero by default. SIMPLIFY_TYPE=ConvexHull changes geometry; fidelity and collision behavior are unverified. Direct waypoint-editor feasibility rejection is disabled. Execution can write planningtest.configs resources and test.path and visualize a path for 60 seconds. Model/mesh bytes and licenses were not reviewed; package/native-library combinations, planning success and timing were not tested."
+  },
+  "invocation": {
+    "entrypoint": "From Python3/demos/plan: python planning_test.py [world_file]",
+    "notes": "Upstream guarded main after configuring dependencies, world assets, GUI and intended file-output locations. Its main workflow plans between edited joint waypoints; optional helpers also accept Cartesian IK goals. A source-only record does not establish collision-free paths, completeness or a measured result. The selected file sends no physical-controller command. The Hub supplies no preparation/execution adapter and ran no source, native library, planner or simulator."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned source, unresolved attribution note and upstream setup. This reference does not install or execute code.",
+    "setup_url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete source read as inert text; Python 3 AST and main guard checked without execution. Source, license declaration and README SHA-256, sizes and Git blobs matched the immutable nontruncated tree. Incomplete upstream copyright attribution remains unresolved. No model assets, runtime environment, planning success or controller compatibility was verified."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-b5c5c8f88c44",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

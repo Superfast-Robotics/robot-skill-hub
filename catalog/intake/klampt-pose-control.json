@@ -1,0 +1,91 @@
+{
+  "id": "klampt-pose-control",
+  "name": "Klampt Robot Interface Layer pose-control example",
+  "summary": "Guarded Python 3 Klampt example that opens a ghost-pose editor and sends moveToPosition through a selected Robot Interface Layer interface after an action. A configured hardware interface may command real motion; simulation-only behavior is not established.",
+  "framework": "klampt",
+  "kind": "community_skill",
+  "capabilities": [
+    "robot-control",
+    "pose-control",
+    "joint-position-control"
+  ],
+  "aliases": [
+    "Klampt",
+    "Klamp't",
+    "Robot Interface Layer",
+    "moveToPosition",
+    "ghost pose editor"
+  ],
+  "robots": [
+    "source-defined"
+  ],
+  "source": {
+    "repository": "https://github.com/krishauser/Klampt-examples",
+    "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+    "path": "Python3/demos/control/pose.py",
+    "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/control/pose.py",
+    "sha256": "18b11d751c12d8ede03f53628d22307b87514525a2519394984d111439a3b6f1",
+    "bytes": 3422,
+    "authors": [
+      "Klampt-examples contributors"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+    "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+    "verified": false
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": "Python 3.x (upstream directory declaration; exact version untested)",
+    "packages": [
+      "Complete compatible Klampt Python/native package",
+      "Sibling kbdrive.py and its unreviewed loading dependencies",
+      "PyOpenGL and PyQt6 for visualization as declared by the reviewed core README"
+    ],
+    "hardware": [
+      "Separately authorized robot/controller if a hardware interface is selected"
+    ],
+    "system": [
+      "Working GUI and graphics environment for pose editing",
+      "Configured world/model, intended interface and any controller or robot-info inputs"
+    ],
+    "notes": "The main guard does not cover imports: kbdrive.load_world_and_interface is imported at module top level. That helper was located in the pinned tree but not fetched or reviewed; its loading behavior, import effects and dependencies remain unverified. The main code creates a simulated interface only when the helper returns none; otherwise it uses or wraps the supplied interface. It initializes that interface, reads positions, opens a ghost editor and can send moveToPosition after the registered action. TimedLooper uses the interface's control rate plus a 0.01-second sleep; neither timing nor real-time operation was measured. Normal loop exit closes the interface and viewer, without an encompassing try/finally guarantee. Models, assets, controllers and exact package/robot combinations were not reviewed or tested."
+  },
+  "invocation": {
+    "entrypoint": "From Python3/demos/control: python pose.py world_file(s) [controller_file], or robotinfo_file [world_files]",
+    "notes": "Upstream guarded main only after reviewing the full helper, dependencies, models and selected interface, with separate operator authorization for any hardware. This source may initialize a real controller and command motion; a simulation fallback does not establish simulator-only behavior. A lone copy of pose.py is insufficient. The Hub provides no preparation/execution adapter and contacted no controller, robot or simulator. Physical safety, controller compatibility and task success are unverified."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned source, unresolved attribution note, helper and upstream setup before use. This reference does not install or execute code.",
+    "setup_url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected source read as inert text; Python 3 AST and main guard checked without execution. Source, license declaration and README SHA-256, sizes and Git blobs matched the immutable nontruncated tree. Incomplete attribution and unread helper remain explicit. No upstream code, native package, interface, controller, robot or simulator was executed."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-18b11d751c12",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}

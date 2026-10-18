@@ -1,0 +1,281 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "finite_official_klampt_library_and_task_source_review",
+  "scope": "Three inert source references at two exact repository commits; no code redistribution, asset clearance, installation, runtime or physical compatibility claim.",
+  "source_count": 3,
+  "source_bytes": 50635,
+  "sources": [
+    {
+      "id": "klampt-ik-library",
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt",
+        "commit": "371bb98478eb5edf170dc21c8c3f0aa200ce7bac",
+        "path": "Python/klampt/model/ik.py",
+        "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/klampt/model/ik.py",
+        "sha256": "d6256c944f0be7510c0e1e3428320f9ff15ffbfa19aa3a9528ec5fc3e3576172",
+        "bytes": 28004,
+        "authors": [
+          "Klampt contributors"
+        ]
+      },
+      "role": "library_module",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/LICENSE",
+        "scope": "Selected Python library source under the pinned repository BSD-3-Clause license, copyright 2025 the Trustees of University of Illinois. Retain copyright, conditions and disclaimer and respect the non-endorsement clause. Models, meshes, binaries and third-party dependencies remain outside this review.",
+        "verified": true
+      },
+      "requirements_and_source_effect_limits": "This module has relative imports and no standalone main entrypoint. Solving and random-start sampling can modify the supplied robot model configuration, including unsuccessful solves. Feasibility callbacks default to true; these wrappers do not independently establish collision clearance. Generalized object/link IK is documented as unimplemented, and nearby solving restricts to one robot. Tuple annotations are used without an explicit typing.Tuple import in this file; whether wildcard imports provide that symbol was not investigated. Native imports, transitive effects, model assets and solver correctness remain untested. The pinned README declares pip install klampt, but no exact Python/native-package or robot-model combination was resolved or tested.",
+      "invocation_limits": "Use within a separately configured Klampt application with caller-provided models and objectives. Do not run this relative-import file as a standalone script or treat a fetched copy as a runnable task. The Hub supplies inert source metadata and no preparation/execution adapter. No upstream module was imported or executed, and no successful IK, collision clearance or physical-controller compatibility is claimed."
+    },
+    {
+      "id": "klampt-pose-control",
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt-examples",
+        "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+        "path": "Python3/demos/control/pose.py",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/control/pose.py",
+        "sha256": "18b11d751c12d8ede03f53628d22307b87514525a2519394984d111439a3b6f1",
+        "bytes": 3422,
+        "authors": [
+          "Klampt-examples contributors"
+        ]
+      },
+      "role": "guarded_python3_program",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+        "verified": false
+      },
+      "requirements_and_source_effect_limits": "The main guard does not cover imports: kbdrive.load_world_and_interface is imported at module top level. That helper was located in the pinned tree but not fetched or reviewed; its loading behavior, import effects and dependencies remain unverified. The main code creates a simulated interface only when the helper returns none; otherwise it uses or wraps the supplied interface. It initializes that interface, reads positions, opens a ghost editor and can send moveToPosition after the registered action. TimedLooper uses the interface's control rate plus a 0.01-second sleep; neither timing nor real-time operation was measured. Normal loop exit closes the interface and viewer, without an encompassing try/finally guarantee. Models, assets, controllers and exact package/robot combinations were not reviewed or tested.",
+      "invocation_limits": "Upstream guarded main only after reviewing the full helper, dependencies, models and selected interface, with separate operator authorization for any hardware. This source may initialize a real controller and command motion; a simulation fallback does not establish simulator-only behavior. A lone copy of pose.py is insufficient. The Hub provides no preparation/execution adapter and contacted no controller, robot or simulator. Physical safety, controller compatibility and task success are unverified."
+    },
+    {
+      "id": "klampt-waypoint-planning",
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt-examples",
+        "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+        "path": "Python3/demos/plan/planning_test.py",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/plan/planning_test.py",
+        "sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+        "bytes": 19209,
+        "authors": [
+          "Klampt-examples contributors"
+        ]
+      },
+      "role": "guarded_python3_program",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+        "verified": false
+      },
+      "requirements_and_source_effect_limits": "Run from Python3/demos/plan or supply an explicit world path. The default loads ../../../data/robots/jaco.rob; this Jaco discovery label does not establish model compatibility. Default SBL planning uses restart/shortcutting, active DOFs auto, a 500-iteration limit and a nominal 10-second budget. CLOSED_LOOP_TEST and PLAN_CARTESIAN_TEST are both zero by default. SIMPLIFY_TYPE=ConvexHull changes geometry; fidelity and collision behavior are unverified. Direct waypoint-editor feasibility rejection is disabled. Execution can write planningtest.configs resources and test.path and visualize a path for 60 seconds. Model/mesh bytes and licenses were not reviewed; package/native-library combinations, planning success and timing were not tested.",
+      "invocation_limits": "Upstream guarded main after configuring dependencies, world assets, GUI and intended file-output locations. Its main workflow plans between edited joint waypoints; optional helpers also accept Cartesian IK goals. A source-only record does not establish collision-free paths, completeness or a measured result. The selected file sends no physical-controller command. The Hub supplies no preparation/execution adapter and ran no source, native library, planner or simulator."
+    }
+  ],
+  "immutable_source_license_setup_pins": [
+    {
+      "commit": "371bb98478eb5edf170dc21c8c3f0aa200ce7bac",
+      "tree": "d12df5e24f747d7d8de372addd306dc7ed91531b",
+      "tree_truncated": false,
+      "files": [
+        {
+          "path": "LICENSE",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/LICENSE",
+          "bytes": 1519,
+          "sha256": "25916742f387b69ad217058027562c451b99b9528d43eacfb3fb305cfa722f3e",
+          "git_blob_sha1": "61979025dd29878c95c4358a9d0213f18af09802",
+          "tree_match": true
+        },
+        {
+          "path": "README.md",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/README.md",
+          "bytes": 12129,
+          "sha256": "4c71bb9f759916625c3db1fc384a4471d65973e8f6b6b90223c5e84649272884",
+          "git_blob_sha1": "282a02529b2cb52682e5cc92615f47b53e522664",
+          "tree_match": true
+        },
+        {
+          "path": "Python/klampt/model/ik.py",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/klampt/model/ik.py",
+          "bytes": 28004,
+          "sha256": "d6256c944f0be7510c0e1e3428320f9ff15ffbfa19aa3a9528ec5fc3e3576172",
+          "git_blob_sha1": "dc5530a59fb4c818729dae4a37e6433f78507e64",
+          "tree_match": true
+        },
+        {
+          "path": "Python/docs/examples/motion-planning-test.py",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/docs/examples/motion-planning-test.py",
+          "bytes": 2849,
+          "sha256": "2fd2c79207962caee668c4f5b0c10bb5b3c6bae2a2455fc562e3dc18c6327019",
+          "git_blob_sha1": "a01659a78caca34e3b0a851d9b8521867dfd841b",
+          "tree_match": true
+        }
+      ]
+    },
+    {
+      "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+      "tree": "e61ec19f5b993a5e4a121bcf75e9862ae5d62732",
+      "tree_truncated": false,
+      "files": [
+        {
+          "path": "LICENSE",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+          "bytes": 1500,
+          "sha256": "e76c9f7b48ac3b26abd685f9fd4d1d3130105e3e0e7153c536fed974521abbe8",
+          "git_blob_sha1": "d0795340ec32044613fd78713984305e8c838c3a",
+          "tree_match": true
+        },
+        {
+          "path": "README.md",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md",
+          "bytes": 1422,
+          "sha256": "ccb2d26b881235cce872e6334ecaaffef06392038af7c665a73bf59a913fd424",
+          "git_blob_sha1": "ea1645af81116256ba9c090c065ef10826d48b85",
+          "tree_match": true
+        },
+        {
+          "path": "Python3/demos/plan/planning_test.py",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/plan/planning_test.py",
+          "bytes": 19209,
+          "sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+          "git_blob_sha1": "d1f64aaca887f24feed435ced29ff637bcfd1777",
+          "tree_match": true
+        },
+        {
+          "path": "Python3/demos/control/pose.py",
+          "raw_url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/control/pose.py",
+          "bytes": 3422,
+          "sha256": "18b11d751c12d8ede03f53628d22307b87514525a2519394984d111439a3b6f1",
+          "git_blob_sha1": "252856c8ff48d5f967e40503b8d7709beaded16b",
+          "tree_match": true
+        }
+      ]
+    }
+  ],
+  "official_link_provenance": "Pinned Klampt README Installation section links the Klampt-examples repository for examples; the pinned examples README links back to core installation.",
+  "copyright_identity_boundary": "Core license identifies 2025 Trustees of University of Illinois. Examples copyright line is incomplete: Copyright (c) 2018, without holder. Examples remain license.verified false; no core holder substituted.",
+  "excluded_legacy_source": "Core Python/docs/examples/motion-planning-test.py uses Python 2 print syntax and was excluded. It is not one of the three catalog additions.",
+  "compatibility": "All six required dimensions and status remain unknown. Two source commits do not establish a compatible dependency lock.",
+  "runtime_verification": "not_run",
+  "retrieval": {
+    "separate_core_GET_attempts": 6,
+    "separate_examples_GET_attempts": 6,
+    "current_curation_GETs": 0,
+    "requests": [
+      {
+        "url": "https://api.github.com/repos/krishauser/Klampt/commits/master",
+        "status": 200,
+        "bytes": 4699,
+        "sha256": "bd29e6b32f56b01c4ebecd5dbefebe1d4f7368f66d0657f012d3fea62e42389e",
+        "at": "2026-10-18T03:26:13.115584+00:00",
+        "max_body_bytes": 262144
+      },
+      {
+        "url": "https://api.github.com/repos/krishauser/Klampt/git/trees/d12df5e24f747d7d8de372addd306dc7ed91531b?recursive=1",
+        "status": 200,
+        "bytes": 249270,
+        "sha256": "1a8f23845fd0d792bfdcd025a07659f082fe6f4baf45d0332485de787e161b0e",
+        "at": "2026-10-18T03:26:19.414291+00:00",
+        "max_body_bytes": 8388608
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/LICENSE",
+        "status": 200,
+        "bytes": 1519,
+        "sha256": "25916742f387b69ad217058027562c451b99b9528d43eacfb3fb305cfa722f3e",
+        "at": "2026-10-18T03:26:25.168490+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/README.md",
+        "status": 200,
+        "bytes": 12129,
+        "sha256": "4c71bb9f759916625c3db1fc384a4471d65973e8f6b6b90223c5e84649272884",
+        "at": "2026-10-18T03:26:25.140801+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/klampt/model/ik.py",
+        "status": 200,
+        "bytes": 28004,
+        "sha256": "d6256c944f0be7510c0e1e3428320f9ff15ffbfa19aa3a9528ec5fc3e3576172",
+        "at": "2026-10-18T03:26:42.190406+00:00",
+        "max_body_bytes": 131072
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/docs/examples/motion-planning-test.py",
+        "status": 200,
+        "bytes": 2849,
+        "sha256": "2fd2c79207962caee668c4f5b0c10bb5b3c6bae2a2455fc562e3dc18c6327019",
+        "at": "2026-10-18T03:26:42.174407+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://api.github.com/repos/krishauser/Klampt-examples/commits/master",
+        "status": 200,
+        "bytes": 5301,
+        "sha256": "6a3f0125bc45ed93f42867c7ed5b30812fdd9631ba1c7e28e69f015f5637858c",
+        "at": "2026-10-18T03:29:58.098912+00:00",
+        "max_body_bytes": 262144
+      },
+      {
+        "url": "https://api.github.com/repos/krishauser/Klampt-examples/git/trees/e61ec19f5b993a5e4a121bcf75e9862ae5d62732?recursive=1",
+        "status": 200,
+        "bytes": 391447,
+        "sha256": "14194640ee12b4133dd04a86d4317f9a7b5a8edf1ccd33a8bbc6b11b12e62969",
+        "at": "2026-10-18T03:30:05.526689+00:00",
+        "max_body_bytes": 8388608
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "status": 200,
+        "bytes": 1500,
+        "sha256": "e76c9f7b48ac3b26abd685f9fd4d1d3130105e3e0e7153c536fed974521abbe8",
+        "at": "2026-10-18T03:30:16.766510+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md",
+        "status": 200,
+        "bytes": 1422,
+        "sha256": "ccb2d26b881235cce872e6334ecaaffef06392038af7c665a73bf59a913fd424",
+        "at": "2026-10-18T03:30:16.781515+00:00",
+        "max_body_bytes": 65536
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/plan/planning_test.py",
+        "status": 200,
+        "bytes": 19209,
+        "sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+        "at": "2026-10-18T03:30:32.592638+00:00",
+        "max_body_bytes": 131072
+      },
+      {
+        "url": "https://raw.githubusercontent.com/krishauser/Klampt-examples/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/control/pose.py",
+        "status": 200,
+        "bytes": 3422,
+        "sha256": "18b11d751c12d8ede03f53628d22307b87514525a2519394984d111439a3b6f1",
+        "at": "2026-10-18T03:30:32.618637+00:00",
+        "max_body_bytes": 65536
+      }
+    ],
+    "anonymous": true,
+    "DNT": "1",
+    "X-RSH-Telemetry": "off",
+    "cookies_proxy_redirects": false,
+    "body_bounded": true,
+    "timeout_seconds": 30
+  },
+  "actions": {
+    "upstream_import_install_execution": false,
+    "model_asset_download_or_clearance": false,
+    "controller_robot_GPU_cloud_or_secret_access": false,
+    "API_receipts_generated": false,
+    "importer_or_adapter_changes": false,
+    "popularity_claim": false
+  }
+}

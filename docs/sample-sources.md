@@ -189,6 +189,13 @@ Panda tutorial for inverse kinematics, joint-path planning, position control and
 gripper force in CPU simulation. The source requires a viewer and upstream model
 assets, has no Hub execution adapter and remains `runtime_verification: not_run`.
 
+## Klampt IK, waypoint planning and pose control
+
+The [Klampt source review](../docs/klampt-sources.md) distinguishes an IK library
+module from two guarded planning and pose-control programs. The pose interface
+may control hardware; examples retain unresolved upstream attribution. These
+source references have no Hub adapter and remain `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh
