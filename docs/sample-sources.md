@@ -182,6 +182,13 @@ Robotics examples: the existing basic-motion reference plus joint-servo and
 digital/analog I/O sources. These GitLab-hosted references use upstream setup,
 have no Hub execution adapter and remain `runtime_verification: not_run`.
 
+## Genesis World IK and grasping
+
+The [Genesis World source review](../docs/genesis-sources.md) describes one pinned
+Panda tutorial for inverse kinematics, joint-path planning, position control and
+gripper force in CPU simulation. The source requires a viewer and upstream model
+assets, has no Hub execution adapter and remains `runtime_verification: not_run`.
+
 ## Reproduce the index
 
 ```sh

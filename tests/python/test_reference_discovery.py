@@ -1,19 +1,26 @@
 """Agent-facing search and no-adapter behavior for immutable source references."""
 import importlib
+import hashlib
+import io
 import json
 import os
 from pathlib import Path
+import socket
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "skills/find-robot-skills/scripts"
 sys.path.insert(0, str(SCRIPTS))
 from rshlib.core import RshError, find, inspect, lookup_preparation
+from rshlib import acquisition, discovery, remote_catalog
+from test_rsh import fixture_catalog
 preparation = importlib.import_module("rshlib.prepare")
+rsh = importlib.import_module("rsh")
 
 
 def reference():
@@ -31,6 +38,115 @@ def catalog(*references):
 
 
 class ReferenceDiscoveryTests(unittest.TestCase):
+    def cpp_catalog(self):
+        row = reference()
+        row.update(id="local-only-cpp-reference", name="Local C++ source")
+        body = b"int main() { return 0; }\n"  # Inert fixture; never compiled or executed.
+        row["source"].update(path="examples/fixture.cpp", bytes=len(body), sha256=hashlib.sha256(body).hexdigest(),
+            url="https://github.com/example/robot/blob/" + "a" * 40 + "/examples/fixture.cpp")
+        row["license"] = {"spdx": "NOASSERTION", "scope": "Synthetic source fixture; no license clearance inferred."}
+        return catalog(row)
+
+    def cli(self, arguments, cwd, cache, expected_exit=0):
+        process = subprocess.run([sys.executable, "-B", str(SCRIPTS / "rsh.py"), *arguments], cwd=cwd,
+            capture_output=True, timeout=15, env={**os.environ, "RSH_TELEMETRY": "off", "RSH_CACHE_DIR": str(cache),
+                                                 "PYTHONDONTWRITEBYTECODE": "1", "PYTHONIOENCODING": "utf-8"})
+        self.assertEqual(expected_exit, process.returncode, (process.stdout + process.stderr).decode("utf-8", "replace"))
+        return json.loads(process.stdout)
+
+    def main_result(self, arguments):
+        output = io.StringIO()
+        with redirect_stdout(output):
+            code = rsh.main(arguments)
+        return code, json.loads(output.getvalue())
+
+    def test_cli_advertised_cpp_acquisition_preserves_relative_catalog_and_offline_across_cwd(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selected = root / "~" / "private catalog.json"
+            selected.parent.mkdir()
+            selected.write_text(json.dumps(self.cpp_catalog()), encoding="utf-8")
+            later = root / "later-cwd"
+            later.mkdir()
+            project = root / "uncreated-project"
+            detail = self.cli(["inspect", "local-only-cpp-reference", "--catalog", str(selected.relative_to(root)),
+                               "--offline", "--refresh", "--json"], root, root / "cache")
+            prefix = ["--offline", "--catalog", str(selected.resolve())]
+            self.assertEqual(prefix + ["fetch-source"], detail["fetch_source_args"][:4])
+            self.assertEqual(detail["fetch_source_args"], detail["source_acquisition"]["fetch_args"])
+            self.assertNotIn("--refresh", detail["fetch_source_args"])
+            plan = self.cli([*detail["fetch_source_args"], "--project", str(project), "--plan", "--json"], later, root / "cache")
+            self.assertEqual("source_acquisition_plan", plan["reason_code"])
+            self.assertEqual(detail["source"]["sha256"], plan["source_sha256"])
+            self.assertEqual(detail["fetch_source_args"], plan["fetch_args"])
+            self.assertFalse(plan["source_request_performed"])
+            self.assertFalse(plan["execution_performed"])
+            self.assertFalse(project.exists())
+
+    def test_cli_custom_recipe_find_and_inspect_prepare_args_keep_catalog_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selected = root / "recipe catalog.json"
+            selected.write_text(json.dumps(fixture_catalog()), encoding="utf-8")
+            later = root / "later"
+            later.mkdir()
+            project = root / "uncreated-project"
+            found = self.cli(["--catalog", selected.name, "find", "fixture", "--runtime", "fixture",
+                              "--robot", "panda", "--offline", "--json"], root, root / "cache")
+            detail = self.cli(["inspect", "fixture-pick", "--offline", "--catalog", selected.name, "--json"], root, root / "cache")
+            arguments = found["results"][0]["prepare_args"]
+            self.assertEqual(["--offline", "--catalog", str(selected.resolve()), "prepare"], arguments[:4])
+            self.assertEqual(arguments, detail["prepare_args"])
+            self.assertNotIn("--runtime", arguments)
+            self.assertNotIn("--robot", arguments)
+            plan = self.cli([*arguments, "--project", str(project), "--plan", "--json"], later, root / "cache", expected_exit=2)
+            self.assertEqual("needs_configuration", plan["status"])
+            self.assertEqual("preparation_plan", plan["reason_code"])
+            self.assertEqual(detail["source"]["commit"], plan["source_commit"])
+            self.assertEqual(detail["maintenance"]["record_version"], plan["record_version"])
+            self.assertFalse(plan["preparation_performed"])
+            self.assertFalse(plan["execution_performed"])
+            self.assertFalse(project.exists())
+
+    def test_https_catalog_query_is_preserved_and_offline_refuses_its_network_read(self):
+        selected = "https://catalog.example.org/index.json?version=reviewed"
+        with mock.patch.object(discovery, "fetch_public", return_value=self.cpp_catalog()) as fetch, \
+                mock.patch.object(socket, "getaddrinfo", side_effect=AssertionError("No DNS")), \
+                mock.patch.object(acquisition, "_download", side_effect=AssertionError("No source request")):
+            code, detail = self.main_result(["--catalog=" + selected, "inspect", "local-only-cpp-reference", "--json"])
+            self.assertEqual(0, code)
+            self.assertEqual(["--catalog", selected, "fetch-source"], detail["fetch_source_args"][:3])
+            code, plan = self.main_result([*detail["fetch_source_args"], "--project", "uncreated-project", "--plan", "--json"])
+            self.assertEqual((0, "source_acquisition_plan"), (code, plan["reason_code"]))
+            self.assertEqual([selected, selected], [call.args[0] for call in fetch.call_args_list])
+            fetch.reset_mock()
+            code, denied = self.main_result(["inspect", "local-only-cpp-reference", "--catalog", selected, "--offline", "--json"])
+            self.assertEqual((2, "offline_remote_catalog"), (code, denied["reason_code"]))
+            fetch.assert_not_called()
+
+    def test_credential_query_selector_is_not_echoed_and_manifest_finding_args_are_independent(self):
+        selected = "https://catalog.example.org/index.json?token=synthetic-private-value"
+        with mock.patch.object(discovery, "fetch_public", return_value=self.cpp_catalog()):
+            code, detail = self.main_result(["inspect", "local-only-cpp-reference", "--catalog", selected, "--json"])
+        self.assertEqual((0, "ready"), (code, detail["status"]))
+        self.assertNotIn("fetch_source_args", detail)
+        self.assertNotIn("fetch_args", detail["source_acquisition"])
+        self.assertEqual("catalog_selector_contains_credentials", detail["catalog_handoff"]["reason_code"])
+        self.assertNotIn("synthetic-private-value", json.dumps(detail))
+        save_args = ["save", "fixture", "--project", "project", "--source-manifest", "project/manifest.json"]
+        memories_args = ["memories", *save_args[1:]]
+        value = {"fetch_args": ["fetch-source", "fixture"], "save_args": list(save_args), "memories_args": list(memories_args)}
+        result = rsh.catalog_handoff(value, "catalog.json", True)
+        self.assertEqual(save_args, result["save_args"])
+        self.assertEqual(memories_args, result["memories_args"])
+
+    def test_offline_selected_record_keeps_mode_without_inventing_a_catalog_selector(self):
+        with mock.patch.object(remote_catalog, "selected_catalog", return_value=self.cpp_catalog()):
+            detail = rsh.execute(rsh.build_parser().parse_args(["--offline", "inspect", "local-only-cpp-reference"]), None)
+        self.assertEqual(["--offline", "fetch-source"], detail["fetch_source_args"][:2])
+        self.assertNotIn("--catalog", detail["fetch_source_args"])
+        self.assertEqual("fetch-source", inspect(self.cpp_catalog(), "local-only-cpp-reference")["fetch_source_args"][0])
+
     def page_catalog(self):
         rows = [{**reference(), "id": "fixture-ik-" + str(index)} for index in reversed(range(8))]
         return catalog(*rows)

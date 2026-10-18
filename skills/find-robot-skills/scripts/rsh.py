@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 import sys
+import urllib.parse
 
 from rshlib import acquisition, contributions, intake, memories, remote_catalog, setup
-from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json
+from rshlib.core import RshError, find, inspect, load_catalog, lookup_preparation, read_json, require_url
 from rshlib.discovery import load_discovery, pinned_project_catalog
 from rshlib.prepare import prepare
 
@@ -145,7 +147,45 @@ def extract_global(argv):
     return argv, json_mode, catalog
 
 
+def catalog_handoff(result, catalog_location, offline):
+    """Keep only the selected catalog/offline context on acquisition command arrays."""
+    targets = [(result, key) for key in ("fetch_source_args", "fetch_args", "prepare_args") if key in result]
+    source_plan = result.get("source_acquisition")
+    if isinstance(source_plan, dict) and "fetch_args" in source_plan:
+        targets.append((source_plan, "fetch_args"))
+    rows = result.get("results")
+    if isinstance(rows, list):
+        targets.extend((row, "prepare_args") for row in rows
+                       if isinstance(row, dict) and "prepare_args" in row)
+    commands = {"fetch_source_args": "fetch-source", "fetch_args": "fetch-source", "prepare_args": "prepare"}
+    targets = [(target, key) for target, key in targets if isinstance(target[key], list)
+               and target[key] and target[key][0] == commands[key]]
+    if not targets:
+        return result
+    prefix = ["--offline"] if offline else []
+    if catalog_location:
+        location = str(catalog_location)
+        if location.startswith(("https://", "http://")):
+            require_url(location, local_http=True)
+            query = urllib.parse.parse_qsl(urllib.parse.urlsplit(location).query, keep_blank_values=True)
+            if (acquisition.SECRET.search(urllib.parse.unquote(location))
+                    or any(acquisition.SECRET_QUERY_KEY.search(key) or acquisition.SECRET.search(value) for key, value in query)):
+                for target, key in targets:
+                    target.pop(key, None)
+                result["catalog_handoff"] = {"status": "requires_private_catalog_selector",
+                    "reason_code": "catalog_selector_contains_credentials",
+                    "message": "Acquisition arguments were omitted to avoid echoing credentials. Reapply the original catalog privately."}
+                return result
+        else:
+            location = str(Path(location).resolve())
+        prefix.extend(["--catalog", location])
+    for target, key in targets:
+        target[key] = prefix + target[key]
+    return result
+
+
 def execute(args, catalog_location):
+    catalog_location = catalog_location or args.catalog
     if args.offline and args.command in ("submit", "submission-status"):
         raise RshError("offline_submission_unavailable", "Patch submission and its remote status require an explicit online request.",
                        status="blocked", network_performed=False, next_action="keep_local_draft_and_retry_without_offline")
@@ -178,8 +218,8 @@ def execute(args, catalog_location):
     fallback_reason = None
     if args.command == "find" and not catalog_location and not args.offline:
         try:
-            return remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh,
-                                         offset=args.offset, hub_commit=args.hub_commit)
+            return catalog_handoff(remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh,
+                                         offset=args.offset, hub_commit=args.hub_commit), None, args.offline)
         except (RshError, OSError, ValueError, TypeError) as error:
             if isinstance(error, RshError) and error.result.get("reason_code") in (
                     "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit"):
@@ -218,17 +258,18 @@ def execute(args, catalog_location):
     if fallback_reason:
         catalog["discovery_fallback_reasons"] = [fallback_reason]
     if args.command == "find":
-        return find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit)
+        return catalog_handoff(find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit),
+                               catalog_location, args.offline)
     if args.command == "register":
         return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
                                api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
-        return inspect(catalog, args.skill_id)
+        return catalog_handoff(inspect(catalog, args.skill_id), catalog_location, args.offline)
     if args.command == "fetch-source":
-        return acquisition.fetch_source(catalog, args.skill_id, args.project,
+        return catalog_handoff(acquisition.fetch_source(catalog, args.skill_id, args.project,
                                         expected_source_revision=args.expected_source_revision,
                                         expected_source_sha256=args.expected_source_sha256,
-                                        plan=args.plan, offline=args.offline)
+                                        plan=args.plan, offline=args.offline), catalog_location, args.offline)
     if args.command == "prepare":
         if args.download_only and args.install_deps:
             raise RshError("invalid_arguments", "--download-only cannot be combined with --install-deps.")

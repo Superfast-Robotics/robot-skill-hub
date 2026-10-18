@@ -1,0 +1,86 @@
+{
+  "schema_version": "1",
+  "compiled_at_utc": "2026-10-18T03:07:21.153654+00:00",
+  "verification": "Offline validation of cached response bytes and recorded receipts; no new network requests.",
+  "official_mcp_registry": {
+    "source_commit": "7741931797a318413f93af14351b3cc8d904869b",
+    "version": "0.3.6",
+    "name": "io.github.Superfast-Robotics/robot-skill-hub",
+    "mcp_endpoint": "https://api.superfastrobotics.com/mcp",
+    "publish_run": {
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39091629376",
+      "conclusion": "success",
+      "completed_at_utc": "2026-10-18T02:52:48Z",
+      "readback_at_utc": "2026-10-18T02:53:20.293729+00:00",
+      "runs_response_sha256": "ad873ca58a3a0dd46a61f023f7490c387641be4c9e33478fd43ac2c8e8b98c95",
+      "jobs_response_sha256": "51a5c776e09d6d41e9213f7d05be3168158564e841726f91aaef92682825cd0a"
+    },
+    "version_readback": {
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.3.6",
+      "observed_at_utc": "2026-10-18T02:53:56.364111+00:00",
+      "http_status": 200,
+      "response_sha256": "41fb88085b8125b3b497f62de28c5baa6702e9a90025b4ca60eede74f9c86261",
+      "status": "active",
+      "is_latest": true,
+      "published_at_utc": "2026-10-18T02:52:44.898492Z"
+    },
+    "robotics_search_readback": {
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers?search=robotics&version=latest&limit=10",
+      "observed_at_utc": "2026-10-18T02:54:03.417671+00:00",
+      "http_status": 200,
+      "response_sha256": "6847a26cbb55a20c806daa7947f93bee597e3e60f979ea570adfccc8313ab7ed",
+      "returned_records": 5,
+      "exact_matching_records": 1,
+      "version": "0.3.6"
+    },
+    "limits": "One exact version and one natural robotics query were read. Registry presence does not prove client installation, robot execution, traffic or adoption."
+  },
+  "remote_mcp_directory": {
+    "pr_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/2087",
+    "merged_at_utc": "2026-10-18T01:56:12Z",
+    "merged_by": "punkpeye",
+    "merge_commit": "25d042854527b44fbee2f0ba526873497ecd521c",
+    "pr_response_sha256": "81a3e6f4649592fbf36c3b8526733e015b81733bc7c8a813333bdacaa143f449",
+    "listing_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/blob/25d042854527b44fbee2f0ba526873497ecd521c/README.md#L2786",
+    "raw_listing_url": "https://raw.githubusercontent.com/punkpeye/awesome-remote-mcp-servers/25d042854527b44fbee2f0ba526873497ecd521c/README.md",
+    "observed_at_utc": "2026-10-18T03:04:03.822115+00:00",
+    "http_status": 200,
+    "readme_sha256": "abf993fb1b9cf46920e3c972300fb4fc9bc27b1d0ab87a15db507136463ade56",
+    "path": "README.md",
+    "first_line": 2786,
+    "line_count": 3,
+    "section": "Science & Research",
+    "occurrences": 1,
+    "homepage": "https://hub.superfastrobotics.com/",
+    "mcp_endpoint": "https://api.superfastrobotics.com/mcp",
+    "comments_readback": {
+      "url": "https://api.github.com/repos/punkpeye/awesome-remote-mcp-servers/issues/2087/comments?per_page=100",
+      "observed_at_utc": "2026-10-18T03:04:04.114395+00:00",
+      "response_sha256": "ccfb59e247991cbd93e045240e12a683b4974e41b43c2dc5fc1167180e779ee5",
+      "returned_comments": 2,
+      "next_page": false,
+      "assessment": "The earlier owner conflict request is superseded by the merge. A later automated thank-you offers optional Discord flair; no unresolved technical follow-up appears in the returned issue comments."
+    },
+    "limits": "The actual three-line listing is verified at the pinned merge commit. Current main, review-comment threads, connector badge health, endpoint runtime, traffic and adoption were not checked."
+  },
+  "skillboard": {
+    "submit_page": "https://www.skillboard.lol/submit",
+    "submitted_source_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/skills/find-robot-skills",
+    "method": "POST",
+    "submission_endpoint": "https://www.skillboard.lol/api/v1/submissions",
+    "submitted_at_utc": "2026-10-18T03:04:09.785011+00:00",
+    "response_observed_at_utc": "2026-10-18T03:04:10.138948+00:00",
+    "http_status": 201,
+    "request_body_sha256": "64c1d4cba43d830628856062700e3174298e3871213772f8307dc245c5f8511c",
+    "response_sha256": "ca0de95b7d9fe22ccce7f93bdfd60e776c0dd747100a0d7435c397035070a6aa",
+    "response": {
+      "status": "accepted",
+      "id": "61683293-cb3b-44d7-85bb-435aaaa51c19"
+    },
+    "state": "submitted_for_review",
+    "affiliation": "Superfast Robotics own public skill; Codex automated sender",
+    "requests": 1,
+    "retry": false,
+    "limits": "HTTP 201 accepted is review receipt only. Completed indexing, a public listing, search visibility, client installation and adoption are unverified."
+  }
+}

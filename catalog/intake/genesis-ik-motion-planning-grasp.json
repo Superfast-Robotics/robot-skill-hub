@@ -1,0 +1,93 @@
+{
+  "id": "genesis-ik-motion-planning-grasp",
+  "name": "Genesis Panda IK, motion planning and grasp example",
+  "summary": "Genesis World Python tutorial that solves Panda arm inverse kinematics, plans a joint path, controls joint position and gripper force, and lifts a simulated cube. The original script initializes a CPU simulation and opens a viewer at module top level; this record supplies inert source metadata only.",
+  "framework": "genesis",
+  "kind": "community_skill",
+  "capabilities": [
+    "inverse-kinematics",
+    "motion-planning",
+    "joint-position-control",
+    "grasping",
+    "simulation"
+  ],
+  "aliases": [
+    "Genesis",
+    "Genesis World",
+    "Panda inverse kinematics",
+    "IK motion planning grasp",
+    "gripper force control"
+  ],
+  "robots": [
+    "panda",
+    "franka-emika-panda"
+  ],
+  "source": {
+    "repository": "https://github.com/Genesis-Embodied-AI/genesis-world",
+    "commit": "50a2aa19cba6f3e1afdceb0fac239a56a0ef5502",
+    "path": "examples/tutorials/IK_motion_planning_grasp.py",
+    "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/examples/tutorials/IK_motion_planning_grasp.py",
+    "sha256": "985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+    "bytes": 2508,
+    "authors": [
+      "Genesis Authors"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/LICENSE",
+    "scope": "Selected Python tutorial source under the pinned Genesis repository Apache-2.0 declaration. Preserve upstream attribution, license and applicable notices when redistributing. Robot descriptions, meshes, binaries and third-party dependencies retain their own terms and were not cleared by this source review.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "python"
+  },
+  "requirements": {
+    "python": ">=3.10,<3.14 (upstream README declaration; untested)",
+    "packages": [
+      "Genesis World from the pinned upstream checkout with its required dependencies",
+      "PyTorch installed for the intended platform before Genesis, as declared in the pinned README",
+      "numpy"
+    ],
+    "hardware": [],
+    "system": [
+      "CPU simulation backend explicitly selected by the source",
+      "Working graphics and display environment for show_viewer=True",
+      "Upstream Panda MJCF and adjacent assets required by xml/franka_emika_panda/panda.xml"
+    ],
+    "notes": "The source explicitly calls gs.init(backend=gs.cpu), provides no CPU/GPU command-line switch, and creates a viewer-enabled scene with dt=0.01. It loads the Panda model, configures nine DOF gains and force limits, solves pre-grasp/reach/lift IK, plans and draws a joint path, commands arm/finger positions, applies finger force and advances the simulation. PYTEST_VERSION shortens the default 200-waypoint path and later loops; that branch is not runtime evidence. A lone copy of this Python file is insufficient: model XML, meshes, a suitable Genesis/PyTorch installation and graphics support are needed. The model assets, their licenses and exact planning backend/package internals were not reviewed. README CPU/CUDA installation options and Python bounds are upstream declarations; no operating system, package versions, timing or simulator combination was resolved or tested."
+  },
+  "invocation": {
+    "entrypoint": "python examples/tutorials/IK_motion_planning_grasp.py",
+    "notes": "Upstream invocation after configuring the pinned checkout, dependencies, Panda assets and viewer environment. There is no main guard; importing or executing the original file initializes the simulator, opens the viewer and runs the simulation control sequence. The selected file has no hardware controller connection. Library initialization and transitive effects were not exhaustively audited. The Hub supplies no execution/preparation adapter, installs no package and claims no successful grasp, collision safety, physical-robot compatibility or measured runtime."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+    "setup_url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/README.md"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Source, Apache-2.0 license and setup README Git blob IDs and sizes matched the immutable, nontruncated upstream tree. Source effects and setup bounds are observations, not tested compatibility. No simulator, upstream package, controller or GPU was executed."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-985537566f01",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
