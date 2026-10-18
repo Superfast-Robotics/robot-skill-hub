@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { Miniflare, Response as RuntimeResponse } from 'miniflare';
@@ -26,6 +27,8 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     env: { PUBLICATION_URL: { type: 'text', value: 'https://hub.superfastrobotics.com/catalog/v1/publication.json' } }
   }, dev: { outboundService: { type: 'fetcher', handler(request) {
     outbound.push(request.url); assert.equal(request.headers.has('Authorization'), false);
+    assert.equal(request.method, 'GET'); assert.equal(request.headers.get('DNT'), '1');
+    assert.equal(request.headers.get('X-RSH-Telemetry'), 'off');
     const url = new URL(request.url); assert.equal(url.origin, 'https://hub.superfastrobotics.com');
     if (url.pathname === '/catalog/v1/version.json') return RuntimeResponse.json({ schema_version: '1', hub_commit: hub, resources: { search: { sha256: hash(search) } } });
     if (url.pathname === '/catalog/v1/search.json') return new RuntimeResponse(search);
@@ -39,14 +42,43 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     const transport = new StreamableHTTPClientTransport(endpoint, { requestInit: { headers: { DNT: '1', 'User-Agent': 'robot-skill-hub-test/official-mcp-sdk' } } });
     await client.connect(transport, { timeout: 5000 });
     assert.equal(client.getServerVersion()?.name, 'robot-skill-hub'); assert.equal(transport.sessionId, undefined);
+    const packageInfo = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8'));
+    assert.equal(client.getServerVersion()?.version, packageInfo.version);
+    assert.match(client.getInstructions() || '', /get_hub_capabilities/);
+    assert.equal(outbound.length, 0, 'Initialization advertises the handoff without fetching or installing anything');
     const listed = await client.listTools(undefined, { timeout: 5000 }); assert.equal(listed.tools.length, 3);
+    assert.deepEqual(listed.tools.map(tool => tool.name).sort(), ['find_robot_skills', 'get_hub_capabilities', 'inspect_robot_skill']);
     assert.ok(listed.tools.every(tool => tool.annotations?.readOnlyHint && tool.annotations?.destructiveHint === false));
+    const capability = await client.callTool({ name: 'get_hub_capabilities', arguments: {} }, undefined, { timeout: 5000 }); assert.equal(capability.isError, false);
+    const onboarding: any = (capability.structuredContent as any).onboarding;
+    assert.equal(onboarding.agent_contract_url, 'https://hub.superfastrobotics.com/agent.json');
+    assert.equal(onboarding.quickstart_url, 'https://hub.superfastrobotics.com/agent-quickstart.md');
+    const skillPath = 'skills/find-robot-skills/SKILL.md';
+    assert.equal(onboarding.skill_url, 'https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/main/' + skillPath);
+    const [skill, quickstart] = await Promise.all([
+      readFile(new URL('../../../' + skillPath, import.meta.url), 'utf8'),
+      readFile(new URL('../../../docs/agent-quickstart.md', import.meta.url), 'utf8')
+    ]);
+    assert.match(skill, /^name: find-robot-skills$/m); assert.match(quickstart, /fetch-source/);
+    assert.equal(onboarding.mcp_read_only, true); assert.equal(onboarding.automatic_installation, false);
+    assert.equal(onboarding.source_or_robot_execution, false);
+    assert.deepEqual(onboarding.source_acquisition.manifest_arguments, ['save_args', 'memories_args']);
+    assert.equal(onboarding.source_acquisition.cli_command, 'fetch-source');
+    assert.equal(onboarding.source_acquisition.same_project_required, true);
+    assert.equal(onboarding.source_acquisition.preserves_acquired_source_pins, true);
+    assert.equal(onboarding.source_acquisition.source_manifest_grants_sharing_permission, false);
+    assert.equal(onboarding.task_memory.local_first, true);
+    assert.deepEqual(onboarding.task_memory.cli_commands, ['save', 'memories']);
+    assert.deepEqual(onboarding.task_memory.public_delivery_requires, ['memory.public_save_allowed=true', 'matching memory.allowed_skill_ids and memory.allowed_kinds', 'allowed-agent scoped token', 'minimal redacted finding']);
+    assert.match(onboarding.task_memory.finding_scope, /actually observed.*user task first/);
+    assert.equal(onboarding.task_memory.missing_scope_or_token, 'Keep local_saved and continue the user task.');
+    assert.equal(onboarding.task_memory.repeat_permission_for_exact_authorized_scope, false);
+    assert.equal(outbound.length, 2, 'Capabilities read only the pinned catalog, never follow the onboarding links or transmit findings');
     const found = await client.callTool({ name: 'find_robot_skills', arguments: { q: 'panda grasp', limit: 1 } }, undefined, { timeout: 5000 });
     assert.equal(found.isError, false); const value: any = found.structuredContent;
     assert.equal(value.execution_performed, false); assert.equal(value.results[0].id, 'panda-source-policy'); assert.equal(value.results[0].hub_prepare, false);
     const inspected = await client.callTool({ name: 'inspect_robot_skill', arguments: { skill_id: value.results[0].id, record_version: value.results[0].record_version } }, undefined, { timeout: 5000 });
     const detail: any = inspected.structuredContent; assert.equal(detail.record.evidence.runtime_verification, 'not_run'); assert.equal(detail.record.access.hub_prepare, false);
-    const capability = await client.callTool({ name: 'get_hub_capabilities', arguments: {} }, undefined, { timeout: 5000 }); assert.equal(capability.isError, false);
     assert.equal(outbound.filter(url => url.includes('/version.json')).length, 1); assert.equal(outbound.filter(url => url.includes('/search.json')).length, 1);
     assert.deepEqual(errors.map(error => error.message), []);
   } finally { await client.close(); await mf.dispose(); }
