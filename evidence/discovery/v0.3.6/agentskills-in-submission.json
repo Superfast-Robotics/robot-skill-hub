@@ -1,0 +1,75 @@
+{
+  "schema_version": "1",
+  "compiled_at_utc": "2026-10-18T03:38:38.072819+00:00",
+  "operation": "Operator-initiated own-source suggestion; not agent adoption.",
+  "form_url": "https://www.agentskills.in/#submit",
+  "repository_url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+  "submission_receipt": {
+    "recorded_at_utc": "2026-10-18T03:34:48.670436+00:00",
+    "timestamp_scope": "Receipt compilation time; exact POST network-response time was not separately preserved.",
+    "url": "https://www.agentskills.in/api/repos/submit",
+    "method": "POST",
+    "request_count": 1,
+    "http_status": 202,
+    "request_body": {
+      "full_name": "Superfast-Robotics/robot-skill-hub"
+    },
+    "request_body_sha256": "5bbf3da5da828de86c6afae36b6fd2ca0c74b58f3a5f5ea96b77fd675e9d6e91",
+    "response_sha256": "4d575d49f12ac556d75db7ce89d836719e8157965ef531e167d18e54117a3fde",
+    "response": {
+      "success": true,
+      "id": "f0329f86-4be1-40eb-a061-dc8a182759ec",
+      "repo": "Superfast-Robotics/robot-skill-hub",
+      "status": "pending",
+      "skills_found": 1
+    },
+    "meaning": "Accepted as pending for indexing; not a published or indexed listing."
+  },
+  "pre_submission_search": {
+    "url": "https://www.agentskills.in/api/skills?search=find-robot-skills&limit=20&sortBy=stars&locale=en",
+    "response_sha256": "2fa9a85b60b5db3ec3e12298baedcba132b79c0ea0eea8c0cf4d6d061d150fbe",
+    "response": {
+      "skills": [],
+      "total": 0,
+      "limit": 20,
+      "offset": 0
+    },
+    "scope": "One completed exact-name query before submission; not provider-wide repository or pending-submission absence."
+  },
+  "frontend_distinction": {
+    "displayed_text": [
+      "0 skills indexed",
+      "Skills are now live in the marketplace!"
+    ],
+    "interpretation": "Generic frontend success copy does not override the actual HTTP202 pending backend response or establish indexing."
+  },
+  "later_readbacks": [
+    {
+      "purpose": "status",
+      "url": "https://www.agentskills.in/api/repos/submit?repo=Superfast-Robotics/robot-skill-hub",
+      "recorded_at_utc": "2026-10-18T03:35:35.082340+00:00",
+      "http_status": 403,
+      "response_kind": "HTML block page, not API JSON",
+      "response_sha256": "23cf851c25d6b11ec2690ec941d7ddebbfb2b029a977de842f123af3fd7bb6eb"
+    },
+    {
+      "purpose": "search",
+      "url": "https://www.agentskills.in/api/skills?search=find-robot-skills&limit=20&sortBy=stars&locale=en",
+      "recorded_at_utc": "2026-10-18T03:35:35.618698+00:00",
+      "http_status": 403,
+      "response_kind": "HTML block page, not API JSON",
+      "response_sha256": "328d27c1315d0e98a71894b3d63bdd9fe5bb4c212c7a5105705085b2c6f0afff"
+    }
+  ],
+  "current_status": {
+    "queue": "unknown after blocked reads",
+    "search_visibility": "unknown after blocked reads",
+    "last_observed_backend_status": "pending",
+    "published_source_commit_or_slug": null
+  },
+  "limits": [
+    "The two later direct GETs returned no API JSON and prove neither search presence nor absence. No workaround, retry or further polling was performed in that readback.",
+    "Completed indexing, a public listing, installation, runtime success, traffic and adoption are unverified.",
+    "This evidence was compiled offline from cached response bytes and receipts; no new request was made to produce it."
+  ]
+}
