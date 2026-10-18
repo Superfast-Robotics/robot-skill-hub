@@ -284,7 +284,7 @@
         },
         {
           "id": "ros2-joint-state-broadcaster",
-          "owned_intake_sha256": "07d02b4d5921a738326c368068e7b98f0b4eb89d17cfdcc9b6acabf1e6d48926",
+          "owned_intake_sha256": "47409bef575521d27334a89940bd0771aea78a046909506bf3995ce75f0af0f7",
           "source_path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
           "package_path": "joint_state_broadcaster/package.xml",
           "cmake_path": "joint_state_broadcaster/CMakeLists.txt",
@@ -322,6 +322,7 @@
               "joint_state_broadcaster",
               "JointStateBroadcaster",
               "joint state broadcaster",
+              "joint state broadcasting",
               "joint_states",
               "dynamic_joint_states",
               "sensor_msgs/JointState",

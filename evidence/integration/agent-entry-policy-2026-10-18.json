@@ -84,5 +84,35 @@
     "Local test findings and synthetic credentials were never submitted publicly.",
     "No simulator, controller, upstream source, installation, GPU or paid resource was executed.",
     "API/Worker code and version are unchanged."
-  ]
+  ],
+  "plugin_manifest_identity": {
+    "manifest_sha256": "da353de06d4aa58271274464ec87bb3678ed608bd580edd49c53e2a246194da8",
+    "change": "Only the JSB owned metadata checksum and reviewed alias mirror were updated. All upstream file pins, registrations, authors and licenses remain unchanged.",
+    "owned_intake_sha256": "47409bef575521d27334a89940bd0771aea78a046909506bf3995ce75f0af0f7",
+    "post_correction_unit_tests": 16,
+    "post_correction_actual_plugins_checked": 3,
+    "post_correction_actual_pinned_files_checked": 15,
+    "checks": [
+      {
+        "label": "unit",
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "9ed380a43b3ae825169d003aeaa2a3753284fc9bf977eab2d08a5b13659ae39e"
+      },
+      {
+        "label": "actual",
+        "exit_code": 0,
+        "stdout_sha256": "6ad8918920d5c6efda97256abf79c66d0afdcd862dd01dc8e2cad75e0e4e41d1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "initial_PR_CI": {
+      "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39109057088",
+      "head": "a41e07a62b6ad8f1a9b02e25dfe03adc873275bf",
+      "tests": 311,
+      "failures": 1,
+      "failure": "The real-manifest test caught the omitted owned metadata checksum update after adding the alias. This failure was preserved; no test was weakened or skipped.",
+      "job_log_sha256": "66c6dc085034ddfe9d8ca9b39fdb210c6e8be531302f15bf4cbd415a0c60b0d4"
+    }
+  }
 }
