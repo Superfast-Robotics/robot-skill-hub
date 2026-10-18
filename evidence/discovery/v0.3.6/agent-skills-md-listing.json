@@ -1,0 +1,73 @@
+{
+  "schema_version": "1",
+  "operation": "Operator-initiated own-source skill submission and public listing readback; not agent adoption.",
+  "provider": "Agent-Skills.md",
+  "receipt_compiled_at_utc": "2026-10-18T04:06:06.489402+00:00",
+  "timestamp_scope": "The preserved submission and readbacks were compiled at the recorded timestamp. An exact POST network-response time was not independently measured; snapshot timing is not a network-response timestamp.",
+  "repository_url": "https://github.com/Superfast-Robotics/robot-skill-hub",
+  "submitted_source_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/skills/find-robot-skills",
+  "submission": {
+    "form_url": "https://agent-skills.md/submit",
+    "endpoint": "https://agent-skills.md/rpc/repos/submit",
+    "method": "POST",
+    "request_count": 1,
+    "http_status": 200,
+    "request_body": {
+      "json": {
+        "url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/skills/find-robot-skills"
+      }
+    },
+    "request_body_sha256": "480d89839b04c80eabfbd8ac5279d0a2b4a617964d23804d473b6ee40d74238e",
+    "response_sha256": "8ab5e79b089cb25ae683dddf668c46958109330e7c86a33e5f064862cf55dd6f",
+    "response": {
+      "json": {
+        "repoId": "Superfast-Robotics/robot-skill-hub",
+        "skillsAdded": 1,
+        "alreadyExists": false
+      }
+    },
+    "meaning": "The backend reports one added skill for the owned repository; this is separate from the later rendered listing observations."
+  },
+  "pre_submission_search": {
+    "query": "find-robot-skills",
+    "http_status": 200,
+    "request_body_sha256": "6ea488eaad7fbbc756f80cd51509f2f5d7a6bd5c46e75076f5bb6e6ad2a41d81",
+    "response_sha256": "4913044bd6227bbabb951cd8b9e4b959aeab9007f7329f8a1b62e0e3d15af216",
+    "response": {
+      "json": {
+        "items": [],
+        "total": 0,
+        "page": 1,
+        "pageSize": 50,
+        "totalPages": 1
+      }
+    },
+    "scope": "One completed exact-name RPC query before submission; not provider-wide repository or pending-submission absence."
+  },
+  "post_submission_search": {
+    "url": "https://agent-skills.md/?q=find-robot-skills",
+    "evidence_kind": "Rendered server-side search page and accessibility snapshot, not a captured post-submit search RPC response body.",
+    "rendered_results": 1,
+    "correct_skill_name_owner_and_description": true,
+    "snapshot_sha256": "04b8704ecee43db2cae0aa14fa3addfb36d68a4a069120939ee2581bae3989a6"
+  },
+  "detail_readback": {
+    "url": "https://agent-skills.md/skills/Superfast-Robotics/robot-skill-hub/find-robot-skills",
+    "rendered_heading": "Agent Skills: find-robot-skills",
+    "correct_description_rendered": true,
+    "download_link_observed": "https://agent-skills.md/api/skills/download/Superfast-Robotics/robot-skill-hub/find-robot-skills",
+    "snapshot_sha256": "1bf8fd35d5f72e2fdce0dd71842942a3386aead3cdc7b1eaffc5fa9fa618790b",
+    "folder_tree_rpc_http_status": 200,
+    "folder_tree_response_sha256": "0d62422f8574ad0fb4ab5cb162cb96d8fe5c46b3f7ce871e84ae3c9b40a268c0",
+    "provider_source_commit": null,
+    "complete_folder_bytes_verified": false
+  },
+  "affiliation": "The submitted source URL identifies the owned Superfast-Robotics repository. The form had no separate identity field; no individual identity was claimed.",
+  "limits": [
+    "One official form submission was made, with no automatic retry. The exact POST timestamp was not independently preserved.",
+    "Search visibility is established only for the returned exact-name rendered page; no post-submit backend total or other query coverage is claimed.",
+    "The download link and folder-tree metadata were observed, but no skill download, installation or robot execution was performed. Provider source commit and complete downloaded contents remain unverified.",
+    "Directory publication does not establish independent agent use, runtime success, traffic or adoption.",
+    "This sanitized evidence was prepared offline from cached bytes and the recorded operator receipt; no new external request was made to produce it."
+  ]
+}
