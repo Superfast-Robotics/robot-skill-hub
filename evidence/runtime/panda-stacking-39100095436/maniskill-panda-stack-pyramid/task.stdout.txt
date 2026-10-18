@@ -1,0 +1,1 @@
+{"status": "failed", "success": false, "elapsed_steps": 176, "terminated": false, "truncated": false, "reason_code": "task_objective_not_reached", "task": "StackPyramid-v1", "seed": 0, "runtime": "3.0.0b22", "robot": "panda", "controller": "pd_joint_pos", "observation": "state", "sim_backend": "cpu", "render_backend": "none", "max_episode_steps": 1000}

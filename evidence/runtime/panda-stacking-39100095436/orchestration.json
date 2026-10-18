@@ -1,0 +1,69 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "orchestrator": "same_maintainer_agent_explicit_named_batch",
+  "fresh_blind_context": false,
+  "batch": "panda-stacking",
+  "requested_skills": [
+    "maniskill-panda-stack-pyramid"
+  ],
+  "selection": "The same maintainer agent explicitly selected the one-task panda-stacking named batch and dispatched one authorized public GitHub Actions CPU run.",
+  "selected": [
+    {
+      "id": "maniskill-panda-stack-pyramid",
+      "record_version": "1.1.0",
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_archive_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "adapter_sha256": "83f9d488d793b36eca0f46282d550ab031f7c1a8315960d62c5c42df682c271b",
+      "max_episode_steps": 1000,
+      "upstream_default_episode_steps": 250
+    }
+  ],
+  "workflow_run_url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39100095436",
+  "executed_hub_commit": "0442ed7b99d78a970e92780a16df793e65039370",
+  "runtime_control": "The maintainer selected and orchestrated reusable code. Python/MPlib planned trajectories and the simulator PD controller followed joint targets; no physical robot was controlled.",
+  "observed_actions": [
+    "explicitly_select_one_task_named_batch",
+    "dispatch_one_authorized_Linux_CPU_workflow",
+    "review_provider_verified_artifact_and_preserve_failed_actual_result"
+  ],
+  "observed_result": {
+    "status": "failed",
+    "success": false,
+    "elapsed_steps": 176,
+    "terminated": false,
+    "truncated": false,
+    "reason_code": "task_objective_not_reached",
+    "task": "StackPyramid-v1",
+    "seed": 0,
+    "runtime": "3.0.0b22",
+    "robot": "panda",
+    "controller": "pd_joint_pos",
+    "observation": "state",
+    "sim_backend": "cpu",
+    "render_backend": "none",
+    "max_episode_steps": 1000
+  },
+  "observed_execution": {
+    "exit_code": 1,
+    "timed_out": false,
+    "timeout_seconds": 180,
+    "duration_seconds": 5.678
+  },
+  "provenance_checks_pass": true,
+  "task_acceptance_pass": false,
+  "task_success": false,
+  "failure_interpretation": "The task process ran and returned task_objective_not_reached. It was not truncated and did not hit the process timeout. The harness contract_matches=false is its successful-task acceptance field, not evidence of a source-pin mismatch.",
+  "warnings": [
+    "The exact task stderr preserves a Panda articulation initial-pose warning. Its causal relationship to the failed objective was not established."
+  ],
+  "scope": "One maintainer-selected Panda CPU/state task at seed 0 under the explicit Hub 1000-step horizon; failed task objective, not a successful runtime promotion or an upstream default-250-step benchmark.",
+  "limits": [
+    "One seed and one invocation only; no automatic retry or success selection.",
+    "Software Vulkan CPU initialization, state observations, no camera/output rendering or physical GPU.",
+    "Hub 1000-step horizon; the pinned StackPyramid task default is 250. Neither a successful Hub episode nor an upstream benchmark completion is claimed.",
+    "This is a maintainer execution, not fresh blind discovery, independent user adoption or hardware evidence.",
+    "Proof preservation alone changes no recipe record, guide, verification document, schema, source, adapter or test.",
+    "This evidence-preservation review did not install, import, compile, execute, retry or dispatch upstream code."
+  ]
+}
