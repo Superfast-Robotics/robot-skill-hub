@@ -1,0 +1,33 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "observed_at": "2026-10-18T06:55:21.889808+00:00",
+  "published_hub_commit": "dd6ab5cb07becf8a7c963b83202266977265cee8",
+  "publication_run": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39104733079",
+  "counts": {"recipes": 17, "references": 1284, "memories": 3},
+  "method": "Read the actual public version manifest, retrieve its three checksum-pinned v1 compatibility resources as inert JSON, verify their record arrays against the previously validated source-tree fixture, then re-read the same public version manifest before copying bytes into bundled snapshots.",
+  "resources": {
+    "catalog": {"source_url": "https://hub.superfastrobotics.com/catalog/v1/index.json", "bytes": 212034, "sha256": "dab6d1b545be4976c1f891168c022f9fc32695eb0b28d15afeec7752c97febfb"},
+    "references": {"source_url": "https://hub.superfastrobotics.com/catalog/v1/references.json", "bytes": 6917308, "sha256": "37265e6c5b82a75097603ac80b53dde4a7c6268958cc95d611bac5c583e94fb9"},
+    "memories": {"source_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json", "bytes": 9404, "sha256": "62ee5652467834b243b350d4498917e57758e7ec8470828d70b94e53de5157e2"}
+  },
+  "offline_CLI_checks": {
+    "fresh_home_and_cache": true,
+    "credential_environment": "allowlist_only",
+    "telemetry": "off",
+    "invocations": 2,
+    "checks": [
+      {"operation": "find joint trajectory --runtime ros2-controllers", "exit_code": 0, "origin": "bundled_snapshot", "selected_id": "ros2-joint-trajectory-controller", "stdout_sha256": "3128d41ec2084fe62d611ec44cc4f40e1e32166db57af3489b8bd8024f4af656"},
+      {"operation": "inspect maniskill-panda-stack-pyramid", "exit_code": 0, "origin": "bundled_snapshot", "last_task_attempt_status": "failed", "last_task_attempt_success": false, "stdout_sha256": "f654156fdf2a7d382d7da1b8cc6237ab5eda7c2fbd143f12cf79e3365a230287"}
+    ],
+    "HTTP_wire_count_independently_instrumented": false
+  },
+  "scope": {
+    "public_static_GETs": 5,
+    "operator_measurement_opt_out": true,
+    "unpublished_candidate_used_as_snapshot_pin": false,
+    "source_or_robot_execution_performed": false,
+    "external_agent_installation_or_adoption_claimed": false,
+    "meaning": "The snapshots describe the verified publication named above. Later published records require online discovery or an explicit newer snapshot; bundled data is never silently relabeled as the current publication."
+  }
+}
