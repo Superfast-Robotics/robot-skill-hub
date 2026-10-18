@@ -171,6 +171,20 @@ def lookup_preparation(catalog, skill_id):
 ENVIRONMENT_FIELDS = ("runtime", "runtime_version", "robot", "controller", "observation", "os", "python", "architecture")
 
 
+def preparation_arguments(skill_id, source_commit, record_version, environment=None):
+    """Keep explicit discovery constraints with the selected recipe/source pins."""
+    arguments = ["prepare", skill_id, "--expected-source-commit", source_commit,
+                 "--expected-record-version", record_version]
+    for field in ENVIRONMENT_FIELDS:
+        value = (environment or {}).get(field)
+        if value is None or str(value).strip().lower() in ("", "unknown"):
+            continue
+        option = "python-version" if field == "python" else field.replace("_", "-")
+        # One argv item preserves custom labels beginning with a dash.
+        arguments.append("--" + option + "=" + str(value))
+    return arguments
+
+
 def compatibility(record, environment):
     """Return no match on any explicit conflict; unknowns stay unknown."""
     supplied = {key: str(environment[key]).lower() for key in ENVIRONMENT_FIELDS
@@ -298,8 +312,8 @@ def find(catalog, query, environment, limit=3, *, offset=0, hub_commit=None):
                         "kind": "preparation_recipe", "hub_prepare": True, "next_action": "inspect_recipe",
                         "source_commit": record["source"]["commit"], "record_version": record["maintenance"]["record_version"],
                         "memory_base": selection_base(catalog, record),
-                        "prepare_args": ["prepare", record["id"], "--expected-source-commit", record["source"]["commit"],
-                                         "--expected-record-version", record["maintenance"]["record_version"]],
+                        "prepare_args": preparation_arguments(record["id"], record["source"]["commit"],
+                                                              record["maintenance"]["record_version"], environment),
                         "match_reason": ["Explicit environment constraints match a documented combination."]
                         + (["Environment is incomplete; compatibility is unconfirmed."] if matched["missing_requirements"] else []),
                         "missing_requirements": matched["missing_requirements"],

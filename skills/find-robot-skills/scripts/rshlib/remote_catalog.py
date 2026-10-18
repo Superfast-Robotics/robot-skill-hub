@@ -10,7 +10,7 @@ import urllib.parse
 
 from . import discovery
 from .core import (COMMIT, ENVIRONMENT_FIELDS, SHA256, SOURCE_REVISION, RshError,
-                   compatibility, reference_environment_matches, require_url, validate_find_pagination, validate_record)
+                   compatibility, preparation_arguments, reference_environment_matches, require_url, validate_find_pagination, validate_record)
 
 IDENT = re.compile(r"[a-z0-9][a-z0-9-]{0,79}\Z")
 
@@ -143,7 +143,7 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None, 
                   "compatibility_status": matched["compatibility_status"], "missing_requirements": matched["missing_requirements"],
                   "match_reason": ["Pinned public search result; inspect its exact source, license and execution evidence before use."]}
         if recipe:
-            result["prepare_args"] = ["prepare", row["id"], "--expected-source-commit", row["source_commit"], "--expected-record-version", row["record_version"]]
+            result["prepare_args"] = preparation_arguments(row["id"], row["source_commit"], row["record_version"], environment)
         results.append(result)
     return {"status": "ready", "results": results, "total": total, "offset": offset, "limit": limit, "execution_performed": False,
             "catalog_hub_commit": hub, "references_hub_commit": hub, "catalog_origin": origin, "references_origin": origin,

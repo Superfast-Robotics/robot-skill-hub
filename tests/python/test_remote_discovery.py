@@ -70,6 +70,34 @@ class RemoteDiscoveryTests(unittest.TestCase):
         self.assertTrue(fetch.call_args.args[0].startswith(discovery.API_BASE + "search?"))
         self.assertEqual(fetch.call_args.kwargs["max_bytes"], 512 * 1024)
 
+    def test_remote_recipe_prepare_args_keep_exact_all_eight_caller_filters_like_local_find(self):
+        data, host = fixture_catalog(), core.local_environment()
+        target = {**data["records"][0]["compatibility"][0], "runtime": "--fixture-target", "runtime_version": "2.0.0",
+                  "robot": "ur5", "controller": "torque", "observation": "rgb", "python": ".".join(host["python"].split(".")[:2])}
+        data["records"][0]["compatibility"].append(target)
+        environment = {**target, "python": host["python"],
+                       "architecture": {"x86_64": "amd64", "arm64": "aarch64"}.get(host["architecture"], host["architecture"])}
+        page = search_page()
+        page["results"][0]["compatibility"] = data["records"][0]["compatibility"]
+        with mock.patch.object(discovery, "fetch_public", return_value=page) as fetch:
+            result = remote_catalog.search("fixture", environment)
+        arguments = result["results"][0]["prepare_args"]
+        self.assertEqual(core.find(data, "fixture", environment)["results"][0]["prepare_args"], arguments)
+        expected = ["--runtime=--fixture-target", "--runtime-version=2.0.0", "--robot=ur5", "--controller=torque",
+                    "--observation=rgb", "--os=" + host["os"], "--python-version=" + host["python"],
+                    "--architecture=" + environment["architecture"]]
+        self.assertEqual(expected, arguments[-8:])
+        params = urllib.parse.parse_qs(urllib.parse.urlsplit(fetch.call_args.args[0]).query)
+        self.assertTrue(all(params[key] == [value] for key, value in environment.items()))
+        parsed = self.args(*arguments, "--project", self.temporary.name, "--plan")
+        self.assertEqual(environment, {key: getattr(parsed, key) for key in core.ENVIRONMENT_FIELDS})
+        with mock.patch.object(rsh, "load_discovery", return_value=data), \
+                mock.patch.object(remote_catalog, "selected_catalog", return_value=data):
+            plan = rsh.execute(parsed, None)
+        self.assertEqual(target, plan["selected_compatibility"])
+        self.assertFalse(plan["preparation_performed"])
+        self.assertFalse(plan["execution_performed"])
+
     def test_cli_page_two_retains_query_filters_generation_and_cache_identity(self):
         environment = {"robot": "panda"}
         pages = [search_slice(0, environment=environment), search_slice(3, environment=environment), search_slice(6, environment=environment)]

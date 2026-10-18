@@ -16,7 +16,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "skills/find-robot-skills/scripts"
 sys.path.insert(0, str(SCRIPTS))
-from rshlib.core import RshError, find, inspect, lookup_preparation
+from rshlib.core import RshError, find, inspect, local_environment, lookup_preparation, preparation_arguments
 from rshlib import acquisition, discovery, remote_catalog
 from test_rsh import fixture_catalog
 preparation = importlib.import_module("rshlib.prepare")
@@ -96,9 +96,7 @@ class ReferenceDiscoveryTests(unittest.TestCase):
             detail = self.cli(["inspect", "fixture-pick", "--offline", "--catalog", selected.name, "--json"], root, root / "cache")
             arguments = found["results"][0]["prepare_args"]
             self.assertEqual(["--offline", "--catalog", str(selected.resolve()), "prepare"], arguments[:4])
-            self.assertEqual(arguments, detail["prepare_args"])
-            self.assertNotIn("--runtime", arguments)
-            self.assertNotIn("--robot", arguments)
+            self.assertEqual([*detail["prepare_args"], "--runtime=fixture", "--robot=panda"], arguments)
             plan = self.cli([*arguments, "--project", str(project), "--plan", "--json"], later, root / "cache", expected_exit=2)
             self.assertEqual("needs_configuration", plan["status"])
             self.assertEqual("preparation_plan", plan["reason_code"])
@@ -107,6 +105,46 @@ class ReferenceDiscoveryTests(unittest.TestCase):
             self.assertFalse(plan["preparation_performed"])
             self.assertFalse(plan["execution_performed"])
             self.assertFalse(project.exists())
+
+    def test_returned_local_recipe_args_preserve_all_eight_explicit_filters_and_selected_combination(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data, host = fixture_catalog(), local_environment()
+            target = {**data["records"][0]["compatibility"][0], "runtime": "--fixture-target", "runtime_version": "2.0.0",
+                      "robot": "ur5", "controller": "torque", "observation": "rgb", "python": ".".join(host["python"].split(".")[:2])}
+            data["records"][0]["compatibility"].append(target)
+            environment = {**target, "python": host["python"],
+                           "architecture": {"x86_64": "amd64", "arm64": "aarch64"}.get(host["architecture"], host["architecture"])}
+            selected, environment_path = root / "catalog.json", root / "environment.json"
+            selected.write_text(json.dumps(data), encoding="utf-8")
+            environment_path.write_text(json.dumps(environment), encoding="utf-8")
+            found = self.cli(["--catalog", str(selected), "--offline", "find", "fixture", "--environment", str(environment_path), "--json"], root, root / "cache")
+            arguments = found["results"][0]["prepare_args"]
+            self.assertEqual(["--runtime=--fixture-target", "--runtime-version=2.0.0", "--robot=ur5", "--controller=torque",
+                "--observation=rgb", "--os=" + host["os"], "--python-version=" + host["python"],
+                "--architecture=" + environment["architecture"]], arguments[-8:])
+            project = root / "uncreated-project"
+            plan = self.cli([*arguments, "--project", str(project), "--plan", "--json"], root, root / "cache", expected_exit=2)
+            self.assertEqual("preparation_plan", plan["reason_code"])
+            self.assertEqual(target, plan["selected_compatibility"])
+            self.assertEqual(data["records"][0]["source"]["commit"], plan["source_commit"])
+            self.assertEqual(data["records"][0]["maintenance"]["record_version"], plan["record_version"])
+            self.assertFalse(plan["preparation_performed"])
+            self.assertFalse(plan["execution_performed"])
+            self.assertFalse(project.exists())
+
+    def test_environment_handoff_omits_unknown_and_unrequested_fields_and_never_changes_source_fetch_args(self):
+        environment = {"runtime": "fixture", "runtime_version": "unknown", "robot": None, "controller": "",
+                       "observation": "Unknown", "package.private": "not-a-prepare-option", "api_url": "not-a-prepare-option"}
+        arguments = preparation_arguments("fixture-pick", "a" * 40, "1.0.0", environment)
+        self.assertEqual(["prepare", "fixture-pick", "--expected-source-commit", "a" * 40,
+                          "--expected-record-version", "1.0.0", "--runtime=fixture"], arguments)
+        source_catalog = self.cpp_catalog()
+        before = inspect(source_catalog, "local-only-cpp-reference")["fetch_source_args"]
+        found = find(source_catalog, "Local C++", {"runtime": "pybullet"})
+        self.assertEqual("source_reference", found["results"][0]["kind"])
+        self.assertNotIn("prepare_args", found["results"][0])
+        self.assertEqual(before, inspect(source_catalog, "local-only-cpp-reference")["fetch_source_args"])
 
     def test_https_catalog_query_is_preserved_and_offline_refuses_its_network_read(self):
         selected = "https://catalog.example.org/index.json?version=reviewed"
