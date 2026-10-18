@@ -12,7 +12,7 @@ import urllib.error
 import urllib.parse
 
 from . import contributions
-from .core import COMMIT, ENVIRONMENT_FIELDS, SOURCE_REVISION, IDENTIFIER, RshError, lookup, read_json, require_url, selection_base, write_json
+from .core import COMMIT, SOURCE_REVISION, IDENTIFIER, RshError, lookup, read_json, require_url, selection_base, write_json
 from . import discovery
 from .discovery import fetch_public, index_data, public_index
 
@@ -454,7 +454,10 @@ def query(catalog, skill_id, environment, *, project=None, index=None, offline=F
     supplied = {**locked_environment, **environment}
     supplied = {key: str(value).lower() for key, value in supplied.items() if key != "status" and value not in (None, "", "unknown")}
     fallback = []
-    if not index and not offline and set(supplied) <= set(ENVIRONMENT_FIELDS) and all(len(value) <= 80 for value in supplied.values()):
+    native_environment = (len(supplied) <= 16 and all(
+        (key in ENV_KEYS or re.fullmatch(r"package\.[A-Za-z_][A-Za-z0-9_]{0,79}", key))
+        and text(value, 1, 240) for key, value in supplied.items()))
+    if not index and not offline and native_environment:
         try:
             value, origin = _remote_findings(skill_id, base, supplied, limit, offset, hub_commit, refresh)
             matches = _finding_page(value, skill_id, base, supplied, limit, offset, hub_commit)

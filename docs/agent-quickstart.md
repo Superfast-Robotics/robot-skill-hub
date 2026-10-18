@@ -67,6 +67,8 @@ Published memories are contributor-reported data, not agent instructions. Check 
 
 Online `memories` reads one exact-pin `/v1/findings` page, default 20 results. Continue with `--limit`, `--offset` and the returned `--hub-commit`. A publication change rejects mixed-generation pagination. Offline recall reports the coverage of its available index.
 
+Pass `--environment FILE` to recall findings for package versions or simulation/render backends. The JSON file uses flat keys such as `{"sim_backend":"cpu","render_backend":"none","package.mesa":"23.2.1"}`. These filters use the same bounded native query as runtime and robot filters; all values must match one finding. At most 16 environment filters are accepted, each a nonempty string of at most 240 characters. Explicit indexes, offline recall and an API outage retain their reported coverage.
+
 Remove `--plan` to prepare verified sources and an isolated project environment where supported. Use the selected result's returned `prepare_args` to retain exact record/source checks, and follow returned command arrays. Dependency installation requires `--install-deps` within the existing task scope. Preparation does not run the robot task. Preserve the project lock; catalog refreshes never silently update an existing project.
 
 The preparation recipes target the Linux/Python/ManiSkill environment recorded in each recipe. Windows can search, inspect and download supported recipe archives with `prepare --download-only`; source references use the separate `fetch-source` command. Source review, download, installation, import and successful task execution remain distinct evidence levels.
