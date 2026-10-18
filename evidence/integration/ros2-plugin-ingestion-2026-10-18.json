@@ -1,0 +1,181 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-18T07:10:15.793243+00:00",
+  "scope": "Offline maintainer-side checks of three already owned source-reference records; no publication receipt or runtime promotion.",
+  "previous_public_hub_commit": "dd6ab5cb07becf8a7c963b83202266977265cee8",
+  "source_repository": "https://github.com/ros-controls/ros2_controllers",
+  "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+  "tool": {
+    "path": "tools/import_robot_plugins.py",
+    "sha256": "a088da1d7068232866dcdc852209d2e9e4d3cd6fea37561eb06ef5612422b3b0",
+    "registration_evidence": "literal_registration_consistent",
+    "limits": "Literal structural consistency only; no compiler, preprocessing, evaluated CMake graph, active plugin loading or hardware/runtime verification."
+  },
+  "manifest": {
+    "path": "catalog/plugin-projects.json",
+    "sha256": "a3ea03f86ed191862fc18c64a36f53bbce7f1de7b525118828f2eb40e03bcf71",
+    "plugins": 3,
+    "pinned_files": 15
+  },
+  "canonical_records": {
+    "ros2-joint-trajectory-controller": {
+      "canonical_json_sha256": "5fa6377086590bf50b9a5c91ee77bd1e1a77f6690cc8cef8e949fc1edf3704c6",
+      "source_path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+      "source_sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+      "source_bytes": 77779,
+      "runtime_verification": "not_run",
+      "hub_prepare": false
+    },
+    "ros2-diff-drive-controller": {
+      "canonical_json_sha256": "733a1dd621746c085d728ffb3d9a398359e87e7ccdbf2022955b8b71adae59ef",
+      "source_path": "diff_drive_controller/src/diff_drive_controller.cpp",
+      "source_sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+      "source_bytes": 28146,
+      "runtime_verification": "not_run",
+      "hub_prepare": false
+    },
+    "ros2-joint-state-broadcaster": {
+      "canonical_json_sha256": "07d02b4d5921a738326c368068e7b98f0b4eb89d17cfdcc9b6acabf1e6d48926",
+      "source_path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+      "source_sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "source_bytes": 15833,
+      "runtime_verification": "not_run",
+      "hub_prepare": false
+    }
+  },
+  "attribution_boundary": "The broadcaster retains its source-header team credit separately from Jordan Palacios and Karsten Knese, whose exact author nodes are pinned in package.xml. Package credit does not imply selected-file copyright or authorship.",
+  "immutable_file_pins": {
+    "LICENSE": {
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358,
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    "joint_trajectory_controller/src/joint_trajectory_controller.cpp": {
+      "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+      "bytes": 77779,
+      "git_blob_sha1": "2f4a83ed70a93f1ac8390fff69b374a943382028"
+    },
+    "diff_drive_controller/src/diff_drive_controller.cpp": {
+      "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+      "bytes": 28146,
+      "git_blob_sha1": "477c73342e643b489120927ea7f9d729bf64c842"
+    },
+    "joint_trajectory_controller/package.xml": {
+      "sha256": "96473fd8ebe98d8e8192b7f57bb65bdc9e09b76a926e800f26a6e87765cb59ac",
+      "bytes": 1707,
+      "git_blob_sha1": "ddb3e27ba1ae2187ea6bb80cbab68eacd7733b99"
+    },
+    "joint_trajectory_controller/CMakeLists.txt": {
+      "sha256": "303f4921fd6206f25b504dbbd9692152e41f90446bc3baf3baaf1e1c536c5c03",
+      "bytes": 4208,
+      "git_blob_sha1": "53a20bfbf4eb07d0937d4840fb15916021910969"
+    },
+    "joint_trajectory_controller/joint_trajectory_plugin.xml": {
+      "sha256": "29a73d5a5644ea46223a2ff14567f2ce70c3b173e51a1831317319184311e895",
+      "bytes": 382,
+      "git_blob_sha1": "27930380ea49cd02a874f7cb17507191385f1968"
+    },
+    "diff_drive_controller/package.xml": {
+      "sha256": "c2a36238d8f8abf6727aa2cd2a941ee447731275b2748005a901a374e3cdf0d8",
+      "bytes": 1843,
+      "git_blob_sha1": "c20bb1b5bbda64dcb2ca7c6e0191ce23a430f327"
+    },
+    "diff_drive_controller/CMakeLists.txt": {
+      "sha256": "a76b3c6c17e5351fb75920c209af80db038cd1be9d779a60f418557681b9a4ff",
+      "bytes": 3053,
+      "git_blob_sha1": "7d57720a26dbea56d8983f9afb2cae8c208dec95"
+    },
+    "diff_drive_controller/diff_drive_plugin.xml": {
+      "sha256": "0c688bcdaa94a288c59c5d3dc503f8ea0304c48afcbbd67083910329953dc17c",
+      "bytes": 421,
+      "git_blob_sha1": "88fdfd9ecbfeb335c6106d7f32ef46bb7e8d4f78"
+    },
+    "README.md": {
+      "sha256": "f0a335e3f25a3f7e58c06d3c433f82b594d794e5c1fb7c05382b82b33dd9ce31",
+      "bytes": 6417,
+      "git_blob_sha1": "7176cc85e6445fcbd8a4f886f7cf7f9489abdb72"
+    },
+    "joint_state_broadcaster/src/joint_state_broadcaster.cpp": {
+      "sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "bytes": 15833,
+      "git_blob_sha1": "292d8c468bdad156cfdcff642d150ac8ccdc1021"
+    },
+    "joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp": {
+      "sha256": "5f294bbc71d7a6c30a142d73716e6d4b0769f442aee19077cb754ff095a76738",
+      "bytes": 5445,
+      "git_blob_sha1": "7e344bf2724548f85c9ebb6f5545f8fd191d0658"
+    },
+    "joint_state_broadcaster/package.xml": {
+      "sha256": "343c3f6b1b4508f0aae9507042a147ae653fb1ae5d5f7031d082c6137d24d7a5",
+      "bytes": 1702,
+      "git_blob_sha1": "da61f0102ed92041ab4372fbbc3f3ad11748031d"
+    },
+    "joint_state_broadcaster/CMakeLists.txt": {
+      "sha256": "d20ab7eb2a722fa537b1710bfea31cfec9017e5e0ecd118b4f12111fa6e23758",
+      "bytes": 2846,
+      "git_blob_sha1": "d7f58906594d7d8049d9764bb6751655170a32a6"
+    },
+    "joint_state_broadcaster/joint_state_plugin.xml": {
+      "sha256": "640f17a563037677c4c315f256ae81cf0398d232685da2b6478fb7d696c8e567",
+      "bytes": 360,
+      "git_blob_sha1": "03060845f9c88c8a506e50cdda8474e0f6dfd4a5"
+    }
+  },
+  "verification": {
+    "data_contracts": {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/python",
+        "-p",
+        "test_robot_plugin_import.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "passed": 16,
+      "skipped": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3892be762114ad6c03d6c2e423cc987238890f66d5c47735c0d7e92d5c75d80f",
+      "scope": "Synthetic registration negatives, actual fresh CLI draft accepted by existing intake validators, and real manifest/canonical metadata identities; no upstream execution."
+    },
+    "actual_cached_check": {
+      "mode": "--check",
+      "exit_code": 0,
+      "result": {
+        "status": "checked_existing_intakes",
+        "plugins": [
+          "ros2-joint-trajectory-controller",
+          "ros2-diff-drive-controller",
+          "ros2-joint-state-broadcaster"
+        ],
+        "pinned_files_checked": 15,
+        "registration_evidence": "literal_registration_consistent",
+        "publication_performed": false,
+        "network_performed": false,
+        "execution_performed": false,
+        "ownership_transferred": false
+      },
+      "stdout_sha256": "6ad8918920d5c6efda97256abf79c66d0afdcd862dd01dc8e2cad75e0e4e41d1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "duplicate_draft_refusal": {
+      "mode": "--output-directory",
+      "exit_code": 2,
+      "canonical_id_or_source_duplicate_rejected": true,
+      "output_directory_created": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "134f75a677db14d271cd32d999633f4dd2b5f8ac2215c8f8f8313bd6beadb74e"
+    }
+  },
+  "new_GETs": 0,
+  "cache_provenance": "Ten previously reviewed controller/license/README bodies plus five explicitly mapped broadcaster bodies; all fifteen pinned bytes checked offline. No download or cache discovery.",
+  "network_performed": false,
+  "upstream_execution_compilation_or_installation": false,
+  "canonical_records_or_ownership_changed": false,
+  "API_Worker_or_runtime_schema_changed": false,
+  "runtime_verification_promoted": false,
+  "publication_performed": false
+}

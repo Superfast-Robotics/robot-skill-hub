@@ -1,0 +1,387 @@
+{
+  "schema_version": "1",
+  "description": "Finite maintainer-reviewed registration checks for three existing source-only intake records. Cache-only; no discovery, fetch, compilation, loading or automatic publication. YAML mapping is outside this version.",
+  "projects": [
+    {
+      "id": "ros2-controllers",
+      "repository": "https://github.com/ros-controls/ros2_controllers",
+      "commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+      "files": {
+        "LICENSE": {
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "bytes": 11358,
+          "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+        },
+        "joint_trajectory_controller/src/joint_trajectory_controller.cpp": {
+          "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+          "bytes": 77779,
+          "git_blob_sha1": "2f4a83ed70a93f1ac8390fff69b374a943382028"
+        },
+        "diff_drive_controller/src/diff_drive_controller.cpp": {
+          "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+          "bytes": 28146,
+          "git_blob_sha1": "477c73342e643b489120927ea7f9d729bf64c842"
+        },
+        "joint_trajectory_controller/package.xml": {
+          "sha256": "96473fd8ebe98d8e8192b7f57bb65bdc9e09b76a926e800f26a6e87765cb59ac",
+          "bytes": 1707,
+          "git_blob_sha1": "ddb3e27ba1ae2187ea6bb80cbab68eacd7733b99"
+        },
+        "joint_trajectory_controller/CMakeLists.txt": {
+          "sha256": "303f4921fd6206f25b504dbbd9692152e41f90446bc3baf3baaf1e1c536c5c03",
+          "bytes": 4208,
+          "git_blob_sha1": "53a20bfbf4eb07d0937d4840fb15916021910969"
+        },
+        "joint_trajectory_controller/joint_trajectory_plugin.xml": {
+          "sha256": "29a73d5a5644ea46223a2ff14567f2ce70c3b173e51a1831317319184311e895",
+          "bytes": 382,
+          "git_blob_sha1": "27930380ea49cd02a874f7cb17507191385f1968"
+        },
+        "diff_drive_controller/package.xml": {
+          "sha256": "c2a36238d8f8abf6727aa2cd2a941ee447731275b2748005a901a374e3cdf0d8",
+          "bytes": 1843,
+          "git_blob_sha1": "c20bb1b5bbda64dcb2ca7c6e0191ce23a430f327"
+        },
+        "diff_drive_controller/CMakeLists.txt": {
+          "sha256": "a76b3c6c17e5351fb75920c209af80db038cd1be9d779a60f418557681b9a4ff",
+          "bytes": 3053,
+          "git_blob_sha1": "7d57720a26dbea56d8983f9afb2cae8c208dec95"
+        },
+        "diff_drive_controller/diff_drive_plugin.xml": {
+          "sha256": "0c688bcdaa94a288c59c5d3dc503f8ea0304c48afcbbd67083910329953dc17c",
+          "bytes": 421,
+          "git_blob_sha1": "88fdfd9ecbfeb335c6106d7f32ef46bb7e8d4f78"
+        },
+        "README.md": {
+          "sha256": "f0a335e3f25a3f7e58c06d3c433f82b594d794e5c1fb7c05382b82b33dd9ce31",
+          "bytes": 6417,
+          "git_blob_sha1": "7176cc85e6445fcbd8a4f886f7cf7f9489abdb72"
+        },
+        "joint_state_broadcaster/src/joint_state_broadcaster.cpp": {
+          "sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+          "bytes": 15833,
+          "git_blob_sha1": "292d8c468bdad156cfdcff642d150ac8ccdc1021"
+        },
+        "joint_state_broadcaster/include/joint_state_broadcaster/joint_state_broadcaster.hpp": {
+          "sha256": "5f294bbc71d7a6c30a142d73716e6d4b0769f442aee19077cb754ff095a76738",
+          "bytes": 5445,
+          "git_blob_sha1": "7e344bf2724548f85c9ebb6f5545f8fd191d0658"
+        },
+        "joint_state_broadcaster/package.xml": {
+          "sha256": "343c3f6b1b4508f0aae9507042a147ae653fb1ae5d5f7031d082c6137d24d7a5",
+          "bytes": 1702,
+          "git_blob_sha1": "da61f0102ed92041ab4372fbbc3f3ad11748031d"
+        },
+        "joint_state_broadcaster/CMakeLists.txt": {
+          "sha256": "d20ab7eb2a722fa537b1710bfea31cfec9017e5e0ecd118b4f12111fa6e23758",
+          "bytes": 2846,
+          "git_blob_sha1": "d7f58906594d7d8049d9764bb6751655170a32a6"
+        },
+        "joint_state_broadcaster/joint_state_plugin.xml": {
+          "sha256": "640f17a563037677c4c315f256ae81cf0398d232685da2b6478fb7d696c8e567",
+          "bytes": 360,
+          "git_blob_sha1": "03060845f9c88c8a506e50cdda8474e0f6dfd4a5"
+        }
+      },
+      "plugins": [
+        {
+          "id": "ros2-joint-trajectory-controller",
+          "owned_intake_sha256": "5fa6377086590bf50b9a5c91ee77bd1e1a77f6690cc8cef8e949fc1edf3704c6",
+          "source_path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+          "package_path": "joint_trajectory_controller/package.xml",
+          "cmake_path": "joint_trajectory_controller/CMakeLists.txt",
+          "registration": {
+            "path": "joint_trajectory_controller/joint_trajectory_plugin.xml",
+            "name": "joint_trajectory_controller/JointTrajectoryController",
+            "type": "joint_trajectory_controller::JointTrajectoryController",
+            "base_class_type": "controller_interface::ControllerInterface",
+            "library": "joint_trajectory_controller",
+            "export_package": "controller_interface",
+            "macro": "PLUGINLIB_EXPORT_CLASS"
+          },
+          "license": {
+            "path": "LICENSE",
+            "spdx": "Apache-2.0",
+            "scope": "Copyright 2021 ros2_control Development Team. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment.",
+            "source_notice_quotes": [
+              "Copyright (c) 2021 ros2_control Development Team",
+              "Licensed under the Apache License, Version 2.0"
+            ]
+          },
+          "reviewed_metadata": {
+            "name": "ros2_controllers joint trajectory controller implementation",
+            "summary": "Official C++ ros2_control lifecycle plugin that accepts joint-space trajectory topic/action input, samples trajectories and writes claimed joint command interfaces. The selected source includes goal validation, tolerances and action/state feedback; no robot or successful task execution was verified.",
+            "framework": "ros2-controllers",
+            "capabilities": [
+              "joint-trajectory-execution",
+              "joint-space-control",
+              "trajectory-validation",
+              "action-feedback",
+              "controller-plugin"
+            ],
+            "aliases": [
+              "ros2_control",
+              "joint_trajectory_controller",
+              "JointTrajectoryController",
+              "follow_joint_trajectory",
+              "joint_trajectory",
+              "joint-space trajectory",
+              "position velocity acceleration effort",
+              "PID feedforward",
+              "FollowJTrajAction"
+            ],
+            "robots": [
+              "unspecified jointed robot"
+            ],
+            "requirements": {
+              "python": null,
+              "packages": [
+                "Complete pinned joint_trajectory_controller package, companion sources/headers and a C++17 toolchain",
+                "ament_cmake",
+                "ros2_control_cmake",
+                "angles",
+                "backward_ros",
+                "controller_interface",
+                "control_msgs",
+                "control_toolbox",
+                "generate_parameter_library",
+                "hardware_interface",
+                "libexpected-dev",
+                "pluginlib",
+                "rclcpp",
+                "rclcpp_action",
+                "rclcpp_lifecycle",
+                "realtime_tools",
+                "rsl",
+                "trajectory_msgs",
+                "urdf",
+                "lifecycle_msgs"
+              ],
+              "hardware": [],
+              "system": [
+                "Configured ros2_control controller manager/lifecycle host, named joints and matching claimed command/state interfaces",
+                "Complete generated parameters, trajectory helpers, robot description and applicable joint/goal constraints"
+              ],
+              "notes": "The selected update reads joint states, samples the companion Trajectory implementation, checks configured tolerances and writes position, velocity, acceleration or effort commands according to selected interfaces. Velocity-only or effort-only configurations can use the PID/feedforward adapter. Configuration creates ~/joint_trajectory input, ~/controller_state output, follow_joint_trajectory action, query_state service and conditional speed-scaling input. It handles goal preemption/cancellation and configured hold/deceleration paths; stopping safety and real-time performance were not tested. Companion trajectory.cpp, headers, generated parameter YAML/validators and their behavior are required but were not reviewed. lifecycle_msgs is explicitly included in this source; the other listed build/runtime dependencies come from package.xml/CMake. Optional BUILD_TESTING has additional declared test dependencies. CMake requests C++17; package 4.43.0 and the jazzy checkout are declarations, not tested ROS, OS, architecture, controller or robot combinations."
+            },
+            "authors": [
+              "ros2_control Development Team"
+            ],
+            "invocation_notes": "The plugin XML registers type joint_trajectory_controller::JointTrajectoryController and shared library joint_trajectory_controller. The source exports that class with PLUGINLIB_EXPORT_CLASS. A configured controller manager/lifecycle host calls on_configure/on_activate/update; this is not a standalone ros2 run program or a Hub recipe. Joint-space trajectory construction and kinematics remain caller/package responsibilities. Loading an appropriately configured host can write actual hardware command interfaces. The Hub retrieves one inert file only and did not build, load or execute the plugin."
+          },
+          "author_provenance": {
+            "ros2_control Development Team": {
+              "kind": "source_header",
+              "quote": "Copyright (c) 2021 ros2_control Development Team"
+            }
+          }
+        },
+        {
+          "id": "ros2-diff-drive-controller",
+          "owned_intake_sha256": "733a1dd621746c085d728ffb3d9a398359e87e7ccdbf2022955b8b71adae59ef",
+          "source_path": "diff_drive_controller/src/diff_drive_controller.cpp",
+          "package_path": "diff_drive_controller/package.xml",
+          "cmake_path": "diff_drive_controller/CMakeLists.txt",
+          "registration": {
+            "path": "diff_drive_controller/diff_drive_plugin.xml",
+            "name": "diff_drive_controller/DiffDriveController",
+            "type": "diff_drive_controller::DiffDriveController",
+            "base_class_type": "controller_interface::ChainableControllerInterface",
+            "library": "diff_drive_controller",
+            "export_package": "controller_interface",
+            "macro": "CLASS_LOADER_REGISTER_CLASS"
+          },
+          "license": {
+            "path": "LICENSE",
+            "spdx": "Apache-2.0",
+            "scope": "Copyright 2020 PAL Robotics S.L.; selected-file author notice names Bence Magyar, Enrique Fernández and Manuel Meraz. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment.",
+            "source_notice_quotes": [
+              "Copyright 2020 PAL Robotics S.L.",
+              "Licensed under the Apache License, Version 2.0"
+            ]
+          },
+          "reviewed_metadata": {
+            "name": "ros2_controllers differential-drive controller implementation",
+            "summary": "Official C++ ros2_control chainable plugin that consumes stamped linear/angular velocity references, applies configured limits and computes left/right wheel velocity commands. It integrates odometry through a companion helper and publishes configured odometry/TF output; runtime and physical behavior remain untested.",
+            "framework": "ros2-controllers",
+            "capabilities": [
+              "differential-drive",
+              "wheel-velocity-command",
+              "odometry-integration",
+              "velocity-command",
+              "chainable-controller-plugin"
+            ],
+            "aliases": [
+              "ros2_control",
+              "diff_drive_controller",
+              "DiffDriveController",
+              "TwistStamped",
+              "cmd_vel",
+              "differential drive",
+              "wheel odometry",
+              "linear angular velocity"
+            ],
+            "robots": [
+              "unspecified differential-drive mobile base"
+            ],
+            "requirements": {
+              "python": null,
+              "packages": [
+                "Complete pinned diff_drive_controller package, companion sources/headers and a C++17 toolchain",
+                "ament_cmake",
+                "ros2_control_cmake",
+                "generate_parameter_library",
+                "backward_ros",
+                "control_toolbox",
+                "controller_interface",
+                "geometry_msgs",
+                "hardware_interface",
+                "nav_msgs",
+                "pluginlib",
+                "rclcpp",
+                "rclcpp_lifecycle",
+                "rcpputils",
+                "realtime_tools",
+                "tf2",
+                "tf2_msgs",
+                "lifecycle_msgs",
+                "class_loader",
+                "rosidl_runtime_cpp"
+              ],
+              "hardware": [],
+              "system": [
+                "Configured ros2_control lifecycle/controller manager host and matching left/right wheel velocity command interfaces",
+                "Configured wheel names, radii/separation, velocity limits, timing and odometry frames; position/velocity feedback unless configured open_loop"
+              ],
+              "notes": "The subscriber path uses the package TwistStamped alias on ~/cmd_vel and checks timestamp age; timeout 0 disables this timeout. The chainable class exposes linear/angular velocity reference interfaces. update_and_write_commands applies speed limiters, computes wheel rates from linear x/angular z and configured geometry, and writes loaned wheel command handles. It delegates odometry to odometry.cpp, publishes ~/odom and conditional /tf and ~/cmd_vel_out, and halt writes zero wheel commands during deactivation. These are source operations, not verified stopping, odometry accuracy or timing. Complete headers, odometry/speed-limiter helpers and generated parameter YAML/validators were not reviewed and remain required. Package/CMake declare the listed build/runtime dependencies; lifecycle_msgs, class_loader and rosidl_runtime_cpp also appear directly in this source. Optional BUILD_TESTING has additional declared test dependencies. C++17, package 4.43.0 and the jazzy checkout are declarations, not tested environment combinations."
+            },
+            "authors": [
+              "PAL Robotics S.L.",
+              "Bence Magyar",
+              "Enrique Fernández",
+              "Manuel Meraz"
+            ],
+            "invocation_notes": "The plugin XML registers type diff_drive_controller::DiffDriveController, base controller_interface::ChainableControllerInterface and shared library diff_drive_controller. This source registers that class with CLASS_LOADER_REGISTER_CLASS; CMake exports diff_drive_plugin.xml. A complete configured controller manager/lifecycle host supplies interfaces and invokes subscriber/reference and command updates. This is not a standalone executable or Hub adapter. When loaded by an authorized host it can command actual wheels and publish ROS messages; fetching this reference never loads or executes it."
+          },
+          "author_provenance": {
+            "PAL Robotics S.L.": {
+              "kind": "source_header",
+              "quote": "Copyright 2020 PAL Robotics S.L."
+            },
+            "Bence Magyar": {
+              "kind": "source_header",
+              "quote": "Author: Bence Magyar, Enrique Fernández, Manuel Meraz"
+            },
+            "Enrique Fernández": {
+              "kind": "source_header",
+              "quote": "Author: Bence Magyar, Enrique Fernández, Manuel Meraz"
+            },
+            "Manuel Meraz": {
+              "kind": "source_header",
+              "quote": "Author: Bence Magyar, Enrique Fernández, Manuel Meraz"
+            }
+          }
+        },
+        {
+          "id": "ros2-joint-state-broadcaster",
+          "owned_intake_sha256": "07d02b4d5921a738326c368068e7b98f0b4eb89d17cfdcc9b6acabf1e6d48926",
+          "source_path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+          "package_path": "joint_state_broadcaster/package.xml",
+          "cmake_path": "joint_state_broadcaster/CMakeLists.txt",
+          "registration": {
+            "path": "joint_state_broadcaster/joint_state_plugin.xml",
+            "name": "joint_state_broadcaster/JointStateBroadcaster",
+            "type": "joint_state_broadcaster::JointStateBroadcaster",
+            "base_class_type": "controller_interface::ControllerInterface",
+            "library": "joint_state_broadcaster",
+            "export_package": "controller_interface",
+            "macro": "PLUGINLIB_EXPORT_CLASS"
+          },
+          "license": {
+            "path": "LICENSE",
+            "spdx": "Apache-2.0",
+            "scope": "Selected C++ source: Copyright 2021 ros2_control development team, Apache License 2.0. Package authors Jordan Palacios and Karsten Knese are preserved separately from the reviewed header notice (Copyright 2017 Open Source Robotics Foundation, Inc.). The complete pinned root Apache 2.0 license and matching package declaration were read. Preserve applicable copyright, license, modification and notice obligations. Review covers these selected texts, not all dependencies, generated code, binaries, hardware drivers or deployment.",
+            "source_notice_quotes": [
+              "Copyright 2021 ros2_control development team",
+              "Licensed under the Apache License, Version 2.0"
+            ]
+          },
+          "reviewed_metadata": {
+            "name": "ros2_controllers joint-state broadcaster implementation",
+            "summary": "Official C++ ros2_control plugin that claims no command interfaces, reads configured DOUBLE state interfaces and publishes JointState plus optional DynamicJointState ROS messages. Interface mapping, URDF filtering and incomplete readings have explicit source-defined behavior; runtime and hardware behavior remain untested.",
+            "framework": "ros2-controllers",
+            "capabilities": [
+              "joint-state-broadcast",
+              "joint-state-interface-read",
+              "joint-state-publish",
+              "dynamic-joint-state-publish",
+              "controller-plugin"
+            ],
+            "aliases": [
+              "ros2_control",
+              "joint_state_broadcaster",
+              "JointStateBroadcaster",
+              "joint state broadcaster",
+              "joint_states",
+              "dynamic_joint_states",
+              "sensor_msgs/JointState",
+              "control_msgs/DynamicJointState"
+            ],
+            "robots": [
+              "unspecified ros2_control system exposing joint state interfaces"
+            ],
+            "requirements": {
+              "python": null,
+              "packages": [
+                "Complete pinned joint_state_broadcaster package, generated parameter header/YAML and a C++17 toolchain",
+                "ament_cmake",
+                "ros2_control_cmake",
+                "backward_ros",
+                "builtin_interfaces",
+                "control_msgs",
+                "controller_interface",
+                "generate_parameter_library",
+                "pluginlib",
+                "rclcpp_lifecycle",
+                "rclcpp",
+                "realtime_tools",
+                "sensor_msgs",
+                "urdf",
+                "hardware_interface",
+                "std_msgs"
+              ],
+              "hardware": [],
+              "system": [
+                "Configured ros2_control controller manager/lifecycle host and DOUBLE joint state interfaces",
+                "Matching joint/interface selections, topic namespace, frame and mapping parameters; robot description for optional URDF-based filtering"
+              ],
+              "notes": "command_interface_configuration returns NONE; the plugin reads loaned state interfaces and publishes ROS messages. Empty joints or interfaces selects all available state interfaces; otherwise the configured cross-product is requested. Non-DOUBLE interfaces are ignored. The selected source supports custom interface mapping, optional URDF filtering/order and configured extra joints initialized to zero. update attempts get_optional(0) once per DOUBLE interface and retains prior values on failed reads; never-read values can remain NaN. JointState carries position/velocity/effort; DynamicJointState is conditional. Unprefixed or ~/ topic names depend on use_local_topics. Complete source/header/package/CMake/plugin XML were read; parameter YAML/generated header and dependency implementations were not. Parameter defaults, timing, publication success, data freshness and physical compatibility were not tested. CMake >=3.16, C++17 and package 4.43.0 are declarations, not tested environment combinations. Optional BUILD_TESTING has additional declared dependencies."
+            },
+            "authors": [
+              "ros2_control development team",
+              "Jordan Palacios",
+              "Karsten Knese"
+            ],
+            "invocation_notes": "joint_state_plugin.xml registers type joint_state_broadcaster::JointStateBroadcaster, base controller_interface::ControllerInterface and shared library joint_state_broadcaster. This selected source exports that same pair with PLUGINLIB_EXPORT_CLASS; CMake builds that shared library and exports the XML. A configured controller manager invokes its lifecycle and update callbacks. This is not a standalone executable or Hub adapter. Loading it can expose hardware state through joint_states and optional dynamic_joint_states ROS topics; this source requests no command interface. Fetching the reference neither loads the plugin nor executes it."
+          },
+          "author_provenance": {
+            "ros2_control development team": {
+              "kind": "source_header",
+              "quote": "Copyright 2021 ros2_control development team"
+            },
+            "Jordan Palacios": {
+              "kind": "package_author",
+              "path": "joint_state_broadcaster/package.xml",
+              "name": "Jordan Palacios"
+            },
+            "Karsten Knese": {
+              "kind": "package_author",
+              "path": "joint_state_broadcaster/package.xml",
+              "name": "Karsten Knese"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

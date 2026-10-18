@@ -1,0 +1,61 @@
+{
+  "schema_version": "1",
+  "interpretation": "data_only",
+  "observed_at": "2026-10-18T06:48:55.772706+00:00",
+  "subject": {
+    "repository": "Superfast-Robotics/robot-skill-hub",
+    "commit": "dd6ab5cb07becf8a7c963b83202266977265cee8",
+    "path": "plugins/robot-skill-hub",
+    "plugin_version": "0.1.0",
+    "hosted_MCP_version": "0.3.6"
+  },
+  "owner_intake": {
+    "repository": "github/awesome-copilot",
+    "issue": "https://github.com/github/awesome-copilot/issues/5152",
+    "report": "https://github.com/github/awesome-copilot/issues/5152#issuecomment-6246709267",
+    "reported_by": "github-actions[bot]",
+    "reported_at": "2026-10-18T06:45:34Z",
+    "review_state_at_observation": "ready-for-review",
+    "issue_state_at_observation": "open",
+    "gates_reported": {
+      "Agent_Plugins_1_0_0_spec_compliance": "pass",
+      "vally_lint": "pass",
+      "skills_linted": 0,
+      "Copilot_CLI_install_smoke": "pass",
+      "plugin_version_match": "pass",
+      "ref_SHA_consistency": "not_run",
+      "canvas_structure": "not_run"
+    },
+    "install_smoke_scope": "The owner CI reports installing the submitted immutable plugin and checking the installed plugin.json. This is an installation smoke check, not MCP tool execution or content evaluation. This package has no bundled skills, so the lint result covers zero skills.",
+    "skipped_gate_reasons": {
+      "ref_SHA_consistency": "Only the immutable full commit SHA was submitted, without a separate ref.",
+      "canvas_structure": "The plugin declares no canvas extension."
+    }
+  },
+  "linked_workflow": {
+    "url": "https://github.com/github/awesome-copilot/actions/runs/39105118948",
+    "name": "External Plugin Intake",
+    "workflow_path": ".github/workflows/external-plugin-intake.yml",
+    "workflow_repository_commit": "cb64ad12e32737ae764becd6885462e9b4c7cb00",
+    "event": "issues",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-10-18T06:45:38Z"
+  },
+  "public_response_pins": {
+    "issue_metadata": {"bytes": 6638, "sha256": "19a1f09045cf4e508847a53af6f230ab64977a04ca9a20367c154565f41a3f61"},
+    "issue_comments": {"bytes": 12231, "sha256": "41f7c358025bf06d2c083f522220d50eb94d4c87e27c61bceeceb163913b9a23"},
+    "linked_workflow_metadata": {"bytes": 22211, "sha256": "25ff8c316cca9dea11220d236006e220e255591b3e9221710d751f63d8f69ccc"}
+  },
+  "verification_scope": {
+    "owner_report_and_linked_successful_workflow_metadata_checked": true,
+    "quality_log_artifact_downloaded_or_independently_unpacked": false,
+    "local_Copilot_installation_performed": false,
+    "Copilot_MCP_tool_use_verified": false,
+    "maintainer_approval_verified": false,
+    "marketplace_listing_verified": false,
+    "external_agent_adoption_verified": false,
+    "robot_or_upstream_source_execution_performed": false
+  }
+}

@@ -225,6 +225,18 @@ existing demo configuration/launch references. Their command-interface writes,
 ROS graph effects and complete-package requirements are explicit. Both remain
 source-only with unknown compatibility and `runtime_verification: not_run`.
 
+The [joint-state broadcaster review](../docs/ros2-joint-state-broadcaster-source.md)
+adds its actual state-interface-to-ROS-message implementation, class header and
+registration/build contracts. It requests no command interfaces and remains
+source-only with unknown compatibility and `runtime_verification: not_run`.
+
+## ViSP image-based visual servoing
+
+The [ViSP source review](../docs/visp-sources.md) adds one four-point IBVS C++
+tutorial using a numerical free-flying camera. GPL project scope and absent
+individual file attribution are explicit. It has no Hub adapter and remains
+`runtime_verification: not_run` with unknown compatibility.
+
 ## Reproduce the index
 
 ```sh
@@ -255,6 +267,9 @@ python tools/import_robot_workflows.py --check
 # Validate frozen agent instruction/provenance text as inert data offline.
 python tools/import_agent_skill_sources.py --check
 
+# Check reviewed ROS 2 plugin registrations against pinned local files.
+python tools/import_robot_plugins.py --check
+
 # After reviewing a manifest commit/license change, explicitly inspect its tree.
 python tools/import_ecosystem_examples.py --discover --project nav2 --fetch
 ```
@@ -264,3 +279,6 @@ source artifacts and duplicate IDs fail closed. A discovery or source fetch
 failure stops publication; a partial tree is not accepted as complete coverage.
 Import tools do not execute upstream modules, install simulators, download task
 assets or run robots.
+
+For the plugin manifest, cache layout and draft submission commands, see
+[ROS 2 plugin intake](robot-plugin-import.md).

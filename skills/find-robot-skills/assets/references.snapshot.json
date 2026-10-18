@@ -91865,6 +91865,532 @@
       }
     },
     {
+      "id": "ruckig-examples-01-position-py",
+      "name": "Ruckig Community: 01 position",
+      "summary": "Official Ruckig Community python main example for 01 position. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/01_position.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/01_position.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/01_position.py",
+        "sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+        "bytes": 1646
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/01_position.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "online trajectory generation",
+        "jerk-limited position trajectory"
+      ]
+    },
+    {
+      "id": "ruckig-examples-02-position-offline-py",
+      "name": "Ruckig Community: 02 position offline",
+      "summary": "Official Ruckig Community python main example for 02 position offline. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/02_position_offline.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/02_position_offline.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/02_position_offline.py",
+        "sha256": "448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+        "bytes": 1447
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/02_position_offline.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "offline trajectory calculation",
+        "trajectory interpolation",
+        "position extrema"
+      ]
+    },
+    {
+      "id": "ruckig-examples-05-velocity-py",
+      "name": "Ruckig Community: 05 velocity",
+      "summary": "Official Ruckig Community python main example for 05 velocity. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/05_velocity.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/05_velocity.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/05_velocity.py",
+        "sha256": "11bf4c8a498d11cbf9b477f36640bbc8468900ca34b634f0ef6737b9938a218f",
+        "bytes": 1609
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/05_velocity.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "velocity control",
+        "jerk-limited velocity trajectory"
+      ]
+    },
+    {
+      "id": "ruckig-examples-06-stop-py",
+      "name": "Ruckig Community: 06 stop",
+      "summary": "Official Ruckig Community python main example for 06 stop. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/06_stop.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/06_stop.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/06_stop.py",
+        "sha256": "ae1fa70e28f1b5bf0c8f605aff627f2450903ec49f3525ec7e5e63619a28219a",
+        "bytes": 2335
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/06_stop.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "stop trajectory",
+        "zero target velocity",
+        "independent degree-of-freedom stop"
+      ]
+    },
+    {
+      "id": "ruckig-examples-07-minimum-duration-py",
+      "name": "Ruckig Community: 07 minimum duration",
+      "summary": "Official Ruckig Community python main example for 07 minimum duration. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/07_minimum_duration.py",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/07_minimum_duration.py",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/07_minimum_duration.py",
+        "sha256": "d1152b72bdedac9e64957bca85d858ecbfde1eaa5142244b0c03c0443e9555e2",
+        "bytes": 1693
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "copy",
+          "ruckig"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "python examples/07_minimum_duration.py",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "python_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "minimum trajectory duration",
+        "timed trajectory generation"
+      ]
+    },
+    {
+      "id": "ruckig-examples-09-dynamic-dofs-cpp",
+      "name": "Ruckig Community: 09 dynamic dofs",
+      "summary": "Official Ruckig Community native main example for 09 dynamic dofs. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/09_dynamic_dofs.cpp",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/09_dynamic_dofs.cpp",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/09_dynamic_dofs.cpp",
+        "sha256": "792e708d1eeea88e76120edb496af3d726f52830e66fa8070b56fc7fc03d9c2a",
+        "bytes": 1253
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "plotter.hpp",
+          "ruckig/ruckig.hpp"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Native main: examples/09_dynamic_dofs.cpp; build the target declared by the pinned upstream build files",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "native_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "dynamic degrees of freedom",
+        "runtime DoF count"
+      ]
+    },
+    {
+      "id": "ruckig-examples-12-custom-vector-type-cpp",
+      "name": "Ruckig Community: 12 custom vector type",
+      "summary": "Official Ruckig Community native main example for 12 custom vector type. Inspect the pinned source and upstream setup before use.",
+      "framework": "ruckig",
+      "kind": "official_example",
+      "source_registry": "ecosystem-examples-v1",
+      "capabilities": [
+        "jerk-limited",
+        "motion-generation",
+        "trajectory",
+        "trajectory-generation"
+      ],
+      "robot_types": [
+        "source-defined"
+      ],
+      "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
+      "source": {
+        "repository": "https://github.com/pantor/ruckig",
+        "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+        "tag": "v0.19.4",
+        "path": "examples/12_custom_vector_type.cpp",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/12_custom_vector_type.cpp",
+        "raw_url": "https://raw.githubusercontent.com/pantor/ruckig/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/examples/12_custom_vector_type.cpp",
+        "sha256": "aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111",
+        "bytes": 1827
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Fetch the pinned repository, verify this source checksum, and use upstream installation and invocation. This record does not install or execute code.",
+        "setup_url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/README.md"
+      },
+      "requirements": {
+        "python": "Python >=3.9 for the pinned Ruckig Python package; C++ examples require a C++20 compiler and CMake >=3.15.",
+        "packages": [
+          "Ruckig Community library or Python bindings built from the pinned checkout",
+          "For Python source builds: scikit-build-core and nanobind as declared in the pinned pyproject.toml"
+        ],
+        "display": "Selected examples generate and print kinematic trajectories without commanding a robot. Python plotting code is commented out. For local-only C++ source builds, configure BUILD_CLOUD_CLIENT=OFF and BUILD_TESTS=OFF; the selected examples do not use intermediate waypoints or Pro APIs. C++ examples also require the matching upstream examples/plotter.hpp header.",
+        "execution_domain": "computation",
+        "source_imports": [
+          "plotter.hpp",
+          "ruckig/ruckig.hpp"
+        ]
+      },
+      "invocation": {
+        "entrypoint": "Native main: examples/12_custom_vector_type.cpp; build the target declared by the pinned upstream build files",
+        "notes": "Use the pinned upstream Ruckig Community checkout and its Python bindings or matching native example target. The selected examples calculate trajectories without a robot model, IK solver, collision checker, controller or hardware connection. A calculated trajectory does not establish robot compatibility, collision safety or real-time performance. No Hub preparation adapter or measured runtime success is claimed."
+      },
+      "popularity": {
+        "metric": "github_stars",
+        "repository_stars": 1411,
+        "checked_at": "2026-10-18",
+        "meaning": "Dated repository interest, not robot-skill usage, compatibility or runtime success."
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
+        "entrypoint_kind": "native_main",
+        "inspection_method": "automated_static"
+      },
+      "aliases": [
+        "custom vector type",
+        "custom C++ vector integration"
+      ]
+    },
+    {
       "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
       "name": "Boston Dynamics Spot SDK: Arm gaze commands",
       "summary": "Send arm gaze targets and trajectories. Inspect exact upstream setup and terms before use.",
@@ -124717,6 +125243,370 @@
       ]
     },
     {
+      "id": "genesis-ik-motion-planning-grasp",
+      "name": "Genesis Panda IK, motion planning and grasp example",
+      "summary": "Genesis World Python tutorial that solves Panda arm inverse kinematics, plans a joint path, controls joint position and gripper force, and lifts a simulated cube. The original script initializes a CPU simulation and opens a viewer at module top level; this record supplies inert source metadata only.",
+      "framework": "genesis",
+      "kind": "community_skill",
+      "capabilities": [
+        "inverse-kinematics",
+        "motion-planning",
+        "joint-position-control",
+        "grasping",
+        "simulation"
+      ],
+      "aliases": [
+        "Genesis",
+        "Genesis World",
+        "Panda inverse kinematics",
+        "IK motion planning grasp",
+        "gripper force control"
+      ],
+      "robots": [
+        "panda",
+        "franka-emika-panda"
+      ],
+      "source": {
+        "repository": "https://github.com/Genesis-Embodied-AI/genesis-world",
+        "commit": "50a2aa19cba6f3e1afdceb0fac239a56a0ef5502",
+        "path": "examples/tutorials/IK_motion_planning_grasp.py",
+        "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/examples/tutorials/IK_motion_planning_grasp.py",
+        "sha256": "985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+        "bytes": 2508,
+        "authors": [
+          "Genesis Authors"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/LICENSE",
+        "scope": "Selected Python tutorial source under the pinned Genesis repository Apache-2.0 declaration. Preserve upstream attribution, license and applicable notices when redistributing. Robot descriptions, meshes, binaries and third-party dependencies retain their own terms and were not cleared by this source review.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": ">=3.10,<3.14 (upstream README declaration; untested)",
+        "packages": [
+          "Genesis World from the pinned upstream checkout with its required dependencies",
+          "PyTorch installed for the intended platform before Genesis, as declared in the pinned README",
+          "numpy"
+        ],
+        "hardware": [],
+        "system": [
+          "CPU simulation backend explicitly selected by the source",
+          "Working graphics and display environment for show_viewer=True",
+          "Upstream Panda MJCF and adjacent assets required by xml/franka_emika_panda/panda.xml"
+        ],
+        "notes": "The source explicitly calls gs.init(backend=gs.cpu), provides no CPU/GPU command-line switch, and creates a viewer-enabled scene with dt=0.01. It loads the Panda model, configures nine DOF gains and force limits, solves pre-grasp/reach/lift IK, plans and draws a joint path, commands arm/finger positions, applies finger force and advances the simulation. PYTEST_VERSION shortens the default 200-waypoint path and later loops; that branch is not runtime evidence. A lone copy of this Python file is insufficient: model XML, meshes, a suitable Genesis/PyTorch installation and graphics support are needed. The model assets, their licenses and exact planning backend/package internals were not reviewed. README CPU/CUDA installation options and Python bounds are upstream declarations; no operating system, package versions, timing or simulator combination was resolved or tested."
+      },
+      "invocation": {
+        "entrypoint": "python examples/tutorials/IK_motion_planning_grasp.py",
+        "notes": "Upstream invocation after configuring the pinned checkout, dependencies, Panda assets and viewer environment. There is no main guard; importing or executing the original file initializes the simulator, opens the viewer and runs the simulation control sequence. The selected file has no hardware controller connection. Library initialization and transitive effects were not exhaustively audited. The Hub supplies no execution/preparation adapter, installs no package and claims no successful grasp, collision safety, physical-robot compatibility or measured runtime."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+        "setup_url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Source, Apache-2.0 license and setup README Git blob IDs and sizes matched the immutable, nontruncated upstream tree. Source effects and setup bounds are observations, not tested compatibility. No simulator, upstream package, controller or GPU was executed."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-985537566f01",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "klampt-ik-library",
+      "name": "Klampt inverse kinematics helpers (library source)",
+      "summary": "Klampt package module defining IK objectives, native solver wrappers, residual/Jacobian access, and local, random-restart and nearby solving for caller-provided robot models. This is library source, not a standalone executable or completed robot task.",
+      "framework": "klampt",
+      "kind": "community_skill",
+      "capabilities": [
+        "inverse-kinematics",
+        "kinematics",
+        "jacobian",
+        "robot-model"
+      ],
+      "aliases": [
+        "Klampt",
+        "Klamp't",
+        "IKSolver",
+        "Newton-Raphson IK",
+        "random-restart IK",
+        "nearby IK",
+        "SubRobotIKSolver"
+      ],
+      "robots": [
+        "source-defined"
+      ],
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt",
+        "commit": "371bb98478eb5edf170dc21c8c3f0aa200ce7bac",
+        "path": "Python/klampt/model/ik.py",
+        "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/Python/klampt/model/ik.py",
+        "sha256": "d6256c944f0be7510c0e1e3428320f9ff15ffbfa19aa3a9528ec5fc3e3576172",
+        "bytes": 28004,
+        "authors": [
+          "Klampt contributors"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/LICENSE",
+        "scope": "Selected Python library source under the pinned repository BSD-3-Clause license, copyright 2025 the Trustees of University of Illinois. Retain copyright, conditions and disclaimer and respect the non-endorsement clause. Models, meshes, binaries and third-party dependencies remain outside this review.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete compatible Klampt Python package with compiled robotsim bindings and sibling modules"
+        ],
+        "hardware": [],
+        "system": [
+          "Caller-provided robot models and configured IK objectives"
+        ],
+        "notes": "This module has relative imports and no standalone main entrypoint. Solving and random-start sampling can modify the supplied robot model configuration, including unsuccessful solves. Feasibility callbacks default to true; these wrappers do not independently establish collision clearance. Generalized object/link IK is documented as unimplemented, and nearby solving restricts to one robot. Tuple annotations are used without an explicit typing.Tuple import in this file; whether wildcard imports provide that symbol was not investigated. Native imports, transitive effects, model assets and solver correctness remain untested. The pinned README declares pip install klampt, but no exact Python/native-package or robot-model combination was resolved or tested."
+      },
+      "invocation": {
+        "entrypoint": "Library API: klampt.model.ik.objective / solver / solve / solve_global / solve_nearby",
+        "notes": "Use within a separately configured Klampt application with caller-provided models and objectives. Do not run this relative-import file as a standalone script or treat a fetched copy as a runnable task. The Hub supplies inert source metadata and no preparation/execution adapter. No upstream module was imported or executed, and no successful IK, collision clearance or physical-controller compatibility is claimed."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned library source and upstream setup. This maintainer-reviewed reference does not install or execute code.",
+        "setup_url": "https://github.com/krishauser/Klampt/blob/371bb98478eb5edf170dc21c8c3f0aa200ce7bac/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete module read as inert text and Python AST parsed without importing or executing it. Source, applicable license and setup README SHA-256, byte sizes and Git blob IDs matched the immutable nontruncated tree. This establishes a library source reference, not runtime, asset clearance or robot compatibility."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-d6256c944f0b",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "klampt-pose-control",
+      "name": "Klampt Robot Interface Layer pose-control example",
+      "summary": "Guarded Python 3 Klampt example that opens a ghost-pose editor and sends moveToPosition through a selected Robot Interface Layer interface after an action. A configured hardware interface may command real motion; simulation-only behavior is not established.",
+      "framework": "klampt",
+      "kind": "community_skill",
+      "capabilities": [
+        "robot-control",
+        "pose-control",
+        "joint-position-control"
+      ],
+      "aliases": [
+        "Klampt",
+        "Klamp't",
+        "Robot Interface Layer",
+        "moveToPosition",
+        "ghost pose editor"
+      ],
+      "robots": [
+        "source-defined"
+      ],
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt-examples",
+        "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+        "path": "Python3/demos/control/pose.py",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/control/pose.py",
+        "sha256": "18b11d751c12d8ede03f53628d22307b87514525a2519394984d111439a3b6f1",
+        "bytes": 3422,
+        "authors": [
+          "Klampt-examples contributors"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+        "verified": false
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": "Python 3.x (upstream directory declaration; exact version untested)",
+        "packages": [
+          "Complete compatible Klampt Python/native package",
+          "Sibling kbdrive.py and its unreviewed loading dependencies",
+          "PyOpenGL and PyQt6 for visualization as declared by the reviewed core README"
+        ],
+        "hardware": [
+          "Separately authorized robot/controller if a hardware interface is selected"
+        ],
+        "system": [
+          "Working GUI and graphics environment for pose editing",
+          "Configured world/model, intended interface and any controller or robot-info inputs"
+        ],
+        "notes": "The main guard does not cover imports: kbdrive.load_world_and_interface is imported at module top level. That helper was located in the pinned tree but not fetched or reviewed; its loading behavior, import effects and dependencies remain unverified. The main code creates a simulated interface only when the helper returns none; otherwise it uses or wraps the supplied interface. It initializes that interface, reads positions, opens a ghost editor and can send moveToPosition after the registered action. TimedLooper uses the interface's control rate plus a 0.01-second sleep; neither timing nor real-time operation was measured. Normal loop exit closes the interface and viewer, without an encompassing try/finally guarantee. Models, assets, controllers and exact package/robot combinations were not reviewed or tested."
+      },
+      "invocation": {
+        "entrypoint": "From Python3/demos/control: python pose.py world_file(s) [controller_file], or robotinfo_file [world_files]",
+        "notes": "Upstream guarded main only after reviewing the full helper, dependencies, models and selected interface, with separate operator authorization for any hardware. This source may initialize a real controller and command motion; a simulation fallback does not establish simulator-only behavior. A lone copy of pose.py is insufficient. The Hub provides no preparation/execution adapter and contacted no controller, robot or simulator. Physical safety, controller compatibility and task success are unverified."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned source, unresolved attribution note, helper and upstream setup before use. This reference does not install or execute code.",
+        "setup_url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected source read as inert text; Python 3 AST and main guard checked without execution. Source, license declaration and README SHA-256, sizes and Git blobs matched the immutable nontruncated tree. Incomplete attribution and unread helper remain explicit. No upstream code, native package, interface, controller, robot or simulator was executed."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-18b11d751c12",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "klampt-waypoint-planning",
+      "name": "Klampt joint-waypoint planning example",
+      "summary": "Guarded Python 3 Klampt example that loads a world, edits joint waypoints, plans a trajectory, saves resources and visualizes the result. It also defines optional Cartesian IK-goal and closed-loop planning branches, disabled by default.",
+      "framework": "klampt",
+      "kind": "community_skill",
+      "capabilities": [
+        "motion-planning",
+        "waypoint-planning",
+        "inverse-kinematics",
+        "trajectory"
+      ],
+      "aliases": [
+        "Klampt",
+        "Klamp't",
+        "SBL",
+        "joint waypoint planning",
+        "Cartesian IK goals",
+        "configuration space",
+        "Jaco example model"
+      ],
+      "robots": [
+        "jaco"
+      ],
+      "source": {
+        "repository": "https://github.com/krishauser/Klampt-examples",
+        "commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+        "path": "Python3/demos/plan/planning_test.py",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/Python3/demos/plan/planning_test.py",
+        "sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+        "bytes": 19209,
+        "authors": [
+          "Klampt-examples contributors"
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+        "verified": false
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": "Python 3.x (upstream directory declaration; exact version untested)",
+        "packages": [
+          "Complete compatible Klampt Python/native package",
+          "PyOpenGL and PyQt6 for visualization as declared by the reviewed core README"
+        ],
+        "hardware": [],
+        "system": [
+          "Working GUI and graphics environment for interactive waypoint editing and visualization",
+          "Configured world/robot model and adjacent assets from the upstream examples checkout"
+        ],
+        "notes": "Run from Python3/demos/plan or supply an explicit world path. The default loads ../../../data/robots/jaco.rob; this Jaco discovery label does not establish model compatibility. Default SBL planning uses restart/shortcutting, active DOFs auto, a 500-iteration limit and a nominal 10-second budget. CLOSED_LOOP_TEST and PLAN_CARTESIAN_TEST are both zero by default. SIMPLIFY_TYPE=ConvexHull changes geometry; fidelity and collision behavior are unverified. Direct waypoint-editor feasibility rejection is disabled. Execution can write planningtest.configs resources and test.path and visualize a path for 60 seconds. Model/mesh bytes and licenses were not reviewed; package/native-library combinations, planning success and timing were not tested."
+      },
+      "invocation": {
+        "entrypoint": "From Python3/demos/plan: python planning_test.py [world_file]",
+        "notes": "Upstream guarded main after configuring dependencies, world assets, GUI and intended file-output locations. Its main workflow plans between edited joint waypoints; optional helpers also accept Cartesian IK goals. A source-only record does not establish collision-free paths, completeness or a measured result. The selected file sends no physical-controller command. The Hub supplies no preparation/execution adapter and ran no source, native library, planner or simulator."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned source, unresolved attribution note and upstream setup. This reference does not install or execute code.",
+        "setup_url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete source read as inert text; Python 3 AST and main guard checked without execution. Source, license declaration and README SHA-256, sizes and Git blobs matched the immutable nontruncated tree. Incomplete upstream copyright attribution remains unresolved. No model assets, runtime environment, planning success or controller compatibility was verified."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-b5c5c8f88c44",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
       "aliases": [
         "SmolVLA",
         "smolvla_base"
@@ -124798,6 +125688,344 @@
         "record_version": "intake-5ab7ca393f32b62f",
         "last_checked": "2026-10-17",
         "upstream_status": "contributor_reported"
+      }
+    },
+    {
+      "id": "nav2-mppi-controller",
+      "name": "Nav2 MPPI controller plugin integration",
+      "summary": "Official C++ Nav2 controller plugin that configures MPPI components, transforms a supplied path and delegates velocity computation to the optimizer. This selected integration source is a plugin implementation, not the optimizer algorithm or a standalone navigation task.",
+      "framework": "nav2",
+      "kind": "community_skill",
+      "capabilities": [
+        "navigation",
+        "path-following",
+        "velocity-command",
+        "controller-plugin"
+      ],
+      "aliases": [
+        "MPPI",
+        "model predictive path integral",
+        "MPPIController",
+        "computeVelocityCommands",
+        "evalControl",
+        "nav2_core::Controller",
+        "mppi_controller"
+      ],
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_mppi_controller/src/controller.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "sha256": "4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+        "bytes": 4475,
+        "authors": [
+          "Samsung Research America",
+          "Alexey Budyakov"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "scope": "Selected controller.cpp explicitly declares Apache-2.0, copyright 2022 Samsung Research America and Alexey Budyakov. Its package.xml instead declares MIT. The pinned root LICENSE directs existing files to retain their file license; Apache verification is limited to this explicitly marked file. Preserve copyright, license and applicable notices. This does not resolve or clear the whole MIT-declared package, optimizer, critics, dependencies, binaries or deployment.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_mppi_controller ROS 2 package and ament_cmake build environment",
+          "ament_cmake_ros",
+          "rclcpp",
+          "nav2_common",
+          "nav2_core",
+          "nav2_util",
+          "nav2_costmap_2d",
+          "geometry_msgs",
+          "visualization_msgs",
+          "nav2_msgs",
+          "nav_msgs",
+          "pluginlib",
+          "tf2_geometry_msgs",
+          "tf2",
+          "tf2_eigen",
+          "tf2_ros",
+          "std_msgs",
+          "xtensor",
+          "libomp-dev",
+          "benchmark",
+          "xsimd",
+          "Compatible C++ toolchain for the package compiler and optimization flags"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured Nav2 controller server and lifecycle node loading this plugin",
+          "Valid robot pose/speed, plan, goal checker, tf2 buffer and active costmap"
+        ],
+        "notes": "The selected file initializes Optimizer, PathHandler, ParametersHandler and TrajectoryVisualizer. computeVelocityCommands locks parameter and costmap state, transforms the goal/path, calls optimizer_.evalControl and returns TwistStamped; optimizer and critic algorithm bodies are not this selected file. Visualization defaults to false here and may publish trajectories when enabled. Lifecycle callbacks activate/deactivate visualization and parameter handling; setPlan and setSpeedLimit delegate to composed objects. Complete headers, optimizer, critics, transforms, costmap, goal checker and configured Nav2 controller server are required. The source returns a command to its host; this file does not itself publish cmd_vel. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. CMake enables toolchain-conditional SIMD flags and links xtensor/xsimd; no architecture, rate, robot or safe stopping was verified."
+      },
+      "invocation": {
+        "entrypoint": "pluginlib nav2_mppi_controller::MPPIController (nav2_core::Controller)",
+        "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_mppi_controller/mppic.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-4a666ff612d0",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "nav2-regulated-pure-pursuit-controller",
+      "name": "Nav2 regulated pure pursuit path-following controller",
+      "summary": "Official C++ Nav2 controller implementation for lookahead curvature, velocity regulation, heading rotation and configurable collision checking. It returns velocity commands inside a configured Nav2 stack; this single source is not a standalone or runtime-verified robot task.",
+      "framework": "nav2",
+      "kind": "community_skill",
+      "capabilities": [
+        "navigation",
+        "path-following",
+        "pure-pursuit",
+        "velocity-regulation",
+        "controller-plugin"
+      ],
+      "aliases": [
+        "regulated pure pursuit",
+        "RegulatedPurePursuitController",
+        "computeVelocityCommands",
+        "lookahead",
+        "calculateCurvature",
+        "setSpeedLimit",
+        "nav2_core::Controller"
+      ],
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "sha256": "9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+        "bytes": 21663,
+        "authors": [
+          "Shrijit Singh",
+          "Samsung Research America"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Shrijit Singh and Samsung Research America; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review covers only the selected source and does not clear other package files, helper implementations, dependencies, binaries or physical-robot deployment.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_regulated_pure_pursuit_controller ROS 2 package and ament_cmake build environment",
+          "angles",
+          "nav2_common",
+          "nav2_core",
+          "nav2_util",
+          "nav2_costmap_2d",
+          "rclcpp",
+          "geometry_msgs",
+          "nav2_msgs",
+          "nav_msgs",
+          "std_msgs",
+          "pluginlib",
+          "tf2",
+          "tf2_geometry_msgs",
+          "C++17-capable toolchain and complete package helper sources/headers"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured Nav2 controller server and lifecycle node loading this plugin",
+          "Valid plan, robot pose/speed, goal checker, tf2 transforms, footprint and costmap"
+        ],
+        "notes": "computeVelocityCommands locks parameter/costmap state, transforms the plan, selects and publishes lookahead points, calculates curvature, handles heading rotation/reversing and applies curvature, cost and goal-approach velocity constraints. Configured collision detection can throw NoValidControl through a separate collision checker; its presence is not a measured safety guarantee. The source returns TwistStamped to its host rather than publishing cmd_vel itself. It creates lifecycle publishers for received_global_plan, lookahead_point, curvature_lookahead_point and is_rotating_to_heading. Cancellation can use configured deceleration; plan/reset/speed-limit methods change internal state. CMake explicitly requests C++17. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. Headers, path/parameter/collision helpers, ROS graph, transforms, footprint and host server must be supplied and reviewed."
+      },
+      "invocation": {
+        "entrypoint": "pluginlib nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController (nav2_core::Controller)",
+        "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_regulated_pure_pursuit_controller/nav2_regulated_pure_pursuit_controller.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-9f5f23dc174e",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "nav2-smac-hybrid-planner",
+      "name": "Nav2 Smac Hybrid-A* global planner plugin",
+      "summary": "Official C++ Nav2 global-planner plugin that configures hybrid search, footprint/costmap collision checking, optional downsampling and smoothing, then returns a path. It requires the complete Nav2 package and host planner server; it is not a standalone or executed navigation task.",
+      "framework": "nav2",
+      "kind": "community_skill",
+      "capabilities": [
+        "navigation",
+        "global-path-planning",
+        "hybrid-a-star",
+        "costmap-planning",
+        "planner-plugin"
+      ],
+      "aliases": [
+        "SmacPlannerHybrid",
+        "Hybrid-A*",
+        "hybrid A star",
+        "astar",
+        "hybrid astar",
+        "createPlan",
+        "NodeHybrid",
+        "DUBIN",
+        "REEDS_SHEPP",
+        "nav2_core::GlobalPlanner"
+      ],
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source": {
+        "repository": "https://github.com/ros-navigation/navigation2",
+        "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+        "path": "nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "sha256": "0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+        "bytes": 31578,
+        "authors": [
+          "Samsung Research America",
+          "Open Navigation LLC"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Samsung Research America and 2023 Open Navigation LLC; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review does not clear helper/third-party implementations, model assets, dependencies, binaries or deployment; CMake also references separately licensed third-party material outside this selected file.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned nav2_smac_planner ROS 2 package and ament_cmake build environment",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "std_msgs",
+          "visualization_msgs",
+          "nav2_util",
+          "nav2_msgs",
+          "nav_msgs",
+          "geometry_msgs",
+          "builtin_interfaces",
+          "nav2_common",
+          "tf2_ros",
+          "nav2_costmap_2d",
+          "nav2_core",
+          "pluginlib",
+          "eigen3_cmake_module",
+          "eigen",
+          "ompl",
+          "nlohmann-json-dev",
+          "angles",
+          "OMPL",
+          "Eigen3",
+          "Complete Smac AStarAlgorithm, NodeHybrid, collision, downsampling and smoothing sources/headers",
+          "C++ toolchain compatible with the package CMake configuration"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured Nav2 planner server and lifecycle node loading this plugin",
+          "Start/goal poses in the configured global frame, footprint and active global costmap",
+          "Reviewed motion model, turning radius, unknown-space policy and search limits for the intended application"
+        ],
+        "notes": "configure creates AStarAlgorithm<NodeHybrid>, a footprint collision checker, optional smoother/downsampler and lifecycle path/debug publishers. Defaults include DUBIN motion model, allow_unknown=true, 72 angle bins and max_planning_time=5.0 seconds; these are source settings, not measured performance or universal robot parameters. createPlan locks the costmap, converts start/goal to grid bins, requests a path using the supplied cancellation callback, returns world-frame poses and may smooth within remaining configured time. Outside-map, occupied-start and search failures raise planner exceptions. A same-cell start/goal special case returns one pose. It can publish unsmoothed_plan, optional expansions/footprint markers and downsampled costmaps. Activation adds dynamic parameter and global-costmap resolution callbacks. CMake defaults C++17 when no standard is set and links OMPL/Eigen. No search helper, motion model, task result, controller or ROS/OS compatibility was executed or verified."
+      },
+      "invocation": {
+        "entrypoint": "pluginlib nav2_smac_planner::SmacPlannerHybrid (nav2_core::GlobalPlanner)",
+        "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_smac_planner/smac_plugin_hybrid.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+        "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-0cb74d083ffb",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
       }
     },
     {
@@ -124914,11 +126142,821 @@
         "last_checked": "2026-10-17",
         "upstream_status": "contributor_reported"
       }
+    },
+    {
+      "id": "robot-localization-ekf",
+      "name": "robot_localization extended Kalman filter implementation",
+      "summary": "Official C++ Ekf library implementation for selective measurement correction and nonlinear state/covariance prediction in robot_localization. This source mutates filter state and covariance; it is not a standalone ROS node, sensor-interface implementation or verified localization task.",
+      "framework": "robot-localization",
+      "kind": "community_skill",
+      "capabilities": [
+        "state-estimation",
+        "extended-kalman-filter",
+        "measurement-fusion",
+        "covariance-propagation"
+      ],
+      "aliases": [
+        "robot_localization",
+        "Ekf::predict",
+        "Ekf::correct",
+        "Kalman gain",
+        "Joseph covariance update",
+        "Mahalanobis threshold",
+        "sensor fusion"
+      ],
+      "robots": [
+        "unspecified robot"
+      ],
+      "source": {
+        "repository": "https://github.com/cra-ros-pkg/robot_localization",
+        "commit": "3efa714fb9c1ff40966327b7bed7053b2570be4d",
+        "path": "src/ekf.cpp",
+        "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+        "sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+        "bytes": 17733,
+        "authors": [
+          "Charles River Analytics, Inc.",
+          "Locus Robotics, Inc."
+        ]
+      },
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+        "verified": true,
+        "scope": "Selected src/ekf.cpp has a complete BSD-3-Clause notice, copyright 2014-2016 Charles River Analytics, Inc. and 2017 Locus Robotics, Inc. Preserve its copyright, conditions, disclaimer and non-endorsement requirement. Root LICENSE includes Charles River Analytics and Austin Robot Technology BSD notices, with an organization placeholder in one clause; package.xml instead declares Apache License 2.0. Verification is limited to the explicit, complete selected-file notice. It does not relicense or clear the full package, other components, dependencies or binaries."
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned robot_localization package, rl_lib, headers and FilterBase/Measurement implementations",
+          "ament_cmake",
+          "builtin_interfaces",
+          "rosidl_default_generators",
+          "rosidl_default_runtime",
+          "rosidl_typesupport_cpp",
+          "rclcpp",
+          "rmw_implementation",
+          "angles",
+          "Eigen3 / eigen",
+          "Boost / libboost-dev",
+          "GeographicLib / geographiclib",
+          "geographic_msgs",
+          "geometry_msgs",
+          "diagnostic_msgs",
+          "diagnostic_updater",
+          "message_filters",
+          "nav_msgs",
+          "sensor_msgs",
+          "std_msgs",
+          "std_srvs",
+          "tf2",
+          "tf2_eigen",
+          "tf2_geometry_msgs",
+          "tf2_ros",
+          "yaml_cpp_vendor",
+          "yaml-cpp"
+        ],
+        "hardware": [],
+        "system": [
+          "Caller-provided initialized filter state, covariance, measurement/update masks and process/control settings",
+          "Consistent units, frames, measurement timing and rclcpp Time/Duration values",
+          "C++ toolchain and generated package interfaces required by the reviewed CMake configuration"
+        ],
+        "notes": "correct selects finite measured dimensions, takes the absolute value of negative covariance diagonals, floors very small diagonal variances at 1e-9, computes a Kalman gain by matrix inversion, normalizes angular innovation, applies a Mahalanobis threshold and updates state/covariance using the Joseph form. predict builds an Euler-angle transfer function and analytical Jacobian, calls inherited control preparation, optionally computes dynamic process noise, projects state/covariance and wraps state angles. It uses 1/cos(pitch); numerical conditioning and singularity behavior were not tested. These methods mutate filter internals and can emit configured debug output; this file defines no main, ROS subscriptions/publishers or physical robot command. CMake places src/ekf.cpp in rl_lib and separately builds ekf_node from another source that was not read in this bounded review. CMake selects C++17 for non-WIN32 builds. Package version 3.8.3 and ROS Index jazzy-devel metadata are declarations, not tested ROS, OS, architecture, Python or sensor compatibility. A fetched file alone is insufficient."
+      },
+      "invocation": {
+        "entrypoint": "robot_localization::Ekf::predict / robot_localization::Ekf::correct (rl_lib C++ library)",
+        "notes": "Library methods, not a shell command or standalone source-file executable. The selected file defines predict(const rclcpp::Time &, const rclcpp::Duration &) and correct(const Measurement &). Its complete package supplies class declarations, inherited filter state/utilities and caller integration. Reviewed CMake links rl_lib into a separate ekf_node target, but that target main and ROS filter I/O were not reviewed here. No Hub build, install or execution adapter is provided; no upstream library, ROS node, simulator or robot was compiled, loaded or run."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the selected implementation, complete per-file notice, package declarations and CMake configuration before integrating the full upstream library. This source reference only retrieves one inert file; it does not provide a prepared sensor-fusion node or run a localization task.",
+        "setup_url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Official ROS Index canonical repository/ref evidence, exact commit and complete tree reviewed. Complete EKF implementation, root license, package XML and CMake read as inert text; all four immutable file bodies matched tree Git blobs and sizes. Library entrypoints, mutation boundaries, declared dependencies and BSD-file/Apache-package distinction inspected. No compiler, imports, installation, ROS execution, sensor data, numerical test or physical compatibility verification."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-431331568e9c",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "ros2-diff-drive-controller",
+      "name": "ros2_controllers differential-drive controller implementation",
+      "summary": "Official C++ ros2_control chainable plugin that consumes stamped linear/angular velocity references, applies configured limits and computes left/right wheel velocity commands. It integrates odometry through a companion helper and publishes configured odometry/TF output; runtime and physical behavior remain untested.",
+      "framework": "ros2-controllers",
+      "kind": "community_skill",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "capabilities": [
+        "differential-drive",
+        "wheel-velocity-command",
+        "odometry-integration",
+        "velocity-command",
+        "chainable-controller-plugin"
+      ],
+      "aliases": [
+        "ros2_control",
+        "diff_drive_controller",
+        "DiffDriveController",
+        "TwistStamped",
+        "cmd_vel",
+        "differential drive",
+        "wheel odometry",
+        "linear angular velocity"
+      ],
+      "robots": [
+        "unspecified differential-drive mobile base"
+      ],
+      "source": {
+        "repository": "https://github.com/ros-controls/ros2_controllers",
+        "commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+        "path": "diff_drive_controller/src/diff_drive_controller.cpp",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/src/diff_drive_controller.cpp",
+        "sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+        "bytes": 28146,
+        "authors": [
+          "PAL Robotics S.L.",
+          "Bence Magyar",
+          "Enrique Fernández",
+          "Manuel Meraz"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "verified": true,
+        "scope": "Copyright 2020 PAL Robotics S.L.; selected-file author notice names Bence Magyar, Enrique Fernández and Manuel Meraz. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned diff_drive_controller package, companion sources/headers and a C++17 toolchain",
+          "ament_cmake",
+          "ros2_control_cmake",
+          "generate_parameter_library",
+          "backward_ros",
+          "control_toolbox",
+          "controller_interface",
+          "geometry_msgs",
+          "hardware_interface",
+          "nav_msgs",
+          "pluginlib",
+          "rclcpp",
+          "rclcpp_lifecycle",
+          "rcpputils",
+          "realtime_tools",
+          "tf2",
+          "tf2_msgs",
+          "lifecycle_msgs",
+          "class_loader",
+          "rosidl_runtime_cpp"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured ros2_control lifecycle/controller manager host and matching left/right wheel velocity command interfaces",
+          "Configured wheel names, radii/separation, velocity limits, timing and odometry frames; position/velocity feedback unless configured open_loop"
+        ],
+        "notes": "The subscriber path uses the package TwistStamped alias on ~/cmd_vel and checks timestamp age; timeout 0 disables this timeout. The chainable class exposes linear/angular velocity reference interfaces. update_and_write_commands applies speed limiters, computes wheel rates from linear x/angular z and configured geometry, and writes loaned wheel command handles. It delegates odometry to odometry.cpp, publishes ~/odom and conditional /tf and ~/cmd_vel_out, and halt writes zero wheel commands during deactivation. These are source operations, not verified stopping, odometry accuracy or timing. Complete headers, odometry/speed-limiter helpers and generated parameter YAML/validators were not reviewed and remain required. Package/CMake declare the listed build/runtime dependencies; lifecycle_msgs, class_loader and rosidl_runtime_cpp also appear directly in this source. Optional BUILD_TESTING has additional declared test dependencies. C++17, package 4.43.0 and the jazzy checkout are declarations, not tested environment combinations."
+      },
+      "invocation": {
+        "entrypoint": "pluginlib diff_drive_controller/DiffDriveController (controller_interface::ChainableControllerInterface)",
+        "notes": "The plugin XML registers type diff_drive_controller::DiffDriveController, base controller_interface::ChainableControllerInterface and shared library diff_drive_controller. This source registers that class with CLASS_LOADER_REGISTER_CLASS; CMake exports diff_drive_plugin.xml. A complete configured controller manager/lifecycle host supplies interfaces and invokes subscriber/reference and command updates. This is not a standalone executable or Hub adapter. When loaded by an authorized host it can command actual wheels and publish ROS messages; fetching this reference never loads or executes it."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the immutable source, complete license, package/CMake/plugin registration and complete upstream configuration before integration. This source-only reference supplies no build, install or execution adapter.",
+        "setup_url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/diff_drive_controller/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected C++ source, root Apache 2.0 license, package XML, CMake and plugin registration read as inert text. Official ROS Index canonical/jazzy metadata, exact commit, complete 768-entry tree and all ten selected immutable file bodies verified by Git blob identity, byte count and SHA-256. Fourteen bounded anonymous primary GETs total, all HTTP 200. No compilation, installation, plugin load, ROS/simulator/robot execution or measured compatibility/performance."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-6d19b817443f",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "ros2-joint-trajectory-controller",
+      "name": "ros2_controllers joint trajectory controller implementation",
+      "summary": "Official C++ ros2_control lifecycle plugin that accepts joint-space trajectory topic/action input, samples trajectories and writes claimed joint command interfaces. The selected source includes goal validation, tolerances and action/state feedback; no robot or successful task execution was verified.",
+      "framework": "ros2-controllers",
+      "kind": "community_skill",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "capabilities": [
+        "joint-trajectory-execution",
+        "joint-space-control",
+        "trajectory-validation",
+        "action-feedback",
+        "controller-plugin"
+      ],
+      "aliases": [
+        "ros2_control",
+        "joint_trajectory_controller",
+        "JointTrajectoryController",
+        "follow_joint_trajectory",
+        "joint_trajectory",
+        "joint-space trajectory",
+        "position velocity acceleration effort",
+        "PID feedforward",
+        "FollowJTrajAction"
+      ],
+      "robots": [
+        "unspecified jointed robot"
+      ],
+      "source": {
+        "repository": "https://github.com/ros-controls/ros2_controllers",
+        "commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+        "path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+        "sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+        "bytes": 77779,
+        "authors": [
+          "ros2_control Development Team"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "verified": true,
+        "scope": "Copyright 2021 ros2_control Development Team. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Complete pinned joint_trajectory_controller package, companion sources/headers and a C++17 toolchain",
+          "ament_cmake",
+          "ros2_control_cmake",
+          "angles",
+          "backward_ros",
+          "controller_interface",
+          "control_msgs",
+          "control_toolbox",
+          "generate_parameter_library",
+          "hardware_interface",
+          "libexpected-dev",
+          "pluginlib",
+          "rclcpp",
+          "rclcpp_action",
+          "rclcpp_lifecycle",
+          "realtime_tools",
+          "rsl",
+          "trajectory_msgs",
+          "urdf",
+          "lifecycle_msgs"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured ros2_control controller manager/lifecycle host, named joints and matching claimed command/state interfaces",
+          "Complete generated parameters, trajectory helpers, robot description and applicable joint/goal constraints"
+        ],
+        "notes": "The selected update reads joint states, samples the companion Trajectory implementation, checks configured tolerances and writes position, velocity, acceleration or effort commands according to selected interfaces. Velocity-only or effort-only configurations can use the PID/feedforward adapter. Configuration creates ~/joint_trajectory input, ~/controller_state output, follow_joint_trajectory action, query_state service and conditional speed-scaling input. It handles goal preemption/cancellation and configured hold/deceleration paths; stopping safety and real-time performance were not tested. Companion trajectory.cpp, headers, generated parameter YAML/validators and their behavior are required but were not reviewed. lifecycle_msgs is explicitly included in this source; the other listed build/runtime dependencies come from package.xml/CMake. Optional BUILD_TESTING has additional declared test dependencies. CMake requests C++17; package 4.43.0 and the jazzy checkout are declarations, not tested ROS, OS, architecture, controller or robot combinations."
+      },
+      "invocation": {
+        "entrypoint": "pluginlib joint_trajectory_controller/JointTrajectoryController (controller_interface::ControllerInterface)",
+        "notes": "The plugin XML registers type joint_trajectory_controller::JointTrajectoryController and shared library joint_trajectory_controller. The source exports that class with PLUGINLIB_EXPORT_CLASS. A configured controller manager/lifecycle host calls on_configure/on_activate/update; this is not a standalone ros2 run program or a Hub recipe. Joint-space trajectory construction and kinematics remain caller/package responsibilities. Loading an appropriately configured host can write actual hardware command interfaces. The Hub retrieves one inert file only and did not build, load or execute the plugin."
+      },
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the immutable source, complete license, package/CMake/plugin registration and complete upstream configuration before integration. This source-only reference supplies no build, install or execution adapter.",
+        "setup_url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/joint_trajectory_controller/CMakeLists.txt"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete selected C++ source, root Apache 2.0 license, package XML, CMake and plugin registration read as inert text. Official ROS Index canonical/jazzy metadata, exact commit, complete 768-entry tree and all ten selected immutable file bodies verified by Git blob identity, byte count and SHA-256. Fourteen bounded anonymous primary GETs total, all HTTP 200. No compilation, installation, plugin load, ROS/simulator/robot execution or measured compatibility/performance."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-da42c65b96e0",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "ros2-tf2-broadcaster",
+      "name": "ROS 2 tf2 turtle-pose transform broadcaster node",
+      "summary": "Official ROS geometry tutorial node that subscribes to a turtle pose and broadcasts a timestamped world-to-turtle transform, including a derived Euler-to-quaternion helper. It is an installed ROS 2 console entrypoint; the selected file has Apache-2.0 and BSD-2-Clause component terms.",
+      "framework": "ros2-tf2",
+      "kind": "community_skill",
+      "capabilities": [
+        "coordinate-transforms",
+        "transform-broadcasting",
+        "pose-conversion",
+        "robotics-middleware"
+      ],
+      "aliases": [
+        "ROS 2",
+        "tf2",
+        "TransformBroadcaster",
+        "TransformStamped",
+        "world frame",
+        "yaw quaternion",
+        "turtlesim"
+      ],
+      "robots": [
+        "turtlesim"
+      ],
+      "source": {
+        "repository": "https://github.com/ros/geometry_tutorials",
+        "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_broadcaster.py",
+        "sha256": "87928f4e427dc4166e936e262d4f519c915faa1ff2d59998540bc0d4c96ac61f",
+        "bytes": 3511,
+        "authors": [
+          "Open Source Robotics Foundation, Inc.",
+          "Matthew Brett",
+          "Christoph Gohlke"
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0 AND BSD-2-Clause",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "scope": "Selected file has an Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc., plus a quaternion helper derived from transforms3d under BSD-2-Clause, copyright 2009-2019 Matthew Brett and Christoph Gohlke. Both notice sets apply to their components; retain attribution, terms, disclaimers and applicable notices when redistributing. Pinned BSD terms: https://github.com/matthew-brett/transforms3d/blob/f185e866ecccb66c545559bc9f2e19cb5025e0ab/LICENSE . This is not a choice between licenses or blanket package/dependency clearance.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Compatible ROS 2 rclpy environment with the context-manager init API used by this source",
+          "tf2_ros",
+          "geometry_msgs",
+          "turtlesim_msgs",
+          "numpy",
+          "Installed turtle_tf2_py package exposing the reviewed console entrypoint"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured ROS graph publishing the intended absolute /<turtlename>/pose topic",
+          "Reviewed turtlename parameter, world/child frame naming and node clock"
+        ],
+        "notes": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The turtlename parameter defaults to turtle. Pose callbacks subscribe to /<turtlename>/pose, stamp transforms with current node time, set parent frame world and child frame turtlename, copy x/y with z=0, convert yaw to quaternion and call sendTransform. Set intended parameters and provide matching pose publishers; this node alone does not create a complete following demo. The exact source imports turtlesim_msgs, whose availability must be resolved in the chosen environment. The copied helper's pinned transforms3d terms were reviewed, but mathematical correctness, clock/frame behavior, package installation and ROS graph compatibility were not executed or tested."
+      },
+      "invocation": {
+        "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_broadcaster",
+        "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_broadcaster:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy and broadcasts transforms from incoming pose messages. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node, package installer or simulator. A single fetched Python file is insufficient."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned node, both component license terms, package declarations and setup registration before use. This source reference does not install or execute code.",
+        "setup_url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete ROS node read as inert text and Python AST parsed without import or execution. Source, package, setup and Apache license pins matched the complete immutable tree. A separate three-GET review checked the exact linked transforms3d tree, BSD-2-Clause license and Euler source/helper attribution. Component source terms and registered console entrypoint were reviewed; no runtime or physical-controller compatibility is claimed."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-87928f4e427d",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "ros2-tf2-listener",
+      "name": "ROS 2 tf2 transform listener and turtle-following node",
+      "summary": "Official ROS geometry tutorial node that spawns turtle2, looks up its transform relative to a target frame and publishes Twist velocity commands to follow that target. It is an installed ROS 2 console entrypoint with ROS graph effects, not a direct Python-file main or a verified robot controller.",
+      "framework": "ros2-tf2",
+      "kind": "community_skill",
+      "capabilities": [
+        "coordinate-transforms",
+        "frame-following",
+        "velocity-command",
+        "robotics-middleware"
+      ],
+      "aliases": [
+        "ROS 2",
+        "tf2",
+        "TransformListener",
+        "Buffer",
+        "lookup_transform",
+        "turtlesim",
+        "Twist"
+      ],
+      "robots": [
+        "turtlesim"
+      ],
+      "source": {
+        "repository": "https://github.com/ros/geometry_tutorials",
+        "commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+        "path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+        "sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+        "bytes": 4419,
+        "authors": [
+          "Open Source Robotics Foundation, Inc."
+        ]
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "scope": "Selected listener source under its explicit Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc. Preserve attribution, license and applicable notices. The package also declares BSD for other material; this source review does not clear the full package, dependencies or physical-robot use.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "Compatible ROS 2 rclpy environment with the context-manager init API used by this source",
+          "tf2_ros",
+          "geometry_msgs",
+          "turtlesim_msgs",
+          "Installed turtle_tf2_py package exposing the reviewed console entrypoint"
+        ],
+        "hardware": [],
+        "system": [
+          "Configured ROS graph providing the relative spawn service and appropriate turtle1/turtle2 transforms",
+          "Reviewed namespace, target_frame parameter and intended turtle2/cmd_vel subscribers"
+        ],
+        "notes": "The package is labeled version 0.7.0 at a Rolling-branch source pin; neither label establishes a tested ROS distribution, Python version or operating system. The node defaults target_frame to turtle1, requests turtle2 at x=4.0, y=2.0, theta=0.0 and, after spawning, queries a transform into turtle2 with rclpy.time.Time(). On a nominal one-second timer it publishes angular z from atan2 and linear x as 0.5 times translation distance. The period and gains are source settings, not measurements. Transform failures are logged and return without an explicit zero-velocity stop. No obstacle check or speed clamp is present. This node does not generate its required transforms, and a single source file is insufficient. ROS graph dependencies, shutdown behavior, hardware remappings and compatibility remain untested."
+      },
+      "invocation": {
+        "entrypoint": "ros2 run turtle_tf2_py turtle_tf2_listener",
+        "notes": "Installed ROS 2 console command backed by the pinned setup.py registration turtle_tf2_py.turtle_tf2_listener:main. The source defines main without a __main__ guard; direct python-file execution is not the declared node invocation. Starting the console entrypoint initializes rclpy, calls a spawn service and can publish velocity commands to the configured graph. No physical-controller compatibility or safe stopping is established. The Hub supplies inert source metadata with no preparation/execution adapter and ran no ROS node or simulator."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned node, package declarations and setup registration before configuring the intended ROS graph. This source reference does not install or execute code.",
+        "setup_url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/turtle_tf2_py/setup.py"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete node read as inert text and Python AST parsed without import or execution. Source, license, package XML and setup bytes matched SHA-256, lengths and immutable-tree Git blob pins. Installed console registration and ROS graph effects were inspected; no ROS/Python/OS combination, controller, simulator or task result was tested."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-bb2c9f91a430",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "aliases": [
+        "UR RTDE",
+        "Universal Robots",
+        "RTDEControlInterface",
+        "RTDEReceiveInterface",
+        "moveJ",
+        "moveL",
+        "basic_move"
+      ],
+      "artifact": {
+        "format": "python",
+        "kind": "code"
+      },
+      "capabilities": [
+        "robot-control",
+        "joint-motion",
+        "cartesian-motion",
+        "tcp-pose"
+      ],
+      "compatibility": [
+        {
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "robot": "unknown",
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "status": "contributor_reported"
+        }
+      ],
+      "framework": "ur-rtde",
+      "id": "ur-rtde-basic-move",
+      "invocation": {
+        "entrypoint": "python examples/py/basic_move.py",
+        "notes": "Upstream script invocation only, after separate operator authorization and configuration of the intended UR controller. It has no main guard: executing or importing it sends RTDE motion commands using its embedded demonstration address and targets. The Hub acquires this file as inert source data and supplies no execution or preparation adapter. No robot/controller endpoint, simulator, package installation or upstream source execution was used during review."
+      },
+      "kind": "community_skill",
+      "license": {
+        "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+        "spdx": "MIT",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+        "verified": false
+      },
+      "name": "UR RTDE basic joint and Cartesian motion example",
+      "requirements": {
+        "hardware": [
+          "Operator-authorized UR robot/controller with a configured RTDE endpoint; model and software versions are unverified"
+        ],
+        "notes": "The source imports numpy and constructs RTDEControlInterface and RTDEReceiveInterface at top level, using a hardcoded demonstration address. Importing the file can connect and immediately move hardware. Inspect and adapt the address, six-joint target, TCP offsets, speed and acceleration for the authorized installation before any execution. The code commands joint motion, reads TCP pose, moves 0.15 m down in Z and then 0.10 m in X, returns to the original TCP pose and joint target, and stops its control script. Source comments do not establish reachability or collision safety. The pinned README provides project-level installation and robot/OS declarations; no package versions, Python version, firmware, OS or robot environment combination was resolved or tested for this example.",
+        "packages": [
+          "ur_rtde Python bindings providing rtde_control and rtde_receive",
+          "numpy"
+        ],
+        "python": null,
+        "system": [
+          "Network access to the intended RTDE controller endpoint",
+          "An operator-reviewed Python environment for the pinned source and its bindings"
+        ]
+      },
+      "robots": [
+        "ur"
+      ],
+      "source": {
+        "authors": [
+          "SDU Robotics"
+        ],
+        "bytes": 1108,
+        "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+        "path": "examples/py/basic_move.py",
+        "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+        "sha256": "25f397b34ae604607717159deb053d44e708553eaf2874d43f6ab6acc0b1239f",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/basic_move.py"
+      },
+      "summary": "SDU Robotics Python RTDE example that connects to a UR controller, moves to a fixed joint target, reads the TCP pose, performs Cartesian offsets and returns. This is a pinned source reference; importing or running the script can command physical motion.",
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Inspect the exact pinned upstream artifact and setup instructions. This record has no Hub runtime adapter.",
+        "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+      },
+      "evidence": {
+        "level": "contributor_reported",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Data-only intake structure checked. Source content, checksum, license and runtime claims require maintainer review; no submitted code was executed."
+      },
+      "maintenance": {
+        "record_version": "intake-755f1279caa67565",
+        "last_checked": "2026-10-18",
+        "upstream_status": "contributor_reported"
+      }
+    },
+    {
+      "id": "ur-rtde-io",
+      "name": "UR RTDE digital and analog I/O example",
+      "summary": "SDU Robotics Python example that reads standard/tool digital-output states, sets a standard and tool digital output high, and sets an analog-output current ratio through RTDE. Importing or running the original script can change physical outputs and actuate connected peripherals.",
+      "framework": "ur-rtde",
+      "kind": "community_skill",
+      "capabilities": [
+        "robot-io",
+        "digital-output",
+        "analog-output",
+        "io-state"
+      ],
+      "aliases": [
+        "UR RTDE",
+        "Universal Robots",
+        "RTDEIOInterface",
+        "RTDEReceiveInterface",
+        "standard digital output",
+        "tool digital output",
+        "analog current output"
+      ],
+      "robots": [
+        "ur"
+      ],
+      "source": {
+        "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+        "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+        "path": "examples/py/io_example.py",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/io_example.py",
+        "sha256": "b21a319dda832712cf2f403aaab674e82906b3837f5189160a54179918a8d0fc",
+        "bytes": 1124,
+        "authors": [
+          "SDU Robotics"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+        "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "ur_rtde Python bindings providing rtde_io and rtde_receive"
+        ],
+        "hardware": [
+          "Operator-authorized UR controller with reviewed standard/tool digital and analog output wiring; connected peripherals may actuate"
+        ],
+        "system": [
+          "Network access to the intended RTDE controller endpoint",
+          "An operator-reviewed Python environment for the pinned source and its bindings"
+        ],
+        "notes": "The source constructs RTDEIOInterface and RTDEReceiveInterface at module top level using an embedded demonstration address. Review the controller address, channel mapping, wiring and analog-current configuration before any execution. It reads digital-output state indices 7 and 16, sets standard digital output 7 and tool digital output 0 high, waits 0.01 seconds, reads those states again, then sets analog output 1 to current ratio 0.25. It has no restore step for the previous output values. These commands can affect connected hardware even though this source sends no joint or Cartesian motion command. The pinned README provides project-level installation and robot/OS declarations; no Python/package version, controller, firmware, robot, operating-system or timing combination was resolved or tested for this source."
+      },
+      "invocation": {
+        "entrypoint": "python examples/py/io_example.py",
+        "notes": "Upstream invocation only after separate operator authorization and I/O configuration. There is no main guard; importing or executing the file can connect to the controller and change outputs. The Hub supplies no execution/preparation adapter. No upstream execution, I/O change, controller contact, simulator or package installation was performed during source review."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+        "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Applicable MIT license and pinned README bytes checked independently. Hardware effects and setup declarations are source observations; no controller, robot, simulator or runtime environment was tested."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-b21a319dda83",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
+    },
+    {
+      "id": "ur-rtde-servoj",
+      "name": "UR RTDE joint servo motion example",
+      "summary": "SDU Robotics Python example that connects an RTDE control interface, moves to an initial joint target and repeatedly sends sinusoidal six-joint servoJ targets. Importing or running the original script can start physical motion; this reference supplies inert source metadata only.",
+      "framework": "ur-rtde",
+      "kind": "community_skill",
+      "capabilities": [
+        "robot-control",
+        "joint-servo",
+        "joint-motion"
+      ],
+      "aliases": [
+        "UR RTDE",
+        "Universal Robots",
+        "servoJ",
+        "joint servo control",
+        "sinusoidal joint targets"
+      ],
+      "robots": [
+        "ur"
+      ],
+      "source": {
+        "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+        "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+        "path": "examples/py/servoj_example.py",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/servoj_example.py",
+        "sha256": "411f67e9b556b2d18f599592b153ce01ba71b9895466ac25ff291f2ba9e736d2",
+        "bytes": 1201,
+        "authors": [
+          "SDU Robotics"
+        ]
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+        "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+        "verified": true
+      },
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "requirements": {
+        "python": null,
+        "packages": [
+          "ur_rtde Python bindings providing rtde_control",
+          "numpy"
+        ],
+        "hardware": [
+          "Operator-authorized UR robot/controller with a configured RTDE endpoint; model and software versions are unverified"
+        ],
+        "system": [
+          "Network access to the intended RTDE controller endpoint",
+          "An operator-reviewed Python environment for the pinned source and its bindings"
+        ],
+        "notes": "This straight-line script constructs RTDEControlInterface with an embedded loopback address and calls moveJ before entering its try/finally block. A loopback address does not establish a simulator environment. Inspect and adapt the address, six-joint start target, sinusoidal amplitudes/frequencies/phases, lookahead and gain for the authorized installation. The loop uses dt=1/500 seconds with initPeriod, servoJ and waitPeriod; this is a requested control period, not measured real-time or 500 Hz performance. It continues until interruption or another exception. The finally block calls servoStop and stopScript after leaving that loop; startup operations occur before it. The pinned README provides project-level installation and robot/OS declarations; no Python/package version, controller, firmware, robot, operating-system or timing combination was resolved or tested for this source."
+      },
+      "invocation": {
+        "entrypoint": "python examples/py/servoj_example.py",
+        "notes": "Upstream invocation only after separate operator authorization and configuration. There is no main guard, and executing or importing the file can connect and move hardware. The source defines an indefinite servo loop and does not verify reachability, collision safety or real-time scheduling. The Hub supplies no execution/preparation adapter. No upstream execution, controller contact, simulator or package installation was performed during source review."
+      },
+      "compatibility": [
+        {
+          "runtime": "unknown",
+          "runtime_version": "unknown",
+          "robot": "unknown",
+          "controller": "unknown",
+          "observation": "unknown",
+          "os": "unknown",
+          "status": "unknown"
+        }
+      ],
+      "access": {
+        "mode": "source_reference",
+        "hub_prepare": false,
+        "instructions": "Read the pinned source and upstream setup before use. This maintainer-reviewed source reference does not install or execute code.",
+        "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+      },
+      "evidence": {
+        "level": "source_reviewed",
+        "runtime_verification": "not_run",
+        "checked_at": "2026-10-18",
+        "inspection": "Complete pinned source read and SHA-256 checked as inert text; Python AST parsed without importing or executing it. Applicable MIT license and pinned README bytes checked independently. Hardware effects and setup declarations are source observations; no controller, robot, simulator or runtime environment was tested."
+      },
+      "maintenance": {
+        "record_version": "reviewed-20261018-411f67e9b556",
+        "last_checked": "2026-10-18",
+        "upstream_status": "source_pinned"
+      }
     }
   ],
   "source_manifest": "source-projects.json",
   "artifact_manifest": "artifact-projects.json",
   "agent_skill_manifest": "agent-skill-projects.json",
   "workflow_manifest": "workflow-projects.json",
-  "hub_commit": "9cc6d2900d36d695a74a98a81ede20a77f60be54"
+  "hub_commit": "dd6ab5cb07becf8a7c963b83202266977265cee8"
 }

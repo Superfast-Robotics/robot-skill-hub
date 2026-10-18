@@ -1,0 +1,376 @@
+{
+  "schema_version": "1",
+  "review_date": "2026-10-18",
+  "review_kind": "bounded_official_visp_ibvs_source_review",
+  "scope": "One maintainer-curated inert C++ source reference. This is source-level review, not visual-servo convergence, runtime compatibility, dependency clearance or independent agent adoption.",
+  "repository": "https://github.com/lagadic/visp",
+  "commit": "372e03076373e012f2bec765b026bc1e4e7487bd",
+  "immutable_tree": {
+    "sha1": "864f6d0df6c7bbea40deb5ce168883eb4b782226",
+    "entry_count": 4800,
+    "truncated": false,
+    "response_sha256": "ace071001345c35ee0d42a65f7b3903757b8bfaab7e5a09bceb6f05034eec9cc"
+  },
+  "canonical_evidence": {
+    "repository_metadata": "lagadic/visp identifies Open Source Visual Servoing Platform and official homepage https://visp.inria.fr/.",
+    "pinned_README_and_mainpage": "Both identify the ViSP project and Inria Rainbow/former Lagadic team, link official ViSP resources and the same GitHub repository.",
+    "official_site_request": "TLS issuer verification failed; no site body was used, no retry or TLS bypass."
+  },
+  "files": [
+    {
+      "path": "tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+      "bytes": 1798,
+      "sha256": "1d0d3f32617c912e4eafdeb6506b6fc003b5c22c62405a828cda19d418ff767b",
+      "git_blob_sha1": "07b9e06ff315dfd7769e8ced9b37cf695db1ca88",
+      "tree_match": true
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 18139,
+      "sha256": "9abb9d16f325172c4e7b107dac49bc7d5e931c9b9459322698edc087dc12c25a",
+      "git_blob_sha1": "06f4de5e7dc70c40aed4d8c5ecaab7af6d2514b6",
+      "tree_match": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 6836,
+      "sha256": "4ada0a11d402de9962bb2308b5816c38705e771eb3a5a6b1d5bea493645354c0",
+      "git_blob_sha1": "06d9c4a7ee72c6da488a38ee37ee1b15f201b5f2",
+      "tree_match": true
+    },
+    {
+      "path": "tutorial/visual-servo/ibvs/CMakeLists.txt",
+      "bytes": 2213,
+      "sha256": "aa9b3fe143c3249d4ee1055c353d0267a3058e038012c7347897615711cee90d",
+      "git_blob_sha1": "c54b5583587e82c61c77eb8a3379ee119c959099",
+      "tree_match": true
+    },
+    {
+      "path": "CMakeLists.txt",
+      "bytes": 104790,
+      "sha256": "e1d3d552b3b5adfdc0f166757f7b07c3e112b96485aaa23514945ff419cff783",
+      "git_blob_sha1": "64c58e5447cf30a60228dbfb513a541d94bea3c3",
+      "tree_match": true
+    },
+    {
+      "path": "doc/tutorial/visual-servo/tutorial-ibvs.dox",
+      "bytes": 18810,
+      "sha256": "d2ded5971aa0a81fb7580af0dc646b3e74ebce8520602dc64762204a8f763ea8",
+      "git_blob_sha1": "e5b2a0a731a0f59466b6bcaf6db63814c1ab4e26",
+      "tree_match": true
+    },
+    {
+      "path": "doc/mainpage.dox.in",
+      "bytes": 36746,
+      "sha256": "d38da6301b74e0ab92cb6f0269eddc8cae3fb85589d2d9cc02e858d7ebf68fe1",
+      "git_blob_sha1": "88b121a030223fcf45ec687433bf0dc65014fab1",
+      "tree_match": true
+    }
+  ],
+  "source_count": 1,
+  "source_bytes": 1798,
+  "license": {
+    "spdx": "GPL-2.0-or-later",
+    "verified": true,
+    "basis": "Pinned root LICENSE.txt explicitly states version 2 or any later version; pinned README uses GPL2+ and root CMake explicitly repeats version 2-or-later. Mainpage describes project GPLv2/GPLv3 or a separate professional edition. GitHub API license label was not used as the license grant.",
+    "selected_file_notice_present": false,
+    "individual_selected_file_authors_known": false,
+    "project_attribution": "ViSP project contributors; pinned mainpage identifies development and maintenance by Inria Rainbow/former Lagadic team.",
+    "ancestor_notice_check": {
+      "ancestor_directories": [
+        "",
+        "tutorial",
+        "tutorial/visual-servo",
+        "tutorial/visual-servo/ibvs"
+      ],
+      "notice_candidates": [
+        {
+          "path": "LICENSE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "06f4de5e7dc70c40aed4d8c5ecaab7af6d2514b6",
+          "size": 18139,
+          "url": "https://api.github.com/repos/lagadic/visp/git/blobs/06f4de5e7dc70c40aed4d8c5ecaab7af6d2514b6"
+        }
+      ],
+      "no_additional_ancestor_overrides_in_complete_tree": true
+    },
+    "scope": "Selected tutorial distributed in the pinned ViSP project under its root GPL version 2-or-later declaration, corroborated by README and root CMake. The selected file has no individual copyright, author or license header; attribution is project-level only. The complete tree has no additional LICENSE/COPYING/NOTICE/COPYRIGHT file in its ancestor directories. Preserve applicable GPL source, attribution, license and modification obligations. No ViSP Professional Edition grant, dependency/binary clearance or relicensing is asserted.",
+    "professional_license_granted": false,
+    "all_dependencies_or_binaries_cleared": false
+  },
+  "source_behavior": {
+    "entrypoint": "C++ main",
+    "actual_classes": [
+      "vpServo",
+      "vpFeaturePoint",
+      "vpFeatureBuilder",
+      "vpPoint",
+      "vpSimulatorCamera"
+    ],
+    "task": "Image-based visual servoing of a simulated free-flying camera using four analytic projected point features.",
+    "servo_mode": "EYEINHAND_CAMERA",
+    "interaction_matrix": "CURRENT",
+    "gain": 0.5,
+    "iteration_bound": 150,
+    "sampling_time_seconds_declared": 0.04,
+    "velocity_frame": "CAMERA_FRAME",
+    "loop_operations": [
+      "Read simulated camera pose and transform the static square target into camera frame.",
+      "Project four target points and update current point features.",
+      "Compute the visual-servo control law and apply its velocity to the numerical camera model."
+    ],
+    "image_processing_or_real_camera": false,
+    "arm_model_joint_IK_or_hardware_driver": false,
+    "explicit_display_network_shell_or_file_write_calls_in_selected_source": false,
+    "success_assertion_or_final_error_threshold": false,
+    "exception_behavior": "vpException is printed; main has no explicit failure return.",
+    "dependency_implementations_exhaustively_reviewed": false
+  },
+  "upstream_documentation_limits": [
+    "Pinned IBVS documentation explains the control law and selected numerical-camera example.",
+    "Documentation contains an outdated visual-servoing directory link; the actual complete tree and selected source path are visual-servo/ibvs.",
+    "Documentation mentions task.kill(), absent from the current selected source. Source behavior above follows the selected immutable C++ bytes."
+  ],
+  "setup": {
+    "source_direct_include_modules": [
+      "core",
+      "robot",
+      "visual_features",
+      "vs"
+    ],
+    "tutorial_cmake_components": [
+      "visp_core",
+      "visp_robot",
+      "visp_vs",
+      "visp_blob",
+      "visp_vision",
+      "visp_io",
+      "visp_gui",
+      "visp_ar"
+    ],
+    "cmake_minimum_declared": "3.10",
+    "root_project_version_declared": "3.7.1",
+    "complete_upstream_project_required": true,
+    "other_tutorial_targets_and_data_in_directory_cmake": true,
+    "installation_or_compilation_performed": false
+  },
+  "coverage_gap": {
+    "prior_audit_sha256": "2260e5dd7cd6b205e489c2721d3fab03ee5a47ec17dab845c660dfa69a126614",
+    "prior_complete_search_records": 1301,
+    "prior_query": "visual servo",
+    "prior_matches": 0,
+    "new_metadata_basis": "Actual official IBVS tutorial and selected source; no arbitrary alias or unsupported algorithm claim.",
+    "existing_managed_and_intake_absence": {
+      "managed_records": 1267,
+      "intake_records": 17,
+      "total": 1284,
+      "repository_absent": true,
+      "pin_absent": true
+    }
+  },
+  "integration": {
+    "path": "catalog/intake/visp-ibvs-four-points.json",
+    "record_version": "reviewed-20261018-1d0d3f32617c",
+    "kind": "community_skill",
+    "access": "source_reference",
+    "hub_prepare": false,
+    "runtime_verification": "not_run",
+    "all_required_environment_dimensions_and_status": "unknown",
+    "python": null,
+    "API_submission_or_receipt_created": false,
+    "maintainer_curation": true,
+    "popularity_or_external_adoption_claimed": false
+  },
+  "retrieval_history": {
+    "GET_attempts": 11,
+    "HTTP_200": 10,
+    "TLS_failures": 1,
+    "budget": 12,
+    "automatic_retry": false,
+    "redirect_followed": false,
+    "authentication_or_proxy_used": false,
+    "requests": [
+      {
+        "number": 1,
+        "method": "GET",
+        "url": "https://visp.inria.fr/",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "error_type": "URLError",
+        "failure": "TLS certificate issuer verification failed; no response body and no verification bypass."
+      },
+      {
+        "number": 2,
+        "method": "GET",
+        "url": "https://api.github.com/repos/lagadic/visp",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://api.github.com/repos/lagadic/visp",
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"a6cfbd3fd129d881e34ec4506992ac5b1704a3afb54317b45f9a85910fe2595c\"",
+        "bytes": 6030,
+        "sha256": "b0b42fc9ae1f212df68354201a9a0b5a317421c92c4cbbd766d25be99ad5facd"
+      },
+      {
+        "number": 3,
+        "method": "GET",
+        "url": "https://api.github.com/repos/lagadic/visp/commits/master",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://api.github.com/repos/lagadic/visp/commits/master",
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"ada7ea2046eb409a4f9cf929877b2b67c615507458a1957750a6c759d93b6117\"",
+        "bytes": 9076,
+        "sha256": "44fe611f6bbcd86cff4715fd34ba9eb6d6e9cdab22a8d9cee9b298657471fdef"
+      },
+      {
+        "number": 4,
+        "method": "GET",
+        "url": "https://api.github.com/repos/lagadic/visp/git/trees/864f6d0df6c7bbea40deb5ce168883eb4b782226?recursive=1",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://api.github.com/repos/lagadic/visp/git/trees/864f6d0df6c7bbea40deb5ce168883eb4b782226?recursive=1",
+        "content_type": "application/json; charset=utf-8",
+        "etag": "W/\"cbfe2063634127672391a9f6ae00a5026a690450585fcec1a369a7960b36be22\"",
+        "bytes": 1203730,
+        "sha256": "ace071001345c35ee0d42a65f7b3903757b8bfaab7e5a09bceb6f05034eec9cc"
+      },
+      {
+        "number": 5,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"c9765a90495f3068d7ff3d635abcbef9c67f7a8aad641bd1840185e37973728b\"",
+        "bytes": 1798,
+        "sha256": "1d0d3f32617c912e4eafdeb6506b6fc003b5c22c62405a828cda19d418ff767b"
+      },
+      {
+        "number": 6,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/LICENSE.txt",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/LICENSE.txt",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"e102bc02776310c86b243cf679d22ff2a665d0ec5f5ab66362afab530894ef80\"",
+        "bytes": 18139,
+        "sha256": "9abb9d16f325172c4e7b107dac49bc7d5e931c9b9459322698edc087dc12c25a"
+      },
+      {
+        "number": 7,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/README.md",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/README.md",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"27e447751b51a0ae446d088f7da23f7319c033433ecfa97f284fa95cd8363304\"",
+        "bytes": 6836,
+        "sha256": "4ada0a11d402de9962bb2308b5816c38705e771eb3a5a6b1d5bea493645354c0"
+      },
+      {
+        "number": 8,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/CMakeLists.txt",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/tutorial/visual-servo/ibvs/CMakeLists.txt",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"e7dcf59db66075c9ff1103fb8ac2c98e4a5c7617df4da7980189fbb79436bccc\"",
+        "bytes": 2213,
+        "sha256": "aa9b3fe143c3249d4ee1055c353d0267a3058e038012c7347897615711cee90d"
+      },
+      {
+        "number": 9,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/CMakeLists.txt",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/CMakeLists.txt",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"f55822a95817a80ae13dbeec0489cf2446b196db21debc9b8c1ccd314d39ff65\"",
+        "bytes": 104790,
+        "sha256": "e1d3d552b3b5adfdc0f166757f7b07c3e112b96485aaa23514945ff419cff783"
+      },
+      {
+        "number": 10,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/doc/tutorial/visual-servo/tutorial-ibvs.dox",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/doc/tutorial/visual-servo/tutorial-ibvs.dox",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"530b6e35a37472e05669b393788a9dfa2fb85be22eed3195debb1fa0889aa9b2\"",
+        "bytes": 18810,
+        "sha256": "d2ded5971aa0a81fb7580af0dc646b3e74ebce8520602dc64762204a8f763ea8"
+      },
+      {
+        "number": 11,
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/doc/mainpage.dox.in",
+        "anonymous": true,
+        "proxy": false,
+        "redirects": false,
+        "retry": false,
+        "status": 200,
+        "response_url": "https://raw.githubusercontent.com/lagadic/visp/372e03076373e012f2bec765b026bc1e4e7487bd/doc/mainpage.dox.in",
+        "content_type": "text/plain; charset=utf-8",
+        "etag": "\"3d0369dc16366a0c4d151224efa5c420d194325751624342f00d803af750f746\"",
+        "bytes": 36746,
+        "sha256": "d38da6301b74e0ab92cb6f0269eddc8cae3fb85589d2d9cc02e858d7ebf68fe1"
+      }
+    ]
+  },
+  "operations": {
+    "upstream_import_execution": false,
+    "install_build_or_test_upstream": false,
+    "GPU_or_paid": false,
+    "robot_or_simulator_execution": false,
+    "Hub_public_requests": 0
+  },
+  "local_validation": {
+    "published_reference_validator": "pass",
+    "acquisition_metadata_plan": "pass",
+    "CLI_commands": 3,
+    "find": "One-reference unpublished local fixture returns only visp-ibvs-four-points for visual servo.",
+    "inspect": "Preserves source/license and source-only boundary.",
+    "returned_acquisition_arguments": "Used unchanged with explicit local catalog and offline context, adding project/plan/JSON only. Plan returns exact pinned raw URL; project remains empty.",
+    "private_result_sha256": "00bf2c51883d4104d43a250072115198495a565b93f335ad6052554b0cb86347",
+    "source_download_build_or_execution": false,
+    "live_Hub_or_new_source_publication_claim": false,
+    "native_CLI_wire_count": "not instrumented; explicit local catalog/offline and plan-only paths were used"
+  }
+}
