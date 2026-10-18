@@ -47,12 +47,15 @@ def build_parser():
     check.add_argument("--api-url")
     search = sub.add_parser("find", help="Find at most three candidate recipes without running their code")
     search.add_argument("query")
+    search.add_argument("--query-mode", choices=("all_terms", "task"), default="all_terms",
+                        help="Opt in to bounded English task ranking; default requires every query term")
     search.add_argument("--limit", type=int, default=3, choices=(1, 2, 3))
     search.add_argument("--offset", type=int, default=0, help="Read a later bounded search page (0..1000000)")
     search.add_argument("--hub-commit", help="Keep search pagination on the exact Hub generation returned by the previous page")
     environment_options(search)
     detail = sub.add_parser("inspect", help="Read source, requirements and verification evidence")
     detail.add_argument("skill_id")
+    environment_options(detail)
     fetch = sub.add_parser("fetch-source", help="Save one checksum-verified source-reference file as inert data; never install or run it")
     fetch.add_argument("skill_id")
     fetch.add_argument("--project", required=True)
@@ -225,10 +228,11 @@ def execute(args, catalog_location):
     if args.command == "find" and not catalog_location and not args.offline:
         try:
             return catalog_handoff(remote_catalog.search(args.query, environment, args.limit, refresh=args.refresh,
-                                         offset=args.offset, hub_commit=args.hub_commit), None, args.offline)
+                                         offset=args.offset, hub_commit=args.hub_commit, query_mode=args.query_mode), None, args.offline)
         except (RshError, OSError, ValueError, TypeError) as error:
             if isinstance(error, RshError) and error.result.get("reason_code") in (
-                    "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit"):
+                    "catalog_generation_changed", "invalid_pagination", "invalid_hub_commit", "query_too_broad",
+                    "invalid_query_mode", "invalid_task_query", "unsupported_task_query"):
                 raise
             fallback_reason = "public_search_unavailable"
     catalog = None
@@ -264,13 +268,26 @@ def execute(args, catalog_location):
     if fallback_reason:
         catalog["discovery_fallback_reasons"] = [fallback_reason]
     if args.command == "find":
-        return catalog_handoff(find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit),
+        return catalog_handoff(find(catalog, args.query, environment, args.limit, offset=args.offset, hub_commit=args.hub_commit,
+                                    query_mode=args.query_mode),
                                catalog_location, args.offline)
     if args.command == "register":
         return intake.register(catalog, args.skill, args.project, contributor=args.contributor, policy_path=args.policy,
                                api_url=args.api_url, output=args.output, draft=args.draft, offline=args.offline, refresh_base=args.refresh_base)
     if args.command == "inspect":
-        return catalog_handoff(inspect(catalog, args.skill_id), catalog_location, args.offline)
+        result = inspect(catalog, args.skill_id)
+        if catalog_location:
+            # A private/custom catalog is not permission to send its identities
+            # to the Hub or associate it with a shared local finding index.
+            result["findings"] = {"status": "unknown", "reason_code": "explicit_catalog_requires_findings_selection",
+                "interpretation": "data_only", "applicability": "needs_applicability_check", "automatic": False,
+                "results": [], "total": None, "coverage": {"complete": False}, "limit": 3, "offset": 0, "next": None,
+                "execution_performed": False, "network_performed": False,
+                "next_action": "choose_findings_index_and_query_memories"}
+        else:
+            result["findings"] = memories.for_selection(catalog, args.skill_id, environment,
+                                                       offline=args.offline, refresh=args.refresh)
+        return catalog_handoff(result, catalog_location, args.offline)
     if args.command == "fetch-source":
         return catalog_handoff(acquisition.fetch_source(catalog, args.skill_id, args.project,
                                         expected_source_revision=args.expected_source_revision,

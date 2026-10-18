@@ -1,0 +1,1924 @@
+[
+  {
+    "id": "xarm-pick-short",
+    "group": "task",
+    "query": "xarm6 pick cube",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "maniskill",
+      "robot": "xarm6_robotiq"
+    },
+    "returned_ids": [
+      "maniskill-xarm6-pick-cube",
+      "maniskill-xarm6-stack-cube",
+      "maniskill-xarm6-push-cube"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "xarm6",
+      "pick",
+      "cube"
+    ],
+    "candidate_count": 4,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "xarm-pick",
+    "variant": "short",
+    "expected_ids": [
+      "maniskill-xarm6-pick-cube"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "xarm-pick-natural",
+    "group": "task",
+    "query": "Pick up a cube using an xArm6 arm and Robotiq gripper in ManiSkill",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "maniskill",
+      "robot": "xarm6_robotiq"
+    },
+    "returned_ids": [
+      "maniskill-xarm6-pick-cube",
+      "maniskill-xarm6-stack-cube",
+      "maniskill-xarm6-push-cube",
+      "maniskill-xarm6-plug-charger"
+    ],
+    "total_matches": 4,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "pick",
+      "up",
+      "cube",
+      "xarm6",
+      "arm",
+      "robotiq",
+      "gripper",
+      "maniskill"
+    ],
+    "candidate_count": 4,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "xarm-pick",
+    "variant": "natural",
+    "expected_ids": [
+      "maniskill-xarm6-pick-cube"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "so100-pick-short",
+    "group": "task",
+    "query": "so100 pick cube",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "maniskill",
+      "robot": "so100"
+    },
+    "returned_ids": [
+      "maniskill-so100-pick-cube"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "so100",
+      "pick",
+      "cube"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "so100-pick",
+    "variant": "short",
+    "expected_ids": [
+      "maniskill-so100-pick-cube"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "so100-pick-natural",
+    "group": "task",
+    "query": "Grasp and lift a cube with an SO100 robot in a ManiSkill simulation",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "maniskill",
+      "robot": "so100"
+    },
+    "returned_ids": [
+      "maniskill-so100-pick-cube"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "grasp",
+      "lift",
+      "cube",
+      "so100",
+      "robot",
+      "maniskill",
+      "simulat"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "so100-pick",
+    "variant": "natural",
+    "expected_ids": [
+      "maniskill-so100-pick-cube"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ur-cartesian-short",
+    "group": "task",
+    "query": "UR Cartesian motion",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ur-rtde"
+    },
+    "returned_ids": [
+      "ur-rtde-basic-move",
+      "ur-rtde-servoj"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "ur",
+      "cartesian",
+      "motion"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ur-cartesian",
+    "variant": "short",
+    "expected_ids": [
+      "ur-rtde-basic-move"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ur-cartesian-natural",
+    "group": "task",
+    "query": "Move a Universal Robots arm end effector to a Cartesian target using RTDE",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ur-rtde"
+    },
+    "returned_ids": [
+      "ur-rtde-basic-move",
+      "ur-rtde-servoj",
+      "ur-rtde-io"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "move",
+      "universal",
+      "robot",
+      "arm",
+      "end",
+      "effector",
+      "cartesian",
+      "target",
+      "rtde"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ur-cartesian",
+    "variant": "natural",
+    "expected_ids": [
+      "ur-rtde-basic-move"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "go2-locomotion-short",
+    "group": "task",
+    "query": "GO2 locomotion",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "unitree-sdk2-python"
+    },
+    "returned_ids": [
+      "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py",
+      "unitree-sdk2-python-example-go2w-high-level-go2w-sport-client-py"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "go2",
+      "locomot"
+    ],
+    "candidate_count": 18,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "go2-locomotion",
+    "variant": "short",
+    "expected_ids": [
+      "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "go2-locomotion-natural",
+    "group": "task",
+    "query": "Make a Unitree GO2 walk using the high level sport control interface",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "unitree-sdk2-python"
+    },
+    "returned_ids": [
+      "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py",
+      "unitree-sdk2-python-example-go2w-high-level-go2w-sport-client-py",
+      "unitree-sdk2-python-example-g1-high-level-g1-arm5-sdk-dds-example-py",
+      "unitree-sdk2-python-example-g1-high-level-g1-arm7-sdk-dds-example-py",
+      "unitree-sdk2-python-example-go2-low-level-go2-stand-example-py",
+      "unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py",
+      "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",
+      "unitree-sdk2-python-example-b2w-high-level-b2w-sport-client-py",
+      "unitree-sdk2-python-example-g1-high-level-g1-arm-action-example-py",
+      "unitree-sdk2-python-example-g1-low-level-g1-low-level-example-py"
+    ],
+    "total_matches": 18,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "make",
+      "unitre",
+      "go2",
+      "walk",
+      "high",
+      "level",
+      "sport",
+      "control",
+      "interfac"
+    ],
+    "candidate_count": 18,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "go2-locomotion",
+    "variant": "natural",
+    "expected_ids": [
+      "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "go2-model-short",
+    "group": "task",
+    "query": "unitree go2 robot model",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "mujoco-menagerie"
+    },
+    "returned_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "mujoco-menagerie-artifact-unitree-go2-scene-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-go2-scene-xml",
+      "mujoco-menagerie-artifact-unitree-a1-a1-xml",
+      "mujoco-menagerie-artifact-unitree-a1-scene-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-with-hands-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-xml",
+      "mujoco-menagerie-artifact-unitree-g1-scene-mjx-xml"
+    ],
+    "total_matches": 221,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "unitre",
+      "go2",
+      "robot",
+      "model"
+    ],
+    "candidate_count": 221,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "go2-model",
+    "variant": "short",
+    "expected_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "go2-model-natural",
+    "group": "task",
+    "query": "Load a Unitree GO2 quadruped model in MuJoCo for simulation",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "mujoco-menagerie"
+    },
+    "returned_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "mujoco-menagerie-artifact-unitree-go2-scene-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-go2-scene-xml",
+      "mujoco-menagerie-artifact-unitree-a1-a1-xml",
+      "mujoco-menagerie-artifact-unitree-a1-scene-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-mjx-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-with-hands-xml",
+      "mujoco-menagerie-artifact-unitree-g1-g1-xml",
+      "mujoco-menagerie-artifact-unitree-g1-scene-mjx-xml"
+    ],
+    "total_matches": 221,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "load",
+      "unitre",
+      "go2",
+      "quadrup",
+      "model",
+      "mujoco",
+      "simulat"
+    ],
+    "candidate_count": 221,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "go2-model",
+    "variant": "natural",
+    "expected_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "fr3-description-short",
+    "group": "task",
+    "query": "fr3 urdf",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "franka-description"
+    },
+    "returned_ids": [
+      "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro",
+      "franka-description-artifact-robots-mobile-fr3-duo-v0-2-mobile-fr3-d-1af521d94b99",
+      "franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro",
+      "franka-description-artifact-robots-fr3v2-fr3v2-urdf-xacro",
+      "franka-description-artifact-accessories-fr3-duo-mount-v0-3-fr3-duo-mount-xacro",
+      "franka-description-artifact-accessories-fr3-duo-mount-v0-3-inertials-yaml",
+      "franka-description-artifact-accessories-fr3-duo-mount-v0-3-kinematics-yaml",
+      "franka-description-artifact-robots-fr3-accelerometers-yaml",
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-srdf-xacro"
+    ],
+    "total_matches": 30,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "fr3",
+      "urdf"
+    ],
+    "candidate_count": 72,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "fr3-description",
+    "variant": "short",
+    "expected_ids": [
+      "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "fr3-description-natural",
+    "group": "task",
+    "query": "Describe a Franka FR3 arm with a URDF xacro model",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "franka-description"
+    },
+    "returned_ids": [
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro",
+      "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+      "franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro",
+      "franka-description-artifact-robots-fr3v2-fr3v2-urdf-xacro",
+      "franka-description-artifact-accessories-fr3-duo-mount-v0-3-fr3-duo-mount-xacro",
+      "franka-description-artifact-robots-common-franka-arm-srdf-xacro",
+      "franka-description-artifact-robots-common-franka-arm-xacro",
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-srdf-xacro",
+      "franka-description-artifact-robots-fr3-duo-fr3-duo-xacro",
+      "franka-description-artifact-robots-fr3-fr3-srdf-xacro"
+    ],
+    "total_matches": 72,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "describ",
+      "franka",
+      "fr3",
+      "arm",
+      "urdf",
+      "xacro",
+      "model"
+    ],
+    "candidate_count": 72,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "fr3-description",
+    "variant": "natural",
+    "expected_ids": [
+      "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+    ],
+    "first_labeled_rank_at_10": 2,
+    "hit_at_1": 0,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 0.5
+  },
+  {
+    "id": "genesis-grasp-short",
+    "group": "task",
+    "query": "Panda IK grasp",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "genesis"
+    },
+    "returned_ids": [
+      "genesis-ik-motion-planning-grasp"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "panda",
+      "ik",
+      "grasp"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "genesis-grasp",
+    "variant": "short",
+    "expected_ids": [
+      "genesis-ik-motion-planning-grasp"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "genesis-grasp-natural",
+    "group": "task",
+    "query": "Compute inverse kinematics and plan a grasp for a Panda arm in Genesis",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "genesis"
+    },
+    "returned_ids": [
+      "genesis-ik-motion-planning-grasp"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "comput",
+      "invers",
+      "kinematic",
+      "plan",
+      "grasp",
+      "panda",
+      "arm",
+      "genesi"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "genesis-grasp",
+    "variant": "natural",
+    "expected_ids": [
+      "genesis-ik-motion-planning-grasp"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "jaco-waypoints-short",
+    "group": "task",
+    "query": "Jaco joint waypoint planning",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "klampt"
+    },
+    "returned_ids": [
+      "klampt-waypoint-planning"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "jaco",
+      "joint",
+      "waypoint",
+      "plan"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "jaco-waypoints",
+    "variant": "short",
+    "expected_ids": [
+      "klampt-waypoint-planning"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "jaco-waypoints-natural",
+    "group": "task",
+    "query": "Plan a collision aware path through joint waypoints for a Jaco arm with Klampt",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "klampt"
+    },
+    "returned_ids": [
+      "klampt-waypoint-planning",
+      "klampt-pose-control",
+      "klampt-ik-library"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "plan",
+      "collis",
+      "awar",
+      "path",
+      "through",
+      "joint",
+      "waypoint",
+      "jaco",
+      "arm",
+      "klampt"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "jaco-waypoints",
+    "variant": "natural",
+    "expected_ids": [
+      "klampt-waypoint-planning"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "pinocchio-ik-short",
+    "group": "task",
+    "query": "python 3d IK",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "pinocchio"
+    },
+    "returned_ids": [
+      "pinocchio-examples-inverse-kinematics-3d-py",
+      "pinocchio-examples-inverse-kinematics-3d-cpp",
+      "pinocchio-examples-inverse-kinematics-py"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "python",
+      "3d",
+      "ik"
+    ],
+    "candidate_count": 76,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "pinocchio-ik",
+    "variant": "short",
+    "expected_ids": [
+      "pinocchio-examples-inverse-kinematics-3d-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "pinocchio-ik-natural",
+    "group": "task",
+    "query": "Solve a three dimensional end effector inverse kinematics problem in Python with Pinocchio",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "pinocchio"
+    },
+    "returned_ids": [
+      "pinocchio-examples-inverse-kinematics-3d-py",
+      "pinocchio-examples-inverse-kinematics-py",
+      "pinocchio-examples-inverse-dynamics-derivatives-py",
+      "pinocchio-examples-inverse-dynamics-py",
+      "pinocchio-examples-admm-constraint-solver-py",
+      "pinocchio-examples-inverse-kinematics-3d-cpp",
+      "pinocchio-examples-inverse-kinematics-cpp",
+      "pinocchio-examples-inverse-dynamics-cpp",
+      "pinocchio-examples-inverse-dynamics-derivatives-cpp",
+      "pinocchio-examples-ellipsoid-joint-kinematics-py"
+    ],
+    "total_matches": 76,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "solv",
+      "thre",
+      "dimensional",
+      "end",
+      "effector",
+      "invers",
+      "kinematic",
+      "problem",
+      "python",
+      "pinocchio"
+    ],
+    "candidate_count": 76,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "pinocchio-ik",
+    "variant": "natural",
+    "expected_ids": [
+      "pinocchio-examples-inverse-kinematics-3d-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "moveit-plan-short",
+    "group": "task",
+    "query": "motion planning api",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "moveit2"
+    },
+    "returned_ids": [
+      "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp",
+      "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-330d5dc33df6",
+      "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-76f2e6acb01d",
+      "moveit2-doc-examples-planning-scene-ros-api-src-planning-scene-ros-5c29b2b6be46",
+      "moveit2-doc-examples-kinematics-src-ros-api-tutorial-cpp",
+      "moveit2-doc-examples-motion-planning-pipeline-src-motion-planning-p-c0a762e62f6c",
+      "moveit2-doc-examples-creating-moveit-plugins-lerp-motion-planner-sr-b32424adc072",
+      "moveit2-doc-how-to-guides-pilz-industrial-motion-planner-src-pilz-move-group-cpp",
+      "moveit2-doc-how-to-guides-pilz-industrial-motion-planner-src-pilz-mtc-cpp",
+      "moveit2-doc-how-to-guides-pilz-industrial-motion-planner-src-pilz-sequence-cpp"
+    ],
+    "total_matches": 36,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "motion",
+      "plan",
+      "api"
+    ],
+    "candidate_count": 36,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "moveit-plan",
+    "variant": "short",
+    "expected_ids": [
+      "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "moveit-plan-natural",
+    "group": "task",
+    "query": "Plan a collision free manipulator trajectory with the MoveIt motion planning API",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "moveit2"
+    },
+    "returned_ids": [
+      "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp",
+      "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-330d5dc33df6",
+      "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-76f2e6acb01d",
+      "moveit2-doc-examples-planning-scene-ros-api-src-planning-scene-ros-5c29b2b6be46",
+      "moveit2-doc-examples-bullet-collision-checker-src-bullet-collision-1e25216dcd47",
+      "moveit2-doc-examples-collision-environments-src-collision-scene-example-cpp",
+      "moveit2-doc-examples-kinematics-src-ros-api-tutorial-cpp",
+      "moveit2-doc-examples-visualizing-collisions-src-visualizing-collisi-838b72c434fb",
+      "moveit2-doc-how-to-guides-trajectory-cache-src-trajectory-cache-demo-cpp",
+      "moveit2-doc-examples-motion-planning-pipeline-src-motion-planning-p-c0a762e62f6c"
+    ],
+    "total_matches": 36,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "plan",
+      "collis",
+      "free",
+      "manipulator",
+      "trajector",
+      "moveit",
+      "motion",
+      "api"
+    ],
+    "candidate_count": 36,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "moveit-plan",
+    "variant": "natural",
+    "expected_ids": [
+      "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ruckig-position-short",
+    "group": "task",
+    "query": "jerk limited position trajectory",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ruckig"
+    },
+    "returned_ids": [
+      "ruckig-examples-01-position-py",
+      "ruckig-examples-02-position-offline-py",
+      "ruckig-examples-05-velocity-py",
+      "ruckig-examples-06-stop-py",
+      "ruckig-examples-07-minimum-duration-py",
+      "ruckig-examples-09-dynamic-dofs-cpp",
+      "ruckig-examples-12-custom-vector-type-cpp"
+    ],
+    "total_matches": 7,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "jerk",
+      "limit",
+      "posit",
+      "trajector"
+    ],
+    "candidate_count": 7,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ruckig-position",
+    "variant": "short",
+    "expected_ids": [
+      "ruckig-examples-01-position-py",
+      "ruckig-examples-02-position-offline-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ruckig-position-natural",
+    "group": "task",
+    "query": "Generate a jerk limited joint trajectory from the current position to a target with Ruckig",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ruckig"
+    },
+    "returned_ids": [
+      "ruckig-examples-01-position-py",
+      "ruckig-examples-02-position-offline-py",
+      "ruckig-examples-06-stop-py",
+      "ruckig-examples-05-velocity-py",
+      "ruckig-examples-07-minimum-duration-py",
+      "ruckig-examples-09-dynamic-dofs-cpp",
+      "ruckig-examples-12-custom-vector-type-cpp"
+    ],
+    "total_matches": 7,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "generat",
+      "jerk",
+      "limit",
+      "joint",
+      "trajector",
+      "current",
+      "posit",
+      "target",
+      "ruckig"
+    ],
+    "candidate_count": 7,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ruckig-position",
+    "variant": "natural",
+    "expected_ids": [
+      "ruckig-examples-01-position-py",
+      "ruckig-examples-02-position-offline-py"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-rpp-short",
+    "group": "task",
+    "query": "regulated pure pursuit",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-regulated-pure-pursuit-controller"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "regulat",
+      "pure",
+      "pursuit"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-rpp",
+    "variant": "short",
+    "expected_ids": [
+      "nav2-regulated-pure-pursuit-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-rpp-natural",
+    "group": "task",
+    "query": "Follow a mobile robot path while regulating speed with a pure pursuit controller in Nav2",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-regulated-pure-pursuit-controller",
+      "nav2-mppi-controller",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-follow-path-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-waypoint-follower-py",
+      "nav2-smac-hybrid-planner",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-inspection-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-picking-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-recoveries-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-security-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-assisted-teleop-py"
+    ],
+    "total_matches": 12,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "follow",
+      "mobil",
+      "robot",
+      "path",
+      "whil",
+      "regulat",
+      "spe",
+      "pure",
+      "pursuit",
+      "controller",
+      "nav2"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-rpp",
+    "variant": "natural",
+    "expected_ids": [
+      "nav2-regulated-pure-pursuit-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-mppi-short",
+    "group": "task",
+    "query": "MPPI controller",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-mppi-controller"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "mppi",
+      "controller"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-mppi",
+    "variant": "short",
+    "expected_ids": [
+      "nav2-mppi-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-mppi-natural",
+    "group": "task",
+    "query": "Compute mobile robot velocity commands from a path with the Nav2 model predictive path integral controller",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-mppi-controller",
+      "nav2-regulated-pure-pursuit-controller",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-follow-path-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-inspection-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-picking-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-recoveries-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-security-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-assisted-teleop-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-through-poses-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-to-pose-py"
+    ],
+    "total_matches": 12,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "comput",
+      "mobil",
+      "robot",
+      "velocit",
+      "command",
+      "path",
+      "nav2",
+      "model",
+      "predictiv",
+      "integral",
+      "controller"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-mppi",
+    "variant": "natural",
+    "expected_ids": [
+      "nav2-mppi-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-hybrid-short",
+    "group": "task",
+    "query": "Hybrid A* path planning",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-smac-hybrid-planner"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "hybrid",
+      "astar",
+      "path",
+      "plan"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-hybrid",
+    "variant": "short",
+    "expected_ids": [
+      "nav2-smac-hybrid-planner"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "nav2-hybrid-natural",
+    "group": "task",
+    "query": "Plan a collision checked mobile robot path using the Nav2 Smac Hybrid A star planner",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "nav2"
+    },
+    "returned_ids": [
+      "nav2-smac-hybrid-planner",
+      "nav2-regulated-pure-pursuit-controller",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-follow-path-py",
+      "nav2-mppi-controller",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-inspection-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-picking-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-recoveries-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-demo-security-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-assisted-teleop-py",
+      "nav2-nav2-simple-commander-nav2-simple-commander-example-nav-through-poses-py"
+    ],
+    "total_matches": 12,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "plan",
+      "collis",
+      "check",
+      "mobil",
+      "robot",
+      "path",
+      "nav2",
+      "smac",
+      "hybrid",
+      "star",
+      "planner"
+    ],
+    "candidate_count": 12,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "nav2-hybrid",
+    "variant": "natural",
+    "expected_ids": [
+      "nav2-smac-hybrid-planner"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ekf-state-short",
+    "group": "task",
+    "query": "EKF prediction correction",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "robot-localization"
+    },
+    "returned_ids": [
+      "robot-localization-ekf"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "ekf",
+      "predict",
+      "correct"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ekf-state",
+    "variant": "short",
+    "expected_ids": [
+      "robot-localization-ekf"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "ekf-state-natural",
+    "group": "task",
+    "query": "Fuse robot measurements and predict localization state with an extended Kalman filter",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "robot-localization"
+    },
+    "returned_ids": [
+      "robot-localization-ekf"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "fuse",
+      "robot",
+      "measur",
+      "predict",
+      "localizat",
+      "stat",
+      "extend",
+      "kalman",
+      "filter"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "ekf-state",
+    "variant": "natural",
+    "expected_ids": [
+      "robot-localization-ekf"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "visual-servo-short",
+    "group": "task",
+    "query": "image based visual servo",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "visp"
+    },
+    "returned_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "imag",
+      "bas",
+      "visual",
+      "servo"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "visual-servo",
+    "variant": "short",
+    "expected_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "visual-servo-natural",
+    "group": "task",
+    "query": "Compute camera velocity from four image point errors using image based visual servoing in ViSP",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "visp"
+    },
+    "returned_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "comput",
+      "camera",
+      "velocit",
+      "four",
+      "imag",
+      "point",
+      "error",
+      "bas",
+      "visual",
+      "servo",
+      "visp"
+    ],
+    "candidate_count": 1,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "visual-servo",
+    "variant": "natural",
+    "expected_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "tf2-follow-short",
+    "group": "task",
+    "query": "tf2 transform listener",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-tf2"
+    },
+    "returned_ids": [
+      "ros2-tf2-listener",
+      "ros2-tf2-broadcaster"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "tf2",
+      "transform",
+      "listener"
+    ],
+    "candidate_count": 2,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "tf2-follow",
+    "variant": "short",
+    "expected_ids": [
+      "ros2-tf2-listener"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "tf2-follow-natural",
+    "group": "task",
+    "query": "Look up the transform between two turtle frames and drive one turtle to follow the other",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-tf2"
+    },
+    "returned_ids": [
+      "ros2-tf2-listener",
+      "ros2-tf2-broadcaster"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "look",
+      "up",
+      "transform",
+      "between",
+      "two",
+      "turtl",
+      "fram",
+      "driv",
+      "one",
+      "follow",
+      "other"
+    ],
+    "candidate_count": 2,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "tf2-follow",
+    "variant": "natural",
+    "expected_ids": [
+      "ros2-tf2-listener"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "joint-states-short",
+    "group": "task",
+    "query": "joint state broadcasting",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-joint-state-broadcaster",
+      "ros2-joint-trajectory-controller"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "joint",
+      "stat",
+      "broadcast"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "joint-states",
+    "variant": "short",
+    "expected_ids": [
+      "ros2-joint-state-broadcaster"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "joint-states-natural",
+    "group": "task",
+    "query": "Publish measured joint positions and velocities from ros2_control state interfaces",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-joint-trajectory-controller",
+      "ros2-joint-state-broadcaster",
+      "ros2-diff-drive-controller"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "publish",
+      "measur",
+      "joint",
+      "posit",
+      "velocit",
+      "ros2",
+      "control",
+      "stat",
+      "interfac"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "joint-states",
+    "variant": "natural",
+    "expected_ids": [
+      "ros2-joint-state-broadcaster"
+    ],
+    "first_labeled_rank_at_10": 2,
+    "hit_at_1": 0,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 0.5
+  },
+  {
+    "id": "diff-drive-short",
+    "group": "task",
+    "query": "differential drive controller",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-diff-drive-controller"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "differential",
+      "driv",
+      "controller"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "diff-drive",
+    "variant": "short",
+    "expected_ids": [
+      "ros2-diff-drive-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "diff-drive-natural",
+    "group": "task",
+    "query": "Convert linear and angular base velocity references into left and right wheel commands with ros2_control",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-diff-drive-controller",
+      "ros2-joint-trajectory-controller",
+      "ros2-joint-state-broadcaster"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "convert",
+      "linear",
+      "angular",
+      "base",
+      "velocit",
+      "referenc",
+      "into",
+      "left",
+      "right",
+      "wheel",
+      "command",
+      "ros2",
+      "control"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "diff-drive",
+    "variant": "natural",
+    "expected_ids": [
+      "ros2-diff-drive-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "joint-trajectory-short",
+    "group": "task",
+    "query": "joint trajectory controller",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-joint-trajectory-controller",
+      "ros2-joint-state-broadcaster"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "joint",
+      "trajector",
+      "controller"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "joint-trajectory",
+    "variant": "short",
+    "expected_ids": [
+      "ros2-joint-trajectory-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "joint-trajectory-natural",
+    "group": "task",
+    "query": "Follow a joint space trajectory with goal tolerances and action feedback in ros2_control",
+    "query_mode": "task",
+    "environment": {
+      "runtime": "ros2-controllers"
+    },
+    "returned_ids": [
+      "ros2-joint-trajectory-controller",
+      "ros2-joint-state-broadcaster",
+      "ros2-diff-drive-controller"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "query_terms": [
+      "follow",
+      "joint",
+      "spac",
+      "trajector",
+      "goal",
+      "toleranc",
+      "action",
+      "feedback",
+      "ros2",
+      "control"
+    ],
+    "candidate_count": 3,
+    "candidate_scope": "hard_filtered_records",
+    "candidate_limit": 512,
+    "task_id": "joint-trajectory",
+    "variant": "natural",
+    "expected_ids": [
+      "ros2-joint-trajectory-controller"
+    ],
+    "first_labeled_rank_at_10": 1,
+    "hit_at_1": 1,
+    "hit_at_3": 1,
+    "hit_at_10": 1,
+    "labeled_recall_at_3": 1.0,
+    "labeled_recall_at_10": 1.0,
+    "reciprocal_rank_at_10": 1.0
+  },
+  {
+    "id": "exact-source-id",
+    "group": "control",
+    "query": "ros2-joint-state-broadcaster",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "ros2-joint-state-broadcaster"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "exact-recipe-id",
+    "group": "control",
+    "query": "maniskill-xarm6-pick-cube",
+    "query_mode": "all_terms",
+    "environment": {
+      "robot": "xarm6_robotiq"
+    },
+    "returned_ids": [
+      "maniskill-xarm6-pick-cube",
+      "maniskill-xarm6-stack-cube"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "full-eight-field-recipe",
+    "group": "control",
+    "query": "maniskill-xarm6-pick-cube",
+    "query_mode": "all_terms",
+    "environment": {
+      "runtime": "maniskill",
+      "runtime_version": "3.0.0b22",
+      "robot": "xarm6_robotiq",
+      "controller": "pd_joint_pos",
+      "observation": "state",
+      "os": "linux",
+      "python": "3.10",
+      "architecture": "x86_64"
+    },
+    "returned_ids": [
+      "maniskill-xarm6-pick-cube",
+      "maniskill-xarm6-stack-cube"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "control_pass": false,
+    "adjudicated_control_pass": true
+  },
+  {
+    "id": "recipe-robot-conflict",
+    "group": "control",
+    "query": "maniskill-xarm6-pick-cube",
+    "query_mode": "all_terms",
+    "environment": {
+      "robot": "panda"
+    },
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "recipe-python-conflict",
+    "group": "control",
+    "query": "maniskill-xarm6-pick-cube",
+    "query_mode": "all_terms",
+    "environment": {
+      "python": "3.11"
+    },
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "source-framework-is-not-runtime-proof",
+    "group": "control",
+    "query": "visp-ibvs-four-points",
+    "query_mode": "all_terms",
+    "environment": {
+      "runtime": "visp"
+    },
+    "returned_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "source-unknown-not-wildcard",
+    "group": "control",
+    "query": "visp-ibvs-four-points",
+    "query_mode": "all_terms",
+    "environment": {
+      "runtime": "visp",
+      "robot": "panda"
+    },
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "source-unproven-linux",
+    "group": "control",
+    "query": "ros2-joint-state-broadcaster",
+    "query_mode": "all_terms",
+    "environment": {
+      "os": "linux"
+    },
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "unknown-query-value-is-unspecified",
+    "group": "control",
+    "query": "visp-ibvs-four-points",
+    "query_mode": "all_terms",
+    "environment": {
+      "runtime": "visp",
+      "robot": "unknown"
+    },
+    "returned_ids": [
+      "visp-ibvs-four-points"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "robot-label-discovery",
+    "group": "control",
+    "query": "GO2 locomotion",
+    "query_mode": "all_terms",
+    "environment": {
+      "robot": "go2"
+    },
+    "returned_ids": [
+      "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "incompatible-source-cross-filter",
+    "group": "control",
+    "query": "GO2 locomotion",
+    "query_mode": "all_terms",
+    "environment": {
+      "runtime": "unitree-sdk2-python",
+      "robot": "ur"
+    },
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "astar-existing-family",
+    "group": "control",
+    "query": "A*",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "nav2-smac-hybrid-planner",
+      "pyrobosim-pyrobosim-examples-demo-astar-py",
+      "pythonrobotics-pathplanning-astar-a-star-py",
+      "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py"
+    ],
+    "total_matches": 4,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "dstar-existing-family",
+    "group": "control",
+    "query": "D* Lite",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+    ],
+    "total_matches": 1,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "rrtstar-existing-family",
+    "group": "control",
+    "query": "RRT*",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "pyrobosim-pyrobosim-examples-demo-rrt-py",
+      "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+    ],
+    "total_matches": 2,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "astar-impossible-term",
+    "group": "control",
+    "query": "A* unobtainiumfixture",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "rrtstar-impossible-term",
+    "group": "control",
+    "query": "RRT* unobtainiumfixture",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "punctuation-is-not-browse",
+    "group": "control",
+    "query": "***",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [],
+    "total_matches": 0,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "embedded-astar-not-rewritten",
+    "group": "control",
+    "query": "A*B",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "maniskill-panda-place-sphere",
+      "maniskill-panda-stack-pyramid",
+      "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
+      "crazyflie-examples-autonomy-autonomous-sequence-py",
+      "crazyflie-examples-autonomy-motion-commander-demo-py",
+      "crazyflie-examples-lighthouse-multi-bs-geometry-estimation-py",
+      "crazyflie-examples-logging-basiclog-py",
+      "crazyflie-examples-logging-basiclog-sync-py",
+      "crazyflie-examples-parameters-basicparam-py",
+      "crazyflie-examples-parameters-persistent-params-from-file-py"
+    ],
+    "total_matches": 1202,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "embedded-rrtstar-not-rewritten",
+    "group": "control",
+    "query": "RRT*B",
+    "query_mode": "all_terms",
+    "environment": {},
+    "returned_ids": [
+      "pyrobosim-pyrobosim-examples-demo-rrt-py",
+      "pythonrobotics-pathplanning-rrt-rrt-py",
+      "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+    ],
+    "total_matches": 3,
+    "source_version_identity_preserved": true,
+    "control_pass": true
+  },
+  {
+    "id": "wrong-generation-refused",
+    "group": "control",
+    "query": "joint state",
+    "query_mode": "all_terms",
+    "environment": {},
+    "actual_error": "catalog_generation_changed",
+    "returned_ids": [],
+    "total_matches": null,
+    "control_pass": true
+  }
+]

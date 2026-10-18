@@ -6,7 +6,7 @@ import { createPublicHandler } from '../src/public.ts';
 const HUB = 'a'.repeat(40), ORIGIN = 'https://hub.superfastrobotics.com';
 const hash = (bytes: string | Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 const env = { PUBLICATION_URL: ORIGIN + '/catalog/v1/publication.json' };
-function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean; rowOverrides?: Record<string, unknown>[]; recipeEvidence?: Record<string, any> } = {}) {
+function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; redirect?: boolean; indexLimit?: boolean; rowOverrides?: Record<string, unknown>[]; recipeEvidence?: Record<string, any>; findingRows?: any[]; memoryCommit?: string; badMemoryHash?: boolean; memoryUnavailable?: boolean } = {}) {
   let instant = Date.parse('2026-10-18T00:00:00Z');
   const combo = (runtime: string, robot: string, controller = 'pd_joint_pos', observation = 'state', os = 'linux') => ({ runtime, runtime_version: '1', robot, controller, observation, os, status: 'source_reviewed' });
   const source = { repository: 'https://github.com/upstream/robot', commit: 'b'.repeat(40), sha256: 'c'.repeat(64), url: 'https://github.com/upstream/robot/blob/' + 'b'.repeat(40) + '/task.py' };
@@ -26,7 +26,8 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
   const search = JSON.stringify({ schema_version: '1', hub_commit: HUB, counts: { recipes: 1, references: 2, memories: 0 }, records: rows });
   const catalog = JSON.stringify({ schema_version: '1', hub_commit: HUB, records: [details[0]] });
   const references = JSON.stringify({ schema_version: '1', records: details.slice(1) });
-  const version = JSON.stringify({ schema_version: '1', hub_commit: HUB, resources: { search: { sha256: options.badSearchHash ? '0'.repeat(64) : hash(search) }, index: { sha256: hash(catalog) }, references: { sha256: hash(references) } } });
+  const memories = JSON.stringify({ schema_version: '1', hub_commit: options.memoryCommit || HUB, records: options.findingRows || [] });
+  const version = JSON.stringify({ schema_version: '1', hub_commit: HUB, resources: { search: { sha256: options.badSearchHash ? '0'.repeat(64) : hash(search) }, index: { sha256: hash(catalog) }, references: { sha256: hash(references) }, memories: { sha256: options.badMemoryHash ? '0'.repeat(64) : hash(memories) } } });
   const calls: { url: string; init: RequestInit | undefined }[] = [];
   const fetcher: typeof fetch = async (input, init) => {
     const url = String(input); calls.push({ url, init });
@@ -38,6 +39,7 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
     if (path === '/catalog/v1/search.json') return new Response(options.indexLimit ? 'x'.repeat(2 * 1024 * 1024 + 1) : search);
     if (path === '/catalog/v1/index.json') return new Response(catalog);
     if (path === '/catalog/v1/references.json') return new Response(references);
+    if (path === '/catalog/v1/memories.json') return options.memoryUnavailable ? new Response(null, { status: 503 }) : new Response(memories);
     if (path === '/openapi.json') return Response.json({ openapi: '3.1.0' });
     const id = path.match(/^\/(?:skills|references)\/([^/]+)\/skill.json$/)?.[1];
     const index = details.findIndex(row => row.id === id);
@@ -49,6 +51,71 @@ function fixture(options: { badSearchHash?: boolean; badRecordHash?: boolean; re
   const rpc = (method: string, params: any = {}, extra: Record<string, string> = {}, id: number | undefined = 1) => request('/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream', 'MCP-Protocol-Version': '2025-11-25', ...extra }, body: JSON.stringify({ jsonrpc: '2.0', ...(id === undefined ? {} : { id }), method, params }) });
   return { request, rpc, calls, rows, details, catalog, references, advance(ms: number) { instant += ms; }, handler };
 }
+
+function selectedFinding(id = 1, changes: Record<string, any> = {}) {
+  const memory_id = 'mem_' + String(id).padStart(64, '0');
+  return { schema_version: '1', memory_id, skill_id: 'alpha-pick', base: { record_version: '1.0.0', source_commit: 'b'.repeat(40), hub_commit: HUB },
+    environment: { runtime: 'maniskill', robot: 'panda', os: 'linux' }, fingerprint: 'd'.repeat(64), content_sha256: 'e'.repeat(64),
+    entry_url: ORIGIN + '/memories/' + memory_id + '.json', curation: 'maintainer_merged', interpretation: 'data_only', trust: 'contributor_reported',
+    summary: 'Observed dependency issue', observation: 'An observed task dependency needs separate review.', resolution: null,
+    evidence: { level: 'contributor_reported', reported_by: 'submitter' }, ...changes };
+}
+
+test('MCP inspect automatically recalls bounded exact-version findings without changing records or search', async () => {
+  const rows = [1, 2, 3, 4, 5].map(id => selectedFinding(id));
+  rows.push(selectedFinding(6, { base: { ...rows[0].base, source_commit: 'f'.repeat(40) } }));
+  rows.push(selectedFinding(7, { base: { ...rows[0].base, record_version: '2.0.0' } }));
+  rows.push(selectedFinding(8, { environment: { runtime: 'maniskill', robot: 'ur5' } }));
+  const s = fixture({ findingRows: rows });
+  await s.rpc('tools/call', { name: 'find_robot_skills', arguments: { q: 'cube' } });
+  assert.equal(s.calls.filter(c => c.url.includes('/memories.json')).length, 0, 'Search must not fan out memory lookups');
+  const response: any = await (await s.rpc('tools/call', { name: 'inspect_robot_skill', arguments: { skill_id: 'alpha-pick', environment: { robot: 'panda' } } }))!.json();
+  assert.equal(response.result.isError, false);
+  const detail = response.result.structuredContent;
+  assert.deepEqual(detail.record, s.details[0]);
+  assert.equal(detail.findings.status, 'ready'); assert.equal(detail.findings.total, 5);
+  assert.equal(detail.findings.results.length, 3); assert.equal(detail.findings.next.offset, 3);
+  assert.equal(detail.findings.next.hub_commit, HUB); assert.deepEqual(detail.findings.coverage, { complete: true });
+  assert.equal(detail.findings.interpretation, 'data_only'); assert.equal(detail.findings.applicability, 'needs_applicability_check');
+  assert.deepEqual(detail.findings.environment_filter, { robot: 'panda' });
+  assert.equal(s.calls.filter(c => c.url.includes('/memories.json')).length, 1);
+  const before = s.calls.length;
+  const restText = await (await s.request('/v1/skills/alpha-pick'))!.text();
+  assert.equal(restText, JSON.stringify({ schema_version: '1', interpretation: 'data_only', hub_commit: HUB,
+    backend: 'static_v1_fallback', record: s.details[0], execution_performed: false }), 'Existing REST envelope bytes remain unchanged');
+  const rest: any = JSON.parse(restText);
+  assert.deepEqual(rest.record, s.details[0]); assert.equal(rest.findings, undefined);
+  assert.equal(s.calls.length, before, 'Existing REST record reads do not add recall');
+});
+
+test('optional MCP recall failure never breaks inspect or fabricates absence', async () => {
+  for (const options of [{ badMemoryHash: true }, { memoryCommit: 'f'.repeat(40) }, { memoryUnavailable: true },
+    { findingRows: [selectedFinding(1, { curation: 'draft' })] }, { findingRows: [selectedFinding(), selectedFinding()] }]) {
+    const s = fixture(options);
+    const rpc: any = await (await s.rpc('tools/call', { name: 'inspect_robot_skill', arguments: { skill_id: 'alpha-pick' } }))!.json();
+    assert.equal(rpc.result.isError, false);
+    const detail = rpc.result.structuredContent;
+    assert.deepEqual(detail.record, s.details[0]); assert.equal(detail.findings.status, 'unknown');
+    assert.equal(detail.findings.total, null); assert.deepEqual(detail.findings.coverage, { complete: false });
+    assert.equal(detail.findings.applicability, 'needs_applicability_check'); assert.ok(detail.findings.reason_code);
+  }
+});
+
+test('MCP reference recall uses source digest version and accepts only explicit bounded environment labels', async () => {
+  const s = fixture({ findingRows: [selectedFinding(1, { skill_id: 'beta-grasp', base: { record_version: 'source-' + 'c'.repeat(64), source_commit: 'b'.repeat(40), hub_commit: HUB } })] });
+  const result: any = await (await s.rpc('tools/call', { name: 'inspect_robot_skill', arguments: { skill_id: 'beta-grasp' } }))!.json();
+  assert.equal(result.result.isError, false); const detail = result.result.structuredContent;
+  assert.equal(detail.findings.total, 1); assert.deepEqual(detail.findings.environment_filter, {});
+  assert.equal(detail.findings.applicability, 'needs_applicability_check');
+  assert.equal(detail.record.evidence.runtime_verification, 'not_run');
+  const beforeInvalid = s.calls.length;
+  for (const environment of [{ private_path: '/private' }, { robot: 123 }, { robot: ' ' }, { robot: 'x'.repeat(241) }, []]) {
+    const invalid: any = await (await s.rpc('tools/call', { name: 'inspect_robot_skill', arguments: { skill_id: 'beta-grasp', environment } }))!.json();
+    assert.equal(invalid.result.isError, true);
+  }
+  assert.equal(s.calls.length, beforeInvalid, 'Invalid labels stop before any publication lookup');
+  assert.ok(s.calls.every(c => !new Headers(c.init?.headers).has('Authorization')));
+});
 
 test('public search and inspect need no credentials and preserve recipe/reference evidence distinctions', async () => {
   const s = fixture(); const response = await s.request('/v1/search?q=cube'); assert.equal(response!.status, 200);

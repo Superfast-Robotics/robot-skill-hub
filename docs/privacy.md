@@ -2,7 +2,7 @@
 
 The public API measures successful discovery and record reads from the Hub CLI or recognized agent User-Agent, and successful read-only MCP tool calls. It reports aggregate counts at https://api.superfastrobotics.com/v1/metrics . Client identities are self-reported: these counts do not prove distinct autonomous agents, and a person can initiate CLI requests.
 
-Health checks, metrics reads, MCP initialization/tool-list handshakes, crawlers, internal verification and opted-out traffic do not count toward the 100-access campaign target. Direct GitHub Pages reads and offline usage are not measured. The campaign window is fixed; it is not reset to hide an unmet target.
+Health checks, metrics reads, MCP initialization/tool-list handshakes, crawlers, internal verification and opted-out traffic do not count toward the 10,000-access campaign target. Direct GitHub Pages reads and offline usage are not measured. The original campaign window remains 2026-10-17 15:47:38 UTC through 2026-10-18 15:47:38 UTC; the target revision does not reset the window or change stored counts.
 
 The CLI may send a random installation ID to the owned API. Metrics retain only a daily HMAC of that ID, a timestamp, a bounded route name and a client-family label. Raw IPs, raw installation IDs, query strings, user tasks, project files, conversations and credentials are not stored in the metrics database. Aggregate identified client-days are not a unique-agent count. Rows older than 30 days are pruned in bounded hourly batches. The public rate limiter uses a hashed address key separately from measurement data.
 

@@ -9,8 +9,9 @@ import urllib.error
 import urllib.parse
 
 from . import discovery
+from . import task_search
 from .core import (COMMIT, ENVIRONMENT_FIELDS, SHA256, SOURCE_REVISION, RshError,
-                   compatibility, preparation_arguments, reference_environment_matches, require_url, validate_find_pagination, validate_record)
+                   compatibility, preparation_arguments, query_terms, reference_environment_matches, require_url, validate_find_pagination, validate_record)
 
 IDENT = re.compile(r"[a-z0-9][a-z0-9-]{0,79}\Z")
 
@@ -95,6 +96,15 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None, 
         raise RshError("catalog_generation_changed", "Public search returned a different Hub generation.",
                        next_action="restart_search_without_hub_commit", expected_hub_commit=hub_commit, catalog_hub_commit=hub)
     rows, total = value.get("results"), value.get("total")
+    task_mode = (params or {}).get("query_mode") == "task"
+    task_meta = {}
+    if task_mode:
+        content_terms = task_search.terms(params["q"], query_terms)
+        count = value.get("candidate_count")
+        _need(type(count) is int and 0 <= count <= task_search.LIMIT and type(total) is int and total <= count
+              and all(value.get(key) == item for key, item in task_search.metadata(content_terms, count).items()),
+              "Task search must retain its bounded hard-filtered scope and lexical model.")
+        task_meta = task_search.metadata(content_terms, count)
     _need(isinstance(rows, list) and len(rows) <= limit and type(total) is int and total >= len(rows), "Invalid bounded search result.")
     _need(len(rows) == min(limit, max(total - offset, 0)) and (value.get("next") is not None) == (offset + limit < total), "Search page omits rows or pagination.")
     _need(value.get("execution_performed") is False and type(value.get("offset")) is int and value["offset"] == offset
@@ -120,6 +130,9 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None, 
               "Search row lacks an exact source and record identity.")
         _need(row["id"] not in seen, "Search returned a duplicate record identity.")
         seen.add(row["id"])
+        if task_mode:
+            _need(row.get("query_match") == task_search.score(row, content_terms) and row.get("query_match") is not None,
+                  "Task search returned an inconsistent lexical score or term explanation.")
         recipe = row["kind"] == "preparation_recipe"
         _need(row.get("hub_prepare") is recipe, "Search preparation flags conflict.")
         _need(isinstance(row.get("robot_types", []), list) and all(
@@ -149,12 +162,21 @@ def _search(value, environment, limit, origin, fetched_at=None, *, params=None, 
             "catalog_hub_commit": hub, "references_hub_commit": hub, "catalog_origin": origin, "references_origin": origin,
             "references_discovery": {"origin": origin, "publication_hub_commit": hub, "fetched_at": fetched_at, "fallback_reasons": []},
             "search_backend": value.get("backend", "published_api"), "search_semantics": value.get("search_semantics"), "counts": value.get("counts"),
-            "next": value.get("next"), "discovery_scope": "complete_public_query"}
+            "next": value.get("next"), "discovery_scope": "complete_public_query", **task_meta}
 
 
-def search(query, environment, limit=3, *, refresh=False, offset=0, hub_commit=None):
+def search(query, environment, limit=3, *, refresh=False, offset=0, hub_commit=None, query_mode="all_terms"):
     validate_find_pagination(limit, offset, hub_commit, maximum_limit=3)
+    if query_mode not in ("all_terms", "task"):
+        raise RshError("invalid_query_mode", "query_mode must be all_terms or task.")
+    if query_mode == "task":
+        try:
+            task_search.terms(query, query_terms)
+        except task_search.TaskQueryError as error:
+            raise RshError(error.code, str(error)) from error
     params = {"q": query, "limit": limit, "offset": offset, **({"hub_commit": hub_commit} if hub_commit else {})}
+    if query_mode == "task":
+        params["query_mode"] = "task"
     for key in ENVIRONMENT_FIELDS:
         if environment.get(key) not in (None, "", "unknown"):
             text = str(environment[key])
@@ -176,6 +198,14 @@ def search(query, environment, limit=3, *, refresh=False, offset=0, hub_commit=N
         discovery._write_cache(key, value)
         return result
     except (OSError, ValueError, TypeError, RshError) as error:
+        if query_mode == "task" and isinstance(error, urllib.error.HTTPError) and error.code == 400:
+            try:
+                reason = json.loads(error.read(4096)).get("reason_code")
+            except (ValueError, OSError, AttributeError):
+                reason = None
+            if reason in ("query_too_broad", "invalid_query_mode", "invalid_task_query", "unsupported_task_query"):
+                raise RshError(reason, "Task search was rejected by the public API; narrow hard environment filters or use all_terms.",
+                               next_action="narrow_environment_filters_or_use_all_terms") from error
         if isinstance(error, urllib.error.HTTPError) and error.code == 409:
             raise RshError("catalog_generation_changed", "Search pagination belongs to a different published generation.",
                            next_action="restart_search_without_hub_commit") from error

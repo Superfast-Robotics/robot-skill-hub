@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Agent-first robotics source discovery, reviewed contribution intake and exact-version task memory. A reference is not a runtime-verification claim.",
     "license": {
       "name": "MIT",
@@ -27,6 +27,19 @@
               "type": "string",
               "maxLength": 240
             }
+          },
+          {
+            "name": "query_mode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all_terms",
+                "task"
+              ],
+              "default": "all_terms"
+            },
+            "description": "all_terms keeps word-prefix matching. task opts into bounded ASCII English lexical ranking with at most16 content terms over at most512 hard-filtered records before text matching. query_too_broad requires narrower runtime/robot/environment filters; more text alone does not reduce scope. Task results expose query_terms, candidate_scope=hard_filtered_records, candidate_count, candidate_limit and per-row query_match scores. Preserve query_mode and hub_commit for pagination. Matches do not establish runtime compatibility."
           },
           {
             "name": "runtime",
@@ -1017,7 +1030,7 @@
     "/mcp": {
       "post": {
         "summary": "Stateless read-only Model Context Protocol over Streamable HTTP",
-        "description": "Public tools find_robot_skills, inspect_robot_skill and get_hub_capabilities. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25.",
+        "description": "Public tools find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25.",
         "security": [],
         "requestBody": {
           "required": true,

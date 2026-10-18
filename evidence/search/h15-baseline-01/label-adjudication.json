@@ -1,0 +1,34 @@
+{
+  "status": "BENCHMARK_EXPECTATION_ERROR_REVIEWED_WITHOUT_MATCHER_RERUN",
+  "case_id": "full-eight-field-recipe",
+  "original_cases_sha256": "4baf7f22e35411325da2535fadf9248f5bad472310b8ac71ec0263b2423a6186",
+  "original_baseline_sha256": "bf413ca500b4b663ea5c70c69954d2d154dbd81685d6730b33ef7e38f25881fc",
+  "original_case_results_sha256": "aca2e26c5dc21d2ba0a81bbf9574d42188d0bb0832de0298450e46d507a43358",
+  "original_raw_results_sha256": "0bddb6ab037350b2d50b8ed4cce3bbcfe5632d2ce7adacd236cbdf8ce9ed343f",
+  "original_expectation": {
+    "expected_ids_exact": [
+      "maniskill-xarm6-pick-cube"
+    ],
+    "compatibility_status": "documented"
+  },
+  "actual_ids": [
+    "maniskill-xarm6-pick-cube",
+    "maniskill-xarm6-stack-cube"
+  ],
+  "finding": "Exact ID has priority but is not an exclusive selector. StackCube also contains all ordinary query word prefixes and is fully compatible with the supplied eight-field combination. The extra row is not an environment-filter violation.",
+  "both_rows_match_all_eight_literal_environment_fields": true,
+  "both_returned_prepare_argv_preserve_all_eight_constraints": true,
+  "both_source_and_version_pins_preserved": true,
+  "proposed_corrected_comparator": {
+    "expected_first": "maniskill-xarm6-pick-cube",
+    "required_ids": [
+      "maniskill-xarm6-pick-cube"
+    ],
+    "compatibility_status": "documented",
+    "all_returned_rows_must_match_explicit_environment": true
+  },
+  "corrected_comparator_satisfied_by_retained_response": true,
+  "original_case_and_baseline_unchanged": true,
+  "new_matcher_calls": 0,
+  "product_filter_defect_claimed": false
+}

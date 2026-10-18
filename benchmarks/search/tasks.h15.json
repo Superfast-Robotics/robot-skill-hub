@@ -1,0 +1,1665 @@
+{
+  "schema_version": "1",
+  "title": "H15 authored offline robotics search baseline",
+  "hub_commit": "fe152d92257e3c0c770f08f16823ce6613f4d364",
+  "fixture_generation": "31a42b0e419826642bb6af8c3a8c1f28e46eedb2",
+  "fixture_tree": "bcc06eff0cfe696af711cf5fd11133133c9c4797",
+  "publisher_receipt_sha256": "9a96eef1ae9e54c244b3d247386ae65f3f4693064dd43d88e89335e9f79485b4",
+  "counts": {
+    "recipes": 17,
+    "references": 1286,
+    "memories": 3
+  },
+  "tasks": 20,
+  "task_queries": 40,
+  "control_queries": 20,
+  "ground_truth": "Maintainer-authored engineering labels grounded in existing public metadata. No external-user distribution, learned relevance, robot compatibility or runtime success is implied. Labels are selected targets, not exhaustive judgments.",
+  "targets": {
+    "maniskill-xarm6-pick-cube": {
+      "id": "maniskill-xarm6-pick-cube",
+      "kind": "preparation_recipe",
+      "framework": "maniskill",
+      "artifact": null,
+      "robots": [
+        "xarm6_robotiq"
+      ],
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_path": [
+        "mani_skill/examples/motionplanning/xarm6/run.py",
+        "mani_skill/examples/motionplanning/xarm6/solutions/pick_cube.py",
+        "mani_skill/envs/tasks/tabletop/pick_cube.py",
+        "setup.py",
+        "LICENSE"
+      ],
+      "source_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/haosulab/ManiSkill/blob/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907/LICENSE",
+        "verified": true,
+        "scope": "Upstream ManiSkill code; hub wrapper and metadata use the hub LICENSE."
+      },
+      "record_json_sha256": "dfc2e19498eafc7376b740f72df450a41fa375d171aa896f69f32506deb02c9a"
+    },
+    "maniskill-so100-pick-cube": {
+      "id": "maniskill-so100-pick-cube",
+      "kind": "preparation_recipe",
+      "framework": "maniskill",
+      "artifact": null,
+      "robots": [
+        "so100"
+      ],
+      "source_commit": "33967b9e3ead1f841eec57cc9f31d0d8b8cf0907",
+      "source_path": [
+        "mani_skill/examples/motionplanning/so100/run.py",
+        "mani_skill/examples/motionplanning/so100/solutions/pick_cube.py",
+        "mani_skill/envs/tasks/tabletop/pick_cube.py",
+        "setup.py",
+        "LICENSE"
+      ],
+      "source_sha256": "d194e39e4f86063f7ea49f25c918ca7474d088ad8d5abdc37573daf4672f86d4",
+      "record_version": "1.1.0",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/haosulab/ManiSkill/blob/33967b9e3ead1f841eec57cc9f31d0d8b8cf0907/LICENSE",
+        "verified": true,
+        "scope": "Upstream ManiSkill code; hub wrapper and metadata use the hub LICENSE."
+      },
+      "record_json_sha256": "2490ec652646f62dc02087a4211dfc2ddd6392f16ce10981dd1315ccadf63708"
+    },
+    "ur-rtde-basic-move": {
+      "id": "ur-rtde-basic-move",
+      "kind": "source_reference",
+      "framework": "ur-rtde",
+      "artifact": {
+        "format": "python",
+        "kind": "code"
+      },
+      "robots": [
+        "ur"
+      ],
+      "source_commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+      "source_path": "examples/py/basic_move.py",
+      "source_sha256": "25f397b34ae604607717159deb053d44e708553eaf2874d43f6ab6acc0b1239f",
+      "record_version": "source-25f397b34ae604607717159deb053d44e708553eaf2874d43f6ab6acc0b1239f",
+      "license": {
+        "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+        "spdx": "MIT",
+        "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+        "verified": false
+      },
+      "record_json_sha256": "ee13296fbbf148bf3f451b2a3e474f4352c18998420fdb9c12ee13128aa0096b"
+    },
+    "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py": {
+      "id": "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py",
+      "kind": "source_reference",
+      "framework": "unitree-sdk2-python",
+      "artifact": {
+        "kind": "workflow",
+        "format": "python",
+        "workflow_role": "locomotion"
+      },
+      "robots": [
+        "go2"
+      ],
+      "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
+      "source_path": "example/go2/high_level/go2_sport_client.py",
+      "source_sha256": "0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914",
+      "record_version": "source-0ecb9953fb13c89d694cef17539877035987ca330204a50c1688f296214e0914",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/unitreerobotics/unitree_sdk2_python/blob/814556d15970dd2ecf1c9984e845ca02ab07e206/LICENSE",
+        "sha256": "a5d73fc4aca9074e3e6fe0b1a0ba763cf9514b2249b7390ed20fe8d53630bf25",
+        "scope": "Selected first-party workflow Python source only; preserve all upstream copyright, author and per-file notices. This does not relicense model weights, datasets, Gemma or other third-party model code, robot firmware, simulator binaries, meshes, dependencies or external services; their separate terms and access requirements remain applicable.",
+        "bytes": 1559
+      },
+      "record_json_sha256": "858985b7a764e7300f572a10eadad77a937850d5a362ea965817fd59ff253bae"
+    },
+    "mujoco-menagerie-artifact-unitree-go2-go2-xml": {
+      "id": "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+      "kind": "source_reference",
+      "framework": "mujoco-menagerie",
+      "artifact": {
+        "kind": "robot_model",
+        "format": "mjcf",
+        "role": "Source/configuration reference; not an executable Hub skill",
+        "structure": {
+          "root": "mujoco",
+          "references": [
+            "assets",
+            "base_0.obj",
+            "base_1.obj",
+            "base_2.obj",
+            "base_3.obj",
+            "base_4.obj",
+            "calf_0.obj",
+            "calf_1.obj",
+            "calf_mirror_0.obj",
+            "calf_mirror_1.obj",
+            "foot.obj",
+            "hip_0.obj",
+            "hip_1.obj",
+            "thigh_0.obj",
+            "thigh_1.obj",
+            "thigh_mirror_0.obj",
+            "thigh_mirror_1.obj"
+          ],
+          "references_truncated": false
+        }
+      },
+      "robots": [
+        "unitree-go2"
+      ],
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_path": "unitree_go2/go2.xml",
+      "source_sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+      "record_version": "source-50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/unitree_go2/LICENSE",
+        "sha256": "7e2dfda59b98e38d123f539b59ecb637ffd8908d19e09f7765884a309f010d40",
+        "scope": "Model/scene description text in this model directory only. Preserve this model-specific license and upstream notices. Included models, meshes, textures, dependencies and trademarks retain their applicable rights; this index does not redistribute them."
+      },
+      "record_json_sha256": "d9cc0df75bf632edfa95a7ea6d394a531d96c12c8d3081a5f2272d8c99cdd6f4"
+    },
+    "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml": {
+      "id": "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml",
+      "kind": "source_reference",
+      "framework": "mujoco-menagerie",
+      "artifact": {
+        "kind": "robot_model",
+        "format": "mjcf",
+        "role": "Source/configuration reference; not an executable Hub skill",
+        "structure": {
+          "root": "mujoco",
+          "references": [
+            "assets",
+            "base_0.obj",
+            "base_1.obj",
+            "base_2.obj",
+            "base_3.obj",
+            "base_4.obj",
+            "calf_0.obj",
+            "calf_1.obj",
+            "calf_mirror_0.obj",
+            "calf_mirror_1.obj",
+            "foot.obj",
+            "hip_0.obj",
+            "hip_1.obj",
+            "thigh_0.obj",
+            "thigh_1.obj",
+            "thigh_mirror_0.obj",
+            "thigh_mirror_1.obj"
+          ],
+          "references_truncated": false
+        }
+      },
+      "robots": [
+        "unitree-go2"
+      ],
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "source_path": "unitree_go2/go2_mjx.xml",
+      "source_sha256": "fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6",
+      "record_version": "source-fd3d459f22c02187334ab8877c664e5d9e33b513d75312a615368e8a215621c6",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/unitree_go2/LICENSE",
+        "sha256": "7e2dfda59b98e38d123f539b59ecb637ffd8908d19e09f7765884a309f010d40",
+        "scope": "Model/scene description text in this model directory only. Preserve this model-specific license and upstream notices. Included models, meshes, textures, dependencies and trademarks retain their applicable rights; this index does not redistribute them."
+      },
+      "record_json_sha256": "d74938f6fe5783bdfc4bc90346b16dc49e134caccb7764da3d438fc7a23d4734"
+    },
+    "franka-description-artifact-robots-fr3-fr3-urdf-xacro": {
+      "id": "franka-description-artifact-robots-fr3-fr3-urdf-xacro",
+      "kind": "source_reference",
+      "framework": "franka-description",
+      "artifact": {
+        "kind": "robot_description",
+        "format": "xacro",
+        "role": "Source/configuration reference; not an executable Hub skill",
+        "structure": {
+          "root": "robot",
+          "references": [
+            "$(find franka_description)/robots/common/franka_robot.xacro"
+          ],
+          "references_truncated": false
+        }
+      },
+      "robots": [
+        "fr3"
+      ],
+      "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+      "source_path": "robots/fr3/fr3.urdf.xacro",
+      "source_sha256": "8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+      "record_version": "source-8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/frankarobotics/franka_description/blob/7aeeddc449edf8d62b594f9e36a81da53e7796f9/LICENSE",
+        "sha256": "4b25434e6ec2012e28a484f1d7924a0fd1a8bf232c2be2d50d584d299d04d6d6",
+        "scope": "Selected robot-description/configuration source text only. Preserve upstream notices; meshes, textures, dependencies and trademarks retain their separate licenses."
+      },
+      "record_json_sha256": "07f46e7168866921cd3b79bdcd8369b126c89ab744ca49516bdef5c3226fc0af"
+    },
+    "genesis-ik-motion-planning-grasp": {
+      "id": "genesis-ik-motion-planning-grasp",
+      "kind": "source_reference",
+      "framework": "genesis",
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "robots": [
+        "panda",
+        "franka-emika-panda"
+      ],
+      "source_commit": "50a2aa19cba6f3e1afdceb0fac239a56a0ef5502",
+      "source_path": "examples/tutorials/IK_motion_planning_grasp.py",
+      "source_sha256": "985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+      "record_version": "source-985537566f01642631648e196311c51a01063778c436861be6eecd9d7fbb27e5",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/50a2aa19cba6f3e1afdceb0fac239a56a0ef5502/LICENSE",
+        "scope": "Selected Python tutorial source under the pinned Genesis repository Apache-2.0 declaration. Preserve upstream attribution, license and applicable notices when redistributing. Robot descriptions, meshes, binaries and third-party dependencies retain their own terms and were not cleared by this source review.",
+        "verified": true
+      },
+      "record_json_sha256": "58a13cc54e7fdc1564325113ad0750868dce78efa1e63280dc245aaf677dbf63"
+    },
+    "klampt-waypoint-planning": {
+      "id": "klampt-waypoint-planning",
+      "kind": "source_reference",
+      "framework": "klampt",
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "robots": [
+        "jaco"
+      ],
+      "source_commit": "473dabbd8b0a721b7d94e87674cde6c712eabaf5",
+      "source_path": "Python3/demos/plan/planning_test.py",
+      "source_sha256": "b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+      "record_version": "source-b5c5c8f88c44f3e57db77f5afa912052ab717c88e8f86a1503ecca3e6221bf3c",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/krishauser/Klampt-examples/blob/473dabbd8b0a721b7d94e87674cde6c712eabaf5/LICENSE",
+        "scope": "Upstream BSD-3-Clause declaration for the selected Python example only. Its pinned copyright line is incomplete: Copyright (c) 2018, with no holder. Attribution remains unresolved; no holder from the separate core repository is substituted. Models, meshes, configurations, controllers and third-party dependencies are outside this review.",
+        "verified": false
+      },
+      "record_json_sha256": "cc8b662c583fa48cf2b5fade10d41a507fbd4695e8b82ad3667390d0ec4b79fa"
+    },
+    "pinocchio-examples-inverse-kinematics-3d-py": {
+      "id": "pinocchio-examples-inverse-kinematics-3d-py",
+      "kind": "source_reference",
+      "framework": "pinocchio",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
+      "source_path": "examples/inverse-kinematics-3d.py",
+      "source_sha256": "1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",
+      "record_version": "source-1126023e439b4299c0d862366317ee0bbf555093567d0e21c02184fcc4baa3b1",
+      "license": {
+        "spdx": "BSD-2-Clause",
+        "url": "https://github.com/stack-of-tasks/pinocchio/blob/2ae77666e894a39127b283dcce3e2399ec19242d/LICENSE",
+        "sha256": "65b81e23a8e20d7c9d28239bbe9c9afc8d72dccd18833a4d443f0ed9e71738ce",
+        "scope": "Selected example source code only; preserve upstream copyright and per-file notices. Robot models, datasets, weights, simulator binaries and third-party dependencies retain their separate licenses."
+      },
+      "record_json_sha256": "e4e9cb8b8a5aaca61d754c35662c3b07ff4d60356bd79214be176fe07c190101"
+    },
+    "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp": {
+      "id": "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp",
+      "kind": "source_reference",
+      "framework": "moveit2",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
+      "source_path": "doc/examples/motion_planning_api/src/motion_planning_api_tutorial.cpp",
+      "source_sha256": "220c0ba11686a3bbbaa4362fedf9e287c4b8000767685f664c782e921d6c9ca8",
+      "record_version": "source-220c0ba11686a3bbbaa4362fedf9e287c4b8000767685f664c782e921d6c9ca8",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/moveit/moveit2_tutorials/blob/e1b3727d4bbd22a57f17120ec423a4171f4bdc66/LICENSE.txt",
+        "sha256": "fc64969d5899b2a89b72a8db8b0e99ad82f456540e133c30e30395013f89a443",
+        "scope": "Selected example source code only; preserve upstream copyright and per-file notices. Robot models, datasets, weights, simulator binaries and third-party dependencies retain their separate licenses."
+      },
+      "record_json_sha256": "5497043b9f8a85cdb2999f07b5b1b3f1910378e4656afe4f07a2b5e9566e1bb6"
+    },
+    "ruckig-examples-01-position-py": {
+      "id": "ruckig-examples-01-position-py",
+      "kind": "source_reference",
+      "framework": "ruckig",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_path": "examples/01_position.py",
+      "source_sha256": "a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+      "record_version": "source-a48056086b6eccee1c3975479079e286f3cba416d8e0ff5589eec724f9a288be",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "record_json_sha256": "3076541c38b129067ffa6260425b9950c30904ec628c4ba51b41d88fb484e396"
+    },
+    "ruckig-examples-02-position-offline-py": {
+      "id": "ruckig-examples-02-position-offline-py",
+      "kind": "source_reference",
+      "framework": "ruckig",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "source_path": "examples/02_position_offline.py",
+      "source_sha256": "448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+      "record_version": "source-448af28371b3fe96beae7905c567909d30087d9fc2a6dfc58d64ef880de9d3b8",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+        "sha256": "f0880ac5e5026c92e12c9e2859a7b338c593aaca1a435f29498bd96cbb64d7d3",
+        "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+      },
+      "record_json_sha256": "7b463f638c1ecd5e15e50363572171eb1e070205b49954d00389bbd346fcf15d"
+    },
+    "nav2-regulated-pure-pursuit-controller": {
+      "id": "nav2-regulated-pure-pursuit-controller",
+      "kind": "source_reference",
+      "framework": "nav2",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_path": "nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+      "source_sha256": "9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+      "record_version": "source-9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Shrijit Singh and Samsung Research America; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review covers only the selected source and does not clear other package files, helper implementations, dependencies, binaries or physical-robot deployment.",
+        "verified": true
+      },
+      "record_json_sha256": "a59e97ba93eed5589d9e109f8a821825bdd066cee3d766a5e058a8b61e15ca91"
+    },
+    "nav2-mppi-controller": {
+      "id": "nav2-mppi-controller",
+      "kind": "source_reference",
+      "framework": "nav2",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_path": "nav2_mppi_controller/src/controller.cpp",
+      "source_sha256": "4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+      "record_version": "source-4a666ff612d085b6be1558ef3a99520dc282169f4d206584131c39e287e58869",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_mppi_controller/src/controller.cpp",
+        "scope": "Selected controller.cpp explicitly declares Apache-2.0, copyright 2022 Samsung Research America and Alexey Budyakov. Its package.xml instead declares MIT. The pinned root LICENSE directs existing files to retain their file license; Apache verification is limited to this explicitly marked file. Preserve copyright, license and applicable notices. This does not resolve or clear the whole MIT-declared package, optimizer, critics, dependencies, binaries or deployment.",
+        "verified": true
+      },
+      "record_json_sha256": "5789064c4eb728024ee3b3f9a412fe468634e7a687faf312aa135ac1e7146253"
+    },
+    "nav2-smac-hybrid-planner": {
+      "id": "nav2-smac-hybrid-planner",
+      "kind": "source_reference",
+      "framework": "nav2",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified mobile robot"
+      ],
+      "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+      "source_path": "nav2_smac_planner/src/smac_planner_hybrid.cpp",
+      "source_sha256": "0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+      "record_version": "source-0cb74d083ffb55f3a5102897ab8ec0c9f750bdd04d7689f9c35e8eaa70e8c4a6",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_smac_planner/src/smac_planner_hybrid.cpp",
+        "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Samsung Research America and 2023 Open Navigation LLC; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review does not clear helper/third-party implementations, model assets, dependencies, binaries or deployment; CMake also references separately licensed third-party material outside this selected file.",
+        "verified": true
+      },
+      "record_json_sha256": "0a827790d8861d49077d4b8ee98cfe60bb0296af7dc43b95aba155d19b2958b4"
+    },
+    "robot-localization-ekf": {
+      "id": "robot-localization-ekf",
+      "kind": "source_reference",
+      "framework": "robot-localization",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified robot"
+      ],
+      "source_commit": "3efa714fb9c1ff40966327b7bed7053b2570be4d",
+      "source_path": "src/ekf.cpp",
+      "source_sha256": "431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+      "record_version": "source-431331568e9cc042aca3fd06f7f70252ec9a70d32e09a47d9dccc1be678b5660",
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "url": "https://github.com/cra-ros-pkg/robot_localization/blob/3efa714fb9c1ff40966327b7bed7053b2570be4d/src/ekf.cpp",
+        "verified": true,
+        "scope": "Selected src/ekf.cpp has a complete BSD-3-Clause notice, copyright 2014-2016 Charles River Analytics, Inc. and 2017 Locus Robotics, Inc. Preserve its copyright, conditions, disclaimer and non-endorsement requirement. Root LICENSE includes Charles River Analytics and Austin Robot Technology BSD notices, with an organization placeholder in one clause; package.xml instead declares Apache License 2.0. Verification is limited to the explicit, complete selected-file notice. It does not relicense or clear the full package, other components, dependencies or binaries."
+      },
+      "record_json_sha256": "2be3079c562bfb17f7ab87710f4f02c7e7e2580db2a52bb5e12a1ceebbde595a"
+    },
+    "visp-ibvs-four-points": {
+      "id": "visp-ibvs-four-points",
+      "kind": "source_reference",
+      "framework": "visp",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "simulated free-flying camera"
+      ],
+      "source_commit": "372e03076373e012f2bec765b026bc1e4e7487bd",
+      "source_path": "tutorial/visual-servo/ibvs/tutorial-ibvs-4pts.cpp",
+      "source_sha256": "1d0d3f32617c912e4eafdeb6506b6fc003b5c22c62405a828cda19d418ff767b",
+      "record_version": "source-1d0d3f32617c912e4eafdeb6506b6fc003b5c22c62405a828cda19d418ff767b",
+      "license": {
+        "spdx": "GPL-2.0-or-later",
+        "url": "https://github.com/lagadic/visp/blob/372e03076373e012f2bec765b026bc1e4e7487bd/LICENSE.txt",
+        "verified": true,
+        "scope": "Selected tutorial distributed in the pinned ViSP project under its root GPL version 2-or-later declaration, corroborated by README and root CMake. The selected file has no individual copyright, author or license header; attribution is project-level only. The complete tree has no additional LICENSE/COPYING/NOTICE/COPYRIGHT file in its ancestor directories. Preserve applicable GPL source, attribution, license and modification obligations. No ViSP Professional Edition grant, dependency/binary clearance or relicensing is asserted."
+      },
+      "record_json_sha256": "0570af7b9ba2a9a565a2f6da109801b14c2b185d29ae944ec63759ec4f2d5d60"
+    },
+    "ros2-tf2-listener": {
+      "id": "ros2-tf2-listener",
+      "kind": "source_reference",
+      "framework": "ros2-tf2",
+      "artifact": {
+        "kind": "code",
+        "format": "python"
+      },
+      "robots": [
+        "turtlesim"
+      ],
+      "source_commit": "8e677416092ac97606a4a23256c815ba2fe762d4",
+      "source_path": "turtle_tf2_py/turtle_tf2_py/turtle_tf2_listener.py",
+      "source_sha256": "bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+      "record_version": "source-bb2c9f91a430216878a831f355f529761dadb8603e3e390ecf6ec9626fa4713f",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros/geometry_tutorials/blob/8e677416092ac97606a4a23256c815ba2fe762d4/LICENSE",
+        "scope": "Selected listener source under its explicit Apache-2.0 header, copyright 2021 Open Source Robotics Foundation, Inc. Preserve attribution, license and applicable notices. The package also declares BSD for other material; this source review does not clear the full package, dependencies or physical-robot use.",
+        "verified": true
+      },
+      "record_json_sha256": "daf0c5d8fd08e132c9f5e8b0c037aff84240475183737c8e1d7e5544ec5446ad"
+    },
+    "ros2-joint-state-broadcaster": {
+      "id": "ros2-joint-state-broadcaster",
+      "kind": "source_reference",
+      "framework": "ros2-controllers",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified ros2_control system exposing joint state interfaces"
+      ],
+      "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+      "source_path": "joint_state_broadcaster/src/joint_state_broadcaster.cpp",
+      "source_sha256": "f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "record_version": "source-f0326808b19a0c89835e068b2974c92ff77c99610735c0c97d9056ef62fa26b4",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "verified": true,
+        "scope": "Selected C++ source: Copyright 2021 ros2_control development team, Apache License 2.0. Package authors Jordan Palacios and Karsten Knese are preserved separately from the reviewed header notice (Copyright 2017 Open Source Robotics Foundation, Inc.). The complete pinned root Apache 2.0 license and matching package declaration were read. Preserve applicable copyright, license, modification and notice obligations. Review covers these selected texts, not all dependencies, generated code, binaries, hardware drivers or deployment."
+      },
+      "record_json_sha256": "90ff7dc99f91552571fa01c172f4bd7bcd6571308194ce9f21652cae25b96db4"
+    },
+    "ros2-diff-drive-controller": {
+      "id": "ros2-diff-drive-controller",
+      "kind": "source_reference",
+      "framework": "ros2-controllers",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified differential-drive mobile base"
+      ],
+      "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+      "source_path": "diff_drive_controller/src/diff_drive_controller.cpp",
+      "source_sha256": "6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+      "record_version": "source-6d19b817443ff1d12bc0bfd34603a9fb5eecf8b2fa4c09b4f6512eb5e902bb69",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "verified": true,
+        "scope": "Copyright 2020 PAL Robotics S.L.; selected-file author notice names Bence Magyar, Enrique Fernández and Manuel Meraz. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+      },
+      "record_json_sha256": "8dbfc5afb3192b17f934919b3f64d569ac0b0be8645b2b2a9138bcedc02778f0"
+    },
+    "ros2-joint-trajectory-controller": {
+      "id": "ros2-joint-trajectory-controller",
+      "kind": "source_reference",
+      "framework": "ros2-controllers",
+      "artifact": {
+        "kind": "code",
+        "format": "cpp"
+      },
+      "robots": [
+        "unspecified jointed robot"
+      ],
+      "source_commit": "8ce934536c6404750fb8aafc0b62b7d365049143",
+      "source_path": "joint_trajectory_controller/src/joint_trajectory_controller.cpp",
+      "source_sha256": "da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+      "record_version": "source-da42c65b96e0e5817f61449246663b576c1b3ebd108bcc3745ec5f467c6c50d4",
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/ros-controls/ros2_controllers/blob/8ce934536c6404750fb8aafc0b62b7d365049143/LICENSE",
+        "verified": true,
+        "scope": "Copyright 2021 ros2_control Development Team. The selected source explicitly declares Apache License 2.0; the complete pinned root LICENSE and matching package.xml declaration were reviewed. Preserve applicable copyright, license, modification and notice obligations. Verification is limited to the selected source text, not all dependencies, companion implementations, binaries, hardware drivers or deployment."
+      },
+      "record_json_sha256": "76652b45bfbb3f5c2988160c52cb10728f5e574218b8a80963d5dfa5b0ab6fd6"
+    },
+    "pythonrobotics-pathplanning-astar-a-star-py": {
+      "id": "pythonrobotics-pathplanning-astar-a-star-py",
+      "kind": "source_reference",
+      "framework": "pythonrobotics",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_path": "PathPlanning/AStar/a_star.py",
+      "source_sha256": "387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+      "record_version": "source-387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "record_json_sha256": "99c4f1c3402e5cb33ad8dccb64d214d0c6e1f793f2a6646f745ef95522c6fd80"
+    },
+    "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py": {
+      "id": "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py",
+      "kind": "source_reference",
+      "framework": "pythonrobotics",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_path": "PathPlanning/HybridAStar/hybrid_a_star.py",
+      "source_sha256": "c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+      "record_version": "source-c0ae4e769cb11caddf76233e35e74a3dbf286e52d97798185b96e40afa0c9d70",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "record_json_sha256": "d958c5c203dadc66b91fe0171d3020a16005f7a70052845c9ffe37b4a7a7c611"
+    },
+    "pyrobosim-pyrobosim-examples-demo-astar-py": {
+      "id": "pyrobosim-pyrobosim-examples-demo-astar-py",
+      "kind": "source_reference",
+      "framework": "pyrobosim",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_path": "pyrobosim/examples/demo_astar.py",
+      "source_sha256": "32c696aa6c9f2a5c90b46fd487fb600571fe04c73f006ee548c749ddc4e9d7b2",
+      "record_version": "source-32c696aa6c9f2a5c90b46fd487fb600571fe04c73f006ee548c749ddc4e9d7b2",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/LICENSE.md",
+        "sha256": "d828fdce4df8520bdbecd1ccd9e5f0c7a2c29e076db3d702930e6d59ac1eae36",
+        "scope": "Selected example source code only; preserve upstream copyright and per-file notices. Robot models, datasets, weights, simulator binaries and third-party dependencies retain their separate licenses."
+      },
+      "record_json_sha256": "e0af593f7ffe94a75236acf2f1c003f241b9d2915415b2aeb4a05ccb07bf41ea"
+    },
+    "pythonrobotics-pathplanning-dstarlite-d-star-lite-py": {
+      "id": "pythonrobotics-pathplanning-dstarlite-d-star-lite-py",
+      "kind": "source_reference",
+      "framework": "pythonrobotics",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_path": "PathPlanning/DStarLite/d_star_lite.py",
+      "source_sha256": "6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+      "record_version": "source-6802cd6c96d75ddd8219d7998bf71bbf04268b96e667b5e46b9a80d9bc5b4f6c",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "record_json_sha256": "c66499e2568eec2651a0a1d3f72ff331581020913448330b7172379378ccb36e"
+    },
+    "pyrobosim-pyrobosim-examples-demo-rrt-py": {
+      "id": "pyrobosim-pyrobosim-examples-demo-rrt-py",
+      "kind": "source_reference",
+      "framework": "pyrobosim",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
+      "source_path": "pyrobosim/examples/demo_rrt.py",
+      "source_sha256": "49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
+      "record_version": "source-49af80ca6f7acf949424fa8a25313b0c818adb5af38ca4fb3ffe5855d05762aa",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/sea-bass/pyrobosim/blob/e904bcb7288ac9970bf373190e5b0774a3476efb/LICENSE.md",
+        "sha256": "d828fdce4df8520bdbecd1ccd9e5f0c7a2c29e076db3d702930e6d59ac1eae36",
+        "scope": "Selected example source code only; preserve upstream copyright and per-file notices. Robot models, datasets, weights, simulator binaries and third-party dependencies retain their separate licenses."
+      },
+      "record_json_sha256": "1f3e69775226c6e52084ec3faab413c6f8c3fd0f39b5c2c594539e84ccacd466"
+    },
+    "pythonrobotics-pathplanning-rrtstar-rrt-star-py": {
+      "id": "pythonrobotics-pathplanning-rrtstar-rrt-star-py",
+      "kind": "source_reference",
+      "framework": "pythonrobotics",
+      "artifact": null,
+      "robots": [],
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "source_path": "PathPlanning/RRTStar/rrt_star.py",
+      "source_sha256": "6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+      "record_version": "source-6beeefcc0c8b9755f0257fd442e9b0a35dac1d913fb56a8bf8ce973ba5a20b25",
+      "license": {
+        "spdx": "MIT",
+        "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+        "sha256": "ca6f10832a25c1cd07fa62872458ca336a6ea83ee2f2236216086bd7a5bbf264",
+        "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+      },
+      "record_json_sha256": "2c88554956dec788cacaae13e781b3e56a70f831275ae7f89715f4b9fa55ca0b"
+    }
+  },
+  "cases": [
+    {
+      "id": "xarm-pick-short",
+      "task_id": "xarm-pick",
+      "group": "task",
+      "variant": "short",
+      "intent": "Pick a cube with an xArm6 Robotiq gripper in ManiSkill",
+      "query": "xarm6 pick cube",
+      "environment": {
+        "runtime": "maniskill",
+        "robot": "xarm6_robotiq"
+      },
+      "expected_ids": [
+        "maniskill-xarm6-pick-cube"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "maniskill-xarm6-pick-cube"
+      ]
+    },
+    {
+      "id": "xarm-pick-natural",
+      "task_id": "xarm-pick",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Pick a cube with an xArm6 Robotiq gripper in ManiSkill",
+      "query": "Pick up a cube using an xArm6 arm and Robotiq gripper in ManiSkill",
+      "environment": {
+        "runtime": "maniskill",
+        "robot": "xarm6_robotiq"
+      },
+      "expected_ids": [
+        "maniskill-xarm6-pick-cube"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "maniskill-xarm6-pick-cube"
+      ]
+    },
+    {
+      "id": "so100-pick-short",
+      "task_id": "so100-pick",
+      "group": "task",
+      "variant": "short",
+      "intent": "Pick a cube with SO100 in ManiSkill",
+      "query": "so100 pick cube",
+      "environment": {
+        "runtime": "maniskill",
+        "robot": "so100"
+      },
+      "expected_ids": [
+        "maniskill-so100-pick-cube"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "maniskill-so100-pick-cube"
+      ]
+    },
+    {
+      "id": "so100-pick-natural",
+      "task_id": "so100-pick",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Pick a cube with SO100 in ManiSkill",
+      "query": "Grasp and lift a cube with an SO100 robot in a ManiSkill simulation",
+      "environment": {
+        "runtime": "maniskill",
+        "robot": "so100"
+      },
+      "expected_ids": [
+        "maniskill-so100-pick-cube"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "maniskill-so100-pick-cube"
+      ]
+    },
+    {
+      "id": "ur-cartesian-short",
+      "task_id": "ur-cartesian",
+      "group": "task",
+      "variant": "short",
+      "intent": "Move a UR arm to a Cartesian TCP target through RTDE",
+      "query": "UR Cartesian motion",
+      "environment": {
+        "runtime": "ur-rtde"
+      },
+      "expected_ids": [
+        "ur-rtde-basic-move"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ur-rtde-basic-move"
+      ]
+    },
+    {
+      "id": "ur-cartesian-natural",
+      "task_id": "ur-cartesian",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Move a UR arm to a Cartesian TCP target through RTDE",
+      "query": "Move a Universal Robots arm end effector to a Cartesian target using RTDE",
+      "environment": {
+        "runtime": "ur-rtde"
+      },
+      "expected_ids": [
+        "ur-rtde-basic-move"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ur-rtde-basic-move"
+      ]
+    },
+    {
+      "id": "go2-locomotion-short",
+      "task_id": "go2-locomotion",
+      "group": "task",
+      "variant": "short",
+      "intent": "Use GO2 high-level locomotion commands",
+      "query": "GO2 locomotion",
+      "environment": {
+        "runtime": "unitree-sdk2-python"
+      },
+      "expected_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ]
+    },
+    {
+      "id": "go2-locomotion-natural",
+      "task_id": "go2-locomotion",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Use GO2 high-level locomotion commands",
+      "query": "Make a Unitree GO2 walk using the high level sport control interface",
+      "environment": {
+        "runtime": "unitree-sdk2-python"
+      },
+      "expected_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ]
+    },
+    {
+      "id": "go2-model-short",
+      "task_id": "go2-model",
+      "group": "task",
+      "variant": "short",
+      "intent": "Find a MuJoCo GO2 robot model",
+      "query": "unitree go2 robot model",
+      "environment": {
+        "runtime": "mujoco-menagerie"
+      },
+      "expected_ids": [
+        "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+        "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+        "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+      ]
+    },
+    {
+      "id": "go2-model-natural",
+      "task_id": "go2-model",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Find a MuJoCo GO2 robot model",
+      "query": "Load a Unitree GO2 quadruped model in MuJoCo for simulation",
+      "environment": {
+        "runtime": "mujoco-menagerie"
+      },
+      "expected_ids": [
+        "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+        "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "mujoco-menagerie-artifact-unitree-go2-go2-xml",
+        "mujoco-menagerie-artifact-unitree-go2-go2-mjx-xml"
+      ]
+    },
+    {
+      "id": "fr3-description-short",
+      "task_id": "fr3-description",
+      "group": "task",
+      "variant": "short",
+      "intent": "Find the FR3 URDF xacro robot description",
+      "query": "fr3 urdf",
+      "environment": {
+        "runtime": "franka-description"
+      },
+      "expected_ids": [
+        "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+      ]
+    },
+    {
+      "id": "fr3-description-natural",
+      "task_id": "fr3-description",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Find the FR3 URDF xacro robot description",
+      "query": "Describe a Franka FR3 arm with a URDF xacro model",
+      "environment": {
+        "runtime": "franka-description"
+      },
+      "expected_ids": [
+        "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "franka-description-artifact-robots-fr3-fr3-urdf-xacro"
+      ]
+    },
+    {
+      "id": "genesis-grasp-short",
+      "task_id": "genesis-grasp",
+      "group": "task",
+      "variant": "short",
+      "intent": "Plan a Panda IK grasp in Genesis",
+      "query": "Panda IK grasp",
+      "environment": {
+        "runtime": "genesis"
+      },
+      "expected_ids": [
+        "genesis-ik-motion-planning-grasp"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "genesis-ik-motion-planning-grasp"
+      ]
+    },
+    {
+      "id": "genesis-grasp-natural",
+      "task_id": "genesis-grasp",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Plan a Panda IK grasp in Genesis",
+      "query": "Compute inverse kinematics and plan a grasp for a Panda arm in Genesis",
+      "environment": {
+        "runtime": "genesis"
+      },
+      "expected_ids": [
+        "genesis-ik-motion-planning-grasp"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "genesis-ik-motion-planning-grasp"
+      ]
+    },
+    {
+      "id": "jaco-waypoints-short",
+      "task_id": "jaco-waypoints",
+      "group": "task",
+      "variant": "short",
+      "intent": "Plan Jaco joint waypoints with Klampt",
+      "query": "Jaco joint waypoint planning",
+      "environment": {
+        "runtime": "klampt"
+      },
+      "expected_ids": [
+        "klampt-waypoint-planning"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "klampt-waypoint-planning"
+      ]
+    },
+    {
+      "id": "jaco-waypoints-natural",
+      "task_id": "jaco-waypoints",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Plan Jaco joint waypoints with Klampt",
+      "query": "Plan a collision aware path through joint waypoints for a Jaco arm with Klampt",
+      "environment": {
+        "runtime": "klampt"
+      },
+      "expected_ids": [
+        "klampt-waypoint-planning"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "klampt-waypoint-planning"
+      ]
+    },
+    {
+      "id": "pinocchio-ik-short",
+      "task_id": "pinocchio-ik",
+      "group": "task",
+      "variant": "short",
+      "intent": "Solve a 3D IK problem using Pinocchio Python",
+      "query": "python 3d IK",
+      "environment": {
+        "runtime": "pinocchio"
+      },
+      "expected_ids": [
+        "pinocchio-examples-inverse-kinematics-3d-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "pinocchio-examples-inverse-kinematics-3d-py"
+      ]
+    },
+    {
+      "id": "pinocchio-ik-natural",
+      "task_id": "pinocchio-ik",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Solve a 3D IK problem using Pinocchio Python",
+      "query": "Solve a three dimensional end effector inverse kinematics problem in Python with Pinocchio",
+      "environment": {
+        "runtime": "pinocchio"
+      },
+      "expected_ids": [
+        "pinocchio-examples-inverse-kinematics-3d-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "pinocchio-examples-inverse-kinematics-3d-py"
+      ]
+    },
+    {
+      "id": "moveit-plan-short",
+      "task_id": "moveit-plan",
+      "group": "task",
+      "variant": "short",
+      "intent": "Plan manipulator motion using the MoveIt planning API",
+      "query": "motion planning api",
+      "environment": {
+        "runtime": "moveit2"
+      },
+      "expected_ids": [
+        "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+      ]
+    },
+    {
+      "id": "moveit-plan-natural",
+      "task_id": "moveit-plan",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Plan manipulator motion using the MoveIt planning API",
+      "query": "Plan a collision free manipulator trajectory with the MoveIt motion planning API",
+      "environment": {
+        "runtime": "moveit2"
+      },
+      "expected_ids": [
+        "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp"
+      ]
+    },
+    {
+      "id": "ruckig-position-short",
+      "task_id": "ruckig-position",
+      "group": "task",
+      "variant": "short",
+      "intent": "Generate a jerk-limited position trajectory",
+      "query": "jerk limited position trajectory",
+      "environment": {
+        "runtime": "ruckig"
+      },
+      "expected_ids": [
+        "ruckig-examples-01-position-py",
+        "ruckig-examples-02-position-offline-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ruckig-examples-01-position-py",
+        "ruckig-examples-02-position-offline-py"
+      ]
+    },
+    {
+      "id": "ruckig-position-natural",
+      "task_id": "ruckig-position",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Generate a jerk-limited position trajectory",
+      "query": "Generate a jerk limited joint trajectory from the current position to a target with Ruckig",
+      "environment": {
+        "runtime": "ruckig"
+      },
+      "expected_ids": [
+        "ruckig-examples-01-position-py",
+        "ruckig-examples-02-position-offline-py"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ruckig-examples-01-position-py",
+        "ruckig-examples-02-position-offline-py"
+      ]
+    },
+    {
+      "id": "nav2-rpp-short",
+      "task_id": "nav2-rpp",
+      "group": "task",
+      "variant": "short",
+      "intent": "Follow a path with regulated pure pursuit",
+      "query": "regulated pure pursuit",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-regulated-pure-pursuit-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-regulated-pure-pursuit-controller"
+      ]
+    },
+    {
+      "id": "nav2-rpp-natural",
+      "task_id": "nav2-rpp",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Follow a path with regulated pure pursuit",
+      "query": "Follow a mobile robot path while regulating speed with a pure pursuit controller in Nav2",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-regulated-pure-pursuit-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-regulated-pure-pursuit-controller"
+      ]
+    },
+    {
+      "id": "nav2-mppi-short",
+      "task_id": "nav2-mppi",
+      "group": "task",
+      "variant": "short",
+      "intent": "Connect an MPPI controller to Nav2",
+      "query": "MPPI controller",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-mppi-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-mppi-controller"
+      ]
+    },
+    {
+      "id": "nav2-mppi-natural",
+      "task_id": "nav2-mppi",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Connect an MPPI controller to Nav2",
+      "query": "Compute mobile robot velocity commands from a path with the Nav2 model predictive path integral controller",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-mppi-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-mppi-controller"
+      ]
+    },
+    {
+      "id": "nav2-hybrid-short",
+      "task_id": "nav2-hybrid",
+      "group": "task",
+      "variant": "short",
+      "intent": "Find the Nav2 Hybrid A* planner integration",
+      "query": "Hybrid A* path planning",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-smac-hybrid-planner"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-smac-hybrid-planner"
+      ]
+    },
+    {
+      "id": "nav2-hybrid-natural",
+      "task_id": "nav2-hybrid",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Find the Nav2 Hybrid A* planner integration",
+      "query": "Plan a collision checked mobile robot path using the Nav2 Smac Hybrid A star planner",
+      "environment": {
+        "runtime": "nav2"
+      },
+      "expected_ids": [
+        "nav2-smac-hybrid-planner"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "nav2-smac-hybrid-planner"
+      ]
+    },
+    {
+      "id": "ekf-state-short",
+      "task_id": "ekf-state",
+      "group": "task",
+      "variant": "short",
+      "intent": "Predict and correct localization state with robot_localization EKF",
+      "query": "EKF prediction correction",
+      "environment": {
+        "runtime": "robot-localization"
+      },
+      "expected_ids": [
+        "robot-localization-ekf"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "robot-localization-ekf"
+      ]
+    },
+    {
+      "id": "ekf-state-natural",
+      "task_id": "ekf-state",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Predict and correct localization state with robot_localization EKF",
+      "query": "Fuse robot measurements and predict localization state with an extended Kalman filter",
+      "environment": {
+        "runtime": "robot-localization"
+      },
+      "expected_ids": [
+        "robot-localization-ekf"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "robot-localization-ekf"
+      ]
+    },
+    {
+      "id": "visual-servo-short",
+      "task_id": "visual-servo",
+      "group": "task",
+      "variant": "short",
+      "intent": "Compute four-point image-based visual servo velocities",
+      "query": "image based visual servo",
+      "environment": {
+        "runtime": "visp"
+      },
+      "expected_ids": [
+        "visp-ibvs-four-points"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "visp-ibvs-four-points"
+      ]
+    },
+    {
+      "id": "visual-servo-natural",
+      "task_id": "visual-servo",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Compute four-point image-based visual servo velocities",
+      "query": "Compute camera velocity from four image point errors using image based visual servoing in ViSP",
+      "environment": {
+        "runtime": "visp"
+      },
+      "expected_ids": [
+        "visp-ibvs-four-points"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "visp-ibvs-four-points"
+      ]
+    },
+    {
+      "id": "tf2-follow-short",
+      "task_id": "tf2-follow",
+      "group": "task",
+      "variant": "short",
+      "intent": "Look up a transform and follow a turtlesim target",
+      "query": "tf2 transform listener",
+      "environment": {
+        "runtime": "ros2-tf2"
+      },
+      "expected_ids": [
+        "ros2-tf2-listener"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-tf2-listener"
+      ]
+    },
+    {
+      "id": "tf2-follow-natural",
+      "task_id": "tf2-follow",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Look up a transform and follow a turtlesim target",
+      "query": "Look up the transform between two turtle frames and drive one turtle to follow the other",
+      "environment": {
+        "runtime": "ros2-tf2"
+      },
+      "expected_ids": [
+        "ros2-tf2-listener"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-tf2-listener"
+      ]
+    },
+    {
+      "id": "joint-states-short",
+      "task_id": "joint-states",
+      "group": "task",
+      "variant": "short",
+      "intent": "Broadcast ros2_control joint states",
+      "query": "joint state broadcasting",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-joint-state-broadcaster"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-joint-state-broadcaster"
+      ]
+    },
+    {
+      "id": "joint-states-natural",
+      "task_id": "joint-states",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Broadcast ros2_control joint states",
+      "query": "Publish measured joint positions and velocities from ros2_control state interfaces",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-joint-state-broadcaster"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-joint-state-broadcaster"
+      ]
+    },
+    {
+      "id": "diff-drive-short",
+      "task_id": "diff-drive",
+      "group": "task",
+      "variant": "short",
+      "intent": "Turn mobile-base velocity references into wheel commands",
+      "query": "differential drive controller",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-diff-drive-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-diff-drive-controller"
+      ]
+    },
+    {
+      "id": "diff-drive-natural",
+      "task_id": "diff-drive",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Turn mobile-base velocity references into wheel commands",
+      "query": "Convert linear and angular base velocity references into left and right wheel commands with ros2_control",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-diff-drive-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-diff-drive-controller"
+      ]
+    },
+    {
+      "id": "joint-trajectory-short",
+      "task_id": "joint-trajectory",
+      "group": "task",
+      "variant": "short",
+      "intent": "Execute a ros2_control joint-space trajectory",
+      "query": "joint trajectory controller",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-joint-trajectory-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-joint-trajectory-controller"
+      ]
+    },
+    {
+      "id": "joint-trajectory-natural",
+      "task_id": "joint-trajectory",
+      "group": "task",
+      "variant": "natural",
+      "intent": "Execute a ros2_control joint-space trajectory",
+      "query": "Follow a joint space trajectory with goal tolerances and action feedback in ros2_control",
+      "environment": {
+        "runtime": "ros2-controllers"
+      },
+      "expected_ids": [
+        "ros2-joint-trajectory-controller"
+      ],
+      "label_scope": "Selected relevant existing records, not exhaustive relevance judgments",
+      "grounding_ids": [
+        "ros2-joint-trajectory-controller"
+      ]
+    },
+    {
+      "id": "exact-source-id",
+      "query": "ros2-joint-state-broadcaster",
+      "environment": {},
+      "expected_first": "ros2-joint-state-broadcaster",
+      "group": "control",
+      "grounding_ids": [
+        "ros2-joint-state-broadcaster"
+      ]
+    },
+    {
+      "id": "exact-recipe-id",
+      "query": "maniskill-xarm6-pick-cube",
+      "environment": {
+        "robot": "xarm6_robotiq"
+      },
+      "expected_first": "maniskill-xarm6-pick-cube",
+      "group": "control",
+      "grounding_ids": [
+        "maniskill-xarm6-pick-cube"
+      ]
+    },
+    {
+      "id": "full-eight-field-recipe",
+      "query": "maniskill-xarm6-pick-cube",
+      "environment": {
+        "runtime": "maniskill",
+        "runtime_version": "3.0.0b22",
+        "robot": "xarm6_robotiq",
+        "controller": "pd_joint_pos",
+        "observation": "state",
+        "os": "linux",
+        "python": "3.10",
+        "architecture": "x86_64"
+      },
+      "expected_ids_exact": [
+        "maniskill-xarm6-pick-cube"
+      ],
+      "compatibility_status": "documented",
+      "group": "control",
+      "grounding_ids": [
+        "maniskill-xarm6-pick-cube"
+      ]
+    },
+    {
+      "id": "recipe-robot-conflict",
+      "query": "maniskill-xarm6-pick-cube",
+      "environment": {
+        "robot": "panda"
+      },
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "recipe-python-conflict",
+      "query": "maniskill-xarm6-pick-cube",
+      "environment": {
+        "python": "3.11"
+      },
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "source-framework-is-not-runtime-proof",
+      "query": "visp-ibvs-four-points",
+      "environment": {
+        "runtime": "visp"
+      },
+      "expected_ids_exact": [
+        "visp-ibvs-four-points"
+      ],
+      "compatibility_status": "unknown",
+      "group": "control",
+      "grounding_ids": [
+        "visp-ibvs-four-points"
+      ]
+    },
+    {
+      "id": "source-unknown-not-wildcard",
+      "query": "visp-ibvs-four-points",
+      "environment": {
+        "runtime": "visp",
+        "robot": "panda"
+      },
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "source-unproven-linux",
+      "query": "ros2-joint-state-broadcaster",
+      "environment": {
+        "os": "linux"
+      },
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "unknown-query-value-is-unspecified",
+      "query": "visp-ibvs-four-points",
+      "environment": {
+        "runtime": "visp",
+        "robot": "unknown"
+      },
+      "expected_ids_exact": [
+        "visp-ibvs-four-points"
+      ],
+      "compatibility_status": "unknown",
+      "group": "control",
+      "grounding_ids": [
+        "visp-ibvs-four-points"
+      ]
+    },
+    {
+      "id": "robot-label-discovery",
+      "query": "GO2 locomotion",
+      "environment": {
+        "robot": "go2"
+      },
+      "required_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ],
+      "compatibility_status": "unknown",
+      "group": "control",
+      "grounding_ids": [
+        "unitree-sdk2-python-example-go2-high-level-go2-sport-client-py"
+      ]
+    },
+    {
+      "id": "incompatible-source-cross-filter",
+      "query": "GO2 locomotion",
+      "environment": {
+        "runtime": "unitree-sdk2-python",
+        "robot": "ur"
+      },
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "astar-existing-family",
+      "query": "A*",
+      "environment": {},
+      "expected_ids_exact": [
+        "pythonrobotics-pathplanning-astar-a-star-py",
+        "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py",
+        "pyrobosim-pyrobosim-examples-demo-astar-py",
+        "nav2-smac-hybrid-planner"
+      ],
+      "expected_terms": [
+        "astar"
+      ],
+      "group": "control",
+      "grounding_ids": [
+        "pythonrobotics-pathplanning-astar-a-star-py",
+        "pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py",
+        "pyrobosim-pyrobosim-examples-demo-astar-py",
+        "nav2-smac-hybrid-planner"
+      ]
+    },
+    {
+      "id": "dstar-existing-family",
+      "query": "D* Lite",
+      "environment": {},
+      "expected_ids_exact": [
+        "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+      ],
+      "expected_terms": [
+        "dstar",
+        "lite"
+      ],
+      "group": "control",
+      "grounding_ids": [
+        "pythonrobotics-pathplanning-dstarlite-d-star-lite-py"
+      ]
+    },
+    {
+      "id": "rrtstar-existing-family",
+      "query": "RRT*",
+      "environment": {},
+      "expected_ids_exact": [
+        "pyrobosim-pyrobosim-examples-demo-rrt-py",
+        "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+      ],
+      "expected_terms": [
+        "rrtstar"
+      ],
+      "group": "control",
+      "grounding_ids": [
+        "pyrobosim-pyrobosim-examples-demo-rrt-py",
+        "pythonrobotics-pathplanning-rrtstar-rrt-star-py"
+      ]
+    },
+    {
+      "id": "astar-impossible-term",
+      "query": "A* unobtainiumfixture",
+      "environment": {},
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "rrtstar-impossible-term",
+      "query": "RRT* unobtainiumfixture",
+      "environment": {},
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "punctuation-is-not-browse",
+      "query": "***",
+      "environment": {},
+      "expected_total": 0,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "embedded-astar-not-rewritten",
+      "query": "A*B",
+      "environment": {},
+      "expected_terms": [
+        "a",
+        "b"
+      ],
+      "normalizer_contract_only": true,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "embedded-rrtstar-not-rewritten",
+      "query": "RRT*B",
+      "environment": {},
+      "expected_terms": [
+        "rrt",
+        "b"
+      ],
+      "normalizer_contract_only": true,
+      "group": "control",
+      "grounding_ids": []
+    },
+    {
+      "id": "wrong-generation-refused",
+      "query": "joint state",
+      "environment": {},
+      "hub_commit": "ffffffffffffffffffffffffffffffffffffffff",
+      "expected_error": "catalog_generation_changed",
+      "group": "control",
+      "grounding_ids": []
+    }
+  ]
+}

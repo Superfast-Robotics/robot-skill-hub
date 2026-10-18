@@ -17,7 +17,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 WINDOW_START = datetime(2026, 10, 17, 15, 47, 38, tzinfo=timezone.utc)
 WINDOW_END = datetime(2026, 10, 18, 15, 47, 38, tzinfo=timezone.utc)
-TARGET = 100
+TARGET = 10000
 ELIGIBLE_FAMILIES = frozenset(("rsh_cli", "recognized_agent", "mcp_tool"))
 HEADERS = {"User-Agent": "robot-skill-hub-monitor/0.2.0", "DNT": "1",
            "X-RSH-Telemetry": "off", "Accept": "application/json"}

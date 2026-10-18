@@ -8,6 +8,10 @@ Search requires every query term as a word prefix, including offline and static 
 
 For source discovery, task text plus one known robot or framework filter can select a source-declared label. Multiple environment filters require one declared combination. Missing values remain unknown and explicit mismatches are excluded. Robot types such as `humanoid` are searchable classifications, not robot-model names. A framework, robot label or source match does not establish execution compatibility.
 
+For an English task sentence, opt in with `find "YOUR TASK" --query-mode task --runtime KNOWN_FRAMEWORK` or API/MCP `query_mode: "task"`. This ranks lexical matches using general request-word removal, conservative prefix stemming and fixed field weights; it uses no model or inferred synonyms. Default `all_terms` matching stays unchanged. Task mode supports ASCII queries of at most 240 characters and 16 distinct content terms. It scores at most 512 records remaining **after hard filters, before text matching**. `query_too_broad` requires narrower runtime, robot or other environment filters; more query text does not reduce that bound. A query containing only request words returns no matches.
+
+Task responses report `query_terms`, `candidate_scope: hard_filtered_records`, candidate count/limit, and each row's `query_match` score with matched/unmatched terms. These explain lexical relevance, not task success or compatibility. Repeat `query_mode` with the returned pagination arguments. Native D1, static and local task ranking use the same bounded lexical rules; task mode does not use native FTS candidate retrieval. Offline coverage remains limited to the selected snapshot.
+
 ## Coverage, pagination and command handoff
 
 Online discovery reads a bounded search page and the selected record, with local cache and bundled offline fallback. Preserve origin, generation and coverage; an offline compatibility subset is not the complete inventory. `--offline` prevents automatic discovery reads; `--refresh` requests fresh metadata. An explicit `--catalog FILE_OR_URL` selects that catalog.

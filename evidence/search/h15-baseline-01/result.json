@@ -1,0 +1,75 @@
+{
+  "status": "OFFLINE_BASELINE_MEASURED_NO_SEARCH_CHANGE",
+  "at": "2026-10-18T09:20:30.060751+00:00",
+  "cases_sha256": "4baf7f22e35411325da2535fadf9248f5bad472310b8ac71ec0263b2423a6186",
+  "runner_sha256": "b7f8fd1d950d27939bcde3fe45d2dc002112f1ee96bc2d52920f12db34850a58",
+  "matcher_sha256": "5425fcf920a8b69ec1435487a48bb04941ff6a783cf1c650ba5a738e58f86caa",
+  "case_results_sha256": "aca2e26c5dc21d2ba0a81bbf9574d42188d0bb0832de0298450e46d507a43358",
+  "raw_results_sha256": "0bddb6ab037350b2d50b8ed4cce3bbcfe5632d2ce7adacd236cbdf8ce9ed343f",
+  "matcher_calls": 60,
+  "counts": {
+    "recipes": 17,
+    "references": 1286,
+    "memories": 3
+  },
+  "searchable_records": 1303,
+  "coverage_complete_for_local_inventory": true,
+  "fixture_generation": "31a42b0e419826642bb6af8c3a8c1f28e46eedb2",
+  "published_H15_context": "fe152d92257e3c0c770f08f16823ce6613f4d364",
+  "same_Git_tree_context": "bcc06eff0cfe696af711cf5fd11133133c9c4797",
+  "metrics": {
+    "all_task_queries": {
+      "queries": 40,
+      "hit_at_1": 0.45,
+      "hit_at_3": 0.475,
+      "hit_at_10": 0.5,
+      "labeled_recall_at_3": 0.475,
+      "labeled_recall_at_10": 0.5,
+      "reciprocal_rank_at_10": 0.465
+    },
+    "short": {
+      "queries": 20,
+      "hit_at_1": 0.9,
+      "hit_at_3": 0.95,
+      "hit_at_10": 1.0,
+      "labeled_recall_at_3": 0.95,
+      "labeled_recall_at_10": 1.0,
+      "reciprocal_rank_at_10": 0.93
+    },
+    "natural": {
+      "queries": 20,
+      "hit_at_1": 0.0,
+      "hit_at_3": 0.0,
+      "hit_at_10": 0.0,
+      "labeled_recall_at_3": 0.0,
+      "labeled_recall_at_10": 0.0,
+      "reciprocal_rank_at_10": 0.0
+    }
+  },
+  "controls": {
+    "total": 20,
+    "passed": 19,
+    "failed_ids": [
+      "full-eight-field-recipe"
+    ]
+  },
+  "bounds": {
+    "network_and_subprocess_attempts_denied": [],
+    "first_party_Python_matcher_executed": true,
+    "robot_or_upstream_source_execution": false,
+    "CLI_processes": 0,
+    "API_requests": 0,
+    "native_index_runs": 0,
+    "LLM_or_embedding_calls": 0,
+    "search_or_catalog_changes": false
+  },
+  "caveats": [
+    "Maintainer-authored engineering cases, not observed external-user or agent requests/adoption.",
+    "Selected relevant labels are incomplete; precision and exhaustive recall are not claimed.",
+    "MRR is truncated at10; hit@3 corresponds to the default result-window ordering.",
+    "Short keywords intentionally contrast with natural task paraphrases; this is a diagnostic pair set, not an unbiased language distribution.",
+    "Only actual Python core.find was evaluated; no new CLI/static-server/native/MCP agreement measurement.",
+    "Source discovery labels and unknown compatibility are not robot support or runtime qualification.",
+    "Complete retained publisher candidate fixture has the actual H15 tree; its generation is not relabeled as the live merge."
+  ]
+}

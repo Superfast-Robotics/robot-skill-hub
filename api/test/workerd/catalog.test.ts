@@ -319,6 +319,40 @@ test('native and static finding recall binds flat package/backend fields to one 
   } finally { await s.mf.dispose(); }
 });
 
+test('native MCP inspection reuses indexed exact-pin findings and degrades independently on corrupt memory data', async () => {
+  const published = publication('a'.repeat(40), { memories: 5 });
+  const s = await runtime(published);
+  try {
+    await s.complete();
+    const inspect = async (environment?: Record<string, string>) => {
+      const response = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' },
+        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'inspect_robot_skill',
+          arguments: { skill_id: published.rows[0].id, ...(environment ? { environment } : {}) } } }) });
+      const body = await response.json() as any;
+      assert.equal(body.result.isError, false);
+      assert.deepEqual(body.result.structuredContent.record, published.full[0]);
+      return body.result.structuredContent.findings;
+    };
+    const all = await inspect();
+    assert.equal(all.status, 'ready'); assert.equal(all.backend, 'd1'); assert.equal(all.total, 5);
+    assert.equal(all.results.length, 3); assert.equal(all.next.offset, 3);
+    assert.equal(all.applicability, 'needs_applicability_check'); assert.deepEqual(all.environment_filter, {});
+    const explicit = await inspect({ robot: 'panda' });
+    assert.equal(explicit.total, 1); assert.equal(explicit.results[0].memory_id, published.memories[0].memory_id);
+    assert.ok(s.calls.every(call => !call.includes('/catalog/v1/memories.json')), 'The active native index avoids an aggregate fallback read');
+    await s.db.prepare("UPDATE catalog_memory_documents SET row_json=json_set(row_json,'$.memory_id',?,'$.entry_url',?)")
+      .bind(published.memories[0].memory_id, published.memories[0].entry_url).run();
+    const duplicate = await inspect();
+    assert.equal(duplicate.status, 'unknown'); assert.equal(duplicate.reason_code, 'invalid_public_findings');
+    assert.equal(duplicate.total, null); assert.deepEqual(duplicate.coverage, { complete: false });
+    await s.db.prepare("UPDATE catalog_memory_documents SET row_json='{}'").run();
+    const unavailable = await inspect();
+    assert.equal(unavailable.status, 'unknown'); assert.equal(unavailable.total, null);
+    assert.deepEqual(unavailable.coverage, { complete: false });
+  } finally { await s.mf.dispose(); }
+});
+
 test('native D1 FTS stages both search and findings pages before atomically serving the matching generation', async () => {
   const published = publication('a'.repeat(40)); const s = await runtime(published); try {
     assert.equal((await s.read('/v1/search')).status, 503);
@@ -631,6 +665,103 @@ test('native FTS and MCP preserve plain RRT prefixes while canonical RRT* select
     const literalOnly = await s.db.prepare("SELECT count(*) total FROM catalog_fts WHERE catalog_fts MATCH 'rrtstar*'").first<any>();
     assert.equal(literalOnly.total, 1, 'Literal-only RRT* documents do not acquire the RRTStar word');
     const filtered = await s.read('/v1/search?q=RRT*&kind=preparation_recipe'); assert.equal(filtered.body.total, 0);
+  } finally { await s.mf.dispose(); }
+});
+
+test('task mode static/native/MCP share frozen ranking, pins, filters and generation pagination', async () => {
+  const spec = JSON.parse(await readFile(new URL('../../../benchmarks/search/task-lexical-v1.json', import.meta.url), 'utf8'));
+  const vector = spec.ranking_vectors[0];
+  const ordered = [vector.rows[3], ...vector.rows.slice(0, 3)];
+  const overrides = ordered.map((row: any) => ({ summary: '', aliases: [], capabilities: [], robots: [], runtime: 'unknown', framework: 'unknown', ...row,
+    record_url: ORIGIN + (row.kind === 'preparation_recipe' ? '/skills/' : '/references/') + row.id + '/skill.json' }));
+  const current = publication('a'.repeat(40), { records: 4, rowOverrides: overrides });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 3, memories: 1 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) };
+  current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const s = await runtime(current); try {
+    const args = { q: vector.query, query_mode: 'task', limit: '2' };
+    const before = await s.read('/v1/search?' + new URLSearchParams(args));
+    assert.equal(before.status, 200); assert.equal(before.body.backend, 'static_v1_task');
+    await s.complete();
+    const after = await s.read('/v1/search?' + new URLSearchParams(args));
+    assert.equal(after.status, 200); assert.equal(after.body.backend, 'd1_filtered_lexical');
+    const { backend: _a, ...staticValue } = before.body, { backend: _b, ...nativeValue } = after.body;
+    assert.deepEqual(nativeValue, staticValue);
+    assert.deepEqual(after.body.results.map((row: any) => row.id), vector.expected_ids.slice(0, 2));
+    assert.deepEqual(after.body.results.map((row: any) => row.query_match.score), vector.expected_scores.slice(0, 2));
+    assert.equal(after.body.total, 3); assert.equal(after.body.candidate_count, 4); assert.equal(after.body.candidate_scope, 'hard_filtered_records');
+    assert.equal(after.body.next.query_mode, 'task'); assert.equal(after.body.next.hub_commit, current.version.hub_commit);
+    const page = await s.read('/v1/search?' + new URLSearchParams(after.body.next));
+    assert.deepEqual(page.body.results.map((row: any) => row.id), vector.expected_ids.slice(2));
+    assert.equal(page.body.results[0].source_commit, current.rows[2].source_commit);
+    assert.equal(page.body.results[0].record_version, current.rows[2].record_version);
+    const rpc = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { ...args, limit: 2 } } }) });
+    const mcp: any = await rpc.json(); assert.equal(mcp.result.isError, false); assert.deepEqual(mcp.result.structuredContent, after.body);
+    assert.equal((await s.read('/v1/search?' + new URLSearchParams({ ...args, robot: 'wrong' }))).body.total, 0);
+    assert.equal((await s.read('/v1/search?' + new URLSearchParams({ ...args, runtime: 'maniskill', robot: 'ur5' }))).body.total, 0);
+    const exact = await s.read('/v1/search?q=red-robot&query_mode=task'); assert.equal(exact.body.results[0].id, 'red-robot');
+    assert.equal((await s.read('/v1/search?q=red%20robot%20impossibleterm')).body.total, 0);
+    assert.equal((await s.read('/v1/search?q=red%20robot&query_mode=all_terms')).body.search_semantics, 'all_terms_word_prefix');
+    const changed = await s.read('/v1/search?' + new URLSearchParams({ ...args, hub_commit: 'f'.repeat(40) })); assert.equal(changed.status, 409);
+    for (const [query, reason] of [['the and please', null], ['caf\u00e9', 'unsupported_task_query'], [Array.from({ length: 17 }, (_, i) => 'word' + i).join(' '), 'invalid_task_query']] as const) {
+      const result = await s.read('/v1/search?' + new URLSearchParams({ q: query, query_mode: 'task' }));
+      if (reason) { assert.equal(result.status, 400); assert.equal(result.body.reason_code, reason); } else assert.equal(result.body.total, 0);
+    }
+  } finally { await s.mf.dispose(); }
+});
+
+test('task mode limits all hard-filtered records before text across static/native and never silently truncates', async () => {
+  const current = publication('a'.repeat(40), { records: 513, pageSize: 100, memories: 0 });
+  const search = JSON.stringify({ schema_version: '1', hub_commit: current.version.hub_commit, counts: { recipes: 1, references: 512, memories: 0 }, records: current.rows });
+  current.resources.set('/catalog/v1/search.json', search); current.version.resources.search = { sha256: hash(search) }; current.resources.set('/catalog/v1/version.json', JSON.stringify(current.version));
+  const s = await runtime(current); try {
+    for (const native of [false, true]) {
+      if (native) await s.complete();
+      for (const q of ['PickCube', 'zzzzunfindable', 'the and please']) {
+        const result = await s.read('/v1/search?' + new URLSearchParams({ q, query_mode: 'task' }));
+        assert.equal(result.status, 400); assert.equal(result.body.reason_code, 'query_too_broad');
+      }
+      const narrowed = await s.read('/v1/search?q=Please%20pick%20cube&query_mode=task&kind=preparation_recipe');
+      assert.equal(narrowed.status, 200); assert.equal(narrowed.body.candidate_count, 1); assert.equal(narrowed.body.total, 1);
+      const sources = await s.read('/v1/search?q=source&query_mode=task&kind=source_reference&limit=50');
+      assert.equal(sources.status, 200); assert.equal(sources.body.candidate_count, 512);
+      assert.equal((await s.read('/v1/search?q=source')).status, 200, 'Default strict search is not subject to the task cap');
+    }
+  } finally { await s.mf.dispose(); }
+});
+
+test('task mode complete publisher fixture keeps static/native/MCP ranking and source pins equal', { skip: !process.env.RSH_CATALOG_NATIVE_FIXTURE }, async () => {
+  const directory = process.env.RSH_CATALOG_NATIVE_FIXTURE!, current = publication('a'.repeat(40)); current.resources.clear();
+  const load = async (path: string) => { const body = await readFile(join(directory, path), 'utf8'); current.resources.set('/' + path, body); return JSON.parse(body); };
+  const version = await load('catalog/v1/version.json'), manifest = await load('catalog/v2/search-manifest.json'), memories = await load('catalog/v2/memory-manifest.json');
+  for (const page of [...manifest.pages, ...memories.pages]) await load(page.path);
+  await load('catalog/v1/search.json');
+  const s = await runtime(current); try {
+    const args = { q: 'Describe a Franka FR3 arm with a URDF xacro model', runtime: 'franka-description', query_mode: 'task', limit: '3' };
+    const before = await s.read('/v1/search?' + new URLSearchParams(args)); assert.equal(before.status, 200);
+    assert.equal(before.body.backend, 'static_v1_task');
+    await s.complete();
+    const after = await s.read('/v1/search?' + new URLSearchParams(args)); assert.equal(after.status, 200);
+    const { backend: _a, ...staticValue } = before.body, { backend: _b, ...nativeValue } = after.body;
+    assert.deepEqual(nativeValue, staticValue); assert.equal(after.body.backend, 'd1_filtered_lexical');
+    assert.equal(after.body.candidate_count, 72); assert.equal(after.body.total, 72);
+    assert.deepEqual(after.body.results.map((row: any) => row.id), [
+      'franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro',
+      'franka-description-artifact-robots-fr3-fr3-urdf-xacro',
+      'franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro']);
+    const currentRows = (JSON.parse(current.resources.get('/catalog/v1/search.json')!) as any).records;
+    for (const row of after.body.results) {
+      const original = currentRows.find((r: any) => r.id === row.id);
+      for (const field of ['source_commit', 'source_sha256', 'record_sha256', 'record_version', 'license', 'compatibility', 'hub_prepare']) assert.deepEqual(row[field], original[field]);
+      assert.equal(row.hub_prepare, false); assert.equal(row.runtime, 'unknown'); assert.deepEqual(row.compatibility, []);
+    }
+    const strict = await s.read('/v1/search?' + new URLSearchParams({ ...args, query_mode: 'all_terms' })); assert.equal(strict.body.total, 0);
+    const broad = await s.read('/v1/search?q=robot&query_mode=task'); assert.equal(broad.status, 400); assert.equal(broad.body.reason_code, 'query_too_broad');
+    const rpc = await s.mf.dispatchFetch(API + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json', DNT: '1', 'X-RSH-Telemetry': 'off' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'find_robot_skills', arguments: { ...args, limit: 3 } } }) });
+    const mcp: any = await rpc.json(); assert.deepEqual(mcp.result.structuredContent, after.body);
+    const page = await s.read('/v1/search?' + new URLSearchParams(after.body.next)); assert.equal(page.body.total, 72);
+    assert.equal(page.body.hub_commit, version.hub_commit); assert.equal(page.body.query_mode, 'task');
+    assert.equal(page.body.results.some((r: any) => after.body.results.some((old: any) => old.id === r.id)), false);
   } finally { await s.mf.dispose(); }
 });
 

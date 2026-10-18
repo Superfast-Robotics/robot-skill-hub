@@ -178,12 +178,22 @@ class RemoteDiscoveryTests(unittest.TestCase):
                     remote_catalog.search("pick", {}, offset=6 if value is extra else 3, hub_commit=HUB, refresh=True)
         self.assertFalse(list(Path(self.temporary.name).glob("api-search-*.json")))
 
-    def test_inspect_uses_one_selected_record_and_its_individual_offline_cache(self):
+    def test_inspect_keeps_individual_record_cache_and_optional_exact_pin_findings(self):
         value = {"schema_version": "1", "hub_commit": HUB, "record": fixture_catalog()["records"][0]}
-        with mock.patch.object(discovery, "fetch_public", return_value=value) as fetch, mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("whole catalog read")):
-            online = rsh.execute(self.args("inspect", "fixture-pick"), None)
+        page = {**finding_page(), "limit": 3}
+        with mock.patch.object(discovery, "fetch_public", side_effect=[value, page]) as fetch, mock.patch.object(rsh, "load_discovery", side_effect=AssertionError("whole catalog read")):
+            with mock.patch.object(memories, "public_index", side_effect=AssertionError("whole memory index read")):
+                online = rsh.execute(self.args("inspect", "fixture-pick"), None)
+            self.assertEqual(fetch.call_count, 2)
             offline = rsh.execute(self.args("--offline", "inspect", "fixture-pick"), None)
-        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(fetch.call_count, 2)
+        self.assertEqual(discovery.API_BASE + "skills/fixture-pick", fetch.call_args_list[0].args[0])
+        selected = urllib.parse.urlsplit(fetch.call_args_list[1].args[0])
+        self.assertEqual(discovery.API_BASE + "findings", selected.scheme + "://" + selected.netloc + selected.path)
+        self.assertEqual({"skill_id": ["fixture-pick"], "record_version": ["1.0.0"], "source_commit": [PIN],
+                          "limit": ["3"], "offset": ["0"], "hub_commit": [HUB]}, urllib.parse.parse_qs(selected.query))
+        self.assertEqual(("ready", 1), (online["findings"]["status"], online["findings"]["total"]))
+        self.assertEqual(page["results"][0]["memory_id"], online["findings"]["results"][0]["memory_id"])
         self.assertEqual(online["memory_base"], offline["memory_base"])
         self.assertEqual(offline["catalog_origin"], "api_cache")
         self.assertEqual(offline["discovery_scope"], "selected_record")
