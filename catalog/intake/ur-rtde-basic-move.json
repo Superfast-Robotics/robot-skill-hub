@@ -1,0 +1,93 @@
+{
+  "aliases": [
+    "UR RTDE",
+    "Universal Robots",
+    "RTDEControlInterface",
+    "RTDEReceiveInterface",
+    "moveJ",
+    "moveL",
+    "basic_move"
+  ],
+  "artifact": {
+    "format": "python",
+    "kind": "code"
+  },
+  "capabilities": [
+    "robot-control",
+    "joint-motion",
+    "cartesian-motion",
+    "tcp-pose"
+  ],
+  "compatibility": [
+    {
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "robot": "unknown",
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "status": "contributor_reported"
+    }
+  ],
+  "framework": "ur-rtde",
+  "id": "ur-rtde-basic-move",
+  "invocation": {
+    "entrypoint": "python examples/py/basic_move.py",
+    "notes": "Upstream script invocation only, after separate operator authorization and configuration of the intended UR controller. It has no main guard: executing or importing it sends RTDE motion commands using its embedded demonstration address and targets. The Hub acquires this file as inert source data and supplies no execution or preparation adapter. No robot/controller endpoint, simulator, package installation or upstream source execution was used during review."
+  },
+  "kind": "community_skill",
+  "license": {
+    "scope": "Selected ur_rtde example source code under the pinned repository MIT license. Preserve its copyright and permission notice, including Anders Prier Lindvig - SDU Robotics. Third-party dependencies, robot firmware, URCaps and hardware retain their own applicable terms.",
+    "spdx": "MIT",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/LICENSE",
+    "verified": false
+  },
+  "name": "UR RTDE basic joint and Cartesian motion example",
+  "requirements": {
+    "hardware": [
+      "Operator-authorized UR robot/controller with a configured RTDE endpoint; model and software versions are unverified"
+    ],
+    "notes": "The source imports numpy and constructs RTDEControlInterface and RTDEReceiveInterface at top level, using a hardcoded demonstration address. Importing the file can connect and immediately move hardware. Inspect and adapt the address, six-joint target, TCP offsets, speed and acceleration for the authorized installation before any execution. The code commands joint motion, reads TCP pose, moves 0.15 m down in Z and then 0.10 m in X, returns to the original TCP pose and joint target, and stops its control script. Source comments do not establish reachability or collision safety. The pinned README provides project-level installation and robot/OS declarations; no package versions, Python version, firmware, OS or robot environment combination was resolved or tested for this example.",
+    "packages": [
+      "ur_rtde Python bindings providing rtde_control and rtde_receive",
+      "numpy"
+    ],
+    "python": null,
+    "system": [
+      "Network access to the intended RTDE controller endpoint",
+      "An operator-reviewed Python environment for the pinned source and its bindings"
+    ]
+  },
+  "robots": [
+    "ur"
+  ],
+  "source": {
+    "authors": [
+      "SDU Robotics"
+    ],
+    "bytes": 1108,
+    "commit": "f5492109848a9fa6582df76dffa09c510ac36393",
+    "path": "examples/py/basic_move.py",
+    "repository": "https://gitlab.com/sdurobotics/ur_rtde",
+    "sha256": "25f397b34ae604607717159deb053d44e708553eaf2874d43f6ab6acc0b1239f",
+    "url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/examples/py/basic_move.py"
+  },
+  "summary": "SDU Robotics Python RTDE example that connects to a UR controller, moves to a fixed joint target, reads the TCP pose, performs Cartesian offsets and returns. This is a pinned source reference; importing or running the script can command physical motion.",
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Inspect the exact pinned upstream artifact and setup instructions. This record has no Hub runtime adapter.",
+    "setup_url": "https://gitlab.com/sdurobotics/ur_rtde/-/raw/f5492109848a9fa6582df76dffa09c510ac36393/README.md"
+  },
+  "evidence": {
+    "level": "contributor_reported",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Data-only intake structure checked. Source content, checksum, license and runtime claims require maintainer review; no submitted code was executed."
+  },
+  "maintenance": {
+    "record_version": "intake-755f1279caa67565",
+    "last_checked": "2026-10-18",
+    "upstream_status": "contributor_reported"
+  }
+}
