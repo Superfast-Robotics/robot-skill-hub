@@ -3,7 +3,7 @@
   "name": "io.github.Superfast-Robotics/robot-skill-hub",
   "title": "Robot Skill Hub",
   "description": "Search pinned robot code, compatibility and execution evidence. Prepare locally with the Hub CLI.",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "repository": {
     "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
     "source": "github"
