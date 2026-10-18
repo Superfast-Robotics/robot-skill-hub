@@ -2,3 +2,7 @@
 *.png binary
 *.zip binary
 
+
+# Preserve measured search inputs and response bytes without newline rewriting.
+benchmarks/search/tasks.h15.json -text whitespace=cr-at-eol
+evidence/search/h15-baseline-01/*.json* -text whitespace=cr-at-eol
