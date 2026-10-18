@@ -1,0 +1,104 @@
+{
+  "id": "nav2-regulated-pure-pursuit-controller",
+  "name": "Nav2 regulated pure pursuit path-following controller",
+  "summary": "Official C++ Nav2 controller implementation for lookahead curvature, velocity regulation, heading rotation and configurable collision checking. It returns velocity commands inside a configured Nav2 stack; this single source is not a standalone or runtime-verified robot task.",
+  "framework": "nav2",
+  "kind": "community_skill",
+  "capabilities": [
+    "navigation",
+    "path-following",
+    "pure-pursuit",
+    "velocity-regulation",
+    "controller-plugin"
+  ],
+  "aliases": [
+    "regulated pure pursuit",
+    "RegulatedPurePursuitController",
+    "computeVelocityCommands",
+    "lookahead",
+    "calculateCurvature",
+    "setSpeedLimit",
+    "nav2_core::Controller"
+  ],
+  "robots": [
+    "unspecified mobile robot"
+  ],
+  "source": {
+    "repository": "https://github.com/ros-navigation/navigation2",
+    "commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
+    "path": "nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+    "sha256": "9f5f23dc174e2bfae10c502fdebecc37b65d5397039d0c2c4504404557101d85",
+    "bytes": 21663,
+    "authors": [
+      "Shrijit Singh",
+      "Samsung Research America"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/src/regulated_pure_pursuit_controller.cpp",
+    "scope": "Selected C++ source explicitly declares Apache-2.0, copyright 2020 Shrijit Singh and Samsung Research America; the package.xml agrees. Preserve attribution, license and applicable notices. The root repository is multi-license. This review covers only the selected source and does not clear other package files, helper implementations, dependencies, binaries or physical-robot deployment.",
+    "verified": true
+  },
+  "artifact": {
+    "kind": "code",
+    "format": "cpp"
+  },
+  "requirements": {
+    "python": null,
+    "packages": [
+      "Complete pinned nav2_regulated_pure_pursuit_controller ROS 2 package and ament_cmake build environment",
+      "angles",
+      "nav2_common",
+      "nav2_core",
+      "nav2_util",
+      "nav2_costmap_2d",
+      "rclcpp",
+      "geometry_msgs",
+      "nav2_msgs",
+      "pluginlib",
+      "tf2",
+      "tf2_geometry_msgs",
+      "C++17-capable toolchain and complete package helper sources/headers"
+    ],
+    "hardware": [],
+    "system": [
+      "Configured Nav2 controller server and lifecycle node loading this plugin",
+      "Valid plan, robot pose/speed, goal checker, tf2 transforms, footprint and costmap"
+    ],
+    "notes": "computeVelocityCommands locks parameter/costmap state, transforms the plan, selects and publishes lookahead points, calculates curvature, handles heading rotation/reversing and applies curvature, cost and goal-approach velocity constraints. Configured collision detection can throw NoValidControl through a separate collision checker; its presence is not a measured safety guarantee. The source returns TwistStamped to its host rather than publishing cmd_vel itself. It creates lifecycle publishers for received_global_plan, lookahead_point, curvature_lookahead_point and is_rotating_to_heading. Cancellation can use configured deceleration; plan/reset/speed-limit methods change internal state. CMake explicitly requests C++17. Package version 1.3.14 and cached jazzy ref are declarations, not tested compatibility. Headers, path/parameter/collision helpers, ROS graph, transforms, footprint and host server must be supplied and reviewed."
+  },
+  "invocation": {
+    "entrypoint": "pluginlib nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController (nav2_core::Controller)",
+    "notes": "Registered C++ shared-library plugin, not a ros2 run executable, standalone file or Hub recipe. Pinned nav2_regulated_pure_pursuit_controller/nav2_regulated_pure_pursuit_controller.xml names the class/base/library; CMake builds and exports it. A configured lifecycle host must load it through the intended Nav2 server. Read the full package, parameters and dependencies before any build or activation. The Hub only indexes one inert source file and did not compile, load or execute a plugin, ROS node, simulator or robot."
+  },
+  "compatibility": [
+    {
+      "runtime": "unknown",
+      "runtime_version": "unknown",
+      "robot": "unknown",
+      "controller": "unknown",
+      "observation": "unknown",
+      "os": "unknown",
+      "status": "unknown"
+    }
+  ],
+  "access": {
+    "mode": "source_reference",
+    "hub_prepare": false,
+    "instructions": "Inspect the pinned source, plugin registration, package declarations and CMake configuration. Obtain and review the complete upstream package before configuring a host. This reference only retrieves inert source; it supplies no build, install or execution adapter.",
+    "setup_url": "https://github.com/ros-navigation/navigation2/blob/58e4019eb149ed4387938d9cd13f38659b86f754/nav2_regulated_pure_pursuit_controller/CMakeLists.txt"
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "runtime_verification": "not_run",
+    "checked_at": "2026-10-18",
+    "inspection": "Complete selected C++ source and package/plugin/CMake texts read as inert data. Twelve bounded anonymous immutable-file GETs matched complete cached-tree Git blob identities and sizes. Source headers, root multi-license index, package declarations, plugin exports and side effects inspected; no compile, import, load, simulation, hardware, performance or compatibility test."
+  },
+  "maintenance": {
+    "record_version": "reviewed-20261018-9f5f23dc174e",
+    "last_checked": "2026-10-18",
+    "upstream_status": "source_pinned"
+  }
+}
