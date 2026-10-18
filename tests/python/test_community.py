@@ -153,6 +153,45 @@ class CommunityTests(unittest.TestCase):
         value['finding']['environment']['robot'] = 'other'
         self.assertNotEqual(community.identity(value), saved['id'])
 
+    def test_large_delivered_history_does_not_starve_a_later_pending_entry(self):
+        self.enable()
+        saved = community.save(self.catalog, 'fixture-pick', self.project, self.input, offline=True)
+        directory = community.root(self.project)
+        for number in range(1000):
+            (directory / ('exp_' + format(number, '064x') + '.json')).write_text('{"delivery":{"status":"stored"}}')
+        with mock.patch.object(community, 'request', side_effect=AssertionError('first page is already delivered')):
+            first = community.sync(self.project)
+        self.assertEqual(first['scanned'], 1000)
+        self.assertEqual(first['deliveries'], [])
+        def posted(method, route, *, value, token):
+            return {'status':'stored','id':community.identity(value),'content':value,'content_sha256':hashlib.sha256(contributions.canonical_bytes(value)).hexdigest()}
+        with mock.patch.object(community, 'credential', return_value={'token':'csh_'+'x'*43}), mock.patch.object(community, 'request', side_effect=posted):
+            second = community.sync(self.project)
+        self.assertEqual(second['deliveries'][0]['id'], saved['id'])
+        self.assertEqual(second['deliveries'][0]['status'], 'stored')
+
+    def test_permanent_rejection_pauses_until_explicit_retry(self):
+        self.enable()
+        with mock.patch.object(community, 'credential', return_value={'token':'csh_'+'x'*43}), mock.patch.object(community, 'request', side_effect=RshError('license_mismatch','Rejected.',retryable=False,http_status=422)) as request:
+            saved = community.save(self.catalog, 'fixture-pick', self.project, self.input)
+            self.assertFalse(saved['automatic_retry'])
+            self.assertEqual(community.sync(self.project)['deliveries'], [])
+            self.assertEqual(request.call_count,1)
+            community.sync(self.project,retry_blocked=True)
+            self.assertEqual(request.call_count,2)
+
+    def test_public_outcome_updates_local_entry_and_new_shared_variants_are_visible(self):
+        saved = community.save(self.catalog, 'fixture-pick', self.project, self.input, offline=True)
+        base, _ = memories.base_for(self.catalog, 'fixture-pick')
+        rows = [{'id':saved['id'],'base':base,'reuse_reports':{'failed':1}},
+                {'id':'exp_'+'f'*64,'base':base,'kind':'variant','summary':'A later shared fix'}]
+        with mock.patch.object(community,'request',return_value={'status':'ready','results':rows,'complete':True}):
+            result = community.recall(self.catalog,'fixture-pick',{},project=self.project)
+        self.assertEqual(result['results'][0]['location'],'local')
+        self.assertEqual(result['results'][0]['reuse_reports']['failed'],1)
+        self.assertTrue(result['results'][0]['also_published'])
+        self.assertEqual(result['results'][1]['location'],'community')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -49,6 +49,7 @@ def build_parser():
     sync = sub.add_parser("community-sync", help="Deliver at most three pending, consent-scoped experiences")
     sync.add_argument("--project", required=True)
     sync.add_argument("--limit", type=int, choices=(1, 2, 3), default=1)
+    sync.add_argument("--retry-blocked", action="store_true", help="Retry paused API rejections after correcting the cause")
     experience = sub.add_parser("experience", help="Read or save one hash-verified experience as inert JSON; never apply or execute")
     experience.add_argument("experience_id")
     experience.add_argument("--output")
@@ -213,7 +214,7 @@ def execute(args, catalog_location):
     if args.command == "join":
         return community.join(args.project, skill_ids=args.skill, kinds=args.kind, allow_public_memory=args.allow_public_memory, offline=args.offline)
     if args.command == "community-sync":
-        return community.sync(args.project, offline=args.offline, limit=args.limit)
+        return community.sync(args.project, offline=args.offline, limit=args.limit, retry_blocked=args.retry_blocked)
     if args.command == "experience":
         if args.offline:
             raise RshError("offline_experience", "Read the previously saved experience JSON while offline.")
@@ -317,7 +318,10 @@ def execute(args, catalog_location):
                                                        offline=args.offline, refresh=args.refresh)
         if args.project:
             if args.project and not catalog_location and community.automatic_sync_allowed(args.project):
-                result["community_sync"] = community.sync(args.project, offline=args.offline)
+                try:
+                    result["community_sync"] = community.sync(args.project, offline=args.offline)
+                except (RshError, OSError, ValueError, TypeError, KeyError):
+                    result["community_sync"] = {"status": "deferred", "reason_code": "local_sync_unavailable", "network_performed": None}
             result["community"] = community.recall(catalog, args.skill_id, environment, project=args.project,
                                                     offline=args.offline or bool(catalog_location))
         return catalog_handoff(result, catalog_location, args.offline)
@@ -354,7 +358,10 @@ def execute(args, catalog_location):
                              policy_path=args.policy, api_url=args.api_url, offline=args.offline)
     if args.command == "recall":
         if not catalog_location and community.automatic_sync_allowed(args.project):
-            community.sync(args.project, offline=args.offline)
+            try:
+                community.sync(args.project, offline=args.offline)
+            except (RshError, OSError, ValueError, TypeError, KeyError):
+                pass  # Optional delivery cannot gate recall.
         return community.recall(catalog, args.skill_id, environment, project=args.project, offline=args.offline or bool(catalog_location))
     if args.command == "memories":
         return memories.query(catalog, args.skill_id, environment, project=args.project, index=args.index,

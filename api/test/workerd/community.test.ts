@@ -26,7 +26,7 @@ async function runtime() {
     await db.exec(sql.replace(/--[^\n]*/g, '').replace(/\s+/g, ' '));
   }
   await db.prepare('INSERT INTO catalog_generations(hub_commit,manifest_sha256,manifest_json,total_pages,total_records,created_at) VALUES(?,?,?,?,?,?)').bind(base.hub_commit, '0'.repeat(64), '{}', 1, 1, 1).run();
-  const row = { id: 'fixture-pick', kind: 'preparation_recipe', record_version: base.record_version, source_commit: base.source_commit, license: { spdx: 'Apache-2.0' } };
+  const row = { id: 'fixture-pick', kind: 'preparation_recipe', record_version: base.record_version, source_commit: base.source_commit, license: { spdx: 'Apache-2.0', verified: true } };
   await db.prepare('INSERT INTO catalog_documents(doc_hash,id,kind,row_json,search_text) VALUES(?,?,?,?,?)').bind('d'.repeat(64), row.id, row.kind, JSON.stringify(row), 'fixture').run();
   await db.prepare('INSERT INTO catalog_members(hub_commit,id,doc_hash) VALUES(?,?,?)').bind(base.hub_commit, row.id, 'd'.repeat(64)).run();
   async function call(path: string, value?: any, token?: string, ip = '192.0.2.1') {
@@ -83,8 +83,13 @@ test('native self-service enrollment, immutable global dedup, exact recall, vari
     assert.equal(choices.body.results[0].id, variant.body.id, 'new variants are discoverable before older observations');
     assert.equal(choices.body.results[0].reuse_reports.failed, 1);
     assert.ok(choices.body.results.every((r: any) => r.kind !== 'reuse_report'), 'reports annotate candidates instead of crowding them out');
+    await s.db.prepare('INSERT INTO catalog_active(singleton,hub_commit) VALUES(1,?)').bind(base.hub_commit).run();
+    const retired = { schema_version: '1', finding: { ...finding(3), base: { ...base, hub_commit: 'c'.repeat(40) } } };
+    const originalPins = await s.call('/items', retired, a.token);
+    assert.equal(originalPins.status, 201, JSON.stringify(originalPins));
+    assert.equal(originalPins.body.content.finding.base.hub_commit, retired.finding.base.hub_commit, 'identical active source pins do not rewrite the original generation');
     const exportPage = await s.call('/export');
-    assert.equal(exportPage.body.rows.length, 3);
+    assert.equal(exportPage.body.rows.length, 4);
     assert.equal(JSON.stringify(exportPage.body).includes(a.token), false);
     assert.equal(exportPage.body.rows[0].content_sha256, hash(canonical(exportPage.body.rows[0].content)));
   } finally { await s.mf.dispose(); }
@@ -102,6 +107,8 @@ test('native enrollment proof, source/secret/parent checks and quota rollback do
     assert.equal((await s.call('/items', { schema_version: '1', finding: finding(), variant: { patch: '--- a/AGENTS.md\n+++ b/AGENTS.md\n@@ -1 +1 @@\n-a\n+b', license_spdx: 'MIT' } }, a.token)).status, 422);
     assert.equal((await s.call('/items', { schema_version: '1', finding: finding(), variant: { patch: '--- a/demo.py\n+++ b/demo.py\n@@ -1,99 +1 @@\n-a\n+b\n', license_spdx: 'Apache-2.0' } }, a.token)).status, 422, 'a header-shaped fake patch is rejected');
     assert.equal((await s.call('/items', { schema_version: '1', finding: finding(), variant: { patch: '--- a/demo.py\n+++ b/demo.py\n@@ -1 +1 @@\n-a\n+b\n', license_spdx: 'MIT' } }, a.token)).status, 422, 'upstream license cannot be relabeled');
+    await s.db.prepare("UPDATE catalog_documents SET row_json=json_set(row_json,'$.license.verified',json('false'))").run();
+    assert.equal((await s.call('/items', { schema_version: '1', finding: finding(), variant: { patch: '--- a/demo.py\n+++ b/demo.py\n@@ -1 +1 @@\n-a\n+b\n', license_spdx: 'Apache-2.0' } }, a.token)).status, 422, 'unverified source licenses do not authorize automatic patch publication');
     const value = { schema_version: '1', finding: finding() };
     const first = await s.call('/items', value, a.token);
     for (let i = 1; i < 20; i++) assert.equal((await s.call('/items', { schema_version: '1', finding: finding(i) }, a.token)).status, 201);

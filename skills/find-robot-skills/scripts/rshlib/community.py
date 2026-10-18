@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import heapq
 import json
 import os
 from pathlib import Path
@@ -58,6 +59,17 @@ def request(method, path, *, token=None, value=None):
         if not isinstance(result, dict):
             raise ValueError("object required")
         return result
+    except urllib.error.HTTPError as error:
+        reason = "community_http_" + str(error.code)
+        try:
+            supplied = json.loads(error.read(8192)).get("reason_code")
+            if isinstance(supplied, str) and re.fullmatch(r"[a-z0-9_]{1,80}", supplied) and (not token or token not in supplied):
+                memories.reject_secrets({"reason_code": supplied})
+                reason = supplied
+        except (ValueError, TypeError, AttributeError, RshError):
+            pass
+        raise RshError(reason, "Community API rejected the experience; keep the local copy.",
+                       http_status=error.code, retryable=error.code == 429 or error.code >= 500) from None
     except (urllib.error.URLError, OSError, ValueError) as error:
         # Never print a response body, credentials, proxy address, or submitted data.
         raise RshError("community_unavailable", "Keep the local experience; bounded delivery can retry later.") from error
@@ -160,20 +172,24 @@ def verify_entry(entry):
     return value
 
 
-def deliver(entry, path, project):
+def deliver(entry, path, project, *, retry_blocked=False):
     value = verify_entry(entry)
     finding = value["finding"]
     result = {"status": "local_saved", "id": entry["id"], "finding_path": str(path), "next_action": "continue_user_task"}
     if entry.get("delivery", {}).get("status") == "stored":
         return {**result, "status": "stored", "replay": True}
+    if entry.get("delivery", {}).get("status") == "needs_attention" and not retry_blocked:
+        return {**result, "reason_code": entry["delivery"]["reason_code"], "automatic_retry": False}
     policy = memories.policy_for(project, None)
     if not enabled(project) or not memories.allowed(policy, finding["skill_id"], finding["kind"]):
         return {**result, "reason_code": "public_scope_not_allowed"}
     if time.time() < entry.get("delivery", {}).get("retry_after", 0):
         return {**result, "reason_code": "delivery_backoff"}
+    network_performed = False
     try:
         local = credential()
         wire = {**value, "finding": {**finding, "publication": {"public_submission_allowed": True}}}
+        network_performed = True
         receipt = request("POST", "/items", token=local["token"], value=wire)
         content = receipt.get("content", {})
         if (receipt.get("status") != "stored" or receipt.get("id") != entry["id"] or identity(content) != entry["id"]
@@ -182,13 +198,16 @@ def deliver(entry, path, project):
         entry["delivery"] = {"status": "stored", "content_sha256": receipt["content_sha256"]}
         write_json(path, entry)
         return {**result, "status": "stored", "content_sha256": receipt["content_sha256"], "network_performed": True}
-    except (RshError, OSError, ValueError, TypeError, KeyError):
-        entry["delivery"] = {"status": "local_saved", "retry_after": int(time.time()) + 900}
+    except (RshError, OSError, ValueError, TypeError, KeyError) as error:
+        permanent = isinstance(error, RshError) and error.result.get("retryable") is False
+        reason = error.result["reason_code"] if isinstance(error, RshError) else "community_delivery_pending"
+        entry["delivery"] = ({"status": "needs_attention", "reason_code": reason} if permanent else
+                             {"status": "local_saved", "reason_code": reason, "retry_after": int(time.time()) + 900})
         try:
             write_json(path, entry)
         except OSError:
             pass
-        return {**result, "reason_code": "community_delivery_pending", "network_performed": True}
+        return {**result, "reason_code": reason, "network_performed": network_performed, "automatic_retry": not permanent}
 
 
 def save(catalog, skill_id, project, finding_file, *, offline=False, patch=None, license_spdx=None, parent_id=None, outcome=None):
@@ -234,26 +253,50 @@ def save(catalog, skill_id, project, finding_file, *, offline=False, patch=None,
     return {"status": "local_saved", "id": item_id, "finding_path": str(target), "next_action": "continue_user_task"} if offline else deliver(entry, target, project)
 
 
-def sync(project, *, offline=False, limit=1):
+def sync(project, *, offline=False, limit=1, retry_blocked=False):
     if not 1 <= limit <= 3:
         raise RshError("invalid_limit", "Sync at most three experiences per call.")
     if offline or not enabled(project):
         return {"status": "ready", "deliveries": [], "network_performed": False}
     deliveries = []
-    # Enumerate only our dedicated outbox; bounded scan, no source/log harvesting.
-    for count, path in enumerate(root(project).glob("exp_*.json")):
-        if count >= 1000 or len(deliveries) >= limit:
+    directory = root(project)
+    cursor_path = directory.parent / 'sync-cursor.json'
+    cursor = ''
+    if cursor_path.is_file() and not cursor_path.is_symlink() and cursor_path.stat().st_size <= 1024:
+        try:
+            saved = read_json(cursor_path).get('after', '')
+            if re.fullmatch(r'exp_[a-f0-9]{64}\.json', saved):
+                cursor = saved
+        except (RshError, AttributeError, TypeError):
+            pass
+    # Scan names only in the owned outbox; read at most 1,000 bodies. Advance
+    # the cursor even past delivered items so a large history cannot starve new work.
+    select = lambda after: heapq.nsmallest(1000, (p for p in directory.glob('exp_*.json') if p.name > after), key=lambda p: p.name)
+    paths = select(cursor)
+    if not paths and cursor:
+        paths = select('')
+    scanned = 0
+    for path in paths:
+        if len(deliveries) >= limit:
             break
+        cursor = path.name
+        scanned += 1
         if path.is_symlink() or path.stat().st_size > 40000:
             continue
         try:
             entry = read_json(path)
-            if entry.get("delivery", {}).get("status") == "stored" or entry.get("delivery", {}).get("retry_after", 0) > time.time():
+            state = entry.get("delivery", {})
+            if state.get("status") == "stored" or state.get("retry_after", 0) > time.time() or state.get("status") == "needs_attention" and not retry_blocked:
                 continue
-            deliveries.append(deliver(entry, path, project))
+            deliveries.append(deliver(entry, path, project, retry_blocked=retry_blocked))
         except (RshError, OSError, ValueError, TypeError):
             continue
-    return {"status": "ready", "deliveries": deliveries}
+    if scanned:
+        try:
+            write_json(cursor_path, {'after': cursor})
+        except OSError:
+            return {"status": "ready", "deliveries": deliveries, "scanned": scanned, "cursor_persisted": False}
+    return {"status": "ready", "deliveries": deliveries, "local_files_read_maximum": 1000, "scanned": scanned}
 
 
 def recall(catalog, skill_id, environment, *, project=None, offline=False, limit=3):
@@ -264,10 +307,13 @@ def recall(catalog, skill_id, environment, *, project=None, offline=False, limit
     base, _ = memories.base_for(catalog, skill_id, project)
     expected = {k: v for k, v in environment.items() if str(v).lower() not in ("", "unknown")}
     results, seen, scanned = [], set(), 0
+    local_truncated = False
     if project:
         directories = [(root(project), True), (memories.outbox_root(project), False)]
         for directory, modern in directories:
-            for path in directory.glob("*.json"):
+            paths = heapq.nlargest(1001, (p for p in directory.glob('*.json') if not p.is_symlink()), key=lambda p: p.stat().st_mtime_ns)
+            local_truncated = local_truncated or len(paths) > 1000
+            for path in paths[:1000]:
                 scanned += 1
                 if scanned > 1000:
                     break
@@ -297,14 +343,22 @@ def recall(catalog, skill_id, environment, *, project=None, offline=False, limit
             for row in remote["results"]:
                 if (not ID.fullmatch(str(row.get("id", ""))) or any(row.get("base", {}).get(k) != base[k] for k in ("record_version", "source_commit"))):
                     raise ValueError("scope mismatch")
-                if row["id"] not in seen:
+                if row["id"] in seen:
+                    for local in results:
+                        if local['id'] == row['id']:
+                            local.update({k:v for k,v in row.items() if k not in ('location','path')})
+                            local['also_published'] = True
+                else:
                     results.append({**row, "location": "community"})
                     seen.add(row["id"])
             remote_status = "ready"
         except (RshError, ValueError, TypeError, KeyError):
             remote_status = "unknown"
-    return {"status": "ready", "results": results[:limit], "remote_status": remote_status,
-            "complete": remote_status == "ready" and remote.get("complete") is True and len(results) <= limit and scanned <= 1000,
+    local = [row for row in results if row['location'] == 'local']
+    shared = [row for row in results if row['location'] == 'community']
+    selected = (local[:1] + shared + local[1:])[:limit]
+    return {"status": "ready", "results": selected, "remote_status": remote_status,
+            "complete": remote_status == "ready" and remote.get("complete") is True and len(results) <= limit and scanned <= 1000 and not local_truncated,
             "remote_next_after": remote.get("next_after"), "remote_through": remote.get("through"),
             "base": base, "interpretation": "data_only", "execution_performed": False,
             "next_action": "read_selected_experience_check_applicability_then_report_actual_outcome"}

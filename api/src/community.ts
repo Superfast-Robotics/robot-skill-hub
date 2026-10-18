@@ -74,7 +74,7 @@ function unpack(row: Row) {
   return { id: row.id, sequence: row.seq, kind: row.kind, content: JSON.parse(row.content_json), content_sha256: row.content_sha256,
     created_at: row.created_at, trust: 'contributor_reported', interpretation: 'data_only', canonical_catalog_changed: false,
     ...(row.kind === 'variant' ? { patch_base: 'exact_catalog_source', patch_application: 'caller_checks_context_then_applies_in_authorized_workspace' } : {}),
-    validation: { schema: 'checked', source_pins: 'checked', runtime: 'not_run' } };
+    validation: { schema: 'checked', source_pins: 'checked_against_retained_or_active_catalog', original_hub_commit: 'contributor_supplied', runtime: 'not_run' } };
 }
 function summary(row: Row) {
   const full = unpack(row), value = full.content, finding = value.finding;
@@ -166,9 +166,16 @@ export async function handleCommunity(request: Request, env: Env): Promise<Respo
         return json({ status: 'stored', ...unpack(existing), replay: true, next_action: 'continue_user_task' });
       const finding = value.finding, base = finding.base;
       if (!existing) {
-        const row = await indexedRow(db, base.hub_commit, finding.skill_id);
+        let row = await indexedRow(db, base.hub_commit, finding.skill_id);
+        if (!row) {
+          // Documentation-only releases must not strand an agent's original
+          // pins when a catalog generation is retired. Never silently rebase.
+          const active = await first(db, 'SELECT hub_commit FROM catalog_active WHERE singleton=1');
+          if (active) row = await indexedRow(db, active.hub_commit, finding.skill_id);
+        }
         assert(row && row.record_version === base.record_version && row.source_commit === base.source_commit, 'unknown_source_pins', 'Use a retained published catalog version with these exact source pins.', 409);
-        if (value.variant) assert(row.license?.spdx === value.variant.license_spdx, 'license_mismatch', 'Preserve the exact SPDX license declared by the pinned upstream catalog record.');
+        if (value.variant) assert(row.license?.verified === true && !/^(?:NOASSERTION|LicenseRef-)/.test(row.license?.spdx || '') && row.license?.spdx === value.variant.license_spdx,
+          'license_mismatch', 'Automatic patch publication requires the verified license of the pinned upstream catalog record.');
         if (value.parent_id) {
           const parent = await first(db, 'SELECT * FROM community_items WHERE id=? AND hidden=0', value.parent_id);
           assert(parent && parent.skill_id === finding.skill_id && parent.source_commit === base.source_commit && parent.record_version === base.record_version, 'parent_scope_mismatch', 'The parent must belong to this exact source and record version.', 409);
