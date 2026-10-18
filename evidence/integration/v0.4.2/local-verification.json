@@ -1,0 +1,98 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-18T23:51:38.232403+00:00",
+  "scope": "unpublished_local_fixture",
+  "fixture_hub_commit": "dc08434712ec3ad355ebe9da42991d9255800d98",
+  "maintainer_verification": true,
+  "telemetry": "off",
+  "catalog": {
+    "recipes": 17,
+    "references": 1330,
+    "reviewed_memories": 3,
+    "new_references": 32,
+    "previous_official_records_preserved_exactly": 1279
+  },
+  "sources": [
+    {
+      "repository": "https://github.com/NVlabs/ASPIRE",
+      "commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "references": 13
+    },
+    {
+      "repository": "https://github.com/frankarobotics/libfranka",
+      "commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "references": 9
+    },
+    {
+      "repository": "https://github.com/hello-robot/stretch_body",
+      "commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "references": 10
+    }
+  ],
+  "checks": {
+    "python": {
+      "run": 359,
+      "passed": 355,
+      "skipped": 4,
+      "skip_reason": "Windows symlink privileges"
+    },
+    "api_unit": {
+      "passed": 102
+    },
+    "native_workerd_d1": {
+      "passed": 53
+    },
+    "catalog": {
+      "passed": 41
+    },
+    "catalog_v2": {
+      "passed": 5
+    },
+    "catalog_sync": {
+      "passed": 14
+    },
+    "typescript": "passed",
+    "compile_own_python": "passed",
+    "offline_importer": "passed"
+  },
+  "controlled_reuse": {
+    "fixture": "authored two-link planar IK quadrant correction",
+    "development": {
+      "baseline_passed": 4,
+      "targets": 8
+    },
+    "held_out": {
+      "baseline_passed": 12,
+      "reused_passed": 24,
+      "targets": 24,
+      "residual_tolerance": 1e-09
+    },
+    "transport": "real bundled Worker and native local D1; separate installations and execution processes",
+    "public_patch_execution": "none; harness matches exact authored bytes before applying fixture",
+    "outcome_linkage_verified": true,
+    "production_items_created": 0
+  },
+  "defects_reproduced_and_fixed": [
+    "INSERT OR IGNORE suppresses AFTER accounting CHECK failure at capacity",
+    "agent instruction target accepted as community patch",
+    "malformed local content or remote result crashes CLI recall"
+  ],
+  "limits": {
+    "independent_agent_adoption_verified": false,
+    "llm_improvement_evaluated": false,
+    "token_savings_measured": false,
+    "new_simulator_runs": 0,
+    "physical_robot_runs": 0,
+    "security_audit_exhaustive": false
+  },
+  "log_sha256": {
+    "api.log": "8b32b8f77eb261d040725a15a60e3bea14c3a624c87428b8ded376e0410cf830",
+    "build.log": "78caac8178c0af476a1319af06611839cdacad524c69c08865b08f97460c9f4b",
+    "catalog-sync.log": "cbc18187456238c614d4b26a1aefb4ca2728f8129f7157cccb8a39a60a8d7599",
+    "catalog-v2.log": "cae0c0bb21b72e59d3759c8ebdcac61f7608b9ce80e73c5a7fcfde3d224c7b17",
+    "catalog.log": "a271cf78b012afb1e9cce237203122e8bc1e2181df702b135573b5234e726e41",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "python.log": "f2a7fceea61f41c61dd471ab1de572c0d129a7355875e4d5ff59969fe2c3e526",
+    "typecheck.log": "f472a168755466259739ddc7b312d1e9dfa1c02e357f7aa214340abe57fc2d97"
+  }
+}

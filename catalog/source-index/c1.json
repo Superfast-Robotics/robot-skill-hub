@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "libfranka-force-control",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7",
+      "record_version": "source-218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7"
+    },
+    {
       "id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "8c884edf807b2610a45cc8a66eaae87829536cca30aaa4517a82f8c89792491f",

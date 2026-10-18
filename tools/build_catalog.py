@@ -882,7 +882,7 @@ def build(args):
     if source_projects.exists():
         write(output / "catalog/v1/source-projects.json", canonical(read_json(source_projects)) + "\n")
     registry_manifests = {}
-    for name in ("artifact-projects.json", "workflow-projects.json", "agent-skill-projects.json"):
+    for name in ("artifact-projects.json", "workflow-projects.json", "agent-skill-projects.json", "curated-source-projects.json"):
         manifest_path = ROOT / "catalog" / name
         if manifest_path.exists():
             relative = "catalog/v1/" + name

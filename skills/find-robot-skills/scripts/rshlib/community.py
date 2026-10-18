@@ -94,7 +94,7 @@ def credential():
     if path.is_symlink() or path.is_file() and path.stat().st_size > 4096:
         raise RshError("invalid_community_credential", "Use the dedicated small installation credential file.")
     value = read_json(path) if path.is_file() else {}
-    if not re.fullmatch(r"csh_[A-Za-z0-9_-]{43}", str(value.get("token", ""))):
+    if not isinstance(value, dict) or not re.fullmatch(r"csh_[A-Za-z0-9_-]{43}", str(value.get("token", ""))):
         raise RshError("community_not_joined", "Use join once for an already-authorized public project scope.")
     return value
 
@@ -166,8 +166,11 @@ def root(project):
 
 
 def verify_entry(entry):
+    if not isinstance(entry, dict) or not isinstance(entry.get('content'), dict) or not isinstance(entry.get('delivery', {}), dict):
+        raise RshError("invalid_local_experience", "Local experience must contain structured content and delivery state.")
     value = entry.get("content", {})
-    if not isinstance(value.get("finding"), dict) or identity(value) != entry.get("id"):
+    memories.validate_payload(value.get('finding'))
+    if value.get('schema_version') != '1' or identity(value) != entry.get("id"):
         raise RshError("invalid_local_experience", "Local content identity does not match.")
     return value
 
@@ -281,10 +284,12 @@ def sync(project, *, offline=False, limit=1, retry_blocked=False):
             break
         cursor = path.name
         scanned += 1
-        if path.is_symlink() or path.stat().st_size > 40000:
-            continue
         try:
+            if path.is_symlink() or not path.is_file() or path.stat().st_size > 40000:
+                continue
             entry = read_json(path)
+            if not isinstance(entry, dict) or not isinstance(entry.get('delivery', {}), dict):
+                continue
             state = entry.get("delivery", {})
             if state.get("status") == "stored" or state.get("retry_after", 0) > time.time() or state.get("status") == "needs_attention" and not retry_blocked:
                 continue
@@ -307,22 +312,33 @@ def recall(catalog, skill_id, environment, *, project=None, offline=False, limit
     base, _ = memories.base_for(catalog, skill_id, project)
     expected = {k: v for k, v in environment.items() if str(v).lower() not in ("", "unknown")}
     results, seen, scanned = [], set(), 0
-    local_truncated = False
+    local_truncated, local_skipped = False, 0
     if project:
         directories = [(root(project), True), (memories.outbox_root(project), False)]
         for directory, modern in directories:
-            paths = heapq.nlargest(1001, (p for p in directory.glob('*.json') if not p.is_symlink()), key=lambda p: p.stat().st_mtime_ns)
+            def candidates():
+                nonlocal local_skipped
+                for candidate in directory.glob('*.json'):
+                    try:
+                        if candidate.is_symlink() or not candidate.is_file():
+                            continue
+                        yield (candidate.stat().st_mtime_ns, candidate)
+                    except OSError:
+                        local_skipped += 1
+            paths = [pair[1] for pair in heapq.nlargest(1001, candidates(), key=lambda pair: pair[0])]
             local_truncated = local_truncated or len(paths) > 1000
             for path in paths[:1000]:
                 scanned += 1
                 if scanned > 1000:
                     break
-                if path.is_symlink() or path.stat().st_size > 40000:
-                    continue
                 try:
+                    if path.is_symlink() or path.stat().st_size > 40000:
+                        local_skipped += 1
+                        continue
                     entry = read_json(path)
                     value = verify_entry(entry) if modern else {"schema_version": "1", "finding": entry["payload"]}
                     finding = value["finding"]
+                    memories.validate_payload(finding)
                     if (finding["skill_id"] != skill_id or any(finding["base"][k] != base[k] for k in ("source_commit", "record_version"))
                             or any(str(finding["environment"].get(k, "")).lower() != str(v).lower() for k, v in expected.items())):
                         continue
@@ -332,17 +348,23 @@ def recall(catalog, skill_id, environment, *, project=None, offline=False, limit
                         results.append({"id": item_id, "summary": finding["summary"], "environment": finding["environment"],
                                         "location": "local", "path": str(path), "trust": "contributor_reported", "kind": "reuse_report" if value.get("outcome") else "variant" if value.get("variant") else "finding"})
                 except (RshError, OSError, ValueError, KeyError, TypeError):
+                    local_skipped += 1
                     continue
     remote, remote_status = {}, "offline" if offline else "unknown"
     if not offline:
         try:
             remote = request("GET", "/items?" + urllib.parse.urlencode({"skill_id": skill_id, "record_version": base["record_version"],
                                       "source_commit": base["source_commit"], "environment": json.dumps(expected), "limit": limit}))
-            if remote.get("status") != "ready" or not isinstance(remote.get("results"), list):
+            if remote.get("status") != "ready" or not isinstance(remote.get("results"), list) or len(remote['results']) > limit:
                 raise ValueError("invalid response")
             for row in remote["results"]:
-                if (not ID.fullmatch(str(row.get("id", ""))) or any(row.get("base", {}).get(k) != base[k] for k in ("record_version", "source_commit"))):
+                if (not isinstance(row, dict) or not isinstance(row.get('base'), dict) or not isinstance(row.get('environment', {}), dict)
+                        or not ID.fullmatch(str(row.get("id", ""))) or any(row['base'].get(k) != base[k] for k in ("record_version", "source_commit"))
+                        or any(str(row.get('environment', {}).get(k, '')).lower() != str(v).lower() for k,v in expected.items())):
                     raise ValueError("scope mismatch")
+            # Validate the entire page before merging; a malformed later row
+            # cannot leave an earlier row partially trusted in the local result.
+            for row in remote["results"]:
                 if row["id"] in seen:
                     for local in results:
                         if local['id'] == row['id']:
@@ -358,7 +380,8 @@ def recall(catalog, skill_id, environment, *, project=None, offline=False, limit
     shared = [row for row in results if row['location'] == 'community']
     selected = (local[:1] + shared + local[1:])[:limit]
     return {"status": "ready", "results": selected, "remote_status": remote_status,
-            "complete": remote_status == "ready" and remote.get("complete") is True and len(results) <= limit and scanned <= 1000 and not local_truncated,
+            "complete": remote_status == "ready" and remote.get("complete") is True and len(results) <= limit and scanned <= 1000 and not local_truncated and local_skipped == 0,
+            "local_skipped": local_skipped,
             "remote_next_after": remote.get("next_after"), "remote_through": remote.get("through"),
             "base": base, "interpretation": "data_only", "execution_performed": False,
             "next_action": "read_selected_experience_check_applicability_then_report_actual_outcome"}

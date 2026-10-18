@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "libfranka-cartesian-pose",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "63553d28ad1ce6f046d888097eae582b7ea5672d7d9e21b2107cb2aead0e9f0f",
+      "record_version": "source-63553d28ad1ce6f046d888097eae582b7ea5672d7d9e21b2107cb2aead0e9f0f"
+    },
+    {
       "id": "mujoco-menagerie-artifact-dynamixel-2r-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a320cde82a7aa81f9434b5c85d13d1315ac4c363008309d56af324cb893e3c09",

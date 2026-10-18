@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-cap-tool-usage",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "04656145e0cde3d99ee9b28374449c689d008915d1abff6dfdce5f58cddc0787",
+      "record_version": "source-04656145e0cde3d99ee9b28374449c689d008915d1abff6dfdce5f58cddc0787"
+    },
+    {
       "id": "crazyflie-examples-autonomy-motion-commander-demo-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "c103ec9ee97012285f0e654ddccc7d6f8399b8f4f25403f0cfeb58bbeb8de3c3",

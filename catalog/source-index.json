@@ -8,6 +8,84 @@
       "record_version": "source-f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540"
     },
     {
+      "id": "aspire-behavior-debugging",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67",
+      "record_version": "source-19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67"
+    },
+    {
+      "id": "aspire-bowl-in-drawer",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "bd1595570f9e52d0c0b580d0f9841e112c27523ee6e1d9bc2e1c6edb18ac7cd9",
+      "record_version": "source-bd1595570f9e52d0c0b580d0f9841e112c27523ee6e1d9bc2e1c6edb18ac7cd9"
+    },
+    {
+      "id": "aspire-cap-tool-usage",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "04656145e0cde3d99ee9b28374449c689d008915d1abff6dfdce5f58cddc0787",
+      "record_version": "source-04656145e0cde3d99ee9b28374449c689d008915d1abff6dfdce5f58cddc0787"
+    },
+    {
+      "id": "aspire-close-microwave",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "44317b0890eabced20729d5bba1e0ff901daf498900afc75175da81298a1e476",
+      "record_version": "source-44317b0890eabced20729d5bba1e0ff901daf498900afc75175da81298a1e476"
+    },
+    {
+      "id": "aspire-cube-lifting",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8",
+      "record_version": "source-1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8"
+    },
+    {
+      "id": "aspire-evolutionary-search",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "7f7f4b86a35c46566d5dd8484e0532718304960153e2463411c6e96f2bf2202d",
+      "record_version": "source-7f7f4b86a35c46566d5dd8484e0532718304960153e2463411c6e96f2bf2202d"
+    },
+    {
+      "id": "aspire-iterative-debugging",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "645502be26898cb729a01683c4c4cc86e9ad08807ea4f6f1861daf2e324d560c",
+      "record_version": "source-645502be26898cb729a01683c4c4cc86e9ad08807ea4f6f1861daf2e324d560c"
+    },
+    {
+      "id": "aspire-open-drawer",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "ad66c2bb4da612b8f3200ded89ca915398fd717f1e56f6c58004dfe003836ef9",
+      "record_version": "source-ad66c2bb4da612b8f3200ded89ca915398fd717f1e56f6c58004dfe003836ef9"
+    },
+    {
+      "id": "aspire-real-manipulation-tasks",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13",
+      "record_version": "source-fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13"
+    },
+    {
+      "id": "aspire-two-arm-handover",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968",
+      "record_version": "source-9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968"
+    },
+    {
+      "id": "aspire-yam-go-home",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb",
+      "record_version": "source-91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb"
+    },
+    {
+      "id": "aspire-yam-joint-motion",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "54e2e1836a76ff5b3d7059e41b237b761ba28b72e776bdb30d7dd6c2072c6e31",
+      "record_version": "source-54e2e1836a76ff5b3d7059e41b237b761ba28b72e776bdb30d7dd6c2072c6e31"
+    },
+    {
+      "id": "aspire-yam-observe-station",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f",
+      "record_version": "source-793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f"
+    },
+    {
       "id": "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
@@ -1860,6 +1938,60 @@
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec",
       "record_version": "source-059bda054bbb188d4a40d0a32941aa4d9ac59252a37d67a258e685a0a6d063ec"
+    },
+    {
+      "id": "libfranka-cartesian-impedance",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "c6d28928eb032848cb7eb59051c603f813e22076c17ff9bcadead24e7db7c700",
+      "record_version": "source-c6d28928eb032848cb7eb59051c603f813e22076c17ff9bcadead24e7db7c700"
+    },
+    {
+      "id": "libfranka-cartesian-pose",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "63553d28ad1ce6f046d888097eae582b7ea5672d7d9e21b2107cb2aead0e9f0f",
+      "record_version": "source-63553d28ad1ce6f046d888097eae582b7ea5672d7d9e21b2107cb2aead0e9f0f"
+    },
+    {
+      "id": "libfranka-cartesian-velocity",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "aea5223cdd546bec504f63aa46c5ba0f069bb341eb49c6455640bf50904accb5",
+      "record_version": "source-aea5223cdd546bec504f63aa46c5ba0f069bb341eb49c6455640bf50904accb5"
+    },
+    {
+      "id": "libfranka-force-control",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7",
+      "record_version": "source-218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7"
+    },
+    {
+      "id": "libfranka-grasp-object",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "f6bb825048738b64de31e0b7d546d33215e33225bbc5d46c062e4299c3a9b34b",
+      "record_version": "source-f6bb825048738b64de31e0b7d546d33215e33225bbc5d46c062e4299c3a9b34b"
+    },
+    {
+      "id": "libfranka-joint-impedance",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "d41863cab01e4d734989f3ab7509c0d8b9f36a0c708894a2bea39391e5a9d93f",
+      "record_version": "source-d41863cab01e4d734989f3ab7509c0d8b9f36a0c708894a2bea39391e5a9d93f"
+    },
+    {
+      "id": "libfranka-joint-poses",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412",
+      "record_version": "source-835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412"
+    },
+    {
+      "id": "libfranka-joint-position",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920",
+      "record_version": "source-93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920"
+    },
+    {
+      "id": "libfranka-robot-state",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4",
+      "record_version": "source-61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4"
     },
     {
       "id": "mavsdk-python-examples-camera-py",
@@ -5946,6 +6078,66 @@
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401",
       "record_version": "source-a22b271356969290ea595dd3880beee061d7341735028bc9868c6ecefcb29401"
+    },
+    {
+      "id": "stretch-body-arm-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "33ba3897f3a13d1257497a56747a7edaca854b4aa53c056ac76a818648c09b9a",
+      "record_version": "source-33ba3897f3a13d1257497a56747a7edaca854b4aa53c056ac76a818648c09b9a"
+    },
+    {
+      "id": "stretch-body-base-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "88f8eead0d7029e3091a254b267e1be82a7d8f3fd1f7bf024b2f055a2ab99aba",
+      "record_version": "source-88f8eead0d7029e3091a254b267e1be82a7d8f3fd1f7bf024b2f055a2ab99aba"
+    },
+    {
+      "id": "stretch-body-battery",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "84bf3382260f74e9edac80739d931f428edfc935a10b723a0ddd9050820f62b7",
+      "record_version": "source-84bf3382260f74e9edac80739d931f428edfc935a10b723a0ddd9050820f62b7"
+    },
+    {
+      "id": "stretch-body-gripper-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "d43d664c87f8d26fc63e5fd4cfd409d00df1b047b3ca7a8d711e050584e47e86",
+      "record_version": "source-d43d664c87f8d26fc63e5fd4cfd409d00df1b047b3ca7a8d711e050584e47e86"
+    },
+    {
+      "id": "stretch-body-home",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "52e4133a8d7bd46d46dbdc57520b89350cd84fb20b0a8f1d26eca6ba151c654b",
+      "record_version": "source-52e4133a8d7bd46d46dbdc57520b89350cd84fb20b0a8f1d26eca6ba151c654b"
+    },
+    {
+      "id": "stretch-body-keyboard-teleop",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "5bd469c86231717d37d7ccf9f5db5bf187fb098566128c630408360778383d97",
+      "record_version": "source-5bd469c86231717d37d7ccf9f5db5bf187fb098566128c630408360778383d97"
+    },
+    {
+      "id": "stretch-body-lift-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "3918f0a75544ccccd0c928e591e268f59f5c6478816df01f0273a40d5e95ff5a",
+      "record_version": "source-3918f0a75544ccccd0c928e591e268f59f5c6478816df01f0273a40d5e95ff5a"
+    },
+    {
+      "id": "stretch-body-monitor",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "62b64c213233791f6cb82026863a935c8765879273d79f4e8390b9cbf220bf8f",
+      "record_version": "source-62b64c213233791f6cb82026863a935c8765879273d79f4e8390b9cbf220bf8f"
+    },
+    {
+      "id": "stretch-body-stow",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "1b9cc2defab225369d4edb30480cbe9abc34c2ddd5a9304b4594101cd8db846d",
+      "record_version": "source-1b9cc2defab225369d4edb30480cbe9abc34c2ddd5a9304b4594101cd8db846d"
+    },
+    {
+      "id": "stretch-body-trajectory-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156",
+      "record_version": "source-2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156"
     },
     {
       "id": "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",

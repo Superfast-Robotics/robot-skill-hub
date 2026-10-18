@@ -32,6 +32,12 @@
       "record_version": "source-e6a6115eb0c1f9eb93e3adaa872e20473ed7f1f34b219e33fe8369f85e736726"
     },
     {
+      "id": "stretch-body-base-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "88f8eead0d7029e3091a254b267e1be82a7d8f3fd1f7bf024b2f055a2ab99aba",
+      "record_version": "source-88f8eead0d7029e3091a254b267e1be82a7d8f3fd1f7bf024b2f055a2ab99aba"
+    },
+    {
       "id": "ur-description-artifact-config-ur5e-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "1e908454a0fb073761a0c675f708eb003ca7d5333a9e0863ef87fe40d9abb3c7",

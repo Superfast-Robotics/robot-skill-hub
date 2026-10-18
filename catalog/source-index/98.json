@@ -38,6 +38,12 @@
       "record_version": "source-dd58ef246c68dab2d08406c4a6011e8c17782e87a1c1bc0eceb84341cbbd64de"
     },
     {
+      "id": "stretch-body-gripper-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "d43d664c87f8d26fc63e5fd4cfd409d00df1b047b3ca7a8d711e050584e47e86",
+      "record_version": "source-d43d664c87f8d26fc63e5fd4cfd409d00df1b047b3ca7a8d711e050584e47e86"
+    },
+    {
       "id": "ur-description-artifact-config-ur3e-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "cc0abaa343555c577a374ccdae6aacfbf17cb9cdb526d57b50c8cc18475b4a86",

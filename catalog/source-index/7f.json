@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-yam-joint-motion",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "54e2e1836a76ff5b3d7059e41b237b761ba28b72e776bdb30d7dd6c2072c6e31",
+      "record_version": "source-54e2e1836a76ff5b3d7059e41b237b761ba28b72e776bdb30d7dd6c2072c6e31"
+    },
+    {
       "id": "moveit2-doc-tutorials-pick-and-place-with-moveit-task-constructor-s-4c838ce260ec",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "9e46aec8f8c1c4b2edb03d250fcd7255682ee81627af8eec6a2bac9acd8ed670",

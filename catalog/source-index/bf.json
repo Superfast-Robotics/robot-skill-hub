@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-bowl-in-drawer",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "bd1595570f9e52d0c0b580d0f9841e112c27523ee6e1d9bc2e1c6edb18ac7cd9",
+      "record_version": "source-bd1595570f9e52d0c0b580d0f9841e112c27523ee6e1d9bc2e1c6edb18ac7cd9"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3v2-inertials-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "e2ce373d28fde519aa586c3e9cf3fc4a7d7556abbe1faeec03352d5a38e0d979",

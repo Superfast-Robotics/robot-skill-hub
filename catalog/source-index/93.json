@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-yam-go-home",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb",
+      "record_version": "source-91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb"
+    },
+    {
       "id": "drake-examples-multibody-deformable-deformable-subdivision-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "8dfb8cd19ae3d461842a5647853e9b28ca7752c79d9ff286f8f8796eba3e3ad0",

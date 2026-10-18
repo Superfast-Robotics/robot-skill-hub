@@ -192,6 +192,30 @@ class CommunityTests(unittest.TestCase):
         self.assertTrue(result['results'][0]['also_published'])
         self.assertEqual(result['results'][1]['location'],'community')
 
+    def test_malformed_local_entries_do_not_block_recall_or_pending_delivery(self):
+        self.enable()
+        saved = community.save(self.catalog, 'fixture-pick', self.project, self.input, offline=True)
+        directory = community.root(self.project)
+        for number, value in enumerate([[], None, {'content': []}, {'content': {'finding': []}}, {'delivery': []}]):
+            (directory / ('exp_' + format(number, '064x') + '.json')).write_text(json.dumps(value))
+        recalled = community.recall(self.catalog, 'fixture-pick', {}, project=self.project, offline=True)
+        self.assertEqual([row['id'] for row in recalled['results']], [saved['id']])
+        def posted(method, route, *, value, token):
+            return {'status':'stored','id':community.identity(value),'content':value,'content_sha256':hashlib.sha256(contributions.canonical_bytes(value)).hexdigest()}
+        with mock.patch.object(community, 'credential', return_value={'token':'csh_'+'x'*43}), mock.patch.object(community, 'request', side_effect=posted):
+            delivered = community.sync(self.project)
+        self.assertEqual(delivered['deliveries'][0]['id'], saved['id'])
+        self.assertEqual(delivered['deliveries'][0]['status'], 'stored')
+
+    def test_remote_protocol_damage_does_not_hide_local_experience(self):
+        saved = community.save(self.catalog, 'fixture-pick', self.project, self.input, offline=True)
+        for malformed in ({'results':[None]}, {'results':None}, {'results':[{'id':saved['id'],'base':None}]}):
+            with self.subTest(malformed=malformed), mock.patch.object(community,'request',return_value={'status':'ready', **malformed}):
+                result = community.recall(self.catalog,'fixture-pick',{},project=self.project)
+                self.assertEqual(result['results'][0]['id'],saved['id'])
+                self.assertEqual(result['remote_status'],'unknown')
+                self.assertFalse(result['complete'])
+
 
 if __name__ == '__main__':
     unittest.main()

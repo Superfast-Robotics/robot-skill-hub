@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-evolutionary-search",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "7f7f4b86a35c46566d5dd8484e0532718304960153e2463411c6e96f2bf2202d",
+      "record_version": "source-7f7f4b86a35c46566d5dd8484e0532718304960153e2463411c6e96f2bf2202d"
+    },
+    {
       "id": "drake-examples-multibody-cylinder-with-multicontact-cylinder-run-dynamics-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "0716060b3513032c5db91fe5f8fbcceee03b4becc296e556f48541564c75d445",

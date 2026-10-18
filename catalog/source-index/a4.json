@@ -8,6 +8,12 @@
       "record_version": "source-e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f"
     },
     {
+      "id": "libfranka-joint-impedance",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "d41863cab01e4d734989f3ab7509c0d8b9f36a0c708894a2bea39391e5a9d93f",
+      "record_version": "source-d41863cab01e4d734989f3ab7509c0d8b9f36a0c708894a2bea39391e5a9d93f"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "b2c4a8929a64fe88f7580ae1da1d3e0c3c4ed0dd5f3139894107569f86fa8700",

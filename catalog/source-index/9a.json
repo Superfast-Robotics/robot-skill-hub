@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-cube-lifting",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8",
+      "record_version": "source-1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-teleoperate-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "aa87e80f7baff881957f9fb3d7e1520e7fbb557023ace984a3ae6a7128322741",

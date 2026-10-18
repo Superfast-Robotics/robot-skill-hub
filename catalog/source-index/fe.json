@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aspire-two-arm-handover",
+      "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
+      "source_sha256": "9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968",
+      "record_version": "source-9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968"
+    },
+    {
       "id": "mavsdk-python-examples-follow-me-example-py",
       "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
       "source_sha256": "27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d",

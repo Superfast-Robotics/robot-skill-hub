@@ -20,6 +20,12 @@
       "record_version": "source-a5141b079dc55bd543adce6af3cb0772a75ad0b915527233d1c2cb9bf713934d"
     },
     {
+      "id": "libfranka-grasp-object",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "f6bb825048738b64de31e0b7d546d33215e33225bbc5d46c062e4299c3a9b34b",
+      "record_version": "source-f6bb825048738b64de31e0b7d546d33215e33225bbc5d46c062e4299c3a9b34b"
+    },
+    {
       "id": "ros2-control-example-8-bringup-launch-rrbot-transmissions-system-po-44512ae664d5",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "81c44c0ecab5f01c013cc77facb137074aa71896fc0f97eb573f021d96cf73a3",

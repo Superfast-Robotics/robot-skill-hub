@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { Miniflare } from 'miniflare';
 import { canonical } from '../../src/util.ts';
+import { applyPatch, parsePatch } from '../../src/patch.ts';
+import { execFileSync } from 'node:child_process';
 
 const hash = (v: string) => createHash('sha256').update(v).digest('hex');
 const base = { hub_commit: 'a'.repeat(40), record_version: '1.0.0', source_commit: 'b'.repeat(40) };
@@ -21,7 +23,7 @@ async function runtime() {
     env: { CATALOG: { type: 'd1', id: 'community-test' }, METRICS_KEY: { type: 'text', value: 'local-community-test-key' },
       PUBLICATION_URL: { type: 'text', value: 'https://hub.superfastrobotics.com/catalog/v1/publication.json' } } } }] });
   const db = await mf.getD1Database('CATALOG');
-  for (const name of ['0001_catalog.sql', '0002_page_memberships.sql', '0003_community.sql']) {
+  for (const name of ['0001_catalog.sql', '0002_page_memberships.sql', '0003_community.sql', '0004_community_capacity_guards.sql']) {
     const sql = await readFile(new URL('../../migrations-catalog/' + name, import.meta.url), 'utf8');
     await db.exec(sql.replace(/--[^\n]*/g, '').replace(/\s+/g, ' '));
   }
@@ -121,5 +123,113 @@ test('native enrollment proof, source/secret/parent checks and quota rollback do
     const next = await s.call(s.query({ limit: '2', after: String(page.body.next_after), through: String(page.body.through) }));
     assert.ok(next.body.results.every((r: any) => r.sequence < page.body.next_after));
     assert.equal((await s.db.prepare('SELECT items FROM community_storage_budget').first<any>()).items, 20);
+  } finally { await s.mf.dispose(); }
+});
+
+test('agent instruction and case-folded metadata patch targets are rejected before storage', async () => {
+  const s = await runtime(); try {
+    const a = await s.enroll();
+    for (const path of ['CLAUDE.md', 'docs/GEMINI.md', 'src/.Git/config', 'src/.GITHUB/workflows/build.yml', 'src/.codex/config.toml', 'src/.agents/skills/task/instructions.md', 'docs/copilot-instructions.md', 'src/config.py.']) {
+      const result = await s.call('/items', { schema_version: '1', finding: finding(), variant: {
+        patch: `--- a/${path}\n+++ b/${path}\n@@ -1 +1 @@\n-a\n+b\n`, license_spdx: 'Apache-2.0'
+      } }, a.token);
+      assert.equal(result.status, 422, path + ': ' + JSON.stringify(result));
+    }
+    assert.equal((await s.db.prepare('SELECT items FROM community_storage_budget').first<any>()).items, 0);
+  } finally { await s.mf.dispose(); }
+});
+
+test('revocation, quarantine, capacity and malformed input preserve original content and budgets', async () => {
+  const s = await runtime(); try {
+    const a = await s.enroll(), b = await s.enroll();
+    const item = await s.call('/items', { schema_version: '1', finding: finding() }, a.token);
+    assert.equal(item.status, 201);
+    const before = await s.db.prepare('SELECT * FROM community_storage_budget').first<any>();
+    await s.db.prepare('UPDATE community_items SET hidden=1 WHERE id=?').bind(item.body.id).run();
+    assert.equal((await s.call('/items/' + item.body.id)).status, 404);
+    assert.equal((await s.call('/items', { schema_version: '1', finding: finding() }, b.token)).status, 409);
+    assert.deepEqual((await s.call(s.query())).body.results, []);
+    assert.deepEqual((await s.call('/export')).body.rows, [{ sequence: 1, id: item.body.id, hidden: true }]);
+    await s.db.prepare('UPDATE community_principals SET disabled=1 WHERE id=?').bind(hash(b.token)).run();
+    assert.equal((await s.call('/items', { schema_version: '1', finding: finding(1) }, b.token)).status, 401);
+    assert.equal((await s.call('/enroll', b.payload)).status, 401);
+    assert.deepEqual(await s.db.prepare('SELECT * FROM community_storage_budget').first<any>(), before);
+    await s.db.prepare('UPDATE community_storage_budget SET bytes=67108864').run();
+    const full = await s.call('/items', { schema_version: '1', finding: finding(2) }, a.token);
+    assert.equal(full.status, 503);
+    assert.equal(full.body.reason_code, 'community_capacity');
+    assert.equal((await s.db.prepare('SELECT count(*) n FROM community_items').first<any>()).n, 1);
+    for (const value of [null, [], {}, {schema_version:'1',finding:null}])
+      assert.equal((await s.call('/items', value, a.token)).status, 422);
+    assert.equal((await s.call('/items', {padding:'x'.repeat(33000)}, a.token)).status, 413);
+  } finally { await s.mf.dispose(); }
+});
+
+test('capacity guards serialize concurrent writes and preserve duplicate retries at every limit', async () => {
+  const s = await runtime(); try {
+    const a = await s.enroll(), b = await s.enroll();
+    const values = [1,2].map(n => ({schema_version:'1',finding:finding(n)}));
+    const bytes = Buffer.byteLength(canonical(values[0]));
+    assert.equal(bytes, Buffer.byteLength(canonical(values[1])));
+    await s.db.prepare('UPDATE community_storage_budget SET bytes=?').bind(67108864-bytes).run();
+    const results = await Promise.all(values.map(v => s.call('/items',v,a.token)));
+    assert.deepEqual(results.map(r=>r.status).sort(),[201,503]);
+    const winner = results.findIndex(r=>r.status===201);
+    assert.equal((await s.db.prepare('SELECT count(*) n FROM community_items').first<any>()).n,1);
+    assert.equal((await s.db.prepare('SELECT bytes FROM community_storage_budget').first<any>()).bytes,67108864);
+    assert.equal((await s.call('/items',values[winner],a.token)).status,200);
+    await s.db.prepare('UPDATE community_storage_budget SET attestations=100000').run();
+    assert.equal((await s.call('/items',values[winner],b.token)).status,503);
+    assert.equal((await s.db.prepare('SELECT count(*) n FROM community_attestations').first<any>()).n,1);
+    await s.db.prepare('UPDATE community_storage_budget SET principals=10000').run();
+    assert.equal((await s.enroll('192.0.2.9')).result.status,503);
+    assert.equal((await s.call('/enroll',a.payload)).status,200);
+    assert.equal((await s.db.prepare('SELECT count(*) n FROM community_principals').first<any>()).n,2);
+  } finally { await s.mf.dispose(); }
+});
+
+test('controlled IK task transfers a saved correction to a separate reader and reports held-out outcomes', async () => {
+  const s = await runtime(); try {
+    // Authored numerical fixture, not an upstream skill or autonomous LLM trial.
+    // Only these exact known bytes may execute. Never execute an arbitrary Hub patch.
+    const before = 'export function ik(x,y) { const b=Math.acos((x*x+y*y-2)/2); return [Math.atan(y/x)-Math.atan2(Math.sin(b),1+Math.cos(b)),b]; }\n';
+    const after = before.replace('Math.atan(y/x)','Math.atan2(y,x)');
+    const patch = `--- a/ik.mjs\n+++ b/ik.mjs\n@@ -1 +1 @@\n-${before}+${after}`;
+    const cases = (count:number, offset:number) => Array.from({length:count},(_,i)=>{
+      const angle=2*Math.PI*(i+offset)/count, radius=0.7+0.9*((i%5)/4);
+      return [radius*Math.cos(angle),radius*Math.sin(angle)];
+    });
+    function score(source:string, points:number[][]) {
+      assert.ok(source===before||source===after,'Only the authored fixture can execute');
+      const runner = source + '\nconst points=JSON.parse(process.argv[1]); const errors=points.map(([x,y])=>{const[a,b]=ik(x,y);return Math.hypot(Math.cos(a)+Math.cos(a+b)-x,Math.sin(a)+Math.sin(a+b)-y)});console.log(JSON.stringify({total:errors.length,passed:errors.filter(e=>Number.isFinite(e)&&e<1e-9).length}));';
+      return JSON.parse(execFileSync(process.execPath,['--input-type=module','-e',runner,JSON.stringify(points)],{encoding:'utf8',timeout:5000,maxBuffer:4096}));
+    }
+    const development=cases(8,0.2), heldout=cases(24,0.37);
+    const baseline=score(before,development), baselineHeldout=score(before,heldout);
+    assert.ok(baseline.passed<baseline.total);
+    const writer=await s.enroll(), reader=await s.enroll();
+    const note={...finding(),summary:'Preserve the target quadrant in planar two-link inverse kinematics',
+      observation:`Controlled authored CPU fixture: ${baseline.passed}/${baseline.total} development targets passed with atan(y/x). This is not robot or simulator execution.`,
+      resolution:'Use atan2(y,x) for the target bearing; preserve the elbow-angle calculation.',
+      environment:{runtime:'node',robot:'planar-two-link-fixture'},
+      evidence:{level:'contributor_reported',command:'node numerical IK fixture',result:'Development residual tolerance is 1e-9; this is a controlled maintainer test, not independent agent adoption.',reported_by:'submitter'}};
+    const published=await s.call('/items',{schema_version:'1',finding:note,variant:{patch,license_spdx:'Apache-2.0'}},writer.token);
+    assert.equal(published.status,201);
+    const recalled=await s.call(s.query({environment:JSON.stringify(note.environment)}));
+    assert.equal(recalled.body.results[0].id,published.body.id,'credential-free reader discovers the correction');
+    const selected=(await s.call('/items/'+published.body.id)).body;
+    assert.equal(hash(canonical(selected.content)),selected.content_sha256);
+    assert.equal(selected.content.variant.patch,patch);
+    const corrected=applyPatch(before,parsePatch(selected.content.variant.patch)[0]);
+    const outcome=score(corrected,heldout);
+    assert.deepEqual(outcome,{total:24,passed:24});
+    assert.ok(baselineHeldout.passed<outcome.passed);
+    const report=await s.call('/items',{schema_version:'1',finding:{...note,summary:'Held-out numerical target reuse result',
+      observation:`Separate reader process used the retrieved exact correction: ${outcome.passed}/${outcome.total} held-out target residuals below 1e-9.`,
+      evidence:{...note.evidence,result:'Controlled CPU kinematics only. No physical robot, simulator or LLM token measurement.'}},parent_id:published.body.id,outcome:'succeeded'},reader.token);
+    assert.equal(report.status,201);
+    assert.equal((await s.call(s.query({environment:JSON.stringify(note.environment)}))).body.results[0].reuse_reports.succeeded,1);
+    assert.deepEqual((await s.call(s.query({environment:JSON.stringify({runtime:'node',robot:'different-robot'})}))).body.results,[]);
+    console.log(JSON.stringify({controlled_reuse_experiment:true,baseline_development:baseline,baseline_heldout:baselineHeldout,reused_heldout:outcome,independent_agent_adoption:false,robot_execution:false}));
   } finally { await s.mf.dispose(); }
 });

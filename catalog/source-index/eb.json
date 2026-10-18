@@ -14,6 +14,12 @@
       "record_version": "source-9b01065f6dce2c368d6b0c19cb55e6cdea8fc028a6cc44180ebe59359653b8b2"
     },
     {
+      "id": "stretch-body-lift-jog",
+      "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
+      "source_sha256": "3918f0a75544ccccd0c928e591e268f59f5c6478816df01f0273a40d5e95ff5a",
+      "record_version": "source-3918f0a75544ccccd0c928e591e268f59f5c6478816df01f0273a40d5e95ff5a"
+    },
+    {
       "id": "webots-projects-robots-bitcraze-crazyflie-controllers-crazyflie-crazyflie-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "c783f665fe8929a32fa1031fc0520f34dc00abaa5176efc6076551f9acf13a4d",

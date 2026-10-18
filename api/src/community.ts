@@ -62,8 +62,9 @@ export function validateExperience(value: any): asserts value is Experience {
     assert(value.finding.resolution && !value.outcome, 'invalid_variant', 'Describe the reusable change separately from a later reuse outcome.');
     // Inert patch data is downloadable, never applied by the Hub or injected into instructions.
     const paths = parsePatch(value.variant.patch).map(file => file.path);
-    assert(paths.every((path: string) => path === '/dev/null' || /^[A-Za-z0-9_.\/-]+$/.test(path) && !path.startsWith('/') && !path.split('/').some(p => p === '..' || p === '.git' || p === '.github')
-      && !/(?:^|\/)(?:\.env(?:\..*)?|AGENTS\.md|SKILL\.md)$/i.test(path)), 'invalid_variant_path', 'Patch paths must be relative source paths, excluding credentials and agent instructions.');
+    assert(paths.every((path: string) => /^[A-Za-z0-9_.\/-]+$/.test(path) && !path.startsWith('/')
+      && !path.split('/').some(p => p.endsWith('.') || ['..', '.git', '.github', '.agents', '.claude', '.codex', '.cursor', '.gemini', '.vscode'].includes(p.toLowerCase()))
+      && !/(?:^|\/)(?:\.env(?:\..*)?|AGENTS\.md|SKILL\.md|CLAUDE\.md|GEMINI\.md|copilot-instructions\.md)$/i.test(path)), 'invalid_variant_path', 'Patch paths must be relative source paths, excluding credentials and agent instructions.');
   }
   if (value.outcome !== undefined) assert(value.parent_id && ['succeeded', 'failed', 'not_applicable'].includes(value.outcome)
     && value.finding.evidence.level === 'contributor_reported', 'invalid_outcome', 'Reuse reports require an exact parent and an actual reported result.');
@@ -207,7 +208,7 @@ export async function handleCommunity(request: Request, env: Env): Promise<Respo
   } catch (error) {
     if (error instanceof ApiError) return json({ status: 'blocked', reason_code: error.code, message: error.message, next_action: 'keep_local_experience_and_continue_user_task' }, error.status);
     const quota = error instanceof Error && /community_(registration|write)_quota/.test(error.message);
-    const capacity = error instanceof Error && /CHECK constraint failed.*(?:bytes|items|principals|attestations)/.test(error.message);
+    const capacity = error instanceof Error && /community_capacity|CHECK constraint failed.*(?:bytes|items|principals|attestations)/.test(error.message);
     return json({ status: 'blocked', reason_code: quota ? 'daily_community_budget' : capacity ? 'community_capacity' : 'community_unavailable', next_action: 'keep_local_experience_and_retry_later' }, quota ? 429 : 503);
   }
 }

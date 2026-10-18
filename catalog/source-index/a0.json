@@ -8,6 +8,12 @@
       "record_version": "source-a97ea510b542c1fa70bc434482c045c7f7e099b5e6635d43f3c9b16a654bcd6f"
     },
     {
+      "id": "libfranka-cartesian-impedance",
+      "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
+      "source_sha256": "c6d28928eb032848cb7eb59051c603f813e22076c17ff9bcadead24e7db7c700",
+      "record_version": "source-c6d28928eb032848cb7eb59051c603f813e22076c17ff9bcadead24e7db7c700"
+    },
+    {
       "id": "ompl-demos-constrainedplanningsphere-py",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "dcc2176ebeae7d850dcc754a04453b31c800da7f10917f3eafd25d8b3732dc59",
