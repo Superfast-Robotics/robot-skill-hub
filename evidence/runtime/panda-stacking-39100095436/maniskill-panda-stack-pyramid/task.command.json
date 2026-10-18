@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-pyramid/.robot-skill-hub/environments/maniskill-panda-stack-pyramid/bin/python",
+    "/home/runner/work/_temp/runtime-work/maniskill-panda-stack-pyramid/.robot-skill-hub/recipes/maniskill-panda-stack-pyramid/run.py",
+    "--seed",
+    "0"
+  ],
+  "timeout_seconds": 180,
+  "started": true,
+  "timed_out": false,
+  "exit_code": 1,
+  "duration_seconds": 5.678,
+  "stdout_file": "task.stdout.txt",
+  "stderr_file": "task.stderr.txt"
+}

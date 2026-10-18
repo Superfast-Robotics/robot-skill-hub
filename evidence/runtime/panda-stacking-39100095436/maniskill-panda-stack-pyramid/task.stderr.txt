@@ -1,0 +1,1 @@
+[33;1m2026-10-18 05:20:21,302 - mani_skill  - WARNING - No initial pose set for articulation builder of panda, setting to default pose q=[1,0,0,0], p=[0,0,0]. There may be simulation issues/bugs if this articulation at it's initial pose collides with other objects at their initial poses.[0m
