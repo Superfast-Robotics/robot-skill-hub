@@ -943,6 +943,8 @@ def build(args):
                     api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
                     privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md",
                     source_files_guide_url=base+"/source-files.md",
+                    executable_skills_guide_url=base+"/executable-skills.md",
+                    execution_interface_schema_url=base+"/schemas/execution-interface.schema.json",
                     submission_proof_url_template=base+"/catalog/v2/submissions/{submission_id}.json",
                     memory_proof_url_template=base+"/catalog/v2/memories/{memory_id}.json")
     if (ROOT / "docs/public-api.openapi.json").exists():

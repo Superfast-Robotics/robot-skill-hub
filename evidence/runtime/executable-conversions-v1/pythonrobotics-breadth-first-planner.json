@@ -9,10 +9,10 @@
   "failed": 0,
   "negative_unknown_field_rejected": true,
   "platforms": [
-    "windows"
+    "linux"
   ],
-  "python": "3.10.11",
-  "architecture": "amd64",
+  "python": "3.10.22",
+  "architecture": "x86_64",
   "packages": [
     "contourpy==1.3.2",
     "cycler==0.12.1",
@@ -22,6 +22,7 @@
     "numpy==1.26.4",
     "packaging==26.3",
     "pillow==12.3.0",
+    "pybullet==3.2.7",
     "pyparsing==3.3.3",
     "python-dateutil==2.9.0.post0",
     "ruckig==0.19.4",
@@ -31,7 +32,7 @@
   "execution_domain": "computation",
   "physical_robot": false,
   "gpu": false,
-  "observed_at": "2026-10-19T15:15:32.463670+00:00",
+  "observed_at": "2026-10-19T15:19:43.188816+00:00",
   "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
   "cases": [
     {
@@ -103,7 +104,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "3248071957f1b378896c963ce508f81cecf573e1f12891713619c10f84ff9a46",
+      "stdout_sha256": "87fda2bb5f01ec4396d2a24e07906456c65725a4489e0a4350b739178ccd6cc7",
       "checks": {
         "nonempty": true,
         "start_reached": true,
@@ -113,7 +114,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.281
+      "elapsed_seconds": 0.5049
     },
     {
       "case": 1,
@@ -184,7 +185,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "4d3511ea04182f1b2cbfde8eeca318d5d436a3d443943aaab214b9d0e5c38974",
+      "stdout_sha256": "7c7388e46ddf3da197b29c76913883cfa319708fa4e3003065b09f8e369457b9",
       "checks": {
         "nonempty": true,
         "start_reached": true,
@@ -194,7 +195,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.219
+      "elapsed_seconds": 0.5021
     },
     {
       "case": 2,
@@ -265,7 +266,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "0a37a97119b28642b1f02b1a1255686c090ccb8916a830c3729a89dc3db497d7",
+      "stdout_sha256": "d1a9687327db040d83f7426fdd5cb93ef786442593b4323124d6307864c8dacd",
       "checks": {
         "nonempty": true,
         "start_reached": true,
@@ -275,7 +276,296 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.375
+      "elapsed_seconds": 0.5045
     }
-  ]
+  ],
+  "additional_runs": [
+    {
+      "schema_version": "1",
+      "skill_id": "pythonrobotics-breadth-first-planner",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "adapter_sha256": "0651ad577f734264b9e2a9ad1530b6f049bbe9e6e0cec2469dafac6dfa7e0e02",
+      "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+      "case_plan_sha256": "8cce21815378a946f9d9d380423be27c890029f46a513669e3a886937f9b3471",
+      "passed": 3,
+      "failed": 0,
+      "negative_unknown_field_rejected": true,
+      "platforms": [
+        "windows"
+      ],
+      "python": "3.10.11",
+      "architecture": "amd64",
+      "packages": [
+        "contourpy==1.3.2",
+        "cycler==0.12.1",
+        "fonttools==4.65.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.9.4",
+        "numpy==1.26.4",
+        "packaging==26.3",
+        "pillow==12.3.0",
+        "pyparsing==3.3.3",
+        "python-dateutil==2.9.0.post0",
+        "ruckig==0.19.4",
+        "scipy==1.13.1",
+        "six==1.17.0"
+      ],
+      "execution_domain": "computation",
+      "physical_robot": false,
+      "gpu": false,
+      "observed_at": "2026-10-19T15:15:32.463670+00:00",
+      "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+      "cases": [
+        {
+          "case": 0,
+          "input": {
+            "start": [
+              2,
+              2
+            ],
+            "goal": [
+              18,
+              18
+            ],
+            "bounds": [
+              0,
+              20
+            ],
+            "obstacles": [
+              [
+                10,
+                1
+              ],
+              [
+                10,
+                2
+              ],
+              [
+                10,
+                3
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                10,
+                6
+              ],
+              [
+                10,
+                7
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                10,
+                9
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "robot_radius": 0.3
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "3248071957f1b378896c963ce508f81cecf573e1f12891713619c10f84ff9a46",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "supplied_obstacles_clear": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.281
+        },
+        {
+          "case": 1,
+          "input": {
+            "start": [
+              2,
+              2
+            ],
+            "goal": [
+              16,
+              16
+            ],
+            "bounds": [
+              0,
+              20
+            ],
+            "obstacles": [
+              [
+                10,
+                1
+              ],
+              [
+                10,
+                2
+              ],
+              [
+                10,
+                3
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                10,
+                6
+              ],
+              [
+                10,
+                7
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                10,
+                9
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "robot_radius": 0.3
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "4d3511ea04182f1b2cbfde8eeca318d5d436a3d443943aaab214b9d0e5c38974",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "supplied_obstacles_clear": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.219
+        },
+        {
+          "case": 2,
+          "input": {
+            "start": [
+              2,
+              2
+            ],
+            "goal": [
+              18,
+              4
+            ],
+            "bounds": [
+              0,
+              20
+            ],
+            "obstacles": [
+              [
+                10,
+                1
+              ],
+              [
+                10,
+                2
+              ],
+              [
+                10,
+                3
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                10,
+                6
+              ],
+              [
+                10,
+                7
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                10,
+                9
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                11
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "robot_radius": 0.3
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "0a37a97119b28642b1f02b1a1255686c090ccb8916a830c3729a89dc3db497d7",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "supplied_obstacles_clear": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.375
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "id": 39276870006,
+    "head_sha": "048c0e9a8f587b7541046a045dcbb3a57b3ea91e",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39276870006"
+  }
 }

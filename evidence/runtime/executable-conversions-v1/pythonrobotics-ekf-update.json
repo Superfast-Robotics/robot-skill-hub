@@ -9,10 +9,10 @@
   "failed": 0,
   "negative_unknown_field_rejected": true,
   "platforms": [
-    "windows"
+    "linux"
   ],
-  "python": "3.10.11",
-  "architecture": "amd64",
+  "python": "3.10.22",
+  "architecture": "x86_64",
   "packages": [
     "contourpy==1.3.2",
     "cycler==0.12.1",
@@ -22,6 +22,7 @@
     "numpy==1.26.4",
     "packaging==26.3",
     "pillow==12.3.0",
+    "pybullet==3.2.7",
     "pyparsing==3.3.3",
     "python-dateutil==2.9.0.post0",
     "ruckig==0.19.4",
@@ -31,7 +32,7 @@
   "execution_domain": "computation",
   "physical_robot": false,
   "gpu": false,
-  "observed_at": "2026-10-19T15:17:09.198921+00:00",
+  "observed_at": "2026-10-19T15:20:12.626221+00:00",
   "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
   "cases": [
     {
@@ -80,7 +81,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "ca05f25b2f0774eddfa09f32279ee347735b282542187982cf00faa4e8f7b8ff",
+      "stdout_sha256": "37214038dad88a6d9c6c66e9591ed367f5ba5c5b849902c108b1e088d0ba5e88",
       "checks": {
         "finite_state": true,
         "symmetric_covariance": true,
@@ -89,7 +90,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.5
+      "elapsed_seconds": 0.578
     },
     {
       "case": 1,
@@ -137,7 +138,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "c42204c4e8800f64615e480eeb8399eefd8e081a9a54f71f2abe8216a10eec39",
+      "stdout_sha256": "8ec72ca44da60c2f92b32bb0daad8262b48eeeb89b12ac1db7c9afcce4747cd8",
       "checks": {
         "finite_state": true,
         "symmetric_covariance": true,
@@ -146,7 +147,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.703
+      "elapsed_seconds": 0.5675
     },
     {
       "case": 2,
@@ -194,7 +195,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "d612cc78d573991140382b14bff74cba4201aeef9381fc37cd3d87a2a33589b5",
+      "stdout_sha256": "70f357c7d8ac63d43884f8c122a670029f54ea9e4997e2b3a48ee17e61c07b42",
       "checks": {
         "finite_state": true,
         "symmetric_covariance": true,
@@ -203,7 +204,224 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.844
+      "elapsed_seconds": 0.567
     }
-  ]
+  ],
+  "additional_runs": [
+    {
+      "schema_version": "1",
+      "skill_id": "pythonrobotics-ekf-update",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "adapter_sha256": "1aad261b6b6309ea716a19ae709631901cff315fcb430b19f295942f9ea36bd9",
+      "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+      "case_plan_sha256": "4faa696cf6ea7a34af20b1eeea7f6571ca5048f3ed5c68ec7dd252987c665868",
+      "passed": 3,
+      "failed": 0,
+      "negative_unknown_field_rejected": true,
+      "platforms": [
+        "windows"
+      ],
+      "python": "3.10.11",
+      "architecture": "amd64",
+      "packages": [
+        "contourpy==1.3.2",
+        "cycler==0.12.1",
+        "fonttools==4.65.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.9.4",
+        "numpy==1.26.4",
+        "packaging==26.3",
+        "pillow==12.3.0",
+        "pyparsing==3.3.3",
+        "python-dateutil==2.9.0.post0",
+        "ruckig==0.19.4",
+        "scipy==1.13.1",
+        "six==1.17.0"
+      ],
+      "execution_domain": "computation",
+      "physical_robot": false,
+      "gpu": false,
+      "observed_at": "2026-10-19T15:17:09.198921+00:00",
+      "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+      "cases": [
+        {
+          "case": 0,
+          "input": {
+            "state": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "covariance": [
+              [
+                0.1,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.1,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.1,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.1
+              ]
+            ],
+            "measurement_xy": [
+              0.15,
+              0.02
+            ],
+            "control_v_yawrate": [
+              1,
+              0.1
+            ]
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "ca05f25b2f0774eddfa09f32279ee347735b282542187982cf00faa4e8f7b8ff",
+          "checks": {
+            "finite_state": true,
+            "symmetric_covariance": true,
+            "positive_semidefinite_covariance": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.5
+        },
+        {
+          "case": 1,
+          "input": {
+            "state": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "covariance": [
+              [
+                0.1,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.1,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.1,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.1
+              ]
+            ],
+            "measurement_xy": [
+              0.05,
+              -0.02
+            ],
+            "control_v_yawrate": [
+              1,
+              0.1
+            ]
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "c42204c4e8800f64615e480eeb8399eefd8e081a9a54f71f2abe8216a10eec39",
+          "checks": {
+            "finite_state": true,
+            "symmetric_covariance": true,
+            "positive_semidefinite_covariance": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.703
+        },
+        {
+          "case": 2,
+          "input": {
+            "state": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "covariance": [
+              [
+                0.1,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.1,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.1,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.1
+              ]
+            ],
+            "measurement_xy": [
+              0.2,
+              0.1
+            ],
+            "control_v_yawrate": [
+              1,
+              0.1
+            ]
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "d612cc78d573991140382b14bff74cba4201aeef9381fc37cd3d87a2a33589b5",
+          "checks": {
+            "finite_state": true,
+            "symmetric_covariance": true,
+            "positive_semidefinite_covariance": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.844
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "id": 39276870006,
+    "head_sha": "048c0e9a8f587b7541046a045dcbb3a57b3ea91e",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39276870006"
+  }
 }

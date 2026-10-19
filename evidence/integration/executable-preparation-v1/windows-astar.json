@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "skill_id": "pythonrobotics-astar-planner",
+  "catalog_scope": "local_candidate_from_exact_git_head",
+  "hub_commit": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "prepared": true,
+  "dependencies_installed": true,
+  "source_files": 42,
+  "adapter_sha256": "ea67208ea9d768a5366220fc7aa10481dc708777d3bf888e2119b356fbfdf878",
+  "execution_exit_code": 0,
+  "execution_stdout_sha256": "a6ad9be5450bee12176cfb6611857fc0d5537c5a41446b98fb59764a39f15879",
+  "checks": {
+    "nonempty": true,
+    "start_reached": true,
+    "goal_reached": true,
+    "supplied_obstacles_clear": true
+  },
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false
+}

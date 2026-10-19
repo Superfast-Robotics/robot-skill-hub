@@ -42,4 +42,4 @@ jobs:
       - name: Compile recipes without importing simulator dependencies
         run: python -m compileall -q recipes skills/find-robot-skills/scripts
       - name: Record runtime scope
-        run: echo 'Robot simulator execution is not_run. Structure and API contract tests do not establish task completion.'
+        run: echo 'This job runs structure and API checks. Runtime evidence comes from the separate explicit CPU execution workflow.'

@@ -267,7 +267,9 @@ class CatalogTests(unittest.TestCase):
         if (site / 'catalog/v1/search.json').exists():
             self.assertEqual(contract['resources']['search_index_url'], 'https://example.test/hub/catalog/v1/search.json')
         else:
-            self.assertNotIn('search_index_url', contract['resources'])
+            self.assertEqual(contract['resources']['search_index_url'], contract['resources']['search_manifest_url'])
+        self.assertEqual(contract['resources']['executable_skills_guide_url'], 'https://example.test/hub/executable-skills.md')
+        self.assertEqual(contract['resources']['execution_interface_schema_url'], 'https://example.test/hub/schemas/execution-interface.schema.json')
         sitemap = (site / "sitemap.xml").read_text(encoding="utf-8")
         official = json.loads((self.root / "catalog/references.json").read_text(encoding="utf-8"))["records"][0]
         self.assertIn("/references/" + official["id"] + "/", sitemap)

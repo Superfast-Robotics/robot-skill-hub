@@ -32,7 +32,7 @@
   "execution_domain": "simulation",
   "physical_robot": false,
   "gpu": false,
-  "observed_at": "2026-10-19T14:56:28.806852+00:00",
+  "observed_at": "2026-10-19T15:20:27.324653+00:00",
   "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
   "cases": [
     {
@@ -68,7 +68,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.1429
+      "elapsed_seconds": 0.1712
     },
     {
       "case": 1,
@@ -103,7 +103,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.1428
+      "elapsed_seconds": 0.1697
     },
     {
       "case": 2,
@@ -138,13 +138,13 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.1442
+      "elapsed_seconds": 0.1663
     }
   ],
   "workflow": {
-    "id": 39273268144,
-    "head_sha": "bb3701587ea9206012240cde26e2f0578ff8f0c0",
+    "id": 39276870006,
+    "head_sha": "048c0e9a8f587b7541046a045dcbb3a57b3ea91e",
     "conclusion": "success",
-    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39273268144"
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39276870006"
   }
 }
