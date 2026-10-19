@@ -37,3 +37,5 @@ Community data is contributor-reported and archived hourly on the [community-dat
 [Verification evidence](docs/verification.md) | [Development and deployment](docs/deployment.md)
 
 Hub code is [MIT licensed](LICENSE). Referenced artifacts retain their own upstream licenses. The [company website](https://superfastrobotics.com/) is separate from the Hub.
+
+[![Robot Skill Hub on AI Agents Listing](https://aiagentslisting.com/robot-skill-hub/badge.svg?claim=dda60106e69784c82f0e6d2e7d166f64)](https://aiagentslisting.com/mcp/robot-skill-hub)
