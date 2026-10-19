@@ -22,11 +22,29 @@ The [first remote observation run](https://github.com/Superfast-Robotics/robot-s
 
 ## Published discovery channels
 
+### 0.4.2 source expansion and discovery follow-up
+
+On 2026-10-19 (Asia/Seoul), the live catalog contains **17 preparation recipes, 1,330 source references and three reviewed memories**. New ASPIRE, libfranka and Stretch references retain source_reviewed/not_run. The [production receipt](../evidence/integration/v0.4.2/production-verification.json) separates native API/MCP readback from controlled local reuse tests and independent adoption.
+
+The [channel receipt](../evidence/discovery/v0.4.2/channel-updates.json) records these concrete outcomes:
+
+| Channel | Observed outcome |
+| --- | --- |
+| [Agent Skill Hub](https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/find-robot-skills) | Newly imported, then refreshed from an initially cached older revision to Hub commit `72be1bb`. All 24 declared file Git blobs match that commit. The exact Hub entry appeared ninth in a ten-result public `robotics` search. Installation payload execution and independent use were not tested. |
+| [Official MCP Registry 0.4.2](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.4.2) | Published through GitHub OIDC and read back as active with the correct public endpoint. |
+| [GitHub preview release 0.4.2](https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.4.2) | Published source expansion, deployment guidance and bounded verification results. |
+| IndexNow | One request for 32 new reference pages and two changed discovery pages returned HTTP 200 after ownership and sitemap checks. Receipt does not establish indexing or traffic. |
+| MCPMarket | The public lookup showed no live listing; one free submission returned HTTP 409, already in queue. No duplicate was created and no payment was attempted. |
+| agentskill.sh | One submission returned HTTP 429 because the provider reached its GitHub API limit. No accepted submission or listing is claimed; no repeated request was made. |
+
+PulseMCP currently pauses new listings. Context7's existing library remains registered; its prior refresh eligibility interval was respected. Directory presence does not establish agent adoption, and operator checks send telemetry opt-outs. The historical fixed launch target below is unchanged.
+
+
 The following are publication receipts, not claims about traffic or adoption:
 
 At **2026-10-18 10:27:39 UTC**, the fixed-window counter reported **15 of 10,000 eligible API accesses**. The target remains unmet. This is a best-effort lower bound after the earlier storage interruption, not a count of distinct agents. The [0.3.7 verification receipt](../evidence/integration/v0.3.7/verification.json) records the deployed source, actual checks and their limits.
 
-Version 0.3.7 adds optional bounded lexical `query_mode=task` ranking and automatic exact-version findings in MCP/CLI inspection. Twenty maintainer-authored search cases improved from zero to twenty expected hits within the first three results; this is a limited regression benchmark, not representative semantic search quality. The published catalog still has **17 preparation recipes, 1,298 source references and three historical findings**. Five recipes have recorded task completion; every source reference remains `not_run`. Current recipe versions match **zero** published findings, so production reuse of a current-version finding and an external task-to-donation-to-reviewed-reuse loop remain unestablished. One initial CLI check used a compatibility fallback unexpectedly; a diagnostic and controlled follow-up passed, but its original cause remains unknown.
+Version 0.3.7 adds optional bounded lexical `query_mode=task` ranking and automatic exact-version findings in MCP/CLI inspection. Twenty maintainer-authored search cases improved from zero to twenty expected hits within the first three results; this is a limited regression benchmark, not representative semantic search quality. At that 0.3.7 observation, the catalog had **17 preparation recipes, 1,298 source references and three historical findings**. Five recipes have recorded task completion; every source reference remains `not_run`. Current recipe versions match **zero** published findings, so production reuse of a current-version finding and an external task-to-donation-to-reviewed-reuse loop remain unestablished. One initial CLI check used a compatibility fallback unexpectedly; a diagnostic and controlled follow-up passed, but its original cause remains unknown.
 
 | Channel | Evidence and state |
 | --- | --- |

@@ -2,6 +2,8 @@
 
 ## Community robustness and controlled reuse audit
 
+[Production verification](../evidence/integration/v0.4.2/production-verification.json) records merged source `72be1bb23ec8e7bfb994620d05a6531fb1c98fbd`, successful Pages/index activation, Worker 0.4.2, all three capacity triggers and matching live storage counters. Native public search returned the exact 13/9/10 new source sets; MCP retained real-platform source pins and the existing community finding. An actual scheduled GitHub archive run succeeded. Offline snapshots were rebuilt from the published generation and their catalog resource hashes match the served version manifest. No paid plan was selected.
+
 The [local verification receipt](../evidence/integration/v0.4.2/local-verification.json) records 355 Python passes with four Windows symlink-privilege skips, 102 API unit passes, 53 native workerd/D1 passes and 60 publication/sync passes. TypeScript and own Python compilation passed. These checks are local; hosted deployment is recorded separately.
 
 The 0.4.2 audit reproduced a capacity defect in native workerd/D1: an outer `INSERT OR IGNORE` suppressed a CHECK failure in an AFTER accounting trigger, allowing content insertion at the configured byte ceiling. Migration `0004_community_capacity_guards.sql` adds explicit BEFORE triggers with `RAISE(ABORT)` for item bytes/count, installation count and attestation count. Native tests cover simultaneous final-capacity submissions, atomic rollback and idempotent retries at capacity. Daily quota enforcement remains separate. The migration must be applied before the updated Worker is deployed.
