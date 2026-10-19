@@ -1,0 +1,137 @@
+{
+  "schema_version": "1",
+  "skill_id": "pythonrobotics-potential-field-planner",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "adapter_sha256": "b8900096ce00fdc889e5318d2153f1a4c00dbd8b03243c36df22420582f5238b",
+  "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+  "case_plan_sha256": "c24ab9464ecb9920d0edddd1122633a77003960bd66fe58dbde675d547d36842",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "windows"
+  ],
+  "python": "3.10.11",
+  "architecture": "amd64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T14:46:12.041268+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          0
+        ],
+        "obstacles": [
+          [
+            2.5,
+            2
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "fad7b37f6bed7b60d8129f9d292ebd5dfafa07633e0f235f1eb26ecde6540c45",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "collision_free_segments": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.344
+    },
+    {
+      "case": 1,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          1
+        ],
+        "obstacles": [
+          [
+            2.5,
+            2
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "2e63e14073f404c071913cf159b8f2203f623409d0a4592382e52d4d7bbbb5bf",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "collision_free_segments": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.375
+    },
+    {
+      "case": 2,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "goal": [
+          4,
+          -1
+        ],
+        "obstacles": [
+          [
+            2.5,
+            2
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "019548404aef75be49601ab16b5c1c064a294cdefb48f488ccb5d328a4b8ab02",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "collision_free_segments": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.219
+    }
+  ]
+}

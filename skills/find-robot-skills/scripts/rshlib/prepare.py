@@ -41,7 +41,7 @@ def download_archive(url, destination, expected_sha256):
                        next_action="verify_catalog_source_pin")
 
 
-def extract_archive(archive, destination, commit):
+def extract_archive(archive, destination, commit, selected_paths=None):
     """Extract regular files under one pinned root; reject links and traversal."""
     destination = Path(destination)
     total_size = 0
@@ -65,6 +65,8 @@ def extract_archive(archive, destination, commit):
                         raise RshError("unsafe_source_archive", "Source root must be a directory.")
                     continue
                 relative = pieces[1]
+                if selected_paths is not None and relative not in selected_paths:
+                    continue
                 target = destination / relative
                 if member.isdir():
                     target.mkdir(parents=True, exist_ok=True)
@@ -196,7 +198,11 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
                     raise RshError("source_hash_mismatch", "Local source archive does not match the reviewed SHA-256.")
             else:
                 download_archive(record["source"]["archive_url"], archive, record["source"]["archive_sha256"])
-            hashes = extract_archive(archive, extracted, record["source"]["commit"])
+            selection = record['preparation'].get('source_selection')
+            if selection not in (None, 'declared_paths'):
+                raise RshError('invalid_source_selection', 'Use the declared source extraction layout.')
+            hashes = extract_archive(archive, extracted, record["source"]["commit"],
+                set(record['source']['paths']) if selection == 'declared_paths' else None)
             for required in record["source"]["paths"]:
                 if not (extracted / required).is_file():
                     raise RshError("source_entrypoint_missing", "Pinned archive lacks a declared source path.", path=required)

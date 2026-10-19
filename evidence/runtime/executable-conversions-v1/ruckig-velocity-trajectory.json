@@ -1,0 +1,233 @@
+{
+  "schema_version": "1",
+  "skill_id": "ruckig-velocity-trajectory",
+  "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+  "adapter_sha256": "c115f4c1122046f0a358420009766d94cad8cd421cab9e985e90981b5a796446",
+  "source_guards_sha256": "580f76dc1151e210ebef63e2f8e087eff7072609228905a21cbedd9262fb4c0a",
+  "case_plan_sha256": "1c772b64b80af13def48da5b44d53601ae8a48f29ffb97c3269c105c8cf3d5e7",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "windows"
+  ],
+  "python": "3.10.11",
+  "architecture": "amd64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T14:44:29.265849+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1,
+          -0.5,
+          0.25
+        ],
+        "target_velocity": [
+          0.4,
+          -0.3,
+          0.2
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "f05616fc80ca2d429e2259cdc8bee09a67115f9b3fdfe1e1f367f148bb219e20",
+      "checks": {
+        "terminal_velocity": true,
+        "terminal_acceleration": true,
+        "acceleration_bounds": true,
+        "sampled_jerk_bounds": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.89
+    },
+    {
+      "case": 1,
+      "input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1.2,
+          -0.3,
+          0.45
+        ],
+        "target_velocity": [
+          0.5,
+          -0.3,
+          0.2
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "68c634de608e54eb5cfb61871c4be74c3f5096064fa651194e60ca0a3f8a8a69",
+      "checks": {
+        "terminal_velocity": true,
+        "terminal_acceleration": true,
+        "acceleration_bounds": true,
+        "sampled_jerk_bounds": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.829
+    },
+    {
+      "case": 2,
+      "input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          0.8,
+          -0.7,
+          0.04999999999999999
+        ],
+        "target_velocity": [
+          0.6000000000000001,
+          -0.3,
+          0.2
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "2d14764ac0bcf2dcca001184c1857c5126db9650b21b10b405389cba4541921f",
+      "checks": {
+        "terminal_velocity": true,
+        "terminal_acceleration": true,
+        "acceleration_bounds": true,
+        "sampled_jerk_bounds": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.859
+    }
+  ]
+}

@@ -3,70 +3,714 @@
   "$id": "https://hub.superfastrobotics.com/schemas/skill.schema.json",
   "title": "Robot Skill Hub canonical record v1",
   "type": "object",
-  "required": ["schema_version", "id", "name", "summary", "capabilities", "aliases", "source", "license", "compatibility", "observation", "requirements", "invocation", "completion", "preparation", "evidence", "maintenance", "contribution"],
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "summary",
+    "capabilities",
+    "aliases",
+    "source",
+    "license",
+    "compatibility",
+    "observation",
+    "requirements",
+    "invocation",
+    "completion",
+    "preparation",
+    "evidence",
+    "maintenance",
+    "contribution"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_version": {"const": "1"},
-    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-    "name": {"type": "string", "minLength": 1},
-    "summary": {"type": "string", "minLength": 1},
-    "capabilities": {"$ref": "#/$defs/stringArray"},
-    "aliases": {"$ref": "#/$defs/stringArray"},
+    "schema_version": {
+      "const": "1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capabilities": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "aliases": {
+      "$ref": "#/$defs/stringArray"
+    },
     "source": {
-      "type": "object", "required": ["repository", "commit", "paths", "archive_url", "archive_sha256", "authors"],
+      "type": "object",
+      "required": [
+        "repository",
+        "commit",
+        "paths",
+        "archive_url",
+        "archive_sha256",
+        "authors"
+      ],
       "properties": {
-        "repository": {"type": "string", "pattern": "^https://github.com/[^/]+/[^/]+$"},
-        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
-        "paths": {"$ref": "#/$defs/stringArray"},
-        "archive_url": {"type": "string", "pattern": "^https://codeload.github.com/"},
-        "archive_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-        "authors": {"$ref": "#/$defs/stringArray"},
-        "tag": {"type": "string"}, "archive_bytes": {"type": "integer", "minimum": 1},
-        "contributing_url": {"type": "string"}
-      }, "additionalProperties": false
+        "repository": {
+          "type": "string",
+          "pattern": "^https://github.com/[^/]+/[^/]+$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "paths": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "archive_url": {
+          "type": "string",
+          "pattern": "^https://codeload.github.com/"
+        },
+        "archive_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "authors": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "archive_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "contributing_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "license": {
-      "type": "object", "required": ["spdx", "url", "verified"],
-      "properties": {"spdx": {"type": "string"}, "url": {"type": "string"}, "verified": {"type": "boolean"}, "scope": {"type": "string"}}, "additionalProperties": false
+      "type": "object",
+      "required": [
+        "spdx",
+        "url",
+        "verified"
+      ],
+      "properties": {
+        "spdx": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "compatibility": {
-      "type": "array", "minItems": 1,
-      "items": {"type": "object", "required": ["runtime", "runtime_version", "robot", "controller", "observation", "os", "status"],
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "runtime",
+          "runtime_version",
+          "robot",
+          "controller",
+          "observation",
+          "os",
+          "status"
+        ],
         "properties": {
-          "runtime": {"type": "string"}, "runtime_version": {"type": "string"}, "robot": {"type": "string"},
-          "controller": {"type": "string"}, "observation": {"type": "string"}, "os": {"type": "string"},
-          "python": {"type": "string"}, "architecture": {"type": "string"},
-          "status": {"enum": ["unknown", "source_reviewed", "contributor_reported", "hub_verified"]}
-        }, "additionalProperties": false}
+          "runtime": {
+            "type": "string"
+          },
+          "runtime_version": {
+            "type": "string"
+          },
+          "robot": {
+            "type": "string"
+          },
+          "controller": {
+            "type": "string"
+          },
+          "observation": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          },
+          "python": {
+            "type": "string"
+          },
+          "architecture": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "unknown",
+              "source_reviewed",
+              "contributor_reported",
+              "hub_verified"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
     },
-    "observation": {"type": "object", "required": ["required", "privileged_state", "description"], "properties": {"required": {"$ref": "#/$defs/stringArray"}, "privileged_state": {"type": "boolean"}, "description": {"type": "string"}}, "additionalProperties": false},
-    "requirements": {"type": "object", "required": ["python", "packages", "hardware", "rendering", "api_keys", "network", "dependency_lock"], "properties": {"python": {"type": "string"}, "packages": {"$ref": "#/$defs/stringArray"}, "hardware": {"$ref": "#/$defs/stringArray"}, "rendering": {"type": "string"}, "api_keys": {"type": "array", "items": {"type": "string"}}, "network": {"$ref": "#/$defs/stringArray"}, "dependency_lock": {"type": "string"}}, "additionalProperties": false},
-    "invocation": {"type": "object", "required": ["entrypoint", "argv", "inputs", "outputs", "example"], "properties": {"entrypoint": {"type": "string"}, "argv": {"$ref": "#/$defs/stringArray"}, "inputs": {"type": "object"}, "outputs": {"type": "object"}, "example": {"type": "string"}}, "additionalProperties": false},
-    "completion": {"type": "object", "required": ["success_condition", "timeout_seconds", "failure_modes", "stop_condition"], "properties": {"success_condition": {"type": "string"}, "timeout_seconds": {"type": "integer", "minimum": 1}, "failure_modes": {"$ref": "#/$defs/stringArray"}, "stop_condition": {"type": "string"}}, "additionalProperties": false},
-    "preparation": {"type": "object", "required": ["recipe_path", "requirements_file", "install_argv", "execution_separate"], "properties": {"recipe_path": {"type": "string"}, "requirements_file": {"type": "string"}, "install_argv": {"$ref": "#/$defs/stringArray"}, "execution_separate": {"const": true}, "files": {"type": "object", "additionalProperties": {"type": "string"}}}, "additionalProperties": false},
-    "evidence": {"type": "object", "required": ["level", "verified_by", "date", "environment", "commands", "result", "artifacts", "runtime_verification", "contributor_reported", "hub_verification"], "properties": {"level": {"enum": ["not_run", "source_reviewed", "install_verified", "import_verified", "task_complete", "contributor_reported"]}, "verified_by": {"type": "string"}, "date": {"type": "string"}, "environment": {"type": "object"}, "commands": {"$ref": "#/$defs/stringArray"}, "result": {"type": "string"}, "artifacts": {"type": "array", "items": {"type": "string"}}, "runtime_verification": {"enum": ["not_run", "install_verified", "import_verified", "task_complete"]}, "contributor_reported": {"type": ["object", "null"]}, "hub_verification": {"type": "object", "properties": {"last_task_attempt": {"$ref": "#/$defs/lastTaskAttempt"}}}}, "additionalProperties": false},
-    "maintenance": {"type": "object", "required": ["record_version", "last_checked", "upstream_status"], "properties": {"record_version": {"type": "string", "minLength": 1}, "last_checked": {"type": "string"}, "upstream_status": {"type": "string"}}, "additionalProperties": false},
-    "contribution": {"type": "object", "required": ["allowed_paths", "instructions"], "properties": {"allowed_paths": {"$ref": "#/$defs/stringArray"}, "instructions": {"type": "string"}}, "additionalProperties": false}
+    "observation": {
+      "type": "object",
+      "required": [
+        "required",
+        "privileged_state",
+        "description"
+      ],
+      "properties": {
+        "required": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "privileged_state": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "type": "object",
+      "required": [
+        "python",
+        "packages",
+        "hardware",
+        "rendering",
+        "api_keys",
+        "network",
+        "dependency_lock"
+      ],
+      "properties": {
+        "python": {
+          "type": "string"
+        },
+        "packages": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "hardware": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "rendering": {
+          "type": "string"
+        },
+        "api_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "network": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "dependency_lock": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "invocation": {
+      "type": "object",
+      "required": [
+        "entrypoint",
+        "argv",
+        "inputs",
+        "outputs",
+        "example"
+      ],
+      "properties": {
+        "entrypoint": {
+          "type": "string"
+        },
+        "argv": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "inputs": {
+          "type": "object"
+        },
+        "outputs": {
+          "type": "object"
+        },
+        "example": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "completion": {
+      "type": "object",
+      "required": [
+        "success_condition",
+        "timeout_seconds",
+        "failure_modes",
+        "stop_condition"
+      ],
+      "properties": {
+        "success_condition": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "failure_modes": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "stop_condition": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preparation": {
+      "type": "object",
+      "required": [
+        "recipe_path",
+        "requirements_file",
+        "install_argv",
+        "execution_separate"
+      ],
+      "properties": {
+        "recipe_path": {
+          "type": "string"
+        },
+        "requirements_file": {
+          "type": "string"
+        },
+        "install_argv": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "execution_separate": {
+          "const": true
+        },
+        "files": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "source_selection": {
+          "type": "string",
+          "enum": [
+            "declared_paths"
+          ],
+          "description": "Extract only source.paths from the exact checksum-verified archive; default keeps the complete regular-file layout."
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "level",
+        "verified_by",
+        "date",
+        "environment",
+        "commands",
+        "result",
+        "artifacts",
+        "runtime_verification",
+        "contributor_reported",
+        "hub_verification"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "not_run",
+            "source_reviewed",
+            "install_verified",
+            "import_verified",
+            "task_complete",
+            "contributor_reported"
+          ]
+        },
+        "verified_by": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "commands": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "result": {
+          "type": "string"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtime_verification": {
+          "enum": [
+            "not_run",
+            "install_verified",
+            "import_verified",
+            "task_complete"
+          ]
+        },
+        "contributor_reported": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "hub_verification": {
+          "type": "object",
+          "properties": {
+            "last_task_attempt": {
+              "$ref": "#/$defs/lastTaskAttempt"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "maintenance": {
+      "type": "object",
+      "required": [
+        "record_version",
+        "last_checked",
+        "upstream_status"
+      ],
+      "properties": {
+        "record_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "last_checked": {
+          "type": "string"
+        },
+        "upstream_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "contribution": {
+      "type": "object",
+      "required": [
+        "allowed_paths",
+        "instructions"
+      ],
+      "properties": {
+        "allowed_paths": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "instructions": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "interface": {
+      "$ref": "#/$defs/executionInterface"
+    }
   },
   "$defs": {
-    "stringArray": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "stringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
     "lastTaskAttempt": {
       "type": "object",
       "description": "A task outcome separate from positive evidence stages. Unrecognized bounded statuses remain data; the publisher and CLI validate the complete recognized failed-attempt contract.",
-      "required": ["status"],
+      "required": [
+        "status"
+      ],
       "properties": {
-        "status": {"type": "string", "minLength": 1, "maxLength": 80}, "execution_performed": {"type": "boolean"}, "success": {"type": "boolean"},
-        "reason_code": {"type": "string", "minLength": 1, "maxLength": 120},
-        "seed": {"type": "integer", "minimum": 0}, "elapsed_steps": {"type": "integer", "minimum": 0},
-        "terminated": {"type": "boolean"}, "truncated": {"type": "boolean"},
-        "exit_code": {"type": "integer"}, "timed_out": {"type": "boolean"},
-        "workflow_run_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
-        "verified_hub_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-        "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-        "record_version": {"type": "string", "minLength": 1, "maxLength": 120},
+        "status": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "execution_performed": {
+          "type": "boolean"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "reason_code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "elapsed_steps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "terminated": {
+          "type": "boolean"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "exit_code": {
+          "type": "integer"
+        },
+        "timed_out": {
+          "type": "boolean"
+        },
+        "workflow_run_id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "verified_hub_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "source_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "record_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
         "environment": {
           "type": "object",
-          "additionalProperties": {"type": "string", "minLength": 1}
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "executionInterface": {
+      "description": "Language-independent operation contract. Abstraction level is independent of runtime evidence. Input/output schemas use the documented bounded data subset; local tooling additionally validates schema structure and actual handoffs.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "kind",
+        "abstraction_level",
+        "execution_domain",
+        "language",
+        "input_transport",
+        "output_transport",
+        "output_selector",
+        "conventions",
+        "input_schema",
+        "output_schema",
+        "preconditions",
+        "postconditions",
+        "failure_codes",
+        "composition"
+      ],
+      "properties": {
+        "version": {
+          "const": "1"
+        },
+        "kind": {
+          "enum": [
+            "algorithm",
+            "controller",
+            "sensing",
+            "trajectory_generator",
+            "task",
+            "workflow"
+          ]
+        },
+        "abstraction_level": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "execution_domain": {
+          "enum": [
+            "computation",
+            "simulation",
+            "hardware"
+          ]
+        },
+        "language": {
+          "enum": [
+            "python",
+            "rust",
+            "cpp",
+            "other"
+          ]
+        },
+        "input_transport": {
+          "enum": [
+            "json_file_or_inline",
+            "cli_arguments"
+          ]
+        },
+        "output_transport": {
+          "const": "json_stdout"
+        },
+        "output_selector": {
+          "enum": [
+            "root",
+            "outputs"
+          ]
+        },
+        "conventions": {
+          "type": "object",
+          "required": [
+            "linear_unit",
+            "angular_unit",
+            "time_unit",
+            "coordinate_frame",
+            "joint_order",
+            "quaternion_order"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "linear_unit": {
+              "const": "m"
+            },
+            "angular_unit": {
+              "const": "rad"
+            },
+            "time_unit": {
+              "const": "s"
+            },
+            "coordinate_frame": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1500
+            },
+            "joint_order": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1500
+            },
+            "quaternion_order": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1500
+            }
+          }
+        },
+        "input_schema": {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "required",
+            "additionalProperties"
+          ]
+        },
+        "output_schema": {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "required",
+            "additionalProperties"
+          ]
+        },
+        "preconditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          }
+        },
+        "postconditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          }
+        },
+        "failure_codes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          }
+        },
+        "origin_reference_ids": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,79}$"
+          }
+        },
+        "origin_relationship": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1500
+        },
+        "argument_map": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1500
+          }
+        },
+        "composition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "depends_on",
+            "automatic_frame_conversion",
+            "automatic_hardware_execution"
+          ],
+          "properties": {
+            "depends_on": {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,79}$"
+              }
+            },
+            "automatic_frame_conversion": {
+              "const": false
+            },
+            "automatic_hardware_execution": {
+              "const": false
+            }
+          }
         }
       }
     }

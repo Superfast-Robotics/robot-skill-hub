@@ -1,0 +1,209 @@
+{
+  "schema_version": "1",
+  "skill_id": "pythonrobotics-ukf-update",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "adapter_sha256": "41686415850dd70c9089b7639eaa4296caacad3f9cf4f10979c48168c5b062ed",
+  "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+  "case_plan_sha256": "4faa696cf6ea7a34af20b1eeea7f6571ca5048f3ed5c68ec7dd252987c665868",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "windows"
+  ],
+  "python": "3.10.11",
+  "architecture": "amd64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T14:45:51.906292+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.15,
+          0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "a73ea7ce62e87345c91f462a29cf3d7391cf43e585f3f26c73116f4cfe4f91d0",
+      "checks": {
+        "finite_state": true,
+        "symmetric_covariance": true,
+        "positive_semidefinite_covariance": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.406
+    },
+    {
+      "case": 1,
+      "input": {
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.05,
+          -0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "d94c47ea8dc332dcc3bcc698907a280be7459dc364124f447df1c67608f451d2",
+      "checks": {
+        "finite_state": true,
+        "symmetric_covariance": true,
+        "positive_semidefinite_covariance": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.359
+    },
+    {
+      "case": 2,
+      "input": {
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.2,
+          0.1
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "dfffcafbfcb2d30385f564d072e0a745f2f680f114f23f6072f6adc4ac8292f6",
+      "checks": {
+        "finite_state": true,
+        "symmetric_covariance": true,
+        "positive_semidefinite_covariance": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.36
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "1",
+  "skill_id": "pythonrobotics-dwa-control",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "adapter_sha256": "ff5c978c32b5281f6aaa4a9806358ee6369ca40838af163c5d8068030a553378",
+  "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+  "case_plan_sha256": "1b6056ce10a7abeb4e535a4875198018009523cc7faf55e8e7d09a2a1416df99",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "windows"
+  ],
+  "python": "3.10.11",
+  "architecture": "amd64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T14:45:36.082797+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "state": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          0
+        ],
+        "obstacles": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            -3
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "4581e5895e6b89513f7ed7f9e36e36b5861f5147e53def2b89f89a480ece4c9b",
+      "checks": {
+        "velocity_bounds": true,
+        "collision_free_samples": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.625
+    },
+    {
+      "case": 1,
+      "input": {
+        "state": [
+          0,
+          0,
+          0.2,
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          0
+        ],
+        "obstacles": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            -3
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "e7fbeb2d08773dbab6ba503636130c4a5db04d1dbbf6aad42f67497c44f92e0f",
+      "checks": {
+        "velocity_bounds": true,
+        "collision_free_samples": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.64
+    },
+    {
+      "case": 2,
+      "input": {
+        "state": [
+          0,
+          0,
+          -0.2,
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          0
+        ],
+        "obstacles": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            -3
+          ]
+        ],
+        "robot_radius": 0.5
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "dafeae6aa1f180611b9eea9c4a7bee531cb38377da7fb9a4bee7e04777b71ec5",
+      "checks": {
+        "velocity_bounds": true,
+        "collision_free_samples": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 1.454
+    }
+  ]
+}

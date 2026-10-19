@@ -1,0 +1,479 @@
+{
+  "schema_version": "1",
+  "id": "pythonrobotics-bidirectional-astar-planner",
+  "name": "Bidirectional A* collision-checked grid path",
+  "summary": "Bidirectional A* collision-checked grid path. Parameterized bounded JSON adapter; numerical operation, no hardware execution.",
+  "capabilities": [
+    "algorithm",
+    "grid",
+    "executable-json",
+    "source-adaptation"
+  ],
+  "aliases": [
+    "grid",
+    "Bidirectional A* collision-checked grid path"
+  ],
+  "source": {
+    "repository": "https://github.com/AtsushiSakai/PythonRobotics",
+    "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+    "paths": [
+      "ArmNavigation/n_joint_arm_to_point_control/NLinkArm.py",
+      "ArmNavigation/n_joint_arm_to_point_control/n_joint_arm_to_point_control.py",
+      "InvertedPendulum/inverted_pendulum_lqr_control.py",
+      "LICENSE",
+      "Localization/extended_kalman_filter/ekf_with_velocity_correction.py",
+      "Localization/extended_kalman_filter/extended_kalman_filter.py",
+      "Localization/unscented_kalman_filter/unscented_kalman_filter.py",
+      "PathPlanning/AStar/a_star.py",
+      "PathPlanning/BSplinePath/bspline_path.py",
+      "PathPlanning/BezierPath/bezier_path.py",
+      "PathPlanning/BidirectionalAStar/bidirectional_a_star.py",
+      "PathPlanning/BidirectionalBreadthFirstSearch/bidirectional_breadth_first_search.py",
+      "PathPlanning/BreadthFirstSearch/breadth_first_search.py",
+      "PathPlanning/Catmull_RomSplinePath/catmull_rom_spline_path.py",
+      "PathPlanning/CubicSpline/cubic_spline_planner.py",
+      "PathPlanning/DepthFirstSearch/depth_first_search.py",
+      "PathPlanning/Dijkstra/dijkstra.py",
+      "PathPlanning/DubinsPath/dubins_path_planner.py",
+      "PathPlanning/DynamicWindowApproach/dynamic_window_approach.py",
+      "PathPlanning/GreedyBestFirstSearch/greedy_best_first_search.py",
+      "PathPlanning/PotentialFieldPlanning/potential_field_planning.py",
+      "PathPlanning/ProbabilisticRoadMap/probabilistic_road_map.py",
+      "PathPlanning/QuinticPolynomialsPlanner/quintic_polynomials_planner.py",
+      "PathPlanning/RRT/rrt.py",
+      "PathPlanning/RRT/rrt_with_pathsmoothing.py",
+      "PathPlanning/RRTStar/rrt_star.py",
+      "PathPlanning/ReedsSheppPath/reeds_shepp_path_planning.py",
+      "PathTracking/pure_pursuit/pure_pursuit.py",
+      "PathTracking/stanley_control/stanley_control.py",
+      "utils/__init__.py",
+      "utils/angle.py",
+      "utils/plot.py",
+      "ArmNavigation/n_joint_arm_to_point_control/__init__.py",
+      "ArmNavigation/__init__.py",
+      "__init__.py",
+      "Localization/__init__.py",
+      "PathPlanning/__init__.py",
+      "PathPlanning/CubicSpline/__init__.py",
+      "PathPlanning/DubinsPath/__init__.py",
+      "PathPlanning/RRT/__init__.py",
+      "PathPlanning/RRTStar/__init__.py",
+      "PathTracking/__init__.py"
+    ],
+    "archive_url": "https://codeload.github.com/AtsushiSakai/PythonRobotics/tar.gz/cdd0cc888802b584c2d654ca85e3c5460973487d",
+    "archive_sha256": "6d3ccf43be4ae770a9e8dffd463c2561665847df5b7ddf693b01130004dbcee5",
+    "archive_bytes": 12311789,
+    "authors": [
+      "Atsushi Sakai and PythonRobotics contributors"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/AtsushiSakai/PythonRobotics/blob/cdd0cc888802b584c2d654ca85e3c5460973487d/LICENSE",
+    "verified": true,
+    "scope": "Selected PythonRobotics algorithm demonstration source under the pinned MIT license text, Copyright (c) 2016 - now Atsushi Sakai and other contributors. Preserve repository license and each selected file's author notices. This is source-text scope only; dependencies, mathematical references, generated plots and any external assets retain separate terms. GitHub's automated classifier reports NOASSERTION; the MIT identity here comes from the exact reviewed LICENSE bytes, not that classifier."
+  },
+  "compatibility": [
+    {
+      "runtime": "pythonrobotics",
+      "runtime_version": "cdd0cc888802",
+      "robot": "mathematical-model",
+      "controller": "json-contract-v1",
+      "observation": "explicit-json-input",
+      "os": "windows",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    },
+    {
+      "runtime": "pythonrobotics",
+      "runtime_version": "cdd0cc888802",
+      "robot": "mathematical-model",
+      "controller": "json-contract-v1",
+      "observation": "explicit-json-input",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "explicit_json_task_input"
+    ],
+    "privileged_state": false,
+    "description": "All inputs and outputs follow interface v1. Simulation adapters query exact synthetic simulator state; no perception or physical sensor compatibility."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "numpy==1.26.4",
+      "scipy==1.13.1",
+      "matplotlib==3.9.4"
+    ],
+    "hardware": [
+      "x86_64 CPU; no GPU or robot required"
+    ],
+    "rendering": "No display. Matplotlib Agg for numerical imports; PyBullet DIRECT for simulation.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive once during preparation",
+      "PyPI for declared dependency installation"
+    ],
+    "dependency_lock": "Direct versions are pinned in requirements.txt; prepare captures the complete resolved pip freeze. No claim of a cross-platform transitive lock."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "start": [
+        2,
+        2
+      ],
+      "goal": [
+        18,
+        18
+      ],
+      "bounds": [
+        0,
+        20
+      ],
+      "obstacles": [
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "robot_radius": 0.3
+    },
+    "outputs": {
+      "format": "single JSON object on stdout",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "path_xy",
+          "length_m"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path_xy": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2048,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number",
+                "minimum": -100.0,
+                "maximum": 100.0
+              }
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "x-order": [
+              "x",
+              "y"
+            ],
+            "description": "path_xy; units=m; frame=planar_map_xy; component order=x,y"
+          },
+          "length_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000,
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "description": "length_m; units=m; frame=planar_map_xy"
+          }
+        }
+      }
+    },
+    "example": "After prepare, replace --example in next_command with --input /absolute/path/task.json; use --describe for the exact contract without execution."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "algorithm",
+    "abstraction_level": 0,
+    "execution_domain": "computation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "planar_map_xy",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "start",
+        "goal",
+        "bounds",
+        "obstacles",
+        "robot_radius"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 39
+          },
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "x-order": [
+            "x",
+            "y"
+          ],
+          "description": "start; units=m; frame=planar_map_xy; component order=x,y"
+        },
+        "goal": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 39
+          },
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "x-order": [
+            "x",
+            "y"
+          ],
+          "description": "goal; units=m; frame=planar_map_xy; component order=x,y"
+        },
+        "bounds": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "description": "bounds; units=m; frame=planar_map_xy"
+        },
+        "obstacles": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 200,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 40
+            }
+          },
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "x-order": [
+            "x",
+            "y"
+          ],
+          "description": "obstacles; units=m; frame=planar_map_xy; component order=x,y"
+        },
+        "robot_radius": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 0.6,
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "description": "robot_radius; units=m; frame=planar_map_xy"
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "path_xy",
+        "length_m"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path_xy": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2048,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -100.0,
+              "maximum": 100.0
+            }
+          },
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "x-order": [
+            "x",
+            "y"
+          ],
+          "description": "path_xy; units=m; frame=planar_map_xy; component order=x,y"
+        },
+        "length_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100000,
+          "x-unit": "m",
+          "x-frame": "planar_map_xy",
+          "description": "length_m; units=m; frame=planar_map_xy"
+        }
+      }
+    },
+    "preconditions": [
+      "Inputs use the declared units and frame; no implicit transforms.",
+      "This exact numerical/simulation model is not a physical robot configuration."
+    ],
+    "postconditions": [
+      "All declared checks must pass and all outputs must be finite.",
+      "Success applies only to this operation and model, not higher-level task completion."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "output_selector": "outputs",
+    "origin_reference_ids": [],
+    "origin_relationship": "adapted_from; inspect declared model and inputs, not original robot compatibility"
+  },
+  "completion": {
+    "success_condition": "Exit 0, status=task_complete, success=true, finite outputs satisfying interface.output_schema and all declared numerical/model checks. This is not a physical robot or general task-success claim.",
+    "timeout_seconds": 30,
+    "failure_modes": [
+      "Invalid or oversized JSON",
+      "Source checksum mismatch",
+      "Unavailable pinned dependency",
+      "No valid path or postcondition failure",
+      "Execution exceeding the declared bounded algorithm budget"
+    ],
+    "stop_condition": "Caller must terminate the separate adapter process after 30 seconds; adapters bound iterations/scene steps and close simulation clients."
+  },
+  "preparation": {
+    "recipe_path": "recipes/pythonrobotics-bidirectional-astar-planner",
+    "requirements_file": "recipes/pythonrobotics-bidirectional-astar-planner/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub maintainer runtime harness",
+    "date": "2026-10-19",
+    "environment": {
+      "scope": "computation",
+      "platforms": [
+        "windows"
+      ],
+      "physical_robot": false
+    },
+    "commands": [
+      "python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend pythonrobotics"
+    ],
+    "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
+    "artifacts": [
+      "evidence/runtime/executable-conversions-v1/pythonrobotics-bidirectional-astar-planner.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "scope": "computation",
+      "case_count": 3,
+      "source_unchanged": true
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-19",
+    "upstream_status": "immutable_source_and_explicit_dependency_versions"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/pythonrobotics-bidirectional-astar-planner.json",
+      "docs/recipes/pythonrobotics-bidirectional-astar-planner.md",
+      "recipes/pythonrobotics-bidirectional-astar-planner/run.py",
+      "recipes/pythonrobotics-bidirectional-astar-planner/requirements.txt"
+    ],
+    "instructions": "Preserve upstream origin/license and interface semantics. Edit the finite manifest/templates and regenerate; record new exact-byte evidence for behavior changes."
+  }
+}

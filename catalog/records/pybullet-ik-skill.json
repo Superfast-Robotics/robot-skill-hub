@@ -1,0 +1,348 @@
+{
+  "schema_version": "1",
+  "id": "pybullet-ik-skill",
+  "name": "Inverse kinematics in headless procedural simulation",
+  "summary": "Inverse kinematics in headless procedural simulation. Parameterized bounded JSON adapter; synthetic DIRECT simulation, no physical robot.",
+  "capabilities": [
+    "algorithm",
+    "ik",
+    "executable-json",
+    "source-adaptation"
+  ],
+  "aliases": [
+    "ik",
+    "Inverse kinematics in headless procedural simulation"
+  ],
+  "source": {
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+    "paths": [
+      "LICENSE.txt",
+      "examples/pybullet/examples/inverse_kinematics.py"
+    ],
+    "archive_url": "https://codeload.github.com/bulletphysics/bullet3/tar.gz/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+    "archive_sha256": "f7c486f10b9f645d0577249d02855e076e8368babaa3d31ced6095e7162baee9",
+    "archive_bytes": 139813655,
+    "authors": [
+      "Erwin Coumans and Bullet Physics contributors"
+    ]
+  },
+  "license": {
+    "spdx": "Zlib",
+    "url": "https://github.com/bulletphysics/bullet3/blob/2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5/LICENSE.txt",
+    "verified": true,
+    "scope": "Example source code. Robot models, textures, logs, and third-party assets retain their own upstream licenses."
+  },
+  "compatibility": [
+    {
+      "runtime": "pybullet",
+      "runtime_version": "3.2.7",
+      "robot": "synthetic-seven-axis-or-procedural-scene",
+      "controller": "json-contract-v1",
+      "observation": "explicit-json-input",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "explicit_json_task_input"
+    ],
+    "privileged_state": true,
+    "description": "All inputs and outputs follow interface v1. Simulation adapters query exact synthetic simulator state; no perception or physical sensor compatibility."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "numpy==1.26.4",
+      "pybullet==3.2.7"
+    ],
+    "hardware": [
+      "x86_64 CPU; no GPU or robot required"
+    ],
+    "rendering": "No display. Matplotlib Agg for numerical imports; PyBullet DIRECT for simulation.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive once during preparation",
+      "PyPI for declared dependency installation"
+    ],
+    "dependency_lock": "Direct versions are pinned in requirements.txt; prepare captures the complete resolved pip freeze. No claim of a cross-platform transitive lock."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "joint_angles": [
+        0.1,
+        -0.3,
+        0.4,
+        0.2,
+        -0.2,
+        0.1,
+        0.1
+      ],
+      "target_xyz": [
+        0.3,
+        0.2,
+        1.1
+      ]
+    },
+    "outputs": {
+      "format": "single JSON object on stdout",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "joint_angles_rad",
+          "end_effector_xyz_m",
+          "position_error_m"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "joint_angles_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "x-unit": "rad",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "description": "joint_angles_rad; units=rad; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+          },
+          "end_effector_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ],
+            "description": "end_effector_xyz_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin; component order=x,y,z"
+          },
+          "position_error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "description": "position_error_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+          }
+        }
+      }
+    },
+    "example": "After prepare, replace --example in next_command with --input /absolute/path/task.json; use --describe for the exact contract without execution."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "algorithm",
+    "abstraction_level": 0,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+      "joint_order": "input_array_order",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "joint_angles",
+        "target_xyz"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "joint_angles": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -3,
+            "maximum": 3
+          },
+          "x-unit": "rad",
+          "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+          "description": "joint_angles; units=rad; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+        },
+        "target_xyz": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -2,
+            "maximum": 2
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ],
+          "description": "target_xyz; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin; component order=x,y,z"
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "joint_angles_rad",
+        "end_effector_xyz_m",
+        "position_error_m"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "joint_angles_rad": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100
+          },
+          "x-unit": "rad",
+          "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+          "description": "joint_angles_rad; units=rad; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+        },
+        "end_effector_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ],
+          "description": "end_effector_xyz_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin; component order=x,y,z"
+        },
+        "position_error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+          "description": "position_error_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+        }
+      }
+    },
+    "preconditions": [
+      "PyBullet DIRECT CPU simulation with procedural shapes and a synthetic seven-axis arm where applicable; no downloaded models.",
+      "This is an adaptation of the referenced API example, not verification of its original robot model or hardware.",
+      "Simulation steps are fixed and bounded; force/torque order is Fx,Fy,Fz,Mx,My,Mz in the joint sensor frame."
+    ],
+    "postconditions": [
+      "All declared checks must pass and all outputs must be finite.",
+      "Success applies only to this operation and model, not higher-level task completion."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "output_selector": "outputs",
+    "origin_reference_ids": [
+      "pybullet-inverse-kinematics"
+    ],
+    "origin_relationship": "adapted_from; inspect declared model and inputs, not original robot compatibility"
+  },
+  "completion": {
+    "success_condition": "Exit 0, status=task_complete, success=true, finite outputs satisfying interface.output_schema and all declared numerical/model checks. This is not a physical robot or general task-success claim.",
+    "timeout_seconds": 30,
+    "failure_modes": [
+      "Invalid or oversized JSON",
+      "Source checksum mismatch",
+      "Unavailable pinned dependency",
+      "No valid path or postcondition failure",
+      "Execution exceeding the declared bounded algorithm budget"
+    ],
+    "stop_condition": "Caller must terminate the separate adapter process after 30 seconds; adapters bound iterations/scene steps and close simulation clients."
+  },
+  "preparation": {
+    "recipe_path": "recipes/pybullet-ik-skill",
+    "requirements_file": "recipes/pybullet-ik-skill/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-19",
+    "environment": {
+      "scope": "simulation",
+      "platforms": [],
+      "physical_robot": false
+    },
+    "commands": [
+      "python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend pybullet"
+    ],
+    "result": "Source and interface reviewed; runtime cases have not been recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "scope": "simulation",
+      "case_count": 0,
+      "source_unchanged": true
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-19",
+    "upstream_status": "immutable_source_and_explicit_dependency_versions"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/pybullet-ik-skill.json",
+      "docs/recipes/pybullet-ik-skill.md",
+      "recipes/pybullet-ik-skill/run.py",
+      "recipes/pybullet-ik-skill/requirements.txt"
+    ],
+    "instructions": "Preserve upstream origin/license and interface semantics. Edit the finite manifest/templates and regenerate; record new exact-byte evidence for behavior changes."
+  }
+}

@@ -8,7 +8,7 @@ import { communityForSelection } from './community.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.4.4';
+const VERSION = '0.5.0';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -40,7 +40,9 @@ function searchRecovery(input: Row, commit?: string, tooBroad = false) {
 
 function inspectionLinks(rows: Row[], commit: string) {
   return rows.map(row => ({ ...row, inspect_url: API + '/v1/skills/' + encodeURIComponent(row.id) + '?' + new URLSearchParams({
-    record_version: row.record_version, hub_commit: commit, include: 'experience' }) }));
+    record_version: row.record_version, hub_commit: commit, include: 'experience' }),
+    ...(row.prepared_adaptations ? { prepared_adaptations: row.prepared_adaptations.map((entry: Row) => ({ ...entry,
+      inspect_url: API + '/v1/skills/' + encodeURIComponent(entry.id) + '?' + new URLSearchParams({record_version:entry.record_version,hub_commit:commit,include:'experience'}) })) } : {}) }));
 }
 
 async function boundedBytes(response: Response, maximum: number): Promise<Uint8Array> {
@@ -256,7 +258,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         if (Object.keys(args).some(k => !['skill_id', 'record_version', 'environment'].includes(k)) || typeof args.skill_id !== 'string' || (args.record_version !== undefined && typeof args.record_version !== 'string')) fail(400, 'invalid_arguments', 'Provide skill_id, optional record_version and explicit environment only.');
         const environment = findingEnvironment(args.environment), index = await snapshot(env);
         const { record, row } = await inspect(index, args.skill_id, args.record_version);
-        value = { schema_version: '1', interpretation: 'data_only', record, findings: await selectionFindings(index, record, row, environment), community: await communityForSelection(env, row, environment), execution_performed: false };
+        value = { schema_version: '1', interpretation: 'data_only', record, findings: await selectionFindings(index, record, row, environment), community: await communityForSelection(env, row, environment),
+          ...(row.prepared_adaptations ? {prepared_adaptations:inspectionLinks([row],index.hub_commit)[0].prepared_adaptations} : {}), execution_performed: false };
       } else { if (Object.keys(args).length) fail(400, 'invalid_arguments', 'This tool takes no arguments.'); value = await describe(env, true); }
       await measure(request, env, 'mcp', ctx, true);
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value, isError: false });
@@ -318,6 +321,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         }
         const { record, row } = await inspect(index, id, url.searchParams.get('record_version') || undefined);
         response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record,
+          ...(row.prepared_adaptations ? {prepared_adaptations:inspectionLinks([row],index.hub_commit)[0].prepared_adaptations} : {}),
           ...(include === 'experience' ? { findings: await selectionFindings(index, record, row, environment), community: await communityForSelection(env, row, environment) } : {}), execution_performed: false });
         if (request.method === 'GET') await measure(request, env, 'inspect', ctx);
       }

@@ -55,11 +55,13 @@ def _record_catalog(value, skill_id, origin, fetched_at=None):
     else:
         _reference(record)
     coverage = {"complete": False, "scope": "selected_record", "included_records": 1}
+    adaptations=value.get('prepared_adaptations',[])
+    _need(isinstance(adaptations,list) and len(adaptations)<=16 and all(isinstance(a,dict) and IDENT.fullmatch(str(a.get('id',''))) and isinstance(a.get('record_version'),str) and len(a['record_version'])<=120 and a.get('source_commit')==(record.get('source',{}).get('commit')) for a in adaptations),'Invalid prepared adaptation identity.')
     return {"schema_version": "1", "hub_commit": hub, "records": [record] if recipe else [], "coverage": coverage,
             "references": {"schema_version": "1", "hub_commit": hub, "records": [] if recipe else [record], "coverage": coverage},
             "catalog_origin": origin, "references_origin": origin,
             "references_discovery": {"origin": origin, "publication_hub_commit": hub, "fetched_at": fetched_at, "fallback_reasons": []},
-            "discovery_scope": "selected_record"}
+            "discovery_scope": "selected_record", **({'prepared_adaptations':{skill_id:adaptations}} if adaptations else {})}
 
 
 def selected_catalog(skill_id, *, offline=False, refresh=False, persist=True):

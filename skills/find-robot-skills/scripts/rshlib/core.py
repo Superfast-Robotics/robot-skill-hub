@@ -62,6 +62,12 @@ def require_url(url, *, local_http=False):
 def validate_record(record):
     if not isinstance(record, dict):
         raise RshError("invalid_record", "Catalog record must be an object.")
+    if 'interface' in record:
+        from .interfaces import validate_interface
+        try:
+            validate_interface(record['interface'])
+        except (ValueError, TypeError, KeyError) as error:
+            raise RshError('invalid_execution_interface', 'The executable interface contract is invalid.') from error
     for key in ("id", "name", "summary", "capabilities", "source", "license", "compatibility",
                 "requirements", "invocation", "preparation", "evidence", "maintenance"):
         if key not in record:
@@ -105,6 +111,8 @@ def validate_record(record):
     if not isinstance(install, list) or not all(isinstance(x, str) for x in install):
         raise RshError("invalid_preparation", "Installation argv must be a string array.")
     commands = record["preparation"].get("install_commands", [])
+    if record['preparation'].get('source_selection') not in (None, 'declared_paths'):
+        raise RshError('invalid_source_selection', 'Source extraction must use the declared layout.')
     if not isinstance(commands, list) or any(not isinstance(command, list) or not command or
             not all(isinstance(argument, str) for argument in command) for command in commands):
         raise RshError("invalid_preparation", "Installation commands must be arrays of argument arrays.")
@@ -443,11 +451,22 @@ def reference_acquisition(catalog, reference):
     return {"source_acquisition": plan, "fetch_source_args": plan["fetch_args"]}
 
 
+def prepared_adaptations(catalog, reference):
+    found=list(catalog.get('prepared_adaptations',{}).get(reference['id'],[]))
+    for recipe in catalog.get('records',[]):
+        if reference['id'] not in recipe.get('interface',{}).get('origin_reference_ids',[]):continue
+        if recipe['source']['commit']!=reference['source'].get('commit') or reference['source']['path'] not in recipe['source']['paths']:continue
+        found.append({'id':recipe['id'],'record_version':recipe['maintenance']['record_version'],'source_commit':recipe['source']['commit'],
+            'relationship':'adapted_from; model and contract may differ','model':recipe['compatibility'][0]['robot']})
+    return list({item['id']:item for item in found}.values())
+
+
 def inspect(catalog, skill_id):
     for reference in catalog.get("references", {}).get("records", []):
         if reference.get("id") == skill_id:
             return {"status": "ready", **reference, "kind": "source_reference", "hub_prepare": False,
                     "memory_base": selection_base(catalog, reference, reference=True),
+                    **({'prepared_adaptations':prepared_adaptations(catalog,reference)} if prepared_adaptations(catalog,reference) else {}),
                     **reference_acquisition(catalog, reference),
                     "next_action": "open_source_reference", "execution_performed": False, **discovery_metadata(catalog)}
     record = lookup(catalog, skill_id)
