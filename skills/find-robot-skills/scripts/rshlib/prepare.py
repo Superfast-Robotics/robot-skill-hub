@@ -220,7 +220,7 @@ def prepare(catalog, skill_id, project, environment, *, install_deps=False, plan
         for relative, content in recipe_files.items():
             target = recipe_dir / relative
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(content, encoding="utf-8")
+            target.write_bytes(content.encode("utf-8"))
         write_json(lock_path, existing_lock)
     if download_only:
         return {**result, "status": "needs_configuration", "reason_code": "source_ready_runtime_not_prepared",

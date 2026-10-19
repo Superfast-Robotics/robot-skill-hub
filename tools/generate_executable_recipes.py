@@ -81,7 +81,7 @@ def build_record(recipe,archive,adapter,requirements):
             'commands':['python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend '+recipe['backend']],
             'result':'Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.' if proofs else 'Source and interface reviewed; runtime cases have not been recorded.',
             'artifacts':proofs,'runtime_verification':level if proofs else 'not_run','contributor_reported':None,
-            'hub_verification':{'scope':interface['execution_domain'],'case_count':len(recipe['cases']) if proofs else 0,'source_unchanged':True}},
+            'hub_verification':{'runtime':level if proofs else 'not_run','scope':interface['execution_domain'],'case_count':len(recipe['cases']) if proofs else 0,'source_unchanged':True}},
         'maintenance':{'record_version':version,'last_checked':'2026-10-19','upstream_status':'immutable_source_and_explicit_dependency_versions'},
         'contribution':{'allowed_paths':['catalog/records/'+ident+'.json','docs/recipes/'+ident+'.md','recipes/'+ident+'/run.py','recipes/'+ident+'/requirements.txt'],
             'instructions':'Preserve upstream origin/license and interface semantics. Edit the finite manifest/templates and regenerate; record new exact-byte evidence for behavior changes.'}}

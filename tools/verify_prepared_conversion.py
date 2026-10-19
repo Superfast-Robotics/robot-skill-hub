@@ -42,6 +42,9 @@ def main():
     if executed.returncode or result.get('success') is not True:raise RuntimeError('Prepared execution failed; see retained response')
     lock=json.loads(Path(body['lock_path']).read_text())
     if set(lock['source_files'])!=set(record['source']['paths']):raise ValueError('Declared source selection was not preserved')
+    for name, content in record['preparation']['files'].items():
+        if Path(body['recipe_dir'],name).read_bytes()!=content.encode('utf-8'):
+            raise ValueError('Prepared adapter bytes differ from the verified catalog')
     receipt={'schema_version':'1','skill_id':args.skill_id,'catalog_scope':'local_candidate_from_exact_git_head','hub_commit':head,'source_commit':record['source']['commit'],
         'prepared':True,'dependencies_installed':lock['dependencies_installed'],'source_files':len(lock['source_files']),
         'adapter_sha256':hashlib.sha256(Path(body['recipe_dir'],'run.py').read_bytes()).hexdigest(),

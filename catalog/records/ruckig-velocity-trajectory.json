@@ -586,6 +586,7 @@
     "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
+      "runtime": "task_complete",
       "scope": "computation",
       "case_count": 3,
       "source_unchanged": true
