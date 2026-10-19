@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-ik-skill",
+  "catalog_scope": "local_candidate_from_exact_git_head",
+  "hub_commit": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "prepared": true,
+  "dependencies_installed": true,
+  "source_files": 2,
+  "adapter_sha256": "d9273c070ca7a20bc86f9c330378c522c708062614d6c111756e9d5b3b3498b5",
+  "execution_exit_code": 0,
+  "execution_stdout_sha256": "3ab84174908df87f18090fabe4fddc84b835a0e74757a05a42263c700d395b85",
+  "checks": {
+    "target_residual": true
+  },
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false
+}

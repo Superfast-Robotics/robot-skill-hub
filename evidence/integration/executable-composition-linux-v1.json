@@ -1,0 +1,68 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-19T15:23:10.910183+00:00",
+  "platform": "linux",
+  "python": "3.10.22",
+  "scope": "Three authored A* maps followed by smoothing; not an autonomous LLM or hardware task.",
+  "mapping": "Same map frame and meters; point obstacles become zero-radius circles. Convex map bounds checked separately on all endpoints.",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "adapters": {
+    "pythonrobotics-astar-planner": "ea67208ea9d768a5366220fc7aa10481dc708777d3bf888e2119b356fbfdf878",
+    "pythonrobotics-path-smoothing": "30f138778bf12bcfa8d0e9ae9f52f5b32034f9bb56df1fd7a4fffa895bb79e25"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "handoff_validated": true,
+      "passed": true,
+      "convex_map_bounds_preserved": true,
+      "source_length_m": 24.384776310850242,
+      "target_length_m": 22.638215004541447,
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "supplied_obstacles_clear": true,
+        "not_longer": true
+      },
+      "target_exit_code": 0
+    },
+    {
+      "case": 1,
+      "handoff_validated": true,
+      "passed": true,
+      "convex_map_bounds_preserved": true,
+      "source_length_m": 21.55634918610405,
+      "target_length_m": 20.012496305884568,
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "supplied_obstacles_clear": true,
+        "not_longer": true
+      },
+      "target_exit_code": 0
+    },
+    {
+      "case": 2,
+      "handoff_validated": true,
+      "passed": true,
+      "convex_map_bounds_preserved": true,
+      "source_length_m": 26.62741699796953,
+      "target_length_m": 16.456778976952855,
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "supplied_obstacles_clear": true,
+        "not_longer": true
+      },
+      "target_exit_code": 0
+    }
+  ],
+  "passed": 3,
+  "total": 3,
+  "colliding_input_rejected": true,
+  "gpu": false,
+  "physical_robot": false
+}

@@ -49,6 +49,15 @@ class ExecutableContractTests(unittest.TestCase):
         target=next(r for r in damaged if r['id']=='pybullet-ik-skill');target['source']['commit']='0'*40
         with self.assertRaises(ValueError):builder.prepared_adaptation_map(damaged,refs,'https://hub.superfastrobotics.com')
 
+    def test_public_evidence_urls_bind_the_published_commit_without_mutating_canonical_files(self):
+        records=builder.load_records()
+        local=next(r for r in records if r['id']=='pythonrobotics-astar-planner')['evidence']['artifacts'][0]
+        self.assertTrue(local.startswith('evidence/'))
+        builder.publish_record_evidence(records,'a'*40)
+        public=next(r for r in records if r['id']=='pythonrobotics-astar-planner')['evidence']['artifacts'][0]
+        self.assertEqual(public,'https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/'+'a'*40+'/'+local)
+        self.assertEqual(local,json.loads((ROOT/'catalog/records/pythonrobotics-astar-planner.json').read_text())['evidence']['artifacts'][0])
+
     def test_concrete_handoff_requires_same_units_frame_order_and_actual_input_bounds(self):
         source=self.recipes['pythonrobotics-astar-planner']['interface']
         target=self.recipes['pythonrobotics-path-smoothing']['interface']

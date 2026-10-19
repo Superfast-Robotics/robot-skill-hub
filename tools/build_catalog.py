@@ -165,6 +165,20 @@ def safe_path(path):
     return ROOT.joinpath(*posix.parts)
 
 
+def publish_record_evidence(records, hub_commit):
+    """Resolve repository-local evidence to immutable public bytes."""
+    for record in records:
+        artifacts = record['evidence'].get('artifacts', [])
+        published = []
+        for artifact in artifacts:
+            if artifact.startswith('evidence/'):
+                safe_path(artifact)
+                artifact = f'https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/{hub_commit}/{artifact}'
+            published.append(artifact)
+        if artifacts:
+            record['evidence']['artifacts'] = published
+
+
 def load_records():
     schema = read_json(ROOT / "schemas/skill.schema.json")
     records = []
@@ -895,6 +909,7 @@ def build(args):
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
+    publish_record_evidence(records, hub_commit)
     # This is the commit of the independently cached reference resource, not a
     # source pin. Keep the editable official aggregate unchanged on disk.
     references["hub_commit"] = hub_commit
