@@ -1,0 +1,609 @@
+{
+  "schema_version": "1",
+  "id": "ruckig-velocity-trajectory",
+  "name": "Velocity target jerk-limited trajectory",
+  "summary": "Velocity target jerk-limited trajectory. Parameterized bounded JSON adapter; numerical operation, no hardware execution.",
+  "capabilities": [
+    "trajectory_generator",
+    "velocity",
+    "executable-json",
+    "source-adaptation"
+  ],
+  "aliases": [
+    "velocity",
+    "Velocity target jerk-limited trajectory"
+  ],
+  "source": {
+    "repository": "https://github.com/pantor/ruckig",
+    "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+    "paths": [
+      "LICENSE",
+      "examples/05_velocity.py"
+    ],
+    "archive_url": "https://codeload.github.com/pantor/ruckig/tar.gz/a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+    "archive_sha256": "2a935bfbe02f9236ecd138aee13b52fef2a43e67853179b727d394508ef98b08",
+    "archive_bytes": 882738,
+    "authors": [
+      "Lars Berscheid and Ruckig contributors"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/pantor/ruckig/blob/a8db97a4e9c55e5160a3855f739fa3b270df8e4c/LICENSE",
+    "verified": true,
+    "scope": "Selected Ruckig Community example source code only; preserve the upstream MIT copyright and permission notice. This selection excludes cloud-dependent intermediate-waypoint examples and Ruckig Pro-only tracking/speed features. Third-party dependencies and separately licensed products retain their own terms."
+  },
+  "compatibility": [
+    {
+      "runtime": "ruckig",
+      "runtime_version": "0.19.4",
+      "robot": "independent-axes",
+      "controller": "json-contract-v1",
+      "observation": "explicit-json-input",
+      "os": "windows",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    },
+    {
+      "runtime": "ruckig",
+      "runtime_version": "0.19.4",
+      "robot": "independent-axes",
+      "controller": "json-contract-v1",
+      "observation": "explicit-json-input",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "explicit_json_task_input"
+    ],
+    "privileged_state": false,
+    "description": "All inputs and outputs follow interface v1. Simulation adapters query exact synthetic simulator state; no perception or physical sensor compatibility."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "ruckig==0.19.4"
+    ],
+    "hardware": [
+      "x86_64 CPU; no GPU or robot required"
+    ],
+    "rendering": "No display. Matplotlib Agg for numerical imports; PyBullet DIRECT for simulation.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive once during preparation",
+      "PyPI for declared dependency installation"
+    ],
+    "dependency_lock": "Runtime dependency versions are pinned for the supported Python 3.10 x86_64 CPU environments and checked against execution receipts. Platform-specific wheel hashes are not represented as a universal artifact lock; prepare captures pip freeze."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "current_position": [
+        0,
+        0,
+        0.5
+      ],
+      "current_velocity": [
+        0,
+        0,
+        0
+      ],
+      "current_acceleration": [
+        0,
+        0,
+        0
+      ],
+      "target_position": [
+        1,
+        -0.5,
+        0.25
+      ],
+      "target_velocity": [
+        0.4,
+        -0.3,
+        0.2
+      ],
+      "target_acceleration": [
+        0,
+        0,
+        0
+      ],
+      "max_velocity": [
+        1,
+        1,
+        1
+      ],
+      "max_acceleration": [
+        2,
+        2,
+        2
+      ],
+      "max_jerk": [
+        4,
+        4,
+        4
+      ],
+      "dt": 0.01,
+      "coordinate_type": "revolute_rad"
+    },
+    "outputs": {
+      "format": "single JSON object on stdout",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "time_s",
+          "position",
+          "velocity",
+          "acceleration",
+          "coordinate_type",
+          "duration_s"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "time_s": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 150
+            },
+            "x-unit": "s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "time_s; units=s; frame=independent_axes_in_input_array_order"
+          },
+          "position": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              }
+            },
+            "x-unit": "coordinate_type:m_or_rad",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+          },
+          "velocity": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -1000,
+                "maximum": 1000
+              }
+            },
+            "x-unit": "coordinate_type:m/s_or_rad/s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+          },
+          "acceleration": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -1000,
+                "maximum": 1000
+              }
+            },
+            "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+          },
+          "coordinate_type": {
+            "type": "string",
+            "enum": [
+              "revolute_rad",
+              "linear_m"
+            ],
+            "x-unit": "dimensionless",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "coordinate_type; units=dimensionless; frame=independent_axes_in_input_array_order"
+          },
+          "duration_s": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 150,
+            "x-unit": "s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "duration_s; units=s; frame=independent_axes_in_input_array_order"
+          }
+        }
+      }
+    },
+    "example": "After prepare, replace --example in next_command with --input /absolute/path/task.json; use --describe for the exact contract without execution."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "trajectory_generator",
+    "abstraction_level": 0,
+    "execution_domain": "computation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "independent_axes_in_input_array_order",
+      "joint_order": "input_array_order",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "current_position",
+        "current_velocity",
+        "current_acceleration",
+        "target_position",
+        "target_velocity",
+        "target_acceleration",
+        "max_velocity",
+        "max_acceleration",
+        "max_jerk",
+        "dt",
+        "coordinate_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "current_position": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m_or_rad",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "current_position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+        },
+        "current_velocity": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s_or_rad/s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "current_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+        },
+        "current_acceleration": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "current_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+        },
+        "target_position": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m_or_rad",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "target_position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+        },
+        "target_velocity": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s_or_rad/s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "target_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+        },
+        "target_acceleration": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "target_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+        },
+        "max_velocity": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s_or_rad/s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "max_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+        },
+        "max_acceleration": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "max_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+        },
+        "max_jerk": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "coordinate_type:m/s^3_or_rad/s^3",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "max_jerk; units=coordinate_type:m/s^3_or_rad/s^3; frame=independent_axes_in_input_array_order"
+        },
+        "dt": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.05,
+          "x-unit": "s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "dt; units=s; frame=independent_axes_in_input_array_order"
+        },
+        "coordinate_type": {
+          "type": "string",
+          "enum": [
+            "revolute_rad",
+            "linear_m"
+          ],
+          "x-unit": "dimensionless",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "coordinate_type; units=dimensionless; frame=independent_axes_in_input_array_order"
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "time_s",
+        "position",
+        "velocity",
+        "acceleration",
+        "coordinate_type",
+        "duration_s"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "time_s": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3000,
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 150
+          },
+          "x-unit": "s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "time_s; units=s; frame=independent_axes_in_input_array_order"
+        },
+        "position": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3000,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10000,
+              "maximum": 10000
+            }
+          },
+          "x-unit": "coordinate_type:m_or_rad",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+        },
+        "velocity": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3000,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -1000,
+              "maximum": 1000
+            }
+          },
+          "x-unit": "coordinate_type:m/s_or_rad/s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+        },
+        "acceleration": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3000,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -1000,
+              "maximum": 1000
+            }
+          },
+          "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+        },
+        "coordinate_type": {
+          "type": "string",
+          "enum": [
+            "revolute_rad",
+            "linear_m"
+          ],
+          "x-unit": "dimensionless",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "coordinate_type; units=dimensionless; frame=independent_axes_in_input_array_order"
+        },
+        "duration_s": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 150,
+          "x-unit": "s",
+          "x-frame": "independent_axes_in_input_array_order",
+          "description": "duration_s; units=s; frame=independent_axes_in_input_array_order"
+        }
+      }
+    },
+    "preconditions": [
+      "Ruckig Community 0.19.4; no cloud client, IK, collision or physical control.",
+      "All axes share coordinate_type; m or rad and corresponding derivatives per second.",
+      "Velocity/stop modes do not guarantee target position. Maximum 3000 online cycles or 30 s offline trajectory."
+    ],
+    "postconditions": [
+      "All declared checks must pass and all outputs must be finite.",
+      "Success applies only to this operation and model, not higher-level task completion."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "output_selector": "outputs",
+    "origin_reference_ids": [
+      "ruckig-examples-05-velocity-py"
+    ],
+    "origin_relationship": "adapted_from; inspect declared model and inputs, not original robot compatibility"
+  },
+  "completion": {
+    "success_condition": "Exit 0, status=task_complete, success=true, finite outputs satisfying interface.output_schema and all declared numerical/model checks. This is not a physical robot or general task-success claim.",
+    "timeout_seconds": 30,
+    "failure_modes": [
+      "Invalid or oversized JSON",
+      "Source checksum mismatch",
+      "Unavailable pinned dependency",
+      "No valid path or postcondition failure",
+      "Execution exceeding the declared bounded algorithm budget"
+    ],
+    "stop_condition": "Caller must terminate the separate adapter process after 30 seconds; adapters bound iterations/scene steps and close simulation clients."
+  },
+  "preparation": {
+    "recipe_path": "recipes/ruckig-velocity-trajectory",
+    "requirements_file": "recipes/ruckig-velocity-trajectory/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub maintainer runtime harness",
+    "date": "2026-10-19",
+    "environment": {
+      "scope": "computation",
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "physical_robot": false
+    },
+    "commands": [
+      "python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend ruckig"
+    ],
+    "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
+    "artifacts": [
+      "evidence/runtime/executable-conversions-v1/ruckig-velocity-trajectory.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "computation",
+      "case_count": 3,
+      "source_unchanged": true
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-19",
+    "upstream_status": "immutable_source_and_explicit_dependency_versions"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/ruckig-velocity-trajectory.json",
+      "docs/recipes/ruckig-velocity-trajectory.md",
+      "recipes/ruckig-velocity-trajectory/run.py",
+      "recipes/ruckig-velocity-trajectory/requirements.txt"
+    ],
+    "instructions": "Preserve upstream origin/license and interface semantics. Edit the finite manifest/templates and regenerate; record new exact-byte evidence for behavior changes."
+  }
+}

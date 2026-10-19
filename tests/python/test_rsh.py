@@ -251,6 +251,8 @@ class SourcePreparationTests(unittest.TestCase):
             self.assertEqual(first["reason_code"], "dependencies_not_installed")
             self.assertFalse(first["execution_performed"])
             self.assertTrue((Path(first["source_dir"]) / "module.py").is_file())
+            for name, content in catalog['records'][0]['preparation']['files'].items():
+                self.assertEqual((Path(first['recipe_dir']) / name).read_bytes(), content.encode('utf-8'))
             self.assertFalse((Path(first["source_dir"]) / "install-marker").exists())
             second = prepare(catalog, "fixture-pick", project, {}, install_deps=True)
             self.assertEqual(second["status"], "ready")

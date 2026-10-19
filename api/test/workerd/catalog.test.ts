@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { build } from 'esbuild';
 import { Miniflare, Request as RuntimeRequest, Response as RuntimeResponse } from 'miniflare';
-import { createCatalogSync, indexedFindings, indexedSearch, pruneCatalog, staticFindings, type CatalogDatabase } from '../../src/catalog.ts';
+import { createCatalogSync, indexedFindings, indexedSearch, pruneCatalog, staticFindings, taskSearch, combinationMatches, type CatalogDatabase } from '../../src/catalog.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com', API = 'https://api.example.invalid';
 const KEY = 'local-native-catalog-sync-credential';
@@ -747,21 +747,29 @@ test('task mode complete publisher fixture keeps static/native/MCP ranking and s
   const load = async (path: string) => { const body = await readFile(join(directory, path), 'utf8'); current.resources.set('/' + path, body); return JSON.parse(body); };
   const version = await load('catalog/v1/version.json'), manifest = await load('catalog/v2/search-manifest.json'), memories = await load('catalog/v2/memory-manifest.json');
   for (const page of [...manifest.pages, ...memories.pages]) await load(page.path);
-  await load('catalog/v1/search.json');
+  if (version.resources.search) await load('catalog/v1/search.json');
+  const currentRows=manifest.pages.flatMap((page: any)=>JSON.parse(current.resources.get('/'+page.path)!).records);
   const s = await runtime(current); try {
     const args = { q: 'Describe a Franka FR3 arm with a URDF xacro model', runtime: 'franka-description', query_mode: 'task', limit: '3' };
-    const before = await s.read('/v1/search?' + new URLSearchParams(args)); assert.equal(before.status, 200);
-    assert.equal(before.body.backend, 'static_v1_task');
+    const before = await s.read('/v1/search?' + new URLSearchParams(args));
+    if (version.resources.search) {
+      assert.equal(before.status, 200);assert.equal(before.body.backend, 'static_v1_task');
+    } else {
+      assert.equal(before.status,503,'An oversized aggregate must not become a partial or unbounded API fallback');
+      assert.equal(before.body.reason_code,'catalog_sync_required');
+    }
     await s.complete();
     const after = await s.read('/v1/search?' + new URLSearchParams(args)); assert.equal(after.status, 200);
     const { backend: _a, ...staticValue } = before.body, { backend: _b, ...nativeValue } = after.body;
-    assert.deepEqual(nativeValue, staticValue); assert.equal(after.body.backend, 'd1_filtered_lexical');
+    if (version.resources.search) assert.deepEqual(nativeValue, staticValue);
+    const ranked=taskSearch(currentRows.filter((row: any)=>combinationMatches(row,args)),args,3,0);
+    assert.deepEqual(after.body.results.map(({inspect_url,...row}: any)=>row),ranked.results,'Native ranking retains the same bounded lexical implementation after aggregate omission');
+    assert.equal(after.body.total,ranked.total);assert.equal(after.body.backend, 'd1_filtered_lexical');
     assert.equal(after.body.candidate_count, 72); assert.equal(after.body.total, 72);
     assert.deepEqual(after.body.results.map((row: any) => row.id), [
       'franka-description-artifact-robots-fr3-duo-fr3-duo-urdf-xacro',
       'franka-description-artifact-robots-fr3-fr3-urdf-xacro',
       'franka-description-artifact-robots-fr3v2-1-fr3v2-1-urdf-xacro']);
-    const currentRows = (JSON.parse(current.resources.get('/catalog/v1/search.json')!) as any).records;
     for (const row of after.body.results) {
       const original = currentRows.find((r: any) => r.id === row.id);
       for (const field of ['source_commit', 'source_sha256', 'record_sha256', 'record_version', 'license', 'compatibility', 'hub_prepare']) assert.deepEqual(row[field], original[field]);
@@ -791,15 +799,15 @@ test('native mirror accepts the complete current publisher output', { skip: !pro
     assert.ok(recipe.python_requirement); assert.match(recipe.source_url, /^https:\/\//);
     const kuka = await s.read('/v1/search?q=kuka'); assert.ok(kuka.body.total > 0);
     const algorithmQueries: Array<[string, string[]]> = [
-      ['A*', ['pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py', 'nav2-smac-hybrid-planner']],
+      ['A*', ['pythonrobotics-astar-planner','pythonrobotics-bidirectional-astar-planner','pythonrobotics-pathplanning-astar-a-star-py', 'pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'pyrobosim-pyrobosim-examples-demo-astar-py', 'nav2-smac-hybrid-planner']],
       ['D* Lite', ['pythonrobotics-pathplanning-dstarlite-d-star-lite-py']],
       ['Hybrid A* path planning', ['pythonrobotics-pathplanning-hybridastar-hybrid-a-star-py', 'nav2-smac-hybrid-planner']],
-      ['rapidly exploring random tree', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrt-rrt-py']],
-      ['RRT*', ['pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py']],
+      ['rapidly exploring random tree', ['pythonrobotics-rrt-planner','pythonrobotics-rrt-star-planner','pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrt-rrt-py']],
+      ['RRT*', ['pythonrobotics-rrt-star-planner','pyrobosim-pyrobosim-examples-demo-rrt-py', 'pythonrobotics-pathplanning-rrtstar-rrt-star-py']],
       ['SLAM', ['pythonrobotics-slam-ekfslam-ekf-slam-py', 'pythonrobotics-slam-fastslam1-fast-slam1-py']],
-      ['EKF localization PythonRobotics', ['pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py']],
-      ['pure pursuit', ['pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py', 'nav2-regulated-pure-pursuit-controller']],
-      ['Stanley steering', ['pythonrobotics-pathtracking-stanley-control-stanley-control-py']],
+      ['EKF localization PythonRobotics', ['pythonrobotics-ekf-update','pythonrobotics-ekf-velocity-update','pythonrobotics-localization-extended-kalman-filter-extended-kalman-filter-py']],
+      ['pure pursuit', ['pythonrobotics-pure-pursuit-steering','pythonrobotics-pathtracking-pure-pursuit-pure-pursuit-py', 'nav2-regulated-pure-pursuit-controller']],
+      ['Stanley steering', ['pythonrobotics-stanley-steering','pythonrobotics-pathtracking-stanley-control-stanley-control-py']],
       ['IK pinocchio', ['pinocchio-examples-inverse-kinematics-3d-cpp', 'pinocchio-examples-inverse-kinematics-3d-py', 'pinocchio-examples-inverse-kinematics-cpp', 'pinocchio-examples-inverse-kinematics-py']],
     ];
     for (const [query, expectedIds] of algorithmQueries) {

@@ -31,6 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/find-robot-
 from rshlib.intake import validate_published_reference
 from rshlib.core import RshError, task_attempt_metadata, validate_last_task_attempt
 from rshlib.acquisition import plan_source
+from rshlib.interfaces import validate_interface
 if __package__:
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from .catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
@@ -110,7 +111,8 @@ def validate_schema(value, schema, root_schema, location="$"):
         types = [types] if isinstance(types, str) else types
         checks = {"object": lambda v: isinstance(v, dict), "array": lambda v: isinstance(v, list),
                   "string": lambda v: isinstance(v, str), "boolean": lambda v: isinstance(v, bool),
-                  "integer": lambda v: isinstance(v, int) and not isinstance(v, bool), "null": lambda v: v is None}
+                  "integer": lambda v: isinstance(v, int) and not isinstance(v, bool),
+                  "number": lambda v: type(v) in (int, float) and __import__('math').isfinite(v), "null": lambda v: v is None}
         if not any(checks[t](value) for t in types):
             raise ValueError(f"{location}: expected {types}")
     if "const" in schema and json.dumps(value, sort_keys=True) != json.dumps(schema["const"], sort_keys=True):
@@ -150,8 +152,10 @@ def validate_schema(value, schema, root_schema, location="$"):
             raise ValueError(f"{location}: string exceeds maximum length")
         if "pattern" in schema and not re.search(schema["pattern"], value):
             raise ValueError(f"{location}: does not match {schema['pattern']}")
-    if isinstance(value, int) and value < schema.get("minimum", value):
+    if type(value) in (int, float) and value < schema.get("minimum", value):
         raise ValueError(f"{location}: below minimum")
+    if type(value) in (int, float) and value > schema.get("maximum", value):
+        raise ValueError(f"{location}: above maximum")
 
 
 def safe_path(path):
@@ -161,12 +165,28 @@ def safe_path(path):
     return ROOT.joinpath(*posix.parts)
 
 
+def publish_record_evidence(records, hub_commit):
+    """Resolve repository-local evidence to immutable public bytes."""
+    for record in records:
+        artifacts = record['evidence'].get('artifacts', [])
+        published = []
+        for artifact in artifacts:
+            if artifact.startswith('evidence/'):
+                safe_path(artifact)
+                artifact = f'https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/{hub_commit}/{artifact}'
+            published.append(artifact)
+        if artifacts:
+            record['evidence']['artifacts'] = published
+
+
 def load_records():
     schema = read_json(ROOT / "schemas/skill.schema.json")
     records = []
     for path in sorted((ROOT / "catalog/records").glob("*.json")):
         record = read_json(path)
         validate_schema(record, schema, schema, str(path.relative_to(ROOT)))
+        if 'interface' in record:
+            validate_interface(record['interface'])
         ident = record["id"]
         if path.stem != ident:
             raise ValueError(f"{path}: filename and id differ")
@@ -214,6 +234,8 @@ def markdown(record, hub_commit, base=DEFAULT_BASE):
 {r['summary']}
 
 Record version: `{r['maintenance']['record_version']}` · Hub commit: `{hub_commit}`
+
+{execution_interface_markdown(r)}
 
 ## Exact environment
 
@@ -564,7 +586,7 @@ def reference_source_acquisition(record, hub_commit):
         return {"status": "unavailable", "reason_code": error.result["reason_code"], "message": error.result["message"]}
 
 
-def reference_markdown(record, hub_commit, publication_version=None):
+def reference_markdown(record, hub_commit, publication_version=None, adaptations=()):
     source, license_info, evidence = record["source"], record["license"], record["evidence"]
     revision = source.get("commit") or source["revision"]
     authors = ", ".join(source.get("authors", [])) or "See pinned upstream source and license notices."
@@ -580,6 +602,9 @@ def reference_markdown(record, hub_commit, publication_version=None):
                      "See [source-file retrieval limits](https://hub.superfastrobotics.com/source-files.md).")
     parts = [f"# {record['name']}", record["summary"],
              f"ID: `{record['id']}`\n\nRecord version: `{version}`\n\nHub commit: `{hub_commit}`"]
+    if adaptations:
+        parts.extend(['## Executable adaptations', 'These are separate bounded adaptations of this source. Inspect their model, input contract and evidence; they do not verify the original robot environment.'] +
+            [f"- [{a['id']}]({a['detail_url']}) — {a['model']}" for a in adaptations])
     if publication_version:
         parts.extend(("Historical published source reference. This archive preserves the original metadata and publication; current documentation can change independently.",
                       f"Source identity version: `source-{source['sha256']}`"))
@@ -606,7 +631,7 @@ def reference_markdown(record, hub_commit, publication_version=None):
     return "\n\n".join(parts) + "\n"
 
 
-def reference_detail(record, base, hub_commit, publication_version=None, page_path=None):
+def reference_detail(record, base, hub_commit, publication_version=None, page_path=None, adaptations=()):
     source, license_info, evidence = record["source"], record["license"], record["evidence"]
     revision = source.get("commit") or source["revision"]
     version = publication_version or "source-" + source["sha256"]
@@ -647,6 +672,9 @@ def reference_detail(record, base, hub_commit, publication_version=None, page_pa
 <h2>Evidence</h2><p>Level: <code>{esc(evidence['level'])}</code>; runtime verification: <code>{esc(evidence['runtime_verification'])}</code>.</p>
 <p>{esc(evidence.get('inspection', evidence.get('result', 'No runtime execution evidence.')))}</p>
 <p>Source review and contributor reports do not establish task completion. Preserve upstream attribution and licenses.</p></main>"""
+    if adaptations:
+        links=''.join('<li><a href="'+esc(a['detail_url'])+'">'+esc(a['id'])+'</a>: '+esc(a['model'])+'</li>' for a in adaptations)
+        body=body.replace('</main>', '<h2>Executable adaptations</h2><p>Separate bounded adapters; inspect model, contract and evidence. This does not verify the original robot environment.</p><ul>'+links+'</ul></main>')
     return shell(record["name"] + " - Robot Skill Hub", record["summary"], body, base,
                  page_path or "references/" + record["id"] + "/")
 
@@ -684,7 +712,28 @@ def search_row(record, output, base, recipe=False):
             row["robot_types"] = list(types)
     if recipe:
         row["python_requirement"] = record["requirements"]["python"]
+        if record.get('interface'):
+            row['execution_interface']={key:record['interface'][key] for key in ['version','kind','abstraction_level','execution_domain','language','input_transport','output_selector']}
     return row
+
+
+def execution_interface_markdown(record):
+    contract=record.get('interface')
+    return ('## Executable interface\n\n```json\n'+json.dumps(contract,indent=2)+'\n```\n\n') if contract else ''
+
+
+def prepared_adaptation_map(records,references,base):
+    origins={r['id']:r for r in references['records']}
+    result={}
+    for record in records:
+        for ident in record.get('interface',{}).get('origin_reference_ids',[]):
+            origin=origins.get(ident)
+            if not origin or origin['source']['repository']!=record['source']['repository'] or origin['source'].get('commit')!=record['source']['commit'] or origin['source']['path'] not in record['source']['paths']:
+                raise ValueError(record['id']+': adaptation must reference the exact included source revision')
+            result.setdefault(ident,[]).append({'id':record['id'],'record_version':record['maintenance']['record_version'],
+                'source_commit':record['source']['commit'],'relationship':'adapted_from; model and contract may differ',
+                'model':record['compatibility'][0]['robot'],'detail_url':base+'/skills/'+record['id']+'/'})
+    return result
 
 
 def home(records, base, references=None):
@@ -743,6 +792,7 @@ python /PATH_TO_SKILL/scripts/rsh.py prepare {r['id']} --project ./experiment --
 <p>{esc(r['requirements']['dependency_lock'])}</p>
 <p>External API keys: {esc(', '.join(r['requirements']['api_keys']) or 'none')}.</p>
 <h2>Invocation</h2>
+{('<h3>Executable interface</h3><pre><code>'+esc(json.dumps(r['interface'],indent=2))+'</code></pre>') if r.get('interface') else ''}
 <p>Entrypoint: <code>{esc(r['invocation']['entrypoint'])}</code></p>
 <pre><code>{esc(json.dumps({'argv':r['invocation']['argv'],'inputs':r['invocation']['inputs'],'outputs':r['invocation']['outputs']}, indent=2))}</code></pre>
 <p>Success: {esc(r['completion']['success_condition'])}</p>
@@ -848,6 +898,7 @@ def publish_agent_entry_texts(output, records, base, hub_commit, references=None
 def build(args):
     records = load_records()
     references = load_references(r["id"] for r in records)
+    adaptations=prepared_adaptation_map(records,references,args.base_url.rstrip('/'))
     history = load_publication_history()
     memories = load_memories()
     if args.check:
@@ -858,6 +909,7 @@ def build(args):
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
+    publish_record_evidence(records, hub_commit)
     # This is the commit of the independently cached reference resource, not a
     # source pin. Keep the editable official aggregate unchanged on disk.
     references["hub_commit"] = hub_commit
@@ -906,6 +958,8 @@ def build(args):
                     api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
                     privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md",
                     source_files_guide_url=base+"/source-files.md",
+                    executable_skills_guide_url=base+"/executable-skills.md",
+                    execution_interface_schema_url=base+"/schemas/execution-interface.schema.json",
                     submission_proof_url_template=base+"/catalog/v2/submissions/{submission_id}.json",
                     memory_proof_url_template=base+"/catalog/v2/memories/{memory_id}.json")
     if (ROOT / "docs/public-api.openapi.json").exists():
@@ -936,7 +990,7 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
@@ -979,8 +1033,8 @@ def build(args):
     for r in references["records"]:
         folder = output / "references" / r["id"]
         write_json(folder / "skill.json", r, max_bytes=RECORD_JSON_MAX_BYTES)
-        write(folder / "README.md", reference_markdown(r, hub_commit))
-        write(folder / "index.html", reference_detail(r, base, hub_commit))
+        write(folder / "README.md", reference_markdown(r, hub_commit, adaptations=adaptations.get(r['id'],())))
+        write(folder / "index.html", reference_detail(r, base, hub_commit, adaptations=adaptations.get(r['id'],())))
         intake_path = ROOT / "catalog/intake" / (r["id"] + ".json")
         if not intake_path.exists():
             continue
@@ -999,6 +1053,8 @@ def build(args):
     counts = {"recipes": len(records), "references": len(references["records"]), "memories": len(memory_proofs)}
     rows = [search_row(r, output, base, recipe=True) for r in records]
     rows.extend(search_row(r, output, base) for r in references["records"])
+    for row in rows:
+        if row['id'] in adaptations: row['prepared_adaptations']=adaptations[row['id']]
     page_options = {"page_max_bytes": V2_PAGE_MAX_BYTES, "page_max_records": V2_PAGE_MAX_RECORDS,
                     "manifest_max_bytes": V2_MANIFEST_MAX_BYTES}
     memory_manifest, memory_pages = paged_index(memory_index["records"], hub_commit, "memories", **page_options)

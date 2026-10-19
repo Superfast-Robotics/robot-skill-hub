@@ -1,0 +1,150 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-inverse-dynamics-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "eace21ba82d51c0e02682109ee398f9ae858642228e4fb88e295bd397a14cf9b",
+  "source_guards_sha256": "ece5e3743065d580efb81f2913cbdd2a189797d9ef134d21f9908671527eb6ce",
+  "case_plan_sha256": "d5eaaa2fb8d5183e21b57b51708454cfbebe33d18a8a1ad457263ee1fc22339e",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:48.327797+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "joint_angles": [
+          0.07,
+          -0.32999999999999996,
+          0.37,
+          0.17,
+          -0.23,
+          0.07,
+          0.07
+        ],
+        "joint_acceleration": [
+          0.1,
+          -0.1,
+          0.2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "2f23f5d748fa18682f9cb2c82a54530c2e4026be1e06c7fed982cc71f399ad7b",
+      "checks": {
+        "mass_matrix_symmetric": true,
+        "mass_matrix_positive_definite": true,
+        "inverse_dynamics_identity": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1777
+    },
+    {
+      "case": 1,
+      "input": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ],
+        "joint_acceleration": [
+          0.1,
+          -0.1,
+          0.2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "6d559cda9e20e3776a61c376a3787b68bc5fbc6f6dc6f1feaf77b94bf22cb4e6",
+      "checks": {
+        "mass_matrix_symmetric": true,
+        "mass_matrix_positive_definite": true,
+        "inverse_dynamics_identity": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1731
+    },
+    {
+      "case": 2,
+      "input": {
+        "joint_angles": [
+          0.13,
+          -0.27,
+          0.43000000000000005,
+          0.23,
+          -0.17,
+          0.13,
+          0.13
+        ],
+        "joint_acceleration": [
+          0.1,
+          -0.1,
+          0.2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "02ba7f58060d3564057380724c5bac83712bf5281d156fae70098f57fd1e3107",
+      "checks": {
+        "mass_matrix_symmetric": true,
+        "mass_matrix_positive_definite": true,
+        "inverse_dynamics_identity": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1726
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}

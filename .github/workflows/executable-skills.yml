@@ -1,0 +1,64 @@
+name: Verify executable source conversions
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, work/executable-skills]
+    paths:
+      - catalog/executable-conversions.json
+      - tools/recipe_adapters/**
+      - tools/generate_executable_recipes.py
+      - tools/verify_executable_recipes.py
+      - tools/fetch_executable_sources.py
+      - tools/verify_prepared_conversion.py
+      - tools/verify_executable_composition.py
+      - skills/find-robot-skills/scripts/rshlib/prepare.py
+      - skills/find-robot-skills/scripts/rshlib/interfaces.py
+      - .github/workflows/executable-skills.yml
+permissions:
+  contents: read
+concurrency:
+  group: executable-skills-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  RSH_TELEMETRY: 'off'
+jobs:
+  cpu-runtime:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: catalog/executable-conversions.json
+      - name: Check exact generated adapter bytes
+        run: python tools/generate_executable_recipes.py --check
+      - name: Install declared CPU dependencies
+        run: >-
+          python -m pip install --only-binary=:all: -r tools/recipe_adapters/requirements-cpu.txt
+      - uses: actions/cache@v4
+        with:
+          path: .local/executable-source-cache
+          key: executable-sources-${{ hashFiles('catalog/executable-conversions.json') }}
+      - name: Fetch and check exact source files without execution
+        run: python tools/fetch_executable_sources.py --cache .local/executable-source-cache --fetch
+      - name: Run frozen numerical and DIRECT simulation cases
+        run: python tools/verify_executable_recipes.py --source-cache .local/executable-source-cache --output .local/executable-runtime-receipts --backend all
+      - name: Prepare and execute a standalone DIRECT simulation adapter
+        run: >-
+          python tools/verify_prepared_conversion.py --skill-id pybullet-ik-skill
+          --source-cache .local/executable-source-cache --project .local/prepared-pybullet-project
+          --output .local/executable-runtime-receipts/prepared-pybullet.json
+      - name: Compose path planning and smoothing with collision regression
+        run: >-
+          python tools/verify_executable_composition.py --source-cache .local/executable-source-cache
+          --output .local/executable-runtime-receipts/composition
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: executable-runtime-receipts
+          path: .local/executable-runtime-receipts
+          retention-days: 7

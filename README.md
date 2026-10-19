@@ -11,6 +11,8 @@ Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matchi
 
 Public reads need no account, GPU or simulator. Discovery never executes robot code.
 
+[Executable skills and interfaces](docs/executable-skills.md): 62 preparation recipes, including 45 new parameterized adaptations for planning, kinematics, filtering, trajectory generation and headless simulation. Inputs and outputs declare units, frames, abstraction level and runtime evidence. Indexed references link to matching prepared adaptations without changing the reference's evidence.
+
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills
 python /PATH_TO_SKILL/scripts/rsh.py find "pick cube" --runtime maniskill --robot panda --json

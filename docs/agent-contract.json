@@ -38,7 +38,9 @@
     "submission_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/submissions/{submission_id}.json",
     "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json",
     "experience_url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}?record_version={record_version}&hub_commit={hub_commit}&include=experience",
-    "first_read": "Use short task keywords or query_mode=task with known environment filters. Follow search result inspect_url for record, findings and community; recovery.suggested_requests declares each retry scope."
+    "first_read": "Use short task keywords or query_mode=task with known environment filters. Follow search result inspect_url for record, findings and community; recovery.suggested_requests declares each retry scope.",
+    "executable_skills_guide_url": "https://hub.superfastrobotics.com/executable-skills.md",
+    "execution_interface_schema_url": "https://hub.superfastrobotics.com/schemas/execution-interface.schema.json"
   },
   "cli": {
     "minimum_python": "3.10",
@@ -576,5 +578,18 @@
       "community-sync"
     ],
     "archive_url": "https://github.com/Superfast-Robotics/robot-skill-hub/tree/community-data"
+  },
+  "executable_interfaces": {
+    "version": "1",
+    "abstraction_levels": {
+      "0": "computational_or_sensing_primitive",
+      "1": "motion_or_control_primitive",
+      "2": "task",
+      "3": "workflow"
+    },
+    "evidence_is_independent": true,
+    "source_adaptations": "Inspect prepared_adaptations separately; source model compatibility is not inherited.",
+    "execution": "Explicit local prepared next_command; no API/MCP execution.",
+    "units": "m/rad/s; per-field x-unit, x-frame and x-order; no implicit conversions."
   }
 }

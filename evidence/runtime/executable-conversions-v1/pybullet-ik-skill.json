@@ -1,0 +1,132 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-ik-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "d9273c070ca7a20bc86f9c330378c522c708062614d6c111756e9d5b3b3498b5",
+  "source_guards_sha256": "7b3d3491b9783fe13ab74e2133f328cf59d0cff351a01afc8e99b80c7c2e04a6",
+  "case_plan_sha256": "5aa86382a22eebcc8d8553ab0719859284aa735480caebed9c89b77c51c3e879",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:47.184567+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ],
+        "target_xyz": [
+          0.3,
+          0.2,
+          1.1
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "3ab84174908df87f18090fabe4fddc84b835a0e74757a05a42263c700d395b85",
+      "checks": {
+        "target_residual": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1735
+    },
+    {
+      "case": 1,
+      "input": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ],
+        "target_xyz": [
+          0.25,
+          -0.2,
+          1.05
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "e260b3b2c483f38af2bb6b293732e7a1908d58c0948de6538b8674f3b0bf67e6",
+      "checks": {
+        "target_residual": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1735
+    },
+    {
+      "case": 2,
+      "input": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ],
+        "target_xyz": [
+          0.4,
+          0.1,
+          1.0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "25b4993e1342f7d0df82e0a6d60e481d2dfbd93490fe2ac515f5899084063a4b",
+      "checks": {
+        "target_residual": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1739
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}

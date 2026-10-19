@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.4.4",
+    "version": "0.5.0",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
       "name": "MIT",
@@ -205,7 +205,7 @@
             }
           }
         },
-        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A*, D* and RRT* algorithm symbols become astar, dstar and rrtstar before matching; other terms remain required. Embedded identifiers and repeated stars keep ordinary tokenization; plain RRT remains a word-prefix query. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination. Every result includes an inspect_url pinned to record_version and hub_commit with include=experience. Empty results and query_too_broad errors include recovery.suggested_requests with HTTP URLs and MCP arguments; suggestions never execute automatically and recipe-only scope excludes source references. Use short keywords by default, or English task sentences with query_mode=task and known runtime/robot filters."
+        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A*, D* and RRT* algorithm symbols become astar, dstar and rrtstar before matching; other terms remain required. Embedded identifiers and repeated stars keep ordinary tokenization; plain RRT remains a word-prefix query. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination. Every result includes an inspect_url pinned to record_version and hub_commit with include=experience. Empty results and query_too_broad errors include recovery.suggested_requests with HTTP URLs and MCP arguments; suggestions never execute automatically and recipe-only scope excludes source references. Use short keywords by default, or English task sentences with query_mode=task and known runtime/robot filters. Prepared recipe results expose execution_interface with abstraction level, domain, language and input transport. Source results may contain separate prepared_adaptations with exact versions and inspect URLs; their model/contract may differ from the original example. Reference evidence is not promoted."
       }
     },
     "/v1/skills/{skill_id}": {
@@ -323,7 +323,7 @@
             }
           }
         },
-        "description": "Follow a search result inspect_url for a pinned record plus bounded exact-source findings and community experience. Without include, the legacy record-only response is preserved. Optional lookup failure returns status=unknown, not empty success; caller must check applicability and contributor-reported trust before reuse. No installation, execution or authentication is required."
+        "description": "Follow a search result inspect_url for a pinned record plus bounded exact-source findings and community experience. Without include, the legacy record-only response is preserved. Optional lookup failure returns status=unknown, not empty success; caller must check applicability and contributor-reported trust before reuse. No installation, execution or authentication is required. A recipe record may include interface v1 with bounded schemas, units, frame and component annotations, preconditions and composition rules. A source inspection may additionally return prepared_adaptations as distinct source-derived executable records."
       }
     },
     "/v1/catalog": {

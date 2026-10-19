@@ -1,0 +1,96 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-collision-filter-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "44fc6fa164b57b448bd976a1450a931cd142eca9945d6463d9782d3448c1794f",
+  "source_guards_sha256": "929be4e004199e89637693f7fea2e10a26273418fd4e391292656c239e36e256",
+  "case_plan_sha256": "9a007da91a68b45fd642ebba8fc2d16e72d697021c1d4fa0d8a1004b17354170",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:52.585322+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "offset": 0.03
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "4e5988fd4ed3c6e129b1ef85057392a829306952338ef94fd7f6a60fc8f16dc7",
+      "checks": {
+        "overlap_detected": true,
+        "filter_removed_contacts": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1773
+    },
+    {
+      "case": 1,
+      "input": {
+        "offset": 0.07
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "4e5988fd4ed3c6e129b1ef85057392a829306952338ef94fd7f6a60fc8f16dc7",
+      "checks": {
+        "overlap_detected": true,
+        "filter_removed_contacts": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1751
+    },
+    {
+      "case": 2,
+      "input": {
+        "offset": 0.12
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "4e5988fd4ed3c6e129b1ef85057392a829306952338ef94fd7f6a60fc8f16dc7",
+      "checks": {
+        "overlap_detected": true,
+        "filter_removed_contacts": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1771
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}

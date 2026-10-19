@@ -20,6 +20,8 @@ Follow the selected result's `inspect_url` to receive the pinned record plus `fi
 
 ## Acquire the selected source or prepare a recipe
 
+Prepared records expose `interface`: abstraction level (0 computation/sensing, 1 motion/control, 2 task, 3 workflow), execution domain, bounded input/output schemas, units, frames, component order and prerequisites. This is separate from evidence. `prepared_adaptations` on a source result links separate executable adaptations; inspect their exact model and contract rather than assuming the original robot is supported. Read [executable-skills.md](references/executable-skills.md) for parameterized JSON execution and explicit field handoffs.
+
 Use the CLI-returned argument arrays with `rsh.py`, adding the required project/output options. They retain exact source checks and the caller's selected catalog/offline context; do not replace their pins with the latest version.
 
 - For a source reference, use `fetch_source_args` with `--project DIR --json`. Read [source-files.md](references/source-files.md) when fetching: it saves one verified inert file, at most 8 MiB, with original provenance. Adjacent dependencies and a runtime adapter are not included. Follow its pinned upstream setup for integration.

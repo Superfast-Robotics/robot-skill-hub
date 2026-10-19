@@ -1,0 +1,141 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-raycast-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "e655d4318d49e0fd761c4cd8480c344cd4a31f470b65cf8a8133a53e4f72f19d",
+  "source_guards_sha256": "36cee16263c2e1a2d9aa8aa67b73ed4591c1ed1204e8953813093100b1730686",
+  "case_plan_sha256": "f52bd4ac141242d449868bbb4f45b3bd61580101433a817cc55fb09c8adacde1",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:52.012106+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "box_center": [
+          -0.1,
+          0,
+          1
+        ],
+        "ray_from": [
+          -0.1,
+          0,
+          2
+        ],
+        "ray_to": [
+          -0.1,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "71aa0d6276b0872c07f7883d5f509329af6a1606266a9936c950a752e2616464",
+      "checks": {
+        "expected_body_hit": true,
+        "fraction_in_segment": true,
+        "intersection_on_box_surface": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1689
+    },
+    {
+      "case": 1,
+      "input": {
+        "box_center": [
+          0.0,
+          0,
+          1
+        ],
+        "ray_from": [
+          0.0,
+          0,
+          2
+        ],
+        "ray_to": [
+          0.0,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "c72fa9eaa200db7d6a21ffcf3df3d127dc547e1d321298e97dc96fb474a67b68",
+      "checks": {
+        "expected_body_hit": true,
+        "fraction_in_segment": true,
+        "intersection_on_box_surface": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1768
+    },
+    {
+      "case": 2,
+      "input": {
+        "box_center": [
+          0.1,
+          0,
+          1
+        ],
+        "ray_from": [
+          0.1,
+          0,
+          2
+        ],
+        "ray_to": [
+          0.1,
+          0,
+          0
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "33a233213d3a9c01b71309aec7b8c82cc7817407f48a51683e0c3ec17df65de9",
+      "checks": {
+        "expected_body_hit": true,
+        "fraction_in_segment": true,
+        "intersection_on_box_surface": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1833
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}

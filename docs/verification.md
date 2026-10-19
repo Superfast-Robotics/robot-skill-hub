@@ -1,5 +1,17 @@
 # Verification record — 2026-10-17 to 2026-10-19 (Asia/Seoul)
 
+## Executable source adaptations and interfaces, 0.5.0
+
+The [finite conversion manifest](../catalog/executable-conversions.json) adds 45 bounded, parameterized execution adapters: 28 PythonRobotics algorithms, five Ruckig trajectory operations and 12 PyBullet DIRECT operations. The catalog has 62 preparation recipes including the existing 17 ManiSkill tasks. Twenty-four existing source-reference origins link to prepared adaptations; 21 additional operations extend the same three upstream projects. The 1,330 reference records keep their original execution evidence. Synthetic PyBullet scenes do not establish compatibility with the original example's robot or real hardware.
+
+The [CPU runtime workflow](../.github/workflows/executable-skills.yml) runs three frozen cases per new adapter, with an unknown-field rejection per adapter. Receipts under [executable-conversions-v1](../evidence/runtime/executable-conversions-v1/) bind exact adapter bytes, source guards, case plans and measured dependency versions. The numerical/Ruckig adapters also ran on Windows; PyBullet ran on Linux. No GPU, paid instance, model service or physical robot was used. These are authored regression cases, not a general accuracy or autonomous agent-selection measurement.
+
+An actual A* → smoother regression exposed unsafe upstream shortcut interpolation and sampled collision checking. The wrapper now corrects arclength interpolation, uses exact segment/circle checks and rejects colliding input paths. All three unchanged composition maps and the colliding-input rejection pass; the [composition receipt](../evidence/integration/executable-composition-v1.json) binds the executed adapters. The [preparation harness](../tools/verify_prepared_conversion.py) separately installs dependencies through the normal CLI and executes its returned command, asserting that prepared adapter bytes and selected source files are preserved exactly.
+
+Interfaces declare level, domain, input/output schemas, SI units, coordinate frames and vector ordering. Concrete field handoffs reject mismatched units, frames, ordering and value bounds. Schema checks do not establish dynamic compatibility, real-time performance or arbitrary workflow completion. See [executable skills](executable-skills.md) for commands and limits.
+
+The expanded search inventory exceeds the existing 2MiB single-file limit. The builder omits that optional aggregate and retains the complete checksum-bound v2 pages; the agent contract points to the complete manifest. Native D1 serves the activated generation. Tests cover full inventory activation, HTTP/MCP parity and an explicit unavailable state before activation. No capacity bound, quota or billing plan was increased.
+
 ## First-search recovery and no-install recall, 0.4.4
 
 Empty keyword searches and overly broad task queries now return scoped retry URLs and MCP arguments. No retry executes automatically, no environment is inferred and the 512-candidate bound remains. Recipe-only suggestions explicitly exclude source references. Search results provide a record-version/generation-pinned `inspect_url`; its HTTP `include=experience` response attaches the same bounded exact-source findings and community recall used by MCP. The old record-only HTTP response is preserved. Unknown recall state is distinct from an empty successful lookup.

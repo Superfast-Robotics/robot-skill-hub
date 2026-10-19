@@ -1,0 +1,265 @@
+{
+  "schema_version": "1",
+  "skill_id": "pythonrobotics-reeds-shepp-path",
+  "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+  "adapter_sha256": "be32bc51f191e710635265090f4deb0aa8a7a025eb0c9f6f3b4897d63413e001",
+  "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+  "case_plan_sha256": "edf94556123b03ab9f15f93a15fcc4c5ce74272c1910211ec7859af727a9fb2d",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "computation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:24.871435+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "start": [
+          0,
+          0,
+          0
+        ],
+        "goal": [
+          4,
+          4,
+          1.5707963267948966
+        ],
+        "curvature": 1.0,
+        "step_size": 0.1
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "36a1e86c6367ff52ab141226ccda847b5d5729a8fbe9341cbcaf3b0c5c5b4673",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "goal_heading": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.6527
+    },
+    {
+      "case": 1,
+      "input": {
+        "start": [
+          0,
+          0,
+          0
+        ],
+        "goal": [
+          5,
+          3,
+          -1.5707963267948966
+        ],
+        "curvature": 1.0,
+        "step_size": 0.1
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "b14eb0bc8911be6765c6226aab5362d0d99dfbcd82e806e0785c9354f28fec0b",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "goal_heading": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.6221
+    },
+    {
+      "case": 2,
+      "input": {
+        "start": [
+          0,
+          0,
+          0
+        ],
+        "goal": [
+          -3,
+          4,
+          3.141592653589793
+        ],
+        "curvature": 1.0,
+        "step_size": 0.1
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "02beb7ca02fd4d76a3c42cce9b7e10d2223954bb337d6485e224936b4263d47d",
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "goal_heading": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.5605
+    }
+  ],
+  "additional_runs": [
+    {
+      "schema_version": "1",
+      "skill_id": "pythonrobotics-reeds-shepp-path",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "adapter_sha256": "be32bc51f191e710635265090f4deb0aa8a7a025eb0c9f6f3b4897d63413e001",
+      "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
+      "case_plan_sha256": "edf94556123b03ab9f15f93a15fcc4c5ce74272c1910211ec7859af727a9fb2d",
+      "passed": 3,
+      "failed": 0,
+      "negative_unknown_field_rejected": true,
+      "platforms": [
+        "windows"
+      ],
+      "python": "3.10.11",
+      "architecture": "amd64",
+      "packages": [
+        "contourpy==1.3.2",
+        "cycler==0.12.1",
+        "fonttools==4.65.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.9.4",
+        "numpy==1.26.4",
+        "packaging==26.3",
+        "pillow==12.3.0",
+        "pyparsing==3.3.3",
+        "python-dateutil==2.9.0.post0",
+        "ruckig==0.19.4",
+        "scipy==1.13.1",
+        "six==1.17.0"
+      ],
+      "execution_domain": "computation",
+      "physical_robot": false,
+      "gpu": false,
+      "observed_at": "2026-10-19T15:16:41.255003+00:00",
+      "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+      "cases": [
+        {
+          "case": 0,
+          "input": {
+            "start": [
+              0,
+              0,
+              0
+            ],
+            "goal": [
+              4,
+              4,
+              1.5707963267948966
+            ],
+            "curvature": 1.0,
+            "step_size": 0.1
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "ea6b247a0ce3e29bbf45f33e7174d26a00d8d2788eb00f53a3585ed775f9af0d",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "goal_heading": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.5
+        },
+        {
+          "case": 1,
+          "input": {
+            "start": [
+              0,
+              0,
+              0
+            ],
+            "goal": [
+              5,
+              3,
+              -1.5707963267948966
+            ],
+            "curvature": 1.0,
+            "step_size": 0.1
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "f61c40e6dafa7cbd7ee39a815084cd248913310ae0c002a848b25e644399d146",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "goal_heading": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.781
+        },
+        {
+          "case": 2,
+          "input": {
+            "start": [
+              0,
+              0,
+              0
+            ],
+            "goal": [
+              -3,
+              4,
+              3.141592653589793
+            ],
+            "curvature": 1.0,
+            "step_size": 0.1
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "129126109c995985e2b7bbc08130162812e3989ff3436853177c092c3da5e626",
+          "checks": {
+            "nonempty": true,
+            "start_reached": true,
+            "goal_reached": true,
+            "goal_heading": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.766
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}

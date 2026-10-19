@@ -223,5 +223,77 @@
       "recipes/maniskill-panda-push-cube/run.py"
     ],
     "instructions": "Only actual reusable fixes. Public submission permission and a scoped pilot token are separate requirements. Submission opens a public internal draft PR; it is not publication."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "cli_arguments",
+    "output_transport": "json_stdout",
+    "output_selector": "root",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "maniskill_world_xyz_z_up",
+      "joint_order": "pinned_robot_model_order; pd_joint_pos controller",
+      "quaternion_order": "not_exposed_by_this_adapter"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295,
+          "x-unit": "dimensionless",
+          "description": "Simulation reset seed; task, robot, controller, state observation and 1000-step horizon are fixed by this recipe."
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "maxLength": 80
+        }
+      }
+    },
+    "argument_map": {
+      "seed": "--seed"
+    },
+    "preconditions": [
+      "Use the exact declared runtime/robot/environment combination.",
+      "Ground-truth state and environment-generated targets; this adapter accepts a seed, not an arbitrary Cartesian goal.",
+      "A nonzero exit or missing JSON is a process failure; never infer completion from preparation."
+    ],
+    "postconditions": [
+      "PushCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon."
+    ],
+    "failure_codes": [
+      "motion_plan_failed",
+      "episode_truncated",
+      "horizon_exceeded",
+      "invalid_elapsed_steps",
+      "task_objective_not_reached",
+      "runtime_error",
+      "process_failed_without_json"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
   }
 }

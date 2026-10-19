@@ -51,6 +51,20 @@ class CatalogTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()):
             builder.build(args)
 
+    def search_inventory(self):
+        site = self.root / 'site'
+        manifest = json.loads((site / 'catalog/v2/search-manifest.json').read_text())
+        records = []
+        for page in manifest['pages']:
+            raw = (site / page['path']).read_bytes()
+            self.assertEqual(len(raw), page['bytes'])
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), page['sha256'])
+            rows = json.loads(raw)['records']
+            self.assertEqual(len(rows), page['records'])
+            records.extend(rows)
+        self.assertEqual(len(records), manifest['counts']['recipes'] + manifest['counts']['references'])
+        return {**manifest, 'records': records}
+
     def memory(self, summary='Preserve sources on the unsupported host'):
         record = json.loads(self.record_path().read_text(encoding='utf-8'))
         payload = {'schema_version':'1', 'skill_id':record['id'],
@@ -112,8 +126,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual((self.root / "catalog/references.json").read_bytes(), canonical_references)
         references = published_references["records"]
         thin_path = site / "catalog/v1/search.json"
-        self.assertLess(len(thin_path.read_bytes()), 2 * 1024 * 1024)
-        thin = json.loads(thin_path.read_text(encoding="utf-8"))
+        thin = self.search_inventory()
+        if thin_path.exists():
+            self.assertLessEqual(len(thin_path.read_bytes()), builder.SEARCH_JSON_MAX_BYTES)
+            self.assertEqual(json.loads(thin_path.read_text())['records'], thin['records'])
         self.assertEqual(thin["counts"]["references"], len(references))
         self.assertEqual(len(thin["records"]), thin["counts"]["recipes"] + len(references))
         for row in thin["records"]:
@@ -137,7 +153,10 @@ class CatalogTests(unittest.TestCase):
             self.assertIn("not_run", page)
             self.assertIn(record["source"]["sha256"], (folder / "README.md").read_text(encoding="utf-8"))
         version = json.loads((site / "catalog/v1/version.json").read_text(encoding="utf-8"))
-        self.assertEqual(version["resources"]["search"]["sha256"], hashlib.sha256(thin_path.read_bytes()).hexdigest())
+        if thin_path.exists():
+            self.assertEqual(version["resources"]["search"]["sha256"], hashlib.sha256(thin_path.read_bytes()).hexdigest())
+        else:
+            self.assertNotIn('search', version['resources'])
         self.assertEqual(version["counts"], thin["counts"])
         # This canonical official index stays independent of reviewed intake.
         canonical_index = json.loads((self.root / "catalog/source-index.json").read_text(encoding="utf-8"))
@@ -244,7 +263,13 @@ class CatalogTests(unittest.TestCase):
         for key in ("search_url", "api_search_url", "mcp_url", "openapi_url", "intake_schema_url", "source_files_guide_url"):
             self.assertIn(key, contract["resources"])
         self.assertEqual(contract["resources"]["search_url"], "https://api.superfastrobotics.com/v1/search")
-        self.assertEqual(contract["resources"]["search_index_url"], "https://example.test/hub/catalog/v1/search.json")
+        self.assertEqual(contract['resources']['search_manifest_url'], 'https://example.test/hub/catalog/v2/search-manifest.json')
+        if (site / 'catalog/v1/search.json').exists():
+            self.assertEqual(contract['resources']['search_index_url'], 'https://example.test/hub/catalog/v1/search.json')
+        else:
+            self.assertEqual(contract['resources']['search_index_url'], contract['resources']['search_manifest_url'])
+        self.assertEqual(contract['resources']['executable_skills_guide_url'], 'https://example.test/hub/executable-skills.md')
+        self.assertEqual(contract['resources']['execution_interface_schema_url'], 'https://example.test/hub/schemas/execution-interface.schema.json')
         sitemap = (site / "sitemap.xml").read_text(encoding="utf-8")
         official = json.loads((self.root / "catalog/references.json").read_text(encoding="utf-8"))["records"][0]
         self.assertIn("/references/" + official["id"] + "/", sitemap)
@@ -354,7 +379,10 @@ class CatalogTests(unittest.TestCase):
                 builder.publish_memories(builder.load_memories(), self.root / "site", "https://example.test/hub", "1" * 40)
 
     def test_forced_legacy_limits_keep_complete_v2_inventory_findings_and_receipt_history(self):
-        self.build()  # Leave genuine older legacy aggregates in the reused output.
+        # Materialize an older aggregate in this fixture only, then prove that
+        # the real bounded publisher removes it rather than retaining stale data.
+        with mock.patch.object(builder, 'SEARCH_JSON_MAX_BYTES', 4 * 1024 * 1024):
+            self.build()
         site = self.root / "site"
         self.assertTrue((site / "catalog/v1/search.json").exists())
         self.assertTrue((site / "catalog/v1/publication.json").exists())
@@ -534,7 +562,7 @@ class CatalogTests(unittest.TestCase):
             row["compatibility"][0]["status"] = "source_reviewed"
         self.mutate(change)
         self.build()
-        search = json.loads((self.root / "site/catalog/v1/search.json").read_text(encoding="utf-8"))
+        search = self.search_inventory()
         row = next(r for r in search["records"] if r["id"] == record["id"])
         self.assertEqual(row["last_task_attempt"], attempt)
         self.assertEqual(row["evidence_level"], "import_verified")

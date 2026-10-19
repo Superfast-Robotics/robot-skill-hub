@@ -13,7 +13,7 @@ concurrency:
 jobs:
   validate:
     name: Structure and contract tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +28,7 @@ jobs:
           cache: npm
           cache-dependency-path: api/package-lock.json
       - run: python tools/build_catalog.py --hub-commit "$GITHUB_SHA" --base-url https://hub.superfastrobotics.com
+      - run: python tools/generate_executable_recipes.py --check
       - run: python -m unittest discover -s tests/python -v
       - run: python tools/test_catalog.py -v
       - run: python tools/test_catalog_v2.py -v
@@ -41,4 +42,4 @@ jobs:
       - name: Compile recipes without importing simulator dependencies
         run: python -m compileall -q recipes skills/find-robot-skills/scripts
       - name: Record runtime scope
-        run: echo 'Robot simulator execution is not_run. Structure and API contract tests do not establish task completion.'
+        run: echo 'This job runs structure and API checks. Runtime evidence comes from the separate explicit CPU execution workflow.'

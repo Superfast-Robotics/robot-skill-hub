@@ -118,6 +118,19 @@ test('search recovery preserves caller filters and never changes a reference-onl
   assert.deepEqual(unsupported.recovery.suggested_requests, []);
 });
 
+test('reference discovery and inspection link separate exact-pin executable adaptations without promoting the source', async () => {
+  const s=fixture({rowOverrides:[{}, {prepared_adaptations:[{id:'alpha-pick',record_version:'1.0.0',source_commit:'b'.repeat(40),model:'panda',relationship:'adapted_from; model and contract may differ'}]}]});
+  const found: any=await (await s.request('/v1/search?q=ROS'))!.json();
+  assert.equal(found.results[0].kind,'source_reference'); assert.equal(found.results[0].hub_prepare,false);
+  const link=new URL(found.results[0].prepared_adaptations[0].inspect_url);
+  assert.equal(link.origin,'https://api.superfastrobotics.com'); assert.equal(link.searchParams.get('record_version'),'1.0.0');
+  const reference: any=await (await s.request('/v1/skills/beta-grasp'))!.json();
+  assert.deepEqual(reference.record,s.details[1]);
+  assert.equal(reference.prepared_adaptations[0].id,'alpha-pick');
+  const prepared: any=await (await s.request(link.pathname+link.search))!.json();
+  assert.equal(prepared.record.id,'alpha-pick');assert.equal(prepared.record.access.hub_prepare,true);
+});
+
 test('MCP inspect automatically recalls bounded exact-version findings without changing records or search', async () => {
   const rows = [1, 2, 3, 4, 5].map(id => selectedFinding(id));
   rows.push(selectedFinding(6, { base: { ...rows[0].base, source_commit: 'f'.repeat(40) } }));

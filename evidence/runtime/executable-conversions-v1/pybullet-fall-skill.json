@@ -1,0 +1,105 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-fall-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "eb9354c3d3c6ec4cbe30ef349464aac8749a3338a91d921f9185c4a745fe3540",
+  "source_guards_sha256": "742c0daa2b42050355d06f2e5090b5fd4c1dd1540a98567fd36a731a9af173aa",
+  "case_plan_sha256": "4080796d190a0a2487d24bec424988db92d777a74c295a7447827530a10e331e",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T15:22:50.819785+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "height": 1.0,
+        "mass": 0.3,
+        "friction": 0.8
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "0e2861f74caea4ae7826565f70a713db2497af2c527ba0966d9a2d5101089f8c",
+      "checks": {
+        "settled_height": true,
+        "floor_contact": true,
+        "bounded_penetration": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1842
+    },
+    {
+      "case": 1,
+      "input": {
+        "height": 1.0,
+        "mass": 1.0,
+        "friction": 0.8
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "d684a2b80a501cc7bb6b593dd65246068f4719f61537f9976b93edba6eaafe92",
+      "checks": {
+        "settled_height": true,
+        "floor_contact": true,
+        "bounded_penetration": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1937
+    },
+    {
+      "case": 2,
+      "input": {
+        "height": 1.0,
+        "mass": 2.0,
+        "friction": 0.8
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "d684a2b80a501cc7bb6b593dd65246068f4719f61537f9976b93edba6eaafe92",
+      "checks": {
+        "settled_height": true,
+        "floor_contact": true,
+        "bounded_penetration": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1896
+    }
+  ],
+  "workflow": {
+    "id": 39277131631,
+    "head_sha": "0e9943a7f1f3af499455d813d7330de1cd9b8090",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39277131631"
+  }
+}
