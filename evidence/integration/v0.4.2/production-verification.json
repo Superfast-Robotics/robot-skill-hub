@@ -1,0 +1,274 @@
+{
+  "schema_version": "1",
+  "recorded_at": "2026-10-19T00:01:25.933731+00:00",
+  "deployment": {
+    "at": "2026-10-18T23:55:37.541812+00:00",
+    "action": "deploy",
+    "counter_integrity": true,
+    "counts": {
+      "singleton": 1,
+      "bytes": 1430,
+      "items": 1,
+      "principals": 1,
+      "attestations": 1,
+      "actual_bytes": 1430,
+      "actual_items": 1,
+      "actual_principals": 1,
+      "actual_attestations": 1
+    },
+    "billing_plan_changed": false,
+    "status": "DEPLOYED",
+    "commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+    "version": "0.4.2",
+    "worker_version_id": "018c2b3c-db02-4eef-ae86-6b409eacebf9",
+    "previous_worker_version_id": "82710598-da16-4be8-8149-d305d9e55d48",
+    "additive_schema_applied": true
+  },
+  "publication": {
+    "at": "2026-10-18T23:57:20.361729+00:00",
+    "action": "publication",
+    "head": "b3d60a0abd8865069d746fd7d64a19f8abb62c2c",
+    "tree": "bacae93f12b1e0c4ac55d35d8d8d9656b31a575c",
+    "merge": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+    "runs": [
+      {
+        "id": 39178506075,
+        "path": ".github/workflows/pages.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 117826087380,
+            "name": "build",
+            "conclusion": "success"
+          },
+          {
+            "id": 117826132793,
+            "name": "deploy",
+            "conclusion": "success"
+          },
+          {
+            "id": 117826173583,
+            "name": "Activate reviewed catalog index",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 39178506094,
+        "path": ".github/workflows/checks.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 117826087826,
+            "name": "Structure and contract tests",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ],
+    "ready": true
+  },
+  "public_readback": {
+    "observed_at": "2026-10-18T23:57:50.247540+00:00",
+    "status": "PASS_PUBLIC_READBACK",
+    "hub_commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+    "worker_version": "0.4.2",
+    "counts": {
+      "recipes": 17,
+      "references": 1330,
+      "memories": 3
+    },
+    "source_searches": [
+      {
+        "runtime": "aspire",
+        "ids": [
+          "aspire-behavior-debugging",
+          "aspire-bowl-in-drawer",
+          "aspire-cap-tool-usage",
+          "aspire-close-microwave",
+          "aspire-cube-lifting",
+          "aspire-evolutionary-search",
+          "aspire-iterative-debugging",
+          "aspire-open-drawer",
+          "aspire-real-manipulation-tasks",
+          "aspire-two-arm-handover",
+          "aspire-yam-go-home",
+          "aspire-yam-joint-motion",
+          "aspire-yam-observe-station"
+        ],
+        "total": 13,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "aspire-cap-tool-usage"
+      },
+      {
+        "runtime": "libfranka",
+        "ids": [
+          "libfranka-cartesian-impedance",
+          "libfranka-cartesian-pose",
+          "libfranka-cartesian-velocity",
+          "libfranka-force-control",
+          "libfranka-grasp-object",
+          "libfranka-joint-impedance",
+          "libfranka-joint-poses",
+          "libfranka-joint-position",
+          "libfranka-robot-state"
+        ],
+        "total": 9,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "libfranka-robot-state"
+      },
+      {
+        "runtime": "stretch-body",
+        "ids": [
+          "stretch-body-arm-jog",
+          "stretch-body-base-jog",
+          "stretch-body-battery",
+          "stretch-body-gripper-jog",
+          "stretch-body-home",
+          "stretch-body-keyboard-teleop",
+          "stretch-body-lift-jog",
+          "stretch-body-monitor",
+          "stretch-body-stow",
+          "stretch-body-trajectory-jog"
+        ],
+        "total": 10,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "stretch-body-home"
+      }
+    ],
+    "existing_community_item_recalled": "exp_971feebfbf1ffea86ec750ad60bc1206069cbaf0e6bb86ee7ea45d714659b8b7",
+    "calls": [
+      {
+        "at": "2026-10-18T23:57:40.442753+00:00",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "sha256": "b8f093cfea9962d672cce18b200e11d9691c6e0feb7fdbb6e9bbc16a7f977323"
+      },
+      {
+        "at": "2026-10-18T23:57:40.952144+00:00",
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db"
+      },
+      {
+        "at": "2026-10-18T23:57:41.432495+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "e445713e05f06938319d8eb9ca30baeb55e778580c0d919968460f92ce548246"
+      },
+      {
+        "at": "2026-10-18T23:57:42.433162+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=aspire&kind=source_reference&limit=50&hub_commit=72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+        "status": 200,
+        "sha256": "26bfe475d222432eec40892ddb105365acf1dc4f1ae5f7c162a5f1c4e1b86892"
+      },
+      {
+        "at": "2026-10-18T23:57:43.999533+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "19d8984b953803ce7cf47d93183909581474829cf2f558bf744ab1a94d0e5aad"
+      },
+      {
+        "at": "2026-10-18T23:57:44.949975+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=libfranka&kind=source_reference&limit=50&hub_commit=72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+        "status": 200,
+        "sha256": "df3e647a5a7a1b551f650fb345382160b80a4e40380aafd08c3cddd68b70296c"
+      },
+      {
+        "at": "2026-10-18T23:57:46.333755+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "cb8712e821fa4c4c6740d46986c3a57907a7f5447b680ce936afc1cbf5aca478"
+      },
+      {
+        "at": "2026-10-18T23:57:47.199502+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=stretch-body&kind=source_reference&limit=50&hub_commit=72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+        "status": 200,
+        "sha256": "f7c0b86e69eb8b303e40a795ca503a9181a182490665829ac93b27f0b3fc89c4"
+      },
+      {
+        "at": "2026-10-18T23:57:48.634895+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "682628663c12a908d8b5a012941f436f7f12f11b8b994a54563c9800fe34c649"
+      },
+      {
+        "at": "2026-10-18T23:57:50.247540+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "0387cf44e2e9084e49f2c53267478cb04aa862a037174c26ad50417221e67d70"
+      }
+    ],
+    "operator_verification": true,
+    "telemetry": "off",
+    "production_writes": 0,
+    "robot_execution": false,
+    "independent_agent_adoption": false
+  },
+  "initial_readback": {
+    "backend": "static_v1_fallback",
+    "coverage_complete": true,
+    "aspire_total": 13,
+    "followup_native_readback": "public_readback",
+    "interpretation": "Complete static catalog served during index activation; subsequent native readback passed."
+  },
+  "archive": {
+    "at": "2026-10-18T23:54:39.519540+00:00",
+    "action": "observe-archive",
+    "head": "b3d60a0abd8865069d746fd7d64a19f8abb62c2c",
+    "tree": "bacae93f12b1e0c4ac55d35d8d8d9656b31a575c",
+    "run": 39175656437,
+    "status": "completed",
+    "conclusion": "success",
+    "run_commit": "dc08434712ec3ad355ebe9da42991d9255800d98",
+    "jobs": [
+      {
+        "id": 117817660728,
+        "name": "archive",
+        "conclusion": "success"
+      }
+    ],
+    "archive_ref": "079a5e1144615b91bc28f691d45a5a19da56a4d6",
+    "workflow_event": "schedule"
+  },
+  "offline_snapshots": {
+    "hub_commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd",
+    "catalog_resource_hashes_match_live_version": true,
+    "cli_smoke": {
+      "status": "PASS_ISOLATED_BUNDLED_DISCOVERY",
+      "checks": [
+        {
+          "runtime": "aspire",
+          "total": 13,
+          "catalog_origin": "bundled_snapshot",
+          "references_origin": "bundled_snapshot",
+          "references_hub_commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd"
+        },
+        {
+          "runtime": "libfranka",
+          "total": 9,
+          "catalog_origin": "bundled_snapshot",
+          "references_origin": "bundled_snapshot",
+          "references_hub_commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd"
+        },
+        {
+          "runtime": "stretch-body",
+          "total": 10,
+          "catalog_origin": "bundled_snapshot",
+          "references_origin": "bundled_snapshot",
+          "references_hub_commit": "72be1bb23ec8e7bfb994620d05a6531fb1c98fbd"
+        }
+      ],
+      "invocation_mode": "offline",
+      "cache_directory_was_empty": true,
+      "prior_harness_observation": "First smoke used an unsupported home override; the CLI correctly selected an existing older user cache. Corrected harness uses documented RSH_CACHE_DIR. No cache was erased."
+    }
+  },
+  "limits": {
+    "new_upstream_executions": 0,
+    "independent_adoption_verified": false,
+    "no_exhaustive_security_guarantee": true
+  }
+}
