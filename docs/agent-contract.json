@@ -36,7 +36,9 @@
     "search_manifest_url": "https://hub.superfastrobotics.com/catalog/v2/search-manifest.json",
     "memory_manifest_url": "https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json",
     "submission_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/submissions/{submission_id}.json",
-    "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json"
+    "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json",
+    "experience_url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}?record_version={record_version}&hub_commit={hub_commit}&include=experience",
+    "first_read": "Use short task keywords or query_mode=task with known environment filters. Follow search result inspect_url for record, findings and community; recovery.suggested_requests declares each retry scope."
   },
   "cli": {
     "minimum_python": "3.10",

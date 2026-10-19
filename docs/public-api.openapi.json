@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
       "name": "MIT",
@@ -205,7 +205,7 @@
             }
           }
         },
-        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A*, D* and RRT* algorithm symbols become astar, dstar and rrtstar before matching; other terms remain required. Embedded identifiers and repeated stars keep ordinary tokenization; plain RRT remains a word-prefix query. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination."
+        "description": "Complete bounded search; every letter/number query term must prefix a word, including with the static fallback. Standalone A*, D* and RRT* algorithm symbols become astar, dstar and rrtstar before matching; other terms remain required. Embedded identifiers and repeated stars keep ordinary tokenization; plain RRT remains a word-prefix query. Other punctuation separates words; nonblank queries without words return no matches, while blank queries browse. No stemming or inferred synonyms; native unicode61 Unicode/accent behavior can differ from local/static matching. Exact total, backend, coverage, generation and pinned next parameters are returned. Multiple environment filters must match one declared combination. Every result includes an inspect_url pinned to record_version and hub_commit with include=experience. Empty results and query_too_broad errors include recovery.suggested_requests with HTTP URLs and MCP arguments; suggestions never execute automatically and recipe-only scope excludes source references. Use short keywords by default, or English task sentences with query_mode=task and known runtime/robot filters."
       }
     },
     "/v1/skills/{skill_id}": {
@@ -230,6 +230,35 @@
               "type": "string",
               "maxLength": 120
             }
+          },
+          {
+            "name": "hub_commit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            },
+            "description": "Selected search generation; a changed generation returns 409. Refresh search without silently updating project locks."
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "experience"
+              ]
+            },
+            "description": "Attach reviewed findings and community recall, at most three entries per channel. Omit for legacy record-only output."
+          },
+          {
+            "name": "environment",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 8192
+            },
+            "description": "URL-encoded JSON object of explicit environment labels, requiring include=experience. Example: {\"robot\":\"panda\",\"os\":\"linux\"}. At most 16 supported string labels, 240 characters each. Omit unknown values; invalid input is rejected. This filters findings, not recipe compatibility."
           }
         ],
         "responses": {
@@ -293,7 +322,8 @@
               }
             }
           }
-        }
+        },
+        "description": "Follow a search result inspect_url for a pinned record plus bounded exact-source findings and community experience. Without include, the legacy record-only response is preserved. Optional lookup failure returns status=unknown, not empty success; caller must check applicability and contributor-reported trust before reuse. No installation, execution or authentication is required."
       }
     },
     "/v1/catalog": {

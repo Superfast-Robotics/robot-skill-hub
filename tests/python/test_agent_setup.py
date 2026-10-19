@@ -28,7 +28,10 @@ class SetupTests(unittest.TestCase):
         self.policy = self.project / ".robot-skill-hub.json"
         self.token_file = self.root / "scoped.secret"
         self.token_file.write_text(TOKEN + "\n", encoding="utf-8")
-        self.environment = mock.patch.dict(os.environ, {}, clear=True)
+        # Keep OS machine identity while clearing application credentials. On
+        # Windows platform.uname() caches these values for later test modules.
+        machine = {key: os.environ[key] for key in ("PROCESSOR_ARCHITECTURE", "PROCESSOR_ARCHITEW6432") if key in os.environ}
+        self.environment = mock.patch.dict(os.environ, machine, clear=True)
         self.environment.start()
 
     def tearDown(self):

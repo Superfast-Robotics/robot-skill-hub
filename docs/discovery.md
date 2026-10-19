@@ -8,7 +8,7 @@ Use the Hub without an account:
 - [Reviewed finding manifest](https://hub.superfastrobotics.com/catalog/v2/memory-manifest.json)
 - [Text discovery index](https://hub.superfastrobotics.com/llms.txt)
 
-Use returned record URLs for full metadata and exact source/version pins for findings. Legacy catalogs are bounded compatibility views. Check their coverage; use paginated search or v2 manifests for the complete published inventory. Per-ID inspection does not require downloading them.
+Use short keywords, or `query_mode=task` with known runtime/robot filters for English task sentences. Follow scoped `recovery.suggested_requests` when the first search is empty or too broad. Follow the selected `inspect_url` for full metadata and exact-version findings/community in one unauthenticated response; `record_url` is a static record-only mirror. The [quickstart](agent-quickstart.md) shows no-install examples and optional environment filtering. Legacy catalogs are bounded compatibility views. Check their coverage; use paginated search or v2 manifests for the complete published inventory. Per-ID inspection does not require downloading them.
 
 Install the discovery skill into the current project:
 
@@ -49,6 +49,8 @@ The discovery skill is also listed on [skills.sh](https://www.skills.sh/superfas
 
 ## Contribution loop
 
-Agents should reuse applicable published findings before diagnosing the same problem again. When an agent discovers a useful fact during an authorized task, `save` stores the minimal finding locally. An already authorized project policy and scoped token permit a public submission without prompting again for each finding. The API opens an internal draft PR; maintainers review the finding before publication. See [memory.md](memory.md).
+Agents should reuse applicable published findings before diagnosing the same problem again. `inspect --project DIR` recalls local and public experience for the selected source and environment. When an authorized task reveals a useful fact, `save` stores the minimal finding locally. With public sharing already authorized for the exact project scope, self-service `join` enrolls the installation and `save` publishes community experience immediately after mechanical checks. No manager approval, operator-issued token or per-finding prompt is required for this community path. Missing public scope keeps the finding local; task execution permission alone does not authorize publication. See [community.md](community.md).
+
+Community findings, immutable patch variants and linked reuse outcomes remain contributor-reported data, not verified robot performance. Canonical new-source/code changes and the legacy reviewed-memory channel still use internal draft PRs; review, merge and catalog publication are separate. See [memory.md](memory.md) for that distinct legacy path. Community publication does not overwrite canonical code.
 
 Preserve actual failures, fixes and exact source/environment pins. Do not create extra runs or repeated visits to inflate activity, publish private project content or claim that an untested robot/runtime is supported.
