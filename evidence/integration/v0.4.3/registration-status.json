@@ -19,14 +19,77 @@
     "new_submission": false
   },
   "smithery": {
-    "state": "awaiting_operator_login",
-    "local_whoami": "No token found",
-    "new_submission": false
+    "state": "provider_rejected_publication",
+    "authenticated_cli": "smithery@1.2.0",
+    "namespace": "superfast-robotics",
+    "namespace_created": true,
+    "namespace_readback_confirmed": true,
+    "publish_command": "npx.cmd --yes smithery@1.2.0 mcp publish https://api.superfastrobotics.com/mcp -n superfast-robotics/robot-skill-hub",
+    "publish_attempt_date_utc": "2026-10-19",
+    "publish_exit_code": 1,
+    "provider_http_status": 403,
+    "provider_error": "Updating servers has been removed. Contact support@smithery.ai.",
+    "public_readback": {
+      "at": "2026-10-19T11:12:13.328377+00:00",
+      "url": "https://api.smithery.ai/servers/superfast-robotics/robot-skill-hub",
+      "status": 404,
+      "sha256": "57273355f0da77816e8a06aaf9354784b0958e29d55889b41cfe02271e1ac5cb",
+      "body": {
+        "error": "Server not found"
+      }
+    },
+    "public_listing_confirmed": false,
+    "paid_plan_selected": false
   },
   "mcp_directory": {
     "state": "public_search_returned_403",
     "new_submission": false
   },
   "synthetic_adoption_created": false,
-  "paid_plan_selected": false
+  "paid_plan_selected": false,
+  "openai_community_plugins": {
+    "url": "https://github.com/openai/community-plugins/pull/40",
+    "head": "d02be00cebe0ae9da0d98c85b340eddf645e26ff",
+    "state": "open",
+    "merged": false,
+    "cla_checks": [
+      {
+        "name": "cla",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/openai/community-plugins/actions/runs/39182272896/job/118027653980"
+      }
+    ],
+    "signature_by_operator_confirmed": true,
+    "agent_posted_signature": false,
+    "bot_recheck_url": "https://github.com/openai/community-plugins/pull/40#issuecomment-6265849458",
+    "recent_runs": [
+      {
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/openai/community-plugins/actions/runs/39242841033",
+        "event": "issue_comment"
+      },
+      {
+        "status": "completed",
+        "conclusion": "skipped",
+        "url": "https://github.com/openai/community-plugins/actions/runs/39242224845",
+        "event": "issue_comment"
+      },
+      {
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/openai/community-plugins/actions/runs/39189889953",
+        "event": "pull_request_target"
+      }
+    ],
+    "draft": true,
+    "remaining": [
+      "installed Codex qualification",
+      "required repository tests",
+      "code-owner review",
+      "maintainer merge"
+    ]
+  },
+  "provider_followup_receipt": "../../discovery/v0.4.3/provider-followup-20261019.json"
 }

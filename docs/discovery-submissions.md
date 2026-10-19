@@ -6,14 +6,14 @@ The [0.4.3 promotion receipt](../evidence/integration/v0.4.3/promotion-verificat
 
 An affiliated maintainer submission to [AgentNDX](https://agentndx.ai/submit/) returned HTTP 201, receipt **198**, status `received`, at 00:27 UTC. The provider's free search returned no `robot-skill-hub` result before submission. Submitted metadata identifies the public read-only MCP endpoint and the separate CLI preparation/sharing path. This is acceptance for review, not a verified public listing or agent adoption. No paid feature was selected.
 
-[MCP Harbor](https://ai.mcpharbor.dev/servers/io.github.superfast-robotics/robot-skill-hub) already mirrors the official registry: its public JSON search returned the Hub, the exact endpoint and all three tool names, with origin `official` and version 0.4.1. No duplicate submission was made. Mirror refresh remains provider-controlled. Smithery's local CLI reported no token; publication awaits operator login.
+[MCP Harbor](https://ai.mcpharbor.dev/servers/io.github.superfast-robotics/robot-skill-hub) already mirrors the official registry: its public JSON search returned the Hub, the exact endpoint and all three tool names, with origin `official` and version 0.4.1. No duplicate submission was made. Mirror refresh remains provider-controlled. Smithery login and namespace creation are now complete, but the provider rejected publication; see the follow-up below.
 
 ## Earlier registrations and readiness checks
 
 The initial readiness checks were read-only. Context7 registration was subsequently
 submitted on 2026-10-17 at 19:56 UTC after the operator supplied its provider key.
 Search results, submission acceptance, completed indexing, client connection and
-actual task use are separate outcomes. Smithery remains prepared and unpublished.
+actual task use are separate outcomes. Smithery remains unpublished after an authenticated attempt.
 
 ## Context7 documentation
 
@@ -77,94 +77,54 @@ and [refresh policy](https://context7.com/docs/library-updates).
 
 ## Smithery remote MCP
 
-Smithery's [URL publishing](https://smithery.ai/docs/build/publish) accepts a
-public HTTPS Streamable HTTP endpoint. The existing Hub endpoint fits this
-transport: `https://api.superfastrobotics.com/mcp`, with three public read-only
-discovery tools. Local preparation uses the separate Hub CLI.
+On 2026-10-19, the operator completed Smithery CLI authentication. The official
+`smithery@1.2.0` CLI successfully created and claimed the `superfast-robotics`
+namespace; a subsequent namespace listing confirmed ownership. No paid plan
+or Smithery hosting was selected.
 
-Public server and skill searches returned HTTP 200 without a matching Hub
-result in the returned candidates. The candidate server name
-`superfast-robotics/robot-skill-hub` returned HTTP 404. The unauthenticated
-own-namespaces endpoint returned HTTP 401 with an authentication requirement.
-
-The ready command, after provider authentication and namespace ownership, is:
+One authenticated attempt used the documented external-URL publishing command:
 
 ```sh
-smithery mcp publish "https://api.superfastrobotics.com/mcp" -n superfast-robotics/robot-skill-hub
+npx --yes smithery@1.2.0 mcp publish https://api.superfastrobotics.com/mcp -n superfast-robotics/robot-skill-hub
 ```
 
-The requested namespace has not been reserved or ownership-verified. The
-[namespace documentation](https://smithery.ai/docs/concepts/namespaces) and
-[pricing page](https://smithery.ai/pricing) list the free Hobby plan with three
-namespaces. Together with the documented bring-your-own-URL publishing path,
-this supports registering the existing public endpoint without choosing a paid
-plan or buying Smithery hosting. The anonymous pricing response does not state
-a no-card signup guarantee; no checkout or account-specific entitlement was
-tested. The
-[server-create API](https://smithery.ai/docs/api-reference/servers/create-a-server)
-requires a Smithery bearer key; it does not accept an existing GitHub credential
-as a substitute. The receipt contains the concrete display name and description
-for review, including Superfast Robotics' maintainer affiliation.
+The CLI exited with code 1 and HTTP 403:
 
-Use the documented CLI authentication route; no dashboard key menu is assumed.
-With Node.js 20+ and the official CLI installed (`npm install -g smithery@latest`),
-the operator runs:
+> Updating servers has been removed. Contact support@smithery.ai.
 
-```sh
-smithery auth login
-smithery auth whoami
-smithery namespace list
-```
+An anonymous server lookup at 11:12 UTC returned HTTP 404, `Server not found`.
+**The namespace is reserved; the server is not published.** Authentication is
+complete, so another login is not the next step. Smithery support must clarify
+the currently supported publication route before another attempt. No alternate
+account, duplicate listing or paid plan was used to work around this response.
 
-Complete the authorization at the provider URL printed by `auth login`, using
-the Smithery account/organization authorized for `superfast-robotics`.
-`whoami` should be run without `--full`. If the namespace is absent and
-available, the operator can create it with
-`smithery namespace create superfast-robotics`; a namespace owned by someone
-else cannot be authorized by a GitHub organization token. Review a replacement
-qualified name before submission if the desired namespace is unavailable. See
-the [CLI guide](https://smithery.ai/docs/concepts/cli) and
-[namespace rules](https://smithery.ai/docs/concepts/namespaces).
+The provider's [publishing guide](https://smithery.ai/docs/build/publish) still
+describes the command above; its [namespace guide](https://smithery.ai/docs/concepts/namespaces)
+lists three namespaces on the free Hobby plan. These documents do not establish
+that the live publication API currently accepts new releases. The
+[follow-up receipt](../evidence/discovery/v0.4.3/provider-followup-20261019.json)
+records the observed rejection and public readback. The earlier
+[readiness receipt](../evidence/discovery/v0.3.0/provider-readiness.json) remains
+a historical preparation record.
 
-For a separate local credential handoff, mint a token immediately before the
-approved submission, scoped to namespace `superfast-robotics`, resource
-`servers`, operations `read` and `write`, and a one-hour TTL. These operations
-cover server creation/configuration, release publication and status readback;
-namespace creation is completed separately by the operator. No `connections`
-or `execute` grant, upstream Hub credential, or GitHub repository scope is
-needed. The [token-scoping reference](https://smithery.ai/docs/use/token-scoping)
-documents those grants. Its array-form CLI examples differ from the
-[current official CLI parser](https://github.com/arcadeai-labs/smithery-cli/blob/407ac3b33944a585357379bc213fdf1ee55464d7/src/index.ts),
-which accepts one JSON object per `--policy`. In a POSIX shell, use:
+The intended listing exposes the existing public HTTPS endpoint and its three
+read-only tools: `find_robot_skills`, `inspect_robot_skill` and
+`get_hub_capabilities`. Source preparation and community sharing use the
+separate Hub CLI. Completion requires a successful release and public metadata
+matching this endpoint and tool set.
 
-```sh
-smithery --json auth token --policy '{"namespaces":"superfast-robotics","resources":"servers","operations":["read","write"],"ttl":"1h"}'
-```
+## OpenAI community plugin CLA follow-up
 
-On Windows PowerShell, the following equivalent captures the response and saves
-only its `token` field as one UTF-8 line without displaying it. Run from this
-checkout; `--%` preserves the JSON quotes for the native CLI:
-
-```powershell
-$rshTokenReply = smithery.cmd --% --json auth token --policy "{\"namespaces\":\"superfast-robotics\",\"resources\":\"servers\",\"operations\":[\"read\",\"write\"],\"ttl\":\"1h\"}"
-if ($LASTEXITCODE -ne 0) { throw 'Smithery token creation failed.' }
-$rshTokenValue = ($rshTokenReply | ConvertFrom-Json).token
-if ([string]::IsNullOrWhiteSpace($rshTokenValue)) { throw 'No Smithery token returned.' }
-[IO.File]::WriteAllText((Join-Path $PWD '.local/smithery-api-key.secret'), $rshTokenValue, [Text.UTF8Encoding]::new($false))
-Remove-Variable rshTokenReply, rshTokenValue
-```
-
-Keep the raw token out of chat, logs and commits. Both local secret paths are
-gitignored. This short-lived service token is accepted through `SMITHERY_API_KEY`;
-the filename does not imply that it is a permanent account key. An existing
-Smithery key with the same required namespace authority is also sufficient. No
-login, token mint, namespace creation, release submission or new account was
-attempted here.
-
-Completion requires a successful external-URL release, a readable public server
-record and matching endpoint/tool metadata. An accepted release awaiting scan is
-not a completed public listing. See the provider's
-[release API](https://smithery.ai/docs/api-reference/servers/publish-a-server).
+The operator personally signed the CLA for
+[community-plugins PR #40](https://github.com/openai/community-plugins/pull/40).
+After confirming the exact signature text, the agent posted only the bot's
+`recheck` command. The [CLA check](https://github.com/openai/community-plugins/actions/runs/39182272896/job/118027653980)
+passed at head `d02be00cebe0ae9da0d98c85b340eddf645e26ff`.
+The PR remains a draft and unmerged. Installed Codex qualification, required
+repository tests, code-owner review and merge remain pending. CLA success is not
+marketplace acceptance. Both commits are linked to the requested Superfast-BS noreply
+identity; their file trees were preserved during the earlier author correction.
+The agent did not post or modify a legal signature.
 
 ## ClawHub skill bundle
 
@@ -187,7 +147,7 @@ checks are in the [readiness receipt](../evidence/discovery/v0.3.0/provider-read
 
 ## Additional channel review, 2026-10-18
 
-One affiliated [TensorBlock MCP Index PR](https://github.com/TensorBlock/awesome-mcp-servers/pull/4027) adds a Search category entry and optional structured metadata for the public endpoint, transport, authentication, docs and three read-only tools. The repository's contribution guide, complete source catalog, live search and recent merged community submissions were reviewed before posting. The [submission receipt](../evidence/discovery/v0.3.3/tensorblock-submission.json) records exact public file hashes and an independent anonymous two-request readback. Tools and verification remain self-reported; no desktop-client execution, physical robot control, provider verification or transferred upstream license is claimed. The PR is open and unmerged at readback; public index ingestion and resulting traffic remain pending. No fee, new account or synthetic installation activity was used.
+One affiliated [TensorBlock MCP Index PR](https://github.com/TensorBlock/awesome-mcp-servers/pull/4027) adds a Search category entry and optional structured metadata for the public endpoint, transport, authentication, docs and three read-only tools. The repository's contribution guide, complete source catalog, live search and recent merged community submissions were reviewed before posting. The [submission receipt](../evidence/discovery/v0.3.3/tensorblock-submission.json) records exact public file hashes and an independent anonymous two-request readback. Tools and verification remain self-reported; no desktop-client execution, physical robot control, provider verification or transferred upstream license is claimed. The initial receipt captured the PR as open. A [2026-10-19 follow-up](../evidence/discovery/v0.4.3/provider-followup-20261019.json) confirms it was merged on 2026-10-18 at 16:04 UTC. Resulting traffic and agent adoption remain unmeasured. No fee, new account or synthetic installation activity was used.
 
 The skills.sh detail page and its generated repository installation command are
 available, but two anonymous searches at 20:58 UTC did not return this skill.
