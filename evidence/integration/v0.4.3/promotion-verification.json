@@ -78,5 +78,18 @@
     "submission_made": false
   },
   "synthetic_adoption_created": false,
-  "paid_plan_selected": false
+  "paid_plan_selected": false,
+  "indexnow": {
+    "at": "2026-10-19T00:42:08.269151+00:00",
+    "http_status": 200,
+    "urls": [
+      "https://hub.superfastrobotics.com/",
+      "https://hub.superfastrobotics.com/reuse-benchmark.md",
+      "https://hub.superfastrobotics.com/llms.txt",
+      "https://hub.superfastrobotics.com/verification.md"
+    ],
+    "key_location_verified": true,
+    "indexing_confirmed": false,
+    "attempts": 1
+  }
 }
