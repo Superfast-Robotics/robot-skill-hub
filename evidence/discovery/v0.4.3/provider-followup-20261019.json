@@ -35,6 +35,13 @@
         "url": "https://github.com/openai/community-plugins/actions/runs/39189889953",
         "event": "pull_request_target"
       }
+    ],
+    "draft": true,
+    "remaining": [
+      "installed Codex qualification",
+      "required repository tests",
+      "code-owner review",
+      "maintainer merge"
     ]
   },
   "smithery": {

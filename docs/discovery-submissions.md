@@ -120,9 +120,9 @@ The operator personally signed the CLA for
 After confirming the exact signature text, the agent posted only the bot's
 `recheck` command. The [CLA check](https://github.com/openai/community-plugins/actions/runs/39182272896/job/118027653980)
 passed at head `d02be00cebe0ae9da0d98c85b340eddf645e26ff`.
-The PR remains open and unmerged as of the 11:12 UTC anonymous readback;
-maintainer review and merge remain pending. CLA success is not marketplace
-acceptance. Both commits are linked to the requested Superfast-BS noreply
+The PR remains a draft and unmerged. Installed Codex qualification, required
+repository tests, code-owner review and merge remain pending. CLA success is not
+marketplace acceptance. Both commits are linked to the requested Superfast-BS noreply
 identity; their file trees were preserved during the earlier author correction.
 The agent did not post or modify a legal signature.
 
