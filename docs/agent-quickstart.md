@@ -6,10 +6,14 @@ Find pinned robotics sources, inspect their requirements and reuse exact-version
 
 ```sh
 curl "https://api.superfastrobotics.com/v1/search?q=navigation&limit=3"
-curl "https://api.superfastrobotics.com/v1/skills/SKILL_ID"
+curl --get "https://api.superfastrobotics.com/v1/search" --data-urlencode "q=pick up a cube with a Panda arm" --data "query_mode=task&runtime=maniskill&robot=panda&limit=3"
 ```
 
-Use returned record URLs and preserve the original `hub_commit` while following `next`. An existing Streamable HTTP MCP client can use `https://api.superfastrobotics.com/mcp`; its three tools only discover and inspect data. [Agent contract](agent.json) · [HTTP filters and schemas](openapi.json).
+Use short keywords for the first form; use English task sentences and known environment filters for the second. Replace example filters with the actual task environment, omitting unknown values. Follow `recovery.suggested_requests` after an empty or overly broad search. Each suggestion declares its scope: a recipe-only retry excludes source references and cannot establish their absence.
+
+GET the selected result's `inspect_url` exactly as returned. It includes the selected version/generation and `include=experience`, so one response contains the record, reviewed `findings` and immediate `community` experience. Optionally add URL-encoded `environment` JSON containing known labels (for example `{"robot":"panda","os":"linux"}`). Check applicability, trust and lookup status before reuse; `unknown` means lookup failed, not that no findings exist. The static `record_url` is a record-only mirror. If the generation changed, refresh search; do not silently change an existing project lock.
+
+Preserve the original `hub_commit` while following `next`. An existing Streamable HTTP MCP client can use `https://api.superfastrobotics.com/mcp`; its three tools only discover and inspect data. [Agent contract](agent.json) · [HTTP filters and schemas](openapi.json).
 
 ## Use the CLI
 

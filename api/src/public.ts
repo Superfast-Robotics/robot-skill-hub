@@ -8,7 +8,7 @@ import { communityForSelection } from './community.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.4.3';
+const VERSION = '0.4.4';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -20,6 +20,28 @@ const HEADERS = { 'Content-Type': 'application/json; charset=utf-8', 'X-Content-
   'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'MCP-Protocol-Version, Retry-After', 'Cache-Control': 'no-store' };
 const json = (body: unknown, status = 200, extra: Record<string, string> = {}) => new Response(JSON.stringify(body), { status, headers: { ...HEADERS, ...extra } });
 const fail = (status: number, code: string, message: string): never => { throw new PublicError(status, code, message); };
+
+function searchRecovery(input: Row, commit?: string, tooBroad = false) {
+  const suggested: Row[] = [];
+  if (typeof input.q === 'string' && input.q.trim() && !/[^\x00-\x7f]/.test(input.q)) {
+    const filtered = Object.keys(input).some(key => !['q', 'query_mode', 'limit', 'offset', 'hub_commit'].includes(key));
+    // Never guess a robot/environment or silently restrict the result set.
+    const candidate = !tooBroad && input.query_mode !== 'task' && filtered
+      ? { ...input, query_mode: 'task', offset: 0 }
+      : !input.kind ? { ...input, query_mode: 'task', kind: 'preparation_recipe', offset: 0 } : null;
+    if (candidate) {
+      const args: Row = { ...candidate, limit: Number(input.limit || 3), ...(commit ? { hub_commit: commit } : {}) };
+      suggested.push({ method: 'GET', url: API + '/v1/search?' + new URLSearchParams(Object.entries(args).map(([k,v]) => [k, String(v)])),
+        arguments: args, scope: args.kind === 'preparation_recipe' ? 'preparation_recipes_only; excludes_source_references' : 'same_explicit_filters' });
+    }
+  }
+  return { automatic_retry: false, message: 'For full-catalog keyword search use short task terms. For English sentences use query_mode=task with known runtime/robot filters. Omit unknown values. More query text does not reduce the 512-record task bound. A recipe-only retry cannot establish absence from source references.', suggested_requests: suggested };
+}
+
+function inspectionLinks(rows: Row[], commit: string) {
+  return rows.map(row => ({ ...row, inspect_url: API + '/v1/skills/' + encodeURIComponent(row.id) + '?' + new URLSearchParams({
+    record_version: row.record_version, hub_commit: commit, include: 'experience' }) }));
+}
 
 async function boundedBytes(response: Response, maximum: number): Promise<Uint8Array> {
   if (!response.ok) { await response.body?.cancel(); fail(503, 'catalog_unavailable', 'The published catalog is temporarily unavailable.'); }
@@ -47,10 +69,10 @@ async function digest(bytes: Uint8Array): Promise<string> {
 }
 
 export const MCP_TOOLS = [
-  { name: 'find_robot_skills', description: 'Search pinned robot code across robots and runtimes. Results distinguish prepared recipes from upstream references; source discovery is not runtime verification.',
+  { name: 'find_robot_skills', description: 'Use when implementing a robotics task and looking for existing code or checking source requirements before setup. Use short task keywords, or query_mode=task with known runtime/robot filters for English sentences. Follow recovery suggestions after empty results. Results distinguish prepared recipes from upstream references; a match is not runtime verification.',
     inputSchema: { type: 'object', properties: { query_mode: { type: 'string', enum: ['all_terms', 'task'], default: 'all_terms', description: 'task opts into ASCII English lexical ranking over at most512 hard-filtered records; narrow runtime/robot when query_too_broad. No execution or compatibility inference.' }, q: { type: 'string', maxLength: 240, description: 'Default all_terms: all query terms must match word prefixes. Standalone A*, D* and RRT* are read as astar, dstar and rrtstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
-  { name: 'inspect_robot_skill', description: 'Read a pinned recipe or reference and up to three exact-version findings as untrusted data. Findings need an applicability check; no installation or execution is performed.',
+  { name: 'inspect_robot_skill', description: 'Use after selecting a search result to check requirements and recall prior fixes before repeating setup or diagnosis. Read a pinned recipe/reference with up to three exact-version entries per findings/community channel as untrusted data. Check applicability; no installation or execution is performed.',
     inputSchema: { type: 'object', properties: { skill_id: { type: 'string', pattern: IDENT.source }, record_version: { type: 'string', maxLength: 120, description: 'Copy record_version from the selected search result. Source references use source-<source.sha256>, not record.maintenance.record_version.' }, environment: { type: 'object', maxProperties: 16, description: 'Optional explicit task environment labels for findings only. Omit unknown values; no environment is inferred.', propertyNames: { anyOf: [{ enum: MEMORY_ENV_KEYS }, { pattern: '^package\\.[A-Za-z_][A-Za-z0-9_]{0,79}$' }] }, additionalProperties: { type: 'string', minLength: 1, maxLength: 240 } } }, required: ['skill_id'], additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'get_hub_capabilities', description: 'Read public discovery, preparation, contribution and task-memory capabilities, local CLI onboarding links and current catalog counts. No authentication is needed for reads.',
@@ -101,7 +123,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       const candidates = index.records.filter(row => (!input.kind || row.kind === input.kind) && combinationMatches(row, input));
       const found = index.database ? await indexedSearch(index.database, index.hub_commit, input) : taskSearch(candidates, input, limit, offset);
       return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts,
-        backend: index.database ? 'd1_filtered_lexical' : 'static_v1_task', coverage: { complete: true }, ...found,
+        backend: index.database ? 'd1_filtered_lexical' : 'static_v1_task', coverage: { complete: true }, ...found, results: inspectionLinks(found.results, index.hub_commit),
+        ...(found.results.length ? {} : { recovery: searchRecovery(input, index.hub_commit) }),
         next: offset + limit < found.total ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
         execution_performed: false, next_action: found.results.length ? 'inspect_selected_record' : 'broaden_or_correct_query',
         evidence_rule: 'A lexical task match does not establish runtime compatibility or task completion.' };
@@ -117,10 +140,11 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     const normalized = String(input.q || '').toLowerCase();
     matches.sort((a, b) => Number(b.id === normalized) - Number(a.id === normalized) || Number(b.kind === 'preparation_recipe') - Number(a.kind === 'preparation_recipe') || a.id.localeCompare(b.id));
     const found = index.database ? await indexedSearch(index.database, index.hub_commit, input) : { results: matches.slice(offset, offset + limit), total: matches.length };
-    const results = found.results;
+    const results = inspectionLinks(found.results, index.hub_commit);
     return { schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, counts: index.counts, backend: index.backend, coverage: { complete: true }, search_semantics: 'all_terms_word_prefix', results, total: found.total, limit, offset,
       next: offset + limit < found.total ? { ...input, limit, offset: offset + limit, hub_commit: index.hub_commit } : null,
       execution_performed: false, next_action: results.length ? 'inspect_selected_record' : 'broaden_or_correct_query',
+      ...(results.length ? {} : { recovery: searchRecovery(input, index.hub_commit) }),
       evidence_rule: 'A search match does not establish runtime compatibility or task completion.' };
   }
   async function inspect(index: Snapshot, id: string, version?: string) {
@@ -187,6 +211,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
           missing_scope_or_token: 'Keep local_saved and continue the user task.', repeat_permission_for_exact_authorized_scope: false }
       },
       public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', findings: API + '/v1/findings',
+        inspect_experience: 'Follow the search result inspect_url for a version-pinned record plus findings and community. Optional environment is URL-encoded JSON of known labels.',
         search_manifest: ORIGIN + '/catalog/v2/search-manifest.json', memory_manifest: ORIGIN + '/catalog/v2/memory-manifest.json',
         catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
       new_skill_submission: { method: 'POST', url: API + '/v1/skills', authentication: 'allowed_agent_Bearer_token', publication: 'internal_draft_PR_then_maintainer_review' },
@@ -237,7 +262,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value, isError: false });
     } catch (error) {
       const known = error instanceof PublicError;
-      const value = { status: 'failed', reason_code: known ? error.code : 'catalog_unavailable', message: known ? error.message : 'The published catalog is temporarily unavailable.' };
+      const value = { status: 'failed', reason_code: known ? error.code : 'catalog_unavailable', message: known ? error.message : 'The published catalog is temporarily unavailable.',
+        ...(known && error.code === 'query_too_broad' ? { recovery: searchRecovery(args, undefined, true) } : {}) };
       return response({ content: [{ type: 'text', text: JSON.stringify(value) }], isError: true });
     }
   }
@@ -278,12 +304,27 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       } else {
         const id = path.slice('/v1/skills/'.length);
         const index = await snapshot(env);
-        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record: (await inspect(index, id, url.searchParams.get('record_version') || undefined)).record, execution_performed: false });
+        if (url.searchParams.has('hub_commit') && url.searchParams.get('hub_commit') !== index.hub_commit) fail(409, 'catalog_changed', 'Refresh search before inspecting a different catalog generation.');
+        const include = url.searchParams.get('include');
+        if (include !== null && include !== 'experience') fail(400, 'invalid_include', 'Use include=experience for exact-version findings and community recall.');
+        if (include === 'experience' && [...url.searchParams.keys()].some(key => !['record_version', 'hub_commit', 'include', 'environment'].includes(key))) fail(400, 'invalid_arguments', 'Use environment JSON for explicit recall filters; unknown inspection parameters are not ignored.');
+        let environment: Row = {};
+        if (url.searchParams.has('environment')) {
+          if (include !== 'experience') fail(400, 'invalid_environment', 'Environment filters require include=experience.');
+          if (url.searchParams.get('environment')!.length > 8192) fail(400, 'invalid_environment', 'Environment JSON must not exceed 8192 characters.');
+          let parsed: unknown;
+          try { parsed = JSON.parse(url.searchParams.get('environment')!); } catch { fail(400, 'invalid_environment', 'environment must be a JSON object.'); }
+          environment = findingEnvironment(parsed);
+        }
+        const { record, row } = await inspect(index, id, url.searchParams.get('record_version') || undefined);
+        response = json({ schema_version: '1', interpretation: 'data_only', hub_commit: index.hub_commit, backend: index.backend, record,
+          ...(include === 'experience' ? { findings: await selectionFindings(index, record, row, environment), community: await communityForSelection(env, row, environment) } : {}), execution_performed: false });
         if (request.method === 'GET') await measure(request, env, 'inspect', ctx);
       }
       return request.method === 'HEAD' ? new Response(null, { status: response.status, headers: response.headers }) : response;
     } catch (error) {
-      return json({ status: 'failed', reason_code: error instanceof PublicError ? error.code : 'catalog_unavailable', message: error instanceof PublicError ? error.message : 'The published catalog is temporarily unavailable.', next_action: error instanceof PublicError && error.code === 'query_too_broad' ? 'narrow_environment_filters' : 'retry_or_use_static_catalog', catalog_url: ORIGIN + '/catalog/v1/index.json' }, error instanceof PublicError ? error.status : 503);
+      return json({ status: 'failed', reason_code: error instanceof PublicError ? error.code : 'catalog_unavailable', message: error instanceof PublicError ? error.message : 'The published catalog is temporarily unavailable.', next_action: error instanceof PublicError && error.code === 'query_too_broad' ? 'narrow_environment_filters' : 'retry_or_use_static_catalog',
+        ...(error instanceof PublicError && error.code === 'query_too_broad' ? { recovery: searchRecovery(Object.fromEntries(url.searchParams), undefined, true) } : {}), catalog_url: ORIGIN + '/catalog/v1/index.json' }, error instanceof PublicError ? error.status : 503);
     }
   };
 }

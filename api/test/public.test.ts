@@ -61,6 +61,63 @@ function selectedFinding(id = 1, changes: Record<string, any> = {}) {
     evidence: { level: 'contributor_reported', reported_by: 'submitter' }, ...changes };
 }
 
+test('empty first search returns a bounded actionable retry and pinned HTTP experience link', async () => {
+  const s = fixture({ findingRows: [selectedFinding()] });
+  const first: any = await (await s.request('/v1/search?q=Please%20find%20code%20to%20pick%20up%20a%20cube&limit=3'))!.json();
+  assert.equal(first.total, 0);
+  assert.equal(first.recovery.automatic_retry, false);
+  const suggestion = first.recovery.suggested_requests[0];
+  assert.equal(suggestion.arguments.kind, 'preparation_recipe');
+  assert.match(suggestion.scope, /excludes_source_references/);
+  assert.equal(suggestion.arguments.robot, undefined);
+  assert.equal(suggestion.arguments.hub_commit, HUB);
+  assert.equal(suggestion.arguments.limit, 3);
+  const rpc: any = await (await s.rpc('tools/call', { name: 'find_robot_skills', arguments: suggestion.arguments }))!.json();
+  assert.equal(rpc.result.isError, false, 'HTTP recovery arguments are directly usable by MCP');
+  const retry = new URL(suggestion.url);
+  const found: any = await (await s.request(retry.pathname + retry.search))!.json();
+  assert.equal(found.results[0].id, 'alpha-pick');
+  const detailURL = new URL(found.results[0].inspect_url);
+  assert.equal(detailURL.origin, 'https://api.superfastrobotics.com');
+  assert.equal(detailURL.searchParams.get('record_version'), '1.0.0');
+  detailURL.searchParams.set('environment', JSON.stringify({ robot: 'panda', os: 'linux' }));
+  const detail: any = await (await s.request(detailURL.pathname + detailURL.search))!.json();
+  assert.equal(detail.findings.total, 1);
+  assert.equal(detail.findings.base.source_commit, 'b'.repeat(40));
+  assert.equal(detail.community.status, 'unknown', 'Missing community database is not empty success');
+  assert.deepEqual(detail.record, s.details[0]);
+  detailURL.searchParams.set('environment', JSON.stringify({ robot: 'ur5' }));
+  const other: any = await (await s.request(detailURL.pathname + detailURL.search))!.json();
+  assert.equal(other.findings.total, 0);
+});
+
+test('HTTP experience rejects drift and invalid filters and preserves records on optional recall failure', async () => {
+  const s = fixture({ memoryUnavailable: true });
+  for (const suffix of ['&environment=null', '&environment=false', '&environment=%7Bbad', '&environment=%7B%22robot%22%3Afalse%7D', '&robot=panda']) {
+    assert.equal((await s.request('/v1/skills/alpha-pick?include=experience' + suffix))!.status, 400);
+  }
+  assert.equal((await s.request('/v1/skills/alpha-pick?include=unknown'))!.status, 400);
+  assert.equal((await s.request('/v1/skills/alpha-pick?include=experience&hub_commit=' + 'f'.repeat(40)))!.status, 409);
+  assert.equal((await s.request('/v1/skills/alpha-pick?include=experience&record_version=old'))!.status, 409);
+  const detail: any = await (await s.request('/v1/skills/alpha-pick?include=experience'))!.json();
+  assert.deepEqual(detail.record, s.details[0]);
+  assert.equal(detail.findings.status, 'unknown');
+  assert.equal(detail.findings.total, null);
+  assert.equal(detail.findings.coverage.complete, false);
+});
+
+test('search recovery preserves caller filters and never changes a reference-only scope to recipes', async () => {
+  const s = fixture();
+  for (const kind of ['source_reference', 'preparation_recipe']) {
+    const result: any = await (await s.request('/v1/search?q=find%20example%20code&kind=' + kind + '&runtime=ros2&robot=ur5&offset=2'))!.json();
+    const retry = result.recovery.suggested_requests[0].arguments;
+    assert.equal(retry.query_mode, 'task'); assert.equal(retry.kind, kind);
+    assert.equal(retry.runtime, 'ros2'); assert.equal(retry.robot, 'ur5'); assert.equal(retry.offset, 0);
+  }
+  const unsupported: any = await (await s.request('/v1/search?q=' + encodeURIComponent('없는 스킬')))!.json();
+  assert.deepEqual(unsupported.recovery.suggested_requests, []);
+});
+
 test('MCP inspect automatically recalls bounded exact-version findings without changing records or search', async () => {
   const rows = [1, 2, 3, 4, 5].map(id => selectedFinding(id));
   rows.push(selectedFinding(6, { base: { ...rows[0].base, source_commit: 'f'.repeat(40) } }));

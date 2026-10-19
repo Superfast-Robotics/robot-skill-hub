@@ -1,5 +1,13 @@
 # Verification record — 2026-10-17 to 2026-10-19 (Asia/Seoul)
 
+## First-search recovery and no-install recall, 0.4.4
+
+Empty keyword searches and overly broad task queries now return scoped retry URLs and MCP arguments. No retry executes automatically, no environment is inferred and the 512-candidate bound remains. Recipe-only suggestions explicitly exclude source references. Search results provide a record-version/generation-pinned `inspect_url`; its HTTP `include=experience` response attaches the same bounded exact-source findings and community recall used by MCP. The old record-only HTTP response is preserved. Unknown recall state is distinct from an empty successful lookup.
+
+New public-handler regressions exercise the search-to-retry-to-inspect path, HTTP-to-MCP argument reuse, reference-only scope preservation, environment validation, generation/version conflicts and optional lookup failure. Native D1 tests compare HTTP and MCP findings and follow recovery suggestions before/after index activation. These are retrieval/contract checks, not autonomous agent selection or whole-task savings. The agent skill, quickstart, OpenAPI, agent contract and discovery guide describe the new path and distinguish immediate community publication from reviewed canonical changes.
+
+The initial Windows Python suite exposed an existing test-isolation problem: clearing the entire environment in setup tests caused Python to cache an empty machine architecture for later modules. Those tests now retain only OS architecture variables while still clearing application credentials. The unchanged recipe-preparation tests pass in isolation, and the full rerun passes 360 tests with four existing Windows symlink-privilege skips. No production Python behavior changed.
+
 ## Complete envelope validation and measured CLI context, 0.4.3
 
 The [production receipt](../evidence/integration/v0.4.3/production-verification.json) records Worker 0.4.3 from `1083ee561b087448a159bffab9f59f091f5d8784`, successful Linux CI and Pages/index activation, exact public source/MCP reads, seven live malformed-environment rejections and successful existing-finding retrieval through the compact CLI. All three capacity guards remained installed and storage counters matched actual data. No schema migration or billing change was needed.

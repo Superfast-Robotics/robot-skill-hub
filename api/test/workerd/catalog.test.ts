@@ -340,6 +340,13 @@ test('native MCP inspection reuses indexed exact-pin findings and degrades indep
     assert.equal(all.applicability, 'needs_applicability_check'); assert.deepEqual(all.environment_filter, {});
     const explicit = await inspect({ robot: 'panda' });
     assert.equal(explicit.total, 1); assert.equal(explicit.results[0].memory_id, published.memories[0].memory_id);
+    const search = await s.read('/v1/search?q=PickCube');
+    const link = new URL(search.body.results[0].inspect_url);
+    link.searchParams.set('environment', JSON.stringify({ robot: 'panda' }));
+    const http = await s.read(link.pathname + link.search);
+    assert.equal(http.status, 200);
+    assert.deepEqual(http.body.findings, explicit, 'HTTP experience uses the same native exact-scope recall as MCP');
+    assert.deepEqual(http.body.record, published.full[0]);
     assert.ok(s.calls.every(call => !call.includes('/catalog/v1/memories.json')), 'The active native index avoids an aggregate fallback read');
     await s.db.prepare("UPDATE catalog_memory_documents SET row_json=json_set(row_json,'$.memory_id',?,'$.entry_url',?)")
       .bind(published.memories[0].memory_id, published.memories[0].entry_url).run();
@@ -720,6 +727,11 @@ test('task mode limits all hard-filtered records before text across static/nativ
       for (const q of ['PickCube', 'zzzzunfindable', 'the and please']) {
         const result = await s.read('/v1/search?' + new URLSearchParams({ q, query_mode: 'task' }));
         assert.equal(result.status, 400); assert.equal(result.body.reason_code, 'query_too_broad');
+        const retry = result.body.recovery.suggested_requests[0];
+        assert.equal(retry.arguments.kind, 'preparation_recipe');
+        assert.match(retry.scope, /excludes_source_references/);
+        const retryURL = new URL(retry.url);
+        assert.equal((await s.read(retryURL.pathname + retryURL.search)).status, 200);
       }
       const narrowed = await s.read('/v1/search?q=Please%20pick%20cube&query_mode=task&kind=preparation_recipe');
       assert.equal(narrowed.status, 200); assert.equal(narrowed.body.candidate_count, 1); assert.equal(narrowed.body.total, 1);
