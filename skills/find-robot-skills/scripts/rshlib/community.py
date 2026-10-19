@@ -81,6 +81,40 @@ def identity(value):
     return "exp_" + hashlib.sha256(contributions.canonical_bytes(data)).hexdigest()
 
 
+def validate_content(value):
+    """Validate untrusted local and remote content before hashing or delivery."""
+    if (not isinstance(value, dict) or set(value) - {"schema_version", "finding", "parent_id", "variant", "outcome"}
+            or value.get("schema_version") != "1"):
+        raise RshError("invalid_experience", "Use the documented experience envelope.")
+    memories.validate_payload(value.get("finding"))
+    if "parent_id" in value and (not isinstance(value["parent_id"], str) or not ID.fullmatch(value["parent_id"])):
+        raise RshError("invalid_parent", "Use the exact parent experience ID.")
+    if "variant" in value:
+        variant = value["variant"]
+        if (not isinstance(variant, dict) or set(variant) != {"patch", "license_spdx"}
+                or not isinstance(variant.get("patch"), str) or len(variant["patch"].encode("utf-8")) > 12000
+                or not isinstance(variant.get("license_spdx"), str) or not re.fullmatch(r"[A-Za-z0-9.+-]{2,80}", variant["license_spdx"])
+                or not value["finding"].get("resolution") or "outcome" in value):
+            raise RshError("invalid_variant", "A variant needs a bounded source patch, license and resolution; report reuse separately.")
+        paths = contributions.patch_paths(variant["patch"])
+        forbidden = {"..", ".git", ".github", ".agents", ".claude", ".codex", ".cursor", ".gemini", ".vscode"}
+        for path in paths:
+            if (not re.fullmatch(r"[A-Za-z0-9_./-]+", path)
+                    or any(p.endswith(".") or p.lower() in forbidden for p in path.split("/"))
+                    or re.search(r"(?:^|/)(?:\.env(?:\..*)?|AGENTS\.md|SKILL\.md|CLAUDE\.md|GEMINI\.md|copilot-instructions\.md)$", path, re.I)):
+                raise RshError("invalid_variant_path", "Exclude credentials and agent instructions from source patches.")
+    if "outcome" in value and (not value.get("parent_id") or value["outcome"] not in ("succeeded", "failed", "not_applicable")
+                               or value["finding"]["evidence"]["level"] != "contributor_reported"):
+        raise RshError("invalid_outcome", "Report an actual result with an exact parent ID.")
+    memories.reject_secrets(value)
+    wire = contributions.canonical_bytes(value)
+    if re.search(rb"\bcsh_[A-Za-z0-9_-]{43}\b", wire):
+        raise RshError("potential_secret", "Remove community credentials before saving.")
+    if len(wire) > 32768:
+        raise RshError("finding_too_large", "Experience exceeds the 32 KiB wire limit.")
+    return value
+
+
 def key_path():
     home = Path.home().resolve()
     path = home / ".robot-skill-hub/community-key.json"
@@ -169,8 +203,13 @@ def verify_entry(entry):
     if not isinstance(entry, dict) or not isinstance(entry.get('content'), dict) or not isinstance(entry.get('delivery', {}), dict):
         raise RshError("invalid_local_experience", "Local experience must contain structured content and delivery state.")
     value = entry.get("content", {})
-    memories.validate_payload(value.get('finding'))
-    if value.get('schema_version') != '1' or identity(value) != entry.get("id"):
+    validate_content(value)
+    delivery = entry.get("delivery", {})
+    if (delivery.get("status", "local_saved") not in ("local_saved", "stored", "needs_attention")
+            or type(delivery.get("retry_after", 0)) is not int or delivery.get("retry_after", 0) < 0
+            or delivery.get("status") == "needs_attention" and not isinstance(delivery.get("reason_code"), str)):
+        raise RshError("invalid_local_experience", "Local delivery state is malformed; preserve the local file for repair.")
+    if identity(value) != entry.get("id"):
         raise RshError("invalid_local_experience", "Local content identity does not match.")
     return value
 
@@ -195,7 +234,9 @@ def deliver(entry, path, project, *, retry_blocked=False):
         network_performed = True
         receipt = request("POST", "/items", token=local["token"], value=wire)
         content = receipt.get("content", {})
+        validate_content(content)
         if (receipt.get("status") != "stored" or receipt.get("id") != entry["id"] or identity(content) != entry["id"]
+                or content["finding"]["publication"]["public_submission_allowed"] is not True
                 or hashlib.sha256(contributions.canonical_bytes(content)).hexdigest() != receipt.get("content_sha256")):
             raise RshError("invalid_community_receipt", "Stored content identity was not confirmed.")
         entry["delivery"] = {"status": "stored", "content_sha256": receipt["content_sha256"]}
@@ -238,11 +279,7 @@ def save(catalog, skill_id, project, finding_file, *, offline=False, patch=None,
         if not parent_id or outcome not in ("succeeded", "failed", "not_applicable") or finding["evidence"]["level"] != "contributor_reported":
             raise RshError("invalid_outcome", "Report an actual result with contributor_reported evidence and an exact parent ID.")
         value["outcome"] = outcome
-    memories.reject_secrets(value)
-    if re.search(r"\bcsh_[A-Za-z0-9_-]{43}\b", json.dumps(value)):
-        raise RshError("potential_secret", "Remove community credentials before saving.")
-    if len(contributions.canonical_bytes(value)) > 32768:
-        raise RshError("finding_too_large", "Experience exceeds the 32 KiB wire limit.")
+    validate_content(value)
     item_id = identity(value)
     target = root(project) / (item_id + ".json")
     if not target.resolve().is_relative_to(Path(project).expanduser().resolve()):
@@ -392,7 +429,8 @@ def get(item_id, output=None):
         raise RshError("invalid_experience_id", "Use an exp_ content ID.")
     value = request("GET", "/items/" + item_id)
     content = value.get("content", {})
-    if (not isinstance(content, dict) or not isinstance(content.get("finding"), dict) or value.get("id") != item_id
+    validate_content(content)
+    if (content["finding"]["publication"]["public_submission_allowed"] is not True or value.get("id") != item_id
             or identity(content) != item_id or hashlib.sha256(contributions.canonical_bytes(content)).hexdigest() != value.get("content_sha256")):
         raise RshError("invalid_experience_content", "Experience identity or digest mismatch.")
     if output:
@@ -401,4 +439,4 @@ def get(item_id, output=None):
             raise RshError("output_exists", "Choose a new output path; existing files are preserved.")
         write_json(path, value)
         return {"status": "ready", "id": item_id, "path": str(path), "execution_performed": False, "interpretation": "data_only"}
-    return {"status": "ready", **value, "execution_performed": False}
+    return {"status": "ready", **value, "execution_performed": False, "interpretation": "data_only", "trust": "contributor_reported"}

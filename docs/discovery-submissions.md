@@ -1,5 +1,13 @@
 # Additional discovery channel status
 
+## Additional registration, 2026-10-19
+
+An affiliated maintainer submission to [AgentNDX](https://agentndx.ai/submit/) returned HTTP 201, receipt **198**, status `received`, at 00:27 UTC. The provider's free search returned no `robot-skill-hub` result before submission. Submitted metadata identifies the public read-only MCP endpoint and the separate CLI preparation/sharing path. This is acceptance for review, not a verified public listing or agent adoption. No paid feature was selected.
+
+[MCP Harbor](https://ai.mcpharbor.dev/servers/io.github.superfast-robotics/robot-skill-hub) already mirrors the official registry: its public JSON search returned the Hub, the exact endpoint and all three tool names, with origin `official` and version 0.4.1. No duplicate submission was made. Mirror refresh remains provider-controlled. Smithery's local CLI reported no token; publication awaits operator login.
+
+## Earlier registrations and readiness checks
+
 The initial readiness checks were read-only. Context7 registration was subsequently
 submitted on 2026-10-17 at 19:56 UTC after the operator supplied its provider key.
 Search results, submission acceptance, completed indexing, client connection and

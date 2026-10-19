@@ -217,5 +217,60 @@ class CommunityTests(unittest.TestCase):
                 self.assertFalse(result['complete'])
 
 
+    def test_tampered_outbox_revalidates_entire_envelope_before_network(self):
+        self.enable()
+        saved = community.save(self.catalog, 'fixture-pick', self.project, self.input, offline=True)
+        path = Path(saved['finding_path'])
+        original = json.loads(path.read_text())
+        mutations = [
+            lambda c: c.update(private_notes='not authorized for upload'),
+            lambda c: c.update(variant={'patch':'--- a/demo.py\n+++ b/demo.py\n@@ -1 +1 @@\n-old\n+key = "'+'ghp_'+'x'*30+'"\n', 'license_spdx':'MIT'}),
+            lambda c: c.update(variant={'patch':'--- a/CLAUDE.md\n+++ b/CLAUDE.md\n@@ -1 +1 @@\n-old\n+new\n', 'license_spdx':'MIT'}),
+        ]
+        for mutation in mutations:
+            entry = json.loads(json.dumps(original)); mutation(entry['content'])
+            entry['id'] = community.identity(entry['content'])
+            with self.subTest(entry=entry['id']), mock.patch.object(community,'credential',return_value={'token':'csh_'+'x'*43}), mock.patch.object(community,'request') as request:
+                with self.assertRaises(RshError): community.deliver(entry,path,self.project)
+                request.assert_not_called()
+
+    def test_malformed_receipt_finding_retains_local_copy_without_crashing(self):
+        self.enable()
+        with mock.patch.object(community,'credential',return_value={'token':'csh_'+'x'*43}), mock.patch.object(community,'request',return_value={'status':'stored','content':{'finding':[]}}):
+            saved = community.save(self.catalog,'fixture-pick',self.project,self.input)
+            entry=json.loads(Path(saved['finding_path']).read_text())
+            # Match the claimed receipt ID so validation must inspect malformed content.
+            receipt={'status':'stored','id':entry['id'],'content':{'finding':[]}}
+            entry['delivery']['retry_after']=0
+            with mock.patch.object(community,'request',return_value=receipt):
+                result=community.deliver(entry,Path(saved['finding_path']),self.project)
+            self.assertEqual(result['status'],'local_saved')
+            self.assertEqual(json.loads(Path(saved['finding_path']).read_text())['content'],entry['content'])
+
+    def test_detail_validates_structure_even_with_matching_untrusted_hashes(self):
+        value={'schema_version':'1','finding':{'invalid':'not a finding'}}
+        item_id=community.identity(value)
+        reply={'id':item_id,'content':value,'content_sha256':hashlib.sha256(contributions.canonical_bytes(value)).hexdigest()}
+        with mock.patch.object(community,'request',return_value=reply):
+            with self.assertRaises(RshError): community.get(item_id,self.project/'download.json')
+        self.assertFalse((self.project/'download.json').exists())
+
+    def test_invalid_delivery_state_is_refused_before_credentials_or_network(self):
+        saved = community.save(self.catalog,'fixture-pick',self.project,self.input,offline=True)
+        entry = json.loads(Path(saved['finding_path']).read_text())
+        for delivery in ({'retry_after':'tomorrow'}, {'status':'needs_attention'}, {'status':[]}, {'retry_after':True}):
+            with self.subTest(delivery=delivery), mock.patch.object(community,'credential') as credential, mock.patch.object(community,'request') as request:
+                entry['delivery']=delivery
+                with self.assertRaises(RshError): community.deliver(entry,Path(saved['finding_path']),self.project)
+                credential.assert_not_called(); request.assert_not_called()
+
+    def test_patch_limit_counts_utf8_bytes_before_local_storage(self):
+        patch = self.project/'large.diff'
+        patch.write_text('--- a/demo.py\n+++ b/demo.py\n@@ -1 +1 @@\n-old\n+'+'\uac00'*4000+'\n',encoding='utf-8')
+        with self.assertRaises(RshError):
+            community.save(self.catalog,'fixture-pick',self.project,self.input,offline=True,patch=patch,license_spdx='MIT')
+        self.assertFalse(community.root(self.project).exists())
+
+
 if __name__ == '__main__':
     unittest.main()

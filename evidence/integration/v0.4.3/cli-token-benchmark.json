@@ -1,0 +1,337 @@
+{
+  "schema_version": "1",
+  "plan_sha256": "8db4c397c466b14dde57dd91fccbeeeba095e693ef8a903e7433606efc7c4742",
+  "snapshot_sha256": "6604ca1d0cf72e9832ecc58cf310c9d509714c8e6e631691274124eb23f008d0",
+  "tiktoken_version": "0.14.0",
+  "actual_baseline_cli_checked": true,
+  "cases": [
+    {
+      "id": "maniskill-panda-lift-peg-upright",
+      "identical_information": true,
+      "pretty_sha256": "8004fd8cad44f53a4e18ddecbbce2eee32243a0977d323cd3367a5b163f8dd5b",
+      "compact_sha256": "dc3f99f659f0d5057cd26517c03f3d60c2031485370b7f986d0203cc0b43b73b",
+      "tokens": {
+        "o200k_base": {
+          "before": 4526,
+          "after": 3786,
+          "reduction_percent": 16.349977905435264
+        },
+        "cl100k_base": {
+          "before": 4498,
+          "after": 3734,
+          "reduction_percent": 16.985326811916412
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-peg-insertion-side",
+      "identical_information": true,
+      "pretty_sha256": "fbc0b269baaa9addccbe98984e6bb30c77e0516e1ea4e4ec303d2722fda1304e",
+      "compact_sha256": "5121c405ff3df74a9eb9845bfa343b01e9789657df62900d7cfc720aea44313b",
+      "tokens": {
+        "o200k_base": {
+          "before": 3568,
+          "after": 2923,
+          "reduction_percent": 18.077354260089685
+        },
+        "cl100k_base": {
+          "before": 3566,
+          "after": 2897,
+          "reduction_percent": 18.760515984296134
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-pick-cube",
+      "identical_information": true,
+      "pretty_sha256": "e3a05d127c66b86e9f45294b83c979827428f923ca4038a95d0fb0f6a8a2812d",
+      "compact_sha256": "6d68fc11c0388442091b334ba20e9e9cca0aa48959ba87f18054a15a11203921",
+      "tokens": {
+        "o200k_base": {
+          "before": 4478,
+          "after": 3740,
+          "reduction_percent": 16.480571683787403
+        },
+        "cl100k_base": {
+          "before": 4462,
+          "after": 3700,
+          "reduction_percent": 17.07754370237562
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-place-sphere",
+      "identical_information": true,
+      "pretty_sha256": "bddcb31f18e0724b2ea39e45b643cf265bedabf286732f1ec2c5828ac1a37962",
+      "compact_sha256": "1c19274747339b33e1b598e31da95366d64924805f4060eace800c04f8bd92ba",
+      "tokens": {
+        "o200k_base": {
+          "before": 3500,
+          "after": 2857,
+          "reduction_percent": 18.371428571428574
+        },
+        "cl100k_base": {
+          "before": 3477,
+          "after": 2810,
+          "reduction_percent": 19.18320391141789
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-plug-charger",
+      "identical_information": true,
+      "pretty_sha256": "e50d4da9d0df0805f993b100dea99d4ad6e2dc6f95562757c4ee268886f51ed1",
+      "compact_sha256": "3b03604f4a08487dadb731f655efc14c8e9c8633dc5c81767c2d6a7637ef0303",
+      "tokens": {
+        "o200k_base": {
+          "before": 3553,
+          "after": 2908,
+          "reduction_percent": 18.15367295243456
+        },
+        "cl100k_base": {
+          "before": 3536,
+          "after": 2867,
+          "reduction_percent": 18.91968325791855
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-pull-cube",
+      "identical_information": true,
+      "pretty_sha256": "109babdf8e980e718fd1d3e6ae5a432df7b7e271f8d5694e6e57e7548331ce92",
+      "compact_sha256": "edf00e1b1774e7fd7c85b1685dd298d9ce9736eed970826e482ea0f3e469a40f",
+      "tokens": {
+        "o200k_base": {
+          "before": 4418,
+          "after": 3680,
+          "reduction_percent": 16.704391127206886
+        },
+        "cl100k_base": {
+          "before": 4401,
+          "after": 3639,
+          "reduction_percent": 17.31424676209953
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-pull-cube-tool",
+      "identical_information": true,
+      "pretty_sha256": "471a89bae533e86210e4a11ca12f5683c7fba37624d569348e70115b67137995",
+      "compact_sha256": "93eb8709c44f9175dbd884deed522dc4484d152034b53c6a15a86a3355388859",
+      "tokens": {
+        "o200k_base": {
+          "before": 3527,
+          "after": 2884,
+          "reduction_percent": 18.230791040544368
+        },
+        "cl100k_base": {
+          "before": 3510,
+          "after": 2843,
+          "reduction_percent": 19.002849002848997
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-push-cube",
+      "identical_information": true,
+      "pretty_sha256": "10f3979dc2d093526034c6df84d0a9573877eab53e701c001394d2a242f0f054",
+      "compact_sha256": "c0070ba8fd0bc1336b85c0607d081f87d0be7b0d9816a785b25b4493cf842e0e",
+      "tokens": {
+        "o200k_base": {
+          "before": 4414,
+          "after": 3676,
+          "reduction_percent": 16.71952877208881
+        },
+        "cl100k_base": {
+          "before": 4380,
+          "after": 3618,
+          "reduction_percent": 17.397260273972602
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-stack-cube",
+      "identical_information": true,
+      "pretty_sha256": "3bf2699986164a135f55720d9e99cb6d2688ccdc94215e073f7f5507cac2e277",
+      "compact_sha256": "ebbe6a4d5122cf99f4aefabfe38d73584a0a1ee04a8a17709408efbb3d4542bc",
+      "tokens": {
+        "o200k_base": {
+          "before": 4416,
+          "after": 3678,
+          "reduction_percent": 16.711956521739136
+        },
+        "cl100k_base": {
+          "before": 4399,
+          "after": 3637,
+          "reduction_percent": 17.322118663332574
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-stack-pyramid",
+      "identical_information": true,
+      "pretty_sha256": "95a80417abea5ea286a02f1ac8e69e1b7cfeb0e181fc95daafb7b1a99cf7a9cb",
+      "compact_sha256": "3f3511f65b274c14ba128725940c0bae54fde8c780c557ef7be77d8cce7c61a8",
+      "tokens": {
+        "o200k_base": {
+          "before": 4796,
+          "after": 3954,
+          "reduction_percent": 17.556296914095082
+        },
+        "cl100k_base": {
+          "before": 4784,
+          "after": 3917,
+          "reduction_percent": 18.122909698996658
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-stick-draw-svg",
+      "identical_information": true,
+      "pretty_sha256": "c4f8f3ffb46c19cb17341184e73cbc0e61e9c678aa85d0aabbc90ada0426f30a",
+      "compact_sha256": "c67ef9d1ebb0c7d39d99b7a667ae1f121a1dd18d49bf5820cbc23ac892763610",
+      "tokens": {
+        "o200k_base": {
+          "before": 3560,
+          "after": 2913,
+          "reduction_percent": 18.174157303370787
+        },
+        "cl100k_base": {
+          "before": 3553,
+          "after": 2882,
+          "reduction_percent": 18.885448916408663
+        }
+      }
+    },
+    {
+      "id": "maniskill-panda-stick-draw-triangle",
+      "identical_information": true,
+      "pretty_sha256": "c5bc433742e7eeb8ae0a1b28285ff60bd0129903e6dfcf171c8032c2f7ab6ecb",
+      "compact_sha256": "42d5084b2060b72ad3f0059a5e6234abf3c29e6936fcbe3e807b8d05ddba0da3",
+      "tokens": {
+        "o200k_base": {
+          "before": 3527,
+          "after": 2884,
+          "reduction_percent": 18.230791040544368
+        },
+        "cl100k_base": {
+          "before": 3520,
+          "after": 2853,
+          "reduction_percent": 18.948863636363633
+        }
+      }
+    },
+    {
+      "id": "maniskill-so100-pick-cube",
+      "identical_information": true,
+      "pretty_sha256": "ef79310cca44be6e23fd5250feae4c00044f6768b285b5f9907190752eb30adc",
+      "compact_sha256": "f4393169249fcde318d75f42ea570c19a1efd6c5a9d443921599b53146038594",
+      "tokens": {
+        "o200k_base": {
+          "before": 3516,
+          "after": 2875,
+          "reduction_percent": 18.230944254835034
+        },
+        "cl100k_base": {
+          "before": 3499,
+          "after": 2834,
+          "reduction_percent": 19.005430122892253
+        }
+      }
+    },
+    {
+      "id": "maniskill-xarm6-pick-cube",
+      "identical_information": true,
+      "pretty_sha256": "7e4ed5775bb76777e2545d6f4d8a7faecc5e4ff3b9c0375ae4be2f06198aaa7a",
+      "compact_sha256": "a24c331add3078c5aae27b703ba72a98b1f60b167267781bdcacfdafcf8dde08",
+      "tokens": {
+        "o200k_base": {
+          "before": 3571,
+          "after": 2928,
+          "reduction_percent": 18.006160739288713
+        },
+        "cl100k_base": {
+          "before": 3537,
+          "after": 2870,
+          "reduction_percent": 18.857789086796718
+        }
+      }
+    },
+    {
+      "id": "maniskill-xarm6-plug-charger",
+      "identical_information": true,
+      "pretty_sha256": "c91ab314aaa77a31a8fc791cccb467347298bd906323af067d5b4cdf0f9871d7",
+      "compact_sha256": "51fb0700efd24095706be0d4bb5959934438fe3684002a8003c48c41bc45a908",
+      "tokens": {
+        "o200k_base": {
+          "before": 3586,
+          "after": 2941,
+          "reduction_percent": 17.98661461238148
+        },
+        "cl100k_base": {
+          "before": 3552,
+          "after": 2883,
+          "reduction_percent": 18.834459459459463
+        }
+      }
+    },
+    {
+      "id": "maniskill-xarm6-push-cube",
+      "identical_information": true,
+      "pretty_sha256": "38116848a4cae625a28906b967e8e590138e4690d96adf7deb47cab56782dc34",
+      "compact_sha256": "26bde70b3cb783950133958174b8823b4fab2996021fc386702029ca77bb9fb5",
+      "tokens": {
+        "o200k_base": {
+          "before": 3567,
+          "after": 2924,
+          "reduction_percent": 18.026352677319878
+        },
+        "cl100k_base": {
+          "before": 3523,
+          "after": 2856,
+          "reduction_percent": 18.93272778881635
+        }
+      }
+    },
+    {
+      "id": "maniskill-xarm6-stack-cube",
+      "identical_information": true,
+      "pretty_sha256": "a6fef9fbb637cd2a39416320568f63f3385a7c9a0e98f7e7fb0f7abb17ae4c6a",
+      "compact_sha256": "aaa0495c30cb982fe1e62097b6b9c131cdee2cdd0b021458ce7e0acd486cccc3",
+      "tokens": {
+        "o200k_base": {
+          "before": 3555,
+          "after": 2912,
+          "reduction_percent": 18.08720112517581
+        },
+        "cl100k_base": {
+          "before": 3521,
+          "after": 2854,
+          "reduction_percent": 18.94348196535075
+        }
+      }
+    }
+  ],
+  "summary": {
+    "o200k_base": {
+      "before": 66078,
+      "after": 54463,
+      "aggregate_reduction_percent": 17.57771118980599,
+      "median_reduction_percent": 18.026352677319878,
+      "min_reduction_percent": 16.349977905435264,
+      "max_reduction_percent": 18.371428571428574
+    },
+    "cl100k_base": {
+      "before": 65718,
+      "after": 53694,
+      "aggregate_reduction_percent": 18.296357162421252,
+      "median_reduction_percent": 18.857789086796718,
+      "min_reduction_percent": 16.985326811916412,
+      "max_reduction_percent": 19.18320391141789
+    }
+  },
+  "llm_calls": 0,
+  "total_task_token_savings_measured": false,
+  "billing_savings_measured": false,
+  "robot_execution": false
+}

@@ -1,5 +1,15 @@
 # Verification record — 2026-10-17 to 2026-10-19 (Asia/Seoul)
 
+## Complete envelope validation and measured CLI context, 0.4.3
+
+The [local receipt](../evidence/integration/v0.4.3/local-verification.json) records **576 passes**: 360 Python, 102 API unit, 54 native workerd/D1 and 60 catalog/publication tests. Four existing Windows symlink-privilege checks were skipped. TypeScript and Python compilation passed. The [registration receipt](../evidence/integration/v0.4.3/registration-status.json) records the separate provider states.
+
+The [reuse measurement](reuse-benchmark.md) reports all 17 recipe inspections, with identical old/new JSON objects: 66,078 to 54,463 text tokens using `o200k_base` (17.58%). This is a serialization measurement, separate from the unchanged controlled IK correction-transfer experiment. No total-task or billing reduction is inferred.
+
+The audit reproduced incomplete local outbox validation: added envelope fields and tampered patches could reach a network request before the API rejected them. The CLI now validates the complete bounded content, secret patterns, patch targets and delivery state before credentials or delivery. Remote content is schema-checked before identity hashing; a malformed stored receipt preserves the local finding, and malformed detail content is rejected even when an untrusted sender supplies matching hashes.
+
+Native Worker/D1 checks reproduced invalid environment values (`null`, `false`, zero and an empty string) silently becoming an unrestricted filter. They now return 422. Enrollment tokens and parent IDs require strings, and patches use a UTF-8 byte limit consistently. Negative checks assert that rejected submissions leave storage counters unchanged. These tests establish the tested boundaries, not the absence of every possible vulnerability.
+
 ## Community robustness and controlled reuse audit
 
 [Production verification](../evidence/integration/v0.4.2/production-verification.json) records merged source `72be1bb23ec8e7bfb994620d05a6531fb1c98fbd`, successful Pages/index activation, Worker 0.4.2, all three capacity triggers and matching live storage counters. Native public search returned the exact 13/9/10 new source sets; MCP retained real-platform source pins and the existing community finding. An actual scheduled GitHub archive run succeeded. Offline snapshots were rebuilt from the published generation and their catalog resource hashes match the served version manifest. No paid plan was selected.

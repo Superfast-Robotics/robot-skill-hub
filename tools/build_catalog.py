@@ -696,6 +696,8 @@ curl -fsSL {base}/agent.json
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub</h1>
+<p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
+<p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
 <p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
 <h2>Find and read</h2>
@@ -799,6 +801,7 @@ Current catalog: {counts}. Search matches and source references do not establish
 - [Source-file retrieval]({base}/source-files.md): one pinned inert file, independent of runtime preparation
 - [Search and preparation guide]({base}/search.md): exact selections, pagination, offline coverage and execution evidence
 - [Community experience]({base}/community.md): local recall, self-service enrollment, immediate immutable variants and actual reuse outcomes
+- [Reuse measurements]({base}/reuse-benchmark.md): reproducible CLI text-token counts and a controlled two-link IK correction-transfer regression
 - [Reviewed finding guide]({base}/memory.md): legacy reviewed observations and the shared minimal finding format
 - [Usage guide collection]({base}/llms-full.txt): quickstart first, source retrieval, findings and reviewable contributions
 - [Record schema]({base}/schemas/skill.schema.json)
@@ -933,11 +936,11 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md"):
+            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"

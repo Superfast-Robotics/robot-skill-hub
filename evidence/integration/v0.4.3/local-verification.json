@@ -1,0 +1,84 @@
+{
+  "observed_at": "2026-10-19T00:30:38.590269+00:00",
+  "version": "0.4.3",
+  "status": "PASS_LOCAL",
+  "base_commit": "2dba85ccb23b29316ca44250268ad2a4f63ec1d3",
+  "python": {
+    "passed": 360,
+    "skipped": 4,
+    "skip_reason": "Windows symlink privilege"
+  },
+  "api_unit_passed": 102,
+  "native_workerd_d1_passed": 54,
+  "catalog_passed": 41,
+  "catalog_v2_passed": 5,
+  "catalog_sync_passed": 14,
+  "typecheck": "passed",
+  "python_compile": "passed",
+  "total_passed": 576,
+  "controlled_reuse": {
+    "controlled_reuse_experiment": true,
+    "baseline_development": {
+      "total": 8,
+      "passed": 4
+    },
+    "baseline_heldout": {
+      "total": 24,
+      "passed": 12
+    },
+    "reused_heldout": {
+      "total": 24,
+      "passed": 24
+    },
+    "independent_agent_adoption": false,
+    "robot_execution": false
+  },
+  "steps": [
+    {
+      "name": "build",
+      "exit_code": 0
+    },
+    {
+      "name": "python",
+      "exit_code": 0
+    },
+    {
+      "name": "catalog",
+      "exit_code": 0
+    },
+    {
+      "name": "catalog-v2",
+      "exit_code": 0
+    },
+    {
+      "name": "catalog-sync",
+      "exit_code": 0
+    },
+    {
+      "name": "typecheck",
+      "exit_code": 0
+    },
+    {
+      "name": "api",
+      "exit_code": 0
+    },
+    {
+      "name": "compile",
+      "exit_code": 0
+    }
+  ],
+  "private_log_sha256": {
+    "api.log": "a3d76d099842037facead40c230cca748bcc2a1a876dcfac2aad58277b0df293",
+    "build.log": "8ec77b41fd37bc501e0b37283f734c3cd60daf7e2ee797cd03464a3f4c444ae8",
+    "catalog-sync.log": "828f02d936d1b93119336c02ec39416d0fc24adc180d4ba8cfe5e35c800516d1",
+    "catalog-v2.log": "a482485b7b89c9aa4a7068fd046939a221a5212276abb5f266aa09938a01dea4",
+    "catalog.log": "f31e0bbb7a61cdabaec5b7f6910c39d778a7e1f3cbf95f36334ea16afbb28cbb",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "python.log": "6194389523d6a032a609ec522c478dba5121db49816c9f23515d72c9b477217f",
+    "typecheck.log": "b3a25e35cea1ef7498d9be91ad0190b0f301dccb5f3bd15a4bd734f7ddd56446"
+  },
+  "production_writes": 0,
+  "independent_agent_adoption": false,
+  "llm_calls": 0,
+  "physical_robot_execution": false
+}

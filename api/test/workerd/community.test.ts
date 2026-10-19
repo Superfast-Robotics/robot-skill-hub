@@ -233,3 +233,23 @@ test('controlled IK task transfers a saved correction to a separate reader and r
     console.log(JSON.stringify({controlled_reuse_experiment:true,baseline_development:baseline,baseline_heldout:baselineHeldout,reused_heldout:outcome,independent_agent_adoption:false,robot_execution:false}));
   } finally { await s.mf.dispose(); }
 });
+
+
+test('malformed environment and enrollment types are refused without widening recall or writing', async () => {
+  const s=await runtime(); try {
+    const a=await s.enroll();
+    await s.call('/items',{schema_version:'1',finding:finding()},a.token);
+    for(const environment of ['null','false','0','""','[]','{"robot":" "}','{"robot":"panda\\u0000"}']) {
+      const result=await s.call(s.query({environment}));
+      assert.equal(result.status,422,environment+' must not broaden to all environments');
+    }
+    const before=await s.db.prepare('SELECT * FROM community_storage_budget').first<any>();
+    const malformed=await s.call('/enroll',{...a.payload,token:[a.token]});
+    assert.equal(malformed.status,422,'token arrays must not coerce to a valid credential');
+    const parent=(await s.call(s.query())).body.results[0].id;
+    assert.equal((await s.call('/items',{schema_version:'1',finding:finding(2),parent_id:[parent]},a.token)).status,422);
+    const unicodePatch='--- a/demo.py\n+++ b/demo.py\n@@ -1 +1 @@\n-old\n+'+'\uac00'.repeat(4000)+'\n';
+    assert.equal((await s.call('/items',{schema_version:'1',finding:finding(3),variant:{patch:unicodePatch,license_spdx:'Apache-2.0'}},a.token)).status,422,'patch size is bounded in UTF-8 bytes');
+    assert.deepEqual(await s.db.prepare('SELECT * FROM community_storage_budget').first<any>(),before);
+  } finally {await s.mf.dispose();}
+});
