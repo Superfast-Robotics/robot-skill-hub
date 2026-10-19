@@ -1,0 +1,286 @@
+{
+  "observed_at": "2026-10-19T00:40:27.054919+00:00",
+  "source_commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+  "deployment": {
+    "at": "2026-10-19T00:35:48.972093+00:00",
+    "action": "deploy",
+    "counter_integrity": true,
+    "counts": {
+      "singleton": 1,
+      "bytes": 1430,
+      "items": 1,
+      "principals": 1,
+      "attestations": 1,
+      "actual_bytes": 1430,
+      "actual_items": 1,
+      "actual_principals": 1,
+      "actual_attestations": 1
+    },
+    "billing_plan_changed": false,
+    "status": "DEPLOYED",
+    "commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+    "version": "0.4.3",
+    "worker_version_id": "5c9fd9b3-952a-44a0-b310-673b638645ed",
+    "previous_worker_version_id": "018c2b3c-db02-4eef-ae86-6b409eacebf9",
+    "additive_schema_applied": false
+  },
+  "github_publication": {
+    "at": "2026-10-19T00:37:05.776559+00:00",
+    "action": "publication",
+    "head": "f440d1e8665c2d6d3e3e29ce4e140462a3c62042",
+    "tree": "0548e7b7408eebcd7367c81d6c4690a417d6c531",
+    "merge": "1083ee561b087448a159bffab9f59f091f5d8784",
+    "runs": [
+      {
+        "id": 39181448373,
+        "path": ".github/workflows/pages.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 117834870943,
+            "name": "build",
+            "conclusion": "success"
+          },
+          {
+            "id": 117834927324,
+            "name": "deploy",
+            "conclusion": "success"
+          },
+          {
+            "id": 117834987765,
+            "name": "Activate reviewed catalog index",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 39181448392,
+        "path": ".github/workflows/checks.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 117834870458,
+            "name": "Structure and contract tests",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ],
+    "ready": true
+  },
+  "public_readback": {
+    "observed_at": "2026-10-19T00:38:06.441651+00:00",
+    "status": "PASS_PUBLIC_READBACK",
+    "hub_commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+    "worker_version": "0.4.3",
+    "counts": {
+      "recipes": 17,
+      "references": 1330,
+      "memories": 3
+    },
+    "source_searches": [
+      {
+        "runtime": "aspire",
+        "ids": [
+          "aspire-behavior-debugging",
+          "aspire-bowl-in-drawer",
+          "aspire-cap-tool-usage",
+          "aspire-close-microwave",
+          "aspire-cube-lifting",
+          "aspire-evolutionary-search",
+          "aspire-iterative-debugging",
+          "aspire-open-drawer",
+          "aspire-real-manipulation-tasks",
+          "aspire-two-arm-handover",
+          "aspire-yam-go-home",
+          "aspire-yam-joint-motion",
+          "aspire-yam-observe-station"
+        ],
+        "total": 13,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "aspire-cap-tool-usage"
+      },
+      {
+        "runtime": "libfranka",
+        "ids": [
+          "libfranka-cartesian-impedance",
+          "libfranka-cartesian-pose",
+          "libfranka-cartesian-velocity",
+          "libfranka-force-control",
+          "libfranka-grasp-object",
+          "libfranka-joint-impedance",
+          "libfranka-joint-poses",
+          "libfranka-joint-position",
+          "libfranka-robot-state"
+        ],
+        "total": 9,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "libfranka-robot-state"
+      },
+      {
+        "runtime": "stretch-body",
+        "ids": [
+          "stretch-body-arm-jog",
+          "stretch-body-base-jog",
+          "stretch-body-battery",
+          "stretch-body-gripper-jog",
+          "stretch-body-home",
+          "stretch-body-keyboard-teleop",
+          "stretch-body-lift-jog",
+          "stretch-body-monitor",
+          "stretch-body-stow",
+          "stretch-body-trajectory-jog"
+        ],
+        "total": 10,
+        "backend": "d1_fts5",
+        "inspected_real_reference": "stretch-body-home"
+      }
+    ],
+    "existing_community_item_recalled": "exp_971feebfbf1ffea86ec750ad60bc1206069cbaf0e6bb86ee7ea45d714659b8b7",
+    "calls": [
+      {
+        "at": "2026-10-19T00:37:56.957773+00:00",
+        "url": "https://hub.superfastrobotics.com/catalog/v1/version.json",
+        "status": 200,
+        "sha256": "f99db7516fd313c595d34a7ac8b8909b538d5d5b91f3670d98299f7002c69f90"
+      },
+      {
+        "at": "2026-10-19T00:37:57.416120+00:00",
+        "url": "https://api.superfastrobotics.com/healthz",
+        "status": 200,
+        "sha256": "b5c3c78541b831cc4fd1ec6ece9f27e96267d2d706144f52431638dbaa0ee8db"
+      },
+      {
+        "at": "2026-10-19T00:37:57.877708+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "f7443301ac2cc22fbf9801900bc5b0a375a0e3088c4c125ad65f38ab54e1685d"
+      },
+      {
+        "at": "2026-10-19T00:37:58.885673+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=aspire&kind=source_reference&limit=50&hub_commit=1083ee561b087448a159bffab9f59f091f5d8784",
+        "status": 200,
+        "sha256": "6b5718027b86ea9746141dbaa1e7452c65935d47d32bce9276897224a42443af"
+      },
+      {
+        "at": "2026-10-19T00:38:00.251879+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "770734c7337bb766496dd47542109ffb18dcba52f7d0ae81c611ce0b2b71b81e"
+      },
+      {
+        "at": "2026-10-19T00:38:01.191452+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=libfranka&kind=source_reference&limit=50&hub_commit=1083ee561b087448a159bffab9f59f091f5d8784",
+        "status": 200,
+        "sha256": "554c435fd0c6674081127a9c83ac982df28d52d8a83c851573d932651b881a90"
+      },
+      {
+        "at": "2026-10-19T00:38:02.535417+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "1224967292c1089d92613b3edc30c154ecaa784707a45c8b16425b5b30e0f4d3"
+      },
+      {
+        "at": "2026-10-19T00:38:03.426171+00:00",
+        "url": "https://api.superfastrobotics.com/v1/search?q=&runtime=stretch-body&kind=source_reference&limit=50&hub_commit=1083ee561b087448a159bffab9f59f091f5d8784",
+        "status": 200,
+        "sha256": "e5f485307f75220ce507c32ecb0a05a5a9fbd8e2df3fdbe9fb698b2c3e7e12fe"
+      },
+      {
+        "at": "2026-10-19T00:38:04.832210+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "d967d584b5fc31aa4a9dedce220682173b3e7e78268f268e82df8f841da91931"
+      },
+      {
+        "at": "2026-10-19T00:38:06.440651+00:00",
+        "url": "https://api.superfastrobotics.com/mcp",
+        "status": 200,
+        "sha256": "852e9555f1614631e7b2c4e611f9377abf7ba38fb193b2af729dc6e8eb62d930"
+      }
+    ],
+    "operator_verification": true,
+    "telemetry": "off",
+    "production_writes": 0,
+    "robot_execution": false,
+    "independent_agent_adoption": false
+  },
+  "live_input_validation": {
+    "at": "2026-10-19T00:36:42.716138+00:00",
+    "status": "PASS_LIVE",
+    "invalid_environment_rejections": 7,
+    "existing_experience_recalled": "exp_971feebfbf1ffea86ec750ad60bc1206069cbaf0e6bb86ee7ea45d714659b8b7",
+    "compact_cli_content_validated": true,
+    "calls": [
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items/exp_971feebfbf1ffea86ec750ad60bc1206069cbaf0e6bb86ee7ea45d714659b8b7",
+        "http_status": 200,
+        "sha256": "ab9a32039bf503e7388998a9435d8ae288de7fe2f6fe362aa8d48ad02e108714"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=null",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=false",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=0",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=%22%22",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=%5B%5D",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=%7B%22robot%22%3A+%22+%22%7D",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=%7B%22robot%22%3A+%22panda%5Cu0000%22%7D",
+        "http_status": 422,
+        "sha256": "fa44b840e49fa66ab85879de33615b7783888d1e741aa324a82904bc729973e5"
+      },
+      {
+        "url": "https://api.superfastrobotics.com/v1/community/items?skill_id=maniskill-panda-stack-cube&record_version=1.1.0&source_commit=33967b9e3ead1f841eec57cc9f31d0d8b8cf0907&environment=%7B%22architecture%22%3A+%22x86_64%22%2C+%22os%22%3A+%22windows%22%2C+%22python%22%3A+%223.10.11%22%2C+%22robot%22%3A+%22panda%22%2C+%22runtime%22%3A+%22maniskill%22%7D",
+        "http_status": 200,
+        "sha256": "f56078c2ddca6d6c3fd63b9eccdd348f666a00cec37fe090b7ef15c91a62743c"
+      }
+    ],
+    "production_writes": 0,
+    "telemetry": "off"
+  },
+  "marketing_pages": [
+    {
+      "url": "https://hub.superfastrobotics.com/",
+      "http_status": 200,
+      "sha256": "939d78d191a48131c6de2d2a16a11a6e1c18ebe1c8351fc6238e2f9c35230875"
+    },
+    {
+      "url": "https://hub.superfastrobotics.com/reuse-benchmark.md",
+      "http_status": 200,
+      "sha256": "db7f389d9602df9c8ad952a626151c481ae157893cf9453a11cfef60623da8dd"
+    },
+    {
+      "url": "https://hub.superfastrobotics.com/llms.txt",
+      "http_status": 200,
+      "sha256": "12b61849edc53bdb7fa8007e86f3a61093bb2c47faefc3ee90a268e3f8aa20fd"
+    }
+  ],
+  "community_test_production_writes": 0,
+  "independent_agent_adoption": false,
+  "total_task_token_savings_measured": false
+}
