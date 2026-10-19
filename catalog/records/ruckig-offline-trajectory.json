@@ -54,7 +54,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -570,6 +570,7 @@
     "environment": {
       "scope": "computation",
       "platforms": [
+        "linux",
         "windows"
       ],
       "physical_robot": false

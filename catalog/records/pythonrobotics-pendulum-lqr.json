@@ -175,9 +175,15 @@
               "minimum": -10000,
               "maximum": 10000
             },
-            "x-unit": "dimensionless",
+            "x-unit": "mixed",
             "x-frame": "cart_axis_and_upright_pendulum; state=[x_m,v_m_s,theta_rad,omega_rad_s]",
-            "description": "gain; units=dimensionless; frame=cart_axis_and_upright_pendulum; state=[x_m,v_m_s,theta_rad,omega_rad_s]"
+            "description": "State-feedback gain components multiply [cart position, cart velocity, pendulum angle, angular velocity].",
+            "x-order": [
+              "N/m",
+              "N/(m/s)",
+              "N/rad",
+              "N/(rad/s)"
+            ]
           },
           "closed_loop_spectral_radius": {
             "type": "number",
@@ -284,9 +290,15 @@
             "minimum": -10000,
             "maximum": 10000
           },
-          "x-unit": "dimensionless",
+          "x-unit": "mixed",
           "x-frame": "cart_axis_and_upright_pendulum; state=[x_m,v_m_s,theta_rad,omega_rad_s]",
-          "description": "gain; units=dimensionless; frame=cart_axis_and_upright_pendulum; state=[x_m,v_m_s,theta_rad,omega_rad_s]"
+          "description": "State-feedback gain components multiply [cart position, cart velocity, pendulum angle, angular velocity].",
+          "x-order": [
+            "N/m",
+            "N/(m/s)",
+            "N/rad",
+            "N/(rad/s)"
+          ]
         },
         "closed_loop_spectral_radius": {
           "type": "number",

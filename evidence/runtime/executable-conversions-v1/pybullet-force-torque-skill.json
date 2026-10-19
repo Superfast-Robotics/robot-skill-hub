@@ -1,0 +1,123 @@
+{
+  "schema_version": "1",
+  "skill_id": "pybullet-force-torque-skill",
+  "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+  "adapter_sha256": "eb409f661cec07c173e9befffb3d4c548e14cbf92274567251e59a6d5aef7d30",
+  "source_guards_sha256": "36f306cf62893de0c957dd1ae860e961ad187b4b027112fd95c8bde5d45e5a2c",
+  "case_plan_sha256": "7d873a0bc948647fd3e1a07ce4c7fbf76f8c73bf7d609187c06c3fea33ef6dce",
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "platforms": [
+    "linux"
+  ],
+  "python": "3.10.22",
+  "architecture": "x86_64",
+  "packages": [
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "fonttools==4.65.0",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pybullet==3.2.7",
+    "pyparsing==3.3.3",
+    "python-dateutil==2.9.0.post0",
+    "ruckig==0.19.4",
+    "scipy==1.13.1",
+    "six==1.17.0"
+  ],
+  "execution_domain": "simulation",
+  "physical_robot": false,
+  "gpu": false,
+  "observed_at": "2026-10-19T14:56:30.346370+00:00",
+  "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+  "cases": [
+    {
+      "case": 0,
+      "input": {
+        "joint_angles": [
+          0.07,
+          -0.32999999999999996,
+          0.37,
+          0.17,
+          -0.23,
+          0.07,
+          0.07
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "3fde41ea0fdaca2168e5df50da8e870f52e352676f8ba7c92a2ba5059ba1a2a3",
+      "checks": {
+        "sensor_has_six_components": true,
+        "finite_sensor": true,
+        "load_observed": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1549
+    },
+    {
+      "case": 1,
+      "input": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "5006c1ef83e8d58413cd9b6fe0fd4178658cb97c660fbf9e28063d1dd190849a",
+      "checks": {
+        "sensor_has_six_components": true,
+        "finite_sensor": true,
+        "load_observed": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1556
+    },
+    {
+      "case": 2,
+      "input": {
+        "joint_angles": [
+          0.13,
+          -0.27,
+          0.43000000000000005,
+          0.23,
+          -0.17,
+          0.13,
+          0.13
+        ]
+      },
+      "passed": true,
+      "exit_code": 0,
+      "stdout_sha256": "8ad56b9b56bb1dfef340a333019f105a1d6d1911ba0b704cddbaa6e8ef75d937",
+      "checks": {
+        "sensor_has_six_components": true,
+        "finite_sensor": true,
+        "load_observed": true
+      },
+      "status": "task_complete",
+      "reason_code": null,
+      "message": null,
+      "elapsed_seconds": 0.1548
+    }
+  ],
+  "workflow": {
+    "id": 39273268144,
+    "head_sha": "bb3701587ea9206012240cde26e2f0578ff8f0c0",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39273268144"
+  }
+}

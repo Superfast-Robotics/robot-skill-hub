@@ -9,10 +9,10 @@
   "failed": 0,
   "negative_unknown_field_rejected": true,
   "platforms": [
-    "windows"
+    "linux"
   ],
-  "python": "3.10.11",
-  "architecture": "amd64",
+  "python": "3.10.22",
+  "architecture": "x86_64",
   "packages": [
     "contourpy==1.3.2",
     "cycler==0.12.1",
@@ -22,6 +22,7 @@
     "numpy==1.26.4",
     "packaging==26.3",
     "pillow==12.3.0",
+    "pybullet==3.2.7",
     "pyparsing==3.3.3",
     "python-dateutil==2.9.0.post0",
     "ruckig==0.19.4",
@@ -31,7 +32,7 @@
   "execution_domain": "computation",
   "physical_robot": false,
   "gpu": false,
-  "observed_at": "2026-10-19T14:44:33.134982+00:00",
+  "observed_at": "2026-10-19T14:56:27.137162+00:00",
   "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
   "cases": [
     {
@@ -88,7 +89,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "381122ba8504b947acaacd5a782f65cfe972e1493d01b2efd0ca0ad2aa4c7a6f",
+      "stdout_sha256": "05ca877239cc96d500906a2b92cc901bab17eb9a379e0d4d50a123ba56013964",
       "checks": {
         "terminal_velocity": true,
         "terminal_acceleration": true,
@@ -99,7 +100,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.016
+      "elapsed_seconds": 0.0691
     },
     {
       "case": 1,
@@ -155,7 +156,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "bf8d05073bd2a3f7845682d0db3fb08a9f1b90c8a26878a23b203f37e9f90db3",
+      "stdout_sha256": "d30c2bb7e66901f96ba7408acab86f6fd6926e213f7d63489377cd1f80d60897",
       "checks": {
         "terminal_velocity": true,
         "terminal_acceleration": true,
@@ -166,7 +167,7 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.047
+      "elapsed_seconds": 0.0699
     },
     {
       "case": 2,
@@ -222,7 +223,7 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "0423b77c012efe98a6093bb5a9164e8f128152dcc421f6155dbb64dcd827e866",
+      "stdout_sha256": "2e671880f0b3eeaa2ae0d3a1bb937e0ed44943ec13ac9c844f3bfe7dabbaafda",
       "checks": {
         "terminal_velocity": true,
         "terminal_acceleration": true,
@@ -233,7 +234,254 @@
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 1.0
+      "elapsed_seconds": 0.0685
     }
-  ]
+  ],
+  "additional_runs": [
+    {
+      "schema_version": "1",
+      "skill_id": "ruckig-stop-trajectory",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "adapter_sha256": "925798562015ca436c407ff591f6f4b6a2f41579a1e3a973eccfa736c54e9456",
+      "source_guards_sha256": "99564433b8c61fa20e5311d4a19c9c22b46905fadaec19ee088900a6d9088136",
+      "case_plan_sha256": "070c46fb29215393c639809a7744943809136ca3598729191500ce46a42e64d7",
+      "passed": 3,
+      "failed": 0,
+      "negative_unknown_field_rejected": true,
+      "platforms": [
+        "windows"
+      ],
+      "python": "3.10.11",
+      "architecture": "amd64",
+      "packages": [
+        "contourpy==1.3.2",
+        "cycler==0.12.1",
+        "fonttools==4.65.0",
+        "kiwisolver==1.5.1",
+        "matplotlib==3.9.4",
+        "numpy==1.26.4",
+        "packaging==26.3",
+        "pillow==12.3.0",
+        "pyparsing==3.3.3",
+        "python-dateutil==2.9.0.post0",
+        "ruckig==0.19.4",
+        "scipy==1.13.1",
+        "six==1.17.0"
+      ],
+      "execution_domain": "computation",
+      "physical_robot": false,
+      "gpu": false,
+      "observed_at": "2026-10-19T14:44:33.134982+00:00",
+      "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
+      "cases": [
+        {
+          "case": 0,
+          "input": {
+            "current_position": [
+              0,
+              0,
+              0.5
+            ],
+            "current_velocity": [
+              0.3,
+              -0.2,
+              0.1
+            ],
+            "current_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "target_position": [
+              1,
+              -0.5,
+              0.25
+            ],
+            "target_velocity": [
+              0,
+              0,
+              0
+            ],
+            "target_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "max_velocity": [
+              1,
+              1,
+              1
+            ],
+            "max_acceleration": [
+              2,
+              2,
+              2
+            ],
+            "max_jerk": [
+              4,
+              4,
+              4
+            ],
+            "dt": 0.01,
+            "coordinate_type": "revolute_rad",
+            "stop_time": 0.5
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "381122ba8504b947acaacd5a782f65cfe972e1493d01b2efd0ca0ad2aa4c7a6f",
+          "checks": {
+            "terminal_velocity": true,
+            "terminal_acceleration": true,
+            "acceleration_bounds": true,
+            "sampled_jerk_bounds": true,
+            "stop_triggered": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.016
+        },
+        {
+          "case": 1,
+          "input": {
+            "current_position": [
+              0,
+              0,
+              0.5
+            ],
+            "current_velocity": [
+              0.4,
+              -0.2,
+              0.1
+            ],
+            "current_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "target_position": [
+              1.2,
+              -0.3,
+              0.45
+            ],
+            "target_velocity": [
+              0,
+              0,
+              0
+            ],
+            "target_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "max_velocity": [
+              1,
+              1,
+              1
+            ],
+            "max_acceleration": [
+              2,
+              2,
+              2
+            ],
+            "max_jerk": [
+              4,
+              4,
+              4
+            ],
+            "dt": 0.01,
+            "coordinate_type": "revolute_rad",
+            "stop_time": 0.5
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "bf8d05073bd2a3f7845682d0db3fb08a9f1b90c8a26878a23b203f37e9f90db3",
+          "checks": {
+            "terminal_velocity": true,
+            "terminal_acceleration": true,
+            "acceleration_bounds": true,
+            "sampled_jerk_bounds": true,
+            "stop_triggered": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.047
+        },
+        {
+          "case": 2,
+          "input": {
+            "current_position": [
+              0,
+              0,
+              0.5
+            ],
+            "current_velocity": [
+              0.5,
+              -0.2,
+              0.1
+            ],
+            "current_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "target_position": [
+              0.8,
+              -0.7,
+              0.04999999999999999
+            ],
+            "target_velocity": [
+              0,
+              0,
+              0
+            ],
+            "target_acceleration": [
+              0,
+              0,
+              0
+            ],
+            "max_velocity": [
+              1,
+              1,
+              1
+            ],
+            "max_acceleration": [
+              2,
+              2,
+              2
+            ],
+            "max_jerk": [
+              4,
+              4,
+              4
+            ],
+            "dt": 0.01,
+            "coordinate_type": "revolute_rad",
+            "stop_time": 0.5
+          },
+          "passed": true,
+          "exit_code": 0,
+          "stdout_sha256": "0423b77c012efe98a6093bb5a9164e8f128152dcc421f6155dbb64dcd827e866",
+          "checks": {
+            "terminal_velocity": true,
+            "terminal_acceleration": true,
+            "acceleration_bounds": true,
+            "sampled_jerk_bounds": true,
+            "stop_triggered": true
+          },
+          "status": "task_complete",
+          "reason_code": null,
+          "message": null,
+          "elapsed_seconds": 1.0
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "id": 39273268144,
+    "head_sha": "bb3701587ea9206012240cde26e2f0578ff8f0c0",
+    "conclusion": "success",
+    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39273268144"
+  }
 }

@@ -24,11 +24,13 @@ def main():
     p.add_argument('--source-cache',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--backend',choices=['pythonrobotics','ruckig','pybullet','all'],default='all')
+    p.add_argument('--skill-id',action='append',help='Run only these IDs from the finite reviewed manifest')
     p.add_argument('--publish-evidence',action='store_true',help='Write passing exact-byte receipts under evidence/runtime')
     args=p.parse_args()
     args.output.mkdir(parents=True,exist_ok=False)
     manifest_path=ROOT/'catalog/executable-conversions.json'
     manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+    if args.skill_id and not set(args.skill_id)<={r['id'] for r in manifest['recipes']}:raise ValueError('Unknown reviewed skill ID')
     (args.output/'plan.json').write_bytes(manifest_path.read_bytes())
     environment={k:v for k,v in os.environ.items() if k.upper() in ['PATH','SYSTEMROOT','WINDIR','TEMP','TMP','PATHEXT','PROCESSOR_ARCHITECTURE','PROCESSOR_ARCHITEW6432']}
     environment.update(PYTHONHASHSEED='0',MPLBACKEND='Agg',RSH_TELEMETRY='off',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONNOUSERSITE='1')
@@ -37,6 +39,7 @@ def main():
     reports=[]
     for recipe in manifest['recipes']:
         if args.backend!='all' and recipe['backend']!=args.backend:continue
+        if args.skill_id and recipe['id'] not in args.skill_id:continue
         adapter=ROOT/'recipes'/recipe['id']/'run.py'
         assert adapter.read_bytes()==render_adapter(recipe).encode(), 'Regenerate before executing'
         results=[]

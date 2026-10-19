@@ -11,7 +11,9 @@
   ],
   "aliases": [
     "rrt star",
-    "RRT* circular-obstacle path"
+    "RRT* circular-obstacle path",
+    "rapidly exploring random tree",
+    "rrtstar"
   ],
   "source": {
     "repository": "https://github.com/AtsushiSakai/PythonRobotics",
@@ -94,7 +96,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -418,6 +420,7 @@
     "environment": {
       "scope": "computation",
       "platforms": [
+        "linux",
         "windows"
       ],
       "physical_robot": false

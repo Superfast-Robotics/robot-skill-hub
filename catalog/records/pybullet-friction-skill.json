@@ -43,7 +43,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -303,24 +303,28 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub maintainer runtime harness",
     "date": "2026-10-19",
     "environment": {
       "scope": "simulation",
-      "platforms": [],
+      "platforms": [
+        "linux"
+      ],
       "physical_robot": false
     },
     "commands": [
       "python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend pybullet"
     ],
-    "result": "Source and interface reviewed; runtime cases have not been recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
+    "artifacts": [
+      "evidence/runtime/executable-conversions-v1/pybullet-friction-skill.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
       "scope": "simulation",
-      "case_count": 0,
+      "case_count": 3,
       "source_unchanged": true
     }
   },

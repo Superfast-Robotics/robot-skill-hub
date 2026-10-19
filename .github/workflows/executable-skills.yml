@@ -9,6 +9,9 @@ on:
       - tools/generate_executable_recipes.py
       - tools/verify_executable_recipes.py
       - tools/fetch_executable_sources.py
+      - tools/verify_prepared_conversion.py
+      - skills/find-robot-skills/scripts/rshlib/prepare.py
+      - skills/find-robot-skills/scripts/rshlib/interfaces.py
       - .github/workflows/executable-skills.yml
 permissions:
   contents: read
@@ -44,6 +47,11 @@ jobs:
         run: python tools/fetch_executable_sources.py --cache .local/executable-source-cache --fetch
       - name: Run frozen numerical and DIRECT simulation cases
         run: python tools/verify_executable_recipes.py --source-cache .local/executable-source-cache --output .local/executable-runtime-receipts --backend all
+      - name: Prepare and execute a standalone DIRECT simulation adapter
+        run: >-
+          python tools/verify_prepared_conversion.py --skill-id pybullet-ik-skill
+          --source-cache .local/executable-source-cache --project .local/prepared-pybullet-project
+          --output .local/executable-runtime-receipts/prepared-pybullet.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
