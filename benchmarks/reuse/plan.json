@@ -1,0 +1,14 @@
+{
+  "schema_version": "1",
+  "name": "cli-json-inspection-v1",
+  "selection": "Every preparation recipe in the bundled catalog at baseline, sorted by id; no exclusions based on results.",
+  "baseline_commit": "2dba85ccb23b29316ca44250268ad2a4f63ec1d3",
+  "case_count": 17,
+  "command": ["inspect", "RECIPE_ID", "--offline", "--json"],
+  "comparison": "Previous indent=2 output versus compact --json output; identical parsed JSON required.",
+  "primary_encoding": "o200k_base",
+  "sensitivity_encoding": "cl100k_base",
+  "metric": "100 * (1 - sum(compact text tokens) / sum(pretty text tokens))",
+  "reporting": "Report all cases, aggregate, median and range. Round aggregate down for headline copy. No LLM calls, billing or task-token inference.",
+  "reuse_experiment": "Run the existing native Worker/D1 controlled two-link IK correction-transfer regression without changing targets, scoring, solver or patch."
+}

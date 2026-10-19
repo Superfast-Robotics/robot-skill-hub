@@ -394,7 +394,8 @@ def main(argv=None):
     # Saving a reusable observation is optional and must not fail the user's task.
     if command in ("save", "flush") and result.get("status") not in ("ready", "stored", "local_saved"):
         result = {**result, "status": "skipped", "network_performed": result.get("network_performed"), "next_action": "continue_user_task"}
-    rendered = json.dumps(result, ensure_ascii=False, indent=2)
+    rendered = (json.dumps(result, ensure_ascii=False, separators=(",", ":")) if json_mode
+                else json.dumps(result, ensure_ascii=False, indent=2))
     if json_mode:
         print(rendered)
     else:

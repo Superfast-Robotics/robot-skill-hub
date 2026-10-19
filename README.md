@@ -1,6 +1,8 @@
 # Robot Skill Hub
 
-Pinned robotics code and reusable task findings for agents. Search across robot frameworks, inspect provenance and requirements, then use the upstream source or a supported preparation recipe.
+Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matching correction, and save what you learn for the next task.
+
+**CLI inspection JSON: 17% fewer tokens. Same fields.** Two-link IK regression: **12/24 → 24/24 targets passed** after saved-fix reuse. [Measurements and reproduction](docs/reuse-benchmark.md).
 
 - [Agent contract](https://hub.superfastrobotics.com/agent.json)
 - [Search JSON](https://api.superfastrobotics.com/v1/search?q=grasp&limit=3) | [OpenAPI](https://hub.superfastrobotics.com/openapi.json)

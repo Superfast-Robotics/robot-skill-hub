@@ -54,9 +54,9 @@ export async function identity(value: Experience) {
 export function validateExperience(value: any): asserts value is Experience {
   assert(fields(value, ['schema_version', 'finding', 'parent_id', 'variant', 'outcome']) && value.schema_version === '1', 'invalid_experience', 'Use the documented experience envelope.');
   validateMemory(value.finding);
-  if (value.parent_id !== undefined) assert(ID.test(value.parent_id), 'invalid_parent', 'Use the exact parent experience ID.');
+  if (value.parent_id !== undefined) assert(typeof value.parent_id === 'string' && ID.test(value.parent_id), 'invalid_parent', 'Use the exact parent experience ID.');
   if (value.variant !== undefined) {
-    assert(fields(value.variant, ['patch', 'license_spdx']) && typeof value.variant.patch === 'string' && value.variant.patch.length <= 12000
+    assert(fields(value.variant, ['patch', 'license_spdx']) && typeof value.variant.patch === 'string' && new TextEncoder().encode(value.variant.patch).byteLength <= 12000
       && /^--- (?:a\/)?[^\r\n]+\r?\n\+\+\+ (?:b\/)?[^\r\n]+/m.test(value.variant.patch)
       && typeof value.variant.license_spdx === 'string' && /^[A-Za-z0-9.+-]{2,80}$/.test(value.variant.license_spdx), 'invalid_variant', 'A variant needs a bounded unified diff and the applicable upstream SPDX license.');
     assert(value.finding.resolution && !value.outcome, 'invalid_variant', 'Describe the reusable change separately from a later reuse outcome.');
@@ -93,12 +93,12 @@ export async function communityQuery(db: CatalogDatabase, input: Row) {
   assert(Number.isSafeInteger(limit) && limit >= 1 && limit <= 20 && Number.isSafeInteger(after) && after >= 0, 'invalid_pagination', 'Use limit 1..20 and a nonnegative cursor.');
   const through = input.through === undefined ? Number((await first(db, 'SELECT coalesce(max(seq),0) n FROM community_items')).n) : Number(input.through);
   assert(Number.isSafeInteger(through) && through >= after, 'invalid_pagination', 'Keep the same through watermark on subsequent pages.');
-  const environment = input.environment || {};
-  assert(environment && typeof environment === 'object' && !Array.isArray(environment) && Object.keys(environment).length <= 16 && Object.entries(environment).every(([k,v]) => memoryEnvironmentKey(k) && typeof v === 'string' && v.length > 0 && v.length <= 240), 'invalid_environment', 'Use explicit bounded environment labels.');
+  const environment = input.environment === undefined ? {} : input.environment;
+  assert(environment && typeof environment === 'object' && !Array.isArray(environment) && Object.keys(environment).length <= 16 && Object.entries(environment).every(([k,v]) => memoryEnvironmentKey(k) && typeof v === 'string' && v.trim().length > 0 && v.length <= 240 && !v.includes('\0')), 'invalid_environment', 'Use explicit bounded environment labels.');
   const clauses = ['skill_id=?', 'record_version=?', 'source_commit=?', 'seq<?', 'seq<=?', 'hidden=0'];
   const values: unknown[] = [input.skill_id, input.record_version, input.source_commit, after || through + 1, through];
   for (const [key, value] of Object.entries(environment)) { clauses.push('lower(json_extract(environment_json,?))=lower(?)'); values.push('$.' + JSON.stringify(key), value); }
-  if (input.parent_id) { assert(ID.test(input.parent_id), 'invalid_parent', 'Use an experience ID.'); clauses.push('parent_id=?'); values.push(input.parent_id); }
+  if (input.parent_id !== undefined) { assert(typeof input.parent_id === 'string' && ID.test(input.parent_id), 'invalid_parent', 'Use an experience ID.'); clauses.push('parent_id=?'); values.push(input.parent_id); }
   else clauses.push("kind!='reuse_report'");
   const rows = (await db.prepare(`SELECT * FROM community_items WHERE ${clauses.join(' AND ')} ORDER BY seq DESC LIMIT ?`).bind(...values, limit + 1).all()).results;
   const more = rows.length > limit, page = rows.slice(0, limit);
@@ -139,7 +139,7 @@ export async function handleCommunity(request: Request, env: Env): Promise<Respo
     }
     if (request.method === 'POST' && url.pathname === PREFIX + '/enroll') {
       const v = await body(request);
-      assert(fields(v, ['token', 'challenge', 'nonce']) && TOKEN.test(v.token || '') && typeof v.challenge === 'string' && /^\d{10}\.[a-f0-9]{64}\.[a-f0-9]{64}$/.test(v.challenge)
+      assert(fields(v, ['token', 'challenge', 'nonce']) && typeof v.token === 'string' && TOKEN.test(v.token) && typeof v.challenge === 'string' && /^\d{10}\.[a-f0-9]{64}\.[a-f0-9]{64}$/.test(v.challenge)
         && typeof v.nonce === 'string' && /^\d{1,16}$/.test(v.nonce), 'invalid_enrollment', 'Supply a generated installation token and solved challenge.');
       const id = await sha256(v.token), existing = await first(db, 'SELECT disabled FROM community_principals WHERE id=?', id);
       if (existing) { assert(!existing.disabled, 'community_auth_required', 'Installation revoked.', 401); return json({ status: 'ready', principal_id: id, replay: true }); }

@@ -1,0 +1,32 @@
+{
+  "agentndx": {
+    "at": "2026-10-19T00:27:26.245407+00:00",
+    "url": "https://agentndx-production.up.railway.app/api/submit",
+    "http_status": 201,
+    "response_sha256": "270221a51da09d743cb4b5941f505ee11caa277da6abed25ee8cf3da0758812c",
+    "affiliation_disclosed": true,
+    "paid_plan_selected": false,
+    "submission_id": 198,
+    "state": "received_for_review",
+    "public_listing_confirmed": false
+  },
+  "mcp_harbor": {
+    "search_url": "https://ai.mcpharbor.dev/api/v0/servers?q=robot-skill-hub&limit=5",
+    "origin": "official",
+    "version_observed": "0.4.1",
+    "endpoint_matches": true,
+    "three_tool_names_match": true,
+    "new_submission": false
+  },
+  "smithery": {
+    "state": "awaiting_operator_login",
+    "local_whoami": "No token found",
+    "new_submission": false
+  },
+  "mcp_directory": {
+    "state": "public_search_returned_403",
+    "new_submission": false
+  },
+  "synthetic_adoption_created": false,
+  "paid_plan_selected": false
+}
