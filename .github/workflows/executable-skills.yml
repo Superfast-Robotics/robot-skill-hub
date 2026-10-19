@@ -33,7 +33,9 @@ jobs:
       - name: Check exact generated adapter bytes
         run: python tools/generate_executable_recipes.py --check
       - name: Install declared CPU dependencies
-        run: python -m pip install --only-binary=:all: numpy==1.26.4 scipy==1.13.1 matplotlib==3.9.4 ruckig==0.19.4 pybullet==3.2.7
+        run: >-
+          python -m pip install --only-binary=:all: numpy==1.26.4 scipy==1.13.1
+          matplotlib==3.9.4 ruckig==0.19.4 pybullet==3.2.7
       - uses: actions/cache@v4
         with:
           path: .local/executable-source-cache

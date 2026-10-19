@@ -64,7 +64,14 @@ class RuntimeEvidenceTests(unittest.TestCase):
             self.assertEqual(list(ids), [record["id"] for record in records])
             selected.extend(ids)
         self.assertEqual(len(selected), len(set(selected)))
-        self.assertEqual({p.stem for p in (ROOT / "catalog/records").glob("*.json")}, set(selected))
+        converted=json.loads((ROOT/'catalog/executable-conversions.json').read_text())['recipes']
+        converted_ids=[r['id'] for r in converted]
+        self.assertEqual(len(converted_ids),len(set(converted_ids)))
+        self.assertFalse(set(selected)&set(converted_ids))
+        for recipe in converted:
+            self.assertIn(recipe['backend'],['pythonrobotics','ruckig','pybullet'])
+            self.assertEqual(3,len(recipe['cases']))
+        self.assertEqual({p.stem for p in (ROOT / "catalog/records").glob("*.json")}, set(selected)|set(converted_ids))
 
     def test_named_plan_never_runs_commands_downloads_or_creates_projects(self):
         with tempfile.TemporaryDirectory() as directory:
