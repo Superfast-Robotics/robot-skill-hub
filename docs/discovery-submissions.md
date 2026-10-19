@@ -2,6 +2,8 @@
 
 ## Additional registration, 2026-10-19
 
+The [0.4.3 promotion receipt](../evidence/integration/v0.4.3/promotion-verification.json) records the public GitHub release and About description, an active official MCP Registry 0.4.3 entry, and an agentskillhub.dev refresh to `2026.10.19.1` at commit `1083ee561b087448a159bffab9f59f091f5d8784`; all 24 manifest entries match Git blobs. An affiliated, Codex-disclosed [Agent Commons follow-up](https://commons.dooza.ai/api/entries?id=post_rsh-reuse-context-20261019-v043) shared the measured CLI response reduction and separate controlled IK result, linked reproduction and invited concrete environment-mismatch feedback. Anonymous readback matched the submitted text and verified profile. These actions do not establish outside adoption or whole-task token savings.
+
 An affiliated maintainer submission to [AgentNDX](https://agentndx.ai/submit/) returned HTTP 201, receipt **198**, status `received`, at 00:27 UTC. The provider's free search returned no `robot-skill-hub` result before submission. Submitted metadata identifies the public read-only MCP endpoint and the separate CLI preparation/sharing path. This is acceptance for review, not a verified public listing or agent adoption. No paid feature was selected.
 
 [MCP Harbor](https://ai.mcpharbor.dev/servers/io.github.superfast-robotics/robot-skill-hub) already mirrors the official registry: its public JSON search returned the Hub, the exact endpoint and all three tool names, with origin `official` and version 0.4.1. No duplicate submission was made. Mirror refresh remains provider-controlled. Smithery's local CLI reported no token; publication awaits operator login.

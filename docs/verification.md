@@ -2,6 +2,8 @@
 
 ## Complete envelope validation and measured CLI context, 0.4.3
 
+The [production receipt](../evidence/integration/v0.4.3/production-verification.json) records Worker 0.4.3 from `1083ee561b087448a159bffab9f59f091f5d8784`, successful Linux CI and Pages/index activation, exact public source/MCP reads, seven live malformed-environment rejections and successful existing-finding retrieval through the compact CLI. All three capacity guards remained installed and storage counters matched actual data. No schema migration or billing change was needed.
+
 The [local receipt](../evidence/integration/v0.4.3/local-verification.json) records **576 passes**: 360 Python, 102 API unit, 54 native workerd/D1 and 60 catalog/publication tests. Four existing Windows symlink-privilege checks were skipped. TypeScript and Python compilation passed. The [registration receipt](../evidence/integration/v0.4.3/registration-status.json) records the separate provider states.
 
 The [reuse measurement](reuse-benchmark.md) reports all 17 recipe inspections, with identical old/new JSON objects: 66,078 to 54,463 text tokens using `o200k_base` (17.58%). This is a serialization measurement, separate from the unchanged controlled IK correction-transfer experiment. No total-task or billing reduction is inferred.

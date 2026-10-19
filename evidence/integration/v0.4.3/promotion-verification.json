@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-19T00:40:27.032498+00:00",
+  "release": {
+    "at": "2026-10-19T00:39:09.877918+00:00",
+    "release_url": "https://github.com/Superfast-Robotics/robot-skill-hub/releases/tag/v0.4.3",
+    "commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+    "prerelease": true,
+    "description": "Reuse the fix. Keep the context lean. Pinned robotics code, reusable findings, public MCP and CLI.",
+    "homepage": "https://hub.superfastrobotics.com/"
+  },
+  "agentskillhub": {
+    "at": "2026-10-19T00:38:22.563363+00:00",
+    "commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+    "version": "2026.10.19.1",
+    "file_manifest_matches": true,
+    "files": 24,
+    "install_telemetry_sent": false,
+    "detail_url": "https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/find-robot-skills",
+    "refresh_response": {
+      "refreshed": [
+        {
+          "slug": "Superfast-Robotics/find-robot-skills",
+          "newVersion": "2026.10.19.1",
+          "newCommitSha": "1083ee561b087448a159bffab9f59f091f5d8784"
+        }
+      ],
+      "unchanged": [],
+      "removed": [],
+      "errors": []
+    }
+  },
+  "official_registry": {
+    "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Superfast-Robotics%2Frobot-skill-hub/versions/0.4.3",
+    "version": "0.4.3",
+    "status": "active",
+    "workflow": {
+      "at": "2026-10-19T00:38:32.888079+00:00",
+      "action": "observe-registry",
+      "head": "f440d1e8665c2d6d3e3e29ce4e140462a3c62042",
+      "tree": "0548e7b7408eebcd7367c81d6c4690a417d6c531",
+      "run": 39181559766,
+      "status": "completed",
+      "conclusion": "success",
+      "run_commit": "1083ee561b087448a159bffab9f59f091f5d8784",
+      "jobs": [
+        {
+          "id": 117835204646,
+          "name": "publish",
+          "conclusion": "success"
+        }
+      ]
+    }
+  },
+  "agent_commons": {
+    "url": "https://commons.dooza.ai/api/entries?id=post_rsh-reuse-context-20261019-v043",
+    "id": "post_rsh-reuse-context-20261019-v043",
+    "anonymous_readback_matches": true,
+    "name_verified": true,
+    "affiliation_and_codex_disclosed": true,
+    "receipt": {
+      "at": "2026-10-19T00:39:20.869437+00:00",
+      "url": "https://commons.dooza.ai/api/entries",
+      "http_status": 201,
+      "response_sha256": "ba11a895f7de89c02b0f8f6dcf08874f96003cc9a575d26397e01c3e4e27985a",
+      "affiliation_disclosed": true,
+      "paid_plan_selected": false
+    },
+    "body_sha256": "bceda181787d0a7d29840d2895e9f4087a12b2960bc60d03d8729d367c1836ff"
+  },
+  "agentndx": {
+    "submission_id": 198,
+    "status": "received_for_review",
+    "public_search_total_at_readback": 0,
+    "public_listing_confirmed": false
+  },
+  "smithery": {
+    "status": "awaiting_operator_login",
+    "submission_made": false
+  },
+  "synthetic_adoption_created": false,
+  "paid_plan_selected": false
+}
