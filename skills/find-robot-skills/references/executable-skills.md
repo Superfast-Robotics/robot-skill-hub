@@ -45,8 +45,23 @@ Converted recipes use `preparation.source_selection=declared_paths`. Preparation
 
 ## Verification and extension
 
+This release adds 45 parameterized adapters: 28 PythonRobotics algorithms, five Ruckig trajectory operations and 12 PyBullet DIRECT simulation operations. Together with 17 existing ManiSkill task recipes, there are 62 preparation recipes. Twenty-four indexed reference origins now point to executable adaptations; the other 21 operations extend those same reviewed upstream projects. The 1,330 source references retain their own evidence and are not counted as executed skills.
+
+The path smoother adapts upstream shortcut selection with corrected arclength interpolation and an exact segment/circle collision predicate. It rejects an already colliding input path. `tools/verify_executable_composition.py` tests real A* outputs passed through the shared interface into the smoother on three fixed maps, including obstacle and convex map-bound checks. The [composition receipt](../evidence/integration/executable-composition-v1.json) records the exact adapter hashes. This verifies this specific two-step composition, not arbitrary workflows.
+
 The finite cohort is in `catalog/executable-conversions.json`. `tools/generate_executable_recipes.py` generates adapters and metadata from the manifest and `tools/recipe_adapters/`; `--check` detects drift without network or execution. Execution receipts are accepted only when adapter bytes, source guards, source commit and the frozen case plan still match. Changing behavior or a contract requires rerunning its evidence.
 
 `tools/verify_executable_recipes.py` runs each declared input in a separate CPU process with a timeout and tests an unknown-field rejection. Numerical adapters verify operation-specific conditions such as endpoints, collision-free path segments, covariance properties, IK residuals or trajectory boundaries and sampled limits. Simulation adapters additionally check outcomes in PyBullet DIRECT. These are authored regression cases, not a general accuracy estimate, autonomous LLM discovery, real-time guarantee or physical robot verification.
 
 The Linux workflow installs the declared CPU dependencies, fetches checksum-verified source files and retains raw runtime artifacts. Local Windows support is declared only for the numerical/Ruckig environment. The Sobol candidate was excluded because its dependency contains conflicting MIT/LGPL function notices. Sources requiring live robots, gated assets or unprepared services remain references until their separate prerequisites and execution evidence exist.
+
+To reproduce on a supported Linux CPU environment with Python 3.10:
+
+```sh
+python -m pip install --only-binary=:all: -r tools/recipe_adapters/requirements-cpu.txt
+python tools/fetch_executable_sources.py --cache .local/executable-sources --fetch
+python tools/verify_executable_recipes.py --source-cache .local/executable-sources --output .local/executable-run
+python tools/verify_executable_composition.py --source-cache .local/executable-sources --output .local/composition-run
+```
+
+Use fresh output directories. Preparation recipes pin the complete measured numerical dependency set; they do not promise identical floating-point results across all platforms. Public API responses and `--describe` require no numerical runtime installation.

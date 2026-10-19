@@ -239,17 +239,20 @@
     },
     "preconditions": [
       "Use the exact declared runtime/robot/environment combination.",
-      "Ground-truth state and environment-generated targets; this adapter accepts a seed, not an arbitrary Cartesian goal."
+      "Ground-truth state and environment-generated targets; this adapter accepts a seed, not an arbitrary Cartesian goal.",
+      "A nonzero exit or missing JSON is a process failure; never infer completion from preparation."
     ],
     "postconditions": [
       "PushCube-v1 env info.success is true after the upstream solver finishes, truncated is false, and 0 < elapsed_steps < max_episode_steps=1000; only then status is task_complete and exit is 0. The 1000-step motion-planning horizon is a Hub recipe condition, not the upstream default benchmark horizon."
     ],
     "failure_codes": [
-      "Dependency installation unavailable or incompatible",
-      "Required Linux mplib wheels unavailable on host OS",
-      "Motion planning reports failure or env info.success is false",
-      "Runtime exception or asset download failure",
-      "Episode truncated or elapsed_steps reaches the Hub 1000-step horizon"
+      "motion_plan_failed",
+      "episode_truncated",
+      "horizon_exceeded",
+      "invalid_elapsed_steps",
+      "task_objective_not_reached",
+      "runtime_error",
+      "process_failed_without_json"
     ],
     "composition": {
       "depends_on": [],

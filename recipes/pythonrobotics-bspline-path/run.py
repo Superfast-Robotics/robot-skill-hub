@@ -145,12 +145,14 @@ def path_length(path):
     return sum(math.dist(a,b) for a,b in zip(path,path[1:]))
 
 
-def path_checks(path, start, goal, obstacles=(), radius=0., tolerance=1e-6):
-    return {'nonempty':len(path)>1,
+def path_checks(path, start, goal, obstacles=None, radius=0., tolerance=1e-6):
+    checks={'nonempty':len(path)>1,
         'start_reached':bool(path) and math.dist(path[0][:2],start[:2])<=tolerance,
-        'goal_reached':bool(path) and math.dist(path[-1][:2],goal[:2])<=tolerance,
-        'collision_free_segments':all(segment_distance(o,a,b)+1e-8 >= radius+(o[2] if len(o)>2 else 0.)
-            for a,b in zip(path,path[1:]) for o in obstacles)}
+        'goal_reached':bool(path) and math.dist(path[-1][:2],goal[:2])<=tolerance}
+    if obstacles is not None:
+        checks['supplied_obstacles_clear']=all(segment_distance(o,a,b)+1e-8 >= radius+(o[2] if len(o)>2 else 0.)
+            for a,b in zip(path,path[1:]) for o in obstacles)
+    return checks
 
 
 def pythonrobotics_backend(root, d, spec):
@@ -263,6 +265,23 @@ def pythonrobotics_backend(root, d, spec):
         path=list(map(list,zip(x,y)))
         return {'path_xy':path,'length_m':path_length(path)},path_checks(path,d['start'],d['goal'],d['obstacles'],d['robot_radius'],tolerance=.5)
     if op=='smoothing':
+        if not all(path_checks(d['path_xy'],d['path_xy'][0],d['path_xy'][-1],d['obstacles'],d['robot_radius']).values()):
+            raise ContractError('Input path must clear every supplied inflated obstacle')
+        # Upstream shortcut selection remains unchanged. Replace its sampled
+        # collision test and off-by-one arclength interpolation at the boundary.
+        def exact_clear(first, second, obstacles, robot_radius=0., sample_step=.2):
+            return all(segment_distance(o,first,second)>robot_radius+o[2] for o in obstacles)
+        def arclength_point(path, distance):
+            remaining=distance
+            for index,(a,b) in enumerate(zip(path,path[1:])):
+                length=math.dist(a,b)
+                if length and remaining<=length:
+                    ratio=remaining/length
+                    return [a[0]+ratio*(b[0]-a[0]),a[1]+ratio*(b[1]-a[1]),index]
+                remaining-=length
+            return [path[-1][0],path[-1][1],len(path)-2]
+        m.line_collision_check=exact_clear
+        m.get_target_point=arclength_point
         path=m.path_smoothing(d['path_xy'],100,d['obstacles'],robot_radius=d['robot_radius'])
         checks=path_checks(path,d['path_xy'][0],d['path_xy'][-1],d['obstacles'],d['robot_radius'])
         checks['not_longer']=path_length(path)<=path_length(d['path_xy'])+1e-8

@@ -68,7 +68,7 @@
       "Pinned source archive once during preparation",
       "PyPI for declared dependency installation"
     ],
-    "dependency_lock": "Direct versions are pinned in requirements.txt; prepare captures the complete resolved pip freeze. No claim of a cross-platform transitive lock."
+    "dependency_lock": "Runtime dependency versions are pinned for the supported Python 3.10 x86_64 CPU environments and checked against execution receipts. Platform-specific wheel hashes are not represented as a universal artifact lock; prepare captures pip freeze."
   },
   "invocation": {
     "entrypoint": "python run.py",
@@ -265,6 +265,7 @@
       "-m",
       "pip",
       "install",
+      "--only-binary=:all:",
       "-r",
       "{recipe_dir}/requirements.txt"
     ],

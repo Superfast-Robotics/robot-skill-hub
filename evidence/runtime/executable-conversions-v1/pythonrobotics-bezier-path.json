@@ -2,17 +2,17 @@
   "schema_version": "1",
   "skill_id": "pythonrobotics-bezier-path",
   "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
-  "adapter_sha256": "6aa331eb46e831db6e017e7bddfc0a8e58353234c3fc6b35fbc309d37bb5b9d1",
+  "adapter_sha256": "f0998e5a6fd8e17846dbf0d973bc350bdfa168d1451daf536fec4ab2179cbd82",
   "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
   "case_plan_sha256": "de2d053c62fa3c43df549ef12b1fe37793d5dd3a269cf096c33d229c4d4f1904",
   "passed": 3,
   "failed": 0,
   "negative_unknown_field_rejected": true,
   "platforms": [
-    "linux"
+    "windows"
   ],
-  "python": "3.10.22",
-  "architecture": "x86_64",
+  "python": "3.10.11",
+  "architecture": "amd64",
   "packages": [
     "contourpy==1.3.2",
     "cycler==0.12.1",
@@ -22,7 +22,6 @@
     "numpy==1.26.4",
     "packaging==26.3",
     "pillow==12.3.0",
-    "pybullet==3.2.7",
     "pyparsing==3.3.3",
     "python-dateutil==2.9.0.post0",
     "ruckig==0.19.4",
@@ -32,7 +31,7 @@
   "execution_domain": "computation",
   "physical_robot": false,
   "gpu": false,
-  "observed_at": "2026-10-19T14:56:04.968676+00:00",
+  "observed_at": "2026-10-19T15:16:23.933710+00:00",
   "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
   "cases": [
     {
@@ -60,17 +59,16 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "62c6aff2d0c6347cf88cc21aec477d32768478b22343aaad1e3363afe3db7d6c",
+      "stdout_sha256": "c4278e00336ead1bb675865961f324e0b892d2990ffe2a16fdcb6eb9827ecb37",
       "checks": {
         "nonempty": true,
         "start_reached": true,
-        "goal_reached": true,
-        "collision_free_segments": true
+        "goal_reached": true
       },
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.4862
+      "elapsed_seconds": 1.344
     },
     {
       "case": 1,
@@ -97,17 +95,16 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "7268852a30f42001c4318e09423517fa8769c6d3f0a75961ee6992402d879670",
+      "stdout_sha256": "3f8e2a0b4816e91ed3f4cd4fffe1abceb3ccee261d2bd930750355be4b7957c7",
       "checks": {
         "nonempty": true,
         "start_reached": true,
-        "goal_reached": true,
-        "collision_free_segments": true
+        "goal_reached": true
       },
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.4945
+      "elapsed_seconds": 1.36
     },
     {
       "case": 2,
@@ -134,174 +131,16 @@
       },
       "passed": true,
       "exit_code": 0,
-      "stdout_sha256": "36eff6979aac9c4b6107bd4dba093da49a99fcce0f7cec668978b6a2e9cb178d",
+      "stdout_sha256": "ce9bd2d7ba93cbc54c3b2fb0035de2a0b833de1cb3d9104b1b8e8dd53dcb1445",
       "checks": {
         "nonempty": true,
         "start_reached": true,
-        "goal_reached": true,
-        "collision_free_segments": true
+        "goal_reached": true
       },
       "status": "task_complete",
       "reason_code": null,
       "message": null,
-      "elapsed_seconds": 0.4834
+      "elapsed_seconds": 1.625
     }
-  ],
-  "additional_runs": [
-    {
-      "schema_version": "1",
-      "skill_id": "pythonrobotics-bezier-path",
-      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
-      "adapter_sha256": "6aa331eb46e831db6e017e7bddfc0a8e58353234c3fc6b35fbc309d37bb5b9d1",
-      "source_guards_sha256": "c1d24196397f7d29e49217eed1ee6ac608bbb09bc5609ce384b26d0464e6f258",
-      "case_plan_sha256": "de2d053c62fa3c43df549ef12b1fe37793d5dd3a269cf096c33d229c4d4f1904",
-      "passed": 3,
-      "failed": 0,
-      "negative_unknown_field_rejected": true,
-      "platforms": [
-        "windows"
-      ],
-      "python": "3.10.11",
-      "architecture": "amd64",
-      "packages": [
-        "contourpy==1.3.2",
-        "cycler==0.12.1",
-        "fonttools==4.65.0",
-        "kiwisolver==1.5.1",
-        "matplotlib==3.9.4",
-        "numpy==1.26.4",
-        "packaging==26.3",
-        "pillow==12.3.0",
-        "pyparsing==3.3.3",
-        "python-dateutil==2.9.0.post0",
-        "ruckig==0.19.4",
-        "scipy==1.13.1",
-        "six==1.17.0"
-      ],
-      "execution_domain": "computation",
-      "physical_robot": false,
-      "gpu": false,
-      "observed_at": "2026-10-19T14:45:01.266181+00:00",
-      "scope": "Three authored positive regression cases and one invalid input. Not general accuracy, LLM selection, real hardware, collision certification or real-time performance.",
-      "cases": [
-        {
-          "case": 0,
-          "input": {
-            "waypoints": [
-              [
-                0,
-                0
-              ],
-              [
-                1,
-                2
-              ],
-              [
-                3,
-                2
-              ],
-              [
-                4,
-                0
-              ]
-            ],
-            "samples": 60
-          },
-          "passed": true,
-          "exit_code": 0,
-          "stdout_sha256": "332a6c38ef798fcca4cf143117114aa023c25de7654928166ab10b70b7709ec4",
-          "checks": {
-            "nonempty": true,
-            "start_reached": true,
-            "goal_reached": true,
-            "collision_free_segments": true
-          },
-          "status": "task_complete",
-          "reason_code": null,
-          "message": null,
-          "elapsed_seconds": 1.313
-        },
-        {
-          "case": 1,
-          "input": {
-            "waypoints": [
-              [
-                0,
-                0
-              ],
-              [
-                1,
-                -1
-              ],
-              [
-                3,
-                1
-              ],
-              [
-                5,
-                0
-              ]
-            ],
-            "samples": 60
-          },
-          "passed": true,
-          "exit_code": 0,
-          "stdout_sha256": "5b15e3b9ac9a396a64565a5baf77c97b65867916ae56faa2cc671f4b558f03e7",
-          "checks": {
-            "nonempty": true,
-            "start_reached": true,
-            "goal_reached": true,
-            "collision_free_segments": true
-          },
-          "status": "task_complete",
-          "reason_code": null,
-          "message": null,
-          "elapsed_seconds": 1.359
-        },
-        {
-          "case": 2,
-          "input": {
-            "waypoints": [
-              [
-                1,
-                1
-              ],
-              [
-                2,
-                3
-              ],
-              [
-                4,
-                3
-              ],
-              [
-                5,
-                1
-              ]
-            ],
-            "samples": 60
-          },
-          "passed": true,
-          "exit_code": 0,
-          "stdout_sha256": "5690bff18c6c20565e8d9a270a3d6f60742652084ec37b871909421e0cd7143b",
-          "checks": {
-            "nonempty": true,
-            "start_reached": true,
-            "goal_reached": true,
-            "collision_free_segments": true
-          },
-          "status": "task_complete",
-          "reason_code": null,
-          "message": null,
-          "elapsed_seconds": 1.891
-        }
-      ]
-    }
-  ],
-  "workflow": {
-    "id": 39273268144,
-    "head_sha": "bb3701587ea9206012240cde26e2f0578ff8f0c0",
-    "conclusion": "success",
-    "url": "https://github.com/Superfast-Robotics/robot-skill-hub/actions/runs/39273268144"
-  }
+  ]
 }

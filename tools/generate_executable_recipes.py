@@ -38,6 +38,8 @@ def build_record(recipe,archive,adapter,requirements):
     interface=copy.deepcopy(recipe['interface'])
     interface['origin_reference_ids']=recipe['origin_reference_ids']
     interface['origin_relationship']='adapted_from; inspect declared model and inputs, not original robot compatibility'
+    if recipe['operation']=='smoothing':
+        interface['origin_relationship']+='; upstream shortcut loop with corrected arclength interpolation and exact segment/circle checks in the Hub wrapper'
     receipt=EVIDENCE/(ident+'.json')
     proofs=[]
     if receipt.exists():
@@ -46,6 +48,7 @@ def build_record(recipe,archive,adapter,requirements):
             if run['adapter_sha256']!=digest(adapter.encode()) or run['case_plan_sha256']!=digest(encoded(recipe['cases'])) or run['source_commit']!=archive['commit'] or run['source_guards_sha256']!=digest(encoded(recipe['source_hashes'])):
                 raise ValueError(ident+': runtime proof is stale; rerun rather than relabel it')
             if run['passed']!=len(recipe['cases']) or run['failed']!=0 or run.get('negative_unknown_field_rejected') is not True or [c['input'] for c in run['cases']]!=recipe['cases'] or not all(c['passed'] and c['exit_code']==0 for c in run['cases']): raise ValueError(ident+': not all frozen cases and input rejections passed')
+            if not set(archive['packages'])<=set(run['packages']):raise ValueError(ident+': declared runtime versions differ from the measured environment')
         proofs=[receipt.relative_to(ROOT).as_posix()]
     systems=['linux'] if recipe['backend']=='pybullet' else ['windows','linux']
     tested={system for run in [proof]+proof.get('additional_runs',[]) for system in run.get('platforms',[])} if proofs else set()
@@ -64,7 +67,7 @@ def build_record(recipe,archive,adapter,requirements):
         'requirements':{'python':'>=3.10,<3.11','packages':archive['packages'],'hardware':['x86_64 CPU; no GPU or robot required'],
             'rendering':'No display. Matplotlib Agg for numerical imports; PyBullet DIRECT for simulation.','api_keys':[],
             'network':['Pinned source archive once during preparation','PyPI for declared dependency installation'],
-            'dependency_lock':'Direct versions are pinned in requirements.txt; prepare captures the complete resolved pip freeze. No claim of a cross-platform transitive lock.'},
+            'dependency_lock':'Runtime dependency versions are pinned for the supported Python 3.10 x86_64 CPU environments and checked against execution receipts. Platform-specific wheel hashes are not represented as a universal artifact lock; prepare captures pip freeze.'},
         'invocation':{'entrypoint':'python run.py','argv':['{python}','{recipe_dir}/run.py','--source-dir','{source_dir}','--example'],
             'inputs':recipe['example'],'outputs':{'format':'single JSON object on stdout','payload_selector':'outputs','schema':interface['output_schema']},
             'example':'After prepare, replace --example in next_command with --input /absolute/path/task.json; use --describe for the exact contract without execution.'},
@@ -73,7 +76,7 @@ def build_record(recipe,archive,adapter,requirements):
             'timeout_seconds':30,'failure_modes':['Invalid or oversized JSON','Source checksum mismatch','Unavailable pinned dependency','No valid path or postcondition failure','Execution exceeding the declared bounded algorithm budget'],
             'stop_condition':'Caller must terminate the separate adapter process after 30 seconds; adapters bound iterations/scene steps and close simulation clients.'},
         'preparation':{'recipe_path':'recipes/'+ident,'requirements_file':'recipes/'+ident+'/requirements.txt','source_selection':'declared_paths',
-            'install_argv':['{python}','-m','pip','install','-r','{recipe_dir}/requirements.txt'],'execution_separate':True},
+            'install_argv':['{python}','-m','pip','install','--only-binary=:all:','-r','{recipe_dir}/requirements.txt'],'execution_separate':True},
         'evidence':{'level':level,'verified_by':'Hub maintainer runtime harness' if proofs else 'Hub source review','date':'2026-10-19','environment':{'scope':interface['execution_domain'],'platforms':sorted(tested),'physical_robot':False},
             'commands':['python tools/verify_executable_recipes.py --source-cache SOURCE_CACHE --output OUTPUT --backend '+recipe['backend']],
             'result':'Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.' if proofs else 'Source and interface reviewed; runtime cases have not been recorded.',
@@ -88,6 +91,8 @@ def generate(check=False,adapters_only=False):
     manifest=json.loads(MANIFEST.read_text(encoding='utf-8'))
     guide=(ROOT/'docs/executable-skills.md').read_text(encoding='utf-8')
     write(ROOT/'skills/find-robot-skills/references/executable-skills.md',guide,check)
+    dependencies=sorted({package for source in manifest['sources'].values() for package in source['packages']})
+    write(ROOT/'tools/recipe_adapters/requirements-cpu.txt','\n'.join(dependencies)+'\n',check)
     ids=set()
     for recipe in manifest['recipes']:
         ident=recipe['id']
