@@ -7534,7 +7534,7 @@
         "runtime": "mujoco",
         "runtime_version": "3.3.7",
         "robot": "arx_l5",
-        "controller": "native_position_actuators",
+        "controller": "position_servo_integral_offset_compensation",
         "observation": "joint_state",
         "os": "linux",
         "architecture": "x86_64",
@@ -7726,7 +7726,8 @@
         "joint4",
         "joint5",
         "joint6"
-      ]
+      ],
+      "adapter_template": "joint_feedback"
     },
     {
       "id": "mujoco-dynamixel-2r-joint-control",
@@ -8172,7 +8173,7 @@
         "runtime": "mujoco",
         "runtime_version": "3.3.7",
         "robot": "flexiv_rizon4s",
-        "controller": "native_position_actuators",
+        "controller": "position_servo_integral_offset_compensation",
         "observation": "joint_state",
         "os": "linux",
         "architecture": "x86_64",
@@ -8389,7 +8390,8 @@
         "joint5",
         "joint6",
         "joint7"
-      ]
+      ],
+      "adapter_template": "joint_feedback"
     },
     {
       "id": "mujoco-franka-fr3-v2-joint-control",
@@ -10164,7 +10166,7 @@
         "runtime": "mujoco",
         "runtime_version": "3.3.7",
         "robot": "trossen_vx300s",
-        "controller": "native_position_actuators",
+        "controller": "position_servo_integral_offset_compensation",
         "observation": "joint_state",
         "os": "linux",
         "architecture": "x86_64",
@@ -10357,7 +10359,8 @@
         "forearm_roll",
         "wrist_angle",
         "wrist_rotate"
-      ]
+      ],
+      "adapter_template": "joint_feedback"
     },
     {
       "id": "mujoco-trossen-wx250s-joint-control",
@@ -10575,7 +10578,7 @@
         "runtime": "mujoco",
         "runtime_version": "3.3.7",
         "robot": "trossen_wxai",
-        "controller": "native_position_actuators",
+        "controller": "position_servo_integral_offset_compensation",
         "observation": "joint_state",
         "os": "linux",
         "architecture": "x86_64",
@@ -10863,7 +10866,8 @@
         "right/joint_3",
         "right/joint_4",
         "right/joint_5"
-      ]
+      ],
+      "adapter_template": "joint_feedback"
     },
     {
       "id": "mujoco-unitree-z1-joint-control",
@@ -12263,7 +12267,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -14982,7 +14985,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -17701,7 +17703,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -20420,7 +20421,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -23139,7 +23139,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -25858,7 +25857,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -28577,7 +28575,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -31296,7 +31293,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",
@@ -34015,7 +34011,6 @@
         "dm_control/suite/utils/randomizers.py": "01a4621e187040054b1dedf8fa0e58508bf416fc6db23c76aca17b9ecc5ed351",
         "dm_control/suite/utils/parse_amc.py": "85bd049fd326dfc9376baea824dfad6f752e13e2e07909fa72d56564ae88907e",
         "dm_control/suite/utils/__init__.py": "631fc2ee727eaaf95af72b107408d013d1915edd83faaea7388e3f33b379f589",
-        "dm_control/suite/demos/mocap_demo.py": "f2a0197f88cb43da830e5a64de5dfb320b9aa2a3733204c50660ad7d49ca2667",
         "dm_control/suite/common/visual.xml": "1e338ca511de35b902c4ca944d857c23fe4e7a5aea46a475cdc317dd454245b0",
         "dm_control/suite/common/materials.xml": "83ee4f7d3f0c9b3003ad121c2c35169a32a922c437321278f27db60d577ccfac",
         "dm_control/suite/common/skybox.xml": "71db77c7c88dd4e1b54eb394deecfba673bbf539d110de68aa229dee00abf107",

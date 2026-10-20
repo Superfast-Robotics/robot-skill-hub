@@ -25,7 +25,9 @@ def seed_backend(root, data, spec):
             initial=obs[object_key].copy()
             drive(initial+np.array([0,0,.15]),-1,80);drive(initial+np.array([0,0,.005]),-1,100)
             drive(initial+np.array([0,0,.005]),1,50);drive(initial+np.array([0,0,.22]),1,90)
-            drive(target+np.array([0,0,.17]),1,100);drive(target,1,90)
+            # Track the grasped object's pose, including its measured grasp offset.
+            for desired,limit in [(target+np.array([0,0,.17]),100),(target,90)]:
+                for _ in range(limit):drive(obs['robot0_eef_pos']+desired-obs[object_key],1,1)
             drive(target,-1,50);drive(target+np.array([0,0,.18]),-1,70)
             final=obs[object_key].copy();error=float(np.linalg.norm(final-target));success=bool(env._check_success())
             return {'object_xyz_m':final.tolist(),'target_xyz_m':target.tolist(),'error_m':error,'steps':steps,'environment_success':success}, {
@@ -63,7 +65,11 @@ def seed_backend(root, data, spec):
                 for _ in range(220):
                     obj=np.asarray(env.unwrapped.sim.get_base_position('object'))
                     if np.linalg.norm(goal[:2]-obj[:2])<.025:break
-                    target=goal.copy();target[2]=obj[2];move(target,1,1)
+                    direction=goal[:2]-obj[:2];direction/=max(np.linalg.norm(direction),1e-8)
+                    target=obj+np.r_[direction*.025,0]
+                    action=np.clip((target-obs['observation'][:3])*4,-.35,.35)
+                    if env.action_space.shape[0]==4:action=np.r_[action,1]
+                    obs,_,_,_,info=env.step(action);steps+=1
                 move(obs['observation'][:3]+np.array([0,0,.12]),1,30)
             error=float(np.linalg.norm(obs['achieved_goal']-goal))
             success=bool(info['is_success']);tolerance=.04 if spec['operation']!='stack' else .06
