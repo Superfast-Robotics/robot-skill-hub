@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "hub_commit": "3a2dffe60bc33f8992925d99ec04389811732074",
+  "hub_commit": "59368ed3c2534cb7f39e346ee7c3553d403f23fd",
   "catalog_url": "https://hub.superfastrobotics.com/catalog/v1/index.json",
   "references_url": "https://hub.superfastrobotics.com/catalog/v1/references.json",
   "memories_url": "https://hub.superfastrobotics.com/catalog/v1/memories.json",
@@ -2767,7 +2767,7 @@
         ],
         "result": "1/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-ball-in-cup-catch.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-ball-in-cup-catch.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -5557,7 +5557,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-cartpole-balance-sparse.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-cartpole-balance-sparse.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -8347,7 +8347,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-cartpole-balance.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-cartpole-balance.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -11137,7 +11137,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-finger-spin.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-finger-spin.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -13927,7 +13927,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-pendulum-swingup.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-pendulum-swingup.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -16717,7 +16717,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-point-mass-easy.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-point-mass-easy.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -19507,7 +19507,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-point-mass-hard.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-point-mass-hard.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -22297,7 +22297,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-reacher-easy.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-reacher-easy.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -25087,7 +25087,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/dmcontrol-reacher-hard.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/dmcontrol-reacher-hard.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -25410,7 +25410,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-fetchpickandplace-v4.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-fetchpickandplace-v4.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -25733,7 +25733,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-fetchpush-v4.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-fetchpush-v4.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -26056,7 +26056,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-fetchreach-v4.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-fetchreach-v4.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -26379,7 +26379,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-large-v3.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-large-v3.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -26702,7 +26702,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-medium-v3.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-medium-v3.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -27025,7 +27025,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-umaze-v3.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-umaze-v3.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -27517,7 +27517,7 @@
         ],
         "result": "1/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/lerobot-diffusion-pusht.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/lerobot-diffusion-pusht.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -32775,7 +32775,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-agilex-piper-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-agilex-piper-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -33198,7 +33198,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-aloha-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-aloha-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -33566,7 +33566,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-arx-l5-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-arx-l5-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -33924,7 +33924,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-dynamixel-2r-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-dynamixel-2r-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -34317,7 +34317,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-flexiv-rizon4-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-flexiv-rizon4-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -34711,7 +34711,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-flexiv-rizon4s-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-flexiv-rizon4s-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -35151,7 +35151,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-franka-emika-panda-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-franka-emika-panda-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -35559,7 +35559,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-franka-fr3-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-franka-fr3-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -35981,7 +35981,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-franka-fr3-v2-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-franka-fr3-v2-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -36401,7 +36401,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-google-robot-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-google-robot-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -36865,7 +36865,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-hello-robot-stretch-3-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-hello-robot-stretch-3-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -37292,7 +37292,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-hello-robot-stretch-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-hello-robot-stretch-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -37678,7 +37678,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-i2rt-yam-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-i2rt-yam-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -38053,7 +38053,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-kinova-gen3-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-kinova-gen3-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -38432,7 +38432,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-kuka-iiwa-14-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-kuka-iiwa-14-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -38812,7 +38812,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-low-cost-robot-arm-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-low-cost-robot-arm-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -39227,7 +39227,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-rethink-robotics-sawyer-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-rethink-robotics-sawyer-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -39592,7 +39592,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-robotis-omy-3m-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-robotis-omy-3m-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -39974,7 +39974,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-robotstudio-so101-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-robotstudio-so101-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -40447,7 +40447,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-seeed-rebot-devarm-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-seeed-rebot-devarm-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -40835,7 +40835,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-shadow-dexee-finger-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-shadow-dexee-finger-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -41225,7 +41225,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-stanford-tidybot-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-stanford-tidybot-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -41594,7 +41594,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-trossen-vx300s-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-trossen-vx300s-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -41964,7 +41964,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-trossen-wx250s-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-trossen-wx250s-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -42433,7 +42433,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-trossen-wxai-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-trossen-wxai-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -42813,7 +42813,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-trs-so-arm100-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-trs-so-arm100-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -43207,7 +43207,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-ufactory-lite6-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-ufactory-lite6-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -43591,7 +43591,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-ufactory-xarm7-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-ufactory-xarm7-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -43938,7 +43938,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-unitree-go2-stand-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-unitree-go2-stand-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -44317,7 +44317,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-unitree-z1-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-unitree-z1-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -44699,7 +44699,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-universal-robots-ur10e-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-universal-robots-ur10e-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -45081,7 +45081,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/mujoco-universal-robots-ur5e-joint-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/mujoco-universal-robots-ur5e-joint-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -45422,7 +45422,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/pandagym-panda-pick-place.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/pandagym-panda-pick-place.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -45763,7 +45763,7 @@
         ],
         "result": "1/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/pandagym-panda-push.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/pandagym-panda-push.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -46104,7 +46104,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/pandagym-panda-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/pandagym-panda-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -46445,7 +46445,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/pandagym-panda-slide.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/pandagym-panda-slide.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -46786,7 +46786,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/pandagym-panda-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/pandagym-panda-stack.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -47064,7 +47064,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-collision-filter-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-collision-filter-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -47359,7 +47359,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-constraint-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-constraint-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -47712,7 +47712,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-fall-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-fall-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -48008,7 +48008,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-force-torque-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-force-torque-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -48361,7 +48361,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-friction-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-friction-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -48721,7 +48721,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-ik-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-ik-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -49108,7 +49108,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-inverse-dynamics-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-inverse-dynamics-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -49474,7 +49474,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-jacobian-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-jacobian-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -49795,7 +49795,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-position-control-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-position-control-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -50204,7 +50204,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-raycast-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-raycast-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -50495,7 +50495,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-save-restore-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-save-restore-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -50816,7 +50816,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pybullet-torque-pd-skill.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pybullet-torque-pd-skill.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -51315,7 +51315,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-astar-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-astar-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -51718,7 +51718,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-bezier-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-bezier-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -52215,7 +52215,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-bidirectional-astar-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-bidirectional-astar-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -52712,7 +52712,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-bidirectional-breadth-first-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-bidirectional-breadth-first-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -53209,7 +53209,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-breadth-first-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-breadth-first-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -53612,7 +53612,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-bspline-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-bspline-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -54015,7 +54015,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-catmull-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-catmull-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -54418,7 +54418,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-cubic-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-cubic-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -54915,7 +54915,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-depth-first-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-depth-first-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -55412,7 +55412,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-dijkstra-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-dijkstra-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -55860,7 +55860,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-dubins-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-dubins-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -56331,7 +56331,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-dwa-control.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-dwa-control.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -56833,7 +56833,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-ekf-update.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-ekf-update.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -57351,7 +57351,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-ekf-velocity-update.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-ekf-velocity-update.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -57848,7 +57848,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-greedy-best-first-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-greedy-best-first-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -58290,7 +58290,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-path-smoothing.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-path-smoothing.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -58710,7 +58710,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-pendulum-lqr.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-pendulum-lqr.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -59100,7 +59100,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-planar-fk.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-planar-fk.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -59512,7 +59512,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-planar-ik.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-planar-ik.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -59947,7 +59947,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-potential-field-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-potential-field-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -60454,7 +60454,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-prm-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-prm-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -60916,7 +60916,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-pure-pursuit-steering.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-pure-pursuit-steering.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -61384,7 +61384,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-quintic-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-quintic-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -61832,7 +61832,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-reeds-shepp-path.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-reeds-shepp-path.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -62305,7 +62305,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-rrt-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-rrt-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -62779,7 +62779,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-rrt-star-planner.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-rrt-star-planner.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -63241,7 +63241,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-stanley-steering.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-stanley-steering.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -63741,7 +63741,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/pythonrobotics-ukf-update.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/pythonrobotics-ukf-update.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -64039,7 +64039,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-iiwa-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-iiwa-lift.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -64361,7 +64361,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-iiwa-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-iiwa-pick-place-can.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -64705,7 +64705,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-iiwa-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-iiwa-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -65027,7 +65027,7 @@
         ],
         "result": "2/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-iiwa-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-iiwa-stack.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -65328,7 +65328,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-jaco-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-jaco-lift.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -65650,7 +65650,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-jaco-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-jaco-pick-place-can.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -65994,7 +65994,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-jaco-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-jaco-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -66316,7 +66316,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-jaco-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-jaco-stack.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -66617,7 +66617,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-kinova3-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-kinova3-lift.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -66939,7 +66939,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-kinova3-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-kinova3-pick-place-can.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -67283,7 +67283,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-kinova3-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-kinova3-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -67605,7 +67605,7 @@
         ],
         "result": "2/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-kinova3-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-kinova3-stack.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -67906,7 +67906,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-panda-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-panda-lift.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -68228,7 +68228,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-panda-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-panda-pick-place-can.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -68572,7 +68572,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-panda-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-panda-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -68894,7 +68894,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-panda-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-panda-stack.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -69195,7 +69195,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-sawyer-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-sawyer-lift.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -69517,7 +69517,7 @@
         ],
         "result": "0/3 frozen cases completed; retained failures are not promoted.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-sawyer-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-sawyer-pick-place-can.json"
         ],
         "runtime_verification": "import_verified",
         "contributor_reported": null,
@@ -69861,7 +69861,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-sawyer-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-sawyer-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -70183,7 +70183,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-sawyer-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-sawyer-stack.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -70484,7 +70484,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-ur5e-lift.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-ur5e-lift.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -70806,7 +70806,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-ur5e-pick-place-can.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-ur5e-pick-place-can.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -71150,7 +71150,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-ur5e-reach.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-ur5e-reach.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -71472,7 +71472,7 @@
         ],
         "result": "All 3 frozen cases completed against this exact adapter and source.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/diverse-sim-v1/robosuite-ur5e-stack.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/diverse-sim-v1/robosuite-ur5e-stack.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -72100,7 +72100,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/ruckig-minimum-duration-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/ruckig-minimum-duration-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -72715,7 +72715,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/ruckig-offline-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/ruckig-offline-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -73330,7 +73330,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/ruckig-online-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/ruckig-online-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -73955,7 +73955,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/ruckig-stop-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/ruckig-stop-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
@@ -74570,7 +74570,7 @@
         ],
         "result": "Three frozen positive cases passed against this exact adapter; see per-case receipts. This does not estimate general accuracy.",
         "artifacts": [
-          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/3a2dffe60bc33f8992925d99ec04389811732074/evidence/runtime/executable-conversions-v1/ruckig-velocity-trajectory.json"
+          "https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/59368ed3c2534cb7f39e346ee7c3553d403f23fd/evidence/runtime/executable-conversions-v1/ruckig-velocity-trajectory.json"
         ],
         "runtime_verification": "task_complete",
         "contributor_reported": null,
