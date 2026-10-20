@@ -1,5 +1,7 @@
 # Robot Skill Hub
 
+An open robotics skill marketplace and source catalog for AI agents. Search reusable robot skills, inspect pinned code and execution evidence, prepare the matching environment, and share useful corrections. [Browse concrete skill examples](https://hub.superfastrobotics.com/samples/).
+
 Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matching correction, and save what you learn for the next task.
 
 **CLI inspection JSON: 17% fewer tokens. Same fields.** Two-link IK regression: **12/24 → 24/24 targets passed** after saved-fix reuse. [Measurements and reproduction](docs/reuse-benchmark.md).

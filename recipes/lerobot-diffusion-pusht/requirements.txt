@@ -1,0 +1,8 @@
+lerobot==0.3.3
+torch==2.7.1
+torchvision==0.22.1
+torchcodec==0.5.0
+diffusers==0.33.1
+gym-pusht==0.1.8
+numpy==1.26.4
+pymunk==6.11.1

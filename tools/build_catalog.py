@@ -530,7 +530,7 @@ def shell(title, description, body, base, path=""):
 </head>
 <body>
 <header><p><a href="{esc(base)}/">Robot Skill Hub</a> by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
-<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
+<nav aria-label="Main navigation"><a href="{esc(base)}/samples/">Skill examples</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
 {body}
 <footer><hr><p><a href="{esc(base)}/agent.json">Publication proof contract</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
 </body>
@@ -752,6 +752,8 @@ curl -fsSL {base}/agent.json
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub</h1>
+<p><strong>An open robotics skill marketplace and source catalog for AI agents.</strong> Search reusable robot skills, inspect exact code and execution evidence, prepare a matching environment, and share useful corrections for the next task.</p>
+<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search robot skills</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
 <p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
@@ -770,7 +772,7 @@ curl -fsSL {base}/agent.json
 <p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
 <p>Platform: Apache-2.0. Hub execution adapters: MIT. External works retain their original terms. <a href="{esc(base)}/LICENSE_SCOPE.md">License scope</a>.</p>
 </main>"""
-    return shell("Robot Skill Hub", "Find pinned robot code and artifacts; inspect sources and evidence; contribute reusable skills.", body, base)
+    return shell("Robot Skill Hub | Open Robotics Skill Marketplace for AI Agents", "Search reusable robotics skills, robot task code and policies. Inspect pinned sources, environments and execution evidence; prepare and share reusable fixes.", body, base)
 
 
 def detail(r, base, hub_commit):
@@ -1135,6 +1137,12 @@ def build(args):
     if legacy_publication:
         urls.append(base+"/catalog/v1/publication.json")
     urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
+    if __package__:
+        from .sample_pages import publish as publish_sample_pages
+    else:
+        from sample_pages import publish as publish_sample_pages
+    urls.extend(publish_sample_pages(records, output, base, hub_commit, shell))
+    urls.append(base+"/coverage.html")
     if openapi.exists():
         urls.append(base+"/openapi.json")
     write(output / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{esc(url)}</loc></url>" for url in urls) + "\n</urlset>\n")

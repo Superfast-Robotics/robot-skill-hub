@@ -1,0 +1,413 @@
+{
+  "schema_version": "1",
+  "id": "mujoco-hello-robot-stretch-joint-control",
+  "name": "hello robot stretch joint-position control",
+  "summary": "hello robot stretch joint-position control. Source-pinned, bounded simulation with explicit goal checks; no physical execution.",
+  "capabilities": [
+    "controller",
+    "joint-control",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "hello_robot_stretch",
+    "menagerie",
+    "joint_control"
+  ],
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_url": "https://codeload.github.com/google-deepmind/mujoco_menagerie/tar.gz/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+    "archive_bytes": 520071141,
+    "authors": [
+      "MuJoCo Menagerie contributors and the pinned model licensors"
+    ],
+    "paths": [
+      "hello_robot_stretch/CHANGELOG.md",
+      "hello_robot_stretch/LICENSE",
+      "hello_robot_stretch/README.md",
+      "hello_robot_stretch/assets/arm_inner_wrist_aruco_sticker.png",
+      "hello_robot_stretch/assets/arm_top_wrist_aruco_sticker.png",
+      "hello_robot_stretch/assets/base_link_0.obj",
+      "hello_robot_stretch/assets/base_link_1.obj",
+      "hello_robot_stretch/assets/base_link_2.obj",
+      "hello_robot_stretch/assets/base_link_3.obj",
+      "hello_robot_stretch/assets/base_link_4.obj",
+      "hello_robot_stretch/assets/base_link_5.obj",
+      "hello_robot_stretch/assets/base_link_6.obj",
+      "hello_robot_stretch/assets/base_link_7.obj",
+      "hello_robot_stretch/assets/base_link_8.obj",
+      "hello_robot_stretch/assets/base_link_casterless.stl",
+      "hello_robot_stretch/assets/hand_crush.png",
+      "hello_robot_stretch/assets/hand_pinch.png",
+      "hello_robot_stretch/assets/laser.obj",
+      "hello_robot_stretch/assets/link_arm_l0_0.obj",
+      "hello_robot_stretch/assets/link_arm_l0_1.obj",
+      "hello_robot_stretch/assets/link_arm_l0_2.obj",
+      "hello_robot_stretch/assets/link_arm_l1_0.obj",
+      "hello_robot_stretch/assets/link_arm_l1_1.obj",
+      "hello_robot_stretch/assets/link_arm_l2_0.obj",
+      "hello_robot_stretch/assets/link_arm_l2_1.obj",
+      "hello_robot_stretch/assets/link_arm_l3_0.obj",
+      "hello_robot_stretch/assets/link_arm_l3_1.obj",
+      "hello_robot_stretch/assets/link_arm_l4_0.obj",
+      "hello_robot_stretch/assets/link_arm_l4_1.obj",
+      "hello_robot_stretch/assets/link_aruco_inner_wrist.obj",
+      "hello_robot_stretch/assets/link_aruco_left_base.obj",
+      "hello_robot_stretch/assets/link_aruco_right_base.obj",
+      "hello_robot_stretch/assets/link_aruco_shoulder.obj",
+      "hello_robot_stretch/assets/link_aruco_top_wrist.obj",
+      "hello_robot_stretch/assets/link_gripper_0.obj",
+      "hello_robot_stretch/assets/link_gripper_1.obj",
+      "hello_robot_stretch/assets/link_gripper_finger_left_0.obj",
+      "hello_robot_stretch/assets/link_gripper_finger_left_1.obj",
+      "hello_robot_stretch/assets/link_gripper_finger_right_0.obj",
+      "hello_robot_stretch/assets/link_gripper_finger_right_1.obj",
+      "hello_robot_stretch/assets/link_gripper_fingertip_left.stl",
+      "hello_robot_stretch/assets/link_gripper_fingertip_right.stl",
+      "hello_robot_stretch/assets/link_head_0.obj",
+      "hello_robot_stretch/assets/link_head_1.obj",
+      "hello_robot_stretch/assets/link_head_10.obj",
+      "hello_robot_stretch/assets/link_head_11.obj",
+      "hello_robot_stretch/assets/link_head_2.obj",
+      "hello_robot_stretch/assets/link_head_3.obj",
+      "hello_robot_stretch/assets/link_head_4.obj",
+      "hello_robot_stretch/assets/link_head_5.obj",
+      "hello_robot_stretch/assets/link_head_6.obj",
+      "hello_robot_stretch/assets/link_head_7.obj",
+      "hello_robot_stretch/assets/link_head_8.obj",
+      "hello_robot_stretch/assets/link_head_9.obj",
+      "hello_robot_stretch/assets/link_head_pan_0.obj",
+      "hello_robot_stretch/assets/link_head_pan_1.obj",
+      "hello_robot_stretch/assets/link_head_tilt_0.obj",
+      "hello_robot_stretch/assets/link_head_tilt_1.obj",
+      "hello_robot_stretch/assets/link_left_wheel_0.obj",
+      "hello_robot_stretch/assets/link_left_wheel_1.obj",
+      "hello_robot_stretch/assets/link_lift_0.obj",
+      "hello_robot_stretch/assets/link_lift_1.obj",
+      "hello_robot_stretch/assets/link_lift_2.obj",
+      "hello_robot_stretch/assets/link_lift_3.obj",
+      "hello_robot_stretch/assets/link_lift_4.obj",
+      "hello_robot_stretch/assets/link_lift_5.obj",
+      "hello_robot_stretch/assets/link_lift_6.obj",
+      "hello_robot_stretch/assets/link_lift_7.obj",
+      "hello_robot_stretch/assets/link_lift_8.obj",
+      "hello_robot_stretch/assets/link_lift_9.obj",
+      "hello_robot_stretch/assets/link_mast.obj",
+      "hello_robot_stretch/assets/link_right_wheel_0.obj",
+      "hello_robot_stretch/assets/link_right_wheel_1.obj",
+      "hello_robot_stretch/assets/link_wrist_yaw.obj",
+      "hello_robot_stretch/assets/mobile_base_left_corner_aruco_sticker.png",
+      "hello_robot_stretch/assets/mobile_base_right_corner_aruco_sticker.png",
+      "hello_robot_stretch/assets/respeaker_base.obj",
+      "hello_robot_stretch/assets/serial.png",
+      "hello_robot_stretch/assets/shoulder_aruco_sticker.png",
+      "hello_robot_stretch/assets/wood.png",
+      "hello_robot_stretch/scene.xml",
+      "hello_robot_stretch/stretch.png",
+      "hello_robot_stretch/stretch.xml"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause-Clear",
+    "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/hello_robot_stretch/LICENSE",
+    "verified": true,
+    "scope": "Pinned model-specific license. Preserve upstream notices and separate mesh/asset rights; the independent Hub controller wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mujoco",
+      "runtime_version": "3.3.7",
+      "robot": "hello_robot_stretch",
+      "controller": "native_position_actuators",
+      "observation": "joint_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "joint_offset_rad": 0.08
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "joint_positions_rad",
+          "target_joint_positions_rad",
+          "max_error_rad",
+          "movement_rad"
+        ],
+        "properties": {
+          "joint_positions_rad": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "joint_wrist_yaw",
+              "joint_head_pan",
+              "joint_head_tilt"
+            ]
+          },
+          "target_joint_positions_rad": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "joint_wrist_yaw",
+              "joint_head_pan",
+              "joint_head_tilt"
+            ]
+          },
+          "max_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "movement_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "joint_wrist_yaw,joint_head_pan,joint_head_tilt",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "joint_offset_rad"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "joint_offset_rad": {
+          "type": "number",
+          "minimum": -0.15,
+          "maximum": 0.15,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "joint_positions_rad",
+        "target_joint_positions_rad",
+        "max_error_rad",
+        "movement_rad"
+      ],
+      "properties": {
+        "joint_positions_rad": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "joint_wrist_yaw",
+            "joint_head_pan",
+            "joint_head_tilt"
+          ]
+        },
+        "target_joint_positions_rad": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "joint_wrist_yaw",
+            "joint_head_pan",
+            "joint_head_tilt"
+          ]
+        },
+        "max_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "movement_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Move the named actuated hinge joints by a bounded offset from the reset/settled pose; max residual <0.035 rad and nonzero actual motion. This is not end-effector planning, balance, locomotion or hardware control.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mujoco-hello-robot-stretch-joint-control",
+    "requirements_file": "recipes/mujoco-hello-robot-stretch-joint-control/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "06cd12cebd11d508afb0fbccedcb584868b63549b4cedd3eb4a8d20e1ec1d53e",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mujoco-hello-robot-stretch-joint-control.json",
+      "recipes/mujoco-hello-robot-stretch-joint-control/run.py",
+      "recipes/mujoco-hello-robot-stretch-joint-control/requirements.txt",
+      "docs/recipes/mujoco-hello-robot-stretch-joint-control.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

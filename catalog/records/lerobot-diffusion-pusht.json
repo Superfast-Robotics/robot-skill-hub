@@ -1,0 +1,272 @@
+{
+  "schema_version": "1",
+  "id": "lerobot-diffusion-pusht",
+  "name": "LeRobot Diffusion Policy PushT closed-loop evaluation",
+  "summary": "LeRobot Diffusion Policy PushT closed-loop evaluation. Source-pinned, bounded simulation with explicit goal checks; no physical execution.",
+  "capabilities": [
+    "task",
+    "policy-evaluation",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "pusht-2d-pusher",
+    "lerobot",
+    "policy_evaluation"
+  ],
+  "source": {
+    "repository": "https://github.com/huggingface/lerobot",
+    "commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+    "archive_url": "https://codeload.github.com/huggingface/lerobot/tar.gz/b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+    "archive_sha256": "cf58261f6dbf614168337530f78f761929fb2d4d1b91e90f4f5f17209138aa40",
+    "archive_bytes": 5697522,
+    "authors": [
+      "Original lerobot contributors (preserve pinned LICENSE)"
+    ],
+    "paths": [
+      "LICENSE",
+      "src/lerobot/__init__.py",
+      "src/lerobot/policies/diffusion/modeling_diffusion.py"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/huggingface/lerobot/blob/b883328e6c95681ca90a18b102e4ae5e1f91e2bf/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party source only. Robot meshes, simulator assets, dependencies and model checkpoints retain their separate terms."
+  },
+  "compatibility": [
+    {
+      "runtime": "lerobot",
+      "runtime_version": "0.3.3",
+      "robot": "pusht-2d-pusher",
+      "controller": "diffusion_policy",
+      "observation": "rgb_pixels_and_pusher_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "RGB_pixels_and_pusher_position"
+    ],
+    "privileged_state": false,
+    "description": "96x96 RGB observations and 2D pusher state, consumed by the original frozen checkpoint; no object-state oracle or retraining."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "lerobot==0.3.3",
+      "torch==2.7.1",
+      "torchvision==0.22.1",
+      "torchcodec==0.5.0",
+      "diffusers==0.33.1",
+      "gym-pusht==0.1.8",
+      "numpy==1.26.4",
+      "pymunk==6.11.1"
+    ],
+    "hardware": [
+      "Linux x86_64; CUDA GPU, tested on A100 40GB"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation",
+      "Pinned public Hugging Face checkpoint on first execution"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "maximum_coverage",
+          "steps",
+          "environment_success",
+          "cuda_inference"
+        ],
+        "properties": {
+          "maximum_coverage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 300
+          },
+          "environment_success": {
+            "type": "boolean"
+          },
+          "cuda_inference": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "PushT native 2D pixel arena; no exposed metric pose",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "maximum_coverage",
+        "steps",
+        "environment_success",
+        "cuda_inference"
+      ],
+      "properties": {
+        "maximum_coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 300
+        },
+        "environment_success": {
+          "type": "boolean"
+        },
+        "cuda_inference": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials.",
+      "Policy internal pixel coordinates are not relabeled as metres. The public JSON exposes only seed, dimensionless coverage and steps. CUDA GPU and public pinned checkpoint required."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Original PushT success flag and measured object/target overlap >=95%; no accuracy claim beyond the three retained seed episodes. Checkpoint license: Apache-2.0, preserved at its immutable model revision.",
+    "timeout_seconds": 1200,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/lerobot-diffusion-pusht",
+    "requirements_file": "recipes/lerobot-diffusion-pusht/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend lerobot --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "89dcc2f2cd5c170b3b53d0b3fc4f78929135ea8c0e34579628a3043ef4061f23",
+      "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/lerobot-diffusion-pusht.json",
+      "recipes/lerobot-diffusion-pusht/run.py",
+      "recipes/lerobot-diffusion-pusht/requirements.txt",
+      "docs/recipes/lerobot-diffusion-pusht.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}
