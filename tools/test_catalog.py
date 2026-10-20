@@ -31,6 +31,8 @@ class CatalogTests(unittest.TestCase):
             guide = Path("skills/find-robot-skills/references") / name
             (self.root / guide).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(self.real_root / guide, self.root / guide)
+        for name in ('robot-motion-planning', 'robot-kinematics', 'robot-trajectory'):
+            shutil.copytree(self.real_root / 'skills' / name, self.root / 'skills' / name)
         if (self.real_root / "server.json").exists():
             shutil.copyfile(self.real_root / "server.json", self.root / "server.json")
         builder.ROOT = self.root

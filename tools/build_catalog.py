@@ -876,6 +876,7 @@ Current catalog: {counts}. Search matches and source references do not establish
 - [Register a new skill]({base}/new-skills.md): immutable source metadata, local-first intake and maintainer review
 - [Agent discovery guide]({base}/discovery.md): installation and read-only MCP connection
 - [Task entrypoints and integrations]({base}/agent-distribution.md): planning, kinematics and trajectory skills; ROS-MCP and LangChain examples
+- [HTTPS agent skill index]({base}/.well-known/agent-skills/index.json): three standalone, checksum-addressed lookup archives; install without a Git clone
 - [Robotics problem reproductions]({base}/problems/): ten pinned input/contract cases in HTML, Markdown and JSON
 - [Access measurement and privacy]({base}/privacy.md): measured activity, retained data and opt-out
 
@@ -1129,6 +1130,14 @@ def build(args):
         "cli_commands": ["join", "inspect --project", "recall", "save", "experience", "community-sync"],
         "public_scope_required": True, "canonical_code_overwritten": False,
         "archive_url": REPO + "/tree/community-data"}
+    if __package__:
+        from .publish_agent_skills import publish as publish_agent_skills
+    else:
+        from publish_agent_skills import publish as publish_agent_skills
+    skill_index_url = publish_agent_skills(ROOT, output, base, hub_commit)
+    if skill_index_url:
+        contract['resources']['agent_skills_index_url'] = skill_index_url
+        contract['resources']['agent_skills_publication_url'] = base + '/.well-known/agent-skills/publication.json'
     write_json(output / "agent.json", contract)
     write_json(output / ".well-known/robot-skill-hub.json", contract)
     urls = [base+"/", base+"/agent.json", base+"/agent-quickstart.md", base+"/source-files.md", base+"/llms.txt", base+"/llms-full.txt", base+"/catalog/v1/index.json", base+"/catalog/v1/references.json", search_manifest_url, memory_manifest_url] + [base+"/skills/"+r['id']+"/" for r in records]

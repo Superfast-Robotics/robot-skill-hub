@@ -1,0 +1,32 @@
+name: Observe agent distribution
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 0 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: agent-distribution-observation
+  cancel-in-progress: false
+jobs:
+  observe:
+    if: github.repository == 'Superfast-Robotics/robot-skill-hub' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Read two opted-out aggregate reports
+        run: python tools/observe_distribution.py --output "$RUNNER_TEMP/distribution/observation.json"
+        env:
+          RSH_TELEMETRY: 'off'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distribution-observation-${{ github.run_id }}
+          path: ${{ runner.temp }}/distribution/observation.json
+          retention-days: 30
+          if-no-files-found: error

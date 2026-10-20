@@ -56,7 +56,7 @@ The manifest and MCP configuration use the official Agent Plugins 1.0.0 schemas.
 GitHub Copilot installation and tool use for this package have not been verified
 locally. Existing Hub API/MCP checks do not establish client integration, agent
 adoption, task completion or physical hardware compatibility. Plugin version
-`0.1.0` identifies this connection package separately from the hosted service.
+`0.1.1` identifies this connection package separately from the hosted service.
 
 Package license: [Apache-2.0](LICENSE). Upstream robot code discovered through the Hub
 retains its own per-record license and verification boundaries.

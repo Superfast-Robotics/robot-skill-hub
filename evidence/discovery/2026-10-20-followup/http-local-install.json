@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "installer": "skills CLI",
+  "source": "local HTTP v0.2.0 archive index",
+  "verified_packages": [
+    "robot-motion-planning",
+    "robot-kinematics",
+    "robot-trajectory"
+  ],
+  "files_per_package": 4,
+  "git_clone": false,
+  "telemetry_disabled": true,
+  "agent_config_scope": "isolated temporary project",
+  "task_execution": false
+}

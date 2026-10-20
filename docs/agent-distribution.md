@@ -13,10 +13,12 @@ Public reads require no account, model key, GPU or MCP setup:
 Examples show supported starting points. Do not infer a user's runtime, robot model or frame from them. Unknown runtime filters can be omitted. Search results distinguish preparation recipes and upstream references.
 
 ```sh
-npx skills add Superfast-Robotics/robot-skill-hub --skill robot-motion-planning
+npx skills add https://hub.superfastrobotics.com --skill robot-motion-planning
 ```
 
 Substitute another skill name from the table when appropriate. Each package includes its own stdlib-only search/inspection client. Its preparation guide exports the selected full record as an inert pinned catalog and uses the CLI at the same Hub commit. Discovery performs no installation, execution or sharing.
+
+The [HTTP skill index](https://hub.superfastrobotics.com/.well-known/agent-skills/index.json) follows the agent-skill discovery 0.2.0 archive format supported by the `skills` CLI. Each archive is at most 64 KiB, contains the instructions, lookup script, preparation guide and Apache-2.0 license, and has a SHA-256 digest. Installation fetches the chosen archive without cloning Git. Its name is content-addressed; use the current index if a publication has replaced an older artifact. [Publication metadata](https://hub.superfastrobotics.com/.well-known/agent-skills/publication.json) binds file hashes and the Hub commit. The GitHub installation source remains supported.
 
 ## Existing development environments
 
@@ -37,5 +39,7 @@ These are maintained integration examples, not upstream endorsements or default 
 - [Retained data](https://api.superfastrobotics.com/v1/metrics?window=retained): at most thirty days. Not lifetime visits.
 
 Only public server-observed reads are counted. Channels are unverified labels; requests are not people, successful tasks or a conversion funnel. Maintainer tests send `DNT: 1` and `X-RSH-Telemetry: off`. There are no synthetic installs or fabricated usage outcomes.
+
+The `Observe agent distribution` GitHub Actions workflow reads these two rolling reports daily at 00:17 UTC (09:17 Korea time) and on manual dispatch. It preserves validated aggregate snapshots for thirty days as workflow artifacts. It makes no authenticated calls, emits no test traffic into the counters and does not modify provider listings or contributions. Overlapping daily snapshots must not be summed as lifetime traffic.
 
 Record actual task success/failure through the scoped community outcome flow only after real reuse. The API cannot infer offline execution or model selection. Optional public findings require existing project permission, contain no private task transcript, and remain contributor-reported evidence. See [community](https://hub.superfastrobotics.com/community.md) and [privacy](https://hub.superfastrobotics.com/privacy.md).

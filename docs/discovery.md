@@ -4,6 +4,8 @@ Use the Hub without an account:
 
 For a specific implementation task, start with the [planning, kinematics or trajectory entrypoint](agent-distribution.md). For a source-specific failure, read the [reproducible problem cases](https://hub.superfastrobotics.com/problems/). The [ROS-MCP](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/examples/ros-mcp) and [RAI/LangChain](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/examples/rai) examples are optional integration proposals with explicit validation scope.
 
+Small lookup packages can be installed from the Hub's [HTTP skill index](https://hub.superfastrobotics.com/.well-known/agent-skills/index.json), without a Git clone: `npx skills add https://hub.superfastrobotics.com --skill robot-motion-planning`. This installs instructions and a stdlib client only; preparing runtime code remains separate.
+
 - [Agent contract](https://hub.superfastrobotics.com/agent.json)
 - [Bounded HTTP search](https://api.superfastrobotics.com/v1/search?q=pick%20cube&limit=3)
 - [Paginated search manifest](https://hub.superfastrobotics.com/catalog/v2/search-manifest.json)
