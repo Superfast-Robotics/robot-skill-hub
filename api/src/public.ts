@@ -8,7 +8,7 @@ import { communityForSelection } from './community.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.5.0';
+const VERSION = '0.5.1';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -198,6 +198,8 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   async function describe(env: PublicEnv, refresh = false) {
     const index = refresh ? await snapshot(env) : cached?.value;
     return { ...capabilities(), server_version: VERSION, catalog_hub_commit: index?.hub_commit ?? null, counts: index?.counts ?? null,
+      coverage_url: API + '/v1/coverage', coverage_tables_url: ORIGIN + '/coverage.html',
+      license_policy_url: ORIGIN + '/license-policy.json',
       onboarding: {
         agent_contract_url: ORIGIN + '/agent.json', quickstart_url: ORIGIN + '/agent-quickstart.md',
         skill_url: 'https://raw.githubusercontent.com/Superfast-Robotics/robot-skill-hub/main/skills/find-robot-skills/SKILL.md',
@@ -272,7 +274,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   return async function handle(request: Request, env: PublicEnv, ctx?: Background): Promise<Response | null> {
     const url = new URL(request.url), path = url.pathname;
-    const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
+    const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/coverage' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
     if (!relevant) return null;
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, MCP-Protocol-Version, Mcp-Session-Id, X-RSH-Client, X-RSH-Telemetry, DNT', 'Access-Control-Max-Age': '600' } });
     try {
@@ -288,6 +290,26 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       if (path === '/v1/metrics') response = json(await measurementReport(env, now()));
       else if (path === '/v1/capabilities') response = json(await describe(env));
       else if (path === '/openapi.json') response = new Response((await read('/openapi.json', 128 * 1024)).buffer as ArrayBuffer, { headers: HEADERS });
+      else if (path === '/v1/coverage') {
+        if ([...url.searchParams.keys()].some(key => key !== 'hub_commit')) fail(400, 'invalid_arguments', 'Coverage accepts only an optional exact hub_commit.');
+        const version = await publishedVersion(fetcher), descriptor = version.resources?.coverage;
+        if (url.searchParams.has('hub_commit') && url.searchParams.get('hub_commit') !== version.hub_commit) fail(409, 'catalog_changed', 'Refresh the coverage generation.');
+        if (!SHA.test(descriptor?.sha256 || '') || descriptor?.url !== ORIGIN + '/catalog/v1/coverage.json') fail(503, 'coverage_not_published', 'The current publication has no verified coverage resource.');
+        const bytes = await read('/catalog/v1/coverage.json?v=' + encodeURIComponent(version.hub_commit), 256 * 1024);
+        if (await digest(bytes) !== descriptor.sha256) fail(503, 'publication_changed', 'Coverage changed during this read; retry once.');
+        const value = JSON.parse(new TextDecoder().decode(bytes)), totals = value?.totals;
+        const keys = ['preparation_recipes', 'source_references', 'completed', 'failed', 'not_executed', 'evidence_unbound', 'completed_computations', 'completed_simulations', 'completed_hardware'];
+        if (value.schema_version !== '1' || value.hub_commit !== version.hub_commit || !totals
+            || keys.some(key => !Number.isSafeInteger(totals[key]) || totals[key] < 0)
+            || totals.preparation_recipes !== version.counts?.recipes || totals.source_references !== version.counts?.references
+            || totals.completed + totals.failed + totals.not_executed + totals.evidence_unbound !== totals.preparation_recipes
+            || totals.completed_computations + totals.completed_simulations + totals.completed_hardware !== totals.completed
+            || !Array.isArray(value.recipes) || value.recipes.length !== totals.preparation_recipes
+            || value.recipes.some((row: Row) => !IDENT.test(row?.id || '') || !['completed', 'failed', 'not_executed', 'evidence_unbound'].includes(row.state))
+            || new Set(value.recipes.map((row: Row) => row.id)).size !== totals.preparation_recipes
+            || ['completed', 'failed', 'not_executed', 'evidence_unbound'].some(state => value.recipes.filter((row: Row) => row.state === state).length !== totals[state])) fail(503, 'invalid_coverage', 'Coverage does not match the current complete catalog.');
+        response = new Response(bytes.buffer as ArrayBuffer, { headers: HEADERS });
+      }
       else if (path === '/v1/catalog' || path === '/v1/references') {
         const resource = path === '/v1/catalog' ? 'index' : 'references';
         const version = JSON.parse(new TextDecoder().decode(await read('/catalog/v1/version.json', 32 * 1024)));

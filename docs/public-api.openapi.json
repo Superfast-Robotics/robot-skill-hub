@@ -2,10 +2,10 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
-      "name": "MIT",
+      "name": "Apache-2.0",
       "url": "https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/LICENSE"
     }
   },
@@ -2222,6 +2222,68 @@
             }
           }
         ]
+      }
+    },
+    "/v1/coverage": {
+      "get": {
+        "summary": "Read current-version robot, environment and task coverage",
+        "description": "Credential-free, checksum-bound current publication. Counts separate computation, simulation, hardware, failures, no current task execution and unbound evidence. Reference environment/robot/capability tags are declarations, may overlap and do not establish execution. No robot code runs. The resource is bounded to 256 KiB.",
+        "parameters": [
+          {
+            "name": "hub_commit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Complete coverage for the current catalog generation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema_version",
+                    "hub_commit",
+                    "totals",
+                    "recipes",
+                    "references"
+                  ],
+                  "properties": {
+                    "schema_version": {
+                      "const": "1"
+                    },
+                    "hub_commit": {
+                      "type": "string"
+                    },
+                    "totals": {
+                      "type": "object"
+                    },
+                    "recipes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "references": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Requested generation differs from current publication"
+          },
+          "503": {
+            "description": "Coverage is unavailable, malformed, oversized or does not match the publication checksum"
+          }
+        }
       }
     }
   },

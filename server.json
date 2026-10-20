@@ -3,7 +3,7 @@
   "name": "io.github.Superfast-Robotics/robot-skill-hub",
   "title": "Robot Skill Hub",
   "description": "Search robot code and exact-version findings; check evidence before preparing with the Hub CLI.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "repository": {
     "url": "https://github.com/Superfast-Robotics/robot-skill-hub",
     "source": "github"

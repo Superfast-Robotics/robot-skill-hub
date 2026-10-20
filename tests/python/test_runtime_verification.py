@@ -24,9 +24,10 @@ class RuntimeEvidenceTests(unittest.TestCase):
         self.assertEqual([record["id"] for record in records], list(VERIFIER.SKILLS))
         for record in records:
             files = record["preparation"]["files"]
-            self.assertEqual(set(files), {"run.py", "requirements.txt"})
+            self.assertEqual(set(files), {"run.py", "requirements.txt", "LICENSE", "LICENSE_SCOPE.md"})
             for name, content in files.items():
-                self.assertEqual(content, (ROOT / record["preparation"]["recipe_path"] / name).read_text(encoding="utf-8"))
+                folder = ROOT / 'recipes' if name in ('LICENSE', 'LICENSE_SCOPE.md') else ROOT / record['preparation']['recipe_path']
+                self.assertEqual(content, (folder / name).read_text(encoding="utf-8"))
 
     def setUp(self):
         self.record = {"invocation": {"inputs": {"task": "PickCube-v1", "max_episode_steps": 1000,

@@ -478,3 +478,49 @@ test('catalog and reference proxies validate the same published resource hashes'
   for (const path of ['/v1/catalog', '/v1/references']) assert.equal((await handler(new Request('https://api.superfastrobotics.com' + path), env))!.status, 503);
   assert.ok(calls >= 4);
 });
+
+function coverageFixture(options: { change?: (value: any) => void; badHash?: boolean; missing?: boolean; wrongUrl?: boolean; oversized?: boolean } = {}) {
+  const value: any = { schema_version: '1', hub_commit: HUB, totals: { preparation_recipes: 2, source_references: 3,
+    completed: 1, failed: 1, not_executed: 0, evidence_unbound: 0, completed_computations: 1, completed_simulations: 0, completed_hardware: 0 },
+    recipes: [{ id: 'alpha-pick', state: 'completed' }, { id: 'beta-task', state: 'failed' }], references: {} };
+  options.change?.(value);
+  const body = options.oversized ? 'x'.repeat(256 * 1024 + 1) : JSON.stringify(value);
+  const calls: string[] = [];
+  const handler = createPublicHandler(async (input, init) => {
+    const url = String(input); calls.push(url);
+    assert.equal(new Headers(init?.headers).get('DNT'), '1');
+    assert.equal(new Headers(init?.headers).has('Authorization'), false);
+    assert.equal(init?.redirect, 'manual');
+    if (new URL(url).pathname === '/catalog/v1/version.json') return Response.json({ schema_version: '1', hub_commit: HUB,
+      counts: { recipes: 2, references: 3 }, resources: options.missing ? {} : { coverage: {
+        url: options.wrongUrl ? 'https://attacker.invalid/coverage.json' : ORIGIN + '/catalog/v1/coverage.json', sha256: options.badHash ? '0'.repeat(64) : hash(body) } } });
+    assert.equal(url, ORIGIN + '/catalog/v1/coverage.json?v=' + HUB);
+    return new Response(body);
+  });
+  return { value, calls, request: (path = '/v1/coverage', method = 'GET') => handler(new Request('https://api.superfastrobotics.com' + path, { method }), env) };
+}
+
+test('coverage is a bounded read-only complete generation with optional exact pin and HEAD', async () => {
+  const s = coverageFixture();
+  assert.deepEqual(await (await s.request('/v1/coverage?hub_commit=' + HUB))!.json(), s.value);
+  const head = (await s.request('/v1/coverage', 'HEAD'))!; assert.equal(head.status, 200); assert.equal(await head.text(), '');
+  assert.equal((await s.request('/v1/coverage', 'POST'))!.status, 405);
+  assert.equal((await s.request('/v1/coverage?hub_commit=' + 'b'.repeat(40)))!.status, 409);
+  assert.equal((await s.request('/v1/coverage?robot=panda'))!.status, 400);
+});
+
+test('coverage rejects missing, foreign, oversized or checksum-mismatched resources', async () => {
+  for (const options of [{ missing: true }, { wrongUrl: true }, { oversized: true }, { badHash: true }]) {
+    const s = coverageFixture(options); assert.equal((await s.request())!.status, 503);
+    assert.ok(s.calls.every(url => url.startsWith(ORIGIN + '/')));
+  }
+});
+
+test('coverage never serves wrong-generation, inconsistent or duplicate recipe totals', async () => {
+  for (const change of [(v: any) => v.hub_commit = 'b'.repeat(40),
+    (v: any) => v.totals.completed = 2, (v: any) => v.totals.completed_hardware = -1,
+    (v: any) => v.totals.source_references = 4, (v: any) => v.recipes[1].id = v.recipes[0].id,
+    (v: any) => v.recipes[1].state = 'completed']) {
+    assert.equal((await coverageFixture({ change }).request())!.status, 503);
+  }
+});

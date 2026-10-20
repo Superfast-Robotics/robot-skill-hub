@@ -1,0 +1,14 @@
+{
+  "schema_version": "1",
+  "platform": {"spdx": "Apache-2.0", "license_file": "LICENSE"},
+  "hub_execution_adapters": {
+    "spdx": "MIT",
+    "paths": ["recipes/**", "tools/recipe_adapters/**"],
+    "license_file": "LICENSES/MIT.txt",
+    "scope": "Hub-authored adapter code and templates only; preserve applicable upstream licenses and notices."
+  },
+  "catalog_license_field": "Original upstream source license; does not replace the Hub adapter license or license separate assets.",
+  "external_artifacts": "Original license and notices remain applicable; no blanket relicensing.",
+  "contributions": "Authorized contributions follow the applicable component and upstream licenses.",
+  "historical_mit_releases": "Original MIT permissions and notices remain applicable."
+}
