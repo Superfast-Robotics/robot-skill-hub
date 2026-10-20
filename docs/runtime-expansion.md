@@ -1,6 +1,26 @@
 # Diverse robot simulation skills
 
-The current catalog has 139 preparation recipes, with 115 complete. See the [41 additional simulation starting policies](simulation-starting-policies.md) and live coverage for the latest totals.
+The current catalog has 194 preparation recipes, with 169 complete: 33 computations and 136 simulations. Fourteen current suites have retained failures and eleven have no current task run. Physical robot completions remain zero. [Live coverage](https://hub.superfastrobotics.com/coverage.html) derives these counts from exact-byte receipts.
+
+## Scripted policies, differential IK and Genesis expansion
+
+The 2026-10-20 source expansion adds 567 inspected source references from 24 project selections, including Meta-World, Mink, Pink, TriFinger, classical drone control, constrained/optimal control, navigation, and real-robot ROS 2 examples. These selections cover 23 previously unused repositories and additional Genesis examples. The public inventory now has 1,897 references across 67 framework labels. Candidate helpers, task definitions without an execution interface, conflicting per-file terms, noncommercial sources and unresolved licenses are not promoted into runnable examples. Source references retain `runtime_verification: not_run`; converted recipes carry their separate evidence.
+
+| New executable cohort | Recipes | Fixed cases passed / attempted | Complete recipes |
+| --- | ---: | ---: | ---: |
+| Meta-World official Sawyer V3 policies | 50 | 149 / 150 | 49 |
+| Mink differential IK and MuJoCo actuator servo | 3 | 9 / 9 | 3 |
+| Genesis Panda joint / Cartesian IK servo | 2 | 6 / 6 | 2 |
+
+These are frozen authored cases, not a general benchmark accuracy estimate. All 110 unknown-input/source-drift rejection checks passed. Each of the 50 Meta-World policies uses the actual pinned `get_action(obs)` class and goal-observable task. Completion requires five consecutive native task-success predicates within 500 physics steps. `box-close-v3` seed 2 fails; its suite remains failed despite the other two passes. The native predicate and metrics are task-specific and are retained in the receipts.
+
+Mink uses the pinned archive's Python implementation with its explicit native-extension fallback. This avoids assuming that a PyPI version label identifies the selected Git code. Panda, UR5e and iiwa use configuration limits, differential IK and position-actuator feedback with integral load compensation. Targets are fixed 30 mm offsets along each world axis; completion requires final measured position error below 15 mm, orientation error below 0.05 rad and actual motion. Qpos is not teleported after initialization. Earlier Panda tracking errors are retained under [source-wave attempts](../evidence/runtime/source-wave-attempts-v1/).
+
+Genesis uses the pinned source, CUDA physics and Panda PD control. Joint feedback is checked against seven named arm-joint targets with a 0.04 rad bound, plus a separate 5 mm finger bound; the Cartesian variant also checks measured hand position below 15 mm. Source tutorial visualization is converted into actual dynamic stepping. The code verifies CUDA tensors rather than inferring GPU execution from the host type. Three fixed cases per operation completed.
+
+These three new backends require Linux x86_64 Python 3.11; the earlier cohorts below retain Python 3.10. Genesis additionally needs a compatible CUDA GPU/driver. Use each recipe's requirements rather than mixing simulator versions in one environment. Its pinned dependencies include source distributions, so explicit installation may require build tools. Source/model licenses remain upstream; only the Hub-authored wrapper is MIT.
+
+Run `tools/verify_runtime_expansion.py --backend metaworld`, `mink` or `genesis` with the pinned source cache, an exact Hub commit and an output directory. The manifest freezes every input, policy identity, dependency pin, source hash and contract. Changing any of these invalidates earlier completion evidence. Fresh-project preparation receipts additionally exercise the ordinary CLI install and returned-command path.
 
 The first expansion brought the catalog to 98 preparation recipes. The 36 additions below were executed on two isolated Lambda A100 hosts, using fixed inputs selected before execution. Thirty-four additions passed all three cases. Existing evidence plus these runs gives 84 completed recipes: 33 computations and 51 simulations. Physical robot completions remain zero.
 

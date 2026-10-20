@@ -1,0 +1,223 @@
+{
+  "schema_version": "1",
+  "skill_id": "genesis-panda-joint-servo",
+  "recorded_at": "2026-10-20T07:42:08.175465+00:00",
+  "hub_commit": "2d0319b6d618771965fc239213729a59299a860f",
+  "adapter_sha256": "c6ed1541962303eaf6d98ce810b5e47b33998d653c01e1ba93b782b5287b282c",
+  "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+  "archive_sha256": "851d0970b921ee1b5182f62c544f432600153efccc127db059d5f5e46d9ac719",
+  "case_plan_sha256": "8777388523fe022a5a2b070ebc6404cfa8b4d08fe8d339e058f69d031272a605",
+  "source_guards_sha256": "2480472f3717e0bbd20b86550ea2fc1e3ffd16cd584a3e7cd849072f514b7a30",
+  "environment": {
+    "runtime": "genesis",
+    "runtime_version": "1.4.4",
+    "robot": "panda",
+    "controller": "joint-servo",
+    "observation": "privileged_simulator_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.11"
+  },
+  "packages": {
+    "DracoPy": "2.2.0",
+    "OpenEXR": "3.5.2",
+    "Pillow": "11.3.0",
+    "PyGEL3D": "0.8.2",
+    "PyOpenGL": "3.1.10",
+    "av": "18.1.0",
+    "coacd": "1.0.14",
+    "fast_simplification": "0.2.0",
+    "freetype-py": "2.5.1",
+    "frozendict": "2.4.7",
+    "genesis-world": "1.4.4",
+    "gs-madrona": "0.0.10",
+    "libigl": "2.6.3",
+    "moviepy": "2.2.1",
+    "mujoco": "3.16.0",
+    "numba": "0.68.0",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "psutil": "7.2.2",
+    "py-cpuinfo": "9.0.0",
+    "pycollada": "0.9.3",
+    "pydantic": "2.14.1",
+    "pyglet": "2.1.19",
+    "pygltflib": "1.16.0",
+    "pymeshlab": "2025.7.post1",
+    "pysplashsurf": "0.14.1.0",
+    "quadrants": "1.3.3",
+    "rtree": "1.4.1",
+    "scikit-image": "0.26.0",
+    "tetgen": "0.8.2",
+    "torch": "2.8.0",
+    "trimesh": "5.1.1",
+    "vtk": "9.7.1",
+    "xacro": "2.1.1",
+    "z3-solver": "4.15.4.0",
+    "zstandard": "0.25.0"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "arm_joint_positions_rad": [
+            0.07999996840953827,
+            -0.4951627254486084,
+            0.0002494326326996088,
+            -1.8114761114120483,
+            -0.0006129304529167712,
+            1.3975790739059448,
+            0.6000022292137146
+          ],
+          "target_arm_joint_positions_rad": [
+            0.07999999821186066,
+            -0.4975980222225189,
+            0.00012478785356506705,
+            -1.8057278394699097,
+            -0.00030630186665803194,
+            1.398785948753357,
+            0.6000012755393982
+          ],
+          "max_joint_error_rad": 0.005748271942138672,
+          "finger_error_m": 4.842877388000488e-08,
+          "movement_m": 0.029787419363856316,
+          "cuda_simulation": true,
+          "steps": 800
+        },
+        "checks": {
+          "joint_goal_reached": true,
+          "finger_goal_reached": true,
+          "nontrivial_motion": true,
+          "finite_state": true,
+          "cuda_simulation": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 98.519,
+      "stderr_tail": "[I 10/20/26 07:38:24.236 7481] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\nlibEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "arm_joint_positions_rad": [
+            -0.07999996840953827,
+            -0.4951626658439636,
+            0.00024943306925706565,
+            -1.8114761114120483,
+            -0.0006129305111244321,
+            1.3975790739059448,
+            0.6000027656555176
+          ],
+          "target_arm_joint_positions_rad": [
+            -0.07999999821186066,
+            -0.4975980222225189,
+            0.00012478785356506705,
+            -1.8057278394699097,
+            -0.00030630186665803194,
+            1.398785948753357,
+            0.6000012755393982
+          ],
+          "max_joint_error_rad": 0.005748271942138672,
+          "finger_error_m": 4.0978193283081055e-08,
+          "movement_m": 0.029734592884778976,
+          "cuda_simulation": true,
+          "steps": 800
+        },
+        "checks": {
+          "joint_goal_reached": true,
+          "finger_goal_reached": true,
+          "nontrivial_motion": true,
+          "finite_state": true,
+          "cuda_simulation": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 64.178,
+      "stderr_tail": "[I 10/20/26 07:40:02.739 8342] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\nlibEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": -0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "arm_joint_positions_rad": [
+            0.1199999675154686,
+            -0.4951627552509308,
+            0.00024943306925706565,
+            -1.8114761114120483,
+            -0.000612930569332093,
+            1.3975790739059448,
+            0.6000022292137146
+          ],
+          "target_arm_joint_positions_rad": [
+            0.11999999731779099,
+            -0.4975980222225189,
+            0.00012478785356506705,
+            -1.8057278394699097,
+            -0.00030630186665803194,
+            1.398785948753357,
+            0.6000012755393982
+          ],
+          "max_joint_error_rad": 0.005748271942138672,
+          "finger_error_m": 3.3527612686157227e-08,
+          "movement_m": 0.044449277222156525,
+          "cuda_simulation": true,
+          "steps": 800
+        },
+        "checks": {
+          "joint_goal_reached": true,
+          "finger_goal_reached": true,
+          "nontrivial_motion": true,
+          "finite_state": true,
+          "cuda_simulation": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 62.356,
+      "stderr_tail": "[I 10/20/26 07:41:06.904 8597] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\nlibEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": 0.12
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

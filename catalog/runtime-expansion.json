@@ -48848,7 +48848,7 @@
           "angular_unit": "rad",
           "time_unit": "s",
           "coordinate_frame": "right_handed_world_xyz; +z_up",
-          "joint_order": "not_used",
+          "joint_order": "joint1, joint2, joint3, joint4, joint5, joint6, joint7; finger errors are separate metric distances",
           "quaternion_order": "not_used"
         },
         "input_schema": {
@@ -49057,7 +49057,7 @@
           "angular_unit": "rad",
           "time_unit": "s",
           "coordinate_frame": "right_handed_world_xyz; +z_up",
-          "joint_order": "not_used",
+          "joint_order": "joint1, joint2, joint3, joint4, joint5, joint6, joint7; finger errors are separate metric distances",
           "quaternion_order": "not_used"
         },
         "input_schema": {

@@ -260,7 +260,7 @@
       "angular_unit": "rad",
       "time_unit": "s",
       "coordinate_frame": "right_handed_world_xyz; +z_up",
-      "joint_order": "not_used",
+      "joint_order": "joint1, joint2, joint3, joint4, joint5, joint6, joint7; finger errors are separate metric distances",
       "quaternion_order": "not_used"
     },
     "input_schema": {
@@ -470,7 +470,7 @@
     "hub_verification": {
       "runtime": "not_run",
       "scope": "simulation",
-      "adapter_sha256": "2f6c66f685cc7a41027b8a79e4ce27535051117c33040b545e18aff80962adb9",
+      "adapter_sha256": "5f0a5dfd90576ff8225b1d0b5cb129dd51f00eaffc3e0f7831a964076a4e1e7f",
       "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
       "record_version": "1.0.0",
       "case_count": 0,

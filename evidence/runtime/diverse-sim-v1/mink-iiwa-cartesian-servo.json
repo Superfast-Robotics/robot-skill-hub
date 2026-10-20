@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mink-iiwa-cartesian-servo",
+  "recorded_at": "2026-10-20T07:38:24.436713+00:00",
+  "hub_commit": "2d0319b6d618771965fc239213729a59299a860f",
+  "adapter_sha256": "a5233ff127d9b4ea4d2de46ed29a0f0057ba83eefb51fce8f5cfaa7a6aad1585",
+  "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+  "archive_sha256": "119a412fcf985756ea1f5fea5a0d856627c7d98771de73f9ac4e65a6c5de0580",
+  "case_plan_sha256": "aaa2ccba7d6d9a662e62c8b329d2d32e5cd0d13f3688475eaf26881204a70b31",
+  "source_guards_sha256": "bbe58f7771e9bc8153d8ee07b2f82d7ce18ee6ba94f1d24e7ce370c15ec242e7",
+  "environment": {
+    "runtime": "mink",
+    "runtime_version": "1.3.0",
+    "robot": "iiwa",
+    "controller": "cartesian-servo",
+    "observation": "privileged_simulator_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.11"
+  },
+  "packages": {
+    "mink": "1.3.0",
+    "mujoco": "3.10.0",
+    "numpy": "1.26.4",
+    "qpsolvers": "4.12.0",
+    "daqp": "0.8.6"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mink-iiwa-cartesian-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "final_xyz_m": [
+            0.4299842083809372,
+            1.7175125859368264e-13,
+            0.653980641985476
+          ],
+          "target_xyz_m": [
+            0.42999907434961526,
+            0.0,
+            0.6539985307213587
+          ],
+          "error_m": 2.3259490454829814e-05,
+          "movement_m": 0.02998513936741356,
+          "orientation_error_rad": 4.739191611439738e-06,
+          "steps": 3000
+        },
+        "checks": {
+          "cartesian_goal_reached": true,
+          "orientation_held": true,
+          "nontrivial_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.585,
+      "stderr_tail": "",
+      "input": {
+        "target_offset_m": [
+          0.03,
+          0,
+          0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mink-iiwa-cartesian-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "final_xyz_m": [
+            0.39998653192806777,
+            0.029996571862674723,
+            0.6539905476972634
+          ],
+          "target_xyz_m": [
+            0.39999907434961524,
+            0.03,
+            0.6539985307213587
+          ],
+          "error_m": 1.5257560011413762e-05,
+          "movement_m": 0.029996575547112388,
+          "orientation_error_rad": 2.2527426491527794e-06,
+          "steps": 3000
+        },
+        "checks": {
+          "cartesian_goal_reached": true,
+          "orientation_held": true,
+          "nontrivial_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.565,
+      "stderr_tail": "",
+      "input": {
+        "target_offset_m": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mink-iiwa-cartesian-servo",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "final_xyz_m": [
+            0.399981755196988,
+            4.101556814337063e-12,
+            0.6839821953098646
+          ],
+          "target_xyz_m": [
+            0.39999907434961524,
+            0.0,
+            0.6839985307213587
+          ],
+          "error_m": 2.3807534866288905e-05,
+          "movement_m": 0.029983669590446547,
+          "orientation_error_rad": 3.2817778476974896e-06,
+          "steps": 3000
+        },
+        "checks": {
+          "cartesian_goal_reached": true,
+          "orientation_held": true,
+          "nontrivial_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.562,
+      "stderr_tail": "",
+      "input": {
+        "target_offset_m": [
+          0,
+          0,
+          0.03
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}
