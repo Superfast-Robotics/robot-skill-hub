@@ -136,7 +136,11 @@ def mainstream_backend(root, data, spec):
     import numpy as np
     for package in spec['packages']:
         name,version=package.split('==',1)
-        if importlib.metadata.version(name).split('+')[0]!=version:raise ContractError('Pinned package version differs: '+name)
+        actual=importlib.metadata.version(name).split('+')[0].split('.')
+        expected=version.split('.')
+        while len(actual)>1 and actual[-1]=='0':actual.pop()
+        while len(expected)>1 and expected[-1]=='0':expected.pop()
+        if actual!=expected:raise ContractError('Pinned package version differs: '+name)
     os.environ.setdefault('MUJOCO_GL','egl')
     os.environ['HF_HUB_DISABLE_TELEMETRY']='1'
     os.environ['WANDB_MODE']='disabled'
@@ -148,7 +152,12 @@ def mainstream_backend(root, data, spec):
         state=mujoco.MjData(model)
         if model.nkey:mujoco.mj_resetDataKeyframe(model,state,0)
         mujoco.mj_forward(model,state)
-        indices=[model.actuator(name).id for name in spec['actuator_names']]
+        indices=[]
+        for name in spec['interface']['output_schema']['properties']['joint_positions_rad']['x-order']:
+            joint=model.joint(name).id
+            candidates=[a for a in range(model.nu) if model.actuator_trntype[a]==0 and model.actuator_trnid[a,0]==joint and model.actuator_biasprm[a,1]<0]
+            if len(candidates)!=1:raise ContractError('Expected one position actuator per declared joint')
+            indices.append(candidates[0])
         joints=[int(model.actuator_trnid[a,0]) for a in indices]
         qaddrs=[int(model.jnt_qposadr[j]) for j in joints]
         for a,q in zip(indices,qaddrs):state.ctrl[a]=state.qpos[q]
@@ -194,7 +203,7 @@ def mainstream_backend(root, data, spec):
         sys.path.insert(0,str(root))
         import gymnasium as gym,gymnasium_robotics
         gym.register_envs(gymnasium_robotics)
-        env=gym.make(spec['env_id'],max_episode_steps=1000)
+        env=gym.make(spec['env_id'],max_episode_steps=4000 if spec['operation']=='maze' else 1000)
         try:
             obs,info=env.reset(seed=seed);steps=0
             def move(target,grip,limit):
@@ -207,7 +216,8 @@ def mainstream_backend(root, data, spec):
                 obj=obs['observation'][3:6].copy();goal=obs['desired_goal'].copy()
                 move(obj+np.array([0,0,.12]),1,35);move(obj+np.array([0,0,.005]),1,30)
                 move(obj+np.array([0,0,.005]),-1,30);move(obj+np.array([0,0,.2]),-1,35)
-                move(goal+np.array([0,0,.08]),-1,40);move(goal,-1,35);move(goal,1,30)
+                move(goal+np.array([0,0,.08]),-1,40);move(goal,-1,35)
+                move(goal,-1 if goal[2]>obj[2]+.04 else 1,30)
             elif spec['operation']=='push':
                 obj=obs['observation'][3:6].copy();goal=obs['desired_goal'].copy()
                 direction=goal[:2]-obj[:2];direction/=max(np.linalg.norm(direction),1e-6)
@@ -240,12 +250,12 @@ def mainstream_backend(root, data, spec):
                         velocity=obs['observation'][2:4]
                         action=np.clip(error*10-velocity*3,-1,1)
                         obs,_,_,_,info=env.step(action);steps+=1
-                        if steps>=950:break
-                    if steps>=950:break
+                        if steps>=3800:break
+                    if steps>=3800:break
             error=float(np.linalg.norm(obs['achieved_goal']-obs['desired_goal']))
             success=bool(info.get('is_success',info.get('success',False)))
             return {'achieved_goal':obs['achieved_goal'].tolist(),'desired_goal':obs['desired_goal'].tolist(),'error_m':error,'steps':steps,'environment_success':success}, {
-                'environment_goal':success,'finite_state':bool(np.isfinite(obs['observation']).all()),'bounded_steps':steps<=950}
+                'environment_goal':success,'finite_state':bool(np.isfinite(obs['observation']).all()),'bounded_steps':steps<=(3800 if spec['operation']=='maze' else 950)}
         finally:env.close()
     if backend=='lerobot':
         sys.path.insert(0,str(root/'src'))
@@ -274,7 +284,7 @@ def mainstream_backend(root, data, spec):
         finally:env.close()
     raise ContractError('Unsupported pinned simulation backend')
 
-SPEC = json.loads('{"id":"gymrobotics-pointmaze-large-v3","name":"PointMaze_Large-v3 goal-directed maze","backend":"gymrobotics","operation":"maze","interface":{"version":"1","kind":"task","abstraction_level":2,"execution_domain":"simulation","language":"python","input_transport":"json_file_or_inline","output_transport":"json_stdout","output_selector":"outputs","conventions":{"linear_unit":"m","angular_unit":"rad","time_unit":"s","coordinate_frame":"right_handed_world_xyz; +z_up","joint_order":"not_used","quaternion_order":"not_used"},"input_schema":{"type":"object","required":["seed"],"properties":{"seed":{"type":"integer","minimum":0,"maximum":10000}},"additionalProperties":false},"output_schema":{"type":"object","required":["achieved_goal","desired_goal","error_m","steps","environment_success"],"properties":{"achieved_goal":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"number","minimum":-20,"maximum":20},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"desired_goal":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"number","minimum":-20,"maximum":20},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"error_m":{"type":"number","minimum":0,"maximum":50,"x-unit":"m"},"steps":{"type":"integer","minimum":1,"maximum":1000},"environment_success":{"type":"boolean"}},"additionalProperties":false},"preconditions":["Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.","No physical robot, network actuation or external robot credentials."],"postconditions":["All reported checks must be true and all output numbers finite.","Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."],"failure_codes":["invalid_input_or_environment","execution_failed","task_failed"],"composition":{"depends_on":[],"automatic_frame_conversion":false,"automatic_hardware_execution":false}},"example":{"seed":0},"source_hashes":{"LICENSE":"00668424e12956742815eb1d8e15c7be543192561511df5fde119ae1188315ef","gymnasium_robotics/__init__.py":"717731b184b5758c642ffa1c4475728cafe9ad37c3a2f6afd3e74cd70ae0a9fb","gymnasium_robotics/envs/fetch/fetch_env.py":"de1f51690d0aa754ab99412ba3e23cebdc96351746b4d141e46260bbd21d1844","gymnasium_robotics/envs/maze/point_maze.py":"ea4e3d106579a9fe1927f1538eb911485fca3019ce2f95a30cd311f055c5935b"},"summary":"PointMaze_Large-v3 goal-directed maze. Source-pinned, bounded simulation with explicit goal checks; no physical execution.","observation_description":"Privileged simulator state and declared goals; no perception or real sensor validation.","goal_scope":"Native environment success flag after bounded closed-loop control; object/state coordinates are never teleported after reset.","env_id":"PointMaze_Large-v3","source_commit":"42eae53b2b27321d29090c219ce2f675c596de77","packages":["gymnasium==1.2.0","gymnasium-robotics==1.4.2","mujoco==3.3.7","numpy==1.26.4"]}')
+SPEC = json.loads('{"id":"gymrobotics-pointmaze-large-v3","name":"PointMaze_Large-v3 goal-directed maze","backend":"gymrobotics","operation":"maze","interface":{"version":"1","kind":"task","abstraction_level":2,"execution_domain":"simulation","language":"python","input_transport":"json_file_or_inline","output_transport":"json_stdout","output_selector":"outputs","conventions":{"linear_unit":"m","angular_unit":"rad","time_unit":"s","coordinate_frame":"right_handed_world_xyz; +z_up","joint_order":"not_used","quaternion_order":"not_used"},"input_schema":{"type":"object","required":["seed"],"properties":{"seed":{"type":"integer","minimum":0,"maximum":10000}},"additionalProperties":false},"output_schema":{"type":"object","required":["achieved_goal","desired_goal","error_m","steps","environment_success"],"properties":{"achieved_goal":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"number","minimum":-20,"maximum":20},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"desired_goal":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"number","minimum":-20,"maximum":20},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"error_m":{"type":"number","minimum":0,"maximum":50,"x-unit":"m"},"steps":{"type":"integer","minimum":1,"maximum":4000},"environment_success":{"type":"boolean"}},"additionalProperties":false},"preconditions":["Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.","No physical robot, network actuation or external robot credentials."],"postconditions":["All reported checks must be true and all output numbers finite.","Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."],"failure_codes":["invalid_input_or_environment","execution_failed","task_failed"],"composition":{"depends_on":[],"automatic_frame_conversion":false,"automatic_hardware_execution":false}},"example":{"seed":0},"source_hashes":{"LICENSE":"00668424e12956742815eb1d8e15c7be543192561511df5fde119ae1188315ef","gymnasium_robotics/__init__.py":"717731b184b5758c642ffa1c4475728cafe9ad37c3a2f6afd3e74cd70ae0a9fb","gymnasium_robotics/envs/fetch/fetch_env.py":"de1f51690d0aa754ab99412ba3e23cebdc96351746b4d141e46260bbd21d1844","gymnasium_robotics/envs/maze/point_maze.py":"ea4e3d106579a9fe1927f1538eb911485fca3019ce2f95a30cd311f055c5935b"},"summary":"PointMaze_Large-v3 goal-directed maze. Source-pinned, bounded simulation with explicit goal checks; no physical execution.","observation_description":"Privileged simulator state and declared goals; no perception or real sensor validation.","goal_scope":"Native environment success flag after bounded closed-loop control; object/state coordinates are never teleported after reset.","env_id":"PointMaze_Large-v3","source_commit":"42eae53b2b27321d29090c219ce2f675c596de77","packages":["gymnasium==1.2.0","gymnasium-robotics==1.4.2","mujoco==3.3.7","numpy==1.26.4"]}')
 
 if __name__ == "__main__":
     raise SystemExit(adapter_main(SPEC, mainstream_backend))

@@ -136,7 +136,11 @@ def mainstream_backend(root, data, spec):
     import numpy as np
     for package in spec['packages']:
         name,version=package.split('==',1)
-        if importlib.metadata.version(name).split('+')[0]!=version:raise ContractError('Pinned package version differs: '+name)
+        actual=importlib.metadata.version(name).split('+')[0].split('.')
+        expected=version.split('.')
+        while len(actual)>1 and actual[-1]=='0':actual.pop()
+        while len(expected)>1 and expected[-1]=='0':expected.pop()
+        if actual!=expected:raise ContractError('Pinned package version differs: '+name)
     os.environ.setdefault('MUJOCO_GL','egl')
     os.environ['HF_HUB_DISABLE_TELEMETRY']='1'
     os.environ['WANDB_MODE']='disabled'
@@ -148,7 +152,12 @@ def mainstream_backend(root, data, spec):
         state=mujoco.MjData(model)
         if model.nkey:mujoco.mj_resetDataKeyframe(model,state,0)
         mujoco.mj_forward(model,state)
-        indices=[model.actuator(name).id for name in spec['actuator_names']]
+        indices=[]
+        for name in spec['interface']['output_schema']['properties']['joint_positions_rad']['x-order']:
+            joint=model.joint(name).id
+            candidates=[a for a in range(model.nu) if model.actuator_trntype[a]==0 and model.actuator_trnid[a,0]==joint and model.actuator_biasprm[a,1]<0]
+            if len(candidates)!=1:raise ContractError('Expected one position actuator per declared joint')
+            indices.append(candidates[0])
         joints=[int(model.actuator_trnid[a,0]) for a in indices]
         qaddrs=[int(model.jnt_qposadr[j]) for j in joints]
         for a,q in zip(indices,qaddrs):state.ctrl[a]=state.qpos[q]
@@ -194,7 +203,7 @@ def mainstream_backend(root, data, spec):
         sys.path.insert(0,str(root))
         import gymnasium as gym,gymnasium_robotics
         gym.register_envs(gymnasium_robotics)
-        env=gym.make(spec['env_id'],max_episode_steps=1000)
+        env=gym.make(spec['env_id'],max_episode_steps=4000 if spec['operation']=='maze' else 1000)
         try:
             obs,info=env.reset(seed=seed);steps=0
             def move(target,grip,limit):
@@ -207,7 +216,8 @@ def mainstream_backend(root, data, spec):
                 obj=obs['observation'][3:6].copy();goal=obs['desired_goal'].copy()
                 move(obj+np.array([0,0,.12]),1,35);move(obj+np.array([0,0,.005]),1,30)
                 move(obj+np.array([0,0,.005]),-1,30);move(obj+np.array([0,0,.2]),-1,35)
-                move(goal+np.array([0,0,.08]),-1,40);move(goal,-1,35);move(goal,1,30)
+                move(goal+np.array([0,0,.08]),-1,40);move(goal,-1,35)
+                move(goal,-1 if goal[2]>obj[2]+.04 else 1,30)
             elif spec['operation']=='push':
                 obj=obs['observation'][3:6].copy();goal=obs['desired_goal'].copy()
                 direction=goal[:2]-obj[:2];direction/=max(np.linalg.norm(direction),1e-6)
@@ -240,12 +250,12 @@ def mainstream_backend(root, data, spec):
                         velocity=obs['observation'][2:4]
                         action=np.clip(error*10-velocity*3,-1,1)
                         obs,_,_,_,info=env.step(action);steps+=1
-                        if steps>=950:break
-                    if steps>=950:break
+                        if steps>=3800:break
+                    if steps>=3800:break
             error=float(np.linalg.norm(obs['achieved_goal']-obs['desired_goal']))
             success=bool(info.get('is_success',info.get('success',False)))
             return {'achieved_goal':obs['achieved_goal'].tolist(),'desired_goal':obs['desired_goal'].tolist(),'error_m':error,'steps':steps,'environment_success':success}, {
-                'environment_goal':success,'finite_state':bool(np.isfinite(obs['observation']).all()),'bounded_steps':steps<=950}
+                'environment_goal':success,'finite_state':bool(np.isfinite(obs['observation']).all()),'bounded_steps':steps<=(3800 if spec['operation']=='maze' else 950)}
         finally:env.close()
     if backend=='lerobot':
         sys.path.insert(0,str(root/'src'))

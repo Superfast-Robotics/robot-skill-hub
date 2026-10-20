@@ -1,14 +1,21 @@
 """Exact-byte, finite-case evidence binding for diverse simulation adapters."""
-import hashlib,json
+import hashlib,json,re,sys
 from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'skills/find-robot-skills/scripts'))
+from rshlib.interfaces import validate_value
 
 def encoded(value):return json.dumps(value,sort_keys=True,separators=(',',':')).encode()
 def sha(value):return hashlib.sha256(value).hexdigest()
+def version_key(value):
+    parts=value.split('+')[0].split('.')
+    while len(parts)>1 and parts[-1]=='0':parts.pop()
+    return parts
 
 def bound_receipt(root, recipe, source, adapter):
     path=Path(root)/'evidence/runtime/diverse-sim-v1'/(recipe['id']+'.json')
     if not path.exists():return None
     proof=json.loads(path.read_text(encoding='utf-8'))
+    if not re.fullmatch('[a-f0-9]{40}',proof.get('hub_commit','')):raise ValueError('Missing execution source commit')
     if proof.get('adapter_sha256')!=sha(adapter) or proof.get('source_commit')!=source['commit'] or proof.get('archive_sha256')!=source['archive_sha256']:
         raise ValueError(recipe['id']+': stale adapter or source evidence')
     if proof.get('case_plan_sha256')!=sha(encoded(recipe['cases'])) or proof.get('source_guards_sha256')!=sha(encoded(recipe['source_hashes'])):
@@ -22,9 +29,10 @@ def bound_receipt(root, recipe, source, adapter):
         raise ValueError(recipe['id']+': different case inventory')
     for package in source['packages']:
         name,version=package.split('==')
-        if proof.get('packages',{}).get(name,'').split('+')[0]!=version:raise ValueError(recipe['id']+': package drift')
+        if version_key(proof.get('packages',{}).get(name,''))!=version_key(version):raise ValueError(recipe['id']+': package drift')
     for case in cases:
         result=case.get('result',{})
+        if result.get('outputs') is not None:validate_value(result['outputs'],recipe['interface']['output_schema'])
         if case['passed'] and (case.get('exit_code')!=0 or result.get('success') is not True or result.get('status')!='task_complete'
             or result.get('hardware_execution') is not False or result.get('source_commit')!=source['commit']
             or result.get('execution_domain')!='simulation' or not result.get('checks') or not all(v is True for v in result['checks'].values())):

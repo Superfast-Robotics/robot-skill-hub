@@ -133,7 +133,7 @@
           "steps": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 1000
+            "maximum": 4000
           },
           "environment_success": {
             "type": "boolean"
@@ -218,7 +218,7 @@
         "steps": {
           "type": "integer",
           "minimum": 1,
-          "maximum": 1000
+          "maximum": 4000
         },
         "environment_success": {
           "type": "boolean"
@@ -289,7 +289,7 @@
     "hub_verification": {
       "runtime": "not_run",
       "scope": "simulation",
-      "adapter_sha256": "c6a4d96875d50a8493fd982534ff1b2b673d61473dbb3bbf159d155da75276f9",
+      "adapter_sha256": "0be729c3c9d081a880ea91257e87bd65f2f06ef319a5c4101b1f5431c82f8660",
       "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
       "record_version": "1.0.0",
       "case_count": 0,

@@ -341,7 +341,7 @@
     "hub_verification": {
       "runtime": "not_run",
       "scope": "simulation",
-      "adapter_sha256": "34251a18ec6c7ee28f9183a8ef805bd5af78858c49fabad9a9608e35372842a2",
+      "adapter_sha256": "fe072b09b32733e0f1ecf6eeff2875564b9321028536b065b8c0343cafc067c1",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "record_version": "1.0.0",
       "case_count": 0,

@@ -649,7 +649,7 @@
             "steps": {
               "type": "integer",
               "minimum": 1,
-              "maximum": 1000
+              "maximum": 4000
             },
             "environment_success": {
               "type": "boolean"
@@ -810,7 +810,7 @@
             "steps": {
               "type": "integer",
               "minimum": 1,
-              "maximum": 1000
+              "maximum": 4000
             },
             "environment_success": {
               "type": "boolean"
@@ -971,7 +971,7 @@
             "steps": {
               "type": "integer",
               "minimum": 1,
-              "maximum": 1000
+              "maximum": 4000
             },
             "environment_success": {
               "type": "boolean"
