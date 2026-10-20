@@ -8,6 +8,12 @@
       "record_version": "source-645502be26898cb729a01683c4c4cc86e9ad08807ea4f6f1861daf2e324d560c"
     },
     {
+      "id": "mink-examples-arm-hand-iiwa-allegro-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "f65426b8b4c13fbf96ef95e6de42ad6a93489f6c94743c526364cbe61a1a8229",
+      "record_version": "source-f65426b8b4c13fbf96ef95e6de42ad6a93489f6c94743c526364cbe61a1a8229"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-camera-segmentation-cam-784306c1a0b3",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "75df3966bb9f782736acb0641c5a890d4f87dc283c1e95d6d718cb1765fd118c",

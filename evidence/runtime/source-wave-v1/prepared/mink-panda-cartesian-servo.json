@@ -1,0 +1,46 @@
+{
+  "schema_version": "1",
+  "skill_id": "mink-panda-cartesian-servo",
+  "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+  "adapter_sha256": "99471270c7ddb0a739563569526e989fc554dd87d62f4a4946a86a437e160840",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "mink-panda-cartesian-servo",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "final_xyz_m": [
+        0.5844927643454428,
+        4.6040093916114576e-17,
+        0.5344973245502318
+      ],
+      "target_xyz_m": [
+        0.5844994780317353,
+        -2.878109708892285e-33,
+        0.5345024294875895
+      ],
+      "error_m": 8.43409562785755e-06,
+      "movement_m": 0.029993286748144544,
+      "orientation_error_rad": 2.1630602801404635e-06,
+      "steps": 3000
+    },
+    "checks": {
+      "cartesian_goal_reached": true,
+      "orientation_held": true,
+      "nontrivial_motion": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "119a412fcf985756ea1f5fea5a0d856627c7d98771de73f9ac4e65a6c5de0580",
+  "elapsed_seconds": 14.788,
+  "hardware_execution": false
+}

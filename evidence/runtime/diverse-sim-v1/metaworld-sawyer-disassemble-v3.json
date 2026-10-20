@@ -1,0 +1,285 @@
+{
+  "schema_version": "1",
+  "skill_id": "metaworld-sawyer-disassemble-v3",
+  "recorded_at": "2026-10-20T07:33:34.465424+00:00",
+  "hub_commit": "5a81b1a5ebefbd376874c550f459afeceb1872f7",
+  "adapter_sha256": "2e30c36ce5c5887c32ec5b520641e889b03960e61f5f0e992206cb0a44bec68f",
+  "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+  "archive_sha256": "ea091176e3be68314432025d945fa7005f50cc82b319db3cc19374d37c6b52c0",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "3c3905b99f1eb4998a71feab6d1069b7dc96dc66d9b93c2a2c8fc7064ed1e388",
+  "environment": {
+    "runtime": "metaworld",
+    "runtime_version": "3.1.1",
+    "robot": "sawyer",
+    "controller": "scripted-policy",
+    "observation": "privileged_simulator_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.11"
+  },
+  "packages": {
+    "metaworld": "3.1.1",
+    "mujoco": "3.3.0",
+    "numpy": "1.26.4",
+    "gymnasium": "1.2.0",
+    "packaging": "25.0"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "metaworld-sawyer-disassemble-v3",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "success_window": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "native_success": true,
+          "steps": 121,
+          "control_effort": 122.8234343708332,
+          "hand_movement_m": 0.3501321789504054,
+          "native_metrics": [
+            {
+              "name": "grasp_reward",
+              "value": 0.35131885703133225
+            },
+            {
+              "name": "grasp_success",
+              "value": 0.0
+            },
+            {
+              "name": "in_place_reward",
+              "value": 0.4809929662764917
+            },
+            {
+              "name": "near_object",
+              "value": 0.917123397597231
+            },
+            {
+              "name": "obj_to_target",
+              "value": 0.0
+            },
+            {
+              "name": "success",
+              "value": 1.0
+            },
+            {
+              "name": "unscaled_reward",
+              "value": 10.0
+            }
+          ]
+        },
+        "checks": {
+          "sustained_native_task_predicate": true,
+          "finite_state": true,
+          "nonzero_control": true,
+          "physical_simulation_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.679,
+      "stderr_tail": "/home/ubuntu/rsh-runtime/cache/source-Metaworld/metaworld/policies/policy.py:49: UserWarning: Constant(s) may be too high. Environments clip response to [-1, 1]\n  warnings.warn(\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "metaworld-sawyer-disassemble-v3",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "success_window": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "native_success": true,
+          "steps": 166,
+          "control_effort": 169.10805201963026,
+          "hand_movement_m": 0.3988081058344308,
+          "native_metrics": [
+            {
+              "name": "grasp_reward",
+              "value": 0.4519315203332421
+            },
+            {
+              "name": "grasp_success",
+              "value": 0.0
+            },
+            {
+              "name": "in_place_reward",
+              "value": 0.6207321953647078
+            },
+            {
+              "name": "near_object",
+              "value": 0.8765179337662394
+            },
+            {
+              "name": "obj_to_target",
+              "value": 0.0
+            },
+            {
+              "name": "success",
+              "value": 1.0
+            },
+            {
+              "name": "unscaled_reward",
+              "value": 10.0
+            }
+          ]
+        },
+        "checks": {
+          "sustained_native_task_predicate": true,
+          "finite_state": true,
+          "nonzero_control": true,
+          "physical_simulation_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.695,
+      "stderr_tail": "/home/ubuntu/rsh-runtime/cache/source-Metaworld/metaworld/policies/policy.py:49: UserWarning: Constant(s) may be too high. Environments clip response to [-1, 1]\n  warnings.warn(\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "metaworld-sawyer-disassemble-v3",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "success_window": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "native_success": true,
+          "steps": 154,
+          "control_effort": 155.58505465001764,
+          "hand_movement_m": 0.32090384361894936,
+          "native_metrics": [
+            {
+              "name": "grasp_reward",
+              "value": 0.22037142390731138
+            },
+            {
+              "name": "grasp_success",
+              "value": 0.0
+            },
+            {
+              "name": "in_place_reward",
+              "value": 0.6743039898214507
+            },
+            {
+              "name": "near_object",
+              "value": 0.8889204254665732
+            },
+            {
+              "name": "obj_to_target",
+              "value": 0.0
+            },
+            {
+              "name": "success",
+              "value": 1.0
+            },
+            {
+              "name": "unscaled_reward",
+              "value": 10.0
+            }
+          ]
+        },
+        "checks": {
+          "sustained_native_task_predicate": true,
+          "finite_state": true,
+          "nonzero_control": true,
+          "physical_simulation_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.695,
+      "stderr_tail": "/home/ubuntu/rsh-runtime/cache/source-Metaworld/metaworld/policies/policy.py:49: UserWarning: Constant(s) may be too high. Environments clip response to [-1, 1]\n  warnings.warn(\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

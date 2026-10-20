@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-six-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "74f006c2afeb33b0ac7f860632081de73a3e264ba949f7b65d542b888f4409b4",
+      "record_version": "source-74f006c2afeb33b0ac7f860632081de73a3e264ba949f7b65d542b888f4409b4"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-multi-mesh-raycaster-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "ddaea7ea77416bd279c28f5e7b6c6b28cc718b2e47f6213f63a35995327af377",
@@ -20,6 +26,12 @@
       "record_version": "source-38a6b84ab5f01170de51447bac5b9089d3c3e9d4526ef7fe91536701d7508d42"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-handle-press-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "78080e7923d5b3959400d331aa31d47861dabd78f03d4151995ff0210ff85062",
+      "record_version": "source-78080e7923d5b3959400d331aa31d47861dabd78f03d4151995ff0210ff85062"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-vb-scene-hfield-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "21445748fa28c948e6dcd5e4f7d4bdad2eef74df658e2d9ad0d8f20c458de6bb",
@@ -30,6 +42,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4c604119947fc7f055247541effdb937e1648e92e17b16512a1593e1c37ef787",
       "record_version": "source-4c604119947fc7f055247541effdb937e1648e92e17b16512a1593e1c37ef787"
+    },
+    {
+      "id": "pink-examples-stretch-relative-target-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "fc33c4360c6c74ebeb8c515220833b2907b4f336b026483594982dfdcde94e16",
+      "record_version": "source-fc33c4360c6c74ebeb8c515220833b2907b4f336b026483594982dfdcde94e16"
     },
     {
       "id": "webots-projects-robots-dji-mavic-controllers-mavic2pro-mavic2pro-c",

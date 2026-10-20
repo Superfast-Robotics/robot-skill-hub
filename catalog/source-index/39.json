@@ -2,16 +2,40 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-curriculums-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "4a0aae9f04467364bf0122d6ddd844cfe87a518b7e8c716e70baabaee7ee9197",
+      "record_version": "source-4a0aae9f04467364bf0122d6ddd844cfe87a518b7e8c716e70baabaee7ee9197"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f",
+      "record_version": "source-3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f"
+    },
+    {
       "id": "franka-description-artifact-end-effectors-franka-hand-franka-hand-a-6decfc7b7853",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "496a3b356b31339edeac05f76e08f1a7a34b5794e81419b8c089db74b1942d2c",
       "record_version": "source-496a3b356b31339edeac05f76e08f1a7a34b5794e81419b8c089db74b1942d2c"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "e03ed4d4e2b33db3c480dd9af6bb50795022d9346270a1d61b0081568f9b91c7",
+      "record_version": "source-e03ed4d4e2b33db3c480dd9af6bb50795022d9346270a1d61b0081568f9b91c7"
+    },
+    {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-velocity-publisher-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652",
       "record_version": "source-4f537a68aaf6d5f446121c6fa2d6c03010924d410174a8d19c9233b04f199652"
+    },
+    {
+      "id": "roboverse-examples-2-add-new-robot-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "795e78601da0b1a3ca2211a0baeeed8082cd2a6c95a4f7f76259d98e119049ef",
+      "record_version": "source-795e78601da0b1a3ca2211a0baeeed8082cd2a6c95a4f7f76259d98e119049ef"
     },
     {
       "id": "ros2-control-artifact-example-10-bringup-config-rrbot-controllers-yaml",

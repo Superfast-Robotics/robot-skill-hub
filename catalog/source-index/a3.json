@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-rigid-terrain-from-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d0fd6fadffd52995c1b181462a5a2aed29654569323670d4b8556ff8f5c0d53a",
+      "record_version": "source-d0fd6fadffd52995c1b181462a5a2aed29654569323670d4b8556ff8f5c0d53a"
+    },
+    {
       "id": "moveit2-doc-tutorials-your-first-project-kinova-hello-moveit-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "61737822ec4b8a5a1e6ba94d16eb52611ba08b0226b230e175c1d0ed402d1020",

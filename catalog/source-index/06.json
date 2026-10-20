@@ -8,6 +8,12 @@
       "record_version": "source-900a19bd8925acadca3c11c65a1c536549e610bd8d3b0409ab7a7bee883d0427"
     },
     {
+      "id": "genesis-examples-examples-rendering-demo-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8277658783fa82fca1a3fc1f250bb4c73ba9bb1664fc23813d8e28a8e19d75a8",
+      "record_version": "source-8277658783fa82fca1a3fc1f250bb4c73ba9bb1664fc23813d8e28a8e19d75a8"
+    },
+    {
       "id": "moveit2-doc-examples-kinematics-src-ros-api-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "d492d032ed955d7dcdfbbd15b450782fc3d13d56a155d778943380b40b52b168",

@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-collision-tower-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "96d1244c0fd748ee02deead506b2ebb0ebc0067007f3be94a06d6ca2cb304274",
+      "record_version": "source-96d1244c0fd748ee02deead506b2ebb0ebc0067007f3be94a06d6ca2cb304274"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-label-interaction-points-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "3f990edf4e4cc6c8d3db9e0461e0440eb2059742d20a59718a75c6d1d0a5f9a0",
+      "record_version": "source-3f990edf4e4cc6c8d3db9e0461e0440eb2059742d20a59718a75c6d1d0a5f9a0"
+    },
+    {
+      "id": "mink-examples-arm-ur5e-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "4024a9e3a11ee1a4caba82f2684e4e16dc0756bf0ac04244d81f74f9fc8b8eb8",
+      "record_version": "source-4024a9e3a11ee1a4caba82f2684e4e16dc0756bf0ac04244d81f74f9fc8b8eb8"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-radar-radar-py",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "e366ad5db22f62322b3d26e378b1f084a793e49ea44472e01aaaa1673017bacc",

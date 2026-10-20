@@ -2,16 +2,40 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-gar-elqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "a8a5fefd10c42bf655977de0960443f1bf69dc96f7e3f955ffb69a568ce90d42",
+      "record_version": "source-a8a5fefd10c42bf655977de0960443f1bf69dc96f7e3f955ffb69a568ce90d42"
+    },
+    {
+      "id": "aligator-examples-talos-arms-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "cea9a59c7f7c332822da3e62298d3bd69cd1c3038708caae15d2e31248188670",
+      "record_version": "source-cea9a59c7f7c332822da3e62298d3bd69cd1c3038708caae15d2e31248188670"
+    },
+    {
       "id": "gap-bundle-perceiving-routing-fixtures",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6",
       "record_version": "source-a677ada30c9e4d0a64587b90d226dfb59bea7a09600f53a8c052b929c95e0cc6"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-handle-pull-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "57a89955244cf7ac4b33d1d1f9fe0b5394058475e3404fe3c6a1c5ce07584bdd",
+      "record_version": "source-57a89955244cf7ac4b33d1d1f9fe0b5394058475e3404fe3c6a1c5ce07584bdd"
+    },
+    {
       "id": "ompl-demos-vfrrt-vectorfieldconservative-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "93c45591ac00de9222a8bcec709d89a59760455b79a5686b3e3c5b0bc8216b34",
       "record_version": "source-93c45591ac00de9222a8bcec709d89a59760455b79a5686b3e3c5b0bc8216b34"
+    },
+    {
+      "id": "tsid-demo-demo-tsid-talos-gripper-closed-kinematic-chain-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "77403dce6b53f3ef589463252ed228855b57ebbf23c6ae84810595ff9d33b161",
+      "record_version": "source-77403dce6b53f3ef589463252ed228855b57ebbf23c6ae84810595ff9d33b161"
     }
   ]
 }

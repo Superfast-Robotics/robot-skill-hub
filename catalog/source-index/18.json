@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-rigid-control-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c41c00526cd75f690ca4b6498e2c6402bb220cbf3c6118944417ab0a01b42d7b",
+      "record_version": "source-c41c00526cd75f690ca4b6498e2c6402bb220cbf3c6118944417ab0a01b42d7b"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-replay-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "b4353185a8233ab039816d179e284d82023e600604aa1f5a3b4771d7d33dff06",

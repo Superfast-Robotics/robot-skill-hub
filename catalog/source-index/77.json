@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-object-sta-26698cc7baf4",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "179b11e972d683e290a3602f2f2258d86a3c81da9679e74b2f3fc9f5fa7c86a2",
+      "record_version": "source-179b11e972d683e290a3602f2f2258d86a3c81da9679e74b2f3fc9f5fa7c86a2"
+    },
+    {
       "id": "franka-description-artifact-robots-mobile-fr3-duo-v0-2-mobile-fr3-duo-v0-2-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "0936c4e48de3eec728a1f16f981f865e19e20890e3f4452c48988bb3049c4807",

@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "moveit-task-constructor-demo-src-alternative-path-costs-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "388cc0a6d5d855f9af00660da5a3b3828fbba74bf7030b8ca9670a8c1444dab3",
+      "record_version": "source-388cc0a6d5d855f9af00660da5a3b3828fbba74bf7030b8ca9670a8c1444dab3"
+    },
+    {
       "id": "ros2-control-example-7-bringup-launch-r6bot-controller-launch-py",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "0b6c2a6d7054fb173cf40244eac259324947cd78c008ee324f32f8294bf559c4",
       "record_version": "source-0b6c2a6d7054fb173cf40244eac259324947cd78c008ee324f32f8294bf559c4"
+    },
+    {
+      "id": "trifinger-simulation-scripts-view-camera-log-real-and-sim-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "f507225bd5df86584ea68d8de2d4eb1f50095a942faf4c71aceb575144eac2d6",
+      "record_version": "source-f507225bd5df86584ea68d8de2d4eb1f50095a942faf4c71aceb575144eac2d6"
     },
     {
       "id": "webots-projects-robots-epfl-biorob-controllers-yamor-yamor-c",

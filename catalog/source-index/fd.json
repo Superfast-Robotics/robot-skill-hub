@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-croc-lqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "c5d09ebbfd7c6151bccf31b980b9ca57bb859426c164d459976e90b0825b4d06",
+      "record_version": "source-c5d09ebbfd7c6151bccf31b980b9ca57bb859426c164d459976e90b0825b4d06"
+    },
+    {
       "id": "gap-bundle-perceiving-deformable-linear-objects",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "68910b6c7d5ee63cc03f9dcbfe3e308755c8538dd35ae4f354eb7b092ab6ebe0",

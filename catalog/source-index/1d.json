@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mink-examples-arm-hand-xarm-leap-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "e74819ff7510a79b8b058a357d52ecd24bb4b8198bf38b244dd7198f9040795b",
+      "record_version": "source-e74819ff7510a79b8b058a357d52ecd24bb4b8198bf38b244dd7198f9040795b"
+    },
+    {
       "id": "robomimic-robomimic-scripts-conversion-robosuite-add-absolute-actions-py",
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "3d76314a02ad4d58281d1f59909d536d5060c36f62f35ef43da043b30b9333c0",

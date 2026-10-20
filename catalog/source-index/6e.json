@@ -8,6 +8,36 @@
       "record_version": "source-5c9e3adc97eb40fcc02d5b8a4d064517dd29ed4e8d972331a93abc02b33fd09c"
     },
     {
+      "id": "genesis-examples-examples-collision-contype-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "fbc4b00d6581de8247ab312dd182b17a0eafc141e87b4684d4536dc38b96eb7e",
+      "record_version": "source-fbc4b00d6581de8247ab312dd182b17a0eafc141e87b4684d4536dc38b96eb7e"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-sand-wheel-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4c746664dc38cd381842e28834776bb03bc7e52f3cb2d567a5e19d1c3f46e61d",
+      "record_version": "source-4c746664dc38cd381842e28834776bb03bc7e52f3cb2d567a5e19d1c3f46e61d"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-camera-as-sensor-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0b5e1aed3ae251e444571bad59cc0e2fa8d0f5874e9520156debf4ef09ddd626",
+      "record_version": "source-0b5e1aed3ae251e444571bad59cc0e2fa8d0f5874e9520156debf4ef09ddd626"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "6e2711ed4f301be31cfda8116012eed2b9aaba68302a689837d1874f5f6ee6bd",
+      "record_version": "source-6e2711ed4f301be31cfda8116012eed2b9aaba68302a689837d1874f5f6ee6bd"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-lock-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "17abcb86932d2a3d470f53d8b80238e9fa2690fe743b42ba27a0ad69a190b477",
+      "record_version": "source-17abcb86932d2a3d470f53d8b80238e9fa2690fe743b42ba27a0ad69a190b477"
+    },
+    {
       "id": "moveit2-doc-examples-interactivity-src-interactivity-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "92bbbffbef6a6494f3f41738bb36e3f76de6126cadaec85ede25aa91f5448509",

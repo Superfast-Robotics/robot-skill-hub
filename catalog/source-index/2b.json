@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-gar-cycle-lqr-2d-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "1b69b649c64b7a618f75d9ccbd2286e5b887d2607a2f33f5463577dfc25d00d0",
+      "record_version": "source-1b69b649c64b7a618f75d9ccbd2286e5b887d2607a2f33f5463577dfc25d00d0"
+    },
+    {
       "id": "isaaclab-scripts-reinforcement-learning-skrl-train-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0",
       "record_version": "source-54b98ae48deb8af05dfecdb50ae70b87e1d6ddb51e8504040a25bbf18e0158c0"
+    },
+    {
+      "id": "pink-examples-humanoid-g1-com-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5a8105013e56089e1051b923784c4c3776e7a12f24c70fb463ce864ebc79a821",
+      "record_version": "source-5a8105013e56089e1051b923784c4c3776e7a12f24c70fb463ce864ebc79a821"
     },
     {
       "id": "rai-examples-debugging-assistant-py",

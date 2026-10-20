@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-tutorials-position-control-comparison-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e638576fdfee13ccb3c3d61e025a52a95e58786bf00a70577cfe3d6af2746e5b",
+      "record_version": "source-e638576fdfee13ccb3c3d61e025a52a95e58786bf00a70577cfe3d6af2746e5b"
+    },
+    {
+      "id": "habitat-lab-examples-interactive-play-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "bac164988f5637dfebfb5b819721731408bec6ebd2a3af02c52f743cc291e62c",
+      "record_version": "source-bac164988f5637dfebfb5b819721731408bec6ebd2a3af02c52f743cc291e62c"
+    },
+    {
+      "id": "pink-examples-inverse-kinematics-ur10-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "2b08552832110c301caae3deebd8910019dcae64b207d770a9f20bd2fb942cea",
+      "record_version": "source-2b08552832110c301caae3deebd8910019dcae64b207d770a9f20bd2fb942cea"
+    },
+    {
       "id": "rai-src-rai-whoami-rai-whoami-scripts-ros2-embodiment-service-py",
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "5854d07c855f2a7cf661c8660236eb960c7cec49170341d2d39023c7dead7b90",

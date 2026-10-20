@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-ur5-croco-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "6707aa034510f2550cdf77b89ff671efa74179396b48b2908d85201d827d0681",
+      "record_version": "source-6707aa034510f2550cdf77b89ff671efa74179396b48b2908d85201d827d0681"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-highlight-objects-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "b0677f9e0e9ce36a19a92362d06f3c6771850671bf7addd59c6e8671614f758b",
+      "record_version": "source-b0677f9e0e9ce36a19a92362d06f3c6771850671bf7addd59c6e8671614f758b"
+    },
+    {
       "id": "gap-bundle-grasping-with-planner",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b",
       "record_version": "source-c800ad6e389af90648a042b92811ef095fa7bac6516a39c77ddee57bc401f57b"
+    },
+    {
+      "id": "genesis-examples-examples-deformable-fem-hard-and-soft-constraint-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "dc620b749cc8e12c60f48edd5ed6728fa9d6bfa6dedf9c91fbf7a997fe6755e7",
+      "record_version": "source-dc620b749cc8e12c60f48edd5ed6728fa9d6bfa6dedf9c91fbf7a997fe6755e7"
     },
     {
       "id": "lerobot-src-lerobot-scripts-lerobot-train-py",

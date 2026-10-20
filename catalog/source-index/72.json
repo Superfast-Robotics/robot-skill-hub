@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-bar-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3e552dfb88346159858dec284e396d99b206ed900ca1321b2855c64cf3d2d01e",
+      "record_version": "source-3e552dfb88346159858dec284e396d99b206ed900ca1321b2855c64cf3d2d01e"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-basic-viewer-basic-viewer-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "e58585c82f094992f489fb1d2639de277122084848127ac6ea0912eb63656e94",
+      "record_version": "source-e58585c82f094992f489fb1d2639de277122084848127ac6ea0912eb63656e94"
+    },
+    {
       "id": "mujoco-menagerie-artifact-flybody-fruitfly-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "35541d5312f71e7c96156c345cd90918867513a2b3dafbb07b8684ee59b6f4dc",

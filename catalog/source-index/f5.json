@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-interventions-tutorial-six-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "66645056c6866f7108e42895bc2b8a5e7e20f3a8106b3c6c85865f936cb78450",
+      "record_version": "source-66645056c6866f7108e42895bc2b8a5e7e20f3a8106b3c6c85865f936cb78450"
+    },
+    {
       "id": "isaaclab-scripts-demos-h1-locomotion-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "de33abfe759765119825dd2d6c5cd549d5fc91f68c3e3abc06f3ce4842f2a7fd",
       "record_version": "source-de33abfe759765119825dd2d6c5cd549d5fc91f68c3e3abc06f3ce4842f2a7fd"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-cartesian-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "9f7b63d6b6b95d6e377fcec431b5ecc1c576c3a2e01f30d5a3a786a18bb17575",
+      "record_version": "source-9f7b63d6b6b95d6e377fcec431b5ecc1c576c3a2e01f30d5a3a786a18bb17575"
     },
     {
       "id": "ur-description-artifact-config-ur12e-default-kinematics-yaml",

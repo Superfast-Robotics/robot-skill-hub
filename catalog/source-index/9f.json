@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-ur5-table-halfspace-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "69897d4695a13350a5f1c7a20be30661a702f0a6f11af6417e926486d6f7bbc8",
+      "record_version": "source-69897d4695a13350a5f1c7a20be30661a702f0a6f11af6417e926486d6f7bbc8"
+    },
+    {
+      "id": "causalworld-tutorials-curriculums-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3604992a7b5143d2969def9d23afa91c423f30725a863e4fb9507c5150fe9a8f",
+      "record_version": "source-3604992a7b5143d2969def9d23afa91c423f30725a863e4fb9507c5150fe9a8f"
+    },
+    {
+      "id": "genesis-examples-examples-drone-hover-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "7063ef24df253a234351c9bb9f7b90eb13dcea175e47fc154c4e3413f585c907",
+      "record_version": "source-7063ef24df253a234351c9bb9f7b90eb13dcea175e47fc154c4e3413f585c907"
+    },
+    {
+      "id": "genesis-examples-examples-viewer-plugin-mouse-interaction-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "131d67c46ea2c863a8376d7c5c0c466436ead29b4d23550b6157e63989e6ab91",
+      "record_version": "source-131d67c46ea2c863a8376d7c5c0c466436ead29b4d23550b6157e63989e6ab91"
+    },
+    {
       "id": "mujoco-menagerie-artifact-shadow-hand-keyframes-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "041e25d45c9e5258df06634aa5b4f7979bbb4262edd38657425fda73fec84ab2",

@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "roboverse-examples-obj-layout-object-layout-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "64926542ee2feefe62928fb2eb3554f54eda604ad7fb385999437b077d52d4ef",
+      "record_version": "source-64926542ee2feefe62928fb2eb3554f54eda604ad7fb385999437b077d52d4ef"
+    },
+    {
       "id": "ur-description-artifact-config-ur5e-physical-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "0e58b89069d8d87b24cce0c2c02832d88de0f3229baf42916953ce1c71f0fa2d",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-tutorials-sph-liquid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8331d8b6f2805b8c79d8cc40f0bd4fae985993cf60b623c10fc52474ee65a502",
+      "record_version": "source-8331d8b6f2805b8c79d8cc40f0bd4fae985993cf60b623c10fc52474ee65a502"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-461f451ec208",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "47328f6be8eb44b3a41d8b46fc1a3ebb7d2b6404fdb2c8df696f5f7888e7247b",
+      "record_version": "source-47328f6be8eb44b3a41d8b46fc1a3ebb7d2b6404fdb2c8df696f5f7888e7247b"
+    },
+    {
       "id": "mujoco-menagerie-artifact-franka-fr3-fr3-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "0d0e502d0c517a33217dac859fa84fbb74c7ab9b2f104c64c70a41dfa77e6d2f",
@@ -36,6 +48,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "6c223d03e7c1a5991d72dbfd01bad41f078f2b58116abf42bab1a9bd461c62c5",
       "record_version": "source-6c223d03e7c1a5991d72dbfd01bad41f078f2b58116abf42bab1a9bd461c62c5"
+    },
+    {
+      "id": "xarm-ros2-demo-mbot-demo-launch-mbot-moveit-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "68b612e8af219ec4781f97a1ba0763bf0ca894ea06ba082d8ae8738d73e4ebba",
+      "record_version": "source-68b612e8af219ec4781f97a1ba0763bf0ca894ea06ba082d8ae8738d73e4ebba"
     }
   ]
 }

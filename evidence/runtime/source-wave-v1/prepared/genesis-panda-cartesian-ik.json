@@ -1,0 +1,68 @@
+{
+  "schema_version": "1",
+  "skill_id": "genesis-panda-cartesian-ik",
+  "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+  "adapter_sha256": "5f0a5dfd90576ff8225b1d0b5cb129dd51f00eaffc3e0f7831a964076a4e1e7f",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "genesis-panda-cartesian-ik",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "arm_joint_positions_rad": [
+        -2.8542938252940075e-06,
+        -0.4217250347137451,
+        0.00023067959409672767,
+        -1.7607717514038086,
+        -0.0006213699816726148,
+        1.4488855600357056,
+        0.6000027060508728
+      ],
+      "target_arm_joint_positions_rad": [
+        -2.8536592253658455e-06,
+        -0.4247538149356842,
+        0.00012335993233136833,
+        -1.7549444437026978,
+        -0.0003129552642349154,
+        1.4501146078109741,
+        0.6000012755393982
+      ],
+      "max_joint_error_rad": 0.00582730770111084,
+      "finger_error_m": 2.60770320892334e-07,
+      "movement_m": 0.03175954893231392,
+      "cuda_simulation": true,
+      "steps": 800,
+      "final_xyz_m": [
+        0.3999062776565552,
+        4.750240623252466e-05,
+        0.726866602897644
+      ],
+      "target_xyz_m": [
+        0.3983965802192688,
+        2.7187863452127203e-05,
+        0.7308424711227417
+      ],
+      "error_m": 0.004252896327932123
+    },
+    "checks": {
+      "joint_goal_reached": true,
+      "finger_goal_reached": true,
+      "nontrivial_motion": true,
+      "finite_state": true,
+      "cuda_simulation": true,
+      "cartesian_goal_reached": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "851d0970b921ee1b5182f62c544f432600153efccc127db059d5f5e46d9ac719",
+  "elapsed_seconds": 158.254,
+  "hardware_execution": false
+}

@@ -17,6 +17,17 @@ from reference_index import check_source_index, json_bytes, source_index, source
 
 
 class EcosystemImportTests(unittest.TestCase):
+    def test_callable_policies_are_not_mislabeled_as_command_line_scripts(self):
+        code = b'from metaworld.policies.policy import Policy\nclass SawyerReachV3Policy(Policy):\n def get_action(self, obs): return obs\n'
+        path = 'metaworld/policies/sawyer_reach_v3_policy.py'
+        result = importer.inspect_source(path, code)
+        self.assertEqual(result['kind'], 'scripted_policy')
+        self.assertEqual(result['policy_class'], 'SawyerReachV3Policy')
+        self.assertIn('not a command-line', importer.invocation({}, path, result['kind']))
+        for wrong_path, wrong_code in [('helpers.py', code), (path, code.replace(b'get_action', b'helper')),
+                                       (path, code.replace(b'(Policy)', b'(object)'))]:
+            with self.assertRaises(ValueError): importer.inspect_source(wrong_path, wrong_code)
+
     def fixture(self):
         source = b"import pinocchio\nif __name__ == '__main__':\n    print(pinocchio.__version__)\n"
         license_text = b"MIT License\nPermission is hereby granted, free of charge\n"
@@ -384,7 +395,7 @@ class EcosystemImportTests(unittest.TestCase):
         for project in manifest["projects"]:
             importer.validate_project(project)
             for artifact in project["artifacts"]:
-                record = managed[project["id"], artifact["path"]]
+                record = managed[project.get("framework", project["id"]), artifact["path"]]
                 self.assertEqual(artifact["sha256"], record["source"]["sha256"])
                 self.assertEqual(project["commit"], record["source"]["commit"])
                 self.assertEqual(project["license"]["sha256"], record["license"]["sha256"])

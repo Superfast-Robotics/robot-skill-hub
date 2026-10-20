@@ -8,6 +8,12 @@
       "record_version": "source-42a74392014341110f03979ad84721f36f520c69caa459aff813cae6575a457e"
     },
     {
+      "id": "home-robot-projects-instanceimagenav-eval-episode-habitat-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "884484c9b39131f71ca5a9d39f149efe9c01b4c541509c8022e9f2b1480e951a",
+      "record_version": "source-884484c9b39131f71ca5a9d39f149efe9c01b4c541509c8022e9f2b1480e951a"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ufactory-xarm7-xarm7-nohand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "90bcc0e2fbbe5fa95dbbafb74e56bd0106ecc6f5767a4dc3e7c511016efc023c",

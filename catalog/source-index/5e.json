@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "home-robot-projects-habitat-ovmm-receptacles-data-collection-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "4b5e2ddc8741d736c1c0240088fae7a41b113152cbb39d8399df0eb4d1c7d58c",
+      "record_version": "source-4b5e2ddc8741d736c1c0240088fae7a41b113152cbb39d8399df0eb4d1c7d58c"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-edit-demonstrations-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "50ef48abbf38fc8a97aaea42726b836e449f7ae84cc7e60c12e8329b55e57502",
+      "record_version": "source-50ef48abbf38fc8a97aaea42726b836e449f7ae84cc7e60c12e8329b55e57502"
+    },
+    {
       "id": "mavsdk-python-examples-goto-py",
       "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
       "source_sha256": "030c3cf8d7ff377507f5a56c891d686e021b50de5847a20dd5655b192a4e1d2b",

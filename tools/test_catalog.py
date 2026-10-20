@@ -130,7 +130,17 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(published_references["hub_commit"], "1" * 40)
         self.assertEqual(reference_snapshot["hub_commit"], published_references["hub_commit"])
         self.assertEqual((self.root / "catalog/references.json").read_bytes(), canonical_references)
-        references = published_references["records"]
+        # The legacy compatibility view can now overflow its existing byte
+        # budget. Full inventory comes from the authoritative sources/v2 pages.
+        references = builder.load_references()["records"]
+        if 'coverage' in published_references:
+            self.assertEqual(published_references["coverage"]["total_records"], len(references))
+            self.assertEqual(published_references["coverage"]["included_records"], len(published_references["records"]))
+            self.assertEqual(published_references["coverage"]["complete_manifest_url"], 'https://example.test/hub/catalog/v2/search-manifest.json')
+        else:
+            self.assertEqual(len(published_references['records']), len(references))
+        canonical_by_id = {r['id']: r for r in references}
+        self.assertTrue(all(canonical_by_id[r['id']] == r for r in published_references['records']))
         thin_path = site / "catalog/v1/search.json"
         thin = self.search_inventory()
         if thin_path.exists():
@@ -460,8 +470,10 @@ class CatalogTests(unittest.TestCase):
         stale.write_text("stale generated file", encoding="utf-8")
         foreign = stale.with_name("operator-note.json")
         foreign.write_text("preserve unrelated file", encoding="utf-8")
+        # Four-record leaves still force extensive pagination without making
+        # this synthetic test exceed the unchanged 128 KiB manifest budget.
         with mock.patch.multiple(builder, CATALOG_JSON_MAX_BYTES=12000, SEARCH_JSON_MAX_BYTES=1000,
-                                 PUBLICATION_JSON_MAX_BYTES=1000, V2_PAGE_MAX_BYTES=8192, V2_PAGE_MAX_RECORDS=3):
+                                 PUBLICATION_JSON_MAX_BYTES=1000, V2_PAGE_MAX_BYTES=8192, V2_PAGE_MAX_RECORDS=4):
             self.build()
         self.assertFalse((site / "catalog/v1/search.json").exists())
         self.assertFalse((site / "catalog/v1/publication.json").exists())
@@ -484,7 +496,7 @@ class CatalogTests(unittest.TestCase):
                 page = json.loads(leaf)
                 self.assertEqual(page["hub_commit"], "1" * 40)
                 self.assertEqual(descriptor["records"], len(page["records"]))
-                self.assertLessEqual(len(page["records"]), 3)
+                self.assertLessEqual(len(page["records"]), 4)
                 rows.extend(page["records"])
             self.assertEqual(len(rows), manifest["records"])
             return manifest, rows, raw

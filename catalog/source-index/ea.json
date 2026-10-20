@@ -8,6 +8,18 @@
       "record_version": "source-fc3bb80f19c0a6da0a592852de7e9bd2eadb3f698f11b43663c1d436af845b13"
     },
     {
+      "id": "causalworld-tutorials-using-agents-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "883d17ce35430c7261d1dc865d2f6ace8b31c276356aa9a544fbd38d5119f959",
+      "record_version": "source-883d17ce35430c7261d1dc865d2f6ace8b31c276356aa9a544fbd38d5119f959"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-torsional-grasp-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "94d4fa7660287cc6ec35e0843c13bdec526bafaf7e5d7b63e0a8eb4310742f22",
+      "record_version": "source-94d4fa7660287cc6ec35e0843c13bdec526bafaf7e5d7b63e0a8eb4310742f22"
+    },
+    {
       "id": "isaaclab-scripts-demos-arms-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "b783b65552f52ae7f9a18d7feea261a12a4469ca5a077ae6861f9e2f3b2ad6af",
@@ -30,6 +42,24 @@
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "012f4b013cdfd77728dc8555f22a42a0ff9ad6e98af31b06cca69a4ee903b7c4",
       "record_version": "source-012f4b013cdfd77728dc8555f22a42a0ff9ad6e98af31b06cca69a4ee903b7c4"
+    },
+    {
+      "id": "roboverse-examples-9-cfg-task-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "d7dcd6e084bd71af222370ebcb931a9cd31ece43ced74350a956abf758b613ff",
+      "record_version": "source-d7dcd6e084bd71af222370ebcb931a9cd31ece43ced74350a956abf758b613ff"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-950d12fa8496",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "2811746c2aae8944d55bed0e274ded65025d658809ff0b63f23326707e3a8e8e",
+      "record_version": "source-2811746c2aae8944d55bed0e274ded65025d658809ff0b63f23326707e3a8e8e"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-dual-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "d369b0b410f5feaf696784d65f370103f88717c2f0f461b640cd643d7a343742",
+      "record_version": "source-d369b0b410f5feaf696784d65f370103f88717c2f0f461b640cd643d7a343742"
     }
   ]
 }

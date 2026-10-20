@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "home-robot-projects-data-collection-tutorial-h5-dataloader-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "0732d5bde6051ec246736fc8654b768b59894153ea479adc320ced19a1a9522d",
+      "record_version": "source-0732d5bde6051ec246736fc8654b768b59894153ea479adc320ced19a1a9522d"
+    },
+    {
+      "id": "mink-examples-mobile-kinova-leap-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "0db9beb2dd075671cce6a2d452f9f60c7610fe8cdf310b341e50d2592e2083e0",
+      "record_version": "source-0db9beb2dd075671cce6a2d452f9f60c7610fe8cdf310b341e50d2592e2083e0"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ufactory-lite6-lite6-gripper-wide-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "3ef9fb392e504949797b6d77557148b32623098ee7206e05273fdd4b2199f2ff",

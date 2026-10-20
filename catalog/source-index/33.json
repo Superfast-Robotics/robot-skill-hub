@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-four-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "15c13631cee18ea45abd5951be34d4fcd97e734c23e2b0440e8b76461cfc2109",
+      "record_version": "source-15c13631cee18ea45abd5951be34d4fcd97e734c23e2b0440e8b76461cfc2109"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3-fr3-srdf-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "4351fe2a301be007ae89291578e68f639e61a8d76c25cefc455e413898b43b20",
       "record_version": "source-4351fe2a301be007ae89291578e68f639e61a8d76c25cefc455e413898b43b20"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-add-detic-features-to-h5-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "24c314908224bddbe4032c57da1beddbfcdc4b9d10bd002540105aa4d08ebd34",
+      "record_version": "source-24c314908224bddbe4032c57da1beddbfcdc4b9d10bd002540105aa4d08ebd34"
     },
     {
       "id": "isaac-groot-gr00t-eval-run-gr00t-server-py",

@@ -14,6 +14,12 @@
       "record_version": "source-0c28fd1872cfadb852884ba1df09f38c460b2f8db476b278cf8c70eda04e561c"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-pick-place-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "aa61923e3b52e8a7aa397d5cc84538c44d6f172bc2316e0c3ba86ae13275f114",
+      "record_version": "source-aa61923e3b52e8a7aa397d5cc84538c44d6f172bc2316e0c3ba86ae13275f114"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-vb-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a13a8aec3224ee5b07241ae45df4f9bf65b2e26fd0c66ae93b0f79e88fbec2c6",

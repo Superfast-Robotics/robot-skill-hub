@@ -8,6 +8,12 @@
       "record_version": "source-5053e4c8c5bf168f267b2a4aa24c0301ab22e08eb14e53995ce4c3613c0b14e1"
     },
     {
+      "id": "trifinger-simulation-demos-demo-trifinger-platform-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "86e3745dd22c77fa3698c1788315e31435211cbdb34052227bad30430d522e09",
+      "record_version": "source-86e3745dd22c77fa3698c1788315e31435211cbdb34052227bad30430d522e09"
+    },
+    {
       "id": "ur-description-artifact-config-ur15-default-kinematics-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "5f3d566874194178e7aa153a99b622ca7c19f18866a8379d0ac3ccf4706aed8f",

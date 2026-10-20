@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-continuous-centroidal-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "3d96932e2da0b8b76bc0c37a9a9040dc760e937a4cadbde91af0662cf2efcd72",
+      "record_version": "source-3d96932e2da0b8b76bc0c37a9a9040dc760e937a4cadbde91af0662cf2efcd72"
+    },
+    {
       "id": "mujoco-menagerie-artifact-trossen-wx250s-wx250s-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "2475c1f4a4c085d370d3e7e43d56377d07bd44de3bace9371f1b5f08de00c27b",

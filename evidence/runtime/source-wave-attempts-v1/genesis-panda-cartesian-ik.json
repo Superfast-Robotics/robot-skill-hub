@@ -1,0 +1,103 @@
+{
+  "schema_version": "1",
+  "skill_id": "genesis-panda-cartesian-ik",
+  "recorded_at": "2026-10-20T07:33:52.923325+00:00",
+  "hub_commit": "5a81b1a5ebefbd376874c550f459afeceb1872f7",
+  "adapter_sha256": "418ab11c67bde625e8325d0bbf09efba94b21ab345d61ae53ac4385e3c0f93b4",
+  "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+  "archive_sha256": "851d0970b921ee1b5182f62c544f432600153efccc127db059d5f5e46d9ac719",
+  "case_plan_sha256": "b709711fa07416344b8fd8d95011bd1343e54fe83bf18126c4d0d8c6a0b9e6a0",
+  "source_guards_sha256": "9ed455a73c7a2593ef91c3580e850f8e237482523e09757e93227606a83c18c6",
+  "environment": {
+    "runtime": "genesis",
+    "runtime_version": "1.4.4",
+    "robot": "panda",
+    "controller": "cartesian_ik",
+    "observation": "privileged_simulator_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.11"
+  },
+  "packages": {
+    "genesis-world": "1.4.4",
+    "torch": "2.8.0",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-cartesian-ik",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 3.998,
+      "stderr_tail": "[I 10/20/26 07:33:42.626 6400] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 0,
+        "target_offset_m": [
+          0.03,
+          0,
+          0
+        ]
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-cartesian-ik",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 3.763,
+      "stderr_tail": "[I 10/20/26 07:33:46.565 6522] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 1,
+        "target_offset_m": [
+          0,
+          0.03,
+          0
+        ]
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-cartesian-ik",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 3.713,
+      "stderr_tail": "[I 10/20/26 07:33:50.290 6538] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 2,
+        "target_offset_m": [
+          0,
+          0,
+          0.03
+        ]
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

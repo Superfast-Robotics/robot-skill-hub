@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-heat-source-or-sink-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "7ffd230cc59f2e2ca9450cd74dfd5d8f200bc15da68d12f639c5ea720ce11b6f",
+      "record_version": "source-7ffd230cc59f2e2ca9450cd74dfd5d8f200bc15da68d12f639c5ea720ce11b6f"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-sim-viewer-sim-viewer-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "f26e6435e7e9b76c9afad744e153a6fc4ff4eab856de18c72c19305cae662507",
+      "record_version": "source-f26e6435e7e9b76c9afad744e153a6fc4ff4eab856de18c72c19305cae662507"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "46a3a82e8dee1a6c47fb763b0bd9463b63066e5746fd3db95f7d3baaac14fcfa",
+      "record_version": "source-46a3a82e8dee1a6c47fb763b0bd9463b63066e5746fd3db95f7d3baaac14fcfa"
+    },
+    {
       "id": "mujoco-menagerie-artifact-sharpa-wave-scene-left-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "557dfa0660378470b0282913c42a3809ba97f3ac40799d7543187289ca279a40",

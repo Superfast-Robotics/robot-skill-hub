@@ -8,6 +8,12 @@
       "record_version": "source-91fc4133f92a30a62705d716484fda6acce56707d3752952565afedeb6d853cb"
     },
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-environments-navigation-env-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "4271cefd5a65aada2fc8ee8f1aa355fcf307b98a7afe6dfce4259a1653527af0",
+      "record_version": "source-4271cefd5a65aada2fc8ee8f1aa355fcf307b98a7afe6dfce4259a1653527af0"
+    },
+    {
       "id": "drake-examples-multibody-deformable-deformable-subdivision-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "8dfb8cd19ae3d461842a5647853e9b28ca7752c79d9ff286f8f8796eba3e3ad0",

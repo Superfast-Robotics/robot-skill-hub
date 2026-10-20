@@ -2,10 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "da881420e286344db4e392715b88328964a113a776e895d4cc0bd2b3dea40ec6",
+      "record_version": "source-da881420e286344db4e392715b88328964a113a776e895d4cc0bd2b3dea40ec6"
+    },
+    {
+      "id": "causalworld-tutorials-mpc-w-true-model-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0305c902fb223b7107692b848f0898c45042ba03c0658f734e90cb09690af7ff",
+      "record_version": "source-0305c902fb223b7107692b848f0898c45042ba03c0658f734e90cb09690af7ff"
+    },
+    {
       "id": "drake-examples-quadrotor-run-quadrotor-dynamics-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "badd7bd86a701ade9e8598239a846c6c3323500abd9b1a9da7ec10c8e361c8e4",
       "record_version": "source-badd7bd86a701ade9e8598239a846c6c3323500abd9b1a9da7ec10c8e361c8e4"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-rearrange-rearrange-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "1870a4c74b88e1846dc9893f954293d4f997e2cb6932ba56b96da7195be9ff8f",
+      "record_version": "source-1870a4c74b88e1846dc9893f954293d4f997e2cb6932ba56b96da7195be9ff8f"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-peg-unplug-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "920097c4d2f660face27ad94a2ee73fee3e068f4a077d6110d6a3767947952cf",
+      "record_version": "source-920097c4d2f660face27ad94a2ee73fee3e068f4a077d6110d6a3767947952cf"
     },
     {
       "id": "mujoco-menagerie-artifact-skydio-x2-scene-xml",
@@ -18,6 +42,12 @@
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9",
       "record_version": "source-d3cbbe33ba44b8e5aa5b0f13ed224f74dab6030ee8f933842eeab674559c67f9"
+    },
+    {
+      "id": "unitree-mujoco-example-python-stand-go2-py",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "0622069c777c37c1691cb609b627d7a953378e5d45b7ae9936b63b79f3524f94",
+      "record_version": "source-0622069c777c37c1691cb609b627d7a953378e5d45b7ae9936b63b79f3524f94"
     },
     {
       "id": "webots-projects-samples-devices-controllers-force3d-sensor-force3d-sensor-c",

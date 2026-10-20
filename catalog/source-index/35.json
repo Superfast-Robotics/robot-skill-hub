@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-teleoperation-vr-scene-tour-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "217653c5657eb66f04807de594c537fc6bef3f07503fcc7effe0920c2b41e9b5",
+      "record_version": "source-217653c5657eb66f04807de594c537fc6bef3f07503fcc7effe0920c2b41e9b5"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-sph-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f49c291a7748abd1193b68e832017c1a05bc417a95467198c60fd80bf6c7b205",
+      "record_version": "source-f49c291a7748abd1193b68e832017c1a05bc417a95467198c60fd80bf6c7b205"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-entity-name-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c1c59a05cf7c8822bc9ad092c3bce88bef1dacb16f8c1d7c086cbdd2fe05c69d",
+      "record_version": "source-c1c59a05cf7c8822bc9ad092c3bce88bef1dacb16f8c1d7c086cbdd2fe05c69d"
+    },
+    {
       "id": "moveit2-doc-examples-creating-moveit-plugins-lerp-motion-planner-sr-b32424adc072",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "43d1f5d5690cf31c68b053efa3860f60721ce631fa410ec31f39c2e0e7c0b9b5",
@@ -26,10 +44,22 @@
       "record_version": "source-df81c2b433060f83bb2a5fe9c587b78bab8efbe680ab00b2f00ed2e607b5659f"
     },
     {
+      "id": "roboverse-examples-obj-layout-object-layout-task-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "da749482ff1f197c4bbd4479bb8bf1dc08ee0e67ec7cbdfceb4d9bcfe6419878",
+      "record_version": "source-da749482ff1f197c4bbd4479bb8bf1dc08ee0e67ec7cbdfceb4d9bcfe6419878"
+    },
+    {
       "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-callback-group-py",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "fada9526a884c3ebd4546a1526442f1a056f0476bc73af42872deedb4f5c4ea3",
       "record_version": "source-fada9526a884c3ebd4546a1526442f1a056f0476bc73af42872deedb4f5c4ea3"
+    },
+    {
+      "id": "safe-control-gym-examples-pid-pid-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "e4f49f56119562d2d658c580dd8fdb06f184296797eebf305feb07f2526fffc9",
+      "record_version": "source-e4f49f56119562d2d658c580dd8fdb06f184296797eebf305feb07f2526fffc9"
     },
     {
       "id": "webots-projects-robots-kinematics-tinkerbots-controllers-two-wheels-a8c96f9f52de",

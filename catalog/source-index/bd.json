@@ -20,6 +20,12 @@
       "record_version": "source-d912c13c79f655d31167308096f4270f84ed644a09ff34218e21c04f554759a0"
     },
     {
+      "id": "roboverse-examples-14-real-assets-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "be9fe3e50e26c6e68874bf41e34d5dcba89225f5b77043d059d11a9ae7950cd0",
+      "record_version": "source-be9fe3e50e26c6e68874bf41e34d5dcba89225f5b77043d059d11a9ae7950cd0"
+    },
+    {
       "id": "ros2-control-artifact-example-13-bringup-config-three-robots-positi-2b3db7386426",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "9b44334bd208faafacac71c27239d7148ebea25da49233d8843bbf6f82fa4c5f",

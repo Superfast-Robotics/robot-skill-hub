@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-priviliged-information-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "b41a9153b4cd492d9b05f5d15d8036caed10aabd69cc579323497f217b233343",
+      "record_version": "source-b41a9153b4cd492d9b05f5d15d8036caed10aabd69cc579323497f217b233343"
+    },
+    {
       "id": "isaaclab-scripts-reinforcement-learning-rsl-rl-play-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "8722400c0d4aad315e78a3625ab50c6600bbf57bcb0c33a30dcf2c0c2defca81",
@@ -20,6 +26,12 @@
       "record_version": "source-cf127f1b0c848918d7ab8700b8f8c2753f419f3d9b5e2ae7a9957f31453e69d2"
     },
     {
+      "id": "mink-examples-humanoid-apollo-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "3c45a5b37237e84cf1bf2dc078af5cfbe520674bcfb70134cb2d59408aadd1da",
+      "record_version": "source-3c45a5b37237e84cf1bf2dc078af5cfbe520674bcfb70134cb2d59408aadd1da"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-parallel-planning-src-parallel-planning-main-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "e0cda0b12ac9e7d8eef3111ddaf73af288f86e832a228a150771b0bcbe013f14",
@@ -30,6 +42,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
       "record_version": "source-e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071"
+    },
+    {
+      "id": "pink-examples-floating-base-velocity-limit-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "c0b4aa616477db97c7e988dec8d280c26ffee4aba6d2267ff880e995e243384f",
+      "record_version": "source-c0b4aa616477db97c7e988dec8d280c26ffee4aba6d2267ff880e995e243384f"
     },
     {
       "id": "pinocchio-examples-inverse-kinematics-3d-py",

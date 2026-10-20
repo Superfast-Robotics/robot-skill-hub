@@ -14,6 +14,12 @@
       "record_version": "source-f26451149b349b28b79043ee429c0078626ebfab5c97c4629c4f4842c07f6d40"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-box-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "20f4a23336630eca958045223b9eafca75689e6701be6c13717a7d325ad6f931",
+      "record_version": "source-20f4a23336630eca958045223b9eafca75689e6701be6c13717a7d325ad6f931"
+    },
+    {
       "id": "mujoco-menagerie-artifact-toddlerbot-2xm-scene-pos-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "584d5f7e59b12894b63c952f593b56bf1bedf4c3047424faa720d318dbaea9bf",

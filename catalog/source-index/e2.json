@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "roboverse-examples-rerun-replay-task-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "322beaafa7d58dbcb9fb83e9ba143a41ec7ae55f2a1607d1da64916452ac404b",
+      "record_version": "source-322beaafa7d58dbcb9fb83e9ba143a41ec7ae55f2a1607d1da64916452ac404b"
+    },
+    {
+      "id": "safe-control-gym-examples-hpo-hpo-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "310ac9f090ad541c3bf814e16e9ad21190eb123d9b6d6a69844cf318825664ed",
+      "record_version": "source-310ac9f090ad541c3bf814e16e9ad21190eb123d9b6d6a69844cf318825664ed"
+    },
+    {
       "id": "webots-projects-robots-gctronic-e-puck-controllers-e-puck-e-puck-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "af0b87f9c678ecc2f8f77bcc29bacc87980235ff51a2de2a4dc777e9d2816ec0",

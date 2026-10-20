@@ -8,6 +8,12 @@
       "record_version": "source-42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65"
     },
     {
+      "id": "genesis-examples-examples-usd-kitchen-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "70af70ecb2510281b590fbecdd5079e832a82d8911e69225358b15b3c32f0403",
+      "record_version": "source-70af70ecb2510281b590fbecdd5079e832a82d8911e69225358b15b3c32f0403"
+    },
+    {
       "id": "mujoco-menagerie-artifact-dynamixel-2r-dynamixel-2r-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "14c7abc024d5855b2c7f6f2d6b24d81e044a5e1f3f11633adeb97a8715037ec3",
@@ -30,6 +36,12 @@
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9",
       "record_version": "source-35bc003998f1abd857f2f7e7585c57c53d1db14675fdcb5ef32178491d90eec9"
+    },
+    {
+      "id": "unitree-mujoco-simulate-python-unitree-mujoco-py",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "d8a199899a1f076c1f8a2f8a90e1058e746b8f48c0aee15fb9238ad054898879",
+      "record_version": "source-d8a199899a1f076c1f8a2f8a90e1058e746b8f48c0aee15fb9238ad054898879"
     },
     {
       "id": "webots-projects-robots-neuronics-ipr-controllers-ipr1-collaboration-93f470ee5064",

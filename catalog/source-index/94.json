@@ -12,6 +12,12 @@
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743",
       "record_version": "source-9a897483f26cec16e71e146f67a3b07b3471d3a7cedc1ef147cb2d77e9eb6743"
+    },
+    {
+      "id": "tsid-exercizes-ex-4-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "265459a3db7bede6dabf519347a683bc9c3e01f53d842a92d2cd9cc00717d2d6",
+      "record_version": "source-265459a3db7bede6dabf519347a683bc9c3e01f53d842a92d2cd9cc00717d2d6"
     }
   ]
 }

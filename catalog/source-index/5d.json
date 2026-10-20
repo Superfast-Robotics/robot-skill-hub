@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "home-robot-projects-data-collection-collect-h5-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "2f9a61fd4cb5953fe8c3129a8bf780f6976e90971f49189d2a0ccd96f5912a80",
+      "record_version": "source-2f9a61fd4cb5953fe8c3129a8bf780f6976e90971f49189d2a0ccd96f5912a80"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-publishers-canned-rob-9e768d28e531",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "200023ff32fad0dbbe85a9aa70ee90f31960778ce10cb12772c77656a1caf810",
+      "record_version": "source-200023ff32fad0dbbe85a9aa70ee90f31960778ce10cb12772c77656a1caf810"
+    },
+    {
+      "id": "pink-examples-humanoid-jvrc-com-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "f29f2d84f43b913392bf0a23bc5cc40a9617da748a92a1cc799155a5159386ea",
+      "record_version": "source-f29f2d84f43b913392bf0a23bc5cc40a9617da748a92a1cc799155a5159386ea"
+    },
+    {
       "id": "rai-examples-s2s-conversational-py",
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "7c0d1e4525b1f4ed9e6da067260a8def173ae22f678f884b6a3413dcd847ce78",

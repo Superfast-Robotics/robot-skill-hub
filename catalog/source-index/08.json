@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-centroidal-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "19cb8ca65cf0057aa660d14ea730f4ae3af21f8b8aeac0e4b8397dfc0d0f6c9c",
+      "record_version": "source-19cb8ca65cf0057aa660d14ea730f4ae3af21f8b8aeac0e4b8397dfc0d0f6c9c"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-visualize-object-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "1f56c73e376dc064e11461fcd037c53a026c7dadf5bd15ea3a284b20749aea64",
+      "record_version": "source-1f56c73e376dc064e11461fcd037c53a026c7dadf5bd15ea3a284b20749aea64"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-eval-peract-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "3a9bcc3f59bd5e17b4bcb300c01b3814e720c5c75073a64e8a012e0015333c2b",
+      "record_version": "source-3a9bcc3f59bd5e17b4bcb300c01b3814e720c5c75073a64e8a012e0015333c2b"
+    },
+    {
       "id": "moveit2-doc-examples-pick-place-src-pick-place-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "07ff10d0185075f5cf0b882e2ee0444fe7bcb48088187695c44bb762b2888729",

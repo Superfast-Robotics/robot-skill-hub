@@ -1,0 +1,359 @@
+{
+  "schema_version": "1",
+  "id": "mink-iiwa-cartesian-servo",
+  "name": "Mink iiwa differential IK and actuator servo",
+  "summary": "Mink iiwa differential IK and actuator servo. Bounded, source-pinned simulation with an explicit task contract and retained fixed-case outcomes.",
+  "capabilities": [
+    "simulation",
+    "bounded-json",
+    "mink",
+    "cartesian-servo"
+  ],
+  "aliases": [
+    "iiwa",
+    "mink",
+    "cartesian-servo"
+  ],
+  "source": {
+    "repository": "https://github.com/kevinzakka/mink",
+    "commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+    "archive_url": "https://codeload.github.com/kevinzakka/mink/tar.gz/ae6759602593113ed7e5431ac7c65726ea27dc29",
+    "archive_sha256": "119a412fcf985756ea1f5fea5a0d856627c7d98771de73f9ac4e65a6c5de0580",
+    "archive_bytes": 128118506,
+    "authors": [
+      "Original mink contributors; preserve all pinned source and asset notices"
+    ],
+    "paths": [
+      "LICENSE",
+      "pyproject.toml",
+      "examples/arm_iiwa.py",
+      "examples/kuka_iiwa_14/iiwa14.xml",
+      "examples/kuka_iiwa_14/scene.xml",
+      "src/mink/configuration.py",
+      "src/mink/tasks/frame_task.py",
+      "src/mink/tasks/posture_task.py",
+      "src/mink/solve_ik.py",
+      "src/mink/limits/configuration_limit.py"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/kevinzakka/mink/blob/ae6759602593113ed7e5431ac7c65726ea27dc29/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party code terms. Preserve all upstream notices; robot assets and dependencies retain their separate licenses. Hub-authored wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mink",
+      "runtime_version": "1.3.0",
+      "robot": "iiwa",
+      "controller": "cartesian-servo",
+      "observation": "privileged_simulator_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.11",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator observations and goal/state feedback. No physical sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.11,<3.12",
+    "packages": [
+      "mink==1.3.0",
+      "mujoco==3.10.0",
+      "numpy==1.26.4",
+      "qpsolvers==4.12.0",
+      "daqp==0.8.6"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "target_offset_m": [
+        0.03,
+        0,
+        0
+      ]
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "final_xyz_m",
+          "target_xyz_m",
+          "error_m",
+          "movement_m",
+          "orientation_error_rad",
+          "steps"
+        ],
+        "properties": {
+          "final_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "target_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "m"
+          },
+          "movement_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "m"
+          },
+          "orientation_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "x-unit": "rad"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3000
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "target_offset_m"
+      ],
+      "properties": {
+        "target_offset_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -0.06,
+            "maximum": 0.06
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "final_xyz_m",
+        "target_xyz_m",
+        "error_m",
+        "movement_m",
+        "orientation_error_rad",
+        "steps"
+      ],
+      "properties": {
+        "final_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "target_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "m"
+        },
+        "movement_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "m"
+        },
+        "orientation_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "x-unit": "rad"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3000
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.11 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "mink-examples-arm-iiwa-py"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Differential IK with configuration limits, followed by 3000 MuJoCo dynamics steps using position actuators; final position error below 15 mm and orientation error below 0.05 rad. No qpos teleport after reset.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mink-iiwa-cartesian-servo",
+    "requirements_file": "recipes/mink-iiwa-cartesian-servo/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend mink --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mink-iiwa-cartesian-servo.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "a5233ff127d9b4ea4d2de46ed29a0f0057ba83eefb51fce8f5cfaa7a6aad1585",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mink-iiwa-cartesian-servo.json",
+      "recipes/mink-iiwa-cartesian-servo/run.py",
+      "recipes/mink-iiwa-cartesian-servo/requirements.txt",
+      "docs/recipes/mink-iiwa-cartesian-servo.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

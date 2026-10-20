@@ -8,6 +8,12 @@
       "record_version": "source-7828cdf7857345f66c43964a7e33a986a48403cc711d8533076820c32da648ed"
     },
     {
+      "id": "genesis-examples-examples-speed-benchmark-anymal-c-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9f5827875faf049b465b397494eef36ce48dac1193778f81b5a972c34c5de0ec",
+      "record_version": "source-9f5827875faf049b465b397494eef36ce48dac1193778f81b5a972c34c5de0ec"
+    },
+    {
       "id": "pyrobosim-pyrobosim-examples-demo-py",
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "3ef95f9fa889b5aad7c405d114f70c520b5c1ae02aad75f588edcc7421cc402c",

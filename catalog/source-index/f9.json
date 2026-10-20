@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "b2581c8dfe7e29592eb08e41834dfe7a2e4800dc2c7d7f11660d3c1533ac179b",
+      "record_version": "source-b2581c8dfe7e29592eb08e41834dfe7a2e4800dc2c7d7f11660d3c1533ac179b"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3-duo-fr3-duo-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "0c8d2046fb03095f7711b3632856935173567d6b880fd9c182b9e1142320cec9",

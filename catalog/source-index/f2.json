@@ -44,6 +44,12 @@
       "record_version": "source-e1535aa6fdcaa385cd527f596423af84266a71f141df43002d14530c224acb0b"
     },
     {
+      "id": "roboverse-examples-0-static-scene-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "47dfd8c0bbd2f00de53a6aa23e950f396fd4a47e8d01db056b80f108b7d4ce92",
+      "record_version": "source-47dfd8c0bbd2f00de53a6aa23e950f396fd4a47e8d01db056b80f108b7d4ce92"
+    },
+    {
       "id": "spot-sdk-python-examples-arm-grasp-arm-grasp-py",
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "fa13d085111a8502f11dc204834c7dcf164f885af690e9e058c5c0ce57191622",

@@ -50,6 +50,12 @@
       "record_version": "source-d5f1136fec827d52215183d4d2cb3696d60b74a7b729c133541d5108ad33c687"
     },
     {
+      "id": "pink-examples-mobile-stretch-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "4cbb9b97e09ab3672021648fa7dd113c562e6f4af2463610733ca3ba71f97a8b",
+      "record_version": "source-4cbb9b97e09ab3672021648fa7dd113c562e6f4af2463610733ca3ba71f97a8b"
+    },
+    {
       "id": "webots-projects-robots-kuka-youbot-controllers-youbot-youbot-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "8154475a86cda09cf5db7a6da10fdd94f02c5c8355ff8d1ba1a7ca177b125f75",

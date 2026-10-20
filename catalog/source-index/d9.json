@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-biped-walk-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "acbd53bae6ad552f01d1333b09df470e482f96e61e181cdab5c71971c1a5e1b7",
+      "record_version": "source-acbd53bae6ad552f01d1333b09df470e482f96e61e181cdab5c71971c1a5e1b7"
+    },
+    {
       "id": "drake-examples-acrobot-run-plant-w-lcm-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "7deac6eea88eb78ee7cae079ab8de112da08389210b9bdc5099c81780117d5cd",
@@ -14,10 +20,22 @@
       "record_version": "source-5e758f02eeccd8b8a77bccab15c3734253b43f4349f58c3fe7bc5366d8f8e88c"
     },
     {
+      "id": "myosuite-myosuite-utils-path-plotting-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "f308e774861df32f450399548098a1778f9c517d5cea4359c93f609ef9638bb1",
+      "record_version": "source-f308e774861df32f450399548098a1778f9c517d5cea4359c93f609ef9638bb1"
+    },
+    {
       "id": "ompl-demos-ltlwithtriangulation-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "26b0e36faa2a35bff0e93fd13e030fdc6569f299f453ce1a0a95eaf9425691e7",
       "record_version": "source-26b0e36faa2a35bff0e93fd13e030fdc6569f299f453ce1a0a95eaf9425691e7"
+    },
+    {
+      "id": "pink-examples-humanoid-sigmaban-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "74cb6427670b3adcbbe0ecf945ef079ca49fee9425690f7df75eaa96486a0999",
+      "record_version": "source-74cb6427670b3adcbbe0ecf945ef079ca49fee9425690f7df75eaa96486a0999"
     },
     {
       "id": "pinocchio-examples-inverse-dynamics-derivatives-py",

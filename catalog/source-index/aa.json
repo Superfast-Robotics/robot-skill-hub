@@ -8,6 +8,18 @@
       "record_version": "source-1e8564decdca2235c6af20d71ae0604bfb5128b9486e68f8451db994fbe14898"
     },
     {
+      "id": "genesis-examples-examples-deformable-differentiable-push-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ddc60003f6cdac50c91aba9c46d5f49f661252c6a8097034d31e556e52314f2e",
+      "record_version": "source-ddc60003f6cdac50c91aba9c46d5f49f661252c6a8097034d31e556e52314f2e"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-custom-chain-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "36d4cc4a7bd607346a048710fab00353368eab7b30331f31942a317fe900d3be",
+      "record_version": "source-36d4cc4a7bd607346a048710fab00353368eab7b30331f31942a317fe900d3be"
+    },
+    {
       "id": "isaac-groot-scripts-deployment-build-trt-pipeline-py",
       "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
       "source_sha256": "d00e27f0251efb9fd26d20e4d54f62740871017675956081ea53f7a84f03e008",

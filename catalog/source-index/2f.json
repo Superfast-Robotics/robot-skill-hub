@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-evaluate-policy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "5accc11281639aacfcc517e66901af606213baebbb8582e4756a3f04db7c01a3",
+      "record_version": "source-5accc11281639aacfcc517e66901af606213baebbb8582e4756a3f04db7c01a3"
+    }
+  ]
+}

@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-marine-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ba1b94d76ba007e9d9e8047f7ec98d0a7f96c31c6db94a526d3c92ce23436b41",
+      "record_version": "source-ba1b94d76ba007e9d9e8047f7ec98d0a7f96c31c6db94a526d3c92ce23436b41"
+    },
+    {
       "id": "franka-description-artifact-end-effectors-cobot-pump-cobot-pump-arguments-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "f991bc6e0f38410b0448797fcbd9efd991309ee78b1fe432cdb0f72e16e55bff",
       "record_version": "source-f991bc6e0f38410b0448797fcbd9efd991309ee78b1fe432cdb0f72e16e55bff"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-cut-dragon-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "895f4bee064fac302d15acfec3b6bf091afb56420f8c0be4385952bf1b519f97",
+      "record_version": "source-895f4bee064fac302d15acfec3b6bf091afb56420f8c0be4385952bf1b519f97"
     },
     {
       "id": "moveit2-doc-examples-bullet-collision-checker-src-bullet-collision-1e25216dcd47",
@@ -24,6 +36,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "d7ca6ba3ef98bffc6247f7a6b29eea38204a8a15d5698e38c430888d689ba0a3",
       "record_version": "source-d7ca6ba3ef98bffc6247f7a6b29eea38204a8a15d5698e38c430888d689ba0a3"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "0a28ed78932270dc359fd3df7774428b9afbbd739af364fae4f2a75cd4c4e373",
+      "record_version": "source-0a28ed78932270dc359fd3df7774428b9afbbd739af364fae4f2a75cd4c4e373"
     }
   ]
 }

@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-quadrotor-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ff90450eaaa8754893b3b15bbf08f3b9a644991e8f05fdfb9333f5ccc4ba5922",
+      "record_version": "source-ff90450eaaa8754893b3b15bbf08f3b9a644991e8f05fdfb9333f5ccc4ba5922"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-mpm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0ccf31723cbc8561270b48cca85bd4ebf52c0305d88c5f99a418b6cf82d50168",
+      "record_version": "source-0ccf31723cbc8561270b48cca85bd4ebf52c0305d88c5f99a418b6cf82d50168"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-peract-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8e864aab6f5998fcc3775a824ebac08f9c9296b020323fd8c9797628eb127a33",
+      "record_version": "source-8e864aab6f5998fcc3775a824ebac08f9c9296b020323fd8c9797628eb127a33"
+    },
+    {
       "id": "moveit2-doc-examples-state-display-src-state-display-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "0de56778e6a269cc3f0f1d993b5e83e4d64c7b8df784f7ebc3129c4f04df7b4c",

@@ -8,6 +8,174 @@
       "record_version": "source-f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540"
     },
     {
+      "id": "aligator-examples-acrobot-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "4fcc7f4a9248bdeb753043fb0859c12eb94141a20beea71fc9d9b799fd93eaa0",
+      "record_version": "source-4fcc7f4a9248bdeb753043fb0859c12eb94141a20beea71fc9d9b799fd93eaa0"
+    },
+    {
+      "id": "aligator-examples-cartpole-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "2ead124b158bc9d63c08aeb1097690463e38f81409bf079c7f2e16add63c24aa",
+      "record_version": "source-2ead124b158bc9d63c08aeb1097690463e38f81409bf079c7f2e16add63c24aa"
+    },
+    {
+      "id": "aligator-examples-centroidal-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "19cb8ca65cf0057aa660d14ea730f4ae3af21f8b8aeac0e4b8397dfc0d0f6c9c",
+      "record_version": "source-19cb8ca65cf0057aa660d14ea730f4ae3af21f8b8aeac0e4b8397dfc0d0f6c9c"
+    },
+    {
+      "id": "aligator-examples-continuous-centroidal-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "3d96932e2da0b8b76bc0c37a9a9040dc760e937a4cadbde91af0662cf2efcd72",
+      "record_version": "source-3d96932e2da0b8b76bc0c37a9a9040dc760e937a4cadbde91af0662cf2efcd72"
+    },
+    {
+      "id": "aligator-examples-croc-arm-manipulation-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "0d8e5c9767ce69ca9edd3f4905e05439368a2d441608320aa71bd370b6573111",
+      "record_version": "source-0d8e5c9767ce69ca9edd3f4905e05439368a2d441608320aa71bd370b6573111"
+    },
+    {
+      "id": "aligator-examples-croc-humanoid-manipulation-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "25fa51a21c580feffd9b9592c23df5fcfd084ce6f270026d9a9a155fd9dc7732",
+      "record_version": "source-25fa51a21c580feffd9b9592c23df5fcfd084ce6f270026d9a9a155fd9dc7732"
+    },
+    {
+      "id": "aligator-examples-croc-lqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "c5d09ebbfd7c6151bccf31b980b9ca57bb859426c164d459976e90b0825b4d06",
+      "record_version": "source-c5d09ebbfd7c6151bccf31b980b9ca57bb859426c164d459976e90b0825b4d06"
+    },
+    {
+      "id": "aligator-examples-gar-cycle-lqr-1d-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "6cce9a633c5947b2205fc873592d77590472b8e16e59d1f7d679aa54220579cb",
+      "record_version": "source-6cce9a633c5947b2205fc873592d77590472b8e16e59d1f7d679aa54220579cb"
+    },
+    {
+      "id": "aligator-examples-gar-cycle-lqr-2d-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "1b69b649c64b7a618f75d9ccbd2286e5b887d2607a2f33f5463577dfc25d00d0",
+      "record_version": "source-1b69b649c64b7a618f75d9ccbd2286e5b887d2607a2f33f5463577dfc25d00d0"
+    },
+    {
+      "id": "aligator-examples-gar-elqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "a8a5fefd10c42bf655977de0960443f1bf69dc96f7e3f955ffb69a568ce90d42",
+      "record_version": "source-a8a5fefd10c42bf655977de0960443f1bf69dc96f7e3f955ffb69a568ce90d42"
+    },
+    {
+      "id": "aligator-examples-gar-lqr-join-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "6db7bc5e104eda4667abd8d062c454b4969a345d7bc1fae02556a60b2a52cec6",
+      "record_version": "source-6db7bc5e104eda4667abd8d062c454b4969a345d7bc1fae02556a60b2a52cec6"
+    },
+    {
+      "id": "aligator-examples-linear-euler-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "317b18e3865b1ff0ded7c08a54b04022fa5f26ca88d5c02d8170a0049536a28c",
+      "record_version": "source-317b18e3865b1ff0ded7c08a54b04022fa5f26ca88d5c02d8170a0049536a28c"
+    },
+    {
+      "id": "aligator-examples-lqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "d9624b6cedfca1238dedf589f28d599901e4733765945b18188c9978cbb3189e",
+      "record_version": "source-d9624b6cedfca1238dedf589f28d599901e4733765945b18188c9978cbb3189e"
+    },
+    {
+      "id": "aligator-examples-partial-initial-condition-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "5a0767a108ce3070be0cc4d06a0a7770d98f2e8b89b3526094ebcb99bd41adaf",
+      "record_version": "source-5a0767a108ce3070be0cc4d06a0a7770d98f2e8b89b3526094ebcb99bd41adaf"
+    },
+    {
+      "id": "aligator-examples-pendulum-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "9b2e2f5bc89a143301bbd30590ed6867ecda2180d630eb09661cf9fef45d6d7e",
+      "record_version": "source-9b2e2f5bc89a143301bbd30590ed6867ecda2180d630eb09661cf9fef45d6d7e"
+    },
+    {
+      "id": "aligator-examples-quadrotor-obstacles-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "c4eb3bdf101a0c3d7384d209e8d2e77948bf66aff4174bdd08713b1c5ddcbe5f",
+      "record_version": "source-c4eb3bdf101a0c3d7384d209e8d2e77948bf66aff4174bdd08713b1c5ddcbe5f"
+    },
+    {
+      "id": "aligator-examples-rollouts-bench-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "57ac776f504c7dbd2eeacb0701a8c5339b5f45c745931f6e0d0d91118ab1f86e",
+      "record_version": "source-57ac776f504c7dbd2eeacb0701a8c5339b5f45c745931f6e0d0d91118ab1f86e"
+    },
+    {
+      "id": "aligator-examples-solo-bend-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "b3906f02e0cd848de85edff298e628c76005dc34b26a0232a8ea05540eadca23",
+      "record_version": "source-b3906f02e0cd848de85edff298e628c76005dc34b26a0232a8ea05540eadca23"
+    },
+    {
+      "id": "aligator-examples-solo-jump-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "5b50f3400caf2802c7d6893592126225049c4a574333fa4d44f9c142b55061a5",
+      "record_version": "source-5b50f3400caf2802c7d6893592126225049c4a574333fa4d44f9c142b55061a5"
+    },
+    {
+      "id": "aligator-examples-solo-kinodynamics-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "999b32c9ea9a28fa9384621c460a13fae6a9bb8b4b4f981f29316d19d78d84c5",
+      "record_version": "source-999b32c9ea9a28fa9384621c460a13fae6a9bb8b4b4f981f29316d19d78d84c5"
+    },
+    {
+      "id": "aligator-examples-talos-arms-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "cea9a59c7f7c332822da3e62298d3bd69cd1c3038708caae15d2e31248188670",
+      "record_version": "source-cea9a59c7f7c332822da3e62298d3bd69cd1c3038708caae15d2e31248188670"
+    },
+    {
+      "id": "aligator-examples-talos-walk-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "0071f6d41a7b1f8b727ce94c2131b7a126501d98dbcdbfba4d88695b2b807ee9",
+      "record_version": "source-0071f6d41a7b1f8b727ce94c2131b7a126501d98dbcdbfba4d88695b2b807ee9"
+    },
+    {
+      "id": "aligator-examples-ur10-ballistic-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "4f78815830e936e8fba591f599a6f1dd9e730e94bde76eb0bc62f7e6411bf03d",
+      "record_version": "source-4f78815830e936e8fba591f599a6f1dd9e730e94bde76eb0bc62f7e6411bf03d"
+    },
+    {
+      "id": "aligator-examples-ur10-midpoint-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "83a62662f5be001efbb5246ab48b66d413afc4a5bcdf3a338aea6a00ce35c16b",
+      "record_version": "source-83a62662f5be001efbb5246ab48b66d413afc4a5bcdf3a338aea6a00ce35c16b"
+    },
+    {
+      "id": "aligator-examples-ur5-croco-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "6707aa034510f2550cdf77b89ff671efa74179396b48b2908d85201d827d0681",
+      "record_version": "source-6707aa034510f2550cdf77b89ff671efa74179396b48b2908d85201d827d0681"
+    },
+    {
+      "id": "aligator-examples-ur5-reach-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "418b414d1d7c7da3365f6fc1e0c9097a39a23e472599dff672264b9d50eae348",
+      "record_version": "source-418b414d1d7c7da3365f6fc1e0c9097a39a23e472599dff672264b9d50eae348"
+    },
+    {
+      "id": "aligator-examples-ur5-table-halfspace-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "69897d4695a13350a5f1c7a20be30661a702f0a6f11af6417e926486d6f7bbc8",
+      "record_version": "source-69897d4695a13350a5f1c7a20be30661a702f0a6f11af6417e926486d6f7bbc8"
+    },
+    {
+      "id": "aligator-examples-utils-solo-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "700036c94a0e68372aeb5f48444bf29bee2bacb6d5002e294ab6bd8e3da1006d",
+      "record_version": "source-700036c94a0e68372aeb5f48444bf29bee2bacb6d5002e294ab6bd8e3da1006d"
+    },
+    {
       "id": "aspire-behavior-debugging",
       "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
       "source_sha256": "19d2d3b7875519ce97b7ba8b67a0f4afaebad8c2b2f733cb7e70568c615c7d67",
@@ -86,6 +254,516 @@
       "record_version": "source-793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f"
     },
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-environments-behavior-env-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "897c619e41043dc7550459a87f84dc8d9d487d418acf00ddadba765af5005dfb",
+      "record_version": "source-897c619e41043dc7550459a87f84dc8d9d487d418acf00ddadba765af5005dfb"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-environments-navigation-env-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "4271cefd5a65aada2fc8ee8f1aa355fcf307b98a7afe6dfce4259a1653527af0",
+      "record_version": "source-4271cefd5a65aada2fc8ee8f1aa355fcf307b98a7afe6dfce4259a1653527af0"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-environments-vector-env-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "d29049ecf12001a4ee52d7377ed9f7ea4fc0931d14fab0ac7ece779fd702cf51",
+      "record_version": "source-d29049ecf12001a4ee52d7377ed9f7ea4fc0931d14fab0ac7ece779fd702cf51"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-learning-navigation-policy-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "44b89b2914afa27a0576778cde808efa44305f56f43406cb9250ae1a9dc2b43f",
+      "record_version": "source-44b89b2914afa27a0576778cde808efa44305f56f43406cb9250ae1a9dc2b43f"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-attachment-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "7f39f629a1e88866189db82dba854893e30dd4f89bacf3d901b6587a9a7d5b3f",
+      "record_version": "source-7f39f629a1e88866189db82dba854893e30dd4f89bacf3d901b6587a9a7d5b3f"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-dicing-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "28fd8978590945bdc9816795bbb5cfda4443c303c821e7b71539ca3df11a70f3",
+      "record_version": "source-28fd8978590945bdc9816795bbb5cfda4443c303c821e7b71539ca3df11a70f3"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-heated-state-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9ac9e4312bc25d00da5031382d95e8e9467a56da294d02965d3eeb5849196f41",
+      "record_version": "source-9ac9e4312bc25d00da5031382d95e8e9467a56da294d02965d3eeb5849196f41"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-object-sta-26698cc7baf4",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "179b11e972d683e290a3602f2f2258d86a3c81da9679e74b2f3fc9f5fa7c86a2",
+      "record_version": "source-179b11e972d683e290a3602f2f2258d86a3c81da9679e74b2f3fc9f5fa7c86a2"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-onfire-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "ab61957b026a6766dafc758a6a537d76012431d52bae55b2cca583604276a7fa",
+      "record_version": "source-ab61957b026a6766dafc758a6a537d76012431d52bae55b2cca583604276a7fa"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-overlaid-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "8ab54df3ea574fc61ad59636b416046f1b131a6d288a38568d6dca630939d930",
+      "record_version": "source-8ab54df3ea574fc61ad59636b416046f1b131a6d288a38568d6dca630939d930"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-particle-a-0fe67cd519a5",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "3d40e4583d6479bd959406e8a4f86c93eadd15839285560ceee4b3f1fe930916",
+      "record_version": "source-3d40e4583d6479bd959406e8a4f86c93eadd15839285560ceee4b3f1fe930916"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-sample-kin-8219621cda5b",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "ba562d756cd6168412b31ef20cf0540d45dcbeea2d236ec71d2a3634794096b3",
+      "record_version": "source-ba562d756cd6168412b31ef20cf0540d45dcbeea2d236ec71d2a3634794096b3"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-slicing-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "c75ad6a094d29f4f9e5dd70a4302ca0dad8cf066ba3f6f7fc176475d2093dc7d",
+      "record_version": "source-c75ad6a094d29f4f9e5dd70a4302ca0dad8cf066ba3f6f7fc176475d2093dc7d"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-temperature-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "1779239bbb369f5b336bc75ae5ede729b7c06ed146f6ecf165b24e0d53b0646c",
+      "record_version": "source-1779239bbb369f5b336bc75ae5ede729b7c06ed146f6ecf165b24e0d53b0646c"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-draw-bounding-box-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "e3552a680ac3ec3fcb8de287cff907fb75587f265cb3cfc6a703df44dfef91d3",
+      "record_version": "source-e3552a680ac3ec3fcb8de287cff907fb75587f265cb3cfc6a703df44dfef91d3"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-highlight-objects-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "b0677f9e0e9ce36a19a92362d06f3c6771850671bf7addd59c6e8671614f758b",
+      "record_version": "source-b0677f9e0e9ce36a19a92362d06f3c6771850671bf7addd59c6e8671614f758b"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-import-custom-object-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "711e766dcbedbcf4e891fb44de8ab95b8d30ea6825447a84dfc4f17970f8fc75",
+      "record_version": "source-711e766dcbedbcf4e891fb44de8ab95b8d30ea6825447a84dfc4f17970f8fc75"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-load-object-selector-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "592d47dae66bfbde6c63ac4ea8e57105422001e5c81b4c1774b843a270095e12",
+      "record_version": "source-592d47dae66bfbde6c63ac4ea8e57105422001e5c81b4c1774b843a270095e12"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-visualize-object-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "1f56c73e376dc064e11461fcd037c53a026c7dadf5bd15ea3a284b20749aea64",
+      "record_version": "source-1f56c73e376dc064e11461fcd037c53a026c7dadf5bd15ea3a284b20749aea64"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-all-robots-visualizer-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "389d1805ef1bbedb75db3dda800718bccfd46058ffda958c06f5a8a67bb67073",
+      "record_version": "source-389d1805ef1bbedb75db3dda800718bccfd46058ffda958c06f5a8a67bb67073"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-grasping-mode-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "0c9eed16f850dda247123e2e294b4794ba9c62783096eb43f2e5adf5ff481f78",
+      "record_version": "source-0c9eed16f850dda247123e2e294b4794ba9c62783096eb43f2e5adf5ff481f78"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-import-custom-robot-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "6d9fe8c9b156aac3c8073917a3c63ec28c74293ac6321a9e8a96ad6ac3233f50",
+      "record_version": "source-6d9fe8c9b156aac3c8073917a3c63ec28c74293ac6321a9e8a96ad6ac3233f50"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-robot-control-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9c8b100c55ddfd31118d96f0106d245534eb0b3f2b22083d3d37e56b494690c8",
+      "record_version": "source-9c8b100c55ddfd31118d96f0106d245534eb0b3f2b22083d3d37e56b494690c8"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-scenes-scene-selector-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "54bf38fd82bb4fcdc53d4f2373ee827b87daa1a3cf8cb9a49be31e4f32a5ac8e",
+      "record_version": "source-54bf38fd82bb4fcdc53d4f2373ee827b87daa1a3cf8cb9a49be31e4f32a5ac8e"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-scenes-scene-tour-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "e07ed2cbd515146b724d0e14c2adb94ca4ac3b5161d7f703fa399d30983091eb",
+      "record_version": "source-e07ed2cbd515146b724d0e14c2adb94ca4ac3b5161d7f703fa399d30983091eb"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-scenes-traversability-map-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "5e4b8f1b63eeca60dc66d3faaadddcfc9a555cc8a62bad18e74540c78ee00b2e",
+      "record_version": "source-5e4b8f1b63eeca60dc66d3faaadddcfc9a555cc8a62bad18e74540c78ee00b2e"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-simulator-sim-save-load-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "fa55c0e13d0d0fef236ab7010dbb527b5b55153a385aebf6abd833a3e4f5eb2a",
+      "record_version": "source-fa55c0e13d0d0fef236ab7010dbb527b5b55153a385aebf6abd833a3e4f5eb2a"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-teleoperation-robot-tele-8294ce2a77ba",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "caf21fcde2360c404cb7ffdcf53c9ef0c09ee9e5264f18a55b9a4d774eb35a80",
+      "record_version": "source-caf21fcde2360c404cb7ffdcf53c9ef0c09ee9e5264f18a55b9a4d774eb35a80"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-teleoperation-vr-robot-c-f95338ac6531",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "edb3ba1eb395fcb50fce27db802604755ba459ccfe46ea4064af6c6c7f0a1e9a",
+      "record_version": "source-edb3ba1eb395fcb50fce27db802604755ba459ccfe46ea4064af6c6c7f0a1e9a"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-teleoperation-vr-scene-tour-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "217653c5657eb66f04807de594c537fc6bef3f07503fcc7effe0920c2b41e9b5",
+      "record_version": "source-217653c5657eb66f04807de594c537fc6bef3f07503fcc7effe0920c2b41e9b5"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-curobo-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "11d3c5f00a6cc1f845d9e3acf922e2cb88472c2bd80ea93a3659ee6fc4b102ff",
+      "record_version": "source-11d3c5f00a6cc1f845d9e3acf922e2cb88472c2bd80ea93a3659ee6fc4b102ff"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-folded-unfolded-state-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "3c56bbcf75f47954905878eb22a791d03d5b65fcacbcb193baf41b193cedb6c0",
+      "record_version": "source-3c56bbcf75f47954905878eb22a791d03d5b65fcacbcb193baf41b193cedb6c0"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-heat-source-or-sink-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "7ffd230cc59f2e2ca9450cd74dfd5d8f200bc15da68d12f639c5ea720ce11b6f",
+      "record_version": "source-7ffd230cc59f2e2ca9450cd74dfd5d8f200bc15da68d12f639c5ea720ce11b6f"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-particle-source-sink-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "064251e16a74f7aa3995944193874738c3959176b007dec7e2a73dba7c36d47f",
+      "record_version": "source-064251e16a74f7aa3995944193874738c3959176b007dec7e2a73dba7c36d47f"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-rs-int-primitives-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "1d533323e9bbbe13d63dfc9c1ea43f19d51333c938969719c463a96a439c8906",
+      "record_version": "source-1d533323e9bbbe13d63dfc9c1ea43f19d51333c938969719c463a96a439c8906"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-solve-behavior-task-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "08d87a66afd4d7d216ff34d48748fd97fad94fed20677ca8056f8212fa3bea10",
+      "record_version": "source-08d87a66afd4d7d216ff34d48748fd97fad94fed20677ca8056f8212fa3bea10"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-solve-simple-task-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9285b3db47c7816525154a579c481d55a37c00d795840cd403a4bd156b675f0a",
+      "record_version": "source-9285b3db47c7816525154a579c481d55a37c00d795840cd403a4bd156b675f0a"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-view-cloth-configurations-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "b65295b3ff169948d6c6046a7b95b81496223e12ec6d95cc7fe6302e7bbaa6f2",
+      "record_version": "source-b65295b3ff169948d6c6046a7b95b81496223e12ec6d95cc7fe6302e7bbaa6f2"
+    },
+    {
+      "id": "bipedal-locomotion-framework-examples-unicycletrajectorygenerator-main-cpp",
+      "source_commit": "1cca6bafd23780f8a0e996a01febe75909fc9956",
+      "source_sha256": "c10a81c1d75e1feb177e941f30c90ef8c19f7cb91fd7831bd751da4ced791c9f",
+      "record_version": "source-c10a81c1d75e1feb177e941f30c90ef8c19f7cb91fd7831bd751da4ced791c9f"
+    },
+    {
+      "id": "causalworld-tutorials-change-action-space-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "50390dd92a69a01beed73651d9c5e48c026f1eb3ef98b1ec103afd3cef149fbf",
+      "record_version": "source-50390dd92a69a01beed73651d9c5e48c026f1eb3ef98b1ec103afd3cef149fbf"
+    },
+    {
+      "id": "causalworld-tutorials-change-action-space-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "ec71c276730099ee06308b7a32b0881d75f5b38ba370d53517ce970fad6e9613",
+      "record_version": "source-ec71c276730099ee06308b7a32b0881d75f5b38ba370d53517ce970fad6e9613"
+    },
+    {
+      "id": "causalworld-tutorials-change-action-space-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "6b0363034cb37f4d1eecd055927f2dc31dd3b963c1974d0c9222b8be70ab2114",
+      "record_version": "source-6b0363034cb37f4d1eecd055927f2dc31dd3b963c1974d0c9222b8be70ab2114"
+    },
+    {
+      "id": "causalworld-tutorials-curriculums-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "4a0aae9f04467364bf0122d6ddd844cfe87a518b7e8c716e70baabaee7ee9197",
+      "record_version": "source-4a0aae9f04467364bf0122d6ddd844cfe87a518b7e8c716e70baabaee7ee9197"
+    },
+    {
+      "id": "causalworld-tutorials-curriculums-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3604992a7b5143d2969def9d23afa91c423f30725a863e4fb9507c5150fe9a8f",
+      "record_version": "source-3604992a7b5143d2969def9d23afa91c423f30725a863e4fb9507c5150fe9a8f"
+    },
+    {
+      "id": "causalworld-tutorials-curriculums-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "fb4c7861823b53ebb6751ee77558d31ac97d3fb129e3baf9a2b3635d1a887539",
+      "record_version": "source-fb4c7861823b53ebb6751ee77558d31ac97d3fb129e3baf9a2b3635d1a887539"
+    },
+    {
+      "id": "causalworld-tutorials-defining-task-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "2f6eb6ee264f2802d9f57157869a2d8cc48eff8939002852391b00488312de9b",
+      "record_version": "source-2f6eb6ee264f2802d9f57157869a2d8cc48eff8939002852391b00488312de9b"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "521db3aa0e8a226a32d5daaf4f946bb1a419c39dd875482f44a65427903a787b",
+      "record_version": "source-521db3aa0e8a226a32d5daaf4f946bb1a419c39dd875482f44a65427903a787b"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-four-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "15c13631cee18ea45abd5951be34d4fcd97e734c23e2b0440e8b76461cfc2109",
+      "record_version": "source-15c13631cee18ea45abd5951be34d4fcd97e734c23e2b0440e8b76461cfc2109"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3da8a4d859d9d6e998a927c0db62d7005b1e51e194342ac733cce1d5518d9ea2",
+      "record_version": "source-3da8a4d859d9d6e998a927c0db62d7005b1e51e194342ac733cce1d5518d9ea2"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-six-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "74f006c2afeb33b0ac7f860632081de73a3e264ba949f7b65d542b888f4409b4",
+      "record_version": "source-74f006c2afeb33b0ac7f860632081de73a3e264ba949f7b65d542b888f4409b4"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "da881420e286344db4e392715b88328964a113a776e895d4cc0bd2b3dea40ec6",
+      "record_version": "source-da881420e286344db4e392715b88328964a113a776e895d4cc0bd2b3dea40ec6"
+    },
+    {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "5b37d289de45685a6431e638d01abd0d52195e045df55b9f9be93d2c8fcfad4a",
+      "record_version": "source-5b37d289de45685a6431e638d01abd0d52195e045df55b9f9be93d2c8fcfad4a"
+    },
+    {
+      "id": "causalworld-tutorials-get-full-state-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "6e8191191e5073dbeeb7e2bd27bcc1f377cc08aa35945b60171a272d41bc0a38",
+      "record_version": "source-6e8191191e5073dbeeb7e2bd27bcc1f377cc08aa35945b60171a272d41bc0a38"
+    },
+    {
+      "id": "causalworld-tutorials-guided-goal-generation-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "93013a08e4d672da5edc6823a82a6409f745ed69284d45f28c6df619069dfcc5",
+      "record_version": "source-93013a08e4d672da5edc6823a82a6409f745ed69284d45f28c6df619069dfcc5"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f",
+      "record_version": "source-3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-four-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "9e01a2a8abe125c7a52ece10bb871a428dd7b4d0b6e36a6f2696cfc31e3caf3d",
+      "record_version": "source-9e01a2a8abe125c7a52ece10bb871a428dd7b4d0b6e36a6f2696cfc31e3caf3d"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "ac209ad447002549ae0f192069fbc92aed77bbc01a0d2dcce4f26baaf21d91a6",
+      "record_version": "source-ac209ad447002549ae0f192069fbc92aed77bbc01a0d2dcce4f26baaf21d91a6"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-six-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "66645056c6866f7108e42895bc2b8a5e7e20f3a8106b3c6c85865f936cb78450",
+      "record_version": "source-66645056c6866f7108e42895bc2b8a5e7e20f3a8106b3c6c85865f936cb78450"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "8a82d3c4b5a9172171cf87c465056bd6e0e95b7bbd2ccc7bcdef56e45b7a5e42",
+      "record_version": "source-8a82d3c4b5a9172171cf87c465056bd6e0e95b7bbd2ccc7bcdef56e45b7a5e42"
+    },
+    {
+      "id": "causalworld-tutorials-interventions-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "1fcec6ada2bf25935efc149b2a38f1f3aa0996e327437e69b70ed4048cc736f4",
+      "record_version": "source-1fcec6ada2bf25935efc149b2a38f1f3aa0996e327437e69b70ed4048cc736f4"
+    },
+    {
+      "id": "causalworld-tutorials-logging-data-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "f8ac8a5c2de5f3385aee07c1dca8ad9e171ad83478230196fce0fc92f7dc8e05",
+      "record_version": "source-f8ac8a5c2de5f3385aee07c1dca8ad9e171ad83478230196fce0fc92f7dc8e05"
+    },
+    {
+      "id": "causalworld-tutorials-mpc-w-true-model-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0305c902fb223b7107692b848f0898c45042ba03c0658f734e90cb09690af7ff",
+      "record_version": "source-0305c902fb223b7107692b848f0898c45042ba03c0658f734e90cb09690af7ff"
+    },
+    {
+      "id": "causalworld-tutorials-priviliged-information-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "b41a9153b4cd492d9b05f5d15d8036caed10aabd69cc579323497f217b233343",
+      "record_version": "source-b41a9153b4cd492d9b05f5d15d8036caed10aabd69cc579323497f217b233343"
+    },
+    {
+      "id": "causalworld-tutorials-priviliged-information-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "be72f092ebb3c81a9c23eab3be5638b905293e3ab105503e15477c6c315b39ee",
+      "record_version": "source-be72f092ebb3c81a9c23eab3be5638b905293e3ab105503e15477c6c315b39ee"
+    },
+    {
+      "id": "causalworld-tutorials-requesting-task-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "fe495a919680a432fdcd8796e64bdbdae1ee50c53aa20f2339b6b83990598ba0",
+      "record_version": "source-fe495a919680a432fdcd8796e64bdbdae1ee50c53aa20f2339b6b83990598ba0"
+    },
+    {
+      "id": "causalworld-tutorials-requesting-task-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "7bc74bba0b56a029f9d4ea3195d8fb9d27a3b078c37a105740c6c8625d374d1f",
+      "record_version": "source-7bc74bba0b56a029f9d4ea3195d8fb9d27a3b078c37a105740c6c8625d374d1f"
+    },
+    {
+      "id": "causalworld-tutorials-requesting-task-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "844029fdd7b743b11f44217ac2ea8c6d1d96eb422a9c1b45f675d36d2455e93c",
+      "record_version": "source-844029fdd7b743b11f44217ac2ea8c6d1d96eb422a9c1b45f675d36d2455e93c"
+    },
+    {
+      "id": "causalworld-tutorials-rlkit-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "54a42469d2f9fb3135f9b6c70bcef9c71d8a2eaa305e08d52ed47af2061f8cad",
+      "record_version": "source-54a42469d2f9fb3135f9b6c70bcef9c71d8a2eaa305e08d52ed47af2061f8cad"
+    },
+    {
+      "id": "causalworld-tutorials-rlkit-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "93abd0e8756f0e1b284a034e2b0567b9a7f427cf4c7c63aac93c05e4c3934ab4",
+      "record_version": "source-93abd0e8756f0e1b284a034e2b0567b9a7f427cf4c7c63aac93c05e4c3934ab4"
+    },
+    {
+      "id": "causalworld-tutorials-rlpyt-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "625ce2746cdc0ee3adeef98c0581a6cd7b1ccf9135225617c12c2ea526b3c87b",
+      "record_version": "source-625ce2746cdc0ee3adeef98c0581a6cd7b1ccf9135225617c12c2ea526b3c87b"
+    },
+    {
+      "id": "causalworld-tutorials-rlpyt-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "35668d41c429b3a9e0462abfc20dd09dec7da4c8406ea6226862ecce42e630fe",
+      "record_version": "source-35668d41c429b3a9e0462abfc20dd09dec7da4c8406ea6226862ecce42e630fe"
+    },
+    {
+      "id": "causalworld-tutorials-rlpyt-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0fd0833481b56aca75e75e585f7ace9ee3ec3e1318bb21281a18a70bf9a2c5ff",
+      "record_version": "source-0fd0833481b56aca75e75e585f7ace9ee3ec3e1318bb21281a18a70bf9a2c5ff"
+    },
+    {
+      "id": "causalworld-tutorials-save-state-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "e6fad16983b1ed2f9d543ec3dbcfd5c759b0d1ae7f1b2d67bf67cdced955cfd0",
+      "record_version": "source-e6fad16983b1ed2f9d543ec3dbcfd5c759b0d1ae7f1b2d67bf67cdced955cfd0"
+    },
+    {
+      "id": "causalworld-tutorials-saving-and-loading-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0b0ea5a5302a3685a55213708c17e7c4839324ee1778c952b83372e2928a0ff8",
+      "record_version": "source-0b0ea5a5302a3685a55213708c17e7c4839324ee1778c952b83372e2928a0ff8"
+    },
+    {
+      "id": "causalworld-tutorials-set-start-state-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f",
+      "record_version": "source-3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f"
+    },
+    {
+      "id": "causalworld-tutorials-stable-baselines-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "9eb67869b3f9e5821db549d98c5bb09292e095611d8ea1ebdd0bf640e55ce505",
+      "record_version": "source-9eb67869b3f9e5821db549d98c5bb09292e095611d8ea1ebdd0bf640e55ce505"
+    },
+    {
+      "id": "causalworld-tutorials-stable-baselines-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "1449b9f19f982d19ac28c1f15f3b5c7499af492dbb899c4229deaab850f18a12",
+      "record_version": "source-1449b9f19f982d19ac28c1f15f3b5c7499af492dbb899c4229deaab850f18a12"
+    },
+    {
+      "id": "causalworld-tutorials-stable-baselines-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "a94da34382ffb686dc6d2173ac6d847ff3df0e9a2bbff882052e32c895cc5e30",
+      "record_version": "source-a94da34382ffb686dc6d2173ac6d847ff3df0e9a2bbff882052e32c895cc5e30"
+    },
+    {
+      "id": "causalworld-tutorials-using-agents-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "54bc9a7526daff796e8c5ecf37ca4803240ad7098196201b98d9dde0687a6977",
+      "record_version": "source-54bc9a7526daff796e8c5ecf37ca4803240ad7098196201b98d9dde0687a6977"
+    },
+    {
+      "id": "causalworld-tutorials-using-agents-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "883d17ce35430c7261d1dc865d2f6ace8b31c276356aa9a544fbd38d5119f959",
+      "record_version": "source-883d17ce35430c7261d1dc865d2f6ace8b31c276356aa9a544fbd38d5119f959"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "d591b8211b18efcdb05df1fad139b00bbf96296b47b6b5babf8f9eafde632c98",
+      "record_version": "source-d591b8211b18efcdb05df1fad139b00bbf96296b47b6b5babf8f9eafde632c98"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-four-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "2338b4d922315f929b09c9ae793579c372550e46b823b29797a98485bab650c6",
+      "record_version": "source-2338b4d922315f929b09c9ae793579c372550e46b823b29797a98485bab650c6"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "11869f5119fb1953be6594a15afef036e55c4116e700193a7186d6abc5cf294a",
+      "record_version": "source-11869f5119fb1953be6594a15afef036e55c4116e700193a7186d6abc5cf294a"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "a828ea138c29eae35773ab18f2bc844039f5da8468b566655ea08e9f85dc8160",
+      "record_version": "source-a828ea138c29eae35773ab18f2bc844039f5da8468b566655ea08e9f85dc8160"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "e3a2c01c0d1012ef518151e3fcd077789cdfae6c34ca7861144541ce60102eda",
+      "record_version": "source-e3a2c01c0d1012ef518151e3fcd077789cdfae6c34ca7861144541ce60102eda"
+    },
+    {
       "id": "crazyflie-examples-autonomy-autonomous-sequence-high-level-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "f277f6f630b82cf3efddd7708e644ec0c1b8511c4ec324917af0a175b47de5aa",
@@ -156,6 +834,252 @@
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2",
       "record_version": "source-3dc99a6fb402a0c96948327938cc8ecfc09d542a51cb06ad6759b68949f36bb2"
+    },
+    {
+      "id": "crocoddyl-examples-aerial-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "43a6888c20e048b74b4897bb9275e4e887dba01dc25c9468f093b1dccdac71a7",
+      "record_version": "source-43a6888c20e048b74b4897bb9275e4e887dba01dc25c9468f093b1dccdac71a7"
+    },
+    {
+      "id": "crocoddyl-examples-aerial-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "29ebe5e148993cc2bb4500d1edf0b133387373eccbdddca96bd8c0f22e6bb46f",
+      "record_version": "source-29ebe5e148993cc2bb4500d1edf0b133387373eccbdddca96bd8c0f22e6bb46f"
+    },
+    {
+      "id": "crocoddyl-examples-biped-gaits-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "477ef9b35c48ef872579123f95b15b7e71cd801eb76f7e12913b4bbf7c38a874",
+      "record_version": "source-477ef9b35c48ef872579123f95b15b7e71cd801eb76f7e12913b4bbf7c38a874"
+    },
+    {
+      "id": "crocoddyl-examples-biped-gaits-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "9368aca85b73eb3d06d78af4bb03d5024444996f4f8b8bfe8d715a643c21d533",
+      "record_version": "source-9368aca85b73eb3d06d78af4bb03d5024444996f4f8b8bfe8d715a643c21d533"
+    },
+    {
+      "id": "crocoddyl-examples-biped-pose-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "80b3f938a97dc4e88a120610a786d4f91323265f5e73f31cb2ecdffbd9e20b6e",
+      "record_version": "source-80b3f938a97dc4e88a120610a786d4f91323265f5e73f31cb2ecdffbd9e20b6e"
+    },
+    {
+      "id": "crocoddyl-examples-biped-pose-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "9cbeebd2a71804baf516eba73d4f0cc41c20736254c9a94b988ab03fa16eb195",
+      "record_version": "source-9cbeebd2a71804baf516eba73d4f0cc41c20736254c9a94b988ab03fa16eb195"
+    },
+    {
+      "id": "crocoddyl-examples-biped-walk-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "acbd53bae6ad552f01d1333b09df470e482f96e61e181cdab5c71971c1a5e1b7",
+      "record_version": "source-acbd53bae6ad552f01d1333b09df470e482f96e61e181cdab5c71971c1a5e1b7"
+    },
+    {
+      "id": "crocoddyl-examples-boxfddp-vs-boxddp-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "04e3819a4a8fd3363198344b2be752d42e533210d997a9faa2e29f845c58d786",
+      "record_version": "source-04e3819a4a8fd3363198344b2be752d42e533210d997a9faa2e29f845c58d786"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-continuous-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "83ce8b06ff8d00a86f74cf47c352db0ca70bd365d964c7b187d3dc687aed103f",
+      "record_version": "source-83ce8b06ff8d00a86f74cf47c352db0ca70bd365d964c7b187d3dc687aed103f"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-continuous-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "bb15294dd184521b9e1f119d4ba1c9ddf1d2ce1492af3e0fa38437880f4a84d6",
+      "record_version": "source-bb15294dd184521b9e1f119d4ba1c9ddf1d2ce1492af3e0fa38437880f4a84d6"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "7c7d1db844c5029349c6ab7479fc250bee156a812353a80d491f86cf8d52d72a",
+      "record_version": "source-7c7d1db844c5029349c6ab7479fc250bee156a812353a80d491f86cf8d52d72a"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "68162631e779d7134c1f69510f6737d65b46318d840fd8888ff1894fa4d7eb71",
+      "record_version": "source-68162631e779d7134c1f69510f6737d65b46318d840fd8888ff1894fa4d7eb71"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-backflip-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "437058e9cfe5b76670922f469bf2908ad771f4743fe84d083ad2143b69e6b351",
+      "record_version": "source-437058e9cfe5b76670922f469bf2908ad771f4743fe84d083ad2143b69e6b351"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-backflip-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3de6e9ce3e45669b68fcca7bafb39e5529d8ae1678bde0345b6560ae943e08c2",
+      "record_version": "source-3de6e9ce3e45669b68fcca7bafb39e5529d8ae1678bde0345b6560ae943e08c2"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-bar-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "85865d65d45d9adcf52a936280832c7de8056c0c4d988c0f5359ae229c1107c1",
+      "record_version": "source-85865d65d45d9adcf52a936280832c7de8056c0c4d988c0f5359ae229c1107c1"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-bar-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3e552dfb88346159858dec284e396d99b206ed900ca1321b2855c64cf3d2d01e",
+      "record_version": "source-3e552dfb88346159858dec284e396d99b206ed900ca1321b2855c64cf3d2d01e"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-frontflip-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3d984e6e5ce137967349e5b2c0f2df7e9b71460ecbe592a8bfda1088ef43ca7d",
+      "record_version": "source-3d984e6e5ce137967349e5b2c0f2df7e9b71460ecbe592a8bfda1088ef43ca7d"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-frontflip-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "870128382bc232139888d1643c0cdced10d6dd453f23701541016a59483cfd80",
+      "record_version": "source-870128382bc232139888d1643c0cdced10d6dd453f23701541016a59483cfd80"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-handstanding-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "dfe45b0045100a428c54c07f0793b26b19fdd976e6cf0ea7291193c17bee0b8f",
+      "record_version": "source-dfe45b0045100a428c54c07f0793b26b19fdd976e6cf0ea7291193c17bee0b8f"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-handstanding-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "98f9be9ec5b934e8f54f6135db33670f8dd96382cc2c672a807db33752fe6ed2",
+      "record_version": "source-98f9be9ec5b934e8f54f6135db33670f8dd96382cc2c672a807db33752fe6ed2"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-manipulation-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ea67b9fc02c56a500e3abc90a577a07e66610f3aea035661f756ab6a79fda8f0",
+      "record_version": "source-ea67b9fc02c56a500e3abc90a577a07e66610f3aea035661f756ab6a79fda8f0"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-manipulation-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "53d92909d7aa9649ea25b17751437ef16b2a7099d4a6f1e0ee29ee87e51d9a84",
+      "record_version": "source-53d92909d7aa9649ea25b17751437ef16b2a7099d4a6f1e0ee29ee87e51d9a84"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-monkey-bar-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "54b0569658657b05004384766b545590dafb1e6ffe75f5e179339ad49d24915e",
+      "record_version": "source-54b0569658657b05004384766b545590dafb1e6ffe75f5e179339ad49d24915e"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-monkey-bar-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "77ca253e6ba4c7718e0b7ab7d35cf65811ca635b59b9c662bd33155235538ac2",
+      "record_version": "source-77ca253e6ba4c7718e0b7ab7d35cf65811ca635b59b9c662bd33155235538ac2"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-taichi-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3207ad0eed924f4f03aeb93a01bd7b3039b00baa841705b0ce39d80b34fadec2",
+      "record_version": "source-3207ad0eed924f4f03aeb93a01bd7b3039b00baa841705b0ce39d80b34fadec2"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-walking-on-hands-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "c087bcb6db6844f2c9a3649e9f89bf9baca4c9f0c59e08485798235f563c4626",
+      "record_version": "source-c087bcb6db6844f2c9a3649e9f89bf9baca4c9f0c59e08485798235f563c4626"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-walking-on-hands-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "8eb0eee85d0b2bddbc48036ee58790b336a7ff1c0d6ffb3d2f39daf8548ba8e9",
+      "record_version": "source-8eb0eee85d0b2bddbc48036ee58790b336a7ff1c0d6ffb3d2f39daf8548ba8e9"
+    },
+    {
+      "id": "crocoddyl-examples-lqr-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "a3af7caf65fdaa45715a84a00522ed8ad691bd97ca9656d2ced672e571e7d371",
+      "record_version": "source-a3af7caf65fdaa45715a84a00522ed8ad691bd97ca9656d2ced672e571e7d371"
+    },
+    {
+      "id": "crocoddyl-examples-lqr-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "6b997aeff0ea74051e66c01f1836a3e60d091a1846f76fb9626f4f4bae5c9f3e",
+      "record_version": "source-6b997aeff0ea74051e66c01f1836a3e60d091a1846f76fb9626f4f4bae5c9f3e"
+    },
+    {
+      "id": "crocoddyl-examples-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "b2581c8dfe7e29592eb08e41834dfe7a2e4800dc2c7d7f11660d3c1533ac179b",
+      "record_version": "source-b2581c8dfe7e29592eb08e41834dfe7a2e4800dc2c7d7f11660d3c1533ac179b"
+    },
+    {
+      "id": "crocoddyl-examples-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "97c8945386472078d88864bbbff3112a7a04cd88b8c978a1d5856539400372b1",
+      "record_version": "source-97c8945386472078d88864bbbff3112a7a04cd88b8c978a1d5856539400372b1"
+    },
+    {
+      "id": "crocoddyl-examples-marine-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "6bb939bd5b9dc33bc2a31a702ec764bd75244784b6a6d8c7e912d6bd10436f21",
+      "record_version": "source-6bb939bd5b9dc33bc2a31a702ec764bd75244784b6a6d8c7e912d6bd10436f21"
+    },
+    {
+      "id": "crocoddyl-examples-marine-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ba1b94d76ba007e9d9e8047f7ec98d0a7f96c31c6db94a526d3c92ce23436b41",
+      "record_version": "source-ba1b94d76ba007e9d9e8047f7ec98d0a7f96c31c6db94a526d3c92ce23436b41"
+    },
+    {
+      "id": "crocoddyl-examples-quadrotor-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "c88bacc85aa9811033e9ba29522b9ad0f1e7665f57d84ed2e4a4abe24dbe8c2b",
+      "record_version": "source-c88bacc85aa9811033e9ba29522b9ad0f1e7665f57d84ed2e4a4abe24dbe8c2b"
+    },
+    {
+      "id": "crocoddyl-examples-quadrotor-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ff90450eaaa8754893b3b15bbf08f3b9a644991e8f05fdfb9333f5ccc4ba5922",
+      "record_version": "source-ff90450eaaa8754893b3b15bbf08f3b9a644991e8f05fdfb9333f5ccc4ba5922"
+    },
+    {
+      "id": "crocoddyl-examples-quadrotor-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ae634a4761c9e83e71410aca26e38571eb437adb15a9927e5ffc6fa257e4c5e5",
+      "record_version": "source-ae634a4761c9e83e71410aca26e38571eb437adb15a9927e5ffc6fa257e4c5e5"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-gaits-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3369427248b040533c62b36fefc9567b2c2791bb9bf09c89492eafeaccca5293",
+      "record_version": "source-3369427248b040533c62b36fefc9567b2c2791bb9bf09c89492eafeaccca5293"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-gaits-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "b1ba90223e48a16fb5d85d68b67cb043ee13730d4e68843dad404e5ad416c658",
+      "record_version": "source-b1ba90223e48a16fb5d85d68b67cb043ee13730d4e68843dad404e5ad416c658"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-pose-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "16dbccd4767e87791ff7c84e292358475d4cc6f06844989574e69b7b2a0ee8be",
+      "record_version": "source-16dbccd4767e87791ff7c84e292358475d4cc6f06844989574e69b7b2a0ee8be"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-pose-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "5778281d7b871af41fb155d808df73632ce9937544ae738b405e1490bb1e821e",
+      "record_version": "source-5778281d7b871af41fb155d808df73632ce9937544ae738b405e1490bb1e821e"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-walk-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "df81399534b0088d01e3fa3c4730d7abeac6ffacc2ef10983b0796458315cbf5",
+      "record_version": "source-df81399534b0088d01e3fa3c4730d7abeac6ffacc2ef10983b0796458315cbf5"
     },
     {
       "id": "diffusion-policy-eval-py",
@@ -1046,6 +1970,12 @@
       "record_version": "source-14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c"
     },
     {
+      "id": "franka-ros2-franka-example-controllers-src-async-motions-ptp-motion-efda9b826143",
+      "source_commit": "4acc05c01ebfcdf916ee6b3df966df0ad7b2f9ec",
+      "source_sha256": "68117f413e7e17e4927ffabce23b2c63fe922dcf23df49c36042af2786629c78",
+      "record_version": "source-68117f413e7e17e4927ffabce23b2c63fe922dcf23df49c36042af2786629c78"
+    },
+    {
       "id": "gap-bundle-anchoring-a-free-end",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "ab58865dd1f5a0ce7921c0d82a082779ee617e93d985352b293a9b1029603324",
@@ -1302,6 +2232,1152 @@
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41",
       "record_version": "source-34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41"
+    },
+    {
+      "id": "genesis-examples-examples-collision-contact-manifold-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3aaa4deaec00e60015ce43ed25b434d6f46ab193b4fc9918a29cec12f93504ac",
+      "record_version": "source-3aaa4deaec00e60015ce43ed25b434d6f46ab193b4fc9918a29cec12f93504ac"
+    },
+    {
+      "id": "genesis-examples-examples-collision-contype-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "fbc4b00d6581de8247ab312dd182b17a0eafc141e87b4684d4536dc38b96eb7e",
+      "record_version": "source-fbc4b00d6581de8247ab312dd182b17a0eafc141e87b4684d4536dc38b96eb7e"
+    },
+    {
+      "id": "genesis-examples-examples-collision-pyramid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3eae4a9aea0cdfb74c5bfb74ec842e36561bcab8ed5f4b9291b01b58cfde4ca2",
+      "record_version": "source-3eae4a9aea0cdfb74c5bfb74ec842e36561bcab8ed5f4b9291b01b58cfde4ca2"
+    },
+    {
+      "id": "genesis-examples-examples-collision-tower-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "96d1244c0fd748ee02deead506b2ebb0ebc0067007f3be94a06d6ca2cb304274",
+      "record_version": "source-96d1244c0fd748ee02deead506b2ebb0ebc0067007f3be94a06d6ca2cb304274"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-cloth-attached-to-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2ba73434fffd95700e07a941bc90c0167fc3900eec3da199a7d4aa1d58a44fa3",
+      "record_version": "source-2ba73434fffd95700e07a941bc90c0167fc3900eec3da199a7d4aa1d58a44fa3"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-cloth-on-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "a5701513f0048be64945d3ef6235a56a1c03976a565b6560d34141de695c5945",
+      "record_version": "source-a5701513f0048be64945d3ef6235a56a1c03976a565b6560d34141de695c5945"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-cut-dragon-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "895f4bee064fac302d15acfec3b6bf091afb56420f8c0be4385952bf1b519f97",
+      "record_version": "source-895f4bee064fac302d15acfec3b6bf091afb56420f8c0be4385952bf1b519f97"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-fem-cube-linked-with-arm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "76b0efa993506d694fa1321eca6f027adeb1c9a3f87f7403b0ac01c73f3bb077",
+      "record_version": "source-76b0efa993506d694fa1321eca6f027adeb1c9a3f87f7403b0ac01c73f3bb077"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-flush-cubes-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2c1061ecd481b4e3a58e9ba4e49ec8ecc8a81e50f4253b2ba99dd29ca2aeed95",
+      "record_version": "source-2c1061ecd481b4e3a58e9ba4e49ec8ecc8a81e50f4253b2ba99dd29ca2aeed95"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-grasp-soft-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1c6aeb3a77801859458c42cee2a01c7c18a7b966abfcfd057feb92284517f22c",
+      "record_version": "source-1c6aeb3a77801859458c42cee2a01c7c18a7b966abfcfd057feb92284517f22c"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-rigid-mpm-attachment-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "580e2cfdaf49f622d3ef35469d9cdd24eb02adf2e317e09704050133ee342bd1",
+      "record_version": "source-580e2cfdaf49f622d3ef35469d9cdd24eb02adf2e317e09704050133ee342bd1"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-sand-wheel-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4c746664dc38cd381842e28834776bb03bc7e52f3cb2d567a5e19d1c3f46e61d",
+      "record_version": "source-4c746664dc38cd381842e28834776bb03bc7e52f3cb2d567a5e19d1c3f46e61d"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-sph-mpm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e8747107764792f91eafa31e738c046d524480fef47a7d21c1dfbdba6c3c72e3",
+      "record_version": "source-e8747107764792f91eafa31e738c046d524480fef47a7d21c1dfbdba6c3c72e3"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-sph-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f49c291a7748abd1193b68e832017c1a05bc417a95467198c60fd80bf6c7b205",
+      "record_version": "source-f49c291a7748abd1193b68e832017c1a05bc417a95467198c60fd80bf6c7b205"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-water-wheel-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "399f9c1bc43d8b91fa3b005fafab4e4450b080af07ad5902ab2fd11abb7b4214",
+      "record_version": "source-399f9c1bc43d8b91fa3b005fafab4e4450b080af07ad5902ab2fd11abb7b4214"
+    },
+    {
+      "id": "genesis-examples-examples-deformable-differentiable-push-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ddc60003f6cdac50c91aba9c46d5f49f661252c6a8097034d31e556e52314f2e",
+      "record_version": "source-ddc60003f6cdac50c91aba9c46d5f49f661252c6a8097034d31e556e52314f2e"
+    },
+    {
+      "id": "genesis-examples-examples-deformable-elastic-dragon-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "bcdcb0f86d253db1db4d5f1c5b43c4e343381319de9b82dff61bc86c1985fb99",
+      "record_version": "source-bcdcb0f86d253db1db4d5f1c5b43c4e343381319de9b82dff61bc86c1985fb99"
+    },
+    {
+      "id": "genesis-examples-examples-deformable-fem-hard-and-soft-constraint-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "dc620b749cc8e12c60f48edd5ed6728fa9d6bfa6dedf9c91fbf7a997fe6755e7",
+      "record_version": "source-dc620b749cc8e12c60f48edd5ed6728fa9d6bfa6dedf9c91fbf7a997fe6755e7"
+    },
+    {
+      "id": "genesis-examples-examples-deformable-pbd-liquid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "05428bceaed466dcf4d73503061a794055fa0c339b51ed179584e6671684d698",
+      "record_version": "source-05428bceaed466dcf4d73503061a794055fa0c339b51ed179584e6671684d698"
+    },
+    {
+      "id": "genesis-examples-examples-drone-fly-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "063b40fb1e3dc3dfbaf7d8aaf1744f9a78ae6052a8c9cfa04b6317341e68f100",
+      "record_version": "source-063b40fb1e3dc3dfbaf7d8aaf1744f9a78ae6052a8c9cfa04b6317341e68f100"
+    },
+    {
+      "id": "genesis-examples-examples-drone-fly-route-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9c09f493f272630797b7d8111979701994101d1526314648887e49b4b8b2771b",
+      "record_version": "source-9c09f493f272630797b7d8111979701994101d1526314648887e49b4b8b2771b"
+    },
+    {
+      "id": "genesis-examples-examples-drone-hover-eval-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d4cfa82b79b4a5c8553206c63bb263d6b263e59efb06179c0dcb21cfb495aa15",
+      "record_version": "source-d4cfa82b79b4a5c8553206c63bb263d6b263e59efb06179c0dcb21cfb495aa15"
+    },
+    {
+      "id": "genesis-examples-examples-drone-hover-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "7063ef24df253a234351c9bb9f7b90eb13dcea175e47fc154c4e3413f585c907",
+      "record_version": "source-7063ef24df253a234351c9bb9f7b90eb13dcea175e47fc154c4e3413f585c907"
+    },
+    {
+      "id": "genesis-examples-examples-drone-interactive-drone-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f2af0f1f6acb1e5fe341ecc967de10ca0b5bf3761fdfda6046fecc0938e13762",
+      "record_version": "source-f2af0f1f6acb1e5fe341ecc967de10ca0b5bf3761fdfda6046fecc0938e13762"
+    },
+    {
+      "id": "genesis-examples-examples-fluid-smoke-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ab9d3fee3b2d2e2ce3c7610265dfc8248ec75e5aa616e50074d63355566829d8",
+      "record_version": "source-ab9d3fee3b2d2e2ce3c7610265dfc8248ec75e5aa616e50074d63355566829d8"
+    },
+    {
+      "id": "genesis-examples-examples-gui-imgui-joint-control-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2818e7e2e051c62750542556ff9625e24fca8290e0f7dbaebb6dc21408d7fc13",
+      "record_version": "source-2818e7e2e051c62750542556ff9625e24fca8290e0f7dbaebb6dc21408d7fc13"
+    },
+    {
+      "id": "genesis-examples-examples-ipc-ipc-momentum-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d3199207ed9b0cbaf9401f05019d79a6f0344d9c394153c6e3fa4792c08b6411",
+      "record_version": "source-d3199207ed9b0cbaf9401f05019d79a6f0344d9c394153c6e3fa4792c08b6411"
+    },
+    {
+      "id": "genesis-examples-examples-ipc-ipc-objects-falling-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5ae0b92c15eb1d103aa2d77d3098d3e6fb88481682aa04cb36678f260b9bca95",
+      "record_version": "source-5ae0b92c15eb1d103aa2d77d3098d3e6fb88481682aa04cb36678f260b9bca95"
+    },
+    {
+      "id": "genesis-examples-examples-ipc-ipc-robot-cloth-teleop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f107788d9712903e5aeae87f4df9e7eca69d9f4ea383a1b7e43fc92b3226d2ec",
+      "record_version": "source-f107788d9712903e5aeae87f4df9e7eca69d9f4ea383a1b7e43fc92b3226d2ec"
+    },
+    {
+      "id": "genesis-examples-examples-ipc-ipc-robot-grasp-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "899bb8297bf044a1326fbaff92e0db521c63aec401d30828ea29918c87fe09ae",
+      "record_version": "source-899bb8297bf044a1326fbaff92e0db521c63aec401d30828ea29918c87fe09ae"
+    },
+    {
+      "id": "genesis-examples-examples-kinematic-go2-kinematic-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "67dc124407f2b08b45baf26bb0a92daefeeeffd811f2c7efe5dc6d77cde09754",
+      "record_version": "source-67dc124407f2b08b45baf26bb0a92daefeeeffd811f2c7efe5dc6d77cde09754"
+    },
+    {
+      "id": "genesis-examples-examples-locomotion-go2-backflip-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "54ef59c987ca98982dcc22a3199ac8bd2d91bd41d50e126d2bededc65d063759",
+      "record_version": "source-54ef59c987ca98982dcc22a3199ac8bd2d91bd41d50e126d2bededc65d063759"
+    },
+    {
+      "id": "genesis-examples-examples-locomotion-go2-eval-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2e80b1c65dea21b28a97b2c11eb6f035bfa7ded87701e3e2abe8e9bd41824bd0",
+      "record_version": "source-2e80b1c65dea21b28a97b2c11eb6f035bfa7ded87701e3e2abe8e9bd41824bd0"
+    },
+    {
+      "id": "genesis-examples-examples-locomotion-go2-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9d78b33a90e8833be648c302a818f1b10ebfb632d0f5de5214f68bf1d714cb00",
+      "record_version": "source-9d78b33a90e8833be648c302a818f1b10ebfb632d0f5de5214f68bf1d714cb00"
+    },
+    {
+      "id": "genesis-examples-examples-manipulation-grasp-eval-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "72d1b127c47e32a316c92c1001f435d8207d404d7032ee37454ad0630aefdeb8",
+      "record_version": "source-72d1b127c47e32a316c92c1001f435d8207d404d7032ee37454ad0630aefdeb8"
+    },
+    {
+      "id": "genesis-examples-examples-manipulation-grasp-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6bcac06d5ca40391bda52d9cc0885d1149599225c74e08f9ed2c3babdf10e39a",
+      "record_version": "source-6bcac06d5ca40391bda52d9cc0885d1149599225c74e08f9ed2c3babdf10e39a"
+    },
+    {
+      "id": "genesis-examples-examples-rendering-demo-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8277658783fa82fca1a3fc1f250bb4c73ba9bb1664fc23813d8e28a8e19d75a8",
+      "record_version": "source-8277658783fa82fca1a3fc1f250bb4c73ba9bb1664fc23813d8e28a8e19d75a8"
+    },
+    {
+      "id": "genesis-examples-examples-rendering-follow-entity-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e4f7cf7c9cbed63882b9e1efbe8ba2fd11b61463e10bda504d1147309954c2bc",
+      "record_version": "source-e4f7cf7c9cbed63882b9e1efbe8ba2fd11b61463e10bda504d1147309954c2bc"
+    },
+    {
+      "id": "genesis-examples-examples-rendering-moving-camera-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "775a606c6cee6907cf50de5512a64f64e12db4c43273086c74b97d4f6f673baa",
+      "record_version": "source-775a606c6cee6907cf50de5512a64f64e12db4c43273086c74b97d4f6f673baa"
+    },
+    {
+      "id": "genesis-examples-examples-rendering-render-async-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c6e04592a295436e3f9b6add8b1ff39fbe136144640e82ac886dd3d4a5012f0a",
+      "record_version": "source-c6e04592a295436e3f9b6add8b1ff39fbe136144640e82ac886dd3d4a5012f0a"
+    },
+    {
+      "id": "genesis-examples-examples-rendering-speed-test-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3db2fb16a9f22581a162c238a90675cb01a61d6c8717def6f14c51cc00938ad7",
+      "record_version": "source-3db2fb16a9f22581a162c238a90675cb01a61d6c8717def6f14c51cc00938ad7"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-accelerometer-duck-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ecb2aa89113a10819729d3eb56bd47c722e906fca3c7a4c2c7e11e8db4bac5e2",
+      "record_version": "source-ecb2aa89113a10819729d3eb56bd47c722e906fca3c7a4c2c7e11e8db4bac5e2"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-accelerometer-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "caa5082801a70002af9c5c06b606372550c07f46f960cb148ed2b6d55a7cced4",
+      "record_version": "source-caa5082801a70002af9c5c06b606372550c07f46f960cb148ed2b6d55a7cced4"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-apply-external-wrench-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b384177bd4ea3f1d1227fc695f9ea95fd6d0ff94fa061e6f84118883403ec760",
+      "record_version": "source-b384177bd4ea3f1d1227fc695f9ea95fd6d0ff94fa061e6f84118883403ec760"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-authored-decomp-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "60847645b4026f96ee83bb874135c092f2d8136c9b19ae2f88a9699d68f71388",
+      "record_version": "source-60847645b4026f96ee83bb874135c092f2d8136c9b19ae2f88a9699d68f71388"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-bolt-nut-self-screw-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6827861b0d7f2ebde654b651980a32a57895e4de876af495bccf664535f2c02a",
+      "record_version": "source-6827861b0d7f2ebde654b651980a32a57895e4de876af495bccf664535f2c02a"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-closed-loop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6c6884d450fbb78c163d8b465c7e6bd6c772c4d4889f231559b330ba07fc5374",
+      "record_version": "source-6c6884d450fbb78c163d8b465c7e6bd6c772c4d4889f231559b330ba07fc5374"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-control-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4a17abd38dad0dfaee43a2a43450cf902487a21ddf3d2386873346e194924c2c",
+      "record_version": "source-4a17abd38dad0dfaee43a2a43450cf902487a21ddf3d2386873346e194924c2c"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-control-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c41c00526cd75f690ca4b6498e2c6402bb220cbf3c6118944417ab0a01b42d7b",
+      "record_version": "source-c41c00526cd75f690ca4b6498e2c6402bb220cbf3c6118944417ab0a01b42d7b"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-convex-decomposition-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "a3871e9e4f76c847b10e7d0077c554458746c93894d649aa71047eeb74a8b65d",
+      "record_version": "source-a3871e9e4f76c847b10e7d0077c554458746c93894d649aa71047eeb74a8b65d"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ddp-multi-gpu-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6a5f772d6b267d09aed3bc4c7c0661c7f22c7c86a7d07fb0d72499bedad72bdd",
+      "record_version": "source-6a5f772d6b267d09aed3bc4c7c0661c7f22c7c86a7d07fb0d72499bedad72bdd"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-diffik-controller-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "50296e0e981c7f8223ac1e62dbc700b8fec1344e3693887c3fb3a32df6397873",
+      "record_version": "source-50296e0e981c7f8223ac1e62dbc700b8fec1344e3693887c3fb3a32df6397873"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-domain-randomization-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b391488d8dc1ea3ec173aeb2c8717875085a791eb21000275f100a0e7680851a",
+      "record_version": "source-b391488d8dc1ea3ec173aeb2c8717875085a791eb21000275f100a0e7680851a"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-franka-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c3d4ec160f0fd9965ba000e96a4330619c2fe7a9090dd2a046f6a1e0ff251dc5",
+      "record_version": "source-c3d4ec160f0fd9965ba000e96a4330619c2fe7a9090dd2a046f6a1e0ff251dc5"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-friction-breakaway-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "16fe251e55502f3ce615de66276ba3d5d60a8b87f78ce8f39f2749e79dbf18c3",
+      "record_version": "source-16fe251e55502f3ce615de66276ba3d5d60a8b87f78ce8f39f2749e79dbf18c3"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-grasp-bottle-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "469cdb5020655f1c69472902ae96d8c13b14b24efa08b971545e58b0d2eafe8e",
+      "record_version": "source-469cdb5020655f1c69472902ae96d8c13b14b24efa08b971545e58b0d2eafe8e"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-gravity-compensation-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ecfe456fd3d76446481279e7e5e8bc2ca98f02d05907c26cdf4c3572e65aa67f",
+      "record_version": "source-ecfe456fd3d76446481279e7e5e8bc2ca98f02d05907c26cdf4c3572e65aa67f"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-heterogeneous-simulation-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8f32ae50bd451ae4ecf0f862e8c026ec61c17740e18a783bf17cc209a83c24d7",
+      "record_version": "source-8f32ae50bd451ae4ecf0f862e8c026ec61c17740e18a783bf17cc209a83c24d7"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-hibernation-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b35b3bfeb651b13e4c516bac88e70c3a91e779eafe860099f573cc2cea2a154c",
+      "record_version": "source-b35b3bfeb651b13e4c516bac88e70c3a91e779eafe860099f573cc2cea2a154c"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-custom-chain-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "36d4cc4a7bd607346a048710fab00353368eab7b30331f31942a317fe900d3be",
+      "record_version": "source-36d4cc4a7bd607346a048710fab00353368eab7b30331f31942a317fe900d3be"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-duck-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "721e337e63a7e95a0ec9e9ae507b2e9f6fcfd0722c2046a4d11421cd7315f96f",
+      "record_version": "source-721e337e63a7e95a0ec9e9ae507b2e9f6fcfd0722c2046a4d11421cd7315f96f"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-franka-batched-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "95fdc0990ed16cf9cb32bd8516306b936874e6ec793e6828369f836621fd4be8",
+      "record_version": "source-95fdc0990ed16cf9cb32bd8516306b936874e6ec793e6828369f836621fd4be8"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "aef185ae08966badb82858384377c5b88e4ca76af45f129004b0a046a7f9c541",
+      "record_version": "source-aef185ae08966badb82858384377c5b88e4ca76af45f129004b0a046a7f9c541"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-shadow-hand-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4f71e241a1eed3fb7e68e01a8c86824971958b9e1566f4c86d4a5da7fc6937d6",
+      "record_version": "source-4f71e241a1eed3fb7e68e01a8c86824971958b9e1566f4c86d4a5da7fc6937d6"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-merge-entities-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1e3f92e59bac19ed8c906333b998d7281d938995b388e8a81bda454c2f76c5b8",
+      "record_version": "source-1e3f92e59bac19ed8c906333b998d7281d938995b388e8a81bda454c2f76c5b8"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-multi-gpu-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "531bb772ac723a5bf49cca5dab6e80c1bb5b94c9250ea148a62e75879663a5e6",
+      "record_version": "source-531bb772ac723a5bf49cca5dab6e80c1bb5b94c9250ea148a62e75879663a5e6"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-nonconvex-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8a93536c1b31bdcabf0f82768a45e0951ee37dd1d3f21cbbf4caec053004d56a",
+      "record_version": "source-8a93536c1b31bdcabf0f82768a45e0951ee37dd1d3f21cbbf4caec053004d56a"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-rolling-coast-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4eb17cfecc1685feff34fe76f74d0f23bb16cecfbda74ad5252a2a7d59f013e7",
+      "record_version": "source-4eb17cfecc1685feff34fe76f74d0f23bb16cecfbda74ad5252a2a7d59f013e7"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-set-phys-attr-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3937367fd615c15aaa5e6baf7e0303659e1ce34afdbb52398703dd4f4a8c5823",
+      "record_version": "source-3937367fd615c15aaa5e6baf7e0303659e1ce34afdbb52398703dd4f4a8c5823"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-single-franka-batch-render-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d8c7d0bdb577af9ec27ef784491a9997930f9c287b70133b1d80ed3a252dc699",
+      "record_version": "source-d8c7d0bdb577af9ec27ef784491a9997930f9c287b70133b1d80ed3a252dc699"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-single-franka-envs-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "7408acaf6a2ba16fc191af94c26b919f4b8be9e487ff4a28163c815e4e4a97ba",
+      "record_version": "source-7408acaf6a2ba16fc191af94c26b919f4b8be9e487ff4a28163c815e4e4a97ba"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-single-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2f25f50556bce9b29839c67e9c388f92561fb9c855490ac9a9ebf193d1621b98",
+      "record_version": "source-2f25f50556bce9b29839c67e9c388f92561fb9c855490ac9a9ebf193d1621b98"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-suction-cup-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "04ba45d90afe3f2a3a6136aea618ab32cebec8fec993aad39e72bb53e94cb8e9",
+      "record_version": "source-04ba45d90afe3f2a3a6136aea618ab32cebec8fec993aad39e72bb53e94cb8e9"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-terrain-from-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d0fd6fadffd52995c1b181462a5a2aed29654569323670d4b8556ff8f5c0d53a",
+      "record_version": "source-d0fd6fadffd52995c1b181462a5a2aed29654569323670d4b8556ff8f5c0d53a"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-terrain-height-field-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5d629ef34f999aa17b089ed46f2b1700caae54476be5658d25c570a6ac9592f0",
+      "record_version": "source-5d629ef34f999aa17b089ed46f2b1700caae54476be5658d25c570a6ac9592f0"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-terrain-subterrain-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0159b74e2113693138dd2a92582f1ecc8f25e7b29fd85c8f22949607a935d75a",
+      "record_version": "source-0159b74e2113693138dd2a92582f1ecc8f25e7b29fd85c8f22949607a935d75a"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-torsional-grasp-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "94d4fa7660287cc6ec35e0843c13bdec526bafaf7e5d7b63e0a8eb4310742f22",
+      "record_version": "source-94d4fa7660287cc6ec35e0843c13bdec526bafaf7e5d7b63e0a8eb4310742f22"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-wrecking-ball-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "662f14144d26fed65be848b0a856312029a901d75a27cf2f05bc9e7875af3a34",
+      "record_version": "source-662f14144d26fed65be848b0a856312029a901d75a27cf2f05bc9e7875af3a34"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-fem-fixed-constraint-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f474fddc7be4777ae6cf617bdb0ecc03d2ec0b3cf45f2083ec83581c84326bfc",
+      "record_version": "source-f474fddc7be4777ae6cf617bdb0ecc03d2ec0b3cf45f2083ec83581c84326bfc"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-fem-sphere-and-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d0df939d8a1cc57225f5a373fe48791a2f5990e0ba2f417f92add8c772c5a0a0",
+      "record_version": "source-d0df939d8a1cc57225f5a373fe48791a2f5990e0ba2f417f92add8c772c5a0a0"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-franka-grasp-fem-sphere-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "bf1bbf05df5337978e12dfa68054ed233a670e77ad1013231c22ad73e025f53e",
+      "record_version": "source-bf1bbf05df5337978e12dfa68054ed233a670e77ad1013231c22ad73e025f53e"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-franka-grasp-rigid-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2c62983242da53202b49ef023e7d6d97dd34c18853fc3ec740ee241058aa9b02",
+      "record_version": "source-2c62983242da53202b49ef023e7d6d97dd34c18853fc3ec740ee241058aa9b02"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-camera-as-sensor-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0b5e1aed3ae251e444571bad59cc0e2fa8d0f5874e9520156debf4ef09ddd626",
+      "record_version": "source-0b5e1aed3ae251e444571bad59cc0e2fa8d0f5874e9520156debf4ef09ddd626"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-contact-force-go2-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c9a43a13a9328e8ee1b4b6e436a3680a16cf5d87120354f12ba5fd53a65887b5",
+      "record_version": "source-c9a43a13a9328e8ee1b4b6e436a3680a16cf5d87120354f12ba5fd53a65887b5"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-depth-camera-custom-vverts-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "19d69346661c832fe26466bda374556b9d3c6d0bf531f3ccba5a4bfe5871e363",
+      "record_version": "source-19d69346661c832fe26466bda374556b9d3c6d0bf531f3ccba5a4bfe5871e363"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-imu-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d27b5ef5a7f03301dbfc3e24fc002d53f8347a4479ff06b8da292d165d74a53f",
+      "record_version": "source-d27b5ef5a7f03301dbfc3e24fc002d53f8347a4479ff06b8da292d165d74a53f"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-joint-torque-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4dd0ae0545f7aa5987787699c4360612aa5bf40615ad0f2193ca6c156e8aab20",
+      "record_version": "source-4dd0ae0545f7aa5987787699c4360612aa5bf40615ad0f2193ca6c156e8aab20"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-lidar-teleop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b06bdb57c446e8c66ad0b4b5378e247ca37e50d4909efd6bfa656fc6518f65bc",
+      "record_version": "source-b06bdb57c446e8c66ad0b4b5378e247ca37e50d4909efd6bfa656fc6518f65bc"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-surface-distance-shadowhand-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "04f3b6cbb4a8511cb55b2b922acd4746e5116cc153ae69f62e5d7e2e2996cb92",
+      "record_version": "source-04f3b6cbb4a8511cb55b2b922acd4746e5116cc153ae69f62e5d7e2e2996cb92"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-tactile-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "973ca2cf0682c49c7328c6ff2184a8e3cf5d1cdd2f28de8eb2e6364b685e999b",
+      "record_version": "source-973ca2cf0682c49c7328c6ff2184a8e3cf5d1cdd2f28de8eb2e6364b685e999b"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-tactile-sandbox-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b983516ddf3dcd3d2202089c16543651a869e59cb577987ddba0989def042126",
+      "record_version": "source-b983516ddf3dcd3d2202089c16543651a869e59cb577987ddba0989def042126"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-temperature-grid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ccb0a5f582eb1ccce0b737a1dcc2b7d657a3208397083ab618555e05b683d238",
+      "record_version": "source-ccb0a5f582eb1ccce0b737a1dcc2b7d657a3208397083ab618555e05b683d238"
+    },
+    {
+      "id": "genesis-examples-examples-speed-benchmark-anymal-c-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9f5827875faf049b465b397494eef36ce48dac1193778f81b5a972c34c5de0ec",
+      "record_version": "source-9f5827875faf049b465b397494eef36ce48dac1193778f81b5a972c34c5de0ec"
+    },
+    {
+      "id": "genesis-examples-examples-speed-benchmark-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5945159066fcba12617c05129fa3ed91bd1374aefd33ee99387bae2a20ba1eb0",
+      "record_version": "source-5945159066fcba12617c05129fa3ed91bd1374aefd33ee99387bae2a20ba1eb0"
+    },
+    {
+      "id": "genesis-examples-examples-speed-benchmark-timers-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5c807bb683c0f163bfd91b4da4d811e63d6cb9f9e06734903f915167eed4d405",
+      "record_version": "source-5c807bb683c0f163bfd91b4da4d811e63d6cb9f9e06734903f915167eed4d405"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-hybrid-robot-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "cab840be6da86966222882c076d47cfec5ce6c055f18b5a39fa97a87f96dce28",
+      "record_version": "source-cab840be6da86966222882c076d47cfec5ce6c055f18b5a39fa97a87f96dce28"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-ik-multilink-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c829e594c370fbfd84095921461d39d9a62c2598b3538b3e67fe319490c2e8ea",
+      "record_version": "source-c829e594c370fbfd84095921461d39d9a62c2598b3538b3e67fe319490c2e8ea"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-muscle-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "87b67135516e5c56ccd3c288bd68099b51a15da34477e38557925d3ed36db2c1",
+      "record_version": "source-87b67135516e5c56ccd3c288bd68099b51a15da34477e38557925d3ed36db2c1"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-worm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c3a9ce45a6445887db33c39df1f60317169fcdab55b4661c31aebfbf148817c8",
+      "record_version": "source-c3a9ce45a6445887db33c39df1f60317169fcdab55b4661c31aebfbf148817c8"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-batched-ik-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1be0279cd56936c99f6169970022fd0453cf0a5a737da4124ed81ffb25bcd8d9",
+      "record_version": "source-1be0279cd56936c99f6169970022fd0453cf0a5a737da4124ed81ffb25bcd8d9"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-control-your-robot-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c00db8d5629c4f583db922a8870862d5aa4047feb24ed2f32973ad8bec57f2bb",
+      "record_version": "source-c00db8d5629c4f583db922a8870862d5aa4047feb24ed2f32973ad8bec57f2bb"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-draw-debug-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "896191d0e9db89b5e6b1ed04af4eee681ac307312904c19258b975348b6d0975",
+      "record_version": "source-896191d0e9db89b5e6b1ed04af4eee681ac307312904c19258b975348b6d0975"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-entity-name-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c1c59a05cf7c8822bc9ad092c3bce88bef1dacb16f8c1d7c086cbdd2fe05c69d",
+      "record_version": "source-c1c59a05cf7c8822bc9ad092c3bce88bef1dacb16f8c1d7c086cbdd2fe05c69d"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-hello-genesis-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c134f0f6a2ae78daa15c0e246c49da48507346bb6f575c8d40c60439b911b243",
+      "record_version": "source-c134f0f6a2ae78daa15c0e246c49da48507346bb6f575c8d40c60439b911b243"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-interactive-debugging-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "78dd465e5a7c28e0d573fc32bff8c560289fae4bfbee6e57a74f3e632d7c88f9",
+      "record_version": "source-78dd465e5a7c28e0d573fc32bff8c560289fae4bfbee6e57a74f3e632d7c88f9"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-mpm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0ccf31723cbc8561270b48cca85bd4ebf52c0305d88c5f99a418b6cf82d50168",
+      "record_version": "source-0ccf31723cbc8561270b48cca85bd4ebf52c0305d88c5f99a418b6cf82d50168"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-parallel-simulation-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c9078d87c944b1b8124a9de54015e7200d5e8a34cbf013c6659ad56d11c8d2da",
+      "record_version": "source-c9078d87c944b1b8124a9de54015e7200d5e8a34cbf013c6659ad56d11c8d2da"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-pbd-cloth-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "96a3c08611a05b397c501c00cef65fe6b576d5bff634dd229ffac83a2cfdc374",
+      "record_version": "source-96a3c08611a05b397c501c00cef65fe6b576d5bff634dd229ffac83a2cfdc374"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-position-control-comparison-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e638576fdfee13ccb3c3d61e025a52a95e58786bf00a70577cfe3d6af2746e5b",
+      "record_version": "source-e638576fdfee13ccb3c3d61e025a52a95e58786bf00a70577cfe3d6af2746e5b"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-selecting-rendered-envs-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "db5a7eda09f8e5fa353c4d9ae69fd28445ef90d9baecf67b2a925368b8baa73e",
+      "record_version": "source-db5a7eda09f8e5fa353c4d9ae69fd28445ef90d9baecf67b2a925368b8baa73e"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-sph-liquid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8331d8b6f2805b8c79d8cc40f0bd4fae985993cf60b623c10fc52474ee65a502",
+      "record_version": "source-8331d8b6f2805b8c79d8cc40f0bd4fae985993cf60b623c10fc52474ee65a502"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-visualization-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "484f5a4433b0d7f9455a5d0934a9c238a525f34aa24137be180b7d70225e6935",
+      "record_version": "source-484f5a4433b0d7f9455a5d0934a9c238a525f34aa24137be180b7d70225e6935"
+    },
+    {
+      "id": "genesis-examples-examples-usd-import-stage-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8a20051c1ffc08db963d1d3b77a821d2906053b1db8cd95dd59ce3468c5ac457",
+      "record_version": "source-8a20051c1ffc08db963d1d3b77a821d2906053b1db8cd95dd59ce3468c5ac457"
+    },
+    {
+      "id": "genesis-examples-examples-usd-kitchen-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "70af70ecb2510281b590fbecdd5079e832a82d8911e69225358b15b3c32f0403",
+      "record_version": "source-70af70ecb2510281b590fbecdd5079e832a82d8911e69225358b15b3c32f0403"
+    },
+    {
+      "id": "genesis-examples-examples-viewer-plugin-keyboard-teleop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e618c87d5f6633a1c377d3cb8a7a04e2ddb45cce00d52faebd3d4c1dd9dfef4f",
+      "record_version": "source-e618c87d5f6633a1c377d3cb8a7a04e2ddb45cce00d52faebd3d4c1dd9dfef4f"
+    },
+    {
+      "id": "genesis-examples-examples-viewer-plugin-mesh-point-selector-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "715c52f1b589f7895e0236d610b0632cb1ca488e13662bf439891fd0df7081cc",
+      "record_version": "source-715c52f1b589f7895e0236d610b0632cb1ca488e13662bf439891fd0df7081cc"
+    },
+    {
+      "id": "genesis-examples-examples-viewer-plugin-mouse-interaction-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "131d67c46ea2c863a8376d7c5c0c466436ead29b4d23550b6157e63989e6ab91",
+      "record_version": "source-131d67c46ea2c863a8376d7c5c0c466436ead29b4d23550b6157e63989e6ab91"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-beta-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "5dcb8442fe220a823b76229eb34125e3fcade67a4096a5188f4363054e718358",
+      "record_version": "source-5dcb8442fe220a823b76229eb34125e3fcade67a4096a5188f4363054e718358"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-debug-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "cb8cc81ed353791bef2aa755e68acf6b28822ece684a173499f7b53ceeb7e860",
+      "record_version": "source-cb8cc81ed353791bef2aa755e68acf6b28822ece684a173499f7b53ceeb7e860"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-downwash-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "1ca8f88dc23584fc35c350c4f5330baaf8791f8ef88148d56735eb566e6d1f98",
+      "record_version": "source-1ca8f88dc23584fc35c350c4f5330baaf8791f8ef88148d56735eb566e6d1f98"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-learn-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "995fdbaf24d64124bd98b5ba5cfbe939dc3e9b507729fe87be5a167a1cdbb544",
+      "record_version": "source-995fdbaf24d64124bd98b5ba5cfbe939dc3e9b507729fe87be5a167a1cdbb544"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-mrac-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "d88f6f6a0441119ef54db32c355bf59205271dabc5359c96184ca43cd6002cb2",
+      "record_version": "source-d88f6f6a0441119ef54db32c355bf59205271dabc5359c96184ca43cd6002cb2"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-pid-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "2bcc67e4b6b3adda71536739d69a73bf1a054a8cf80e66b067ef89dc5f4cbb02",
+      "record_version": "source-2bcc67e4b6b3adda71536739d69a73bf1a054a8cf80e66b067ef89dc5f4cbb02"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-pid-velocity-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "219feef51d921594148d75fc95f4f70209a235e11ffaecdf7173507697c5fb6a",
+      "record_version": "source-219feef51d921594148d75fc95f4f70209a235e11ffaecdf7173507697c5fb6a"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-play-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "2eff07950e8289f0182e9d30f5997664c171bb5ddc2f851f2c7a3e0a5f0ce576",
+      "record_version": "source-2eff07950e8289f0182e9d30f5997664c171bb5ddc2f851f2c7a3e0a5f0ce576"
+    },
+    {
+      "id": "habitat-lab-examples-benchmark-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b30b81c7fe3832b30f2b7b5b98442e4fe2d2c73001c2adf63ae34ea83dc84e6c",
+      "record_version": "source-b30b81c7fe3832b30f2b7b5b98442e4fe2d2c73001c2adf63ae34ea83dc84e6c"
+    },
+    {
+      "id": "habitat-lab-examples-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b4c118beecac9cce705763f050cea4206447622a438875e333c17748bc53cf02",
+      "record_version": "source-b4c118beecac9cce705763f050cea4206447622a438875e333c17748bc53cf02"
+    },
+    {
+      "id": "habitat-lab-examples-franka-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "d098490925006c5fc07033d0804f9edaa8b4df84f809eff551afd2bf56d43ac5",
+      "record_version": "source-d098490925006c5fc07033d0804f9edaa8b4df84f809eff551afd2bf56d43ac5"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-basic-viewer-basic-viewer-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "e58585c82f094992f489fb1d2639de277122084848127ac6ea0912eb63656e94",
+      "record_version": "source-e58585c82f094992f489fb1d2639de277122084848127ac6ea0912eb63656e94"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-experimental-xr-reader-xr-reader-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "1c8720306b20cefee04791dddfd329765514bd108bd2a13b543834962d39575d",
+      "record_version": "source-1c8720306b20cefee04791dddfd329765514bd108bd2a13b543834962d39575d"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-minimal-minimal-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "007fdb8e3e5ad04fbf87d5199092373fc6ad880d433785144a6d43831f8b81d2",
+      "record_version": "source-007fdb8e3e5ad04fbf87d5199092373fc6ad880d433785144a6d43831f8b81d2"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-pick-throw-vr-pick-throw-vr-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "9cf7e59b75983b6c286bb7696773a3fb09f735a63ef75f044d11ce3598e8ed3b",
+      "record_version": "source-9cf7e59b75983b6c286bb7696773a3fb09f735a63ef75f044d11ce3598e8ed3b"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-rearrange-rearrange-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "1870a4c74b88e1846dc9893f954293d4f997e2cb6932ba56b96da7195be9ff8f",
+      "record_version": "source-1870a4c74b88e1846dc9893f954293d4f997e2cb6932ba56b96da7195be9ff8f"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-rearrange-v2-main-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "380540556f5979e0502c73f6c87447949ad99d1d7bf5810c89ddbd3b4f1c2e95",
+      "record_version": "source-380540556f5979e0502c73f6c87447949ad99d1d7bf5810c89ddbd3b4f1c2e95"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-sim-viewer-sim-viewer-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "f26e6435e7e9b76c9afad744e153a6fc4ff4eab856de18c72c19305cae662507",
+      "record_version": "source-f26e6435e7e9b76c9afad744e153a6fc4ff4eab856de18c72c19305cae662507"
+    },
+    {
+      "id": "habitat-lab-examples-interactive-play-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "bac164988f5637dfebfb5b819721731408bec6ebd2a3af02c52f743cc291e62c",
+      "record_version": "source-bac164988f5637dfebfb5b819721731408bec6ebd2a3af02c52f743cc291e62c"
+    },
+    {
+      "id": "habitat-lab-examples-new-actions-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "4d6a6bb49613c4abca36ddade4e6b93c45d830dd93a96125b7128c4b77bb8e9d",
+      "record_version": "source-4d6a6bb49613c4abca36ddade4e6b93c45d830dd93a96125b7128c4b77bb8e9d"
+    },
+    {
+      "id": "habitat-lab-examples-register-new-sensors-and-measures-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "08229de72f4a4ece2db9d4b1e34c913eb861a2123fbb40860ee3b901c7da77b9",
+      "record_version": "source-08229de72f4a4ece2db9d4b1e34c913eb861a2123fbb40860ee3b901c7da77b9"
+    },
+    {
+      "id": "habitat-lab-examples-shortest-path-follower-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "2968696079f91f1ea44ab0068644d33e5180274a3c70fc670120905118115520",
+      "record_version": "source-2968696079f91f1ea44ab0068644d33e5180274a3c70fc670120905118115520"
+    },
+    {
+      "id": "habitat-lab-examples-tutorials-nb-python-habitat-lab-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b7f7efe9b6233f082cdf3f403f533254ce0868f4f2edb0fac743d9bddf88e97d",
+      "record_version": "source-b7f7efe9b6233f082cdf3f403f533254ce0868f4f2edb0fac743d9bddf88e97d"
+    },
+    {
+      "id": "habitat-lab-examples-tutorials-nb-python-habitat-lab-topdownmap-visualization-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "7358eac579a348fe70092e722c1d54af478d1ca185a7068b4fc20ea5ebabd5ca",
+      "record_version": "source-7358eac579a348fe70092e722c1d54af478d1ca185a7068b4fc20ea5ebabd5ca"
+    },
+    {
+      "id": "habitat-lab-examples-vln-benchmark-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "081861ae9b9da2cca1857ea3307cdf2d06741dd15d8a2dd7b802e6d21e67ec56",
+      "record_version": "source-081861ae9b9da2cca1857ea3307cdf2d06741dd15d8a2dd7b802e6d21e67ec56"
+    },
+    {
+      "id": "habitat-lab-examples-vln-reference-path-follower-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b179cb9275690e1ffc0b77e1023b39658cb4cd15f2d6419ddbe84682594fc4bc",
+      "record_version": "source-b179cb9275690e1ffc0b77e1023b39658cb4cd15f2d6419ddbe84682594fc4bc"
+    },
+    {
+      "id": "home-robot-examples-1-hw-basic-control-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "3a3a9372255c250e0d2c853c2f65b3416e7b3d674f8e6c6252c0214e948a2bce",
+      "record_version": "source-3a3a9372255c250e0d2c853c2f65b3416e7b3d674f8e6c6252c0214e948a2bce"
+    },
+    {
+      "id": "home-robot-examples-2-hw-async-actions-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "eb5f71d63360836909b73b315310d3bd7d6c89e9337180cfbd6ad0c9c4183761",
+      "record_version": "source-eb5f71d63360836909b73b315310d3bd7d6c89e9337180cfbd6ad0c9c4183761"
+    },
+    {
+      "id": "home-robot-projects-data-collection-collect-h5-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "2f9a61fd4cb5953fe8c3129a8bf780f6976e90971f49189d2a0ccd96f5912a80",
+      "record_version": "source-2f9a61fd4cb5953fe8c3129a8bf780f6976e90971f49189d2a0ccd96f5912a80"
+    },
+    {
+      "id": "home-robot-projects-data-collection-tutorial-h5-dataloader-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "0732d5bde6051ec246736fc8654b768b59894153ea479adc320ced19a1a9522d",
+      "record_version": "source-0732d5bde6051ec246736fc8654b768b59894153ea479adc320ced19a1a9522d"
+    },
+    {
+      "id": "home-robot-projects-habitat-objectnav-eval-dataset-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "2b240eff823131d010cf4f0906ac7e418f915cd40d10c6bf59edeedf1ba54598",
+      "record_version": "source-2b240eff823131d010cf4f0906ac7e418f915cd40d10c6bf59edeedf1ba54598"
+    },
+    {
+      "id": "home-robot-projects-habitat-objectnav-eval-episode-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "9257c97438616a46806ffb3520b7d06940250ef90dc7dfb923eed58288facc91",
+      "record_version": "source-9257c97438616a46806ffb3520b7d06940250ef90dc7dfb923eed58288facc91"
+    },
+    {
+      "id": "home-robot-projects-habitat-objectnav-files-to-adapt-eval-vectorized-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "9893c861c5fcf1f9b7f55465453cb47b68864d7e7ea42fc94784bb810aa40968",
+      "record_version": "source-9893c861c5fcf1f9b7f55465453cb47b68864d7e7ea42fc94784bb810aa40968"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-eval-baselines-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "6c13f7323ae63f7b57e4c0a545e58a56370b4dd8338662087448fd56e6109f48",
+      "record_version": "source-6c13f7323ae63f7b57e4c0a545e58a56370b4dd8338662087448fd56e6109f48"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-eval-robot-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "2215064cafc1c070f148d185871d5fd1f824c6f2df91d810313abaf21e81f18e",
+      "record_version": "source-2215064cafc1c070f148d185871d5fd1f824c6f2df91d810313abaf21e81f18e"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-receptacles-data-collection-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "4b5e2ddc8741d736c1c0240088fae7a41b113152cbb39d8399df0eb4d1c7d58c",
+      "record_version": "source-4b5e2ddc8741d736c1c0240088fae7a41b113152cbb39d8399df0eb4d1c7d58c"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-scripts-gen-configs-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "530726bed56661c643289900d7e755f658d5834f7bd111593989efa80ff6ebe2",
+      "record_version": "source-530726bed56661c643289900d7e755f658d5834f7bd111593989efa80ff6ebe2"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-scripts-summarize-metrics-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "367216f123fb8e4e2c9f6124f8ed708c90b4cc7a2111dffaad187652019d7802",
+      "record_version": "source-367216f123fb8e4e2c9f6124f8ed708c90b4cc7a2111dffaad187652019d7802"
+    },
+    {
+      "id": "home-robot-projects-instanceimagenav-eval-episode-habitat-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "884484c9b39131f71ca5a9d39f149efe9c01b4c541509c8022e9f2b1480e951a",
+      "record_version": "source-884484c9b39131f71ca5a9d39f149efe9c01b4c541509c8022e9f2b1480e951a"
+    },
+    {
+      "id": "home-robot-projects-instanceimagenav-eval-episode-stretch-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "366d733f996d84346a3193d837c3833c90b6018e8add65e7b0ef4db96645a088",
+      "record_version": "source-366d733f996d84346a3193d837c3833c90b6018e8add65e7b0ef4db96645a088"
+    },
+    {
+      "id": "home-robot-projects-offline-mapping-build-map-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "f30d65529768b4b6a6ba3988604a44dad0276d85232d7a1815e8c697fc27ec39",
+      "record_version": "source-f30d65529768b4b6a6ba3988604a44dad0276d85232d7a1815e8c697fc27ec39"
+    },
+    {
+      "id": "home-robot-projects-real-world-ovmm-eval-episode-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "1599a89dc61ca04ec4d0a24137f02caefa2303f045ac9759e141ede53ccf9641",
+      "record_version": "source-1599a89dc61ca04ec4d0a24137f02caefa2303f045ac9759e141ede53ccf9641"
+    },
+    {
+      "id": "home-robot-projects-real-world-ovmm-experimental-execute-trajectory-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "b4434863724ced368590afb3754394c737653cba3acadfc71d60045f46c95f3b",
+      "record_version": "source-b4434863724ced368590afb3754394c737653cba3acadfc71d60045f46c95f3b"
+    },
+    {
+      "id": "home-robot-projects-real-world-ovmm-experimental-mapping-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "9b4924ae72eac0299a03ecc8a168ec4548597cba0d72c0ba1dfcf3a509ddd7de",
+      "record_version": "source-9b4924ae72eac0299a03ecc8a168ec4548597cba0d72c0ba1dfcf3a509ddd7de"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-create-instance-map-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "65f27d47f63b790c656f324e193f2a262dcf4d6db027b973142c9bdd1a235894",
+      "record_version": "source-65f27d47f63b790c656f324e193f2a262dcf4d6db027b973142c9bdd1a235894"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-components-directory-watcher-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "0a186029e201dce27ba3156642be35925ae6c520cc143eb0842e0222ef35f601",
+      "record_version": "source-0a186029e201dce27ba3156642be35925ae6c520cc143eb0842e0222ef35f601"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-components-publisher-server-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8eb273ebc86404eea5d68d566a375a0ebede1067b4f628a673c50a8432759432",
+      "record_version": "source-8eb273ebc86404eea5d68d566a375a0ebede1067b4f628a673c50a8432759432"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-proto-robot-mock-publisher-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "85120cde5e756e194cf9e084d830f489febc9391bba840292b0aa1911da88423",
+      "record_version": "source-85120cde5e756e194cf9e084d830f489febc9391bba840292b0aa1911da88423"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-proto-robot-robodata-server-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "667882658e92f469b179796f53be9fb02f86e367ba59b55a77ef54954ab32866",
+      "record_version": "source-667882658e92f469b179796f53be9fb02f86e367ba59b55a77ef54954ab32866"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-publishers-canned-rob-9e768d28e531",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "200023ff32fad0dbbe85a9aa70ee90f31960778ce10cb12772c77656a1caf810",
+      "record_version": "source-200023ff32fad0dbbe85a9aa70ee90f31960778ce10cb12772c77656a1caf810"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-publishers-scannet-publisher-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "5c5ae2a86d1590130d83607d6b39152e4529058085d3abf83d7912486040b138",
+      "record_version": "source-5c5ae2a86d1590130d83607d6b39152e4529058085d3abf83d7912486040b138"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-server-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "d2f9fd2db76cbeb1a7dee2dd8e43ddfb720279356941e580de63bc1adf81cbf6",
+      "record_version": "source-d2f9fd2db76cbeb1a7dee2dd8e43ddfb720279356941e580de63bc1adf81cbf6"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-eval-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "d3cd16cf63f2b9e7954cb3cf3075b40310c573d77d9e2c6cde24f6807d5bb893",
+      "record_version": "source-d3cd16cf63f2b9e7954cb3cf3075b40310c573d77d9e2c6cde24f6807d5bb893"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-extract-scannet-frames-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "25604acd3195b51a00fd0a440fee1a8130da1812792edad8044a7d2eecae04e2",
+      "record_version": "source-25604acd3195b51a00fd0a440fee1a8130da1812792edad8044a7d2eecae04e2"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-add-detic-features-to-h5-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "24c314908224bddbe4032c57da1beddbfcdc4b9d10bd002540105aa4d08ebd34",
+      "record_version": "source-24c314908224bddbe4032c57da1beddbfcdc4b9d10bd002540105aa4d08ebd34"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-edit-demonstrations-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "50ef48abbf38fc8a97aaea42726b836e449f7ae84cc7e60c12e8329b55e57502",
+      "record_version": "source-50ef48abbf38fc8a97aaea42726b836e449f7ae84cc7e60c12e8329b55e57502"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-eval-lang-slap-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "d8ab8301afe00eb671d5c3073b81ada9fbd43fb7833fd1c845df6c585c8cefee",
+      "record_version": "source-d8ab8301afe00eb671d5c3073b81ada9fbd43fb7833fd1c845df6c585c8cefee"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-eval-peract-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "3a9bcc3f59bd5e17b4bcb300c01b3814e720c5c75073a64e8a012e0015333c2b",
+      "record_version": "source-3a9bcc3f59bd5e17b4bcb300c01b3814e720c5c75073a64e8a012e0015333c2b"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-label-demo-status-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "cb6e54d468a7970bb5dd3cae8362b01a02e79bd5f236d90deb684dba75f9c7ce",
+      "record_version": "source-cb6e54d468a7970bb5dd3cae8362b01a02e79bd5f236d90deb684dba75f9c7ce"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-label-interaction-points-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "3f990edf4e4cc6c8d3db9e0461e0440eb2059742d20a59718a75c6d1d0a5f9a0",
+      "record_version": "source-3f990edf4e4cc6c8d3db9e0461e0440eb2059742d20a59718a75c6d1d0a5f9a0"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-read-h5s-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "788e4062bd60b88f46ade459947d1a0079d07e2fab7102caed62848b79bc260d",
+      "record_version": "source-788e4062bd60b88f46ade459947d1a0079d07e2fab7102caed62848b79bc260d"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-rename-task-names-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8cc1eae38dccae841d08ea3ad955f454161b9cc89813e9cb598780ba44f08304",
+      "record_version": "source-8cc1eae38dccae841d08ea3ad955f454161b9cc89813e9cb598780ba44f08304"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-visualize-episodes-h5-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "79a24218617794010cdf4707569b74afffba1ce44bd181addb41d7ca8b049e43",
+      "record_version": "source-79a24218617794010cdf4707569b74afffba1ce44bd181addb41d7ca8b049e43"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-461f451ec208",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "47328f6be8eb44b3a41d8b46fc1a3ebb7d2b6404fdb2c8df696f5f7888e7247b",
+      "record_version": "source-47328f6be8eb44b3a41d8b46fc1a3ebb7d2b6404fdb2c8df696f5f7888e7247b"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-8c705d712f30",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "1745046f52a1b214b5bfa4e9712be2de0cecb4f554ea1a6bed6783864de24795",
+      "record_version": "source-1745046f52a1b214b5bfa4e9712be2de0cecb4f554ea1a6bed6783864de24795"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-95cbee6a65f1",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "802d70b66779f277fad611c8702ab6be63d1fc1dc83162d31733419038a04544",
+      "record_version": "source-802d70b66779f277fad611c8702ab6be63d1fc1dc83162d31733419038a04544"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-d18b3432d9ed",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "21ab4c8ec8fe01fa745ce580f2596a993ac702c5cfe722055f14f4f5412946b1",
+      "record_version": "source-21ab4c8ec8fe01fa745ce580f2596a993ac702c5cfe722055f14f4f5412946b1"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-1e32a1970eed",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "853f19b223522e3143e0e5166f2f3285bdd255605ee99f2c473a660b07decd1e",
+      "record_version": "source-853f19b223522e3143e0e5166f2f3285bdd255605ee99f2c473a660b07decd1e"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-9092994cee7c",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "ae4df1e8f54be4e7066ccac20e05439cba20cd27895b91792b5635348deb5bc2",
+      "record_version": "source-ae4df1e8f54be4e7066ccac20e05439cba20cd27895b91792b5635348deb5bc2"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-peract-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8e864aab6f5998fcc3775a824ebac08f9c9296b020323fd8c9797628eb127a33",
+      "record_version": "source-8e864aab6f5998fcc3775a824ebac08f9c9296b020323fd8c9797628eb127a33"
+    },
+    {
+      "id": "home-robot-projects-stretch-continual-stretch-continual-envs-stretc-977136d63fe1",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8017716a8e0c3309c11b0851f5aa49d5bb4551ad92f1c33c9aacdcdef8bb1234",
+      "record_version": "source-8017716a8e0c3309c11b0851f5aa49d5bb4551ad92f1c33c9aacdcdef8bb1234"
+    },
+    {
+      "id": "home-robot-projects-stretch-exploration-eval-episode-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "a3e388321078b82940d845c110281ba1c7a99ce653add293ed68580d7091f7f5",
+      "record_version": "source-a3e388321078b82940d845c110281ba1c7a99ce653add293ed68580d7091f7f5"
+    },
+    {
+      "id": "home-robot-projects-stretch-objectnav-eval-episode-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "e0b2dc6aa4ffb8e93fa50590555dcdd6439757163dd020f2e63dd7899e48a6f7",
+      "record_version": "source-e0b2dc6aa4ffb8e93fa50590555dcdd6439757163dd020f2e63dd7899e48a6f7"
+    },
+    {
+      "id": "home-robot-projects-stretch-objectnav-rotate-in-place-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "bc5c0c0ae4155db00f3a3a58ec4ca4d85ca9a6ebe64812ec0d87240e825a5ef1",
+      "record_version": "source-bc5c0c0ae4155db00f3a3a58ec4ca4d85ca9a6ebe64812ec0d87240e825a5ef1"
     },
     {
       "id": "isaac-groot-examples-droid-main-gr00t-py",
@@ -2064,6 +4140,510 @@
       "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
       "source_sha256": "7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657",
       "record_version": "source-7be5ac47a0244c16ead1ddb73c718a2a5763eb8cf8376264d1de5aeb09c13657"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-assembly-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "b982ef752f38723c7be3dad7a8fffac8c1349afb70acb9d7646003e0b4cef5fc",
+      "record_version": "source-b982ef752f38723c7be3dad7a8fffac8c1349afb70acb9d7646003e0b4cef5fc"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-basketball-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "9fe9dd9e12225d172f115b8fa70739297f213ad186a5f344317cdc2c954f9598",
+      "record_version": "source-9fe9dd9e12225d172f115b8fa70739297f213ad186a5f344317cdc2c954f9598"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-bin-picking-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "cb71b6e075538de7a03c41b5e3dad755b3ea743f30c46fb3b3b4d24c9f5d3aa4",
+      "record_version": "source-cb71b6e075538de7a03c41b5e3dad755b3ea743f30c46fb3b3b4d24c9f5d3aa4"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-box-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "20f4a23336630eca958045223b9eafca75689e6701be6c13717a7d325ad6f931",
+      "record_version": "source-20f4a23336630eca958045223b9eafca75689e6701be6c13717a7d325ad6f931"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-button-press-topdown-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "965fefd5c8ffbb5b8d4098d08b36a2e31725bd1b200e2a9907ca05854252d361",
+      "record_version": "source-965fefd5c8ffbb5b8d4098d08b36a2e31725bd1b200e2a9907ca05854252d361"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-button-press-topdown-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "95a6ebb11724c29dd19e1a9a93953372e27ed1b3a9c7bac46e3a190691d9243b",
+      "record_version": "source-95a6ebb11724c29dd19e1a9a93953372e27ed1b3a9c7bac46e3a190691d9243b"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-button-press-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "00a1fb01dbaa60330fd170dfd423222f0029451fe28f92f7684fac7eb0e03802",
+      "record_version": "source-00a1fb01dbaa60330fd170dfd423222f0029451fe28f92f7684fac7eb0e03802"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-button-press-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "dc3fe6d53c708469d2a457f4c6202f851d8e862f85f1eb06541bcd47f76ba8c2",
+      "record_version": "source-dc3fe6d53c708469d2a457f4c6202f851d8e862f85f1eb06541bcd47f76ba8c2"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-coffee-button-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "35ee8e0fb28f2bbb793ec8c0d92d2e8db88453b4e6cb8c5deca1ab9e99d39b30",
+      "record_version": "source-35ee8e0fb28f2bbb793ec8c0d92d2e8db88453b4e6cb8c5deca1ab9e99d39b30"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-coffee-pull-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "6fb3cdf1294f840b5dbcfe944934a1d08aeda6fe9699cc1fb97ff5d3c12ff6a3",
+      "record_version": "source-6fb3cdf1294f840b5dbcfe944934a1d08aeda6fe9699cc1fb97ff5d3c12ff6a3"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-coffee-push-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "6ba96ce91108f02d972f751a907bac5f3191dcd9c406bc4cb4adbcecf397a413",
+      "record_version": "source-6ba96ce91108f02d972f751a907bac5f3191dcd9c406bc4cb4adbcecf397a413"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-dial-turn-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "bd4ac56488eee81bd60d7aab48c578ba30c1050212e357cf104a3b2f7cbf9806",
+      "record_version": "source-bd4ac56488eee81bd60d7aab48c578ba30c1050212e357cf104a3b2f7cbf9806"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-disassemble-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "f7e8ba12e8eaa2877509f4e74b88c4d07126ac984fc068421dd6ef33ff66ceea",
+      "record_version": "source-f7e8ba12e8eaa2877509f4e74b88c4d07126ac984fc068421dd6ef33ff66ceea"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "6e2711ed4f301be31cfda8116012eed2b9aaba68302a689837d1874f5f6ee6bd",
+      "record_version": "source-6e2711ed4f301be31cfda8116012eed2b9aaba68302a689837d1874f5f6ee6bd"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-lock-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "17abcb86932d2a3d470f53d8b80238e9fa2690fe743b42ba27a0ad69a190b477",
+      "record_version": "source-17abcb86932d2a3d470f53d8b80238e9fa2690fe743b42ba27a0ad69a190b477"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "46a3a82e8dee1a6c47fb763b0bd9463b63066e5746fd3db95f7d3baaac14fcfa",
+      "record_version": "source-46a3a82e8dee1a6c47fb763b0bd9463b63066e5746fd3db95f7d3baaac14fcfa"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-unlock-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "cec15f0ef3d8b7229d83aa7795318833f3ee4e0a5b45de90683ac3f8a2aaf034",
+      "record_version": "source-cec15f0ef3d8b7229d83aa7795318833f3ee4e0a5b45de90683ac3f8a2aaf034"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-drawer-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "053f867a3eca10d6dc18587c9db38ac6fa825eda83559ab6299365d885372c2a",
+      "record_version": "source-053f867a3eca10d6dc18587c9db38ac6fa825eda83559ab6299365d885372c2a"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-drawer-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "e12efa18f12a6d84afc75f217b336592e155912e58fefdd4b6f241f94f61470b",
+      "record_version": "source-e12efa18f12a6d84afc75f217b336592e155912e58fefdd4b6f241f94f61470b"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-faucet-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "aa4c5aed6b8ce19df325124042005f9053cd4af5e75be63cd50fbefd0f1fb080",
+      "record_version": "source-aa4c5aed6b8ce19df325124042005f9053cd4af5e75be63cd50fbefd0f1fb080"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-faucet-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "f6c908740a96f06db0931eaab7afdc0f2a120bd197f1dcb57f23a23cbe331873",
+      "record_version": "source-f6c908740a96f06db0931eaab7afdc0f2a120bd197f1dcb57f23a23cbe331873"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-hammer-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "6fc99c5363084f95f7089e14afb8586495401547416d6b58b063e9a3d823aefd",
+      "record_version": "source-6fc99c5363084f95f7089e14afb8586495401547416d6b58b063e9a3d823aefd"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-hand-insert-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "b13d7fa0a704a16b2efa43fbe842757847dea258d73dbed25f965fd5d33b36f5",
+      "record_version": "source-b13d7fa0a704a16b2efa43fbe842757847dea258d73dbed25f965fd5d33b36f5"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-handle-press-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "c1cb402557fe4fc54bf5750182dc15d5c5d4bcfcff47f7d570aa140e134a12f7",
+      "record_version": "source-c1cb402557fe4fc54bf5750182dc15d5c5d4bcfcff47f7d570aa140e134a12f7"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-handle-press-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "78080e7923d5b3959400d331aa31d47861dabd78f03d4151995ff0210ff85062",
+      "record_version": "source-78080e7923d5b3959400d331aa31d47861dabd78f03d4151995ff0210ff85062"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-handle-pull-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "57a89955244cf7ac4b33d1d1f9fe0b5394058475e3404fe3c6a1c5ce07584bdd",
+      "record_version": "source-57a89955244cf7ac4b33d1d1f9fe0b5394058475e3404fe3c6a1c5ce07584bdd"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-handle-pull-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "8039dd06ec8af1eaa42c241630e24868644b42e2b49643b540f5999b228507f3",
+      "record_version": "source-8039dd06ec8af1eaa42c241630e24868644b42e2b49643b540f5999b228507f3"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-lever-pull-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "c769a03bf678d4e6a36c2c3f1df69a6b5e561eddb2faa3d9e0ec15fd3f74c1dd",
+      "record_version": "source-c769a03bf678d4e6a36c2c3f1df69a6b5e561eddb2faa3d9e0ec15fd3f74c1dd"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-peg-insertion-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "0d917c48a0c79eda3b011d7f3124847939d92f0ec14b9164b3142a3b7a170bd8",
+      "record_version": "source-0d917c48a0c79eda3b011d7f3124847939d92f0ec14b9164b3142a3b7a170bd8"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-peg-unplug-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "920097c4d2f660face27ad94a2ee73fee3e068f4a077d6110d6a3767947952cf",
+      "record_version": "source-920097c4d2f660face27ad94a2ee73fee3e068f4a077d6110d6a3767947952cf"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-pick-out-of-hole-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "9dec0f56d859cbc80481b61d1f769c68618d217df692cc10141daa507d138631",
+      "record_version": "source-9dec0f56d859cbc80481b61d1f769c68618d217df692cc10141daa507d138631"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-pick-place-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "3d64ddf57c5cf6ddcee28945005bbbe040964d7dd1ec8b68cfe55175ad5acfbc",
+      "record_version": "source-3d64ddf57c5cf6ddcee28945005bbbe040964d7dd1ec8b68cfe55175ad5acfbc"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-pick-place-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "aa61923e3b52e8a7aa397d5cc84538c44d6f172bc2316e0c3ba86ae13275f114",
+      "record_version": "source-aa61923e3b52e8a7aa397d5cc84538c44d6f172bc2316e0c3ba86ae13275f114"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "e03ed4d4e2b33db3c480dd9af6bb50795022d9346270a1d61b0081568f9b91c7",
+      "record_version": "source-e03ed4d4e2b33db3c480dd9af6bb50795022d9346270a1d61b0081568f9b91c7"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "7bf9c9515ce88230bb2af1c3d7de57713c7bf4b0d690103ec0788e013287d997",
+      "record_version": "source-7bf9c9515ce88230bb2af1c3d7de57713c7bf4b0d690103ec0788e013287d997"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "0c8d220c4fc0e27e65c462bbf526475ea7849235460d90801aff2bc27d8e6930",
+      "record_version": "source-0c8d220c4fc0e27e65c462bbf526475ea7849235460d90801aff2bc27d8e6930"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "ee51971e7c398cc398802af986772a22c81be86821f935b09d64f7b584eabfc7",
+      "record_version": "source-ee51971e7c398cc398802af986772a22c81be86821f935b09d64f7b584eabfc7"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-push-back-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "073d717ce10703819f9452a8a564f973fb646156fa9e325a24927f09fa496cad",
+      "record_version": "source-073d717ce10703819f9452a8a564f973fb646156fa9e325a24927f09fa496cad"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-push-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "921d7380bc04fce1834cf025fde0bdf4aa625fcf5ffbd93c7c5a85eb40e4cf53",
+      "record_version": "source-921d7380bc04fce1834cf025fde0bdf4aa625fcf5ffbd93c7c5a85eb40e4cf53"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-push-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "12f2e5629e5670d78719e835595bd5e2f8734d893995f8bbdb70c87d7919d484",
+      "record_version": "source-12f2e5629e5670d78719e835595bd5e2f8734d893995f8bbdb70c87d7919d484"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-reach-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "8c70876789e42c68a016104cde5e9cba466210b25db7b9c821631ed1a9ab290f",
+      "record_version": "source-8c70876789e42c68a016104cde5e9cba466210b25db7b9c821631ed1a9ab290f"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-reach-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "2579e0fcb12e431eea016b155fe53f17c4f82ac208639ee993e9d777b4d0c1d0",
+      "record_version": "source-2579e0fcb12e431eea016b155fe53f17c4f82ac208639ee993e9d777b4d0c1d0"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-shelf-place-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "503f7ecb4d1eabab405b504275b3d4a0dc0384cecd425b4a9f379186e409ac4a",
+      "record_version": "source-503f7ecb4d1eabab405b504275b3d4a0dc0384cecd425b4a9f379186e409ac4a"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-soccer-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "1fdf5470db4e5b45e949f4b7261dec51a8d5f33657bb94e3181773ef723c8717",
+      "record_version": "source-1fdf5470db4e5b45e949f4b7261dec51a8d5f33657bb94e3181773ef723c8717"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-stick-pull-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "01e6f9b0b6d7fefa12dc02275423ce32965b762e3ff260004fd10aba704348b5",
+      "record_version": "source-01e6f9b0b6d7fefa12dc02275423ce32965b762e3ff260004fd10aba704348b5"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-stick-push-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "39da669cdd597d4ec350d9608d43e56316ac39d5c7347acafe80b86ca127bea8",
+      "record_version": "source-39da669cdd597d4ec350d9608d43e56316ac39d5c7347acafe80b86ca127bea8"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-sweep-into-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "4dbd4777bd56c730edc19c987bd35176ca56d9d571882eb7c7a5466f43a13954",
+      "record_version": "source-4dbd4777bd56c730edc19c987bd35176ca56d9d571882eb7c7a5466f43a13954"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-sweep-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "1f716ce56739a569c377097b15a4ca16083b35023fe340e26deb08c387d39a18",
+      "record_version": "source-1f716ce56739a569c377097b15a4ca16083b35023fe340e26deb08c387d39a18"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-window-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "b24fc31835c5fc867c4557980761739c3fbcd87518c003e515481d8b3bca0e1e",
+      "record_version": "source-b24fc31835c5fc867c4557980761739c3fbcd87518c003e515481d8b3bca0e1e"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-window-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "326da81d5aa275eb6999aad5f3e30dfa091ee79f40e659ced1118c2944e97a29",
+      "record_version": "source-326da81d5aa275eb6999aad5f3e30dfa091ee79f40e659ced1118c2944e97a29"
+    },
+    {
+      "id": "mink-examples-arm-aloha-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "b988704ff17b3215ce8c8c6f5066dec53339741f3066099091e8e546a1094448",
+      "record_version": "source-b988704ff17b3215ce8c8c6f5066dec53339741f3066099091e8e546a1094448"
+    },
+    {
+      "id": "mink-examples-arm-dual-flying-ur5e-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "e8cd7936878c3ea9d1d24b2131faa6b059cca506636ab4c689edc85bfc937960",
+      "record_version": "source-e8cd7936878c3ea9d1d24b2131faa6b059cca506636ab4c689edc85bfc937960"
+    },
+    {
+      "id": "mink-examples-arm-dual-iiwa-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "989e556af90c828ed0068b52e5cab3b951310827ae24bd92a2f38e583c8089e9",
+      "record_version": "source-989e556af90c828ed0068b52e5cab3b951310827ae24bd92a2f38e583c8089e9"
+    },
+    {
+      "id": "mink-examples-arm-dual-panda-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "84e932c4e5fbf4b4bc1a9f375ba33b33b7e06d3ecf39ccaef933e92340564848",
+      "record_version": "source-84e932c4e5fbf4b4bc1a9f375ba33b33b7e06d3ecf39ccaef933e92340564848"
+    },
+    {
+      "id": "mink-examples-arm-hand-iiwa-allegro-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "f65426b8b4c13fbf96ef95e6de42ad6a93489f6c94743c526364cbe61a1a8229",
+      "record_version": "source-f65426b8b4c13fbf96ef95e6de42ad6a93489f6c94743c526364cbe61a1a8229"
+    },
+    {
+      "id": "mink-examples-arm-hand-xarm-leap-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "e74819ff7510a79b8b058a357d52ecd24bb4b8198bf38b244dd7198f9040795b",
+      "record_version": "source-e74819ff7510a79b8b058a357d52ecd24bb4b8198bf38b244dd7198f9040795b"
+    },
+    {
+      "id": "mink-examples-arm-iiwa-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fdb051107403550335e84ea634e5754d5683b8c275cdbdcd98938cf5994fcbaa",
+      "record_version": "source-fdb051107403550335e84ea634e5754d5683b8c275cdbdcd98938cf5994fcbaa"
+    },
+    {
+      "id": "mink-examples-arm-panda-dof-freezing-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "14944dea22ca5e933fd78f30ce980ad3bc21df404c01b6af75757ca553ca82f4",
+      "record_version": "source-14944dea22ca5e933fd78f30ce980ad3bc21df404c01b6af75757ca553ca82f4"
+    },
+    {
+      "id": "mink-examples-arm-panda-engrave-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "92e97b8e9c3487b2c7d12b0beb96f8cbad5af48630c63fb2efb083ebd5fdee3d",
+      "record_version": "source-92e97b8e9c3487b2c7d12b0beb96f8cbad5af48630c63fb2efb083ebd5fdee3d"
+    },
+    {
+      "id": "mink-examples-arm-panda-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "76150b0e7a504468f4004cd896e34cd0f196e4f6676399dc4e4e54a7511d2da1",
+      "record_version": "source-76150b0e7a504468f4004cd896e34cd0f196e4f6676399dc4e4e54a7511d2da1"
+    },
+    {
+      "id": "mink-examples-arm-ur5e-actuators-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "9deafdee1eb6c8e69b14cca770a765abae997f890ce5e90229a9a6aea54dc30d",
+      "record_version": "source-9deafdee1eb6c8e69b14cca770a765abae997f890ce5e90229a9a6aea54dc30d"
+    },
+    {
+      "id": "mink-examples-arm-ur5e-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "4024a9e3a11ee1a4caba82f2684e4e16dc0756bf0ac04244d81f74f9fc8b8eb8",
+      "record_version": "source-4024a9e3a11ee1a4caba82f2684e4e16dc0756bf0ac04244d81f74f9fc8b8eb8"
+    },
+    {
+      "id": "mink-examples-arm-ur5e-wrist-cam-lookat-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "c29795e667f38338b13d8f8f3f75178a0607dfbacebefbc742a6c4f30e4337b0",
+      "record_version": "source-c29795e667f38338b13d8f8f3f75178a0607dfbacebefbc742a6c4f30e4337b0"
+    },
+    {
+      "id": "mink-examples-biped-cassie-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "a11106a42d11a952027dacd9454ca588a6a3790d5fac1365e38596e0f5d3f787",
+      "record_version": "source-a11106a42d11a952027dacd9454ca588a6a3790d5fac1365e38596e0f5d3f787"
+    },
+    {
+      "id": "mink-examples-docs-quickstart-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "0da5acd6597c5fd615f780a8430137e795d37c518537dfc387b51f054f10acee",
+      "record_version": "source-0da5acd6597c5fd615f780a8430137e795d37c518537dfc387b51f054f10acee"
+    },
+    {
+      "id": "mink-examples-docs-tasks-and-limits-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "94e956b49a193bfa20c3a6891aab62fe5a4d64a1a09c5444821350da26b669ac",
+      "record_version": "source-94e956b49a193bfa20c3a6891aab62fe5a4d64a1a09c5444821350da26b669ac"
+    },
+    {
+      "id": "mink-examples-googly-eyes-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "7e406be7ff4b65793e898aefdc527c3a2a493f07cdc787f6b96f25f04ccd93f2",
+      "record_version": "source-7e406be7ff4b65793e898aefdc527c3a2a493f07cdc787f6b96f25f04ccd93f2"
+    },
+    {
+      "id": "mink-examples-hand-shadow-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "c916e2ff2f05211dcfc7c48c4322546cebb9aa5fadeb0b761dd4b0f07303caaf",
+      "record_version": "source-c916e2ff2f05211dcfc7c48c4322546cebb9aa5fadeb0b761dd4b0f07303caaf"
+    },
+    {
+      "id": "mink-examples-humanoid-apollo-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "3c45a5b37237e84cf1bf2dc078af5cfbe520674bcfb70134cb2d59408aadd1da",
+      "record_version": "source-3c45a5b37237e84cf1bf2dc078af5cfbe520674bcfb70134cb2d59408aadd1da"
+    },
+    {
+      "id": "mink-examples-humanoid-g1-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "1212684e58a923321af450915ff4bad5433c1ce647012eb0d5e825409757451b",
+      "record_version": "source-1212684e58a923321af450915ff4bad5433c1ce647012eb0d5e825409757451b"
+    },
+    {
+      "id": "mink-examples-kinetic-energy-reg-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "7118794bb9e3d9b42667320fb02798edc35bb0a49d4f3486e839d35104425513",
+      "record_version": "source-7118794bb9e3d9b42667320fb02798edc35bb0a49d4f3486e839d35104425513"
+    },
+    {
+      "id": "mink-examples-mobile-kinova-leap-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "0db9beb2dd075671cce6a2d452f9f60c7610fe8cdf310b341e50d2592e2083e0",
+      "record_version": "source-0db9beb2dd075671cce6a2d452f9f60c7610fe8cdf310b341e50d2592e2083e0"
+    },
+    {
+      "id": "mink-examples-mobile-stretch-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "ee4139de04f432d5af184e582b8ca10d2aedaf64402922a5dada51a685487674",
+      "record_version": "source-ee4139de04f432d5af184e582b8ca10d2aedaf64402922a5dada51a685487674"
+    },
+    {
+      "id": "mink-examples-mobile-tidybot-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fa81016b8311f3faf7fe870c30e6b9ff4b9a61ffb2102e1f195ff196c46ba2d7",
+      "record_version": "source-fa81016b8311f3faf7fe870c30e6b9ff4b9a61ffb2102e1f195ff196c46ba2d7"
+    },
+    {
+      "id": "mink-examples-quadruped-go1-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "de95c348b921a582e32e0f65935dcaf9606c67e3fdeb3fb960b0089eadaf0445",
+      "record_version": "source-de95c348b921a582e32e0f65935dcaf9606c67e3fdeb3fb960b0089eadaf0445"
+    },
+    {
+      "id": "mink-examples-quadruped-spot-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fd029cab1fedafcea6f3ebfb85e59507b21f41d1fa889dfabbf82839e7ec74a8",
+      "record_version": "source-fd029cab1fedafcea6f3ebfb85e59507b21f41d1fa889dfabbf82839e7ec74a8"
+    },
+    {
+      "id": "moveit-task-constructor-demo-launch-demo-launch-py",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "5caec925c214c97307cc9e5997705db7e42960cffac7a20467772eb72ed89b08",
+      "record_version": "source-5caec925c214c97307cc9e5997705db7e42960cffac7a20467772eb72ed89b08"
+    },
+    {
+      "id": "moveit-task-constructor-demo-launch-run-launch-py",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "d40aabf47ffe9aae3ca4bf665b7c3f83d7bbd5ca8eb0c260af2d64685c2f9aa1",
+      "record_version": "source-d40aabf47ffe9aae3ca4bf665b7c3f83d7bbd5ca8eb0c260af2d64685c2f9aa1"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-alternative-path-costs-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "388cc0a6d5d855f9af00660da5a3b3828fbba74bf7030b8ca9670a8c1444dab3",
+      "record_version": "source-388cc0a6d5d855f9af00660da5a3b3828fbba74bf7030b8ca9670a8c1444dab3"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-cartesian-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "9f7b63d6b6b95d6e377fcec431b5ecc1c576c3a2e01f30d5a3a786a18bb17575",
+      "record_version": "source-9f7b63d6b6b95d6e377fcec431b5ecc1c576c3a2e01f30d5a3a786a18bb17575"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-fallbacks-move-to-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "49a065382ea943d3bddc13b92dfd1e82ea0f268f6e985d3c6fed6a9974478073",
+      "record_version": "source-49a065382ea943d3bddc13b92dfd1e82ea0f268f6e985d3c6fed6a9974478073"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-ik-clearance-cost-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "d6e6571599c5238a72f3dc078230f1bc83942dc23cd8c8f14b44702d3621cb43",
+      "record_version": "source-d6e6571599c5238a72f3dc078230f1bc83942dc23cd8c8f14b44702d3621cb43"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-modular-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "a4da84987638e575d478946252311de99cc6ad05300ebc618567a41dc3ee764c",
+      "record_version": "source-a4da84987638e575d478946252311de99cc6ad05300ebc618567a41dc3ee764c"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-pick-place-demo-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "41728f309a21a1a65c3a03d952a4e0051aebb179ef4f0b780054f7e512ffcd58",
+      "record_version": "source-41728f309a21a1a65c3a03d952a4e0051aebb179ef4f0b780054f7e512ffcd58"
     },
     {
       "id": "moveit2-doc-examples-bullet-collision-checker-src-bullet-collision-1e25216dcd47",
@@ -3626,6 +6206,18 @@
       "record_version": "source-9f9512ce0651b90443528553c617852a81ba0886d1267f1a0635bb4c73a68432"
     },
     {
+      "id": "mujoco-playground-mujoco-playground-src-locomotion-locomotion-test-py",
+      "source_commit": "d59156e099a8785dd58fbce2e25a6ee1f7b5800c",
+      "source_sha256": "d2cf4bf2bacbc930436b346573cd8fb3a0988eeac2b04cf93945ac4043480351",
+      "record_version": "source-d2cf4bf2bacbc930436b346573cd8fb3a0988eeac2b04cf93945ac4043480351"
+    },
+    {
+      "id": "mujoco-playground-mujoco-playground-src-manipulation-manipulation-test-py",
+      "source_commit": "d59156e099a8785dd58fbce2e25a6ee1f7b5800c",
+      "source_sha256": "73ed11e612aae98668602478bc405e4fd6686689b008c0f1f8372c4591b573a6",
+      "record_version": "source-73ed11e612aae98668602478bc405e4fd6686689b008c0f1f8372c4591b573a6"
+    },
+    {
       "id": "mujoco-record",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "6c751d365ebf823970ababffaef1e38e59fb82ee00ab6351fa5057f6460fd967",
@@ -3654,6 +6246,54 @@
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "8954ad166e1865c9844ae6566ebde5aab91376ba514b9406b9f9f7e8f7e4afd8",
       "record_version": "source-8954ad166e1865c9844ae6566ebde5aab91376ba514b9406b9f9f7e8f7e4afd8"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjlab-configs-asset-configs-mus-578d2c5bd59a",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "ef0f542efef75a3da8a3235412710d342f8c5424f7872db69920cf67eb089f9c",
+      "record_version": "source-ef0f542efef75a3da8a3235412710d342f8c5424f7872db69920cf67eb089f9c"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjx-train-jax-ppo-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "1f8e7638fa93952b7f0e74eafb7a1887ef74d9b33182289f4c949180daa89f5e",
+      "record_version": "source-1f8e7638fa93952b7f0e74eafb7a1887ef74d9b33182289f4c949180daa89f5e"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjx-visu-mjx-env-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "0db95a4928730d0608e277002ea074fdc066cfa75d1f6f68d7781f6ca411b7ca",
+      "record_version": "source-0db95a4928730d0608e277002ea074fdc066cfa75d1f6f68d7781f6ca411b7ca"
+    },
+    {
+      "id": "myosuite-myosuite-utils-dict-utils-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "3138bc8543dc5907b8343691a9c7ad06ab6d8eb60dc0dd9e9d34a395c1df2ba0",
+      "record_version": "source-3138bc8543dc5907b8343691a9c7ad06ab6d8eb60dc0dd9e9d34a395c1df2ba0"
+    },
+    {
+      "id": "myosuite-myosuite-utils-examine-env-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "eb30c565dadde461f73bc2a10baddb6a8118d6f1499c2c8e2a816900d6e89ac2",
+      "record_version": "source-eb30c565dadde461f73bc2a10baddb6a8118d6f1499c2c8e2a816900d6e89ac2"
+    },
+    {
+      "id": "myosuite-myosuite-utils-examine-sim-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "72044ce793fb3c10c0928b60adbcb151a9e9e7b9f935419cfde7c00f80637b69",
+      "record_version": "source-72044ce793fb3c10c0928b60adbcb151a9e9e7b9f935419cfde7c00f80637b69"
+    },
+    {
+      "id": "myosuite-myosuite-utils-export-onnx-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "08e1e66a669dc78a7343ca4a469e11f9dfee1a25aa9eed0ec1873afaa81a64ce",
+      "record_version": "source-08e1e66a669dc78a7343ca4a469e11f9dfee1a25aa9eed0ec1873afaa81a64ce"
+    },
+    {
+      "id": "myosuite-myosuite-utils-path-plotting-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "f308e774861df32f450399548098a1778f9c517d5cea4359c93f609ef9638bb1",
+      "record_version": "source-f308e774861df32f450399548098a1778f9c517d5cea4359c93f609ef9638bb1"
     },
     {
       "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-follow-point-xml",
@@ -4188,6 +6828,204 @@
       "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
       "source_sha256": "8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49",
       "record_version": "source-8ea12ec90b66ef88f6f206ea9ddbb33ed11ce20f8a714f0f73f35a3a3eda2f49"
+    },
+    {
+      "id": "pink-examples-arm-kinova-gen2-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d4a93aa36bbe38577a77b30f95a170dbaf2df56f8e40e492bcd99053e9bf2e26",
+      "record_version": "source-d4a93aa36bbe38577a77b30f95a170dbaf2df56f8e40e492bcd99053e9bf2e26"
+    },
+    {
+      "id": "pink-examples-arm-panda-manipulability-comparison-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "34c1d236fb572d6bf142d376bb5575a6cac34a124baf83c8842433ebb075925f",
+      "record_version": "source-34c1d236fb572d6bf142d376bb5575a6cac34a124baf83c8842433ebb075925f"
+    },
+    {
+      "id": "pink-examples-arm-panda-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "ac45a5cd0954bf8d343e8b554458282c02f07560496af220b7f25c237853f561",
+      "record_version": "source-ac45a5cd0954bf8d343e8b554458282c02f07560496af220b7f25c237853f561"
+    },
+    {
+      "id": "pink-examples-arm-ur3-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "a401120d8575e49f0230c75449cae19b045b2aad1c2dc5f5e7cad7240680f24b",
+      "record_version": "source-a401120d8575e49f0230c75449cae19b045b2aad1c2dc5f5e7cad7240680f24b"
+    },
+    {
+      "id": "pink-examples-arm-ur3-sparse-solver-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "bdd531e6d0fbd0879b5af485048464211510267c45dc7a438da444d445d3d855",
+      "record_version": "source-bdd531e6d0fbd0879b5af485048464211510267c45dc7a438da444d445d3d855"
+    },
+    {
+      "id": "pink-examples-arm-ur3-velocity-smoothing-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "54bb4dacc02991bfb438c22c46be9cfdae6f606727d35d5344c855ab967b9bf8",
+      "record_version": "source-54bb4dacc02991bfb438c22c46be9cfdae6f606727d35d5344c855ab967b9bf8"
+    },
+    {
+      "id": "pink-examples-arm-ur5-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5309d4682a389ccb40e9f3cec0adbe6630bc20a0b8f323347512b08016cc3e62",
+      "record_version": "source-5309d4682a389ccb40e9f3cec0adbe6630bc20a0b8f323347512b08016cc3e62"
+    },
+    {
+      "id": "pink-examples-arm-z1-joint-velocity-tracking-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "86bb8bcc7a3759f9d3ff3ecff8790ab64a25fa42fae1b685c206176a1793561f",
+      "record_version": "source-86bb8bcc7a3759f9d3ff3ecff8790ab64a25fa42fae1b685c206176a1793561f"
+    },
+    {
+      "id": "pink-examples-barriers-arm-ur5-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "2faba091ae3eaa921897ebd2d9bcdb99cf8559235cd2a25230787a2fd600c5a2",
+      "record_version": "source-2faba091ae3eaa921897ebd2d9bcdb99cf8559235cd2a25230787a2fd600c5a2"
+    },
+    {
+      "id": "pink-examples-barriers-go2-squat-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "f1822a8dd0a18880b48c98cd243cd85d0269a8e5a55d4bf679129400a4f2c518",
+      "record_version": "source-f1822a8dd0a18880b48c98cd243cd85d0269a8e5a55d4bf679129400a4f2c518"
+    },
+    {
+      "id": "pink-examples-barriers-kukas-self-collision-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "fae3c5e337defcc3c9fe550689fda6b2c4371f61eae976d133827e80bd0766d6",
+      "record_version": "source-fae3c5e337defcc3c9fe550689fda6b2c4371f61eae976d133827e80bd0766d6"
+    },
+    {
+      "id": "pink-examples-barriers-yumi-self-collision-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "68eea2a7737255b5505949b92c7bc36d4ffc12ca40df284f40d0a48f329ddc9a",
+      "record_version": "source-68eea2a7737255b5505949b92c7bc36d4ffc12ca40df284f40d0a48f329ddc9a"
+    },
+    {
+      "id": "pink-examples-double-pendulum-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "8276cebb871d3f74ab917f60406b4853d3d7d9d10594d0639fde56669740b687",
+      "record_version": "source-8276cebb871d3f74ab917f60406b4853d3d7d9d10594d0639fde56669740b687"
+    },
+    {
+      "id": "pink-examples-floating-base-velocity-limit-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "c0b4aa616477db97c7e988dec8d280c26ffee4aba6d2267ff880e995e243384f",
+      "record_version": "source-c0b4aa616477db97c7e988dec8d280c26ffee4aba6d2267ff880e995e243384f"
+    },
+    {
+      "id": "pink-examples-flying-dual-arm-ur3-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "c3327d4a60096a2dd53a01ba6994d2bfe3938af5d6162c060abd913d2240d79c",
+      "record_version": "source-c3327d4a60096a2dd53a01ba6994d2bfe3938af5d6162c060abd913d2240d79c"
+    },
+    {
+      "id": "pink-examples-humanoid-draco3-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "3137fe3673cad4cffd1e980427eaa91cd8b90c889a735fe72962d1a0d0bb3166",
+      "record_version": "source-3137fe3673cad4cffd1e980427eaa91cd8b90c889a735fe72962d1a0d0bb3166"
+    },
+    {
+      "id": "pink-examples-humanoid-g1-com-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5a8105013e56089e1051b923784c4c3776e7a12f24c70fb463ce864ebc79a821",
+      "record_version": "source-5a8105013e56089e1051b923784c4c3776e7a12f24c70fb463ce864ebc79a821"
+    },
+    {
+      "id": "pink-examples-humanoid-jvrc-com-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "f29f2d84f43b913392bf0a23bc5cc40a9617da748a92a1cc799155a5159386ea",
+      "record_version": "source-f29f2d84f43b913392bf0a23bc5cc40a9617da748a92a1cc799155a5159386ea"
+    },
+    {
+      "id": "pink-examples-humanoid-jvrc-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "9feb492ba86f9c3e3313ec6f93e5ef6ad59ed4b209f2e60eb8ea160a8e939e7b",
+      "record_version": "source-9feb492ba86f9c3e3313ec6f93e5ef6ad59ed4b209f2e60eb8ea160a8e939e7b"
+    },
+    {
+      "id": "pink-examples-humanoid-sigmaban-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "74cb6427670b3adcbbe0ecf945ef079ca49fee9425690f7df75eaa96486a0999",
+      "record_version": "source-74cb6427670b3adcbbe0ecf945ef079ca49fee9425690f7df75eaa96486a0999"
+    },
+    {
+      "id": "pink-examples-inverse-kinematics-piper-viz-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "a5112a6953299f99bc4dde941bda6459020a649f66d1e209ca52ab23a15ee64b",
+      "record_version": "source-a5112a6953299f99bc4dde941bda6459020a649f66d1e209ca52ab23a15ee64b"
+    },
+    {
+      "id": "pink-examples-inverse-kinematics-ur10-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "2b08552832110c301caae3deebd8910019dcae64b207d770a9f20bd2fb942cea",
+      "record_version": "source-2b08552832110c301caae3deebd8910019dcae64b207d770a9f20bd2fb942cea"
+    },
+    {
+      "id": "pink-examples-load-custom-urdf-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "af5585c819c51300e3753ef385723019f19d13c85f3a3a53f3b0fe6514839be5",
+      "record_version": "source-af5585c819c51300e3753ef385723019f19d13c85f3a3a53f3b0fe6514839be5"
+    },
+    {
+      "id": "pink-examples-mobile-omni-wheeled-robot-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5d32d6bc473a7351cd2dbcba81d389a34d2e5db7653f21d9ac73f25416069797",
+      "record_version": "source-5d32d6bc473a7351cd2dbcba81d389a34d2e5db7653f21d9ac73f25416069797"
+    },
+    {
+      "id": "pink-examples-mobile-stretch-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "4cbb9b97e09ab3672021648fa7dd113c562e6f4af2463610733ca3ba71f97a8b",
+      "record_version": "source-4cbb9b97e09ab3672021648fa7dd113c562e6f4af2463610733ca3ba71f97a8b"
+    },
+    {
+      "id": "pink-examples-one-dof-configuration-limit-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "af63291fa57f3253b78f4067364be870561828623e066b906ae1319f813017ef",
+      "record_version": "source-af63291fa57f3253b78f4067364be870561828623e066b906ae1319f813017ef"
+    },
+    {
+      "id": "pink-examples-planar-2dof-manipulability-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d853e58c2e423913bebe98bf43f33c10657deb73a3c55ff4849ab6f3afacf756",
+      "record_version": "source-d853e58c2e423913bebe98bf43f33c10657deb73a3c55ff4849ab6f3afacf756"
+    },
+    {
+      "id": "pink-examples-stretch-relative-target-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "fc33c4360c6c74ebeb8c515220833b2907b4f336b026483594982dfdcde94e16",
+      "record_version": "source-fc33c4360c6c74ebeb8c515220833b2907b4f336b026483594982dfdcde94e16"
+    },
+    {
+      "id": "pink-examples-stretch-world-target-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d95864af3e87f71535c897d85110f896de24f4e7897758ae089298b2468869de",
+      "record_version": "source-d95864af3e87f71535c897d85110f896de24f4e7897758ae089298b2468869de"
+    },
+    {
+      "id": "pink-examples-upkie-crouching-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "686f47717578ef4c7a31bb647017f30afe472f8345311d08500f5c492bd53b10",
+      "record_version": "source-686f47717578ef4c7a31bb647017f30afe472f8345311d08500f5c492bd53b10"
+    },
+    {
+      "id": "pink-examples-upkie-rolling-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "9f9140f72613aa382191f6304f179b63a01230af88290de53288758fb3b58233",
+      "record_version": "source-9f9140f72613aa382191f6304f179b63a01230af88290de53288758fb3b58233"
+    },
+    {
+      "id": "pink-examples-visualize-in-meshcat-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "51909c0a86194662647e58fe0dbeeb39ab2fd9d0d63adb6003ed75fffc2cca11",
+      "record_version": "source-51909c0a86194662647e58fe0dbeeb39ab2fd9d0d63adb6003ed75fffc2cca11"
+    },
+    {
+      "id": "pink-examples-visualize-in-yourdfpy-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "430907c580cb05ba1c0a1a7e93f95382b43270b08e9cd7c40e70adab98b22787",
+      "record_version": "source-430907c580cb05ba1c0a1a7e93f95382b43270b08e9cd7c40e70adab98b22787"
     },
     {
       "id": "pinocchio-examples-admm-constraint-solver-py",
@@ -5366,6 +8204,180 @@
       "record_version": "source-e6e34c24dbc191e1ec5062ca4505f7ee20777044dbdbae501655ebcec8f8ec6c"
     },
     {
+      "id": "roboverse-examples-0-static-scene-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "47dfd8c0bbd2f00de53a6aa23e950f396fd4a47e8d01db056b80f108b7d4ce92",
+      "record_version": "source-47dfd8c0bbd2f00de53a6aa23e950f396fd4a47e8d01db056b80f108b7d4ce92"
+    },
+    {
+      "id": "roboverse-examples-1-control-robot-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "c480a752520a24142f211b3517929c2bef40fca7a4f210b3936f74855a58f047",
+      "record_version": "source-c480a752520a24142f211b3517929c2bef40fca7a4f210b3936f74855a58f047"
+    },
+    {
+      "id": "roboverse-examples-10-robotwin-aloha-replay-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "9c570849d49982749b65d56b7d55dd2c0d0006528b69c01886250af773cb3ced",
+      "record_version": "source-9c570849d49982749b65d56b7d55dd2c0d0006528b69c01886250af773cb3ced"
+    },
+    {
+      "id": "roboverse-examples-11-light-setting-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "371284c5fdb4b2028e5502a2b9fb80a291c13435851ff539f0b06011f8c20e76",
+      "record_version": "source-371284c5fdb4b2028e5502a2b9fb80a291c13435851ff539f0b06011f8c20e76"
+    },
+    {
+      "id": "roboverse-examples-12-domain-randomization-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "3d1cf3efc037c40da41921b962ab4857626486bc2d80f1e3521693e8fce6337b",
+      "record_version": "source-3d1cf3efc037c40da41921b962ab4857626486bc2d80f1e3521693e8fce6337b"
+    },
+    {
+      "id": "roboverse-examples-14-real-assets-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "be9fe3e50e26c6e68874bf41e34d5dcba89225f5b77043d059d11a9ae7950cd0",
+      "record_version": "source-be9fe3e50e26c6e68874bf41e34d5dcba89225f5b77043d059d11a9ae7950cd0"
+    },
+    {
+      "id": "roboverse-examples-15-gs-background-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "0fc6e4e4f8133cba2f92def33cbb0683bfda0dff6f4b606dde06ba8c1a54797e",
+      "record_version": "source-0fc6e4e4f8133cba2f92def33cbb0683bfda0dff6f4b606dde06ba8c1a54797e"
+    },
+    {
+      "id": "roboverse-examples-16-embodiedgen-layout-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "42d4155ca4e13cb6d4722531b5e2f74624756ca9d65c695596643f1ae2d151a7",
+      "record_version": "source-42d4155ca4e13cb6d4722531b5e2f74624756ca9d65c695596643f1ae2d151a7"
+    },
+    {
+      "id": "roboverse-examples-2-add-new-robot-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "795e78601da0b1a3ca2211a0baeeed8082cd2a6c95a4f7f76259d98e119049ef",
+      "record_version": "source-795e78601da0b1a3ca2211a0baeeed8082cd2a6c95a4f7f76259d98e119049ef"
+    },
+    {
+      "id": "roboverse-examples-3-parallel-envs-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "690ceceee7b42899f48258b431fda70ccd0c2039ad9ace15b792db22305222ad",
+      "record_version": "source-690ceceee7b42899f48258b431fda70ccd0c2039ad9ace15b792db22305222ad"
+    },
+    {
+      "id": "roboverse-examples-4-motion-planning-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "8b6cf80b6dadbd8f65de47e1dac3232a33acf5df5ae867414e56ee9bcb34cac5",
+      "record_version": "source-8b6cf80b6dadbd8f65de47e1dac3232a33acf5df5ae867414e56ee9bcb34cac5"
+    },
+    {
+      "id": "roboverse-examples-5-hybrid-sim-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "7f1787590f1905f630a6f920f4c33a337900d13e7c9f1a6dc453d9f323f9fb04",
+      "record_version": "source-7f1787590f1905f630a6f920f4c33a337900d13e7c9f1a6dc453d9f323f9fb04"
+    },
+    {
+      "id": "roboverse-examples-7-multiple-robots-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "fbd35f733ae778755602ad91665c62659cee32a3cb968a79ef1577704aa71ba2",
+      "record_version": "source-fbd35f733ae778755602ad91665c62659cee32a3cb968a79ef1577704aa71ba2"
+    },
+    {
+      "id": "roboverse-examples-8-multiagent-dataset-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "9f85c9325e2e3339cea8c131c4403946fd901a6c0a650c447004ee2137d2028d",
+      "record_version": "source-9f85c9325e2e3339cea8c131c4403946fd901a6c0a650c447004ee2137d2028d"
+    },
+    {
+      "id": "roboverse-examples-9-cfg-task-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "d7dcd6e084bd71af222370ebcb931a9cd31ece43ced74350a956abf758b613ff",
+      "record_version": "source-d7dcd6e084bd71af222370ebcb931a9cd31ece43ced74350a956abf758b613ff"
+    },
+    {
+      "id": "roboverse-examples-9-maniskill-two-robot-stack-cube-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "5f33aa58d4d2169daa842850e56a6a80a296cf7fbe5e5a4eb3d1035b469fe55f",
+      "record_version": "source-5f33aa58d4d2169daa842850e56a6a80a296cf7fbe5e5a4eb3d1035b469fe55f"
+    },
+    {
+      "id": "roboverse-examples-blender-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "545e4b15b27f0a33fb9f3afb6dd1b34623a1d208aab4f5fa3948c0033584a91b",
+      "record_version": "source-545e4b15b27f0a33fb9f3afb6dd1b34623a1d208aab4f5fa3948c0033584a91b"
+    },
+    {
+      "id": "roboverse-examples-dexhands-1-diff-dex-hand-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "a28e39b9c328f5b5f3aad74e58affc4da436fd83055a224d6c91e5849610ab26",
+      "record_version": "source-a28e39b9c328f5b5f3aad74e58affc4da436fd83055a224d6c91e5849610ab26"
+    },
+    {
+      "id": "roboverse-examples-libero-passthrough-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "325e418e723832435d0d8cc65abfe49fc38665cc6f4002c3023279dfbac6dfac",
+      "record_version": "source-325e418e723832435d0d8cc65abfe49fc38665cc6f4002c3023279dfbac6dfac"
+    },
+    {
+      "id": "roboverse-examples-obj-layout-object-layout-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "64926542ee2feefe62928fb2eb3554f54eda604ad7fb385999437b077d52d4ef",
+      "record_version": "source-64926542ee2feefe62928fb2eb3554f54eda604ad7fb385999437b077d52d4ef"
+    },
+    {
+      "id": "roboverse-examples-obj-layout-object-layout-task-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "da749482ff1f197c4bbd4479bb8bf1dc08ee0e67ec7cbdfceb4d9bcfe6419878",
+      "record_version": "source-da749482ff1f197c4bbd4479bb8bf1dc08ee0e67ec7cbdfceb4d9bcfe6419878"
+    },
+    {
+      "id": "roboverse-examples-replay-multi-scene-render-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "1cebbf1e82e2b0b9df4c425ed1c892ffc94fdafa0d2f238a106faf4a8e12f35b",
+      "record_version": "source-1cebbf1e82e2b0b9df4c425ed1c892ffc94fdafa0d2f238a106faf4a8e12f35b"
+    },
+    {
+      "id": "roboverse-examples-rerun-replay-task-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "322beaafa7d58dbcb9fb83e9ba143a41ec7ae55f2a1607d1da64916452ac404b",
+      "record_version": "source-322beaafa7d58dbcb9fb83e9ba143a41ec7ae55f2a1607d1da64916452ac404b"
+    },
+    {
+      "id": "roboverse-examples-rerun-rerun-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "35259275a0baa19df857dfdf1af610c2c220bbd8a7b565370f06d987f598cb16",
+      "record_version": "source-35259275a0baa19df857dfdf1af610c2c220bbd8a7b565370f06d987f598cb16"
+    },
+    {
+      "id": "roboverse-examples-rerun-save-trajectory-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "895ab308dedaad0083b13beb5350d1b999f7330727b5aab7831fc68e9d1d6c1a",
+      "record_version": "source-895ab308dedaad0083b13beb5350d1b999f7330727b5aab7831fc68e9d1d6c1a"
+    },
+    {
+      "id": "roboverse-examples-rerun-save-trajectory-simple-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "7501de9b3da45185521c068518e7d83448200ce27cfaba5fdc4e0a3451576bef",
+      "record_version": "source-7501de9b3da45185521c068518e7d83448200ce27cfaba5fdc4e0a3451576bef"
+    },
+    {
+      "id": "roboverse-examples-rl-0-ppo-gym-style-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "5b814247dd5e06c954f190e528556e19269971733241f15d9ef751d96bf5c6f7",
+      "record_version": "source-5b814247dd5e06c954f190e528556e19269971733241f15d9ef751d96bf5c6f7"
+    },
+    {
+      "id": "roboverse-examples-rl-0-ppo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "6a20fffa9b59e3f5333be5c174e54336effb841cfa99a6c21ab73e1b9b482b94",
+      "record_version": "source-6a20fffa9b59e3f5333be5c174e54336effb841cfa99a6c21ab73e1b9b482b94"
+    },
+    {
+      "id": "roboverse-examples-viser-viser-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "1aae55291055046627e5166f7272ec28880f37c969fc16c19dd1b68398a9c7d1",
+      "record_version": "source-1aae55291055046627e5166f7272ec28880f37c969fc16c19dd1b68398a9c7d1"
+    },
+    {
       "id": "ros2-control-artifact-example-1-bringup-config-rrbot-controllers-yaml",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "ea7d004b29db727a6e0788b6d58588a4c211d5001dc9549e2c8c641597dce1e6",
@@ -5972,6 +8984,54 @@
       "record_version": "source-aad509870f103c9c639c95da70bf924c5779c9690ea7946dfd9e6dcc7ebb5111"
     },
     {
+      "id": "safe-control-gym-examples-cbf-cbf-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "3434dc02bf68f3420b42403dfa5a0d96b81c424dc26731385fbac9bb51c88e6d",
+      "record_version": "source-3434dc02bf68f3420b42403dfa5a0d96b81c424dc26731385fbac9bb51c88e6d"
+    },
+    {
+      "id": "safe-control-gym-examples-hpo-hpo-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "310ac9f090ad541c3bf814e16e9ad21190eb123d9b6d6a69844cf318825664ed",
+      "record_version": "source-310ac9f090ad541c3bf814e16e9ad21190eb123d9b6d6a69844cf318825664ed"
+    },
+    {
+      "id": "safe-control-gym-examples-lqr-lqr-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "95b4ec6a09ba3da5b9151c7464ae157987db680576aa3eaa6a0d44eee5f07e16",
+      "record_version": "source-95b4ec6a09ba3da5b9151c7464ae157987db680576aa3eaa6a0d44eee5f07e16"
+    },
+    {
+      "id": "safe-control-gym-examples-mpc-mpc-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "53bb42c11a7090a70130602dd5333e8f4f1f2cdc6fdb8be3b6030db36302f9a5",
+      "record_version": "source-53bb42c11a7090a70130602dd5333e8f4f1f2cdc6fdb8be3b6030db36302f9a5"
+    },
+    {
+      "id": "safe-control-gym-examples-mpsc-mpsc-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "df5831cc5de46fc817aa0f468e5e18a37694ac1151703b12bccb5978444e7613",
+      "record_version": "source-df5831cc5de46fc817aa0f468e5e18a37694ac1151703b12bccb5978444e7613"
+    },
+    {
+      "id": "safe-control-gym-examples-no-controller-verbose-api-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "77dd194f17b94b90d166db95872f534df39e1d6c61a6d75cf0bdd802955c4e66",
+      "record_version": "source-77dd194f17b94b90d166db95872f534df39e1d6c61a6d75cf0bdd802955c4e66"
+    },
+    {
+      "id": "safe-control-gym-examples-pid-pid-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "e4f49f56119562d2d658c580dd8fdb06f184296797eebf305feb07f2526fffc9",
+      "record_version": "source-e4f49f56119562d2d658c580dd8fdb06f184296797eebf305feb07f2526fffc9"
+    },
+    {
+      "id": "safe-control-gym-examples-rl-rl-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "34c9ba30e901b95866bb99a2ee3d0758e5341a1a33faf8b777646ed800762fe0",
+      "record_version": "source-34c9ba30e901b95866bb99a2ee3d0758e5341a1a33faf8b777646ed800762fe0"
+    },
+    {
       "id": "spot-sdk-python-examples-arm-gaze-arm-gaze-py",
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "f17567a698c616b8b22bc20e40da1b967a12eee20d19ca3228a7c6e04a7f3528",
@@ -6140,6 +9200,264 @@
       "record_version": "source-2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156"
     },
     {
+      "id": "trifinger-simulation-demos-demo-cameras-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9589397541f8eecf97a371468873a2bcfa5570252a2db6ea68bb76ea9e8e2646",
+      "record_version": "source-9589397541f8eecf97a371468873a2bcfa5570252a2db6ea68bb76ea9e8e2646"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-control-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "83e07f351199a73d296743677f540a9388c06b269ca7f0fbe7756f2b900af8dc",
+      "record_version": "source-83e07f351199a73d296743677f540a9388c06b269ca7f0fbe7756f2b900af8dc"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-inverse-kinematics-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "acd8c81d1237c1316498f6ede5ff7cb07160e9e5e4c4019bd298f846d22f3be6",
+      "record_version": "source-acd8c81d1237c1316498f6ede5ff7cb07160e9e5e4c4019bd298f846d22f3be6"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-plain-torque-control-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "852718c6ba7620ec1b379cb18fefc47c728bc2f6f67360987a6b6ef1316d37eb",
+      "record_version": "source-852718c6ba7620ec1b379cb18fefc47c728bc2f6f67360987a6b6ef1316d37eb"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-trifinger-platform-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "86e3745dd22c77fa3698c1788315e31435211cbdb34052227bad30430d522e09",
+      "record_version": "source-86e3745dd22c77fa3698c1788315e31435211cbdb34052227bad30430d522e09"
+    },
+    {
+      "id": "trifinger-simulation-scripts-check-position-control-accuracy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "745cb13c0a849e221b8d9d84c9cd7356c1c599c2d657e067d6ebc025eaa2d44a",
+      "record_version": "source-745cb13c0a849e221b8d9d84c9cd7356c1c599c2d657e067d6ebc025eaa2d44a"
+    },
+    {
+      "id": "trifinger-simulation-scripts-playback-data-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "8696db13be93d18a1648d48699e6e21c4c3aa8974ad291220e201839ab4a9c76",
+      "record_version": "source-8696db13be93d18a1648d48699e6e21c4c3aa8974ad291220e201839ab4a9c76"
+    },
+    {
+      "id": "trifinger-simulation-scripts-plot-position-error-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "926214740a10e0a3ebc31d73007190b708ba34055c0def0ee1b3a3858f5eb8d8",
+      "record_version": "source-926214740a10e0a3ebc31d73007190b708ba34055c0def0ee1b3a3858f5eb8d8"
+    },
+    {
+      "id": "trifinger-simulation-scripts-plot-tip-position-trajectories-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "3511ecc94b001df02ea49fbb56eade2e0bb0197dfe82187953b07a3555066241",
+      "record_version": "source-3511ecc94b001df02ea49fbb56eade2e0bb0197dfe82187953b07a3555066241"
+    },
+    {
+      "id": "trifinger-simulation-scripts-profiling-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9e02463943ece4fb08350ceeb0559778961a5fdc4744fecd53649f90adbc04bd",
+      "record_version": "source-9e02463943ece4fb08350ceeb0559778961a5fdc4744fecd53649f90adbc04bd"
+    },
+    {
+      "id": "trifinger-simulation-scripts-rrc-evaluate-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "c4d97c13024c7c30ab617a04cd9cf96076986bf555e8ec1ad1fba00ac38ef600",
+      "record_version": "source-c4d97c13024c7c30ab617a04cd9cf96076986bf555e8ec1ad1fba00ac38ef600"
+    },
+    {
+      "id": "trifinger-simulation-scripts-screenshot-mode-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "c8f36eea2d104df9ea87f66326979966c8480a487509642fdbfa606661825889",
+      "record_version": "source-c8f36eea2d104df9ea87f66326979966c8480a487509642fdbfa606661825889"
+    },
+    {
+      "id": "trifinger-simulation-scripts-trifingerpro-model-test-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "e4cafb602fcc79e3d4f99008db40bd0b7388170f77e5c9e552affde49092f50b",
+      "record_version": "source-e4cafb602fcc79e3d4f99008db40bd0b7388170f77e5c9e552affde49092f50b"
+    },
+    {
+      "id": "trifinger-simulation-scripts-view-camera-log-real-and-sim-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "f507225bd5df86584ea68d8de2d4eb1f50095a942faf4c71aceb575144eac2d6",
+      "record_version": "source-f507225bd5df86584ea68d8de2d4eb1f50095a942faf4c71aceb575144eac2d6"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-evaluate-policy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "5accc11281639aacfcc517e66901af606213baebbb8582e4756a3f04db7c01a3",
+      "record_version": "source-5accc11281639aacfcc517e66901af606213baebbb8582e4756a3f04db7c01a3"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-21c57f226f03",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "c48f0e7733a8b5469b37a75883a117b432e700fc9fde24a202737b9da1acd5c2",
+      "record_version": "source-c48f0e7733a8b5469b37a75883a117b432e700fc9fde24a202737b9da1acd5c2"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-5cedb92631d0",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "34d11c2dad1237ead6f6ab0831853ef66fffd63f9fd6531e7c59b17f52246454",
+      "record_version": "source-34d11c2dad1237ead6f6ab0831853ef66fffd63f9fd6531e7c59b17f52246454"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-9b4e8c065081",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "76a51a8e336f9c50a8f1265d77b6618045c800ebb4e144606645cf4edcb820fa",
+      "record_version": "source-76a51a8e336f9c50a8f1265d77b6618045c800ebb4e144606645cf4edcb820fa"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-cb7e5c5908fc",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "feac3a2d3f78bbe5d8542c971cc871291b70983abd2fac88b013fe7fbbf91100",
+      "record_version": "source-feac3a2d3f78bbe5d8542c971cc871291b70983abd2fac88b013fe7fbbf91100"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-replay-action-log-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "bf024ec0be4f1be6b528de894ee81721858435bbb3d51eaeb71fb1a0ba4cf57e",
+      "record_version": "source-bf024ec0be4f1be6b528de894ee81721858435bbb3d51eaeb71fb1a0ba4cf57e"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-run-evaluate-policy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9ef9d6168518cc7f6f958a2e6696173950af3fe7e69574e85fca1173d4a88cbb",
+      "record_version": "source-9ef9d6168518cc7f6f958a2e6696173950af3fe7e69574e85fca1173d4a88cbb"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-run-replay-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "b58dca158fa91693a4dde135d47f1ee9499172876d378bf36b4045a9712d78fd",
+      "record_version": "source-b58dca158fa91693a4dde135d47f1ee9499172876d378bf36b4045a9712d78fd"
+    },
+    {
+      "id": "tsid-demo-demo-quadruped-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "7a1da94d7acf44bbb10f2cab5e7da8e031a2a33093809c05b7aef7eeba006a93",
+      "record_version": "source-7a1da94d7acf44bbb10f2cab5e7da8e031a2a33093809c05b7aef7eeba006a93"
+    },
+    {
+      "id": "tsid-demo-demo-tsid-talos-gripper-closed-kinematic-chain-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "77403dce6b53f3ef589463252ed228855b57ebbf23c6ae84810595ff9d33b161",
+      "record_version": "source-77403dce6b53f3ef589463252ed228855b57ebbf23c6ae84810595ff9d33b161"
+    },
+    {
+      "id": "tsid-exercizes-ex-0-ur5-joint-space-control-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "9203410eec7ed2a6b706ea532bff8dc580cc4722d6d0efbd603e64bb831ecae2",
+      "record_version": "source-9203410eec7ed2a6b706ea532bff8dc580cc4722d6d0efbd603e64bb831ecae2"
+    },
+    {
+      "id": "tsid-exercizes-ex-3-biped-balance-with-gui-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "fdee11c5c99339b3a50c510682f046eb8cb560dc5dce5a7f2a124e72552f1875",
+      "record_version": "source-fdee11c5c99339b3a50c510682f046eb8cb560dc5dce5a7f2a124e72552f1875"
+    },
+    {
+      "id": "tsid-exercizes-ex-4-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "265459a3db7bede6dabf519347a683bc9c3e01f53d842a92d2cd9cc00717d2d6",
+      "record_version": "source-265459a3db7bede6dabf519347a683bc9c3e01f53d842a92d2cd9cc00717d2d6"
+    },
+    {
+      "id": "tsid-exercizes-ex-4-talos-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "bd1469d2c7790f83d4affd3e62faf839735491341de992b48b855251e531afbb",
+      "record_version": "source-bd1469d2c7790f83d4affd3e62faf839735491341de992b48b855251e531afbb"
+    },
+    {
+      "id": "tsid-exercizes-ex-4-walking-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "5dca2989192e7a7f18ec44d921788a9bdc99758a4757fc534df44d199b1551fa",
+      "record_version": "source-5dca2989192e7a7f18ec44d921788a9bdc99758a4757fc534df44d199b1551fa"
+    },
+    {
+      "id": "tsid-exercizes-romeo-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "f4255c88dc259a39bc33bb5d1340942c54acefe56447f5ec08ff74b02d9ed8f9",
+      "record_version": "source-f4255c88dc259a39bc33bb5d1340942c54acefe56447f5ec08ff74b02d9ed8f9"
+    },
+    {
+      "id": "tsid-exercizes-talos-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "2aa792ebf40ba65573703fa1286a2e35cc3963366a38799f0b00bfe7f4e037e8",
+      "record_version": "source-2aa792ebf40ba65573703fa1286a2e35cc3963366a38799f0b00bfe7f4e037e8"
+    },
+    {
+      "id": "unitree-mujoco-example-cpp-stand-go2-cpp",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "672ae2a2bde19b765765ad568e3546514db060ddf01f65d4ffa69b85be7c0fe4",
+      "record_version": "source-672ae2a2bde19b765765ad568e3546514db060ddf01f65d4ffa69b85be7c0fe4"
+    },
+    {
+      "id": "unitree-mujoco-example-python-stand-go2-py",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "0622069c777c37c1691cb609b627d7a953378e5d45b7ae9936b63b79f3524f94",
+      "record_version": "source-0622069c777c37c1691cb609b627d7a953378e5d45b7ae9936b63b79f3524f94"
+    },
+    {
+      "id": "unitree-mujoco-example-ros2-src-stand-go2-cpp",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "d6378fc00c7de9fa5efc97798cc836f970ca5f92d9bce4aadd3fc1edbbe7cc08",
+      "record_version": "source-d6378fc00c7de9fa5efc97798cc836f970ca5f92d9bce4aadd3fc1edbbe7cc08"
+    },
+    {
+      "id": "unitree-mujoco-simulate-python-unitree-mujoco-py",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "d8a199899a1f076c1f8a2f8a90e1058e746b8f48c0aee15fb9238ad054898879",
+      "record_version": "source-d8a199899a1f076c1f8a2f8a90e1058e746b8f48c0aee15fb9238ad054898879"
+    },
+    {
+      "id": "unitree-mujoco-simulate-src-joystick-jstest-cc",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "13b0b3b403793b87fb98e06356ac6210eed174adc343a690f859b43f4f021b0b",
+      "record_version": "source-13b0b3b403793b87fb98e06356ac6210eed174adc343a690f859b43f4f021b0b"
+    },
+    {
+      "id": "unitree-mujoco-simulate-src-main-cc",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "85f10859c71bc9047d37397aefcc05dc8753c7cf37141f5e9ac205e91e932234",
+      "record_version": "source-85f10859c71bc9047d37397aefcc05dc8753c7cf37141f5e9ac205e91e932234"
+    },
+    {
+      "id": "unitree-rl-lab-scripts-list-envs-py",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "94c2b6a17059b135d2488b06940c8af2262f3e1ab25d69daef047f496c45681c",
+      "record_version": "source-94c2b6a17059b135d2488b06940c8af2262f3e1ab25d69daef047f496c45681c"
+    },
+    {
+      "id": "unitree-rl-lab-scripts-mimic-csv-to-npz-py",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "4a0851f45d9896125cd94cbd697dac2aeb2d008c35b7735c6488e261f73c7914",
+      "record_version": "source-4a0851f45d9896125cd94cbd697dac2aeb2d008c35b7735c6488e261f73c7914"
+    },
+    {
+      "id": "unitree-rl-lab-scripts-mimic-replay-npz-py",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "1bee057600c78dd39a6acc3baa40af4235e20a04ef6533608062c2f698d24356",
+      "record_version": "source-1bee057600c78dd39a6acc3baa40af4235e20a04ef6533608062c2f698d24356"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-950d12fa8496",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "2811746c2aae8944d55bed0e274ded65025d658809ff0b63f23326707e3a8e8e",
+      "record_version": "source-2811746c2aae8944d55bed0e274ded65025d658809ff0b63f23326707e3a8e8e"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-d2ed3a2e5123",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "56859832148dacc724ddba3954a7684b99a43560e4fde561f6361b9daa051b56",
+      "record_version": "source-56859832148dacc724ddba3954a7684b99a43560e4fde561f6361b9daa051b56"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-fc236331005d",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "22deed51bf779bb9730cdbb48df3b098ec64dab15984942153f0073d40840b8f",
+      "record_version": "source-22deed51bf779bb9730cdbb48df3b098ec64dab15984942153f0073d40840b8f"
+    },
+    {
       "id": "unitree-sdk2-python-example-b2-high-level-b2-sport-client-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "d7eff2a375329268b83a0e08ae563caaec4dd2e7f969189a62d0a24012e0bcfd",
@@ -6246,6 +9564,48 @@
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a",
       "record_version": "source-8d649f50a3e60015f6b494b0201b99a0e9ad6f3862ee24e8aad2a9272202c70a"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-examples-examples-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "9b371f1cc7a72c11f3b42f6aa2ff85a34fb4489862a0aa1a263b4a447f907e40",
+      "record_version": "source-9b371f1cc7a72c11f3b42f6aa2ff85a34fb4489862a0aa1a263b4a447f907e40"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-examples-force-mode-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "54e657b4e6ffdc3772fdbafc7989bf8ee213f8ab217572eaae10eeb5e98469db",
+      "record_version": "source-54e657b4e6ffdc3772fdbafc7989bf8ee213f8ab217572eaae10eeb5e98469db"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-examples-move-until-example-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "63d0ccb58959014fb95971b3940c87f41a6c03fe6bdda276335c6fa074c66c40",
+      "record_version": "source-63d0ccb58959014fb95971b3940c87f41a6c03fe6bdda276335c6fa074c66c40"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-examples-send-dummy-mo-ab78a3ddbe52",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "aedc46e33a02a00f55c8ef4a3cd4709f505e319680a0eec3024fa3b528354145",
+      "record_version": "source-aedc46e33a02a00f55c8ef4a3cd4709f505e319680a0eec3024fa3b528354145"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-scripts-example-move-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "0bede9f133b85dc79f84e2860ef350a53fa4b91574c7556873b8223dc61f86f5",
+      "record_version": "source-0bede9f133b85dc79f84e2860ef350a53fa4b91574c7556873b8223dc61f86f5"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-scripts-tool-communication-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "1f738b89790910de1d99786f7edea7d51847a5fbf90223c9144fe737d3970e9e",
+      "record_version": "source-1f738b89790910de1d99786f7edea7d51847a5fbf90223c9144fe737d3970e9e"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-scripts-wait-robot-booted-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "f3dd3348787114f50cd3158a5c82b8eab266127d9a5a011850052c164f1c3f52",
+      "record_version": "source-f3dd3348787114f50cd3158a5c82b8eab266127d9a5a011850052c164f1c3f52"
     },
     {
       "id": "ur-description-artifact-config-initial-positions-yaml",
@@ -7866,6 +11226,48 @@
       "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
       "source_sha256": "00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d",
       "record_version": "source-00e2c2250ab6b3b90f1e70f285d387f8bd74b3c5933aed49310a36f8588a915d"
+    },
+    {
+      "id": "xarm-ros2-demo-mbot-demo-launch-mbot-moveit-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "b85f7b116e6a026a7a9909df84dfe704b3f5a207316536aa3ae0a229bfee6eb6",
+      "record_version": "source-b85f7b116e6a026a7a9909df84dfe704b3f5a207316536aa3ae0a229bfee6eb6"
+    },
+    {
+      "id": "xarm-ros2-demo-mbot-demo-launch-mbot-moveit-gazebo-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "2eb7be77039a539e5b4741e94ca2356e73f2d8ed50d0aa5292428a31d78776ef",
+      "record_version": "source-2eb7be77039a539e5b4741e94ca2356e73f2d8ed50d0aa5292428a31d78776ef"
+    },
+    {
+      "id": "xarm-ros2-demo-mbot-demo-launch-mbot-moveit-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "68b612e8af219ec4781f97a1ba0763bf0ca894ea06ba082d8ae8738d73e4ebba",
+      "record_version": "source-68b612e8af219ec4781f97a1ba0763bf0ca894ea06ba082d8ae8738d73e4ebba"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-dual-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "34378301f4f53f549d55a375b0606101d91fd94e80461dcc9376b9829184ecc7",
+      "record_version": "source-34378301f4f53f549d55a375b0606101d91fd94e80461dcc9376b9829184ecc7"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-dual-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "d369b0b410f5feaf696784d65f370103f88717c2f0f461b640cd643d7a343742",
+      "record_version": "source-d369b0b410f5feaf696784d65f370103f88717c2f0f461b640cd643d7a343742"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "0a28ed78932270dc359fd3df7774428b9afbbd739af364fae4f2a75cd4c4e373",
+      "record_version": "source-0a28ed78932270dc359fd3df7774428b9afbbd739af364fae4f2a75cd4c4e373"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "2c40414f0bd7d0dbe76d65650fdc50683eb0ffbb43d6b625c2a48dcfac3a76e3",
+      "record_version": "source-2c40414f0bd7d0dbe76d65650fdc50683eb0ffbb43d6b625c2a48dcfac3a76e3"
     }
   ]
 }

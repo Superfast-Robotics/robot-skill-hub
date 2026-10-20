@@ -8,6 +8,18 @@
       "record_version": "source-f1522256087d6ed032835add36df9608e569cb4bf64c3dc6b7e41020d45918d6"
     },
     {
+      "id": "genesis-examples-examples-viewer-plugin-keyboard-teleop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e618c87d5f6633a1c377d3cb8a7a04e2ddb45cce00d52faebd3d4c1dd9dfef4f",
+      "record_version": "source-e618c87d5f6633a1c377d3cb8a7a04e2ddb45cce00d52faebd3d4c1dd9dfef4f"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-proto-robot-mock-publisher-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "85120cde5e756e194cf9e084d830f489febc9391bba840292b0aa1911da88423",
+      "record_version": "source-85120cde5e756e194cf9e084d830f489febc9391bba840292b0aa1911da88423"
+    },
+    {
       "id": "mujoco-menagerie-artifact-trs-so-arm100-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "d4c7e337b9b5efb9ff081300f4af48ed23c5acacccdaaa95d5a295b6ac5238f8",

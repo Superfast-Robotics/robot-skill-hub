@@ -8,6 +8,12 @@
       "record_version": "source-f2b057cd497f3fef20bdc4197879d1c02e1c751f83154cce0183fcc10f7e2540"
     },
     {
+      "id": "genesis-examples-examples-rigid-authored-decomp-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "60847645b4026f96ee83bb874135c092f2d8136c9b19ae2f88a9699d68f71388",
+      "record_version": "source-60847645b4026f96ee83bb874135c092f2d8136c9b19ae2f88a9699d68f71388"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-02-scene-create-scene-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "f4af6b75d1fda9f0cd636e5666058ff4d4c4612d9b63cd7d78883112eaec28c9",

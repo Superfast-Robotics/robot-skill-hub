@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "habitat-lab-examples-register-new-sensors-and-measures-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "08229de72f4a4ece2db9d4b1e34c913eb861a2123fbb40860ee3b901c7da77b9",
+      "record_version": "source-08229de72f4a4ece2db9d4b1e34c913eb861a2123fbb40860ee3b901c7da77b9"
+    },
+    {
+      "id": "mujoco-playground-mujoco-playground-src-locomotion-locomotion-test-py",
+      "source_commit": "d59156e099a8785dd58fbce2e25a6ee1f7b5800c",
+      "source_sha256": "d2cf4bf2bacbc930436b346573cd8fb3a0988eeac2b04cf93945ac4043480351",
+      "record_version": "source-d2cf4bf2bacbc930436b346573cd8fb3a0988eeac2b04cf93945ac4043480351"
+    },
+    {
       "id": "robosuite-demo-control",
       "source_commit": "a071383d53568ab798eb315c0e95357911be922d",
       "source_sha256": "c09ee40659987d0c0d7cefa8e291bb0f921a676187884aa63a8950849dd6e822",

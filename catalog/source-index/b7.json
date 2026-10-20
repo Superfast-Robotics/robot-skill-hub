@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-biped-gaits-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "477ef9b35c48ef872579123f95b15b7e71cd801eb76f7e12913b4bbf7c38a874",
+      "record_version": "source-477ef9b35c48ef872579123f95b15b7e71cd801eb76f7e12913b4bbf7c38a874"
+    },
+    {
       "id": "gap-bundle-anchoring-a-free-end",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "ab58865dd1f5a0ce7921c0d82a082779ee617e93d985352b293a9b1029603324",
       "record_version": "source-ab58865dd1f5a0ce7921c0d82a082779ee617e93d985352b293a9b1029603324"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-franka-batched-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "95fdc0990ed16cf9cb32bd8516306b936874e6ec793e6828369f836621fd4be8",
+      "record_version": "source-95fdc0990ed16cf9cb32bd8516306b936874e6ec793e6828369f836621fd4be8"
     },
     {
       "id": "webots-projects-robots-festo-robotino3-controllers-robotino3-robotino3-c",

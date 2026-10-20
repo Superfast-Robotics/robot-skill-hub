@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-taichi-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3207ad0eed924f4f03aeb93a01bd7b3039b00baa841705b0ce39d80b34fadec2",
+      "record_version": "source-3207ad0eed924f4f03aeb93a01bd7b3039b00baa841705b0ce39d80b34fadec2"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-walk-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "df81399534b0088d01e3fa3c4730d7abeac6ffacc2ef10983b0796458315cbf5",
+      "record_version": "source-df81399534b0088d01e3fa3c4730d7abeac6ffacc2ef10983b0796458315cbf5"
+    },
+    {
       "id": "mujoco-menagerie-artifact-booster-t1-t1-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "78af3f7910e4413894863b6427f44a7daf49e5eb47628e6fe2db775219e346b9",

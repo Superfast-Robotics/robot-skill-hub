@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-scenes-traversability-map-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "5e4b8f1b63eeca60dc66d3faaadddcfc9a555cc8a62bad18e74540c78ee00b2e",
+      "record_version": "source-5e4b8f1b63eeca60dc66d3faaadddcfc9a555cc8a62bad18e74540c78ee00b2e"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-teleoperation-vr-robot-c-f95338ac6531",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "edb3ba1eb395fcb50fce27db802604755ba459ccfe46ea4064af6c6c7f0a1e9a",
+      "record_version": "source-edb3ba1eb395fcb50fce27db802604755ba459ccfe46ea4064af6c6c7f0a1e9a"
+    },
+    {
+      "id": "causalworld-tutorials-rlpyt-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "35668d41c429b3a9e0462abfc20dd09dec7da4c8406ea6226862ecce42e630fe",
+      "record_version": "source-35668d41c429b3a9e0462abfc20dd09dec7da4c8406ea6226862ecce42e630fe"
+    },
+    {
+      "id": "crocoddyl-examples-lqr-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "6b997aeff0ea74051e66c01f1836a3e60d091a1846f76fb9626f4f4bae5c9f3e",
+      "record_version": "source-6b997aeff0ea74051e66c01f1836a3e60d091a1846f76fb9626f4f4bae5c9f3e"
+    },
+    {
       "id": "franka-description-artifact-accessories-fr3-duo-mount-v0-3-fr3-duo-mount-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "a8f85ad1f35354db372cce7b20833653ca125465703baaa125f4f77769a37af1",

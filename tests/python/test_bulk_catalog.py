@@ -257,7 +257,7 @@ class BulkAdapterTests(unittest.TestCase):
         path = ROOT / "catalog/references.json"
         if not path.exists():
             self.skipTest("Reference index is not generated yet")
-        records = json.loads(path.read_text())["records"]
+        records = json.loads(path.read_text(encoding="utf-8"))["records"]
         self.assertGreaterEqual(len(records), 30)
         self.assertEqual(len(records), len({r["id"] for r in records}))
         for record in records:

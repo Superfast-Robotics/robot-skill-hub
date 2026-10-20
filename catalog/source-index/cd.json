@@ -20,6 +20,12 @@
       "record_version": "source-f2ec88613136be6a3329f6329efada33c2c7e3310b2ee4a9a2736fe6634d1266"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-handle-press-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "c1cb402557fe4fc54bf5750182dc15d5c5d4bcfcff47f7d570aa140e134a12f7",
+      "record_version": "source-c1cb402557fe4fc54bf5750182dc15d5c5d4bcfcff47f7d570aa140e134a12f7"
+    },
+    {
       "id": "mujoco-menagerie-artifact-toddlerbot-2xm-toddlerbot-2xm-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "b6c3d16b47fcb99d07925c2604fc0ed244178b3c6da988e2e26f1806590d468a",

@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "bipedal-locomotion-framework-examples-unicycletrajectorygenerator-main-cpp",
+      "source_commit": "1cca6bafd23780f8a0e996a01febe75909fc9956",
+      "source_sha256": "c10a81c1d75e1feb177e941f30c90ef8c19f7cb91fd7831bd751da4ced791c9f",
+      "record_version": "source-c10a81c1d75e1feb177e941f30c90ef8c19f7cb91fd7831bd751da4ced791c9f"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-grasp-bottle-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "469cdb5020655f1c69472902ae96d8c13b14b24efa08b971545e58b0d2eafe8e",
+      "record_version": "source-469cdb5020655f1c69472902ae96d8c13b14b24efa08b971545e58b0d2eafe8e"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-single-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2f25f50556bce9b29839c67e9c388f92561fb9c855490ac9a9ebf193d1621b98",
+      "record_version": "source-2f25f50556bce9b29839c67e9c388f92561fb9c855490ac9a9ebf193d1621b98"
+    },
+    {
       "id": "mujoco-menagerie-artifact-rainbow-robotics-rby1-rby1m-1-2-no-gripper-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "df37ff7b2baa7670d9a0e58719d5aee491837d4ef74837ce7c04db8e4c30a087",

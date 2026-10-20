@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-bar-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "85865d65d45d9adcf52a936280832c7de8056c0c4d988c0f5359ae229c1107c1",
+      "record_version": "source-85865d65d45d9adcf52a936280832c7de8056c0c4d988c0f5359ae229c1107c1"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-handstanding-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "98f9be9ec5b934e8f54f6135db33670f8dd96382cc2c672a807db33752fe6ed2",
+      "record_version": "source-98f9be9ec5b934e8f54f6135db33670f8dd96382cc2c672a807db33752fe6ed2"
+    },
+    {
       "id": "drake-examples-acrobot-optimizer-demo-py",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "dadb4ea7761b1e422facac3985da11434a0fa7e882fc41adc37a52c9d92216c7",
@@ -12,6 +24,12 @@
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "51dc1d5f222cf2ec44cb22843e75f203d427396a2b8754783ca25ea7ecf7f4e2",
       "record_version": "source-51dc1d5f222cf2ec44cb22843e75f203d427396a2b8754783ca25ea7ecf7f4e2"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-extract-scannet-frames-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "25604acd3195b51a00fd0a440fee1a8130da1812792edad8044a7d2eecae04e2",
+      "record_version": "source-25604acd3195b51a00fd0a440fee1a8130da1812792edad8044a7d2eecae04e2"
     },
     {
       "id": "mujoco-menagerie-artifact-seeed-rebot-devarm-seeed-rebot-devarm-xml",

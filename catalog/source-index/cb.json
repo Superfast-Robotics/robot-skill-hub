@@ -14,6 +14,18 @@
       "record_version": "source-4f45d5d3196397eb1d928f5f58145dfc7fbca3a794757c80126da48eeba929ed"
     },
     {
+      "id": "home-robot-projects-scannet-offline-eval-eval-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "d3cd16cf63f2b9e7954cb3cf3075b40310c573d77d9e2c6cde24f6807d5bb893",
+      "record_version": "source-d3cd16cf63f2b9e7954cb3cf3075b40310c573d77d9e2c6cde24f6807d5bb893"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-drawer-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "053f867a3eca10d6dc18587c9db38ac6fa825eda83559ab6299365d885372c2a",
+      "record_version": "source-053f867a3eca10d6dc18587c9db38ac6fa825eda83559ab6299365d885372c2a"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-position-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4be40a22f1bef0ef2952534da396c80b97942a43ab4a5e3a37deffd8e52e0880",

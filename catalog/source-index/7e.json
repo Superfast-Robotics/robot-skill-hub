@@ -2,16 +2,52 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-rlpyt-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0fd0833481b56aca75e75e585f7ace9ee3ec3e1318bb21281a18a70bf9a2c5ff",
+      "record_version": "source-0fd0833481b56aca75e75e585f7ace9ee3ec3e1318bb21281a18a70bf9a2c5ff"
+    },
+    {
+      "id": "crocoddyl-examples-boxfddp-vs-boxddp-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "04e3819a4a8fd3363198344b2be752d42e533210d997a9faa2e29f845c58d786",
+      "record_version": "source-04e3819a4a8fd3363198344b2be752d42e533210d997a9faa2e29f845c58d786"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-frontflip-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "870128382bc232139888d1643c0cdced10d6dd453f23701541016a59483cfd80",
+      "record_version": "source-870128382bc232139888d1643c0cdced10d6dd453f23701541016a59483cfd80"
+    },
+    {
       "id": "franka-description-artifact-robots-tmrv0-2-tmrv0-2-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c",
       "record_version": "source-14f6538f79a66f20fdfb5e07ae0d2d78fc0f852d454a9e574a4f4f3b25bd9b9c"
     },
     {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-mrac-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "d88f6f6a0441119ef54db32c355bf59205271dabc5359c96184ca43cd6002cb2",
+      "record_version": "source-d88f6f6a0441119ef54db32c355bf59205271dabc5359c96184ca43cd6002cb2"
+    },
+    {
+      "id": "habitat-lab-examples-tutorials-nb-python-habitat-lab-topdownmap-visualization-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "7358eac579a348fe70092e722c1d54af478d1ca185a7068b4fc20ea5ebabd5ca",
+      "record_version": "source-7358eac579a348fe70092e722c1d54af478d1ca185a7068b4fc20ea5ebabd5ca"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-rollout-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "bc82cffdeaef4104e131ce4d3f0c9265765bfe806f62fa023573a1c8c7439b19",
       "record_version": "source-bc82cffdeaef4104e131ce4d3f0c9265765bfe806f62fa023573a1c8c7439b19"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-pick-place-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "3d64ddf57c5cf6ddcee28945005bbbe040964d7dd1ec8b68cfe55175ad5acfbc",
+      "record_version": "source-3d64ddf57c5cf6ddcee28945005bbbe040964d7dd1ec8b68cfe55175ad5acfbc"
     },
     {
       "id": "mujoco-menagerie-artifact-franka-emika-panda-hand-xml",

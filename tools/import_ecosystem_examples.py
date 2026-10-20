@@ -94,6 +94,8 @@ def reviewed_artifact_metadata(artifact):
 
 
 def validate_project(project):
+    if "framework" in project and not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", project["framework"]):
+        raise ValueError("Framework grouping must be a stable lowercase identifier")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", project["id"]):
         raise ValueError("Project id must be a stable lowercase identifier")
     if not re.fullmatch(r"https://github.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", project["repository"]):
@@ -235,10 +237,20 @@ def inspect_source(path, data):
             return {"kind": "ros2_launch", "imports": imports}
         if guarded:
             return {"kind": "python_main", "imports": imports}
+        # Meta-World policies are callable controllers, not command-line scripts.
+        # Accept only the documented Policy interface in this explicit namespace.
+        if re.fullmatch(r"metaworld/policies/sawyer_[a-z0-9_]+_v3_policy\.py", path):
+            policies = [n for n in tree.body if isinstance(n, ast.ClassDef)
+                        and any(isinstance(base, ast.Name) and base.id == "Policy" for base in n.bases)
+                        and any(isinstance(method, ast.FunctionDef) and method.name == "get_action"
+                                and [arg.arg for arg in method.args.args] == ["self", "obs"] for method in n.body)]
+            if len(policies) == 1 and "metaworld.policies.policy" in imports:
+                return {"kind": "scripted_policy", "imports": imports, "policy_class": policies[0].name}
         # Several canonical Pinocchio / Robotics Toolbox / Webots examples are
         # straight-line scripts. Require top-level operational calls AND a
         # relevant imported robotics library, not merely definitions/imports.
-        robotics = ("pinocchio", "roboticstoolbox", "controller", "ompl", "pydrake", "lerobot", "pyrobosim", "isaaclab")
+        robotics = ("pinocchio", "roboticstoolbox", "controller", "ompl", "pydrake", "lerobot", "pyrobosim", "isaaclab",
+                    "genesis", "mink", "pink", "crocoddyl", "aligator", "tsid", "pytransform3d", "movement_primitives")
         operational = any(isinstance(n, (ast.Expr, ast.Assign, ast.AnnAssign, ast.For, ast.While, ast.With))
                           and any(isinstance(v, ast.Call) for v in ast.walk(n)) for n in tree.body)
         if operational and any(x.split(".")[0] in robotics for x in imports):
@@ -371,6 +383,8 @@ def robot_types(project, path):
 
 
 def invocation(project, path, kind):
+    if kind == "scripted_policy":
+        return "Import the declared Policy subclass and call get_action(obs) in the matching pinned Meta-World environment; this module is not a command-line program"
     if project["id"] == "webots":
         return f"Webots controller: {path}; open the matching upstream .wbt world and select this controller"
     if kind == "ros2_launch":
@@ -405,7 +419,7 @@ def make_record(project, artifact, cache):
     source_url = f"{project['repository']}/blob/{project['commit']}/{path}"
     raw_url = project["repository"].replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + project["commit"] + "/" + urllib.parse.quote(path, safe="/")
     record = {"id": ident, "name": f"{project['name']}: {topic(path)}", "summary": f"Official {project['name']} {inspection['kind'].replace('_', ' ')} example for {topic(path)}. Inspect the pinned source and upstream setup before use.",
-            "framework": project["id"], "kind": "official_example", "source_registry": REGISTRY,
+            "framework": project.get("framework", project["id"]), "kind": "official_example", "source_registry": REGISTRY,
             "capabilities": capabilities(project, path), "robot_types": robot_types(project, path),
             "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
             "source": {"repository": project["repository"], "commit": project["commit"], "tag": project["ref"],
@@ -419,6 +433,9 @@ def make_record(project, artifact, cache):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": project["checked_at"],
                          "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
                          "entrypoint_kind": inspection["kind"], "inspection_method": "automated_static"}}
+    if inspection["kind"] == "scripted_policy":
+        record["evidence"]["policy_class"] = inspection["policy_class"]
+        record["summary"] = f"Official {project['name']} scripted controller for {topic(path)}. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script."
     if "aliases" in reviewed:
         record["aliases"] = reviewed["aliases"]
     if "authors" in reviewed:

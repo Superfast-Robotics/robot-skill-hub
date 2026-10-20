@@ -8,6 +8,18 @@
       "record_version": "source-4cb73895bafb2170ea5cffda591899b29bec3c8ab44ada6d71293f075ecbee13"
     },
     {
+      "id": "genesis-examples-examples-tutorials-advanced-ik-multilink-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c829e594c370fbfd84095921461d39d9a62c2598b3538b3e67fe319490c2e8ea",
+      "record_version": "source-c829e594c370fbfd84095921461d39d9a62c2598b3538b3e67fe319490c2e8ea"
+    },
+    {
+      "id": "habitat-lab-examples-franka-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "d098490925006c5fc07033d0804f9edaa8b4df84f809eff551afd2bf56d43ac5",
+      "record_version": "source-d098490925006c5fc07033d0804f9edaa8b4df84f809eff551afd2bf56d43ac5"
+    },
+    {
       "id": "ros2-control-example-15-bringup-launch-rrbot-namespace-launch-py",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "30d54345a00af5a4227a1d494b45bba19d4104cbeda4f94a8cdbc9635fd7eb25",

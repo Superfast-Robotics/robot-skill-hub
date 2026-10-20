@@ -2,10 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-quadrotor-obstacles-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "c4eb3bdf101a0c3d7384d209e8d2e77948bf66aff4174bdd08713b1c5ddcbe5f",
+      "record_version": "source-c4eb3bdf101a0c3d7384d209e8d2e77948bf66aff4174bdd08713b1c5ddcbe5f"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-backflip-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3de6e9ce3e45669b68fcca7bafb39e5529d8ae1678bde0345b6560ae943e08c2",
+      "record_version": "source-3de6e9ce3e45669b68fcca7bafb39e5529d8ae1678bde0345b6560ae943e08c2"
+    },
+    {
       "id": "drake-examples-kuka-iiwa-arm-kuka-plan-runner-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "a90c8eb1ae7f77c3c226b683f2c50098803d7a7665595c9fa04b5a940c7452b0",
       "record_version": "source-a90c8eb1ae7f77c3c226b683f2c50098803d7a7665595c9fa04b5a940c7452b0"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-hybrid-robot-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "cab840be6da86966222882c076d47cfec5ce6c055f18b5a39fa97a87f96dce28",
+      "record_version": "source-cab840be6da86966222882c076d47cfec5ce6c055f18b5a39fa97a87f96dce28"
+    },
+    {
+      "id": "habitat-lab-examples-shortest-path-follower-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "2968696079f91f1ea44ab0068644d33e5180274a3c70fc670120905118115520",
+      "record_version": "source-2968696079f91f1ea44ab0068644d33e5180274a3c70fc670120905118115520"
     },
     {
       "id": "isaac-groot-scripts-lerobot-conversion-convert-v3-to-v2-py",

@@ -22,7 +22,7 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 <!-- rsh-coverage:start -->
 ## Current execution and reference coverage
 
-139 preparation recipes: **115 completed operations/tasks**, 13 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
+194 preparation recipes: **169 completed operations/tasks**, 14 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
 
 | Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
@@ -32,6 +32,7 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | dm-control | pendulum | simulation | 1 | 1 | 0 | 0 |
 | dm-control | point_mass | simulation | 2 | 2 | 0 | 0 |
 | dm-control | reacher | simulation | 2 | 2 | 0 | 0 |
+| genesis | panda | simulation | 2 | 2 | 0 | 0 |
 | gymnasium-robotics | fetch | simulation | 3 | 3 | 0 | 0 |
 | gymnasium-robotics | point-mass | simulation | 3 | 3 | 0 | 0 |
 | lerobot | pusht-2d-pusher | simulation | 1 | 0 | 1 | 0 |
@@ -40,6 +41,10 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | maniskill | panda_wristcam | simulation | 2 | 0 | 0 | 2 |
 | maniskill | so100 | simulation | 1 | 0 | 0 | 1 |
 | maniskill | xarm6_robotiq | simulation | 4 | 0 | 0 | 4 |
+| metaworld | sawyer | simulation | 50 | 49 | 1 | 0 |
+| mink | iiwa | simulation | 1 | 1 | 0 | 0 |
+| mink | panda | simulation | 1 | 1 | 0 | 0 |
+| mink | ur5e | simulation | 1 | 1 | 0 | 0 |
 | mujoco | agilex_piper | simulation | 1 | 1 | 0 | 0 |
 | mujoco | aloha | simulation | 1 | 1 | 0 | 0 |
 | mujoco | arx_l5 | simulation | 1 | 1 | 0 | 0 |
@@ -83,39 +88,39 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | robosuite | UR5e | simulation | 4 | 4 | 0 | 0 |
 | ruckig | independent-axes | computation | 5 | 5 | 0 | 0 |
 
-Completion evidence covers 33 computations and 82 simulations across 54 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
+Completion evidence covers 33 computations and 136 simulations across 60 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
 
 | Task level | Prepared | Passed | Failed | No task run |
 | --- | ---: | ---: | ---: | ---: |
 | Algorithm / sensing | 39 | 39 | 0 | 0 |
-| Motion / control | 44 | 44 | 0 | 0 |
-| Task | 56 | 32 | 13 | 11 |
+| Motion / control | 49 | 49 | 0 | 0 |
+| Task | 106 | 81 | 14 | 11 |
 
-**1330 source references across 44 frameworks.** References are upstream declarations, not Hub execution evidence.
+**1897 source references across 67 frameworks.** References are upstream declarations, not Hub execution evidence.
 
 | Reference framework | Records |
 | --- | ---: |
 | mujoco-menagerie | 221 |
 | webots | 193 |
+| genesis | 118 |
 | pinocchio | 76 |
 | drake | 73 |
 | franka-description | 72 |
 | ros2-control | 72 |
 | ur-description | 65 |
-| isaaclab | 52 |
-| Other 36 frameworks | 506 |
+| Other 59 frameworks | 1007 |
 
 | Declared reference robot category | Records |
 | --- | ---: |
-| source-defined | 615 |
-| arm | 262 |
+| source-defined | 1091 |
+| arm | 301 |
+| humanoid | 104 |
 | manipulator | 83 |
-| humanoid | 69 |
 | mobile-manipulator | 65 |
-| legged | 46 |
-| aerial | 37 |
+| legged | 59 |
+| aerial | 41 |
 | wheeled | 36 |
-| dexterous-hand | 34 |
+| dexterous-hand | 35 |
 | quadruped | 18 |
 | mobile | 9 |
 | marine | 1 |

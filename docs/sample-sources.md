@@ -1,6 +1,6 @@
 # Official sample sources
 
-The Hub contains preparation recipes and source references. [Current coverage](https://hub.superfastrobotics.com/coverage.html) includes 98 recipes and 1,330 references; [diverse simulation execution](runtime-expansion.md) describes the latest additions. The following historical source selections retain their original counts and evidence:
+The Hub contains preparation recipes and source references. [Current coverage](https://hub.superfastrobotics.com/coverage.html) includes 194 recipes and 1,897 references; [diverse simulation execution](runtime-expansion.md) describes the latest additions. References do not inherit an adapter's execution evidence. The following historical source selections retain their original counts and evidence:
 
 - **17 preparation recipes** wrap actual official ManiSkill motion-planning
   solvers with a pinned source archive, dependency recipe, isolated preparation,
@@ -16,10 +16,15 @@ Later finite selections add **56 policy and hardware workflow entrypoints** and
 **43 robot-agent instruction documents**. Their source-review notes below preserve
 the baseline counts and evidence separately.
 
-Read the [preparation catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
-and [source example index](https://hub.superfastrobotics.com/catalog/v1/references.json)
-directly as JSON. The [full text index](https://hub.superfastrobotics.com/llms-full.txt)
-is available without browser scripting.
+Use the [search API](https://api.superfastrobotics.com/v1/search?q=sawyer%20reach)
+for a bounded first lookup. The [complete paged index](https://hub.superfastrobotics.com/catalog/v2/search-manifest.json)
+binds every recipe and reference to checksum-verified pages and per-ID JSON.
+The [preparation catalog](https://hub.superfastrobotics.com/catalog/v1/index.json)
+and [legacy source view](https://hub.superfastrobotics.com/catalog/v1/references.json)
+remain available. A legacy view with `coverage.complete=false` is a subset:
+follow `coverage.complete_manifest_url` for the complete inventory. The
+[full text index](https://hub.superfastrobotics.com/llms-full.txt) is readable
+without browser scripting.
 
 ## Preparation recipes
 

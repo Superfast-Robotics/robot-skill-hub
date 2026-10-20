@@ -2,6 +2,36 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-pid-velocity-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "219feef51d921594148d75fc95f4f70209a235e11ffaecdf7173507697c5fb6a",
+      "record_version": "source-219feef51d921594148d75fc95f4f70209a235e11ffaecdf7173507697c5fb6a"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-faucet-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "aa4c5aed6b8ce19df325124042005f9053cd4af5e75be63cd50fbefd0f1fb080",
+      "record_version": "source-aa4c5aed6b8ce19df325124042005f9053cd4af5e75be63cd50fbefd0f1fb080"
+    },
+    {
+      "id": "mink-examples-arm-panda-dof-freezing-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "14944dea22ca5e933fd78f30ce980ad3bc21df404c01b6af75757ca553ca82f4",
+      "record_version": "source-14944dea22ca5e933fd78f30ce980ad3bc21df404c01b6af75757ca553ca82f4"
+    },
+    {
+      "id": "mink-examples-quadruped-go1-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "de95c348b921a582e32e0f65935dcaf9606c67e3fdeb3fb960b0089eadaf0445",
+      "record_version": "source-de95c348b921a582e32e0f65935dcaf9606c67e3fdeb3fb960b0089eadaf0445"
+    },
+    {
+      "id": "pink-examples-arm-panda-manipulability-comparison-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "34c1d236fb572d6bf142d376bb5575a6cac34a124baf83c8842433ebb075925f",
+      "record_version": "source-34c1d236fb572d6bf142d376bb5575a6cac34a124baf83c8842433ebb075925f"
+    },
+    {
       "id": "pybullet-pdcontrol",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "1506818d6b5c47ed3eb55dee4531694e2a72612646223caf2d3c7a3c378607da",

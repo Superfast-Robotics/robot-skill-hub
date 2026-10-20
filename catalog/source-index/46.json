@@ -14,6 +14,12 @@
       "record_version": "source-adbdc38c5def8e348cda3b53bbe1c388c4bc2ef146544bd26adec2e310cc90f4"
     },
     {
+      "id": "home-robot-projects-habitat-ovmm-scripts-summarize-metrics-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "367216f123fb8e4e2c9f6124f8ed708c90b4cc7a2111dffaad187652019d7802",
+      "record_version": "source-367216f123fb8e4e2c9f6124f8ed708c90b4cc7a2111dffaad187652019d7802"
+    },
+    {
       "id": "lerobot-examples-dataset-use-dataset-tools-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "9c5b3babc4aaa1b5243725c98a0177d4ef38b82b2fc14bf9290c6911b0c99d2a",

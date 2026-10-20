@@ -8,10 +8,28 @@
       "record_version": "source-2e4b9bed7bbcdbf651eff7c1924ee604c9ee072f7eaebe7b5c00758884c3e78c"
     },
     {
+      "id": "genesis-examples-examples-rigid-single-franka-envs-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "7408acaf6a2ba16fc191af94c26b919f4b8be9e487ff4a28163c815e4e4a97ba",
+      "record_version": "source-7408acaf6a2ba16fc191af94c26b919f4b8be9e487ff4a28163c815e4e4a97ba"
+    },
+    {
+      "id": "genesis-examples-examples-speed-benchmark-timers-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5c807bb683c0f163bfd91b4da4d811e63d6cb9f9e06734903f915167eed4d405",
+      "record_version": "source-5c807bb683c0f163bfd91b4da4d811e63d6cb9f9e06734903f915167eed4d405"
+    },
+    {
       "id": "mujoco-menagerie-artifact-shadow-hand-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399",
       "record_version": "source-ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399"
+    },
+    {
+      "id": "mujoco-playground-mujoco-playground-src-manipulation-manipulation-test-py",
+      "source_commit": "d59156e099a8785dd58fbce2e25a6ee1f7b5800c",
+      "source_sha256": "73ed11e612aae98668602478bc405e4fd6686689b008c0f1f8372c4591b573a6",
+      "record_version": "source-73ed11e612aae98668602478bc405e4fd6686689b008c0f1f8372c4591b573a6"
     },
     {
       "id": "rai-src-rai-finetune-rai-finetune-data-cli-py",

@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-lqr-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "d9624b6cedfca1238dedf589f28d599901e4733765945b18188c9978cbb3189e",
+      "record_version": "source-d9624b6cedfca1238dedf589f28d599901e4733765945b18188c9978cbb3189e"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "e3a2c01c0d1012ef518151e3fcd077789cdfae6c34ca7861144541ce60102eda",
+      "record_version": "source-e3a2c01c0d1012ef518151e3fcd077789cdfae6c34ca7861144541ce60102eda"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-cloth-on-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "a5701513f0048be64945d3ef6235a56a1c03976a565b6560d34141de695c5945",
+      "record_version": "source-a5701513f0048be64945d3ef6235a56a1c03976a565b6560d34141de695c5945"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-eval-robot-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "2215064cafc1c070f148d185871d5fd1f824c6f2df91d810313abaf21e81f18e",
+      "record_version": "source-2215064cafc1c070f148d185871d5fd1f824c6f2df91d810313abaf21e81f18e"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-00-sim-log-time-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "cd25eeea8ed81378fbdc231d5037c2f56d3797425e6414765f62b9a721ac336e",
@@ -12,6 +36,12 @@
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "93498b7e8e6d9bbe9668b47292c3cc895349c02b955ab51def1c48270463b353",
       "record_version": "source-93498b7e8e6d9bbe9668b47292c3cc895349c02b955ab51def1c48270463b353"
+    },
+    {
+      "id": "roboverse-examples-dexhands-1-diff-dex-hand-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "a28e39b9c328f5b5f3aad74e58affc4da436fd83055a224d6c91e5849610ab26",
+      "record_version": "source-a28e39b9c328f5b5f3aad74e58affc4da436fd83055a224d6c91e5849610ab26"
     },
     {
       "id": "ros2-control-artifact-example-15-bringup-config-rrbot-namespace-for-ea3383f895f6",

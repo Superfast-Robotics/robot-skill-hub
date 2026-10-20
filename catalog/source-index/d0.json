@@ -14,6 +14,18 @@
       "record_version": "source-328c20328289f6587f01f3f0301c78670baa416800553fa77c5741260af8d0d7"
     },
     {
+      "id": "genesis-examples-examples-ipc-ipc-robot-cloth-teleop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f107788d9712903e5aeae87f4df9e7eca69d9f4ea383a1b7e43fc92b3226d2ec",
+      "record_version": "source-f107788d9712903e5aeae87f4df9e7eca69d9f4ea383a1b7e43fc92b3226d2ec"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-accelerometer-duck-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ecb2aa89113a10819729d3eb56bd47c722e906fca3c7a4c2c7e11e8db4bac5e2",
+      "record_version": "source-ecb2aa89113a10819729d3eb56bd47c722e906fca3c7a4c2c7e11e8db4bac5e2"
+    },
+    {
       "id": "libfranka-joint-position",
       "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
       "source_sha256": "93cf0071edcfe19025e27d5c74034b08040fb8fadd3aadaf225b292221623920",
@@ -24,6 +36,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e091ebbab95f07fe156fb2545175194e9b4b05efa31747f24c87d2636b773b36",
       "record_version": "source-e091ebbab95f07fe156fb2545175194e9b4b05efa31747f24c87d2636b773b36"
+    },
+    {
+      "id": "roboverse-examples-blender-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "545e4b15b27f0a33fb9f3afb6dd1b34623a1d208aab4f5fa3948c0033584a91b",
+      "record_version": "source-545e4b15b27f0a33fb9f3afb6dd1b34623a1d208aab4f5fa3948c0033584a91b"
     },
     {
       "id": "ur-description-artifact-urdf-ur-mocked-urdf-xacro",

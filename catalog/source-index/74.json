@@ -8,6 +8,12 @@
       "record_version": "source-7487f8d5b85a4a4a35a2dc46521c28a3fc0516638b77851c0137c925c5924173"
     },
     {
+      "id": "pink-examples-barriers-kukas-self-collision-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "fae3c5e337defcc3c9fe550689fda6b2c4371f61eae976d133827e80bd0766d6",
+      "record_version": "source-fae3c5e337defcc3c9fe550689fda6b2c4371f61eae976d133827e80bd0766d6"
+    },
+    {
       "id": "pybullet-batchraycast",
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "d5331351922f6679d724a6c618827c60d127ae7dad14d239cf6064892cfc262e",

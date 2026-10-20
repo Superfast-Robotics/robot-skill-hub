@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-import-custom-robot-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "6d9fe8c9b156aac3c8073917a3c63ec28c74293ac6321a9e8a96ad6ac3233f50",
+      "record_version": "source-6d9fe8c9b156aac3c8073917a3c63ec28c74293ac6321a9e8a96ad6ac3233f50"
+    },
+    {
+      "id": "causalworld-tutorials-change-action-space-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "ec71c276730099ee06308b7a32b0881d75f5b38ba370d53517ce970fad6e9613",
+      "record_version": "source-ec71c276730099ee06308b7a32b0881d75f5b38ba370d53517ce970fad6e9613"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-advanced-worm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c3a9ce45a6445887db33c39df1f60317169fcdab55b4661c31aebfbf148817c8",
+      "record_version": "source-c3a9ce45a6445887db33c39df1f60317169fcdab55b4661c31aebfbf148817c8"
+    },
+    {
+      "id": "habitat-lab-examples-vln-benchmark-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "081861ae9b9da2cca1857ea3307cdf2d06741dd15d8a2dd7b802e6d21e67ec56",
+      "record_version": "source-081861ae9b9da2cca1857ea3307cdf2d06741dd15d8a2dd7b802e6d21e67ec56"
+    },
+    {
       "id": "roboticstoolbox-examples-fetch-vision-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "9e9a834a368bbc55e8f524506d4840e2ec0b14f1d7697ef897c28cd57dd3a3c3",

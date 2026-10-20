@@ -14,6 +14,12 @@
       "record_version": "source-1105ed8a55011071e9207d602cfc39d55dd1723ef00876cb2325a7c3dc349b44"
     },
     {
+      "id": "genesis-examples-examples-manipulation-grasp-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6bcac06d5ca40391bda52d9cc0885d1149599225c74e08f9ed2c3babdf10e39a",
+      "record_version": "source-6bcac06d5ca40391bda52d9cc0885d1149599225c74e08f9ed2c3babdf10e39a"
+    },
+    {
       "id": "isaaclab-scripts-demos-bipeds-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "1f46d55f04daf043bfd99bb8a03dae5d9ab9251caa2977561ee20808e896f194",
@@ -30,6 +36,12 @@
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675",
       "record_version": "source-a2dcd359bb07356a69be443f794090b3e715117a71d6a34f749cec1afaa8f675"
+    },
+    {
+      "id": "trifinger-simulation-scripts-check-position-control-accuracy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "745cb13c0a849e221b8d9d84c9cd7356c1c599c2d657e067d6ebc025eaa2d44a",
+      "record_version": "source-745cb13c0a849e221b8d9d84c9cd7356c1c599c2d657e067d6ebc025eaa2d44a"
     }
   ]
 }

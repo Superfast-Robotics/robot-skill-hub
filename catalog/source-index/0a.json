@@ -2,10 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-rlkit-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "54a42469d2f9fb3135f9b6c70bcef9c71d8a2eaa305e08d52ed47af2061f8cad",
+      "record_version": "source-54a42469d2f9fb3135f9b6c70bcef9c71d8a2eaa305e08d52ed47af2061f8cad"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-monkey-bar-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "77ca253e6ba4c7718e0b7ab7d35cf65811ca635b59b9c662bd33155235538ac2",
+      "record_version": "source-77ca253e6ba4c7718e0b7ab7d35cf65811ca635b59b9c662bd33155235538ac2"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3-inertials-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "02a39046b36303f748c9755b48610b7600fb819d54828475514c36915ae54a89",
       "record_version": "source-02a39046b36303f748c9755b48610b7600fb819d54828475514c36915ae54a89"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-minimal-minimal-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "007fdb8e3e5ad04fbf87d5199092373fc6ad880d433785144a6d43831f8b81d2",
+      "record_version": "source-007fdb8e3e5ad04fbf87d5199092373fc6ad880d433785144a6d43831f8b81d2"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-rearrange-v2-main-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "380540556f5979e0502c73f6c87447949ad99d1d7bf5810c89ddbd3b4f1c2e95",
+      "record_version": "source-380540556f5979e0502c73f6c87447949ad99d1d7bf5810c89ddbd3b4f1c2e95"
     },
     {
       "id": "isaaclab-scripts-tutorials-04-sensors-run-frame-transformer-py",

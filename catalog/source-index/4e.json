@@ -8,6 +8,12 @@
       "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
     },
     {
+      "id": "genesis-examples-examples-rigid-ddp-multi-gpu-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6a5f772d6b267d09aed3bc4c7c0661c7f22c7c86a7d07fb0d72499bedad72bdd",
+      "record_version": "source-6a5f772d6b267d09aed3bc4c7c0661c7f22c7c86a7d07fb0d72499bedad72bdd"
+    },
+    {
       "id": "lerobot-examples-lekiwi-replay-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "774225113fad605e08806458af49b8e3edfb9b6bc036063cafb052ab6c49ae50",
@@ -20,6 +26,12 @@
       "record_version": "source-f79c54436d5c521399544ef55da3620b971fcdc590970d2849f3eec39093ab3a"
     },
     {
+      "id": "moveit-task-constructor-demo-src-ik-clearance-cost-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "d6e6571599c5238a72f3dc078230f1bc83942dc23cd8c8f14b44702d3621cb43",
+      "record_version": "source-d6e6571599c5238a72f3dc078230f1bc83942dc23cd8c8f14b44702d3621cb43"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pndbotics-adam-lite-adam-lite-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a8725b28db6a1c748ab3e54dbb9233a99a38b3b73e07cdc8506e2e569bca4889",
@@ -30,6 +42,18 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "6615f4ed706eeeea2b02908509cc8f8f7ca2a4fe9e51a2c6a0ec6633970ade4e",
       "record_version": "source-6615f4ed706eeeea2b02908509cc8f8f7ca2a4fe9e51a2c6a0ec6633970ade4e"
+    },
+    {
+      "id": "roboverse-examples-rerun-rerun-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "35259275a0baa19df857dfdf1af610c2c220bbd8a7b565370f06d987f598cb16",
+      "record_version": "source-35259275a0baa19df857dfdf1af610c2c220bbd8a7b565370f06d987f598cb16"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-scripts-tool-communication-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "1f738b89790910de1d99786f7edea7d51847a5fbf90223c9144fe737d3970e9e",
+      "record_version": "source-1f738b89790910de1d99786f7edea7d51847a5fbf90223c9144fe737d3970e9e"
     }
   ]
 }

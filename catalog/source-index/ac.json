@@ -8,10 +8,22 @@
       "record_version": "source-c44f2701cd69abc8d702336a1d54bff41cd716dbe88e84df12b6b660daa791cd"
     },
     {
+      "id": "genesis-examples-examples-rendering-follow-entity-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "e4f7cf7c9cbed63882b9e1efbe8ba2fd11b61463e10bda504d1147309954c2bc",
+      "record_version": "source-e4f7cf7c9cbed63882b9e1efbe8ba2fd11b61463e10bda504d1147309954c2bc"
+    },
+    {
       "id": "isaaclab-scripts-reinforcement-learning-rl-games-train-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "ac18801d64e3d7be968dadc6822e08bb43a2fe4cd8e84fd6a6b84554c080d514",
       "record_version": "source-ac18801d64e3d7be968dadc6822e08bb43a2fe4cd8e84fd6a6b84554c080d514"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-faucet-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "f6c908740a96f06db0931eaab7afdc0f2a120bd197f1dcb57f23a23cbe331873",
+      "record_version": "source-f6c908740a96f06db0931eaab7afdc0f2a120bd197f1dcb57f23a23cbe331873"
     },
     {
       "id": "mujoco-menagerie-artifact-ms-human-700-scene-locomotion-xml",
@@ -24,6 +36,18 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "d1bab6d603cff3e66bd0466dd79e0e358462203c88668b6b95c0280ef87d9df5",
       "record_version": "source-d1bab6d603cff3e66bd0466dd79e0e358462203c88668b6b95c0280ef87d9df5"
+    },
+    {
+      "id": "myosuite-myosuite-utils-examine-sim-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "72044ce793fb3c10c0928b60adbcb151a9e9e7b9f935419cfde7c00f80637b69",
+      "record_version": "source-72044ce793fb3c10c0928b60adbcb151a9e9e7b9f935419cfde7c00f80637b69"
+    },
+    {
+      "id": "pink-examples-upkie-crouching-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "686f47717578ef4c7a31bb647017f30afe472f8345311d08500f5c492bd53b10",
+      "record_version": "source-686f47717578ef4c7a31bb647017f30afe472f8345311d08500f5c492bd53b10"
     },
     {
       "id": "unitree-sdk2-python-example-b2w-high-level-b2w-sport-client-py",

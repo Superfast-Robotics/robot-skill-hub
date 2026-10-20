@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-quadruped-gaits-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3369427248b040533c62b36fefc9567b2c2791bb9bf09c89492eafeaccca5293",
+      "record_version": "source-3369427248b040533c62b36fefc9567b2c2791bb9bf09c89492eafeaccca5293"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-play-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "2eff07950e8289f0182e9d30f5997664c171bb5ddc2f851f2c7a3e0a5f0ce576",
+      "record_version": "source-2eff07950e8289f0182e9d30f5997664c171bb5ddc2f851f2c7a3e0a5f0ce576"
+    },
+    {
       "id": "rai-src-rai-bench-rai-bench-examples-manipulation-o3de-py",
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "ba0ff50ef58ddb4c28bbf4f3374b957f151938288886eda97d656b6785697bc7",

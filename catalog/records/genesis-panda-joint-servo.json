@@ -1,0 +1,422 @@
+{
+  "schema_version": "1",
+  "id": "genesis-panda-joint-servo",
+  "name": "Genesis Panda joint-servo",
+  "summary": "Genesis Panda joint-servo. Bounded, source-pinned simulation with an explicit task contract and retained fixed-case outcomes.",
+  "capabilities": [
+    "simulation",
+    "bounded-json",
+    "genesis",
+    "joint-servo"
+  ],
+  "aliases": [
+    "panda",
+    "genesis",
+    "joint-servo"
+  ],
+  "source": {
+    "repository": "https://github.com/Genesis-Embodied-AI/genesis-world",
+    "commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+    "archive_url": "https://codeload.github.com/Genesis-Embodied-AI/genesis-world/tar.gz/a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+    "archive_sha256": "851d0970b921ee1b5182f62c544f432600153efccc127db059d5f5e46d9ac719",
+    "archive_bytes": 88116919,
+    "authors": [
+      "Original genesis-world contributors; preserve all pinned source and asset notices"
+    ],
+    "paths": [
+      "LICENSE",
+      "pyproject.toml",
+      "examples/rigid/control_franka.py",
+      "genesis/__init__.py",
+      "genesis/engine/entities/rigid_entity/rigid_entity.py",
+      "genesis/assets/xml/franka_emika_panda/panda.xml"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/Genesis-Embodied-AI/genesis-world/blob/a5c4e9a73aca221fa26e611281f2696c5f8b0ca8/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party code terms. Preserve all upstream notices; robot assets and dependencies retain their separate licenses. Hub-authored wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "genesis",
+      "runtime_version": "1.4.4",
+      "robot": "panda",
+      "controller": "joint-servo",
+      "observation": "privileged_simulator_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.11",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator observations and goal/state feedback. No physical sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.11,<3.12",
+    "packages": [
+      "DracoPy==2.2.0",
+      "OpenEXR==3.5.2",
+      "Pillow==11.3.0",
+      "PyGEL3D==0.8.2",
+      "PyOpenGL==3.1.10",
+      "av==18.1.0",
+      "coacd==1.0.14",
+      "fast_simplification==0.2.0",
+      "freetype-py==2.5.1",
+      "frozendict==2.4.7",
+      "genesis-world==1.4.4",
+      "gs-madrona==0.0.10",
+      "libigl==2.6.3",
+      "moviepy==2.2.1",
+      "mujoco==3.16.0",
+      "numba==0.68.0",
+      "numpy==1.26.4",
+      "opencv-python==4.11.0.86",
+      "psutil==7.2.2",
+      "py-cpuinfo==9.0.0",
+      "pycollada==0.9.3",
+      "pydantic==2.14.1",
+      "pyglet==2.1.19",
+      "pygltflib==1.16.0",
+      "pymeshlab==2025.7.post1",
+      "pysplashsurf==0.14.1.0",
+      "quadrants==1.3.3",
+      "rtree==1.4.1",
+      "scikit-image==0.26.0",
+      "tetgen==0.8.2",
+      "torch==2.8.0",
+      "trimesh==5.1.1",
+      "vtk==9.7.1",
+      "xacro==2.1.1",
+      "z3-solver==4.15.4.0",
+      "zstandard==0.25.0"
+    ],
+    "hardware": [
+      "Linux x86_64; CUDA GPU; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements. Some pinned dependencies ship source distributions; explicit dependency installation and build tools may be required."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "joint_offset_rad": 0.08
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "arm_joint_positions_rad",
+          "target_arm_joint_positions_rad",
+          "finger_error_m",
+          "movement_m",
+          "max_joint_error_rad",
+          "cuda_simulation",
+          "steps"
+        ],
+        "properties": {
+          "arm_joint_positions_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "rad",
+            "x-order": [
+              "joint1",
+              "joint2",
+              "joint3",
+              "joint4",
+              "joint5",
+              "joint6",
+              "joint7"
+            ]
+          },
+          "target_arm_joint_positions_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "rad",
+            "x-order": [
+              "joint1",
+              "joint2",
+              "joint3",
+              "joint4",
+              "joint5",
+              "joint6",
+              "joint7"
+            ]
+          },
+          "finger_error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "x-unit": "m"
+          },
+          "movement_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "m"
+          },
+          "max_joint_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "cuda_simulation": {
+            "type": "boolean"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "joint1, joint2, joint3, joint4, joint5, joint6, joint7; finger errors are separate metric distances",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "joint_offset_rad"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "joint_offset_rad": {
+          "type": "number",
+          "minimum": -0.15,
+          "maximum": 0.15,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "arm_joint_positions_rad",
+        "target_arm_joint_positions_rad",
+        "finger_error_m",
+        "movement_m",
+        "max_joint_error_rad",
+        "cuda_simulation",
+        "steps"
+      ],
+      "properties": {
+        "arm_joint_positions_rad": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "rad",
+          "x-order": [
+            "joint1",
+            "joint2",
+            "joint3",
+            "joint4",
+            "joint5",
+            "joint6",
+            "joint7"
+          ]
+        },
+        "target_arm_joint_positions_rad": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "rad",
+          "x-order": [
+            "joint1",
+            "joint2",
+            "joint3",
+            "joint4",
+            "joint5",
+            "joint6",
+            "joint7"
+          ]
+        },
+        "finger_error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "x-unit": "m"
+        },
+        "movement_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "m"
+        },
+        "max_joint_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "cuda_simulation": {
+          "type": "boolean"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.11 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "genesis-examples-examples-rigid-control-franka-py"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. CUDA dynamic simulation after reset. PD tracking below 0.04 rad and nontrivial hand motion; IK variant also requires final hand position error below 15 mm. Source example kinematic visualization is adapted to real simulation stepping.",
+    "timeout_seconds": 600,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/genesis-panda-joint-servo",
+    "requirements_file": "recipes/genesis-panda-joint-servo/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend genesis --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/genesis-panda-joint-servo.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "a7e24ef3e6bb98a841b01a1033722c8cc947684d9646535fdc215b86d84cd642",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/genesis-panda-joint-servo.json",
+      "recipes/genesis-panda-joint-servo/run.py",
+      "recipes/genesis-panda-joint-servo/requirements.txt",
+      "docs/recipes/genesis-panda-joint-servo.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

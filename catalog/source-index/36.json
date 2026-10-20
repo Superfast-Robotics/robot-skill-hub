@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-requesting-task-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "844029fdd7b743b11f44217ac2ea8c6d1d96eb422a9c1b45f675d36d2455e93c",
+      "record_version": "source-844029fdd7b743b11f44217ac2ea8c6d1d96eb422a9c1b45f675d36d2455e93c"
+    },
+    {
       "id": "gap-bundle-verifying-placement",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "a1143fe591cdd8101d6ce90011318f24871549c8879f4c1fd8c4d2b5ee34290a",
@@ -26,10 +32,22 @@
       "record_version": "source-30a8641f3187e3633b0251d71d1589913a5a3bd8464ae29d21ef0398b8cf3649"
     },
     {
+      "id": "pink-examples-barriers-go2-squat-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "f1822a8dd0a18880b48c98cd243cd85d0269a8e5a55d4bf679129400a4f2c518",
+      "record_version": "source-f1822a8dd0a18880b48c98cd243cd85d0269a8e5a55d4bf679129400a4f2c518"
+    },
+    {
       "id": "rai-src-rai-semap-rai-semap-scripts-navigate-collect-py",
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "b0e08342b66d6de90052a585c63e9fec5bb05d4cde79475b391a9964e087679f",
       "record_version": "source-b0e08342b66d6de90052a585c63e9fec5bb05d4cde79475b391a9964e087679f"
+    },
+    {
+      "id": "roboverse-examples-rerun-save-trajectory-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "895ab308dedaad0083b13beb5350d1b999f7330727b5aab7831fc68e9d1d6c1a",
+      "record_version": "source-895ab308dedaad0083b13beb5350d1b999f7330727b5aab7831fc68e9d1d6c1a"
     },
     {
       "id": "ros2-control-artifact-example-2-description-urdf-diffbot-urdf-xacro",

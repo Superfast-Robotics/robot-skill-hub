@@ -14,6 +14,18 @@
       "record_version": "source-391731d845f16be7d3de3288f4d38a25acdc92c649d371a933d3588aea12e65c"
     },
     {
+      "id": "genesis-examples-examples-rendering-render-async-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c6e04592a295436e3f9b6add8b1ff39fbe136144640e82ac886dd3d4a5012f0a",
+      "record_version": "source-c6e04592a295436e3f9b6add8b1ff39fbe136144640e82ac886dd3d4a5012f0a"
+    },
+    {
+      "id": "mink-examples-arm-panda-engrave-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "92e97b8e9c3487b2c7d12b0beb96f8cbad5af48630c63fb2efb083ebd5fdee3d",
+      "record_version": "source-92e97b8e9c3487b2c7d12b0beb96f8cbad5af48630c63fb2efb083ebd5fdee3d"
+    },
+    {
       "id": "mujoco-menagerie-artifact-iit-softfoot-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7b48f0231522c7a4fd936abdd02665f4cd133e9eed178386461f40602cbfafc6",

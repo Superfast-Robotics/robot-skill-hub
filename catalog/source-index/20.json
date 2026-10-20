@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-rigid-closed-loop-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "6c6884d450fbb78c163d8b465c7e6bd6c772c4d4889f231559b330ba07fc5374",
+      "record_version": "source-6c6884d450fbb78c163d8b465c7e6bd6c772c4d4889f231559b330ba07fc5374"
+    },
+    {
       "id": "lerobot-src-lerobot-scripts-lerobot-record-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "ea53ad1dca8a3c60e3aa2e15993466c4a59c6c9f2197fceadaf034e3ee0c128c",

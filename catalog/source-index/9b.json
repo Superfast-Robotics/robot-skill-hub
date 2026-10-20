@@ -2,10 +2,34 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-solo-bend-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "b3906f02e0cd848de85edff298e628c76005dc34b26a0232a8ea05540eadca23",
+      "record_version": "source-b3906f02e0cd848de85edff298e628c76005dc34b26a0232a8ea05540eadca23"
+    },
+    {
       "id": "aspire-yam-observe-station",
       "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
       "source_sha256": "793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f",
       "record_version": "source-793f43d2aae526d5b09039680857d509ca51a161e800b4c198d1754f3047101f"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-imu-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d27b5ef5a7f03301dbfc3e24fc002d53f8347a4479ff06b8da292d165d74a53f",
+      "record_version": "source-d27b5ef5a7f03301dbfc3e24fc002d53f8347a4479ff06b8da292d165d74a53f"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-joint-torque-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4dd0ae0545f7aa5987787699c4360612aa5bf40615ad0f2193ca6c156e8aab20",
+      "record_version": "source-4dd0ae0545f7aa5987787699c4360612aa5bf40615ad0f2193ca6c156e8aab20"
+    },
+    {
+      "id": "pink-examples-arm-ur5-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5309d4682a389ccb40e9f3cec0adbe6630bc20a0b8f323347512b08016cc3e62",
+      "record_version": "source-5309d4682a389ccb40e9f3cec0adbe6630bc20a0b8f323347512b08016cc3e62"
     },
     {
       "id": "ros2-examples-rclpy-executors-examples-rclpy-executors-composed-py",

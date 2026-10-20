@@ -8,6 +8,24 @@
       "record_version": "source-44317b0890eabced20729d5bba1e0ff901daf498900afc75175da81298a1e476"
     },
     {
+      "id": "causalworld-tutorials-saving-and-loading-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "0b0ea5a5302a3685a55213708c17e7c4839324ee1778c952b83372e2928a0ff8",
+      "record_version": "source-0b0ea5a5302a3685a55213708c17e7c4839324ee1778c952b83372e2928a0ff8"
+    },
+    {
+      "id": "mink-examples-arm-iiwa-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fdb051107403550335e84ea634e5754d5683b8c275cdbdcd98938cf5994fcbaa",
+      "record_version": "source-fdb051107403550335e84ea634e5754d5683b8c275cdbdcd98938cf5994fcbaa"
+    },
+    {
+      "id": "mink-examples-mobile-tidybot-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fa81016b8311f3faf7fe870c30e6b9ff4b9a61ffb2102e1f195ff196c46ba2d7",
+      "record_version": "source-fa81016b8311f3faf7fe870c30e6b9ff4b9a61ffb2102e1f195ff196c46ba2d7"
+    },
+    {
       "id": "moveit2-doc-examples-planning-src-move-group-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "9fc0ea101a90ad9e6906364c032041eb0b83af2a4b783f96f53816b43abf47df",
@@ -20,10 +38,22 @@
       "record_version": "source-86a0b70866f4619dca13c8c7202c14a7c17012e8730e1a5854508827c5ccb9fd"
     },
     {
+      "id": "roboverse-examples-3-parallel-envs-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "690ceceee7b42899f48258b431fda70ccd0c2039ad9ace15b792db22305222ad",
+      "record_version": "source-690ceceee7b42899f48258b431fda70ccd0c2039ad9ace15b792db22305222ad"
+    },
+    {
       "id": "ros2-control-example-7-bringup-launch-send-trajectory-launch-py",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "fb0e9549461f2378753bf411c82b2eb07bb1563744ec374be22f4134c25f88ef",
       "record_version": "source-fb0e9549461f2378753bf411c82b2eb07bb1563744ec374be22f4134c25f88ef"
+    },
+    {
+      "id": "unitree-mujoco-simulate-src-main-cc",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "85f10859c71bc9047d37397aefcc05dc8753c7cf37141f5e9ac205e91e932234",
+      "record_version": "source-85f10859c71bc9047d37397aefcc05dc8753c7cf37141f5e9ac205e91e932234"
     }
   ]
 }

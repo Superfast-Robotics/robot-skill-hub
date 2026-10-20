@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-attachment-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "7f39f629a1e88866189db82dba854893e30dd4f89bacf3d901b6587a9a7d5b3f",
+      "record_version": "source-7f39f629a1e88866189db82dba854893e30dd4f89bacf3d901b6587a9a7d5b3f"
+    },
+    {
+      "id": "causalworld-tutorials-rlpyt-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "625ce2746cdc0ee3adeef98c0581a6cd7b1ccf9135225617c12c2ea526b3c87b",
+      "record_version": "source-625ce2746cdc0ee3adeef98c0581a6cd7b1ccf9135225617c12c2ea526b3c87b"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-monkey-bar-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "54b0569658657b05004384766b545590dafb1e6ffe75f5e179339ad49d24915e",
+      "record_version": "source-54b0569658657b05004384766b545590dafb1e6ffe75f5e179339ad49d24915e"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3-accelerometers-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "40fb78a7082e4fb7fc565b5ee3f3be15a4db4a07895cdbadda46c251980320ab",
@@ -12,6 +30,12 @@
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e",
       "record_version": "source-cffa1011547761458f2cde389d7c11c3fe2d8d920654d496d7550b7e9bc50e9e"
+    },
+    {
+      "id": "mink-examples-arm-dual-flying-ur5e-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "e8cd7936878c3ea9d1d24b2131faa6b059cca506636ab4c689edc85bfc937960",
+      "record_version": "source-e8cd7936878c3ea9d1d24b2131faa6b059cca506636ab4c689edc85bfc937960"
     },
     {
       "id": "mujoco-menagerie-artifact-google-robot-scene-xml",

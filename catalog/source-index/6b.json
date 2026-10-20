@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-sensors-temperature-grid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ccb0a5f582eb1ccce0b737a1dcc2b7d657a3208397083ab618555e05b683d238",
+      "record_version": "source-ccb0a5f582eb1ccce0b737a1dcc2b7d657a3208397083ab618555e05b683d238"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-contact-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "3e32f6c48e5c563943686bc8ac3b5f52c69eb2f883724234f5ab80817272d9e6",
@@ -12,6 +18,24 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912",
       "record_version": "source-a1213b118ab288affa9f4359db685f4ced42cb1d6e2138b3184f5ace93871912"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-coffee-button-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "35ee8e0fb28f2bbb793ec8c0d92d2e8db88453b4e6cb8c5deca1ab9e99d39b30",
+      "record_version": "source-35ee8e0fb28f2bbb793ec8c0d92d2e8db88453b4e6cb8c5deca1ab9e99d39b30"
+    },
+    {
+      "id": "moveit-task-constructor-demo-launch-run-launch-py",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "d40aabf47ffe9aae3ca4bf665b7c3f83d7bbd5ca8eb0c260af2d64685c2f9aa1",
+      "record_version": "source-d40aabf47ffe9aae3ca4bf665b7c3f83d7bbd5ca8eb0c260af2d64685c2f9aa1"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-pick-place-demo-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "41728f309a21a1a65c3a03d952a4e0051aebb179ef4f0b780054f7e512ffcd58",
+      "record_version": "source-41728f309a21a1a65c3a03d952a4e0051aebb179ef4f0b780054f7e512ffcd58"
     },
     {
       "id": "mujoco-menagerie-artifact-agilex-piper-piper-xml",

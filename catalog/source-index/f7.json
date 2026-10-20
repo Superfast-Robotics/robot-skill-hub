@@ -2,6 +2,36 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-coupling-flush-cubes-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2c1061ecd481b4e3a58e9ba4e49ec8ecc8a81e50f4253b2ba99dd29ca2aeed95",
+      "record_version": "source-2c1061ecd481b4e3a58e9ba4e49ec8ecc8a81e50f4253b2ba99dd29ca2aeed95"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-water-wheel-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "399f9c1bc43d8b91fa3b005fafab4e4450b080af07ad5902ab2fd11abb7b4214",
+      "record_version": "source-399f9c1bc43d8b91fa3b005fafab4e4450b080af07ad5902ab2fd11abb7b4214"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-ik-shadow-hand-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4f71e241a1eed3fb7e68e01a8c86824971958b9e1566f4c86d4a5da7fc6937d6",
+      "record_version": "source-4f71e241a1eed3fb7e68e01a8c86824971958b9e1566f4c86d4a5da7fc6937d6"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-95cbee6a65f1",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "802d70b66779f277fad611c8702ab6be63d1fc1dc83162d31733419038a04544",
+      "record_version": "source-802d70b66779f277fad611c8702ab6be63d1fc1dc83162d31733419038a04544"
+    },
+    {
+      "id": "pink-examples-planar-2dof-manipulability-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d853e58c2e423913bebe98bf43f33c10657deb73a3c55ff4849ab6f3afacf756",
+      "record_version": "source-d853e58c2e423913bebe98bf43f33c10657deb73a3c55ff4849ab6f3afacf756"
+    },
+    {
       "id": "ros2-control-artifact-example-5-bringup-config-wrench-transformer-params-yaml",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "0680f0626f80f3145e38a6d65eb2298fbc0cec1f0abe33d8d41956306fbfce08",

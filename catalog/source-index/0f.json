@@ -8,6 +8,18 @@
       "record_version": "source-5f9adfd8570b2f6fea16fb95fc1453f9a6ae2cb382dfd6d1deaf67efa62f90c2"
     },
     {
+      "id": "genesis-examples-examples-rigid-apply-external-wrench-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b384177bd4ea3f1d1227fc695f9ea95fd6d0ff94fa061e6f84118883403ec760",
+      "record_version": "source-b384177bd4ea3f1d1227fc695f9ea95fd6d0ff94fa061e6f84118883403ec760"
+    },
+    {
+      "id": "pink-examples-visualize-in-meshcat-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "51909c0a86194662647e58fe0dbeeb39ab2fd9d0d63adb6003ed75fffc2cca11",
+      "record_version": "source-51909c0a86194662647e58fe0dbeeb39ab2fd9d0d63adb6003ed75fffc2cca11"
+    },
+    {
       "id": "roboticstoolbox-examples-benchmark-ik-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "4f867387b124368939a6ff2b4bc5ebf7a827317c3c2fddc68e2ff27857c2a44f",
@@ -24,6 +36,12 @@
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "0ce351dec0d164181019d51a011d83cd353ce93625c954bbcbc5d2b63d27f0aa",
       "record_version": "source-0ce351dec0d164181019d51a011d83cd353ce93625c954bbcbc5d2b63d27f0aa"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-realmove-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "2c40414f0bd7d0dbe76d65650fdc50683eb0ffbb43d6b625c2a48dcfac3a76e3",
+      "record_version": "source-2c40414f0bd7d0dbe76d65650fdc50683eb0ffbb43d6b625c2a48dcfac3a76e3"
     }
   ]
 }

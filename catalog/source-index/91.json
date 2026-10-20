@@ -8,6 +8,12 @@
       "record_version": "source-649cb86df6aa1ee79ad35ef48c51c0fd7ad5a0080a882423b5e392cd7a20c50a"
     },
     {
+      "id": "genesis-examples-examples-viewer-plugin-mesh-point-selector-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "715c52f1b589f7895e0236d610b0632cb1ca488e13662bf439891fd0df7081cc",
+      "record_version": "source-715c52f1b589f7895e0236d610b0632cb1ca488e13662bf439891fd0df7081cc"
+    },
+    {
       "id": "mujoco-menagerie-artifact-unitree-g1-g1-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7bf99a486bc3d4f24629dd5ccae30b7c9c3ad595d84e685fbd1e4920d457a61f",

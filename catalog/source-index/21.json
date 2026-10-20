@@ -38,6 +38,12 @@
       "record_version": "source-7ddd4d16f3d368c9698192a73c44cac21914cbe4c310750e16e03df3c7553d6e"
     },
     {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-examples-force-mode-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "54e657b4e6ffdc3772fdbafc7989bf8ee213f8ab217572eaae10eeb5e98469db",
+      "record_version": "source-54e657b4e6ffdc3772fdbafc7989bf8ee213f8ab217572eaae10eeb5e98469db"
+    },
+    {
       "id": "webots-projects-robots-neuronics-ipr-controllers-ipr-cube-ipr-cube-cpp",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "ae479ab7931dc31e2fad6f9241ecb77e9e429560526afecf889cbbf6e6fc04bc",

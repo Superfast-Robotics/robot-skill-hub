@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-utils-solo-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "700036c94a0e68372aeb5f48444bf29bee2bacb6d5002e294ab6bd8e3da1006d",
+      "record_version": "source-700036c94a0e68372aeb5f48444bf29bee2bacb6d5002e294ab6bd8e3da1006d"
+    },
+    {
       "id": "drake-examples-planar-gripper-run-planar-gripper-trajectory-publisher-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "f72f2836dcf5015cb6a8eb7f3eabb794f52eea42ff75d588be09da68573bc062",
@@ -26,6 +32,12 @@
       "record_version": "source-e7cacccd684f4fdf2e62cf1adf4db8ce3f0fbe64436ba87ca9bc6bad26de9cc2"
     },
     {
+      "id": "genesis-examples-examples-rigid-franka-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c3d4ec160f0fd9965ba000e96a4330619c2fe7a9090dd2a046f6a1e0ff251dc5",
+      "record_version": "source-c3d4ec160f0fd9965ba000e96a4330619c2fe7a9090dd2a046f6a1e0ff251dc5"
+    },
+    {
       "id": "moveit2-doc-examples-visualizing-collisions-src-visualizing-collisi-838b72c434fb",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "04a28418d0cd46a5fe810fae56ed351316dd3bf0e8ed2704fde420107b670bc6",
@@ -42,6 +54,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "5d85babd8a7cce435f125cedbb3f5d82c36e282686be4f965b2353010a4d6bed",
       "record_version": "source-5d85babd8a7cce435f125cedbb3f5d82c36e282686be4f965b2353010a4d6bed"
+    },
+    {
+      "id": "pink-examples-arm-ur3-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "a401120d8575e49f0230c75449cae19b045b2aad1c2dc5f5e7cad7240680f24b",
+      "record_version": "source-a401120d8575e49f0230c75449cae19b045b2aad1c2dc5f5e7cad7240680f24b"
     },
     {
       "id": "pinocchio-examples-geometry-models-py",

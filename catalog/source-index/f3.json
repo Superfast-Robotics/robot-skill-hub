@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-lqr-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "a3af7caf65fdaa45715a84a00522ed8ad691bd97ca9656d2ced672e571e7d371",
+      "record_version": "source-a3af7caf65fdaa45715a84a00522ed8ad691bd97ca9656d2ced672e571e7d371"
+    },
+    {
+      "id": "genesis-examples-examples-coupling-rigid-mpm-attachment-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "580e2cfdaf49f622d3ef35469d9cdd24eb02adf2e317e09704050133ee342bd1",
+      "record_version": "source-580e2cfdaf49f622d3ef35469d9cdd24eb02adf2e317e09704050133ee342bd1"
+    },
+    {
+      "id": "genesis-examples-examples-drone-interactive-drone-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f2af0f1f6acb1e5fe341ecc967de10ca0b5bf3761fdfda6046fecc0938e13762",
+      "record_version": "source-f2af0f1f6acb1e5fe341ecc967de10ca0b5bf3761fdfda6046fecc0938e13762"
+    },
+    {
       "id": "ros2-control-artifact-example-8-bringup-config-rrbot-controllers-yaml",
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "c1c663a844c5205ea485526c47cfea93e2b5b9b239175ac1ceec51636f5fc8ab",

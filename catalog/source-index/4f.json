@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-set-start-state-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f",
+      "record_version": "source-3af050ea6d3064957a76d01cf7149020986397a56369241bfe29769ba186450f"
+    },
+    {
+      "id": "habitat-lab-examples-benchmark-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b30b81c7fe3832b30f2b7b5b98442e4fe2d2c73001c2adf63ae34ea83dc84e6c",
+      "record_version": "source-b30b81c7fe3832b30f2b7b5b98442e4fe2d2c73001c2adf63ae34ea83dc84e6c"
+    },
+    {
+      "id": "home-robot-examples-2-hw-async-actions-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "eb5f71d63360836909b73b315310d3bd7d6c89e9337180cfbd6ad0c9c4183761",
+      "record_version": "source-eb5f71d63360836909b73b315310d3bd7d6c89e9337180cfbd6ad0c9c4183761"
+    },
+    {
+      "id": "moveit-task-constructor-demo-src-fallbacks-move-to-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "49a065382ea943d3bddc13b92dfd1e82ea0f268f6e985d3c6fed6a9974478073",
+      "record_version": "source-49a065382ea943d3bddc13b92dfd1e82ea0f268f6e985d3c6fed6a9974478073"
+    },
+    {
       "id": "mujoco-menagerie-artifact-tetheria-aero-hand-open-left-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "78fb41f893dd8381cb089eb6588fa557d187a27f9485d2132a843647c96eb708",

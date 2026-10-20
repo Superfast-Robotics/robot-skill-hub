@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-tutorials-pbd-cloth-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "96a3c08611a05b397c501c00cef65fe6b576d5bff634dd229ffac83a2cfdc374",
+      "record_version": "source-96a3c08611a05b397c501c00cef65fe6b576d5bff634dd229ffac83a2cfdc374"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ms-human-700-scene-manipulation-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "89b1f6e223eca4f9b1ec1f4c54eb9edba2cb2bfdeb22af13d5123091fcdf50dd",

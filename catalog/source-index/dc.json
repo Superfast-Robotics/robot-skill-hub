@@ -20,6 +20,12 @@
       "record_version": "source-938b9477f3424e9e8e0aca24d566dbfe2df71968b48028f5d6753d3a7430f8e8"
     },
     {
+      "id": "genesis-examples-examples-sap-coupling-franka-grasp-rigid-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2c62983242da53202b49ef023e7d6d97dd34c18853fc3ec740ee241058aa9b02",
+      "record_version": "source-2c62983242da53202b49ef023e7d6d97dd34c18853fc3ec740ee241058aa9b02"
+    },
+    {
       "id": "isaaclab-scripts-demos-sensors-imu-sensor-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "8ce9e0d092dba0416869c27a72748f108c2db0928c4cd1300957039e3f32a344",
