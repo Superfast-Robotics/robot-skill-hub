@@ -133,7 +133,12 @@ def adapter_main(spec, backend):
 def mainstream_backend(root,data,spec):
     import importlib.metadata
     import numpy as np
-    import mujoco,mink
+    import mujoco
+    # The archive is the selected code version; PyPI supplies locked dependency
+    # installation metadata. Use its documented Python fallback explicitly.
+    os.environ['MINK_DISABLE_NATIVE']='1'
+    sys.path.insert(0,str(root/'src'))
+    import mink
     for pin in spec['packages']:
         name,version=pin.split('==')
         if importlib.metadata.version(name)!=version:raise ContractError('Pinned package version differs: '+name)

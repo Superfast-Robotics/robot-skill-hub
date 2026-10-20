@@ -134,6 +134,7 @@ def mainstream_backend(root,data,spec):
     import importlib.metadata
     import numpy as np
     import torch
+    sys.path.insert(0,str(root))
     import genesis as gs
     for pin in spec['packages']:
         name,version=pin.split('==')

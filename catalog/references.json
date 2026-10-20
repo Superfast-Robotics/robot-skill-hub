@@ -57303,7 +57303,7 @@
     {
       "id": "metaworld-metaworld-policies-sawyer-assembly-v3-policy-py",
       "name": "Metaworld: sawyer assembly v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer assembly v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer assembly v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57367,13 +57367,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerAssemblyV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-basketball-v3-policy-py",
       "name": "Metaworld: sawyer basketball v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer basketball v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer basketball v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57437,13 +57438,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerBasketballV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-bin-picking-v3-policy-py",
       "name": "Metaworld: sawyer bin picking v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer bin picking v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer bin picking v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57507,13 +57509,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerBinPickingV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-box-close-v3-policy-py",
       "name": "Metaworld: sawyer box close v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer box close v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer box close v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57577,13 +57580,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerBoxCloseV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-button-press-topdown-v3-policy-py",
       "name": "Metaworld: sawyer button press topdown v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer button press topdown v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer button press topdown v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57647,13 +57651,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerButtonPressTopdownV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-button-press-topdown-wall-v3-policy-py",
       "name": "Metaworld: sawyer button press topdown wall v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer button press topdown wall v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer button press topdown wall v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57717,13 +57722,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerButtonPressTopdownWallV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-button-press-v3-policy-py",
       "name": "Metaworld: sawyer button press v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer button press v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer button press v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57787,13 +57793,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerButtonPressV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-button-press-wall-v3-policy-py",
       "name": "Metaworld: sawyer button press wall v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer button press wall v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer button press wall v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57857,13 +57864,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerButtonPressWallV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-coffee-button-v3-policy-py",
       "name": "Metaworld: sawyer coffee button v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer coffee button v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer coffee button v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57927,13 +57935,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerCoffeeButtonV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-coffee-pull-v3-policy-py",
       "name": "Metaworld: sawyer coffee pull v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer coffee pull v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer coffee pull v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -57997,13 +58006,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerCoffeePullV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-coffee-push-v3-policy-py",
       "name": "Metaworld: sawyer coffee push v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer coffee push v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer coffee push v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58067,13 +58077,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerCoffeePushV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-dial-turn-v3-policy-py",
       "name": "Metaworld: sawyer dial turn v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer dial turn v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer dial turn v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58137,13 +58148,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDialTurnV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-disassemble-v3-policy-py",
       "name": "Metaworld: sawyer disassemble v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer disassemble v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer disassemble v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58207,13 +58219,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDisassembleV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-door-close-v3-policy-py",
       "name": "Metaworld: sawyer door close v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer door close v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer door close v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58277,13 +58290,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDoorCloseV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-door-lock-v3-policy-py",
       "name": "Metaworld: sawyer door lock v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer door lock v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer door lock v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58347,13 +58361,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDoorLockV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-door-open-v3-policy-py",
       "name": "Metaworld: sawyer door open v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer door open v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer door open v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58417,13 +58432,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDoorOpenV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-door-unlock-v3-policy-py",
       "name": "Metaworld: sawyer door unlock v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer door unlock v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer door unlock v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58487,13 +58503,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDoorUnlockV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-drawer-close-v3-policy-py",
       "name": "Metaworld: sawyer drawer close v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer drawer close v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer drawer close v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58557,13 +58574,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDrawerCloseV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-drawer-open-v3-policy-py",
       "name": "Metaworld: sawyer drawer open v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer drawer open v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer drawer open v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58626,13 +58644,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerDrawerOpenV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-faucet-close-v3-policy-py",
       "name": "Metaworld: sawyer faucet close v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer faucet close v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer faucet close v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58696,13 +58715,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerFaucetCloseV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-faucet-open-v3-policy-py",
       "name": "Metaworld: sawyer faucet open v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer faucet open v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer faucet open v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58766,13 +58786,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerFaucetOpenV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-hammer-v3-policy-py",
       "name": "Metaworld: sawyer hammer v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer hammer v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer hammer v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58836,13 +58857,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHammerV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-hand-insert-v3-policy-py",
       "name": "Metaworld: sawyer hand insert v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer hand insert v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer hand insert v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58906,13 +58928,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHandInsertV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-handle-press-side-v3-policy-py",
       "name": "Metaworld: sawyer handle press side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer handle press side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer handle press side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -58976,13 +58999,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHandlePressSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-handle-press-v3-policy-py",
       "name": "Metaworld: sawyer handle press v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer handle press v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer handle press v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59046,13 +59070,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHandlePressV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-handle-pull-side-v3-policy-py",
       "name": "Metaworld: sawyer handle pull side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer handle pull side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer handle pull side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59116,13 +59141,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHandlePullSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-handle-pull-v3-policy-py",
       "name": "Metaworld: sawyer handle pull v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer handle pull v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer handle pull v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59186,13 +59212,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerHandlePullV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-lever-pull-v3-policy-py",
       "name": "Metaworld: sawyer lever pull v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer lever pull v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer lever pull v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59256,13 +59283,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerLeverPullV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-peg-insertion-side-v3-policy-py",
       "name": "Metaworld: sawyer peg insertion side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer peg insertion side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer peg insertion side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59326,13 +59354,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPegInsertionSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-peg-unplug-side-v3-policy-py",
       "name": "Metaworld: sawyer peg unplug side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer peg unplug side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer peg unplug side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59396,13 +59425,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPegUnplugSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-pick-out-of-hole-v3-policy-py",
       "name": "Metaworld: sawyer pick out of hole v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer pick out of hole v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer pick out of hole v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59466,13 +59496,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPickOutOfHoleV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-pick-place-v3-policy-py",
       "name": "Metaworld: sawyer pick place v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer pick place v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer pick place v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59537,13 +59568,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPickPlaceV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-pick-place-wall-v3-policy-py",
       "name": "Metaworld: sawyer pick place wall v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer pick place wall v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer pick place wall v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59608,13 +59640,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPickPlaceWallV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-side-v3-policy-py",
       "name": "Metaworld: sawyer plate slide back side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer plate slide back side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer plate slide back side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59678,13 +59711,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPlateSlideBackSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-v3-policy-py",
       "name": "Metaworld: sawyer plate slide back v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer plate slide back v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer plate slide back v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59748,13 +59782,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPlateSlideBackV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-plate-slide-side-v3-policy-py",
       "name": "Metaworld: sawyer plate slide side v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer plate slide side v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer plate slide side v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59818,13 +59853,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPlateSlideSideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-plate-slide-v3-policy-py",
       "name": "Metaworld: sawyer plate slide v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer plate slide v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer plate slide v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59888,13 +59924,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPlateSlideV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-push-back-v3-policy-py",
       "name": "Metaworld: sawyer push back v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer push back v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer push back v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -59958,13 +59995,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPushBackV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-push-v3-policy-py",
       "name": "Metaworld: sawyer push v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer push v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer push v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60028,13 +60066,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPushV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-push-wall-v3-policy-py",
       "name": "Metaworld: sawyer push wall v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer push wall v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer push wall v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60098,13 +60137,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerPushWallV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-reach-v3-policy-py",
       "name": "Metaworld: sawyer reach v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer reach v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer reach v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60167,13 +60207,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerReachV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-reach-wall-v3-policy-py",
       "name": "Metaworld: sawyer reach wall v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer reach wall v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer reach wall v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60237,13 +60278,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerReachWallV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-shelf-place-v3-policy-py",
       "name": "Metaworld: sawyer shelf place v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer shelf place v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer shelf place v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60307,13 +60349,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerShelfPlaceV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-soccer-v3-policy-py",
       "name": "Metaworld: sawyer soccer v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer soccer v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer soccer v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60377,13 +60420,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerSoccerV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-stick-pull-v3-policy-py",
       "name": "Metaworld: sawyer stick pull v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer stick pull v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer stick pull v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60447,13 +60491,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerStickPullV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-stick-push-v3-policy-py",
       "name": "Metaworld: sawyer stick push v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer stick push v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer stick push v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60517,13 +60562,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerStickPushV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-sweep-into-v3-policy-py",
       "name": "Metaworld: sawyer sweep into v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer sweep into v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer sweep into v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60587,13 +60633,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerSweepIntoV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-sweep-v3-policy-py",
       "name": "Metaworld: sawyer sweep v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer sweep v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer sweep v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60657,13 +60704,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerSweepV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-window-close-v3-policy-py",
       "name": "Metaworld: sawyer window close v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer window close v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer window close v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60727,13 +60775,14 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerWindowCloseV3Policy"
       }
     },
     {
       "id": "metaworld-metaworld-policies-sawyer-window-open-v3-policy-py",
       "name": "Metaworld: sawyer window open v3 policy",
-      "summary": "Official Metaworld scripted policy example for sawyer window open v3 policy. Inspect the pinned source and upstream setup before use.",
+      "summary": "Official Metaworld scripted controller for sawyer window open v3 policy. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script.",
       "framework": "metaworld",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
@@ -60797,7 +60846,8 @@
         "checked_at": "2026-10-20",
         "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
         "entrypoint_kind": "scripted_policy",
-        "inspection_method": "automated_static"
+        "inspection_method": "automated_static",
+        "policy_class": "SawyerWindowOpenV3Policy"
       }
     },
     {

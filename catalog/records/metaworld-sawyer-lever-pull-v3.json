@@ -67,7 +67,8 @@
       "metaworld==3.1.1",
       "mujoco==3.3.0",
       "numpy==1.26.4",
-      "gymnasium==1.2.0"
+      "gymnasium==1.2.0",
+      "packaging==25.0"
     ],
     "hardware": [
       "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
@@ -326,7 +327,7 @@
     "hub_verification": {
       "runtime": "not_run",
       "scope": "simulation",
-      "adapter_sha256": "f6e756d88d17f81652bb277ac8a857125126ea456cfb0cc6599a85539f08ab72",
+      "adapter_sha256": "13be43425f0569fae5e3a8c2bb1e497f97eb111c62d15fb5106edac591fbeb62",
       "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
       "record_version": "1.0.0",
       "case_count": 0,

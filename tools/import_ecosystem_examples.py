@@ -431,6 +431,9 @@ def make_record(project, artifact, cache):
             "evidence": {"level": "source_reviewed", "runtime_verification": "not_run", "checked_at": project["checked_at"],
                          "inspection": "Fetched and SHA-256 checked this immutable source; statically parsed Python or located native main; verified pinned license bytes and checked explicit per-file license identifiers. No upstream code executed.",
                          "entrypoint_kind": inspection["kind"], "inspection_method": "automated_static"}}
+    if inspection["kind"] == "scripted_policy":
+        record["evidence"]["policy_class"] = inspection["policy_class"]
+        record["summary"] = f"Official {project['name']} scripted controller for {topic(path)}. Call its get_action(obs) interface in the matching pinned goal-observable environment; it is not a standalone script."
     if "aliases" in reviewed:
         record["aliases"] = reviewed["aliases"]
     if "authors" in reviewed:
