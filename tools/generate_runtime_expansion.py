@@ -8,7 +8,7 @@ def render(recipe, source):
     spec={k:copy.deepcopy(v) for k,v in recipe.items() if k not in ['cases','source_id','environment','source_paths','origin_reference_ids','license','abstraction_level','capabilities']}
     spec['source_commit']=source['commit'];spec['packages']=source['packages']
     template=recipe.get('adapter_template','mainstream')
-    if template not in ['mainstream','mujoco_extra','seed_tasks','joint_feedback']:raise ValueError('Unknown adapter template')
+    if template not in ['mainstream','mujoco_extra','seed_tasks','joint_feedback','panda_stack']:raise ValueError('Unknown adapter template')
     text=(ROOT/'tools/recipe_adapters/core.py').read_text()+'\n\n'+(ROOT/('tools/recipe_adapters/'+template+'.py')).read_text()
     return ('# Hub-authored adapter: MIT. Upstream source/models retain their original licenses.\n'+text+'\nSPEC = json.loads('+repr(json.dumps(spec,separators=(',',':')))+')\n\nif __name__ == "__main__":\n    raise SystemExit(adapter_main(SPEC, mainstream_backend))\n').encode()
 

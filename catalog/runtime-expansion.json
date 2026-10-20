@@ -11949,7 +11949,9 @@
             "desired_goal",
             "error_m",
             "steps",
-            "environment_success"
+            "environment_success",
+            "stack_height_m",
+            "stack_alignment_m"
           ],
           "properties": {
             "achieved_goal": {
@@ -11988,6 +11990,18 @@
             },
             "environment_success": {
               "type": "boolean"
+            },
+            "stack_height_m": {
+              "type": "number",
+              "minimum": -5,
+              "maximum": 5,
+              "x-unit": "m"
+            },
+            "stack_alignment_m": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 50,
+              "x-unit": "m"
             }
           },
           "additionalProperties": false
@@ -12086,9 +12100,9 @@
       ],
       "summary": "Panda Gym Stack closed-loop starting policy. Native IK actions, privileged simulator observations and a frozen three-seed evaluation; no state teleportation after reset.",
       "observation_description": "Privileged simulator state and declared goals; no perception or real sensor validation.",
-      "goal_scope": "Native task success plus final Euclidean goal error <.06 m for the six-dimensional stack goal.",
+      "goal_scope": "Native success AND final six-dimensional goal error <.04 m AND upper/lower cube height difference between .03 and .05 m AND horizontal center separation <.015 m after release and retreat. A flat pair of cubes cannot pass.",
       "env_id": "PandaStack-v3",
-      "adapter_template": "seed_tasks"
+      "adapter_template": "panda_stack"
     },
     {
       "id": "dmcontrol-reacher-easy",

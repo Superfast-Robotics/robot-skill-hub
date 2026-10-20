@@ -29,7 +29,12 @@ def measured_goal(recipe,outputs):
     if backend=='lerobot':return outputs['environment_success'] is True and outputs['cuda_inference'] is True and outputs['maximum_coverage']>=.95
     if backend=='pandagym':
         error=math.dist(outputs['achieved_goal'],outputs['desired_goal'])
-        return outputs['environment_success'] is True and error<(.06 if recipe['operation']=='stack' else .04) and abs(error-outputs['error_m'])<1e-6
+        correct=outputs['environment_success'] is True and error<.04 and abs(error-outputs['error_m'])<1e-6
+        if recipe['operation']=='stack':
+            goal=outputs['achieved_goal'];height=goal[5]-goal[2];alignment=math.dist(goal[:2],goal[3:5])
+            return (correct and .03<height<.05 and alignment<.015 and abs(height-outputs['stack_height_m'])<1e-6
+                and abs(alignment-outputs['stack_alignment_m'])<1e-6)
+        return correct
     if backend=='dmcontrol':
         window=outputs['reward_window']
         return (len(window)==100 and abs(sum(window)/len(window)-outputs['final_window_mean_reward'])<1e-9
