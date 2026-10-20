@@ -74,7 +74,7 @@
       "numpy==1.26.4"
     ],
     "hardware": [
-      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
     ],
     "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
     "api_keys": [],

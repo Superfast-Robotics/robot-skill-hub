@@ -752,7 +752,7 @@ curl -fsSL {base}/agent.json
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub</h1>
-<p><strong>An open robotics skill marketplace and source catalog for AI agents.</strong> Search reusable robot skills, inspect exact code and execution evidence, prepare a matching environment, and share useful corrections for the next task.</p>
+<p><strong>Discover robotics skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes.</strong> Search reusable robot skills, inspect exact code and execution evidence, prepare a matching environment, and share useful corrections for the next task.</p>
 <p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search robot skills</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
 <p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
@@ -772,7 +772,7 @@ curl -fsSL {base}/agent.json
 <p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
 <p>Platform: Apache-2.0. Hub execution adapters: MIT. External works retain their original terms. <a href="{esc(base)}/LICENSE_SCOPE.md">License scope</a>.</p>
 </main>"""
-    return shell("Robot Skill Hub | Open Robotics Skill Marketplace for AI Agents", "Search reusable robotics skills, robot task code and policies. Inspect pinned sources, environments and execution evidence; prepare and share reusable fixes.", body, base)
+    return shell("Robot Skill Hub | Discover Robotics Skills for AI Agents", "Search reusable robotics skills, robot task code and policies. Inspect pinned sources, environments and execution evidence; prepare and share reusable fixes.", body, base)
 
 
 def detail(r, base, hub_commit):
@@ -927,7 +927,8 @@ def build(args):
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
     coverage = build_coverage(records, references, ROOT, hub_commit, base)
     update_readme(ROOT, coverage, DEFAULT_BASE)
-    write_json(output / 'catalog/v1/coverage.json', coverage, max_bytes=COVERAGE_JSON_MAX_BYTES)
+    # Keep the complete report within its existing wire budget as recipes grow.
+    write(output / 'catalog/v1/coverage.json', json.dumps(coverage,ensure_ascii=False,separators=(',', ':'))+'\n', max_bytes=COVERAGE_JSON_MAX_BYTES)
     write(output / 'coverage.html', shell('Robot Skill Hub coverage', 'Current pinned execution evidence and declared reference coverage.',
         '<main><h1>Robot Skill Hub coverage</h1><p>Hub commit: <code>' + esc(hub_commit) + '</code>. ' + esc(coverage['scope']) + '</p>' + coverage_tables(coverage, base, full=True) + '</main>', base))
     for relative in ('LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'license-policy.json', 'LICENSES/MIT.txt'):

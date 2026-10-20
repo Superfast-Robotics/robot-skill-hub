@@ -1,0 +1,331 @@
+{
+  "schema_version": "1",
+  "id": "pandagym-panda-slide",
+  "name": "Panda Gym Slide closed-loop starting policy",
+  "summary": "Panda Gym Slide closed-loop starting policy. Native IK actions, privileged simulator observations and a frozen three-seed evaluation; no state teleportation after reset.",
+  "capabilities": [
+    "task",
+    "manipulation",
+    "slide",
+    "pybullet",
+    "inverse-kinematics",
+    "simulation"
+  ],
+  "aliases": [
+    "franka-panda",
+    "pandagym",
+    "slide"
+  ],
+  "source": {
+    "repository": "https://github.com/qgallouedec/panda-gym",
+    "commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+    "archive_url": "https://codeload.github.com/qgallouedec/panda-gym/tar.gz/14d944120037a5bb637e629965f88bb9e13dba3b",
+    "archive_sha256": "fd2fde8e90118b215f27c70654bccb0a0bd0042eb10cc986b3ae5168d5635fb1",
+    "archive_bytes": 8721713,
+    "authors": [
+      "Original panda-gym contributors (preserve pinned LICENSE)"
+    ],
+    "paths": [
+      "README.md",
+      "setup.py",
+      "LICENSE",
+      "panda_gym/pybullet.py",
+      "panda_gym/utils.py",
+      "panda_gym/version.txt",
+      "panda_gym/__init__.py",
+      "panda_gym/envs/panda_tasks.py",
+      "panda_gym/envs/core.py",
+      "panda_gym/envs/__init__.py",
+      "panda_gym/envs/tasks/stack.py",
+      "panda_gym/envs/tasks/flip.py",
+      "panda_gym/envs/tasks/slide.py",
+      "panda_gym/envs/tasks/push.py",
+      "panda_gym/envs/tasks/pick_and_place.py",
+      "panda_gym/envs/tasks/reach.py",
+      "panda_gym/envs/tasks/__init__.py",
+      "panda_gym/envs/robots/panda.py",
+      "panda_gym/envs/robots/__init__.py",
+      "panda_gym/assets/colored_cube.png",
+      "panda_gym/assets/__init__.py"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/qgallouedec/panda-gym/blob/14d944120037a5bb637e629965f88bb9e13dba3b/LICENSE",
+    "verified": true,
+    "scope": "First-party source is MIT. Bullet robot assets retain their original terms. Hub adapter is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "panda-gym",
+      "runtime_version": "3.0.7",
+      "robot": "franka-panda",
+      "controller": "native_pybullet_ik_cartesian_feedback",
+      "observation": "goal_dict",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "panda-gym==3.0.7",
+      "pybullet==3.2.7",
+      "gymnasium==1.2.0",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "achieved_goal",
+          "desired_goal",
+          "error_m",
+          "steps",
+          "environment_success"
+        ],
+        "properties": {
+          "achieved_goal": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -30,
+              "maximum": 30
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "desired_goal": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -30,
+              "maximum": 30
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1500
+          },
+          "environment_success": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "achieved_goal",
+        "desired_goal",
+        "error_m",
+        "steps",
+        "environment_success"
+      ],
+      "properties": {
+        "achieved_goal": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -30,
+            "maximum": 30
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "desired_goal": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -30,
+            "maximum": 30
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1500
+        },
+        "environment_success": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Native task success plus final Euclidean goal error <.04 m. Airborne pick/place goals retain the grasp; ground goals are released.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/pandagym-panda-slide",
+    "requirements_file": "recipes/pandagym-panda-slide/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend pandagym --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "269804d3266b51cb458a3b87849e242bc11811a8ed9b1fde789f5ed48352a761",
+      "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/pandagym-panda-slide.json",
+      "recipes/pandagym-panda-slide/run.py",
+      "recipes/pandagym-panda-slide/requirements.txt",
+      "docs/recipes/pandagym-panda-slide.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

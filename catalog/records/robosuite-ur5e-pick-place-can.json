@@ -1,0 +1,312 @@
+{
+  "schema_version": "1",
+  "id": "robosuite-ur5e-pick-place-can",
+  "name": "UR5e can pick and place into bin",
+  "summary": "UR5e can pick and place into bin. Bounded operational-space feedback, simulated contact and native task success checks.",
+  "capabilities": [
+    "task",
+    "manipulation",
+    "pick-place-can",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "UR5e",
+    "robosuite",
+    "pick_place_can"
+  ],
+  "source": {
+    "repository": "https://github.com/ARISE-Initiative/robosuite",
+    "commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "archive_url": "https://codeload.github.com/ARISE-Initiative/robosuite/tar.gz/824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+    "archive_bytes": 260650842,
+    "authors": [
+      "Original robosuite contributors (preserve pinned LICENSE)"
+    ],
+    "paths": [
+      "LICENSE",
+      "robosuite/__init__.py",
+      "robosuite/environments/manipulation/lift.py",
+      "robosuite/controllers/parts/arm/osc.py",
+      "robosuite/environments/manipulation/stack.py",
+      "robosuite/environments/manipulation/pick_place.py"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/ARISE-Initiative/robosuite/blob/824ac14cefcfb7ec125fe5eb2e0bad7364466154/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party source only. Robot meshes, simulator assets, dependencies and model checkpoints retain their separate terms."
+  },
+  "compatibility": [
+    {
+      "runtime": "robosuite",
+      "runtime_version": "1.5.2",
+      "robot": "UR5e",
+      "controller": "OSC_POSE",
+      "observation": "privileged_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "robosuite==1.5.2",
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements. Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "object_xyz_m",
+          "target_xyz_m",
+          "error_m",
+          "steps",
+          "environment_success"
+        ],
+        "properties": {
+          "object_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -30,
+              "maximum": 30
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "target_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -30,
+              "maximum": 30
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 800
+          },
+          "environment_success": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "object_xyz_m",
+        "target_xyz_m",
+        "error_m",
+        "steps",
+        "environment_success"
+      ],
+      "properties": {
+        "object_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -30,
+            "maximum": 30
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "target_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -30,
+            "maximum": 30
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 800
+        },
+        "environment_success": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Native Stack or PickPlaceCan task success plus object/target distance <.08 m after release and retreat. No object teleportation after reset.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/robosuite-ur5e-pick-place-can",
+    "requirements_file": "recipes/robosuite-ur5e-pick-place-can/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend robosuite --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "3ede4ee5acec8db760c839ce87e17cb48644a1f88cb3a093d9cc8f90f1ee8704",
+      "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/robosuite-ur5e-pick-place-can.json",
+      "recipes/robosuite-ur5e-pick-place-can/run.py",
+      "recipes/robosuite-ur5e-pick-place-can/requirements.txt",
+      "docs/recipes/robosuite-ur5e-pick-place-can.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

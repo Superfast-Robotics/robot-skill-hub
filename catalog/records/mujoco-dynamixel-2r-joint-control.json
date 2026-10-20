@@ -1,0 +1,348 @@
+{
+  "schema_version": "1",
+  "id": "mujoco-dynamixel-2r-joint-control",
+  "name": "dynamixel 2r joint-position control",
+  "summary": "dynamixel 2r joint-position control. Bounded simulated joint offsets from the original reset pose; not locomotion or object-task validation.",
+  "capabilities": [
+    "controller",
+    "joint-control",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "dynamixel_2r",
+    "menagerie",
+    "joint_control"
+  ],
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_url": "https://codeload.github.com/google-deepmind/mujoco_menagerie/tar.gz/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+    "archive_bytes": 520071141,
+    "authors": [
+      "MuJoCo Menagerie contributors and the pinned model licensors"
+    ],
+    "paths": [
+      "dynamixel_2r/CHANGELOG.md",
+      "dynamixel_2r/LICENSE",
+      "dynamixel_2r/README.md",
+      "dynamixel_2r/assets/base_mx106.stl",
+      "dynamixel_2r/assets/dc05_m01_dummy.stl",
+      "dynamixel_2r/assets/dc08_m01_dummy.stl",
+      "dynamixel_2r/assets/first_segment_mix.stl",
+      "dynamixel_2r/assets/hn05_i101.stl",
+      "dynamixel_2r/assets/m2_5x12.stl",
+      "dynamixel_2r/assets/m2_5x20.stl",
+      "dynamixel_2r/assets/m2_5x6.stl",
+      "dynamixel_2r/assets/m2_5x8.stl",
+      "dynamixel_2r/assets/m4x25.stl",
+      "dynamixel_2r/assets/mid_part.stl",
+      "dynamixel_2r/assets/nut_2_5.stl",
+      "dynamixel_2r/assets/nut_4.stl",
+      "dynamixel_2r/assets/sw_mx64_segment.stl",
+      "dynamixel_2r/assets/weight_985.stl",
+      "dynamixel_2r/config.json",
+      "dynamixel_2r/dynamixel_2r.png",
+      "dynamixel_2r/dynamixel_2r.xml",
+      "dynamixel_2r/scene.xml"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/dynamixel_2r/LICENSE",
+    "verified": true,
+    "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mujoco",
+      "runtime_version": "3.3.7",
+      "robot": "dynamixel_2r",
+      "controller": "native_position_actuators",
+      "observation": "joint_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "joint_offset_rad": 0.08
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "joint_positions_rad",
+          "target_joint_positions_rad",
+          "max_error_rad",
+          "movement_rad"
+        ],
+        "properties": {
+          "joint_positions_rad": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "R2",
+              "R1"
+            ]
+          },
+          "target_joint_positions_rad": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "R2",
+              "R1"
+            ]
+          },
+          "max_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "movement_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "R2,R1",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "joint_offset_rad"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "joint_offset_rad": {
+          "type": "number",
+          "minimum": -0.15,
+          "maximum": 0.15,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "joint_positions_rad",
+        "target_joint_positions_rad",
+        "max_error_rad",
+        "movement_rad"
+      ],
+      "properties": {
+        "joint_positions_rad": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "R2",
+            "R1"
+          ]
+        },
+        "target_joint_positions_rad": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "R2",
+            "R1"
+          ]
+        },
+        "max_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "movement_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Move the named actuated hinge joints by a bounded offset from the reset/settled pose; max residual <0.035 rad and nonzero actual motion. This is not end-effector planning, balance, locomotion or hardware control.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mujoco-dynamixel-2r-joint-control",
+    "requirements_file": "recipes/mujoco-dynamixel-2r-joint-control/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "02e17479ce73a5525e6b5afbb5018657b2eb74ad8412e97460532e98866e7404",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mujoco-dynamixel-2r-joint-control.json",
+      "recipes/mujoco-dynamixel-2r-joint-control/run.py",
+      "recipes/mujoco-dynamixel-2r-joint-control/requirements.txt",
+      "docs/recipes/mujoco-dynamixel-2r-joint-control.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}
