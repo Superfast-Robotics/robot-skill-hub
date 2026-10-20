@@ -1,0 +1,154 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-kinova3-stack",
+  "recorded_at": "2026-10-20T05:40:37.269488+00:00",
+  "hub_commit": "70ddbc11443db9166bf01534312a8be73e17aab7",
+  "adapter_sha256": "71fe26592a5be5c92a9fe0732abe6a0f51c99e6ae5aa4759d8b9bcad4e1feb65",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "fd3cfdd6b9df2755489c879e02c4eb840a5eef126de97b12b739c4d669bdc22d",
+  "environment": {
+    "runtime": "robosuite",
+    "runtime_version": "1.5.2",
+    "robot": "Kinova3",
+    "controller": "OSC_POSE",
+    "observation": "privileged_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "robosuite": "1.5.2",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            -0.055251145779786945,
+            -0.06181200908902781,
+            0.8694293371603536
+          ],
+          "target_xyz_m": [
+            -0.039427504761746446,
+            -0.05775426386302454,
+            0.8800000000000001
+          ],
+          "error_m": 0.01945743622002778,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.975,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            0.006909967610708388,
+            -0.030923404443876725,
+            0.8695974659927334
+          ],
+          "target_xyz_m": [
+            0.00522064703103832,
+            -0.030492741093609478,
+            0.8800000000000001
+          ],
+          "error_m": 0.010547605828551885,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.888,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            -0.06314574367205476,
+            0.0028343057455025977,
+            0.8694451246419111
+          ],
+          "target_xyz_m": [
+            -0.06639672916485595,
+            0.0015148002966088592,
+            0.8800000000000001
+          ],
+          "error_m": 0.011122742248602983,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.833,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

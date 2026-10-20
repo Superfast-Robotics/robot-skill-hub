@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-trossen-vx300s-joint-control",
+  "recorded_at": "2026-10-20T05:37:41.381885+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "d4185911e5d61d6886615361852ad39637075b425fd42f932c1df3472b48e4f5",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "a0e25bc458ac98d4ff6a0130fb5748e6d25110e565e9bfe85787f59730cd542c",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "trossen_vx300s",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trossen-vx300s-joint-control",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "joint_positions_rad": [
+            0.05000004941660806,
+            -0.9294563740209731,
+            1.2592563583904173,
+            0.04859915653631659,
+            -0.14102839500027622,
+            0.0501339318002357
+          ],
+          "target_joint_positions_rad": [
+            0.05000004893187233,
+            -0.9197544819991188,
+            1.2314713026251138,
+            0.04922372520898503,
+            -0.1953323012238432,
+            0.04999902228181227
+          ],
+          "max_error_rad": 0.05430390622356698,
+          "movement_rad": 0.10430390622356697
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": false,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.272,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trossen-vx300s-joint-control",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "joint_positions_rad": [
+            0.08000004929220683,
+            -0.898721558979459,
+            1.28866169561524,
+            0.07866231434486055,
+            -0.1120168717015707,
+            0.08021076860702443
+          ],
+          "target_joint_positions_rad": [
+            0.08000004893187232,
+            -0.8897544819991189,
+            1.2614713026251139,
+            0.07922372520898502,
+            -0.16533230122384318,
+            0.07999902228181227
+          ],
+          "max_error_rad": 0.05331542952227249,
+          "movement_rad": 0.1333154295222725
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": false,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.27,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trossen-vx300s-joint-control",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04999995120200299,
+            -1.0325756404091615,
+            1.1606072281557092,
+            -0.05175848728350817,
+            -0.24123625908305868,
+            -0.05014409996234411
+          ],
+          "target_joint_positions_rad": [
+            -0.04999995106812768,
+            -1.019754481999119,
+            1.1314713026251138,
+            -0.05077627479101498,
+            -0.2953323012238432,
+            -0.050000977718187734
+          ],
+          "max_error_rad": 0.054096042140784506,
+          "movement_rad": 0.06282115841004265
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": false,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.272,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

@@ -1,0 +1,189 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-google-robot-joint-control",
+  "recorded_at": "2026-10-20T05:37:38.882136+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "3f2cf1035cea83583c9b71f56e2dbf1ecc4fb44ed9b1906f48f51a797b6931e4",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "1229746d1dc58206921b88766514d489788b5a5c16df2d89191a361cb3c9f09d",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "google_robot",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-google-robot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.04653031255538673,
+            0.04331474352641964,
+            0.048648329552354805,
+            0.03081436058976685,
+            0.0418052848812101,
+            0.028161163610197,
+            0.030273545359782883,
+            0.053541917763114316,
+            0.053543013517646475
+          ],
+          "target_joint_positions_rad": [
+            0.04999999999988227,
+            0.04999999999898203,
+            0.04999999999966202,
+            0.04999999999963549,
+            0.05000000000051795,
+            0.04999999999923198,
+            0.05000000000101906,
+            0.0599999999999954,
+            0.0599999999999954
+          ],
+          "max_error_rad": 0.021838836389034978,
+          "movement_rad": 0.048648329552692784
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.38,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-google-robot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07728061745846317,
+            0.07756135406674423,
+            0.07872075856951276,
+            0.06115869527390032,
+            0.06943830220608,
+            0.0450599624078099,
+            0.04843792235411488,
+            0.08335611461002596,
+            0.08335557387091011
+          ],
+          "target_joint_positions_rad": [
+            0.07999999999988228,
+            0.07999999999898204,
+            0.07999999999966202,
+            0.07999999999963549,
+            0.08000000000051795,
+            0.07999999999923198,
+            0.08000000000101906,
+            0.08999999999999539,
+            0.08999999999999539
+          ],
+          "max_error_rad": 0.03494003759142208,
+          "movement_rad": 0.07872075856985074
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.382,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-google-robot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04653034208087191,
+            -0.04331476367563586,
+            -0.048648331331402804,
+            -0.03081428090427143,
+            -0.04180527577475527,
+            -0.028161140312986045,
+            -0.0302735276254912,
+            0.027416852211139882,
+            0.027417168761896357
+          ],
+          "target_joint_positions_rad": [
+            -0.050000000000117735,
+            -0.05000000000101797,
+            -0.05000000000033798,
+            -0.05000000000036452,
+            -0.049999999999482056,
+            -0.05000000000076803,
+            -0.04999999999898094,
+            0.03,
+            0.03
+          ],
+          "max_error_rad": 0.021838859687781983,
+          "movement_rad": 0.048648331331064824
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.38,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

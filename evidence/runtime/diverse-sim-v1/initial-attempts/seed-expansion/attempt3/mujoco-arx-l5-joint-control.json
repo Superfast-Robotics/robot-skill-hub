@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-arx-l5-joint-control",
+  "recorded_at": "2026-10-20T05:42:06.273599+00:00",
+  "hub_commit": "c2638b0d61d218be5da65c81e2b1633c5f254c52",
+  "adapter_sha256": "85854c50a0b69928b53f60ec378e09aafe7de745a1450754cdc2f44f9362683c",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "cb3f8fdb491d7e6301de85b087d775d8f7019b7d7518739fc73ad11f1285191f",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "arx_l5",
+    "controller": "position_servo_integral_offset_compensation",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-arx-l5-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.04999999719690665,
+            0.2847719874838876,
+            0.2973595968315089,
+            0.021893933154268366,
+            0.05000009018225011,
+            0.0499894698466221
+          ],
+          "target_joint_positions_rad": [
+            0.04999999719690635,
+            0.28477198748388866,
+            0.2973595968315138,
+            0.02189393315426864,
+            0.05000009018237666,
+            0.04998946984676608
+          ],
+          "max_error_rad": 1.43982048506075e-13,
+          "movement_rad": 0.0500000000000003
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.808,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-arx-l5-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07999999719690672,
+            0.3147719874838879,
+            0.3273595968315099,
+            0.05189393315426764,
+            0.08000009018216711,
+            0.07998946984653577
+          ],
+          "target_joint_positions_rad": [
+            0.07999999719690634,
+            0.3147719874838887,
+            0.3273595968315138,
+            0.05189393315426864,
+            0.08000009018237665,
+            0.07998946984676608
+          ],
+          "max_error_rad": 2.303157664584887e-13,
+          "movement_rad": 0.08000000000000038
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.795,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-arx-l5-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.050000002803094044,
+            0.18477198748388715,
+            0.197359596831506,
+            -0.07810606684573168,
+            -0.049999909817511325,
+            -0.050010530153089754
+          ],
+          "target_joint_positions_rad": [
+            -0.050000002803093656,
+            0.18477198748388868,
+            0.19735959683151377,
+            -0.07810606684573136,
+            -0.049999909817623346,
+            -0.05001053015323392
+          ],
+          "max_error_rad": 1.4416939864148048e-13,
+          "movement_rad": 0.05000000000000779
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.792,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

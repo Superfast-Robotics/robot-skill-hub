@@ -30,6 +30,6 @@ def publish(records, output, base, commit, shell):
     listing='<ul>'+''.join(f'<li><a href="{esc(i)}/">{esc(n)}</a> — {esc(runtime)}; {esc(evidence)}<p>{esc(summaries[i])}</p><a href="{esc(base)}/skills/{esc(i)}/">Skill details and source</a></li>' for i,n,runtime,evidence in links)+'</ul>'
     body='<main><h1>Robotics skill examples for AI agents</h1><p>Browse concrete robot task, motion-control and algorithm inputs. Each sample links to its exact environment, source version and recorded evidence. Examples do not execute automatically.</p><p><a href="index.json">Sample index JSON</a> | <a href="'+html.escape(base,quote=True)+'/">Robot Skill Hub</a></p>'+listing+'</main>'
     (output/'samples').mkdir(exist_ok=True)
-    (output/'samples/index.html').write_text(shell('Robot skill examples: tasks, control and planning','Robotics skill catalog examples with input JSON, robot environments and execution evidence.',body,base,'samples/'),encoding='utf-8')
+    (output/'samples/index.html').write_text(shell('Robot skill examples: tasks, control and planning','Executable robotics recipe examples with input JSON, robot environments and execution evidence.',body,base,'samples/'),encoding='utf-8')
     (output/'samples/index.json').write_text(json.dumps({'hub_commit':commit,'samples':[{'id':i,'name':n,'runtime':runtime,'evidence':evidence,'url':base+'/samples/'+i+'/index.json'} for i,n,runtime,evidence in links]},indent=2)+'\n',encoding='utf-8')
     return [base+'/samples/']+urls

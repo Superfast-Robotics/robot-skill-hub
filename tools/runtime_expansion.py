@@ -18,12 +18,28 @@ def measured_goal(recipe,outputs):
         return outputs['max_error_rad']<.035 and outputs['movement_rad']>=.02 and abs(max(abs(a-b) for a,b in zip(outputs['joint_positions_rad'],outputs['target_joint_positions_rad']))-outputs['max_error_rad'])<1e-6
     if backend=='robosuite':
         if recipe['operation']=='lift':return outputs['environment_success'] is True and outputs['cube_lift_m']>.07
+        if recipe['operation'] in ['stack','pick_place_can']:
+            error=math.dist(outputs['object_xyz_m'],outputs['target_xyz_m'])
+            return outputs['environment_success'] is True and error<.08 and abs(error-outputs['error_m'])<1e-6
         error=math.dist(outputs['final_xyz_m'],outputs['target_xyz_m'])
         return error<.015 and abs(error-outputs['error_m'])<1e-6
     if backend=='gymrobotics':
         error=math.dist(outputs['achieved_goal'],outputs['desired_goal'])
         return outputs['environment_success'] is True and error<(.45 if recipe['operation']=='maze' else .05) and abs(error-outputs['error_m'])<1e-6
     if backend=='lerobot':return outputs['environment_success'] is True and outputs['cuda_inference'] is True and outputs['maximum_coverage']>=.95
+    if backend=='pandagym':
+        error=math.dist(outputs['achieved_goal'],outputs['desired_goal'])
+        correct=outputs['environment_success'] is True and error<.04 and abs(error-outputs['error_m'])<1e-6
+        if recipe['operation']=='stack':
+            goal=outputs['achieved_goal'];height=goal[5]-goal[2];alignment=math.dist(goal[:2],goal[3:5])
+            return (correct and .03<height<.05 and alignment<.015 and abs(height-outputs['stack_height_m'])<1e-6
+                and abs(alignment-outputs['stack_alignment_m'])<1e-6)
+        return correct
+    if backend=='dmcontrol':
+        window=outputs['reward_window']
+        return (len(window)==100 and abs(sum(window)/len(window)-outputs['final_window_mean_reward'])<1e-9
+            and outputs['final_reward']==window[-1] and outputs['minimum_window_reward']==min(window)
+            and outputs['final_window_mean_reward']>=(.6 if recipe['domain']=='finger' else .9) and outputs['control_effort']>0)
     return False
 
 def bound_receipt(root, recipe, source, adapter):
@@ -35,7 +51,7 @@ def bound_receipt(root, recipe, source, adapter):
     call=assignments[0].value
     if not isinstance(call,ast.Call) or len(call.args)!=1:raise ValueError('Invalid executed specification')
     executed_spec=json.loads(ast.literal_eval(call.args[0]))
-    for key in ['id','backend','operation','interface','source_hashes','model_path','actuator_names','actuator_indices','robot','env_id','policy_repo','policy_revision','policy_hashes']:
+    for key in ['id','backend','operation','interface','source_hashes','model_path','actuator_names','actuator_indices','robot','env_id','policy_repo','policy_revision','policy_hashes','domain','task']:
         if executed_spec.get(key)!=recipe.get(key):raise ValueError('Manifest differs from executed adapter: '+key)
     if executed_spec.get('source_commit')!=source['commit'] or executed_spec.get('packages')!=source['packages']:raise ValueError('Executed source/package specification differs')
     proof=json.loads(path.read_text(encoding='utf-8'))

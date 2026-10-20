@@ -1,0 +1,368 @@
+{
+  "schema_version": "1",
+  "id": "mujoco-trossen-wx250s-joint-control",
+  "name": "trossen wx250s joint-position control",
+  "summary": "trossen wx250s joint-position control. Bounded simulated joint offsets from the original reset pose; not locomotion or object-task validation.",
+  "capabilities": [
+    "controller",
+    "joint-control",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "trossen_wx250s",
+    "menagerie",
+    "joint_control"
+  ],
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_url": "https://codeload.github.com/google-deepmind/mujoco_menagerie/tar.gz/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+    "archive_bytes": 520071141,
+    "authors": [
+      "MuJoCo Menagerie contributors and the pinned model licensors"
+    ],
+    "paths": [
+      "trossen_wx250s/CHANGELOG.md",
+      "trossen_wx250s/LICENSE",
+      "trossen_wx250s/README.md",
+      "trossen_wx250s/assets/interbotix_black.png",
+      "trossen_wx250s/assets/wx250s_10_gripper_finger.stl",
+      "trossen_wx250s/assets/wx250s_11_ar_tag.stl",
+      "trossen_wx250s/assets/wx250s_1_base.stl",
+      "trossen_wx250s/assets/wx250s_2_shoulder.stl",
+      "trossen_wx250s/assets/wx250s_3_upper_arm.stl",
+      "trossen_wx250s/assets/wx250s_4_upper_forearm.stl",
+      "trossen_wx250s/assets/wx250s_5_lower_forearm.stl",
+      "trossen_wx250s/assets/wx250s_6_wrist.stl",
+      "trossen_wx250s/assets/wx250s_7_gripper.stl",
+      "trossen_wx250s/assets/wx250s_8_gripper_prop.stl",
+      "trossen_wx250s/assets/wx250s_9_gripper_bar.stl",
+      "trossen_wx250s/scene.xml",
+      "trossen_wx250s/wx250s.png",
+      "trossen_wx250s/wx250s.xml"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/trossen_wx250s/LICENSE",
+    "verified": true,
+    "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mujoco",
+      "runtime_version": "3.3.7",
+      "robot": "trossen_wx250s",
+      "controller": "native_position_actuators",
+      "observation": "joint_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "joint_offset_rad": 0.08
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "joint_positions_rad",
+          "target_joint_positions_rad",
+          "max_error_rad",
+          "movement_rad"
+        ],
+        "properties": {
+          "joint_positions_rad": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "waist",
+              "shoulder",
+              "elbow",
+              "forearm_roll",
+              "wrist_angle",
+              "wrist_rotate"
+            ]
+          },
+          "target_joint_positions_rad": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "waist",
+              "shoulder",
+              "elbow",
+              "forearm_roll",
+              "wrist_angle",
+              "wrist_rotate"
+            ]
+          },
+          "max_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "movement_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "waist,shoulder,elbow,forearm_roll,wrist_angle,wrist_rotate",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "joint_offset_rad"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "joint_offset_rad": {
+          "type": "number",
+          "minimum": -0.15,
+          "maximum": 0.15,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "joint_positions_rad",
+        "target_joint_positions_rad",
+        "max_error_rad",
+        "movement_rad"
+      ],
+      "properties": {
+        "joint_positions_rad": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "waist",
+            "shoulder",
+            "elbow",
+            "forearm_roll",
+            "wrist_angle",
+            "wrist_rotate"
+          ]
+        },
+        "target_joint_positions_rad": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "waist",
+            "shoulder",
+            "elbow",
+            "forearm_roll",
+            "wrist_angle",
+            "wrist_rotate"
+          ]
+        },
+        "max_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "movement_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "mujoco-menagerie-artifact-trossen-wx250s-scene-xml"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Move the named actuated hinge joints by a bounded offset from the reset/settled pose; max residual <0.035 rad and nonzero actual motion. This is not end-effector planning, balance, locomotion or hardware control.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mujoco-trossen-wx250s-joint-control",
+    "requirements_file": "recipes/mujoco-trossen-wx250s-joint-control/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-trossen-wx250s-joint-control.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "f8f1de7593550a568a8a3e30830409f15727d62755128c4779829365ff3fad3f",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mujoco-trossen-wx250s-joint-control.json",
+      "recipes/mujoco-trossen-wx250s-joint-control/run.py",
+      "recipes/mujoco-trossen-wx250s-joint-control/requirements.txt",
+      "docs/recipes/mujoco-trossen-wx250s-joint-control.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

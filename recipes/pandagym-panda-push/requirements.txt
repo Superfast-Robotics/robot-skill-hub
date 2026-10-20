@@ -1,0 +1,4 @@
+panda-gym==3.0.7
+pybullet==3.2.7
+gymnasium==1.2.0
+numpy==1.26.4

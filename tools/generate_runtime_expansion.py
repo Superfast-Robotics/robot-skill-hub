@@ -8,7 +8,7 @@ def render(recipe, source):
     spec={k:copy.deepcopy(v) for k,v in recipe.items() if k not in ['cases','source_id','environment','source_paths','origin_reference_ids','license','abstraction_level','capabilities']}
     spec['source_commit']=source['commit'];spec['packages']=source['packages']
     template=recipe.get('adapter_template','mainstream')
-    if template not in ['mainstream','mujoco_extra']:raise ValueError('Unknown adapter template')
+    if template not in ['mainstream','mujoco_extra','seed_tasks','joint_feedback','panda_stack']:raise ValueError('Unknown adapter template')
     text=(ROOT/'tools/recipe_adapters/core.py').read_text()+'\n\n'+(ROOT/('tools/recipe_adapters/'+template+'.py')).read_text()
     return ('# Hub-authored adapter: MIT. Upstream source/models retain their original licenses.\n'+text+'\nSPEC = json.loads('+repr(json.dumps(spec,separators=(',',':')))+')\n\nif __name__ == "__main__":\n    raise SystemExit(adapter_main(SPEC, mainstream_backend))\n').encode()
 
@@ -40,7 +40,7 @@ def record(recipe,source,adapter):
         'license':license,'compatibility':[environment],
         'observation':{'required':['simulator_state' if recipe['backend']!='lerobot' else 'RGB_pixels_and_pusher_position'],
                        'privileged_state':recipe['backend']!='lerobot','description':recipe['observation_description']},
-        'requirements':{'python':'>=3.10,<3.11','packages':source['packages'],'hardware':['Linux x86_64; '+('CUDA GPU, tested on A100 40GB' if recipe['backend']=='lerobot' else 'CPU simulation, tested on a Lambda A100 host')],
+            'requirements':{'python':'>=3.10,<3.11','packages':source['packages'],'hardware':['Linux x86_64; '+('CUDA GPU, tested on A100 40GB' if recipe['backend']=='lerobot' else 'CPU simulation; see retained receipt for the exact host environment')],
             'rendering':'Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.',
             'api_keys':[],'network':['Pinned source archive during preparation','PyPI dependencies during explicit installation']+(['Pinned public Hugging Face checkpoint on first execution'] if recipe['backend']=='lerobot' else []),
             'dependency_lock':'Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements.'+(' Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required.' if recipe['backend'] in ['robosuite','lerobot'] else '')},
@@ -53,7 +53,7 @@ def record(recipe,source,adapter):
             'failure_modes':['Invalid input or source checksum','Different pinned package version','Unavailable runtime/driver','Goal not reached within bounded steps'],
             'stop_condition':'Terminate the adapter at the recorded timeout. No physical hardware is opened.'},
         'preparation':{'recipe_path':'recipes/'+ident,'requirements_file':'recipes/'+ident+'/requirements.txt',
-            'source_selection':'declared_paths' if recipe['backend'] in ['menagerie','lerobot'] else None,
+            'source_selection':'declared_paths' if recipe['backend'] in ['menagerie','lerobot','dmcontrol','pandagym'] else None,
             'install_argv':install,'execution_separate':True},
         'evidence':evidence,'maintenance':{'record_version':'1.0.0','last_checked':'2026-10-20','upstream_status':'immutable_source_and_explicit_dependencies'},
         'contribution':{'allowed_paths':['catalog/records/'+ident+'.json','recipes/'+ident+'/run.py','recipes/'+ident+'/requirements.txt','docs/recipes/'+ident+'.md'],

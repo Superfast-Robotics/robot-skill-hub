@@ -21,10 +21,10 @@ class CoverageTests(unittest.TestCase):
 
     def test_current_complete_inventory_separates_computation_simulation_failed_and_unexecuted(self):
         report=build_coverage(self.records,self.references,ROOT,'a'*40,'https://example.test')
-        self.assertEqual(report['totals'],{'preparation_recipes':98,'source_references':1330,'completed':84,
-            'failed':3,'not_executed':11,'evidence_unbound':0,'completed_computations':33,
-            'completed_simulations':51,'completed_hardware':0,'tested_environment_combinations':32,'reference_frameworks':44})
-        self.assertEqual(report['case_runs_by_os'],{'linux':249,'windows':99})
+        self.assertEqual(report['totals'],{'preparation_recipes':139,'source_references':1330,'completed':115,
+            'failed':13,'not_executed':11,'evidence_unbound':0,'completed_computations':33,
+            'completed_simulations':82,'completed_hardware':0,'tested_environment_combinations':54,'reference_frameworks':44})
+        self.assertEqual(report['case_runs_by_os'],{'linux':372,'windows':99})
         by_id={r['id']:r for r in report['recipes']}
         self.assertEqual(by_id['maniskill-panda-stack-pyramid']['state'],'failed')
         self.assertEqual(by_id['maniskill-xarm6-pick-cube']['tested_os'],[])

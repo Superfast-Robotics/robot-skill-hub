@@ -44,9 +44,10 @@ def execute(recipe,source,cache,output,hub_commit):
     return proof
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--backend',default='all',choices=['all','menagerie','robosuite','gymrobotics','lerobot']);parser.add_argument('--source-cache',type=pathlib.Path,required=True);parser.add_argument('--output',type=pathlib.Path,required=True);parser.add_argument('--hub-commit',required=True);parser.add_argument('--workers',type=int,default=4)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--backend',default='all',choices=['all','menagerie','robosuite','gymrobotics','lerobot','pandagym','dmcontrol']);parser.add_argument('--source-cache',type=pathlib.Path,required=True);parser.add_argument('--output',type=pathlib.Path,required=True);parser.add_argument('--hub-commit',required=True);parser.add_argument('--workers',type=int,default=4);parser.add_argument('--skill-id',action='append',default=[])
     args=parser.parse_args();assert 1<=args.workers<=8 and len(args.hub_commit)==40
-    manifest=json.loads((ROOT/'catalog/runtime-expansion.json').read_text());recipes=[r for r in manifest['recipes'] if args.backend=='all' or r['backend']==args.backend]
+    manifest=json.loads((ROOT/'catalog/runtime-expansion.json').read_text());recipes=[r for r in manifest['recipes'] if (args.backend=='all' or r['backend']==args.backend) and (not args.skill_id or r['id'] in args.skill_id)]
+    if not recipes or (args.skill_id and set(args.skill_id)!={r['id'] for r in recipes}):raise ValueError('Unknown recipe selection')
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         results=list(pool.map(lambda r:execute(r,manifest['sources'][r['source_id']],args.source_cache,args.output,args.hub_commit),recipes))
     freeze=subprocess.run([sys.executable,'-m','pip','freeze'],capture_output=True,text=True,check=True).stdout

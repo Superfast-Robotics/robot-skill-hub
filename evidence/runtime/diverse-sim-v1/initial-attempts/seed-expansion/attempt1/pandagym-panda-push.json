@@ -1,0 +1,89 @@
+{
+  "schema_version": "1",
+  "skill_id": "pandagym-panda-push",
+  "recorded_at": "2026-10-20T05:37:43.154880+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "f3a97b06b1ea0bc7d1026c1066383d42172396c243ac512c56cf2a2e452da69f",
+  "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+  "archive_sha256": "fd2fde8e90118b215f27c70654bccb0a0bd0042eb10cc986b3ae5168d5635fb1",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "6dd8a06af56bed27a26fad22242a1b4224ee80e419def42c1c4174b666b8ff0c",
+  "environment": {
+    "runtime": "panda-gym",
+    "runtime_version": "3.0.7",
+    "robot": "franka-panda",
+    "controller": "native_pybullet_ik_cartesian_feedback",
+    "observation": "goal_dict",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "panda-gym": "3.0.7",
+    "pybullet": "3.2.7",
+    "gymnasium": "1.2.0",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-push",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "The 'render' argument is must be in {'rgb_array', 'human'}",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.213,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-push",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "The 'render' argument is must be in {'rgb_array', 'human'}",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.207,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-push",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "The 'render' argument is must be in {'rgb_array', 'human'}",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.209,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

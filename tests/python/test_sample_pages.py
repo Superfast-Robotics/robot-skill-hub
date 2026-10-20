@@ -7,6 +7,12 @@ import build_catalog as builder
 from sample_pages import publish
 
 class SamplePagesTests(unittest.TestCase):
+    def test_homepage_identifies_a_repository_for_agent_discovery(self):
+        html=builder.home([],builder.DEFAULT_BASE)
+        self.assertIn('Discover robotic skills for AI agents',html)
+        self.assertIn('public repository',html)
+        self.assertNotIn('marketplace',html.lower())
+
     def test_pages_keep_pinned_inputs_and_evidence_and_are_readable_without_javascript(self):
         record=json.loads((ROOT/'catalog/records/pythonrobotics-astar-planner.json').read_text())
         record=copy.deepcopy(record);record['name']='<script>bad</script>'

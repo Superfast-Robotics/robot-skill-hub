@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-low-cost-robot-arm-joint-control",
+  "recorded_at": "2026-10-20T05:37:40.501186+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "9dc2b9789fb945c0021579f9bdc68d51bb1dc2e8016a9b45de294bb93b4ed2c5",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "0f85bc94c1d1713695d6bdbf54774430a4b16d0cd5a53681bbdfe2245401dfa3",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "low_cost_robot_arm",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-low-cost-robot-arm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.050097533693903754,
+            0.048405603634792925,
+            0.051642821923968706,
+            0.04967853145139726,
+            0.05007730702473845,
+            0.011813616790683388
+          ],
+          "target_joint_positions_rad": [
+            0.05000000000373664,
+            0.04972829178759293,
+            0.050240042804147636,
+            0.04993684559793701,
+            0.049998653801821,
+            0.012
+          ],
+          "max_error_rad": 0.0014027791198210696,
+          "movement_rad": 0.05140277911982107
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.579,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-low-cost-robot-arm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.08063341447358296,
+            0.0789955396010114,
+            0.08216880035981027,
+            0.08020766834026752,
+            0.08060468612458639,
+            0.011812966834614963
+          ],
+          "target_joint_positions_rad": [
+            0.08000000000373664,
+            0.07972829178759293,
+            0.08024004280414763,
+            0.07993684559793701,
+            0.079998653801821,
+            0.012
+          ],
+          "max_error_rad": 0.0019287575556626302,
+          "movement_rad": 0.08192875755566263
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.514,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-low-cost-robot-arm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.05009861844239964,
+            -0.05195616848248679,
+            -0.04852200746646006,
+            -0.05049699096104226,
+            -0.05009355173164982,
+            -0.05039644392401957
+          ],
+          "target_joint_positions_rad": [
+            -0.04999999999626337,
+            -0.050271708212407076,
+            -0.04975995719585237,
+            -0.05006315440206299,
+            -0.050001346198179,
+            -0.0500000000716408
+          ],
+          "max_error_rad": 0.0016844602700797143,
+          "movement_rad": 0.05168446027007972
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.515,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

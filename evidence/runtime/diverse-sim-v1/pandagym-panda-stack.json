@@ -1,0 +1,182 @@
+{
+  "schema_version": "1",
+  "skill_id": "pandagym-panda-stack",
+  "recorded_at": "2026-10-20T06:08:35.632167+00:00",
+  "hub_commit": "f965016b18f90e05efab2561794b56a99e85bbe3",
+  "adapter_sha256": "4f65e62016300bf8e5e3fd09d0dfd496a020762d4be8b3c764978660f7ffeaea",
+  "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+  "archive_sha256": "fd2fde8e90118b215f27c70654bccb0a0bd0042eb10cc986b3ae5168d5635fb1",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "6dd8a06af56bed27a26fad22242a1b4224ee80e419def42c1c4174b666b8ff0c",
+  "environment": {
+    "runtime": "panda-gym",
+    "runtime_version": "3.0.7",
+    "robot": "franka-panda",
+    "controller": "native_pybullet_ik_cartesian_feedback",
+    "observation": "goal_dict",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "panda-gym": "3.0.7",
+    "pybullet": "3.2.7",
+    "gymnasium": "1.2.0",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-stack",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            0.04100723937153816,
+            -0.06836279481649399,
+            0.019989369437098503,
+            0.041138600558042526,
+            -0.08635030686855316,
+            0.059975478798151016
+          ],
+          "desired_goal": [
+            0.04108850657939911,
+            -0.06906398385763168,
+            0.019999999552965164,
+            0.04108850657939911,
+            -0.06906398385763168,
+            0.05999999865889549
+          ],
+          "error_m": 0.017300821840763092,
+          "steps": 670,
+          "environment_success": true,
+          "stack_height_m": 0.03998611122369766,
+          "stack_alignment_m": 0.017987992614507675
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "strict_goal_error": true,
+          "upper_cube_above_lower": true,
+          "horizontal_support_alignment": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 2.407,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-stack",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            0.003690156852826476,
+            0.13675393164157867,
+            0.01998967118561268,
+            0.0024621898774057627,
+            0.08477339148521423,
+            0.019989678636193275
+          ],
+          "desired_goal": [
+            0.003546487307175994,
+            0.1351391077041626,
+            0.019999999552965164,
+            0.003546487307175994,
+            0.1351391077041626,
+            0.05999999865889549
+          ],
+          "error_m": 0.06435320526361465,
+          "steps": 670,
+          "environment_success": true,
+          "stack_height_m": 7.450580596923828e-09,
+          "stack_alignment_m": 0.05199504271149635
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "strict_goal_error": false,
+          "upper_cube_above_lower": false,
+          "horizontal_support_alignment": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 2.454,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-stack",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            -0.0715470239520073,
+            -0.056941427290439606,
+            0.01998748444020748,
+            -0.07169843465089798,
+            -0.03813744708895683,
+            0.05997473746538162
+          ],
+          "desired_goal": [
+            -0.07151635736227036,
+            -0.0604526586830616,
+            0.019999999552965164,
+            -0.07151635736227036,
+            -0.0604526586830616,
+            0.05999999865889549
+          ],
+          "error_m": 0.02259053662419319,
+          "steps": 670,
+          "environment_success": true,
+          "stack_height_m": 0.03998725116252899,
+          "stack_alignment_m": 0.01880459114909172
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "strict_goal_error": true,
+          "upper_cube_above_lower": true,
+          "horizontal_support_alignment": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 2.661,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}
