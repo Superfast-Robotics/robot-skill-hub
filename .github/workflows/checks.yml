@@ -29,6 +29,8 @@ jobs:
           cache-dependency-path: api/package-lock.json
       - run: python tools/build_catalog.py --hub-commit "$GITHUB_SHA" --base-url https://hub.superfastrobotics.com
       - run: python tools/generate_executable_recipes.py --check
+      - run: python tools/generate_task_skills.py --check
+      - run: python tools/generate_problem_cases.py --check
       - run: python -m unittest discover -s tests/python -v
       - run: python tools/test_catalog.py -v
       - run: python tools/test_catalog_v2.py -v

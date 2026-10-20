@@ -875,6 +875,8 @@ Current catalog: {counts}. Search matches and source references do not establish
 - [Contribution contract]({base}/contributing.md)
 - [Register a new skill]({base}/new-skills.md): immutable source metadata, local-first intake and maintainer review
 - [Agent discovery guide]({base}/discovery.md): installation and read-only MCP connection
+- [Task entrypoints and integrations]({base}/agent-distribution.md): planning, kinematics and trajectory skills; ROS-MCP and LangChain examples
+- [Robotics problem reproductions]({base}/problems/): ten pinned input/contract cases in HTML, Markdown and JSON
 - [Access measurement and privacy]({base}/privacy.md): measured activity, retained data and opt-out
 
 ## Read selected data
@@ -1012,7 +1014,7 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
+    for name in ("agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
@@ -1139,10 +1141,13 @@ def build(args):
     urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
     if __package__:
         from .sample_pages import publish as publish_sample_pages
+        from .problem_pages import publish as publish_problem_pages
     else:
         from sample_pages import publish as publish_sample_pages
+        from problem_pages import publish as publish_problem_pages
     urls.extend(publish_sample_pages(records, output, base, hub_commit, shell))
     urls.append(base+"/coverage.html")
+    urls.extend(publish_problem_pages(ROOT, output, base, hub_commit))
     if openapi.exists():
         urls.append(base+"/openapi.json")
     write(output / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{esc(url)}</loc></url>" for url in urls) + "\n</urlset>\n")

@@ -12,6 +12,8 @@ export interface MetricsEnv {
 }
 export interface Background { waitUntil(promise: Promise<unknown>): void }
 const TARGET_AGENT_ACCESSES = 10000;
+const CHANNELS = new Set(['task-planning', 'task-kinematics', 'task-trajectory', 'ros-mcp-example', 'rai-example', 'hf-space', 'problem-case', 'agent-pilot']);
+export type MeasurementWindow = 'launch' | '7d' | 'retained';
 
 export function accessFamily(request: Request, mcpTool = false): string | null {
   if (request.headers.get('DNT') === '1' || request.headers.get('X-RSH-Telemetry') === 'off') return null;
@@ -35,8 +37,10 @@ export async function recordAccess(request: Request, env: MetricsEnv, route: str
     const bytes = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(new Date(now).toISOString().slice(0, 10) + '\0' + client));
     clientHash = Array.from(new Uint8Array(bytes), x => x.toString(16).padStart(2, '0')).join('');
   }
-  await env.METRICS.prepare('INSERT INTO agent_access (ts, route, family, client_hash) VALUES (?, ?, ?, ?)')
-    .bind(Math.floor(now / 1000), route, family, clientHash).run();
+  const proposedChannel = request.headers.get('X-RSH-Channel') || '';
+  const channel = CHANNELS.has(proposedChannel) ? proposedChannel : null;
+  await env.METRICS.prepare('INSERT INTO agent_access (ts, route, family, client_hash, channel) VALUES (?, ?, ?, ?, ?)')
+    .bind(Math.floor(now / 1000), route, family, clientHash, channel).run();
 }
 
 export function measure(request: Request, env: MetricsEnv, route: string, ctx?: Background, mcpTool = false): Promise<void> {
@@ -46,17 +50,37 @@ export function measure(request: Request, env: MetricsEnv, route: string, ctx?: 
   return pending;
 }
 
-export async function measurementReport(env: MetricsEnv, now = Date.now()) {
+export async function measurementReport(env: MetricsEnv, now = Date.now(), window: MeasurementWindow = 'launch') {
   const configured = Boolean(env.METRICS && env.METRICS_KEY);
   const parsed = Date.parse(env.CAMPAIGN_STARTED_AT || '');
-  const start = Number.isFinite(parsed) ? parsed : now - 86400000;
-  const deadline = start + 86400000;
+  const launch = Number.isFinite(parsed) ? parsed : now - 86400000;
+  const start = window === 'launch' ? launch : Math.max(launch, now - (window === '7d' ? 7 : 30) * 86400000);
+  const deadline = window === 'launch' ? start + 86400000 : now;
   const end = Math.min(now, deadline);
   const groups = configured ? (await env.METRICS!.prepare(
     'SELECT family, COUNT(*) AS requests, COUNT(DISTINCT client_hash) AS identified_client_days FROM agent_access WHERE ts >= ? AND ts < ? GROUP BY family')
     .bind(Math.floor(start / 1000), Math.ceil(end / 1000)).all<{ family: string; requests: number; identified_client_days: number }>()).results : [];
   const eligible = new Set(['rsh_cli', 'recognized_agent', 'mcp_tool']);
   const count = groups.filter(row => eligible.has(row.family)).reduce((n, row) => n + Number(row.requests), 0);
+  if (window !== 'launch') {
+    const channels = configured ? (await env.METRICS!.prepare(
+      'SELECT channel, route, family, COUNT(*) AS requests FROM agent_access WHERE ts >= ? AND ts < ? GROUP BY channel, route, family')
+      .bind(Math.floor(start / 1000), Math.ceil(end / 1000)).all()).results : [];
+    return {
+      schema_version: '1', interpretation: 'data_only', measurement_configured: configured,
+      observed_at: new Date(now).toISOString(), window_kind: window,
+      window_start: new Date(start).toISOString(), window_end: new Date(end).toISOString(),
+      retention_days: 30, lifetime_total_available: false,
+      observed_agent_accesses: configured ? count : null, groups, channels,
+      counting_rule: 'Successful observed API discovery/record reads and MCP tool calls; family and channel are self-reported classifications.',
+      limitations: ['Requests are not people, autonomous agents, completed tasks or a same-user conversion funnel.',
+        'Direct Pages visits and offline/local preparation or execution are not observed.',
+        'Retained totals cover at most 30 days; best-effort recording can drop events.',
+        'Historical events have no channel and are never backfilled. Daily client pseudonyms cannot identify returning users across days.'],
+      privacy: { raw_ip_stored: false, raw_client_id_stored: false, query_or_conversation_stored: false,
+        referral_url_stored: false, channel: 'fixed_allowlist_only', opt_out: 'DNT: 1 or X-RSH-Telemetry: off' }
+    };
+  }
   return {
     schema_version: '1', interpretation: 'data_only', measurement_configured: configured,
     observed_at: new Date(now).toISOString(), window_start: new Date(start).toISOString(), window_end: new Date(deadline).toISOString(),
