@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
       "name": "Apache-2.0",
@@ -537,7 +537,23 @@
       "get": {
         "summary": "Read aggregate self-reported access counts and their measurement limits",
         "security": [],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "window",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "launch",
+                "7d",
+                "retained"
+              ],
+              "default": "launch"
+            },
+            "description": "Original fixed launch window, rolling seven days, or retained data up to thirty days. Request counts are not people or completed tasks."
+          }
+        ],
         "responses": {
           "200": {
             "description": "Structured JSON response",

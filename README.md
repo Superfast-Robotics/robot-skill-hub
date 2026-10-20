@@ -11,6 +11,8 @@ Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matchi
 
 Public reads need no account, GPU or simulator. Discovery never executes robot code.
 
+[Task-specific entrypoints](docs/agent-distribution.md): `robot-motion-planning`, `robot-kinematics`, `robot-trajectory`. [Ten reproducible robotics problems](https://hub.superfastrobotics.com/problems/) provide pinned input, correction and evidence in HTML, Markdown and JSON. [ROS-MCP](examples/ros-mcp) and [RAI/LangChain](examples/rai) examples connect lookup to existing development workflows.
+
 [Robot, environment and task coverage](https://hub.superfastrobotics.com/coverage.html) | [Coverage API](https://api.superfastrobotics.com/v1/coverage). Current-version completions, failed attempts and unexecuted recipes are counted separately; reference labels describe source coverage rather than verified robot support.
 
 <!-- rsh-coverage:start -->

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-20T04:06:42.223494+00:00",
+  "task_skills": [
+    {
+      "skill": "robot-motion-planning",
+      "selected_id": "pythonrobotics-astar-planner",
+      "hub_commit": "1fe1225d9cbfe6bd7aec021e71f1dbc463759c20",
+      "record_version": "1.0.0",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "search": true,
+      "pinned_inspection": true,
+      "inert_catalog_export": true,
+      "offline_prepare_plan": true,
+      "plan_status": "needs_configuration",
+      "host_rejected_as_unsupported": false,
+      "runtime_execution": false
+    },
+    {
+      "skill": "robot-kinematics",
+      "selected_id": "pybullet-ik-skill",
+      "hub_commit": "1fe1225d9cbfe6bd7aec021e71f1dbc463759c20",
+      "record_version": "1.0.0",
+      "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "search": true,
+      "pinned_inspection": true,
+      "inert_catalog_export": true,
+      "offline_prepare_plan": false,
+      "plan_status": "unsupported",
+      "host_rejected_as_unsupported": true,
+      "runtime_execution": false
+    },
+    {
+      "skill": "robot-trajectory",
+      "selected_id": "ruckig-minimum-duration-trajectory",
+      "hub_commit": "1fe1225d9cbfe6bd7aec021e71f1dbc463759c20",
+      "record_version": "1.0.0",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "search": true,
+      "pinned_inspection": true,
+      "inert_catalog_export": true,
+      "offline_prepare_plan": true,
+      "plan_status": "needs_configuration",
+      "host_rejected_as_unsupported": false,
+      "runtime_execution": false
+    }
+  ],
+  "rai": {
+    "langchain_core": "1.6.12",
+    "structured_tool_invoke": true,
+    "real_hub_http": true,
+    "full_rai": false,
+    "ros": false
+  },
+  "maintainer_probe": true,
+  "telemetry_opt_out": true,
+  "physical_robot": false,
+  "scope": "Maintainer HTTP/preparation-plan and LangChain invocation checks; not autonomous agent selection or adoption."
+}
