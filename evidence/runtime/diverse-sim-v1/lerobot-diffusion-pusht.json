@@ -1,0 +1,129 @@
+{
+  "schema_version": "1",
+  "skill_id": "lerobot-diffusion-pusht",
+  "recorded_at": "2026-10-20T04:30:38.943540+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "c3b7c7854e762a682106c2cf8fc89fb0dfc70751af1daaa234b6b2bdf051c03d",
+  "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+  "archive_sha256": "cf58261f6dbf614168337530f78f761929fb2d4d1b91e90f4f5f17209138aa40",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "805596e7db93abe2f1ad0b947c7a146249b3b1c3eb9aa1758a43daadc4e6bc28",
+  "environment": {
+    "runtime": "lerobot",
+    "runtime_version": "0.3.3",
+    "robot": "pusht-2d-pusher",
+    "controller": "diffusion_policy",
+    "observation": "rgb_pixels_and_pusher_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "lerobot": "0.3.3",
+    "torch": "2.7.1",
+    "torchvision": "0.22.1",
+    "torchcodec": "0.5",
+    "diffusers": "0.33.1",
+    "gym-pusht": "0.1.8",
+    "numpy": "1.26.4",
+    "pymunk": "6.11.1"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "maximum_coverage": 0.9503173774484511,
+          "steps": 163,
+          "environment_success": true,
+          "cuda_inference": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "coverage_threshold": true,
+          "cuda_inference": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 28.545,
+      "stderr_tail": "\nFetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\nFetching 3 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 3/3 [00:03<00:00,  1.01s/it]\nFetching 3 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 3/3 [00:03<00:00,  1.01s/it]\n[W1020 04:29:04.578165637 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.579379929 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.580101568 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.580802956 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.581345850 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.582023769 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.582168222 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.582821870 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.583511468 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.584845754 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.587376239 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.587617276 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:04.590155733 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\nLoading weights from local directory\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "maximum_coverage": 0.4989964911337865,
+          "steps": 300,
+          "environment_success": false,
+          "cuda_inference": true
+        },
+        "checks": {
+          "environment_goal": false,
+          "coverage_threshold": false,
+          "cuda_inference": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 37.611,
+      "stderr_tail": "\nFetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]\nFetching 3 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 3/3 [00:00<00:00, 1416.52it/s]\n[W1020 04:29:29.983074127 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.984313009 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.984899236 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.985598294 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.986123897 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.986770753 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.986902378 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.987578125 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.988276234 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.989623399 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.992157566 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.992390042 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:29:29.994899968 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\nLoading weights from local directory\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "maximum_coverage": 0.9448672979940752,
+          "steps": 300,
+          "environment_success": false,
+          "cuda_inference": true
+        },
+        "checks": {
+          "environment_goal": false,
+          "coverage_threshold": false,
+          "cuda_inference": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 37.376,
+      "stderr_tail": "\nFetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]\nFetching 3 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 3/3 [00:00<00:00, 1449.31it/s]\n[W1020 04:30:07.642721462 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.643955903 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.644670832 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.645276098 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.645797132 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.646468590 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.646603964 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.647282011 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.647955579 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.649296554 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.651864432 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.652118468 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\n[W1020 04:30:07.654638325 NNPACK.cpp:57] Could not initialize NNPACK! Reason: Unsupported hardware.\nLoading weights from local directory\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 1,
+  "failed": 2,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

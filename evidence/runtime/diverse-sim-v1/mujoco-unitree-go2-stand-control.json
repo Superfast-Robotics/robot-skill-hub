@@ -1,0 +1,141 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-unitree-go2-stand-control",
+  "recorded_at": "2026-10-20T04:41:10.501784+00:00",
+  "hub_commit": "cd2f10d281001dfe75ea7fac03c5a6274830bcf9",
+  "adapter_sha256": "6363f37aae7bffabee77bcd279130f0ab55a8fa90320e5284fa3070fbb54f6b7",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "0e83ee88b07ba4acec6e36795c4ca7ae59e060f7ef2ea63970fe762bda3598b2",
+  "source_guards_sha256": "114983cb9bf449beab22bae23a06c2411498a73c39001ca63ded31e8ee15231a",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "unitree_go2",
+    "controller": "torque_limited_joint_PD",
+    "observation": "joint_and_base_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-unitree-go2-stand-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "base_xyz_m": [
+            -0.013851559301099834,
+            7.381298305439381e-10,
+            0.26233320789125697
+          ],
+          "minimum_base_height_m": 0.26233320789125697,
+          "upright_z": 0.9999879358780652,
+          "max_joint_error_rad": 0.0742355263151444
+        },
+        "checks": {
+          "standing_height": true,
+          "upright": true,
+          "joint_tracking": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.74,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "push_velocity_m_s": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-unitree-go2-stand-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "base_xyz_m": [
+            -0.013003329752455876,
+            1.9246061758854555e-09,
+            0.2623328884944026
+          ],
+          "minimum_base_height_m": 0.2623328884944026,
+          "upright_z": 0.9999880913580982,
+          "max_joint_error_rad": 0.07420881245566857
+        },
+        "checks": {
+          "standing_height": true,
+          "upright": true,
+          "joint_tracking": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.742,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "push_velocity_m_s": 0.1
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-unitree-go2-stand-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "base_xyz_m": [
+            -0.014783669206793132,
+            3.1049894348986246e-09,
+            0.2623202619742998
+          ],
+          "minimum_base_height_m": 0.2623202619742998,
+          "upright_z": 0.9999875797753365,
+          "max_joint_error_rad": 0.07428172110785991
+        },
+        "checks": {
+          "standing_height": true,
+          "upright": true,
+          "joint_tracking": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.742,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "push_velocity_m_s": -0.1
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

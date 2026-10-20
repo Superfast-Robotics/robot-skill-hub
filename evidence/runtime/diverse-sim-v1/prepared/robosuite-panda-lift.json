@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-panda-lift",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "adapter_sha256": "b6b0c2c6a244eaf5e4afbec065041e9f3cc71c2ab5ef28d4c87add61202ca696",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "robosuite-panda-lift",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "cube_lift_m": 0.16393980114731121,
+      "cube_xyz_m": [
+        -0.005247870285166997,
+        -0.017663806614289214,
+        0.9941870282058329
+      ],
+      "environment_success": true
+    },
+    "checks": {
+      "environment_goal": true,
+      "object_lifted": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "elapsed_seconds": 57.857,
+  "hardware_execution": false
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-kinova3-lift",
+  "recorded_at": "2026-10-20T04:30:28.559600+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "366bd1ed58eb62424b0ae269428455371ebb9558f0334478880fed746f35a04a",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "case_plan_sha256": "a1f8460380c8632dfc0869d84e92d16eefd9c92e644699fc50692daa2869904f",
+  "source_guards_sha256": "d2fdf7de77ec0cf69c8c2126768f8dba6cb144d2eb08d2cc9fb620c67b5ee24f",
+  "environment": {
+    "runtime": "robosuite",
+    "runtime_version": "1.5.2",
+    "robot": "Kinova3",
+    "controller": "OSC_POSE",
+    "observation": "privileged_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "robosuite": "1.5.2",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.15874933918107537,
+          "cube_xyz_m": [
+            0.015901958727548432,
+            0.02622929309652323,
+            0.9905763295561975
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 5.351,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 0,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.15473367709721464,
+          "cube_xyz_m": [
+            -0.00020054001305164088,
+            -0.01471383880184355,
+            0.9860016985919899
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 5.273,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 1,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-kinova3-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.15848444298323683,
+          "cube_xyz_m": [
+            -0.02558867437117272,
+            0.008565058886646345,
+            0.988870940425052
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 5.403,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_kinova3.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 2,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

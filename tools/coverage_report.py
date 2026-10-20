@@ -4,6 +4,10 @@ import hashlib
 import html
 import json
 from pathlib import Path
+if __package__:
+    from .runtime_expansion import bound_receipt
+else:
+    from runtime_expansion import bound_receipt
 
 STATES = ('completed', 'failed', 'not_executed', 'evidence_unbound')
 ENV_FIELDS = ('runtime', 'runtime_version', 'robot', 'controller', 'observation', 'os', 'architecture', 'python')
@@ -36,6 +40,9 @@ def build_coverage(records, references, root, hub_commit, base):
     manifest_path = root / 'catalog/executable-conversions.json'
     plan = json.loads(manifest_path.read_text(encoding='utf-8')) if manifest_path.exists() else {'recipes': []}
     cohort = {r['id']: r for r in plan['recipes']}
+    expansion_path=root/'catalog/runtime-expansion.json'
+    expansion_plan=json.loads(expansion_path.read_text(encoding='utf-8')) if expansion_path.exists() else {'recipes':[],'sources':{}}
+    expansion={r['id']:r for r in expansion_plan['recipes']}
     reports = defaultdict(list)
     for path in sorted((root / 'evidence/runtime').rglob('report.json')):
         report = json.loads(path.read_text(encoding='utf-8'))
@@ -50,7 +57,23 @@ def build_coverage(records, references, root, hub_commit, base):
         runtime = record['compatibility'][0]['runtime']
         verification = record['evidence'].get('hub_verification') or {}
         completed = record['evidence']['runtime_verification'] == 'task_complete'
-        if completed and ident in cohort:
+        if ident in expansion:
+            recipe=expansion[ident];source=expansion_plan['sources'][recipe['source_id']]
+            try:
+                execution_interface={k:v for k,v in record.get('interface',{}).items() if k not in ['origin_reference_ids','origin_relationship']}
+                if execution_interface!=recipe['interface'] or [{k:c.get(k) for k in ENV_FIELDS} for c in record['compatibility']]!=[recipe['environment']]:raise ValueError('Changed interface/environment')
+                if any(record['source'].get(k)!=source[k] for k in ['repository','commit','archive_sha256']):raise ValueError('Changed source identity')
+                proof=bound_receipt(root,recipe,source,adapter.read_bytes())
+                if proof:
+                    actual=[c for c in proof['cases'] if c.get('result',{}).get('outputs')]
+                    state='completed' if proof['failed']==0 else 'failed' if actual else 'not_executed'
+                    if completed != (state=='completed'):raise ValueError('Completion metadata differs from exact receipts')
+                    if actual:
+                        tested_os.add('linux');case_runs['linux']=len(actual)
+                        proof_paths=['evidence/runtime/diverse-sim-v1/'+ident+'.json']
+                elif completed:state='evidence_unbound'
+            except (ValueError,KeyError,TypeError):state='evidence_unbound'
+        elif completed and ident in cohort:
             recipe = cohort[ident]
             path = root / 'evidence/runtime/executable-conversions-v1' / (ident + '.json')
             proof = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
@@ -205,6 +228,17 @@ def update_readme(root, report, base):
 def coverage_tables(report, base, *, full=False):
     counts = report['totals']
     execution = [[r['runtime'], r['robot_model'], r['domain'], ', '.join(r['tested_os']) or 'no task run', r['prepared'], r['completed'], r['failed'], r['not_executed'], r['evidence_unbound']] for r in report['execution_by_runtime_model']]
+    if not full:
+        grouped={}
+        for r in report['execution_by_runtime_model']:
+            row=grouped.setdefault((r['runtime'],r['domain']),{'models':[],'os':set(),**{k:0 for k in ['prepared',*STATES]}})
+            if r['completed']:row['models'].append(r['robot_model'])
+            row['os'].update(r['tested_os'])
+            for key in ['prepared',*STATES]:row[key]+=r[key]
+        execution=[]
+        for (runtime,domain),r in sorted(grouped.items()):
+            models=', '.join(r['models'][:2])+(' + '+str(len(r['models'])-2)+' more tested models' if len(r['models'])>2 else '')
+            execution.append([runtime,models or 'no completed model',domain,', '.join(sorted(r['os'])) or 'no task run',r['prepared'],r['completed'],r['failed'],r['not_executed'],r['evidence_unbound']])
     text = '<h2>Execution coverage</h2><p>' + str(counts['completed']) + ' recipes have exact-version completion evidence: ' + str(counts['completed_computations']) + ' computations and ' + str(counts['completed_simulations']) + ' simulations. Physical robot completions: ' + str(counts['completed_hardware']) + '.</p>'
     text += table('Current recipes by runtime and declared model', ['Runtime', 'Robot / model', 'Domain', 'Tested OS', 'Prepared', 'Passed', 'Failed', 'No task run', 'Unbound evidence'], execution)
     text += '<p>Passed means this operation and its recorded checks, not arbitrary task success. Failed is an executed current-version task failure. Other declared robot variants have no current task run. Counts are recipe counts, not unique physical robots or a benchmark success rate.</p>'
@@ -215,7 +249,7 @@ def coverage_tables(report, base, *, full=False):
     sections = [('by_framework', 'Reference frameworks', 'Framework'), ('by_robot_type', 'Reference robot categories', 'Robot category'), ('by_capability', 'Reference task / capability tags', 'Capability')]
     if full: sections += [('by_robot_label', 'Declared reference robot labels', 'Robot label'), ('by_runtime_label', 'Declared reference runtime labels', 'Runtime'), ('by_runtime_evidence', 'Reference execution evidence', 'Evidence')]
     for key, caption, label in sections:
-        rows = report['references'][key]; visible = rows if full or key in ('by_framework', 'by_robot_type') else rows[:6]
+        rows = report['references'][key]; visible = rows if full or key == 'by_robot_type' else rows[:12] if key == 'by_framework' else rows[:6]
         data = [[r['label'], r['references']] for r in visible]
         if not full and key == 'by_framework' and len(rows) > len(visible): data.append(['Other frameworks (' + str(len(rows) - len(visible)) + ')', sum(r['references'] for r in rows[len(visible):])])
         text += table(caption + (' (leading groups)' if len(visible) < len(rows) else ''), [label, 'References'], data)

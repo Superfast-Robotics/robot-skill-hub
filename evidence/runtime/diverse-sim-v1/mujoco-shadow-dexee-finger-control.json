@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-shadow-dexee-finger-control",
+  "recorded_at": "2026-10-20T04:41:08.296497+00:00",
+  "hub_commit": "cd2f10d281001dfe75ea7fac03c5a6274830bcf9",
+  "adapter_sha256": "4384557a4d480e6ebb24ef46f0b8b475a468107e014946b98b13954e77fc9bd5",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "dd8f2b5eefa62b32ed1b0e647e544adfd46e8a0644d687f5b712ac36e577cbd2",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "shadow_dexee",
+    "controller": "native_plugin_pid",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-shadow-dexee-finger-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.044557830302668265,
+            0.05071942898911635,
+            0.046963970709034644,
+            0.050473640870517256,
+            0.0481362288889344,
+            0.051928864825790774
+          ],
+          "target_joint_positions_rad": [
+            0.04438030044115766,
+            0.05005457941004936,
+            0.046574828105122146,
+            0.04995345103167384,
+            0.046450746986689884,
+            0.049953696105830114
+          ],
+          "max_error_rad": 0.00197516871996066,
+          "movement_rad": 0.05197516871996066
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.017,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-shadow-dexee-finger-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07473283367395567,
+            0.08066745753644716,
+            0.07791534886941114,
+            0.07995359058212118,
+            0.0778005477308314,
+            0.08002782269287075
+          ],
+          "target_joint_positions_rad": [
+            0.07438030044115765,
+            0.08005457941004936,
+            0.07657482810512214,
+            0.07995345103167384,
+            0.07645074698668988,
+            0.07995369610583011
+          ],
+          "max_error_rad": 0.0013498007441415105,
+          "movement_rad": 0.08134980074414151
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.003,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-shadow-dexee-finger-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.020378185992331294,
+            -0.04941938896906672,
+            0.02038778996835443,
+            -0.05004654915925807,
+            0.021757798838629525,
+            -0.0500463042609023
+          ],
+          "target_joint_positions_rad": [
+            0.02,
+            -0.04994542058995065,
+            0.02,
+            -0.050046548968326166,
+            0.02,
+            -0.05004630389416989
+          ],
+          "max_error_rad": 0.0017577988386295249,
+          "movement_rad": 0.05000000036673241
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.995,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

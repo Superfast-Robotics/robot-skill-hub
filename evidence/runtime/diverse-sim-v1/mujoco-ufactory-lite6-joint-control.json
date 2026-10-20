@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-ufactory-lite6-joint-control",
+  "recorded_at": "2026-10-20T04:29:15.178951+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "86c88253854ceb709a899fe02e35b43c24602eaa53559477a32d48d2da299cc7",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "1d09ce88daa8307c3b2338afd2b9fdd902c6aea3108f56684f843d72f2855e1a",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "ufactory_lite6",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-lite6-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.04999999892236589,
+            0.05451918289387943,
+            1.615723824662353,
+            0.04961959133289649,
+            1.619995477026516,
+            0.05000008089452731
+          ],
+          "target_joint_positions_rad": [
+            0.04999999892236606,
+            0.05214633900106895,
+            1.61786287675024,
+            0.04981180284030227,
+            1.6199996879307237,
+            0.050000005304155645
+          ],
+          "max_error_rad": 0.002372843892810478,
+          "movement_rad": 0.05237284389281048
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.52,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-lite6-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07999999892236571,
+            0.08464627362394812,
+            1.6457256727414646,
+            0.07961741556856164,
+            1.648786563114036,
+            0.0800437399558373
+          ],
+          "target_joint_positions_rad": [
+            0.07999999892236606,
+            0.08214633900106895,
+            1.6478628767502401,
+            0.07981180284030226,
+            1.6499996879307237,
+            0.08000000530415564
+          ],
+          "max_error_rad": 0.002499934622879174,
+          "movement_rad": 0.08249993462287918
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.527,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-lite6-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.050000001077633784,
+            -0.045905006645144394,
+            1.5157173419285184,
+            -0.050371877503977015,
+            1.5200026496668626,
+            -0.050000042903798295
+          ],
+          "target_joint_positions_rad": [
+            -0.05000000107763394,
+            -0.047853660998931055,
+            1.51786287675024,
+            -0.05018819715969774,
+            1.5199996879307236,
+            -0.04999999469584436
+          ],
+          "max_error_rad": 0.0021455348217216397,
+          "movement_rad": 0.052145534821721684
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.514,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

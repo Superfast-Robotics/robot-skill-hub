@@ -1,0 +1,42 @@
+{
+  "schema_version": "1",
+  "skill_id": "gymrobotics-pointmaze-umaze-v3",
+  "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+  "adapter_sha256": "2b13a2387de08710cf40aee49e6c815b1cd2fa39a6ad09b2d9080db90cbdd52e",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "gymrobotics-pointmaze-umaze-v3",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "achieved_goal": [
+        -0.11575050735907341,
+        -1.1112445669202442
+      ],
+      "desired_goal": [
+        -0.11510664311806484,
+        -1.2295132380319027
+      ],
+      "error_m": 0.11827042372325593,
+      "steps": 98,
+      "environment_success": true
+    },
+    "checks": {
+      "environment_goal": true,
+      "finite_state": true,
+      "bounded_steps": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "3c675a90d800b7f1a48710051f106d6c4019f06d859aa928a5cd82e8be141890",
+  "elapsed_seconds": 18.203,
+  "hardware_execution": false
+}

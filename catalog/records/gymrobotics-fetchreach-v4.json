@@ -1,0 +1,317 @@
+{
+  "schema_version": "1",
+  "id": "gymrobotics-fetchreach-v4",
+  "name": "FetchReach-v4 goal-directed reach",
+  "summary": "FetchReach-v4 goal-directed reach. Source-pinned, bounded simulation with explicit goal checks; no physical execution.",
+  "capabilities": [
+    "task",
+    "reach",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "fetch",
+    "gymrobotics",
+    "reach"
+  ],
+  "source": {
+    "repository": "https://github.com/Farama-Foundation/Gymnasium-Robotics",
+    "commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+    "archive_url": "https://codeload.github.com/Farama-Foundation/Gymnasium-Robotics/tar.gz/42eae53b2b27321d29090c219ce2f675c596de77",
+    "archive_sha256": "3c675a90d800b7f1a48710051f106d6c4019f06d859aa928a5cd82e8be141890",
+    "archive_bytes": 281918414,
+    "authors": [
+      "Original gymnasium-robotics contributors (preserve pinned LICENSE)"
+    ],
+    "paths": [
+      "LICENSE",
+      "gymnasium_robotics/__init__.py",
+      "gymnasium_robotics/envs/fetch/fetch_env.py",
+      "gymnasium_robotics/envs/maze/point_maze.py"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/Farama-Foundation/Gymnasium-Robotics/blob/42eae53b2b27321d29090c219ce2f675c596de77/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party source only. Robot meshes, simulator assets, dependencies and model checkpoints retain their separate terms."
+  },
+  "compatibility": [
+    {
+      "runtime": "gymnasium-robotics",
+      "runtime_version": "1.4.2",
+      "robot": "fetch",
+      "controller": "cartesian_delta_feedback",
+      "observation": "goal_dict",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "gymnasium==1.2.0",
+      "gymnasium-robotics==1.4.2",
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "achieved_goal",
+          "desired_goal",
+          "error_m",
+          "steps",
+          "environment_success"
+        ],
+        "properties": {
+          "achieved_goal": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "desired_goal": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up"
+          },
+          "error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "m"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "environment_success": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "achieved_goal",
+        "desired_goal",
+        "error_m",
+        "steps",
+        "environment_success"
+      ],
+      "properties": {
+        "achieved_goal": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "desired_goal": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up"
+        },
+        "error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "m"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "environment_success": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Native environment success flag after bounded closed-loop control; object/state coordinates are never teleported after reset.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/gymrobotics-fetchreach-v4",
+    "requirements_file": "recipes/gymrobotics-fetchreach-v4/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend gymrobotics --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/gymrobotics-fetchreach-v4.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "4fcd774387ba503544f5b479d92ce5ee0f2b664984042558d72d6e719232e30d",
+      "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/gymrobotics-fetchreach-v4.json",
+      "recipes/gymrobotics-fetchreach-v4/run.py",
+      "recipes/gymrobotics-fetchreach-v4/requirements.txt",
+      "docs/recipes/gymrobotics-fetchreach-v4.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

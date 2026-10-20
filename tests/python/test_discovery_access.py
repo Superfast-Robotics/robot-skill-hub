@@ -97,7 +97,7 @@ class DiscoveryAccessTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory, mock.patch.dict(os.environ, {"RSH_CACHE_DIR": directory}), mock.patch.object(discovery, "fetch_public", side_effect=fetch):
             discovery._write_cache("references", old_refs)
             catalog = discovery.load_discovery(refresh=True)
-            found = core.find(catalog, "kuka", {})
+            found = core.find(catalog, "fixture-ik", {})
             detail = core.inspect(catalog, "fixture-ik")
             for result in (found, detail):
                 self.assertEqual(result["catalog_origin"], "remote")

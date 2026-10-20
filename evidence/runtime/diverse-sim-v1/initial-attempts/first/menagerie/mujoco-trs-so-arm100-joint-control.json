@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-trs-so-arm100-joint-control",
+  "recorded_at": "2026-10-20T04:26:18.757733+00:00",
+  "hub_commit": "9d37ea10504b109f3cc56f0b1f697eb7eff25a9e",
+  "adapter_sha256": "d69369b887767cf6a00c2f3e76d1790da78e5c99f39164d48d61492f6572d17c",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "913a05937257a9de3c4c137a9a2a6eeb0f91cf6bdca0f885bb6dfece2afdcd3a",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "trs_so_arm100",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trs-so-arm100-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.049634398398807046,
+            -1.5039462961842067,
+            1.63175969180763,
+            1.6193530878129487,
+            -1.5202063433747617,
+            0.04980153988489837
+          ],
+          "target_joint_positions_rad": [
+            0.0500000012444259,
+            -1.5126594066774899,
+            1.625480287608017,
+            1.6199922561169293,
+            -1.520000111869169,
+            0.05000253650989116
+          ],
+          "max_error_rad": 0.00871311049328316,
+          "movement_rad": 0.058713110493283205
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.471,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trs-so-arm100-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07962918143714934,
+            -1.4739200010065554,
+            1.661508734285927,
+            1.6391625565313444,
+            -1.4902099034107348,
+            0.07979662569879203
+          ],
+          "target_joint_positions_rad": [
+            0.0800000012444259,
+            -1.4826594066774899,
+            1.655480287608017,
+            1.64,
+            -1.490000111869169,
+            0.08000253650989116
+          ],
+          "max_error_rad": 0.008739405670934453,
+          "movement_rad": 0.08873940567093452
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.461,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-trs-so-arm100-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04963443479325436,
+            -1.6034954671818111,
+            1.5329677926351226,
+            1.520506664608033,
+            -1.6197937324267708,
+            -0.04978199554018582
+          ],
+          "target_joint_positions_rad": [
+            -0.04999999875557411,
+            -1.61265940667749,
+            1.525480287608017,
+            1.5199922561169292,
+            -1.6200001118691691,
+            -0.04999746349010885
+          ],
+          "max_error_rad": 0.009163939495678841,
+          "movement_rad": 0.049793620557601725
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.458,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

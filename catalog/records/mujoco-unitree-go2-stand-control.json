@@ -1,0 +1,341 @@
+{
+  "schema_version": "1",
+  "id": "mujoco-unitree-go2-stand-control",
+  "name": "Unitree Go2 torque-limited standing control",
+  "summary": "Unitree Go2 torque-limited standing control. Bounded, source-pinned simulation; no hardware execution.",
+  "capabilities": [
+    "controller",
+    "quadruped",
+    "standing",
+    "torque-control",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "unitree_go2",
+    "menagerie",
+    "quadruped_stand"
+  ],
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_url": "https://codeload.github.com/google-deepmind/mujoco_menagerie/tar.gz/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+    "archive_bytes": 520071141,
+    "authors": [
+      "MuJoCo Menagerie contributors and the pinned model licensors"
+    ],
+    "paths": [
+      "unitree_go2/CHANGELOG.md",
+      "unitree_go2/go2_mjx.xml",
+      "unitree_go2/README.md",
+      "unitree_go2/go2_mjx.png",
+      "unitree_go2/scene_mjx.xml",
+      "unitree_go2/go2.xml",
+      "unitree_go2/go2.png",
+      "unitree_go2/LICENSE",
+      "unitree_go2/scene.xml",
+      "unitree_go2/assets/thigh_mirror_1.obj",
+      "unitree_go2/assets/thigh_mirror_0.obj",
+      "unitree_go2/assets/base_4.obj",
+      "unitree_go2/assets/thigh_1.obj",
+      "unitree_go2/assets/thigh_0.obj",
+      "unitree_go2/assets/calf_mirror_0.obj",
+      "unitree_go2/assets/base_2.obj",
+      "unitree_go2/assets/calf_mirror_1.obj",
+      "unitree_go2/assets/hip_1.obj",
+      "unitree_go2/assets/base_1.obj",
+      "unitree_go2/assets/foot.obj",
+      "unitree_go2/assets/base_0.obj",
+      "unitree_go2/assets/calf_0.obj",
+      "unitree_go2/assets/calf_1.obj",
+      "unitree_go2/assets/base_3.obj",
+      "unitree_go2/assets/hip_0.obj"
+    ]
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/unitree_go2/LICENSE",
+    "verified": true,
+    "scope": "Pinned model-specific license; original notices and third-party mesh/asset rights remain applicable. Hub wrapper is separately MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mujoco",
+      "runtime_version": "3.3.7",
+      "robot": "unitree_go2",
+      "controller": "torque_limited_joint_PD",
+      "observation": "joint_and_base_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "push_velocity_m_s": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "base_xyz_m",
+          "minimum_base_height_m",
+          "upright_z",
+          "max_joint_error_rad"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "base_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ]
+          },
+          "minimum_base_height_m": {
+            "type": "number",
+            "minimum": -5,
+            "maximum": 5,
+            "x-unit": "m"
+          },
+          "upright_z": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "max_joint_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          }
+        }
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "FL_hip_joint,FL_thigh_joint,FL_calf_joint,FR_hip_joint,FR_thigh_joint,FR_calf_joint,RL_hip_joint,RL_thigh_joint,RL_calf_joint,RR_hip_joint,RR_thigh_joint,RR_calf_joint",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "push_velocity_m_s"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "push_velocity_m_s": {
+          "type": "number",
+          "minimum": -0.2,
+          "maximum": 0.2,
+          "x-unit": "m/s"
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "base_xyz_m",
+        "minimum_base_height_m",
+        "upright_z",
+        "max_joint_error_rad"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "base_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "minimum_base_height_m": {
+          "type": "number",
+          "minimum": -5,
+          "maximum": 5,
+          "x-unit": "m"
+        },
+        "upright_z": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "max_joint_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        }
+      }
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-scene-xml"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Maintain standing for 3500 native simulation steps using bounded joint PD torques, including reset-time base-velocity perturbations. Upright/height/tracking postconditions are required. No gait or locomotion capability is asserted.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mujoco-unitree-go2-stand-control",
+    "requirements_file": "recipes/mujoco-unitree-go2-stand-control/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-unitree-go2-stand-control.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "6363f37aae7bffabee77bcd279130f0ab55a8fa90320e5284fa3070fbb54f6b7",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mujoco-unitree-go2-stand-control.json",
+      "recipes/mujoco-unitree-go2-stand-control/run.py",
+      "recipes/mujoco-unitree-go2-stand-control/requirements.txt",
+      "docs/recipes/mujoco-unitree-go2-stand-control.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

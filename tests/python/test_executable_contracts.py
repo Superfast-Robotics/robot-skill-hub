@@ -33,7 +33,8 @@ class ExecutableContractTests(unittest.TestCase):
         for recipe in self.recipes.values():
             self.assertEqual((ROOT/'recipes'/recipe['id']/'run.py').read_bytes(),render_adapter(recipe).encode())
             validate_value(recipe['example'],recipe['interface']['input_schema'])
-        self.assertEqual(17+len(self.recipes),len(records))
+        expansion=json.loads((ROOT/'catalog/runtime-expansion.json').read_text())['recipes']
+        self.assertEqual(17+len(self.recipes)+len(expansion),len(records))
 
     def test_source_adaptations_bind_exact_file_and_revision_without_promoting_reference(self):
         records=builder.load_records();refs=builder.load_references(r['id'] for r in records)

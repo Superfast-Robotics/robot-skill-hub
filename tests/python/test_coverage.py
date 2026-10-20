@@ -21,14 +21,18 @@ class CoverageTests(unittest.TestCase):
 
     def test_current_complete_inventory_separates_computation_simulation_failed_and_unexecuted(self):
         report=build_coverage(self.records,self.references,ROOT,'a'*40,'https://example.test')
-        self.assertEqual(report['totals'],{'preparation_recipes':62,'source_references':1330,'completed':50,
-            'failed':1,'not_executed':11,'evidence_unbound':0,'completed_computations':33,
-            'completed_simulations':17,'completed_hardware':0,'tested_environment_combinations':6,'reference_frameworks':44})
-        self.assertEqual(report['case_runs_by_os'],{'linux':141,'windows':99})
+        self.assertEqual(report['totals'],{'preparation_recipes':98,'source_references':1330,'completed':84,
+            'failed':3,'not_executed':11,'evidence_unbound':0,'completed_computations':33,
+            'completed_simulations':51,'completed_hardware':0,'tested_environment_combinations':32,'reference_frameworks':44})
+        self.assertEqual(report['case_runs_by_os'],{'linux':249,'windows':99})
         by_id={r['id']:r for r in report['recipes']}
         self.assertEqual(by_id['maniskill-panda-stack-pyramid']['state'],'failed')
         self.assertEqual(by_id['maniskill-xarm6-pick-cube']['tested_os'],[])
         self.assertEqual(by_id['pythonrobotics-astar-planner']['tested_os'],['linux','windows'])
+        self.assertEqual(by_id['mujoco-unitree-go2-stand-control']['state'],'completed')
+        self.assertEqual(by_id['mujoco-shadow-dexee-finger-control']['state'],'completed')
+        self.assertEqual(by_id['robosuite-jaco-lift']['state'],'failed')
+        self.assertEqual(by_id['lerobot-diffusion-pusht']['state'],'failed')
         self.assertEqual(sum(r['references'] for r in report['references']['by_framework']),1330)
 
     def test_changed_adapter_or_frozen_plan_never_inherits_old_completion(self):
@@ -83,7 +87,7 @@ class CoverageTests(unittest.TestCase):
         for record in self.records:
             self.assertIn('MIT License',record['preparation']['files']['LICENSE'])
             self.assertIn('upstream',record['preparation']['files']['LICENSE_SCOPE.md'])
-        self.assertEqual({r['license']['spdx'] for r in self.records},{'MIT','Apache-2.0','Zlib'})
+        self.assertEqual({r['license']['spdx'] for r in self.records},{'MIT','Apache-2.0','Zlib','BSD-3-Clause','BSD-3-Clause-Clear'})
 
     def test_repository_main_readme_uses_the_same_generated_statistics(self):
         report=build_coverage(self.records,self.references,ROOT,'a'*40,builder.DEFAULT_BASE)

@@ -1,0 +1,136 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-ur5e-lift",
+  "recorded_at": "2026-10-20T04:30:02.836228+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "607ce68b9d7425d07be059f742ab145187ef6b9459b2c36f05a58f2970a7fb06",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "case_plan_sha256": "a1f8460380c8632dfc0869d84e92d16eefd9c92e644699fc50692daa2869904f",
+  "source_guards_sha256": "d2fdf7de77ec0cf69c8c2126768f8dba6cb144d2eb08d2cc9fb620c67b5ee24f",
+  "environment": {
+    "runtime": "robosuite",
+    "runtime_version": "1.5.2",
+    "robot": "UR5e",
+    "controller": "OSC_POSE",
+    "observation": "privileged_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "robosuite": "1.5.2",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.15985687994836717,
+          "cube_xyz_m": [
+            -0.018574505714532945,
+            -0.011268751710532281,
+            0.9914531951406278
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.359,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 0,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.1574851376938774,
+          "cube_xyz_m": [
+            0.006567782312491718,
+            -0.008435943615854967,
+            0.9889604025563878
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.364,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 1,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-lift",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "cube_lift_m": 0.1593240233862837,
+          "cube_xyz_m": [
+            -0.01923261671992964,
+            -0.009310971376601935,
+            0.9910904046632704
+          ],
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "object_lifted": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 6.384,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 2,
+        "lift_height_m": 0.18
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

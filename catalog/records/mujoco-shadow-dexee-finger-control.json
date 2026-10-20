@@ -1,0 +1,382 @@
+{
+  "schema_version": "1",
+  "id": "mujoco-shadow-dexee-finger-control",
+  "name": "Shadow DexEE distal-finger curl control",
+  "summary": "Control six named distal finger joints through the original MuJoCo PID plugin; no object-grasp or hardware claim.",
+  "capabilities": [
+    "controller",
+    "dexterous-hand",
+    "finger-posture",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "shadow_dexee",
+    "menagerie",
+    "joint_control"
+  ],
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_url": "https://codeload.github.com/google-deepmind/mujoco_menagerie/tar.gz/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+    "archive_bytes": 520071141,
+    "authors": [
+      "MuJoCo Menagerie contributors and the pinned model licensors"
+    ],
+    "paths": [
+      "shadow_dexee/CHANGELOG.md",
+      "shadow_dexee/README.md",
+      "shadow_dexee/shadow_dexee.png",
+      "shadow_dexee/shadow_dexee.xml",
+      "shadow_dexee/LICENSE",
+      "shadow_dexee/scene.xml",
+      "shadow_dexee/assets/MRH-F-J0Link-Visual,00.stl",
+      "shadow_dexee/assets/MRH-FB-TB-Main-Visual,00.stl",
+      "shadow_dexee/assets/MRH-F-Prox-Visual,00-Main.stl",
+      "shadow_dexee/assets/MRH-FB-TB-Lid-White-Visual,00.stl",
+      "shadow_dexee/assets/MRH-F-Mid-Visual,00.stl",
+      "shadow_dexee/assets/MRH-F-Distal-Sensor-Visual,00.stl",
+      "shadow_dexee/assets/MRH-FB-MainALU-Visual,00.stl",
+      "shadow_dexee/assets/Asm-MRH-F-Prox-Visual,00+Magtac,00.stl",
+      "shadow_dexee/assets/r3_finger_base_col.stl",
+      "shadow_dexee/assets/r3_finger_base.stl",
+      "shadow_dexee/assets/MRH-F-Prox-MagTac-Sensor-Visual,00.stl",
+      "shadow_dexee/assets/MRH-FB-TB-Lid-Logo-Visual,00.stl",
+      "shadow_dexee/assets/MRH-F-Prox-Visual,00-Lid.stl",
+      "shadow_dexee/assets/Asm-MRH-HB1-Visual,00-Puck.stl",
+      "shadow_dexee/assets/MRH-F-Prox-Visual,00.stl",
+      "shadow_dexee/assets/MRH-FB-Main-Cover-Visual,00.stl",
+      "shadow_dexee/assets/Asm-MRH-F-Mid-Visual,00+MagTac,00.stl",
+      "shadow_dexee/assets/MRH-FB-S-Cover-R-Visual,00.stl",
+      "shadow_dexee/assets/MRH-FB-S-Cover-L-Visual,00.stl",
+      "shadow_dexee/assets/r3_config1_base_col.stl",
+      "shadow_dexee/assets/Asm-MRH-HB1-Visual,00-Plastic.stl",
+      "shadow_dexee/assets/MRH-F-Mid-MagTac-Sensor-Visual,00.stl",
+      "shadow_dexee/assets/r3_config1_base.stl",
+      "shadow_dexee/assets/MRH-FB-PulleyBlock1-Visual,00.stl",
+      "shadow_dexee/assets/MRH-F-Distal-Visual,00.stl"
+    ]
+  },
+  "license": {
+    "spdx": "Apache-2.0",
+    "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35/shadow_dexee/LICENSE",
+    "verified": true,
+    "scope": "Pinned model-specific license; original notices and third-party mesh/asset rights remain applicable. Hub wrapper is separately MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "mujoco",
+      "runtime_version": "3.3.7",
+      "robot": "shadow_dexee",
+      "controller": "native_plugin_pid",
+      "observation": "joint_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "joint_offset_rad": 0.08
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "joint_positions_rad",
+          "target_joint_positions_rad",
+          "max_error_rad",
+          "movement_rad"
+        ],
+        "properties": {
+          "joint_positions_rad": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "F0/J2",
+              "F0/J3",
+              "F1/J2",
+              "F1/J3",
+              "F2/J2",
+              "F2/J3"
+            ]
+          },
+          "target_joint_positions_rad": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "x-unit": "rad",
+            "x-frame": "named_model_joint_coordinates",
+            "x-order": [
+              "F0/J2",
+              "F0/J3",
+              "F1/J2",
+              "F1/J3",
+              "F2/J2",
+              "F2/J3"
+            ]
+          },
+          "max_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "movement_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "F0/J2,F0/J3,F1/J2,F1/J3,F2/J2,F2/J3",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "joint_offset_rad"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "joint_offset_rad": {
+          "type": "number",
+          "minimum": -0.15,
+          "maximum": 0.15,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "joint_positions_rad",
+        "target_joint_positions_rad",
+        "max_error_rad",
+        "movement_rad"
+      ],
+      "properties": {
+        "joint_positions_rad": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "F0/J2",
+            "F0/J3",
+            "F1/J2",
+            "F1/J3",
+            "F2/J2",
+            "F2/J3"
+          ]
+        },
+        "target_joint_positions_rad": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "number",
+            "minimum": -20,
+            "maximum": 20
+          },
+          "x-unit": "rad",
+          "x-frame": "named_model_joint_coordinates",
+          "x-order": [
+            "F0/J2",
+            "F0/J3",
+            "F1/J2",
+            "F1/J3",
+            "F2/J2",
+            "F2/J3"
+          ]
+        },
+        "max_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "movement_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "mujoco-menagerie-artifact-shadow-dexee-scene-xml"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Control the six J2/J3 distal finger joints through the original PID plugin. Other hand joints retain their native reset controls. This is finger curl, not all-joint hand posture or object grasping.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/mujoco-shadow-dexee-finger-control",
+    "requirements_file": "recipes/mujoco-shadow-dexee-finger-control/requirements.txt",
+    "source_selection": "declared_paths",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-shadow-dexee-finger-control.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "4384557a4d480e6ebb24ef46f0b8b475a468107e014946b98b13954e77fc9bd5",
+      "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/mujoco-shadow-dexee-finger-control.json",
+      "recipes/mujoco-shadow-dexee-finger-control/run.py",
+      "recipes/mujoco-shadow-dexee-finger-control/requirements.txt",
+      "docs/recipes/mujoco-shadow-dexee-finger-control.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-ufactory-xarm7-joint-control",
+  "recorded_at": "2026-10-20T04:29:16.343976+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "414a0210a195d359822d6ec48b3909add2f15710df7cdddfecb3f155ba98165f",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "482649a9020cfbe750dd329345dbd6c793b4d37f819da7f1437eecda4b70b676",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "ufactory_xarm7",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-xarm7-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.05000009068728976,
+            -0.17825033568014953,
+            0.049950370643651223,
+            0.9287673851330318,
+            0.04983153431279827,
+            1.2099482627276406,
+            0.050000369698878715
+          ],
+          "target_joint_positions_rad": [
+            0.05000009070553558,
+            -0.18808870908163844,
+            0.04987732752492387,
+            0.9440279646244064,
+            0.04993527224233238,
+            1.2082722171926061,
+            0.0500000453261595
+          ],
+          "max_error_rad": 0.015260579491374604,
+          "movement_rad": 0.059838373401488926
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.586,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-xarm7-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.08000009068759135,
+            -0.14784960469541925,
+            0.08002366179319328,
+            0.9588259714973221,
+            0.07980171738889585,
+            1.239871697077448,
+            0.08000050954252907
+          ],
+          "target_joint_positions_rad": [
+            0.08000009070553558,
+            -0.15808870908163847,
+            0.07987732752492387,
+            0.9740279646244063,
+            0.07993527224233238,
+            1.2382722171926062,
+            0.0800000453261595
+          ],
+          "max_error_rad": 0.015201993127084257,
+          "movement_rad": 0.09023910438621921
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.579,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-ufactory-xarm7-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.049999909281167994,
+            -0.2796722973644416,
+            -0.05051904289602368,
+            0.828586605403953,
+            -0.05010153664450317,
+            1.1101799685779379,
+            -0.05000008096262455
+          ],
+          "target_joint_positions_rad": [
+            -0.04999990929446443,
+            -0.28808870908163847,
+            -0.05012267247507614,
+            0.8440279646244063,
+            -0.050064727757667626,
+            1.108272217192606,
+            -0.0499999546738405
+          ],
+          "max_error_rad": 0.01544135922045331,
+          "movement_rad": 0.06544135922045335
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.582,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

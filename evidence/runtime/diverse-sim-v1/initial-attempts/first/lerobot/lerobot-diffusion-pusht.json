@@ -1,0 +1,93 @@
+{
+  "schema_version": "1",
+  "skill_id": "lerobot-diffusion-pusht",
+  "recorded_at": "2026-10-20T04:26:07.271143+00:00",
+  "hub_commit": "9d37ea10504b109f3cc56f0b1f697eb7eff25a9e",
+  "adapter_sha256": "89dcc2f2cd5c170b3b53d0b3fc4f78929135ea8c0e34579628a3043ef4061f23",
+  "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+  "archive_sha256": "cf58261f6dbf614168337530f78f761929fb2d4d1b91e90f4f5f17209138aa40",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "805596e7db93abe2f1ad0b947c7a146249b3b1c3eb9aa1758a43daadc4e6bc28",
+  "environment": {
+    "runtime": "lerobot",
+    "runtime_version": "0.3.3",
+    "robot": "pusht-2d-pusher",
+    "controller": "diffusion_policy",
+    "observation": "rgb_pixels_and_pusher_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "lerobot": "0.3.3",
+    "torch": "2.7.1",
+    "torchvision": "0.22.1",
+    "torchcodec": "0.5",
+    "diffusers": "0.33.1",
+    "gym-pusht": "0.1.8",
+    "numpy": "1.26.4",
+    "pymunk": "6.11.1"
+  },
+  "cases": [
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "Pinned package version differs: torchcodec",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.149,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "Pinned package version differs: torchcodec",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.147,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "lerobot-diffusion-pusht",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "Pinned package version differs: torchcodec",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.147,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

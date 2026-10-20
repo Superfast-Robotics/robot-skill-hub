@@ -530,7 +530,7 @@ def shell(title, description, body, base, path=""):
 </head>
 <body>
 <header><p><a href="{esc(base)}/">Robot Skill Hub</a> by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
-<nav aria-label="Main navigation"><a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
+<nav aria-label="Main navigation"><a href="{esc(base)}/samples/">Skill examples</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
 {body}
 <footer><hr><p><a href="{esc(base)}/agent.json">Publication proof contract</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
 </body>
@@ -752,17 +752,19 @@ curl -fsSL {base}/agent.json
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub</h1>
+<p><strong>An open robotics skill marketplace and source catalog for AI agents.</strong> Search reusable robot skills, inspect exact code and execution evidence, prepare a matching environment, and share useful corrections for the next task.</p>
+<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search robot skills</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
 <p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
 <p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
-{coverage_tables(coverage, base) if coverage is not None else ''}
 <h2>Find and read</h2>
 <p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
-<p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For source references, <code>fetch-source</code> retrieves one verified inert file. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
+<p>Public HTTPS search and inspection need no installation or account. For the optional CLI, read <code>SKILL.md</code> and use <code>find</code> and <code>inspect</code>. <code>fetch-source</code> retrieves one verified inert source file; <code>prepare --plan</code> explains a supported recipe before downloads. Execution is separate.</p>
 <h2>Connect an agent</h2>
 <p>Read-only MCP: <a href="{API}/mcp"><code>{API}/mcp</code></a>. Public reads need no token. {api_docs}<a href="{esc(base)}/agent.json">Agent contract</a> | <a href="{API}/v1/capabilities">Capabilities</a></p>
+{coverage_tables(coverage, base) if coverage is not None else ''}
 <h2>Share a new skill or finding</h2>
 <p>Use <code>rsh.py register --help</code> to register a pinned source record, or <code>POST {API}/v1/skills</code>. New submissions create a draft for maintainer review. Read <a href="{esc(base)}/new-skills.md">new-skill registration</a> and <a href="{esc(base)}/contributing.md">contribution instructions</a>. Save observed reusable findings with <code>rsh.py save</code>.</p>
 <h2>Evidence</h2>
@@ -770,7 +772,7 @@ curl -fsSL {base}/agent.json
 <p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
 <p>Platform: Apache-2.0. Hub execution adapters: MIT. External works retain their original terms. <a href="{esc(base)}/LICENSE_SCOPE.md">License scope</a>.</p>
 </main>"""
-    return shell("Robot Skill Hub", "Find pinned robot code and artifacts; inspect sources and evidence; contribute reusable skills.", body, base)
+    return shell("Robot Skill Hub | Open Robotics Skill Marketplace for AI Agents", "Search reusable robotics skills, robot task code and policies. Inspect pinned sources, environments and execution evidence; prepare and share reusable fixes.", body, base)
 
 
 def detail(r, base, hub_commit):
@@ -1012,11 +1014,11 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
+    for name in ("runtime-expansion.md", "agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
+            if name in ("runtime-expansion.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"
@@ -1138,9 +1140,13 @@ def build(args):
         urls.append(base+"/catalog/v1/publication.json")
     urls.extend(base+"/references/"+r["id"]+"/" for r in references["records"])
     if __package__:
+        from .sample_pages import publish as publish_sample_pages
         from .problem_pages import publish as publish_problem_pages
     else:
+        from sample_pages import publish as publish_sample_pages
         from problem_pages import publish as publish_problem_pages
+    urls.extend(publish_sample_pages(records, output, base, hub_commit, shell))
+    urls.append(base+"/coverage.html")
     urls.extend(publish_problem_pages(ROOT, output, base, hub_commit))
     if openapi.exists():
         urls.append(base+"/openapi.json")

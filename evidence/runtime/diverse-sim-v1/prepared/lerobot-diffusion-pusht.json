@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "skill_id": "lerobot-diffusion-pusht",
+  "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+  "adapter_sha256": "c3b7c7854e762a682106c2cf8fc89fb0dfc70751af1daaa234b6b2bdf051c03d",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "lerobot-diffusion-pusht",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "maximum_coverage": 0.9503173774484511,
+      "steps": 163,
+      "environment_success": true,
+      "cuda_inference": true
+    },
+    "checks": {
+      "environment_goal": true,
+      "coverage_threshold": true,
+      "cuda_inference": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "cf58261f6dbf614168337530f78f761929fb2d4d1b91e90f4f5f17209138aa40",
+  "elapsed_seconds": 174.115,
+  "hardware_execution": false
+}

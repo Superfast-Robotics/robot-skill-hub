@@ -1,0 +1,338 @@
+{
+  "schema_version": "1",
+  "id": "robosuite-sawyer-reach",
+  "name": "Sawyer Cartesian reaching",
+  "summary": "Sawyer Cartesian reaching. Source-pinned, bounded simulation with explicit goal checks; no physical execution.",
+  "capabilities": [
+    "controller",
+    "reach",
+    "simulation",
+    "bounded-json"
+  ],
+  "aliases": [
+    "Sawyer",
+    "robosuite",
+    "reach"
+  ],
+  "source": {
+    "repository": "https://github.com/ARISE-Initiative/robosuite",
+    "commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "archive_url": "https://codeload.github.com/ARISE-Initiative/robosuite/tar.gz/824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+    "archive_bytes": 260650842,
+    "authors": [
+      "Original robosuite contributors (preserve pinned LICENSE)"
+    ],
+    "paths": [
+      "LICENSE",
+      "robosuite/__init__.py",
+      "robosuite/environments/manipulation/lift.py",
+      "robosuite/controllers/parts/arm/osc.py"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/ARISE-Initiative/robosuite/blob/824ac14cefcfb7ec125fe5eb2e0bad7364466154/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party source only. Robot meshes, simulator assets, dependencies and model checkpoints retain their separate terms."
+  },
+  "compatibility": [
+    {
+      "runtime": "robosuite",
+      "runtime_version": "1.5.2",
+      "robot": "Sawyer",
+      "controller": "OSC_POSE",
+      "observation": "privileged_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.10",
+      "status": "hub_verified"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator state and declared goals; no perception or real sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.10,<3.11",
+    "packages": [
+      "robosuite==1.5.2",
+      "mujoco==3.3.7",
+      "numpy==1.26.4"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation, tested on a Lambda A100 host"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements. Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0,
+      "offset_xyz_m": [
+        0.05,
+        0.02,
+        0.04
+      ]
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "final_xyz_m",
+          "target_xyz_m",
+          "error_m"
+        ],
+        "properties": {
+          "final_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ]
+          },
+          "target_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ]
+          },
+          "error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20,
+            "x-unit": "m"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "controller",
+    "abstraction_level": 1,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed",
+        "offset_xyz_m"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "offset_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -0.15,
+            "maximum": 0.15
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "final_xyz_m",
+        "target_xyz_m",
+        "error_m"
+      ],
+      "properties": {
+        "final_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "target_xyz_m": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "m",
+          "x-frame": "right_handed_world_xyz; +z_up",
+          "x-order": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20,
+          "x-unit": "m"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    }
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Operational-space feedback; end-effector error <0.015 m with actual motion.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/robosuite-sawyer-reach",
+    "requirements_file": "recipes/robosuite-sawyer-reach/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": [
+        "linux"
+      ]
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend robosuite --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/robosuite-sawyer-reach.json"
+    ],
+    "runtime_verification": "task_complete",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "task_complete",
+      "scope": "simulation",
+      "adapter_sha256": "d988ff2cab2ea84555bda40dc797fd29460bc202b27dbcd5a043943d5ddd25fc",
+      "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+      "record_version": "1.0.0",
+      "case_count": 3,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/robosuite-sawyer-reach.json",
+      "recipes/robosuite-sawyer-reach/run.py",
+      "recipes/robosuite-sawyer-reach/requirements.txt",
+      "docs/recipes/robosuite-sawyer-reach.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-hello-robot-stretch-joint-control",
+  "recorded_at": "2026-10-20T04:26:13.163717+00:00",
+  "hub_commit": "9d37ea10504b109f3cc56f0b1f697eb7eff25a9e",
+  "adapter_sha256": "06cd12cebd11d508afb0fbccedcb584868b63549b4cedd3eb4a8d20e1ec1d53e",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "5e5a5b221413a2901fe2c3a32d10b3896144face1a3d9f9af7e32fb1494a5409",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "hello_robot_stretch",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-hello-robot-stretch-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.05013385913533973,
+            0.049998990795812465,
+            0.0418872646370269
+          ],
+          "target_joint_positions_rad": [
+            0.050066935348358176,
+            0.049999823621192305,
+            0.046090422811617564
+          ],
+          "max_error_rad": 0.004203158174590667,
+          "movement_rad": 0.050066923786981556
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 3.129,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-hello-robot-stretch-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.08013375936253236,
+            0.07999854722999657,
+            0.07170091287210688
+          ],
+          "target_joint_positions_rad": [
+            0.08006693534835818,
+            0.0799998236211923,
+            0.07609042281161757
+          ],
+          "max_error_rad": 0.004389509939510691,
+          "movement_rad": 0.08006682401417418
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 3.197,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-hello-robot-stretch-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04986624329841847,
+            -0.04999981427054138,
+            -0.057465852482585324
+          ],
+          "target_joint_positions_rad": [
+            -0.04993306465164183,
+            -0.0500001763788077,
+            -0.05390957718838244
+          ],
+          "max_error_rad": 0.003556275294202882,
+          "movement_rad": 0.053556275294202885
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 2.924,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}
