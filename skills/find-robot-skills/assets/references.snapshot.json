@@ -133603,5 +133603,5 @@
   "agent_skill_manifest": "agent-skill-projects.json",
   "workflow_manifest": "workflow-projects.json",
   "curated_source_manifest": "curated-source-projects.json",
-  "hub_commit": "f317ce93b03612554c858a258d36c8b2191d8341"
+  "hub_commit": "772b33fc8270ccd8517002ea24e954001021db26"
 }
