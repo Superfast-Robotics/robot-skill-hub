@@ -335,6 +335,10 @@ class CatalogTests(unittest.TestCase):
             '{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
         for path in site.rglob('*.html'):
             relative = path.relative_to(site).as_posix()
+            if relative in builder.SITE_VERIFICATION_FILES:
+                self.assertEqual(path.read_bytes(),
+                                 (self.root / 'docs/site-verification' / relative).read_bytes())
+                continue
             if relative.endswith('index.html'):
                 relative = relative[:-len('index.html')]
             page = Page()

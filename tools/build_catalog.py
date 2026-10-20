@@ -23,6 +23,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASE = "https://hub.superfastrobotics.com"
+SITE_VERIFICATION_FILES = ("googlee9bdea008796b0b4.html",)
 REPO = "https://github.com/Superfast-Robotics/robot-skill-hub"
 API = "https://api.superfastrobotics.com"
 # Import the same intake validator used by the installed CLI. ROOT can be
@@ -1000,6 +1001,10 @@ def build(args):
     write(output / "index.html", home(records, base, references, coverage))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
+    # Public ownership proofs must survive every Pages rebuild, byte for byte.
+    # Use an explicit list so unrelated local files are never published.
+    for name in SITE_VERIFICATION_FILES:
+        shutil.copyfile(ROOT / "docs/site-verification" / name, output / name)
     parsed_base = urlparse(base)
     if not parsed_base.hostname.endswith("github.io") and parsed_base.hostname not in ("localhost", "127.0.0.1"):
         write(output / "CNAME", parsed_base.hostname + "\n")

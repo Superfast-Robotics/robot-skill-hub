@@ -24,6 +24,8 @@ Replace `codex` with `claude-code` for Claude Code. The installed skill contains
 
 ## Web crawling and search indexing
 
+The public Google ownership proof is retained in `docs/site-verification/googlee9bdea008796b0b4.html` and copied unchanged to `https://hub.superfastrobotics.com/googlee9bdea008796b0b4.html` on every Pages build. Keep it after verification; it is a public verification file, not an API credential. Publishing the file enables the account owner to complete Search Console verification, but does not itself prove verification or indexing.
+
 The public catalog is static HTML: the homepage describes the service, the [sample directory](https://hub.superfastrobotics.com/samples/) exposes recipe names, summaries and detail links without JavaScript, and each recipe/reference page contains its source and evidence. The [sitemap](https://hub.superfastrobotics.com/sitemap.xml) includes all published recipe and source-reference detail pages. [robots.txt](https://hub.superfastrobotics.com/robots.txt) allows crawling and advertises that sitemap. HTML pages declare their own canonical URLs; they do not require a login or script execution.
 
 The 2026-10-20 maintainer audit observed HTTP 200 for the homepage, sample directory, coverage, problem directory and representative recipe, reference, sample and problem detail pages. None of those responses carried a `noindex` directive. Googlebot- and Bingbot-named user-agent requests to the homepage and one recipe also returned HTTP 200. These are probes from a maintainer network, not authenticated Google/Bing crawler visits or proof of indexing. The audit found and corrected the coverage page's canonical URL, which had pointed to the homepage.
