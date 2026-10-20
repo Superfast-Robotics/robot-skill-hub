@@ -138,7 +138,7 @@ def seed_backend(root, data, spec):
         name,version=pin.split('==')
         if importlib.metadata.version(name).split('+')[0]!=version:raise ContractError('Pinned package version differs: '+name)
     os.environ.setdefault('MUJOCO_GL','egl')
-    sys.path.insert(0,str(root))
+    if spec['backend']!='dmcontrol':sys.path.insert(0,str(root))
     if spec['backend']=='robosuite':
         import robosuite as suite
         env=suite.make('Stack' if spec['operation']=='stack' else 'PickPlaceCan',robots=spec['robot'],has_renderer=False,has_offscreen_renderer=False,use_camera_obs=False,control_freq=20,horizon=800,ignore_done=True,initialization_noise=None)
@@ -164,7 +164,7 @@ def seed_backend(root, data, spec):
         finally:env.close()
     if spec['backend']=='pandagym':
         import gymnasium as gym,panda_gym
-        env=gym.make(spec['env_id'],render_mode=None,max_episode_steps=1500)
+        env=gym.make(spec['env_id'],render_mode='rgb_array',max_episode_steps=1500)
         try:
             obs,info=env.reset(seed=data['seed']);steps=0
             def move(target,grip,limit):
@@ -202,6 +202,13 @@ def seed_backend(root, data, spec):
                 'native_environment_goal':success,'strict_goal_error':error<tolerance,'finite_state':bool(np.isfinite(obs['observation']).all())}
         finally:env.close()
     if spec['backend']=='dmcontrol':
+        # dm_control's wheel includes generated MuJoCo bindings absent from git.
+        # Use that pinned distribution, and bind its runtime source to the archive.
+        import dm_control
+        installed=Path(dm_control.__file__).resolve().parent.parent
+        for name,expected in spec['source_hashes'].items():
+            if name.startswith('dm_control/') and hashlib.sha256((installed/name).read_bytes()).hexdigest()!=expected:
+                raise ContractError('Installed DM Control differs from pinned source: '+name)
         from dm_control import suite
         from scipy.linalg import solve_discrete_are
         env=suite.load(spec['domain'],spec['task'],task_kwargs={'random':data['seed']})
@@ -233,7 +240,7 @@ def seed_backend(root, data, spec):
                     error=p.named.data.geom_xpos['target',:2]-p.named.data.geom_xpos['pointmass',:2]
                     force=error*20-p.data.qvel*5
                     # Hard task randomizes the actuator directions. Invert the declared gears.
-                    gear=np.asarray(p.model.actuator_gear)[:,:2].T
+                    gear=np.asarray(p.model.wrap_prm).reshape(2,2).T
                     action=np.linalg.pinv(gear)@force
                 elif domain=='cartpole':
                     q=p.data.qpos.copy();q[1]=(q[1]+np.pi)%(2*np.pi)-np.pi
