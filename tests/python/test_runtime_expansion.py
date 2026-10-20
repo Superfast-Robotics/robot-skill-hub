@@ -61,6 +61,14 @@ class RuntimeExpansionTests(unittest.TestCase):
             self.assertEqual(record['preparation']['source_selection'],'declared_paths')
             self.assertTrue(any(p.endswith('LICENSE') for p in record['source']['paths']))
         recipe=next(r for r in self.plan['recipes'] if r['id']=='pandagym-panda-stack')
-        self.assertFalse(measured_goal(recipe,{'achieved_goal':[0]*6,'desired_goal':[1]*6,'error_m':0,'environment_success':True}))
+        self.assertFalse(measured_goal(recipe,{'achieved_goal':[0]*6,'desired_goal':[1]*6,'error_m':0,'environment_success':True,'stack_height_m':0,'stack_alignment_m':0}))
+        # Native Stack permits a flat pair at error 0.04; actual support is required.
+        flat={'achieved_goal':[0,0,.02,0,0,.02],'desired_goal':[0,0,.02,0,0,.06],
+              'error_m':.04,'environment_success':True,'stack_height_m':0,'stack_alignment_m':0}
+        self.assertFalse(measured_goal(recipe,flat))
+        good=copy.deepcopy(flat);good.update(achieved_goal=[0,0,.02,0,0,.06],error_m=0,stack_height_m=.04)
+        self.assertTrue(measured_goal(recipe,good))
+        forged=copy.deepcopy(flat);forged.update(error_m=0,stack_height_m=.04)
+        self.assertFalse(measured_goal(recipe,forged))
 
 if __name__=='__main__':unittest.main()

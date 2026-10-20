@@ -1,23 +1,25 @@
 # Simulation starting policies for AI agents
 
-Robot Skill Hub is a public repository of reusable robot code and executable recipes. These 41 additions are starting solutions an agent can inspect, prepare and improve. They were actually executed without physical robots on an isolated Linux Python 3.10 Lambda A10 host. Physics and feedback used CPU; these runs do not require CUDA or a paid GPU to reproduce.
+Robot Skill Hub is a public repository of reusable robot code and executable recipes. These 41 additions are starting solutions an agent can inspect, prepare and improve. They were actually executed without physical robots on isolated Linux Python 3.10 Lambda A10 hosts. Physics and feedback used CPU; these runs do not require CUDA or a paid GPU to reproduce.
 
 | Cohort | Added recipes | All three cases complete | Cases passed / attempted |
 | --- | ---: | ---: | ---: |
 | dmcontrol | 9 | 7 | 22 / 27 |
 | menagerie | 15 | 15 | 45 / 45 |
-| pandagym | 5 | 3 | 10 / 15 |
+| pandagym | 5 | 2 | 7 / 15 |
 | robosuite | 12 | 7 | 25 / 36 |
 
-The current catalog contains **139 preparation recipes: 116 complete, 12 failed current suites, 11 without a current task run, zero unbound completion claims and zero physical robot completions**. Completed evidence comprises 33 computations and 83 simulations across 54 tested environment combinations. Source references remain separate: 1,330 references across 44 frameworks.
+The current catalog contains **139 preparation recipes: 115 complete, 13 failed current suites, 11 without a current task run, zero unbound completion claims and zero physical robot completions**. Completed evidence comprises 33 computations and 82 simulations across 54 tested environment combinations. Source references remain separate: 1,330 references across 44 frameworks.
 
-These are finite, maintainer-authored regression cases, not a general task success rate. The 123 new fixed cases contain 102 passes and 21 failures. All 82 unknown-field and source-drift rejection checks passed. All cases were selected before execution. The latest attempt for each exact adapter is retained as current; earlier failed or successful attempts remain in the [history](../evidence/runtime/diverse-sim-v1/initial-attempts/seed-expansion/). A later adapter never inherits an earlier success.
+These are finite, maintainer-authored regression cases, not a general task success rate. The 123 new fixed cases contain 99 passes and 24 failures. All 82 unknown-field and source-drift rejection checks passed. All cases were selected before execution. The latest attempt for each exact adapter is retained as current; earlier failed or successful attempts remain in the [history](../evidence/runtime/diverse-sim-v1/initial-attempts/seed-expansion/). A later adapter never inherits an earlier success.
 
 ## Reusable control levels
 
 The 15 new Menagerie recipes are **level-1 joint-control primitives**: ARX L5, Dynamixel 2R, Flexiv Rizon4 and Rizon4s, FR3 v2, Google Robot, Stretch 3, Low Cost Robot Arm, Robotis OMY 3M, ReBot DevArm, TidyBot, ViperX 300S, WidowX 250S, bimanual WXAI, and Unitree Z1. Only the explicitly listed position-actuated hinge joints are controlled. Fixed-base/support assumptions come from the pinned scene. This does not validate mobile-base navigation, humanoid balance, object tasks or hardware. ARX, Rizon4s, ViperX and WXAI use bounded integral setpoint compensation for static load while preserving the same measured joint goal.
 
 The 26 level-2 candidates include Panda Gym reach/push/pick-place/slide/stack, six Robosuite embodiments performing stack and can-to-bin tasks, and nine DM Control task variants. Goal checks use native task predicates plus measured geometric errors, or a complete final 100-step native reward window. DM Control reward thresholds are task-specific; they are not a common accuracy score. Reacher uses constrained IK and dynamic feedback. Cartpole controller linearization uses a separate copied Euler model; actual native RK4 simulation is preserved. No active object or joint state is teleported after reset.
+
+Panda Gym Stack exposed a native success predicate that admitted an unstacked case. Its earlier wrapper and preparation output are archived and do not establish stacking. The current adapter additionally requires .03–.05 m upper/lower height difference, <.015 m horizontal center separation and <.04 m full goal error after release. All three strict reruns failed; the recipe remains experimental. Stack goal arrays concatenate object1 XYZ followed by object2 XYZ. Reported native success alone cannot promote a recipe.
 
 ## Inputs, coordinates and reuse
 
@@ -50,7 +52,7 @@ Search or read the [static samples](https://hub.superfastrobotics.com/samples/) 
 | [Panda Gym Push closed-loop starting policy](https://hub.superfastrobotics.com/samples/pandagym-panda-push/) | 2 | 1 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/pandagym-panda-push.json) |
 | [Panda Gym PickAndPlace closed-loop starting policy](https://hub.superfastrobotics.com/samples/pandagym-panda-pick-place/) | 2 | 3 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/pandagym-panda-pick-place.json) |
 | [Panda Gym Slide closed-loop starting policy](https://hub.superfastrobotics.com/samples/pandagym-panda-slide/) | 2 | 0 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/pandagym-panda-slide.json) |
-| [Panda Gym Stack closed-loop starting policy](https://hub.superfastrobotics.com/samples/pandagym-panda-stack/) | 2 | 3 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/pandagym-panda-stack.json) |
+| [Panda Gym Stack closed-loop starting policy](https://hub.superfastrobotics.com/samples/pandagym-panda-stack/) | 2 | 0 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/pandagym-panda-stack.json) |
 | [DM Control reacher easy feedback policy](https://hub.superfastrobotics.com/samples/dmcontrol-reacher-easy/) | 2 | 3 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/dmcontrol-reacher-easy.json) |
 | [DM Control reacher hard feedback policy](https://hub.superfastrobotics.com/samples/dmcontrol-reacher-hard/) | 2 | 3 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/dmcontrol-reacher-hard.json) |
 | [DM Control point mass easy feedback policy](https://hub.superfastrobotics.com/samples/dmcontrol-point-mass-easy/) | 2 | 3 / 3 | [Receipt](../evidence/runtime/diverse-sim-v1/dmcontrol-point-mass-easy.json) |
@@ -86,4 +88,4 @@ python tools/verify_runtime_expansion.py --backend dmcontrol \
 
 Use repeated `--skill-id ID` arguments to evaluate only chosen recipes. Unknown or mismatched selections are rejected. `--describe` inspects the contract without importing a simulator. Full pins, case inputs and source guards are in [the manifest](../catalog/runtime-expansion.json).
 
-Four new fresh-project preparation proofs cover Panda Gym stacking, DM Control randomized point-mass control, Robosuite Panda stacking and load-compensated ARX joint control. They preserve adapter and MIT license bytes and execute the ordinary command returned by prepare; see [preparation evidence](../evidence/runtime/diverse-sim-v1/prepared/).
+Four new fresh-project preparation proofs cover Panda Gym stacking, DM Control randomized point-mass control, Robosuite Panda stacking and load-compensated ARX joint control. All prepared and executed the returned command while preserving adapter and MIT license bytes. Three completed their tasks; the strict Panda Gym stack failed and is not promoted. See [preparation evidence](../evidence/runtime/diverse-sim-v1/prepared/).

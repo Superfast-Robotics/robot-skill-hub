@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "scope": "41 predeclared simulation recipes, three fixed cases each. Latest exact-byte attempt only; earlier attempts retained separately. Not general accuracy or physical compatibility.",
+  "new_recipes": 41,
+  "completed_new_recipes": 32,
+  "cases": 123,
+  "passed_cases": 102,
+  "failed_cases": 21,
+  "negative_checks": 82,
+  "physical_robot": false,
+  "by_backend": {
+    "dmcontrol": {
+      "recipes": 9,
+      "complete": 7,
+      "cases_passed": 22,
+      "cases_attempted": 27
+    },
+    "menagerie": {
+      "recipes": 15,
+      "complete": 15,
+      "cases_passed": 45,
+      "cases_attempted": 45
+    },
+    "pandagym": {
+      "recipes": 5,
+      "complete": 3,
+      "cases_passed": 10,
+      "cases_attempted": 15
+    },
+    "robosuite": {
+      "recipes": 12,
+      "complete": 7,
+      "cases_passed": 25,
+      "cases_attempted": 36
+    }
+  },
+  "environment_freeze": "environments/seeds-freeze.txt"
+}

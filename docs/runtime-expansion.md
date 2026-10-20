@@ -1,6 +1,6 @@
 # Diverse robot simulation skills
 
-The current catalog has 139 preparation recipes, with 116 complete. See the [41 additional simulation starting policies](simulation-starting-policies.md) and live coverage for the latest totals.
+The current catalog has 139 preparation recipes, with 115 complete. See the [41 additional simulation starting policies](simulation-starting-policies.md) and live coverage for the latest totals.
 
 The first expansion brought the catalog to 98 preparation recipes. The 36 additions below were executed on two isolated Lambda A100 hosts, using fixed inputs selected before execution. Thirty-four additions passed all three cases. Existing evidence plus these runs gives 84 completed recipes: 33 computations and 51 simulations. Physical robot completions remain zero.
 

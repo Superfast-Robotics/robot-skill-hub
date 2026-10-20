@@ -22,7 +22,7 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 <!-- rsh-coverage:start -->
 ## Current execution and reference coverage
 
-139 preparation recipes: **116 completed operations/tasks**, 12 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
+139 preparation recipes: **115 completed operations/tasks**, 13 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
 
 | Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
@@ -72,7 +72,7 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | mujoco | unitree_z1 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | universal_robots_ur10e | simulation | 1 | 1 | 0 | 0 |
 | mujoco | universal_robots_ur5e | simulation | 1 | 1 | 0 | 0 |
-| panda-gym | franka-panda | simulation | 5 | 3 | 2 | 0 |
+| panda-gym | franka-panda | simulation | 5 | 2 | 3 | 0 |
 | pybullet | synthetic-seven-axis-or-procedural-scene | simulation | 12 | 12 | 0 | 0 |
 | pythonrobotics | mathematical-model | computation | 28 | 28 | 0 | 0 |
 | robosuite | IIWA | simulation | 4 | 3 | 1 | 0 |
@@ -83,13 +83,13 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | robosuite | UR5e | simulation | 4 | 4 | 0 | 0 |
 | ruckig | independent-axes | computation | 5 | 5 | 0 | 0 |
 
-Completion evidence covers 33 computations and 83 simulations across 54 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
+Completion evidence covers 33 computations and 82 simulations across 54 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
 
 | Task level | Prepared | Passed | Failed | No task run |
 | --- | ---: | ---: | ---: | ---: |
 | Algorithm / sensing | 39 | 39 | 0 | 0 |
 | Motion / control | 44 | 44 | 0 | 0 |
-| Task | 56 | 33 | 12 | 11 |
+| Task | 56 | 32 | 13 | 11 |
 
 **1330 source references across 44 frameworks.** References are upstream declarations, not Hub execution evidence.
 

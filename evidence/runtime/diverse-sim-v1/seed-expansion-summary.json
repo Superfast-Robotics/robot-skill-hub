@@ -2,10 +2,10 @@
   "schema_version": "1",
   "scope": "41 predeclared simulation recipes, three fixed cases each. Latest exact-byte attempt only; earlier attempts retained separately. Not general accuracy or physical compatibility.",
   "new_recipes": 41,
-  "completed_new_recipes": 32,
+  "completed_new_recipes": 31,
   "cases": 123,
-  "passed_cases": 102,
-  "failed_cases": 21,
+  "passed_cases": 99,
+  "failed_cases": 24,
   "negative_checks": 82,
   "physical_robot": false,
   "by_backend": {
@@ -23,8 +23,8 @@
     },
     "pandagym": {
       "recipes": 5,
-      "complete": 3,
-      "cases_passed": 10,
+      "complete": 2,
+      "cases_passed": 7,
       "cases_attempted": 15
     },
     "robosuite": {
@@ -34,5 +34,6 @@
       "cases_attempted": 36
     }
   },
-  "environment_freeze": "environments/seeds-freeze.txt"
+  "environment_freeze": "environments/seeds-freeze.txt",
+  "stack_geometry_correction": "The native Panda Gym Stack success predicate admitted an unstacked case. Current strict geometry rejects all three cases; earlier native successes are not accepted as physical stacking evidence."
 }

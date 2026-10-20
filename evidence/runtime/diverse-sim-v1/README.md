@@ -59,7 +59,7 @@ These are fixed maintainer-authored cases, not general accuracy or physical comp
 | [pandagym-panda-push](pandagym-panda-push.json) | 1 | 2 | 8e33f5004a3f |
 | [pandagym-panda-pick-place](pandagym-panda-pick-place.json) | 3 | 0 | 8e33f5004a3f |
 | [pandagym-panda-slide](pandagym-panda-slide.json) | 0 | 3 | 8e33f5004a3f |
-| [pandagym-panda-stack](pandagym-panda-stack.json) | 3 | 0 | 8e33f5004a3f |
+| [pandagym-panda-stack](pandagym-panda-stack.json) | 0 | 3 | f965016b18f9 |
 | [dmcontrol-reacher-easy](dmcontrol-reacher-easy.json) | 3 | 0 | 8e33f5004a3f |
 | [dmcontrol-reacher-hard](dmcontrol-reacher-hard.json) | 3 | 0 | 8e33f5004a3f |
 | [dmcontrol-point-mass-easy](dmcontrol-point-mass-easy.json) | 3 | 0 | 8e33f5004a3f |
