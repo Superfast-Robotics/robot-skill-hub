@@ -11,8 +11,8 @@ class RuntimeExpansionTests(unittest.TestCase):
 
     def test_generated_recipes_and_contracts_need_no_simulator_for_inspection(self):
         with contextlib.redirect_stdout(io.StringIO()):generator.generate(check=True)
-        self.assertEqual(len(self.plan['recipes']),77)
-        self.assertEqual({r['backend'] for r in self.plan['recipes']},{'menagerie','robosuite','gymrobotics','lerobot','pandagym','dmcontrol'})
+        self.assertEqual(len(self.plan['recipes']),132)
+        self.assertEqual({r['backend'] for r in self.plan['recipes']},{'menagerie','robosuite','gymrobotics','lerobot','pandagym','dmcontrol','metaworld','mink','genesis'})
         for recipe in self.plan['recipes']:
             response=subprocess.run([sys.executable,str(ROOT/'recipes'/recipe['id']/'run.py'),'--describe'],capture_output=True,text=True,check=True)
             self.assertEqual(json.loads(response.stdout)['interface'],recipe['interface'])
@@ -25,6 +25,31 @@ class RuntimeExpansionTests(unittest.TestCase):
             changed=copy.deepcopy(recipe);action(changed)
             with self.assertRaises(ValueError):bound_receipt(ROOT,changed,source,adapter)
         with self.assertRaises(ValueError):bound_receipt(ROOT,recipe,source,adapter+b'\n# behavior revision\n')
+
+    def test_native_task_success_requires_a_sustained_window_not_one_transient_flag(self):
+        recipe=next(r for r in self.plan['recipes'] if r['backend']=='metaworld')
+        outputs={'success_window':[True]*5,'native_success':True,'control_effort':1.,'steps':5}
+        self.assertTrue(measured_goal(recipe,outputs))
+        for mutate in [lambda v:v.update(success_window=[True]),lambda v:v.update(success_window=[True,True,False,True,True]),
+                       lambda v:v.update(native_success=False),lambda v:v.update(control_effort=0),lambda v:v.update(steps=1)]:
+            changed=copy.deepcopy(outputs);mutate(changed);self.assertFalse(measured_goal(recipe,changed))
+        recipe=next(r for r in self.plan['recipes'] if r['id']=='metaworld-sawyer-reach-v3')
+        adapter=(ROOT/'recipes'/recipe['id']/'run.py').read_bytes();source=self.plan['sources'][recipe['source_id']]
+        self.assertEqual(bound_receipt(ROOT,recipe,source,adapter)['passed'],3)
+        changed=copy.deepcopy(recipe);changed['policy_class']='DifferentPolicy'
+        with self.assertRaises(ValueError):bound_receipt(ROOT,changed,source,adapter)
+        box=next(r for r in self.plan['recipes'] if r['id']=='metaworld-sawyer-box-close-v3')
+        proof=bound_receipt(ROOT,box,source,(ROOT/'recipes'/box['id']/'run.py').read_bytes())
+        self.assertEqual((proof['passed'],proof['failed']),(2,1))
+
+    def test_cuda_controller_cannot_pass_on_a_forged_joint_error_or_cpu_run(self):
+        recipe=next(r for r in self.plan['recipes'] if r['id']=='genesis-panda-joint-servo')
+        outputs={'arm_joint_positions_rad':[.1]*7,'target_arm_joint_positions_rad':[.1]*7,'max_joint_error_rad':0.,
+                 'finger_error_m':0.,'movement_m':.03,'cuda_simulation':True}
+        self.assertTrue(measured_goal(recipe,outputs))
+        for mutate in [lambda v:v.update(arm_joint_positions_rad=[1]*7),lambda v:v.update(cuda_simulation=False),
+                       lambda v:v.update(finger_error_m=.01),lambda v:v.update(movement_m=0)]:
+            changed=copy.deepcopy(outputs);mutate(changed);self.assertFalse(measured_goal(recipe,changed))
 
     def test_goal_measurements_override_a_forged_success_flag_and_failed_cases_are_retained(self):
         recipe=next(r for r in self.plan['recipes'] if r['id']=='robosuite-panda-reach')

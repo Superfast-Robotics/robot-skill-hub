@@ -107,7 +107,7 @@
       "Pinned source archive during preparation",
       "PyPI dependencies during explicit installation"
     ],
-    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements. Some pinned dependencies ship source distributions; explicit dependency installation and build tools may be required."
   },
   "invocation": {
     "entrypoint": "python run.py",
@@ -446,7 +446,6 @@
       "-m",
       "pip",
       "install",
-      "--only-binary=:all:",
       "-r",
       "{recipe_dir}/requirements.txt"
     ],

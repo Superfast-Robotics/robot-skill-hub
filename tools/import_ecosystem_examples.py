@@ -94,6 +94,8 @@ def reviewed_artifact_metadata(artifact):
 
 
 def validate_project(project):
+    if "framework" in project and not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", project["framework"]):
+        raise ValueError("Framework grouping must be a stable lowercase identifier")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", project["id"]):
         raise ValueError("Project id must be a stable lowercase identifier")
     if not re.fullmatch(r"https://github.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", project["repository"]):
@@ -417,7 +419,7 @@ def make_record(project, artifact, cache):
     source_url = f"{project['repository']}/blob/{project['commit']}/{path}"
     raw_url = project["repository"].replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + project["commit"] + "/" + urllib.parse.quote(path, safe="/")
     record = {"id": ident, "name": f"{project['name']}: {topic(path)}", "summary": f"Official {project['name']} {inspection['kind'].replace('_', ' ')} example for {topic(path)}. Inspect the pinned source and upstream setup before use.",
-            "framework": project["id"], "kind": "official_example", "source_registry": REGISTRY,
+            "framework": project.get("framework", project["id"]), "kind": "official_example", "source_registry": REGISTRY,
             "capabilities": capabilities(project, path), "robot_types": robot_types(project, path),
             "robot_scope": "Discovery labels inferred from this source path; inspect its robot configuration for compatibility. Project-wide categories are not a supported-robot list.",
             "source": {"repository": project["repository"], "commit": project["commit"], "tag": project["ref"],

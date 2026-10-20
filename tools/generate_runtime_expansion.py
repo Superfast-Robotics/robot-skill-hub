@@ -24,7 +24,7 @@ def record(recipe,source,adapter):
         interface.update(origin_reference_ids=recipe['origin_reference_ids'],origin_relationship='prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred')
     license=recipe['license']
     invocation=['{python}','{recipe_dir}/run.py','--source-dir','{source_dir}','--example']
-    install=['{python}','-m','pip','install']+([] if recipe['backend'] in ['robosuite','lerobot'] else ['--only-binary=:all:'])+['-r','{recipe_dir}/requirements.txt']
+    install=['{python}','-m','pip','install']+([] if recipe['backend'] in ['robosuite','lerobot','genesis'] else ['--only-binary=:all:'])+['-r','{recipe_dir}/requirements.txt']
     evidence={'level':level,'verified_by':'Hub finite-case Lambda execution harness' if proof else 'Hub source review','date':'2026-10-20',
         'environment':{'scope':'simulation','physical_robot':False,'platforms':['linux'] if executed else []},
         'commands':['python tools/verify_runtime_expansion.py --backend '+recipe['backend']+' --source-cache SOURCE_CACHE --output OUTPUT'],
@@ -43,7 +43,7 @@ def record(recipe,source,adapter):
             'requirements':{'python':'>='+environment['python']+',<'+environment['python'].split('.')[0]+'.'+str(int(environment['python'].split('.')[1])+1),'packages':source['packages'],'hardware':['Linux x86_64; '+('CUDA GPU, tested on A100 40GB' if recipe['backend']=='lerobot' else 'CUDA GPU; see retained receipt for the exact host environment' if recipe['backend']=='genesis' else 'CPU simulation; see retained receipt for the exact host environment')],
             'rendering':'Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.',
             'api_keys':[],'network':['Pinned source archive during preparation','PyPI dependencies during explicit installation']+(['Pinned public Hugging Face checkpoint on first execution'] if recipe['backend']=='lerobot' else []),
-            'dependency_lock':'Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements.'+(' Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required.' if recipe['backend'] in ['robosuite','lerobot'] else '')},
+            'dependency_lock':'Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements.'+(' Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required.' if recipe['backend'] in ['robosuite','lerobot'] else ' Some pinned dependencies ship source distributions; explicit dependency installation and build tools may be required.' if recipe['backend']=='genesis' else '')},
         'invocation':{'entrypoint':'python run.py','argv':invocation,'inputs':recipe['example'],
             'outputs':{'format':'single JSON object','payload_selector':'outputs','schema':recipe['interface']['output_schema']},
             'example':'Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation.'},

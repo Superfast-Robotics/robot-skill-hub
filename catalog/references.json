@@ -26377,7 +26377,7 @@
       "id": "genesis-examples-examples-collision-contact-manifold-py",
       "name": "genesis-world: contact manifold",
       "summary": "Official genesis-world python main example for contact manifold. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26448,7 +26448,7 @@
       "id": "genesis-examples-examples-collision-contype-py",
       "name": "genesis-world: contype",
       "summary": "Official genesis-world python main example for contype. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26514,7 +26514,7 @@
       "id": "genesis-examples-examples-collision-pyramid-py",
       "name": "genesis-world: pyramid",
       "summary": "Official genesis-world python main example for pyramid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26581,7 +26581,7 @@
       "id": "genesis-examples-examples-collision-tower-py",
       "name": "genesis-world: tower",
       "summary": "Official genesis-world python main example for tower. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26648,7 +26648,7 @@
       "id": "genesis-examples-examples-coupling-cloth-attached-to-rigid-py",
       "name": "genesis-world: cloth attached to rigid",
       "summary": "Official genesis-world python main example for cloth attached to rigid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26716,7 +26716,7 @@
       "id": "genesis-examples-examples-coupling-cloth-on-rigid-py",
       "name": "genesis-world: cloth on rigid",
       "summary": "Official genesis-world python main example for cloth on rigid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26782,7 +26782,7 @@
       "id": "genesis-examples-examples-coupling-cut-dragon-py",
       "name": "genesis-world: cut dragon",
       "summary": "Official genesis-world python main example for cut dragon. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26848,7 +26848,7 @@
       "id": "genesis-examples-examples-coupling-fem-cube-linked-with-arm-py",
       "name": "genesis-world: fem cube linked with arm",
       "summary": "Official genesis-world python main example for fem cube linked with arm. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26916,7 +26916,7 @@
       "id": "genesis-examples-examples-coupling-flush-cubes-py",
       "name": "genesis-world: flush cubes",
       "summary": "Official genesis-world python main example for flush cubes. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -26983,7 +26983,7 @@
       "id": "genesis-examples-examples-coupling-grasp-soft-cube-py",
       "name": "genesis-world: grasp soft cube",
       "summary": "Official genesis-world python main example for grasp soft cube. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27050,7 +27050,7 @@
       "id": "genesis-examples-examples-coupling-rigid-mpm-attachment-py",
       "name": "genesis-world: rigid mpm attachment",
       "summary": "Official genesis-world python main example for rigid mpm attachment. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27117,7 +27117,7 @@
       "id": "genesis-examples-examples-coupling-sand-wheel-py",
       "name": "genesis-world: sand wheel",
       "summary": "Official genesis-world python main example for sand wheel. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27184,7 +27184,7 @@
       "id": "genesis-examples-examples-coupling-sph-mpm-py",
       "name": "genesis-world: sph mpm",
       "summary": "Official genesis-world python main example for sph mpm. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27250,7 +27250,7 @@
       "id": "genesis-examples-examples-coupling-sph-rigid-py",
       "name": "genesis-world: sph rigid",
       "summary": "Official genesis-world python main example for sph rigid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27316,7 +27316,7 @@
       "id": "genesis-examples-examples-coupling-water-wheel-py",
       "name": "genesis-world: water wheel",
       "summary": "Official genesis-world python main example for water wheel. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27383,7 +27383,7 @@
       "id": "genesis-examples-examples-deformable-differentiable-push-py",
       "name": "genesis-world: differentiable push",
       "summary": "Official genesis-world python main example for differentiable push. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27450,7 +27450,7 @@
       "id": "genesis-examples-examples-deformable-elastic-dragon-py",
       "name": "genesis-world: elastic dragon",
       "summary": "Official genesis-world python main example for elastic dragon. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27516,7 +27516,7 @@
       "id": "genesis-examples-examples-deformable-fem-hard-and-soft-constraint-py",
       "name": "genesis-world: fem hard and soft constraint",
       "summary": "Official genesis-world python main example for fem hard and soft constraint. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27586,7 +27586,7 @@
       "id": "genesis-examples-examples-deformable-pbd-liquid-py",
       "name": "genesis-world: pbd liquid",
       "summary": "Official genesis-world python main example for pbd liquid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27652,7 +27652,7 @@
       "id": "genesis-examples-examples-drone-fly-py",
       "name": "genesis-world: fly",
       "summary": "Official genesis-world python main example for fly. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27718,7 +27718,7 @@
       "id": "genesis-examples-examples-drone-fly-route-py",
       "name": "genesis-world: fly route",
       "summary": "Official genesis-world python main example for fly route. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27787,7 +27787,7 @@
       "id": "genesis-examples-examples-drone-hover-eval-py",
       "name": "genesis-world: hover eval",
       "summary": "Official genesis-world python main example for hover eval. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27858,7 +27858,7 @@
       "id": "genesis-examples-examples-drone-hover-train-py",
       "name": "genesis-world: hover train",
       "summary": "Official genesis-world python main example for hover train. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27930,7 +27930,7 @@
       "id": "genesis-examples-examples-drone-interactive-drone-py",
       "name": "genesis-world: interactive drone",
       "summary": "Official genesis-world python main example for interactive drone. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -27997,7 +27997,7 @@
       "id": "genesis-examples-examples-fluid-smoke-py",
       "name": "genesis-world: smoke",
       "summary": "Official genesis-world python main example for smoke. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28069,7 +28069,7 @@
       "id": "genesis-examples-examples-gui-imgui-joint-control-py",
       "name": "genesis-world: imgui joint control",
       "summary": "Official genesis-world python script example for imgui joint control. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28135,7 +28135,7 @@
       "id": "genesis-examples-examples-ipc-ipc-momentum-py",
       "name": "genesis-world: ipc momentum",
       "summary": "Official genesis-world python main example for ipc momentum. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28207,7 +28207,7 @@
       "id": "genesis-examples-examples-ipc-ipc-objects-falling-py",
       "name": "genesis-world: ipc objects falling",
       "summary": "Official genesis-world python main example for ipc objects falling. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28274,7 +28274,7 @@
       "id": "genesis-examples-examples-ipc-ipc-robot-cloth-teleop-py",
       "name": "genesis-world: ipc robot cloth teleop",
       "summary": "Official genesis-world python main example for ipc robot cloth teleop. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28345,7 +28345,7 @@
       "id": "genesis-examples-examples-ipc-ipc-robot-grasp-cube-py",
       "name": "genesis-world: ipc robot grasp cube",
       "summary": "Official genesis-world python main example for ipc robot grasp cube. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28412,7 +28412,7 @@
       "id": "genesis-examples-examples-kinematic-go2-kinematic-py",
       "name": "genesis-world: go2 kinematic",
       "summary": "Official genesis-world python main example for go2 kinematic. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28479,7 +28479,7 @@
       "id": "genesis-examples-examples-locomotion-go2-backflip-py",
       "name": "genesis-world: go2 backflip",
       "summary": "Official genesis-world python main example for go2 backflip. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28548,7 +28548,7 @@
       "id": "genesis-examples-examples-locomotion-go2-eval-py",
       "name": "genesis-world: go2 eval",
       "summary": "Official genesis-world python main example for go2 eval. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28620,7 +28620,7 @@
       "id": "genesis-examples-examples-locomotion-go2-train-py",
       "name": "genesis-world: go2 train",
       "summary": "Official genesis-world python main example for go2 train. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28693,7 +28693,7 @@
       "id": "genesis-examples-examples-manipulation-grasp-eval-py",
       "name": "genesis-world: grasp eval",
       "summary": "Official genesis-world python main example for grasp eval. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28767,7 +28767,7 @@
       "id": "genesis-examples-examples-manipulation-grasp-train-py",
       "name": "genesis-world: grasp train",
       "summary": "Official genesis-world python main example for grasp train. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28841,7 +28841,7 @@
       "id": "genesis-examples-examples-rendering-demo-py",
       "name": "genesis-world: examples demo",
       "summary": "Official genesis-world python main example for examples demo. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28905,7 +28905,7 @@
       "id": "genesis-examples-examples-rendering-follow-entity-py",
       "name": "genesis-world: follow entity",
       "summary": "Official genesis-world python main example for follow entity. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -28970,7 +28970,7 @@
       "id": "genesis-examples-examples-rendering-moving-camera-py",
       "name": "genesis-world: moving camera",
       "summary": "Official genesis-world python main example for moving camera. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29037,7 +29037,7 @@
       "id": "genesis-examples-examples-rendering-render-async-py",
       "name": "genesis-world: render async",
       "summary": "Official genesis-world python main example for render async. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29103,7 +29103,7 @@
       "id": "genesis-examples-examples-rendering-speed-test-py",
       "name": "genesis-world: speed test",
       "summary": "Official genesis-world python main example for speed test. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29170,7 +29170,7 @@
       "id": "genesis-examples-examples-rigid-accelerometer-duck-py",
       "name": "genesis-world: accelerometer duck",
       "summary": "Official genesis-world python main example for accelerometer duck. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29236,7 +29236,7 @@
       "id": "genesis-examples-examples-rigid-accelerometer-franka-py",
       "name": "genesis-world: accelerometer franka",
       "summary": "Official genesis-world python main example for accelerometer franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29301,7 +29301,7 @@
       "id": "genesis-examples-examples-rigid-apply-external-wrench-py",
       "name": "genesis-world: apply external wrench",
       "summary": "Official genesis-world python main example for apply external wrench. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29366,7 +29366,7 @@
       "id": "genesis-examples-examples-rigid-authored-decomp-py",
       "name": "genesis-world: authored decomp",
       "summary": "Official genesis-world python main example for authored decomp. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29433,7 +29433,7 @@
       "id": "genesis-examples-examples-rigid-bolt-nut-self-screw-py",
       "name": "genesis-world: bolt nut self screw",
       "summary": "Official genesis-world python main example for bolt nut self screw. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29499,7 +29499,7 @@
       "id": "genesis-examples-examples-rigid-closed-loop-py",
       "name": "genesis-world: closed loop",
       "summary": "Official genesis-world python main example for closed loop. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29564,7 +29564,7 @@
       "id": "genesis-examples-examples-rigid-control-franka-py",
       "name": "genesis-world: control franka",
       "summary": "Official genesis-world python main example for control franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29630,7 +29630,7 @@
       "id": "genesis-examples-examples-rigid-control-mesh-py",
       "name": "genesis-world: control mesh",
       "summary": "Official genesis-world python main example for control mesh. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29695,7 +29695,7 @@
       "id": "genesis-examples-examples-rigid-convex-decomposition-py",
       "name": "genesis-world: convex decomposition",
       "summary": "Official genesis-world python main example for convex decomposition. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29762,7 +29762,7 @@
       "id": "genesis-examples-examples-rigid-ddp-multi-gpu-py",
       "name": "genesis-world: ddp multi gpu",
       "summary": "Official genesis-world python main example for ddp multi gpu. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29832,7 +29832,7 @@
       "id": "genesis-examples-examples-rigid-diffik-controller-py",
       "name": "genesis-world: diffik controller",
       "summary": "Official genesis-world python main example for diffik controller. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29898,7 +29898,7 @@
       "id": "genesis-examples-examples-rigid-domain-randomization-py",
       "name": "genesis-world: domain randomization",
       "summary": "Official genesis-world python main example for domain randomization. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -29965,7 +29965,7 @@
       "id": "genesis-examples-examples-rigid-franka-cube-py",
       "name": "genesis-world: franka cube",
       "summary": "Official genesis-world python main example for franka cube. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30031,7 +30031,7 @@
       "id": "genesis-examples-examples-rigid-friction-breakaway-py",
       "name": "genesis-world: friction breakaway",
       "summary": "Official genesis-world python main example for friction breakaway. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30098,7 +30098,7 @@
       "id": "genesis-examples-examples-rigid-grasp-bottle-py",
       "name": "genesis-world: grasp bottle",
       "summary": "Official genesis-world python main example for grasp bottle. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30165,7 +30165,7 @@
       "id": "genesis-examples-examples-rigid-gravity-compensation-py",
       "name": "genesis-world: gravity compensation",
       "summary": "Official genesis-world python main example for gravity compensation. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30230,7 +30230,7 @@
       "id": "genesis-examples-examples-rigid-heterogeneous-simulation-py",
       "name": "genesis-world: heterogeneous simulation",
       "summary": "Official genesis-world python main example for heterogeneous simulation. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30296,7 +30296,7 @@
       "id": "genesis-examples-examples-rigid-hibernation-py",
       "name": "genesis-world: hibernation",
       "summary": "Official genesis-world python main example for hibernation. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30365,7 +30365,7 @@
       "id": "genesis-examples-examples-rigid-ik-custom-chain-py",
       "name": "genesis-world: ik custom chain",
       "summary": "Official genesis-world python main example for ik custom chain. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30432,7 +30432,7 @@
       "id": "genesis-examples-examples-rigid-ik-duck-py",
       "name": "genesis-world: ik duck",
       "summary": "Official genesis-world python main example for ik duck. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30499,7 +30499,7 @@
       "id": "genesis-examples-examples-rigid-ik-franka-batched-py",
       "name": "genesis-world: ik franka batched",
       "summary": "Official genesis-world python main example for ik franka batched. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30566,7 +30566,7 @@
       "id": "genesis-examples-examples-rigid-ik-franka-py",
       "name": "genesis-world: ik franka",
       "summary": "Official genesis-world python main example for ik franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30633,7 +30633,7 @@
       "id": "genesis-examples-examples-rigid-ik-shadow-hand-py",
       "name": "genesis-world: ik shadow hand",
       "summary": "Official genesis-world python main example for ik shadow hand. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30700,7 +30700,7 @@
       "id": "genesis-examples-examples-rigid-merge-entities-py",
       "name": "genesis-world: merge entities",
       "summary": "Official genesis-world python main example for merge entities. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30766,7 +30766,7 @@
       "id": "genesis-examples-examples-rigid-multi-gpu-py",
       "name": "genesis-world: multi gpu",
       "summary": "Official genesis-world python main example for multi gpu. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30834,7 +30834,7 @@
       "id": "genesis-examples-examples-rigid-nonconvex-mesh-py",
       "name": "genesis-world: nonconvex mesh",
       "summary": "Official genesis-world python main example for nonconvex mesh. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30899,7 +30899,7 @@
       "id": "genesis-examples-examples-rigid-rolling-coast-py",
       "name": "genesis-world: rolling coast",
       "summary": "Official genesis-world python main example for rolling coast. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -30966,7 +30966,7 @@
       "id": "genesis-examples-examples-rigid-set-phys-attr-py",
       "name": "genesis-world: set phys attr",
       "summary": "Official genesis-world python main example for set phys attr. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31032,7 +31032,7 @@
       "id": "genesis-examples-examples-rigid-single-franka-batch-render-py",
       "name": "genesis-world: single franka batch render",
       "summary": "Official genesis-world python main example for single franka batch render. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31100,7 +31100,7 @@
       "id": "genesis-examples-examples-rigid-single-franka-envs-py",
       "name": "genesis-world: single franka envs",
       "summary": "Official genesis-world python main example for single franka envs. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31165,7 +31165,7 @@
       "id": "genesis-examples-examples-rigid-single-franka-py",
       "name": "genesis-world: single franka",
       "summary": "Official genesis-world python main example for single franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31230,7 +31230,7 @@
       "id": "genesis-examples-examples-rigid-suction-cup-py",
       "name": "genesis-world: suction cup",
       "summary": "Official genesis-world python main example for suction cup. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31296,7 +31296,7 @@
       "id": "genesis-examples-examples-rigid-terrain-from-mesh-py",
       "name": "genesis-world: terrain from mesh",
       "summary": "Official genesis-world python main example for terrain from mesh. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31364,7 +31364,7 @@
       "id": "genesis-examples-examples-rigid-terrain-height-field-py",
       "name": "genesis-world: terrain height field",
       "summary": "Official genesis-world python main example for terrain height field. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31431,7 +31431,7 @@
       "id": "genesis-examples-examples-rigid-terrain-subterrain-py",
       "name": "genesis-world: terrain subterrain",
       "summary": "Official genesis-world python main example for terrain subterrain. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31497,7 +31497,7 @@
       "id": "genesis-examples-examples-rigid-torsional-grasp-py",
       "name": "genesis-world: torsional grasp",
       "summary": "Official genesis-world python main example for torsional grasp. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31565,7 +31565,7 @@
       "id": "genesis-examples-examples-rigid-wrecking-ball-py",
       "name": "genesis-world: wrecking ball",
       "summary": "Official genesis-world python main example for wrecking ball. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31637,7 +31637,7 @@
       "id": "genesis-examples-examples-sap-coupling-fem-fixed-constraint-py",
       "name": "genesis-world: fem fixed constraint",
       "summary": "Official genesis-world python main example for fem fixed constraint. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31707,7 +31707,7 @@
       "id": "genesis-examples-examples-sap-coupling-fem-sphere-and-cube-py",
       "name": "genesis-world: fem sphere and cube",
       "summary": "Official genesis-world python main example for fem sphere and cube. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31774,7 +31774,7 @@
       "id": "genesis-examples-examples-sap-coupling-franka-grasp-fem-sphere-py",
       "name": "genesis-world: franka grasp fem sphere",
       "summary": "Official genesis-world python main example for franka grasp fem sphere. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31842,7 +31842,7 @@
       "id": "genesis-examples-examples-sap-coupling-franka-grasp-rigid-cube-py",
       "name": "genesis-world: franka grasp rigid cube",
       "summary": "Official genesis-world python main example for franka grasp rigid cube. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31909,7 +31909,7 @@
       "id": "genesis-examples-examples-sensors-camera-as-sensor-py",
       "name": "genesis-world: camera as sensor",
       "summary": "Official genesis-world python script example for camera as sensor. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -31982,7 +31982,7 @@
       "id": "genesis-examples-examples-sensors-contact-force-go2-py",
       "name": "genesis-world: contact force go2",
       "summary": "Official genesis-world python main example for contact force go2. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32052,7 +32052,7 @@
       "id": "genesis-examples-examples-sensors-depth-camera-custom-vverts-py",
       "name": "genesis-world: depth camera custom vverts",
       "summary": "Official genesis-world python main example for depth camera custom vverts. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32125,7 +32125,7 @@
       "id": "genesis-examples-examples-sensors-imu-franka-py",
       "name": "genesis-world: imu franka",
       "summary": "Official genesis-world python main example for imu franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32195,7 +32195,7 @@
       "id": "genesis-examples-examples-sensors-joint-torque-franka-py",
       "name": "genesis-world: joint torque franka",
       "summary": "Official genesis-world python main example for joint torque franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32266,7 +32266,7 @@
       "id": "genesis-examples-examples-sensors-lidar-teleop-py",
       "name": "genesis-world: lidar teleop",
       "summary": "Official genesis-world python main example for lidar teleop. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32338,7 +32338,7 @@
       "id": "genesis-examples-examples-sensors-surface-distance-shadowhand-py",
       "name": "genesis-world: surface distance shadowhand",
       "summary": "Official genesis-world python main example for surface distance shadowhand. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32408,7 +32408,7 @@
       "id": "genesis-examples-examples-sensors-tactile-franka-py",
       "name": "genesis-world: tactile franka",
       "summary": "Official genesis-world python main example for tactile franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32483,7 +32483,7 @@
       "id": "genesis-examples-examples-sensors-tactile-sandbox-py",
       "name": "genesis-world: tactile sandbox",
       "summary": "Official genesis-world python main example for tactile sandbox. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32561,7 +32561,7 @@
       "id": "genesis-examples-examples-sensors-temperature-grid-py",
       "name": "genesis-world: temperature grid",
       "summary": "Official genesis-world python main example for temperature grid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32631,7 +32631,7 @@
       "id": "genesis-examples-examples-speed-benchmark-anymal-c-py",
       "name": "genesis-world: anymal c",
       "summary": "Official genesis-world python script example for anymal c. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32696,7 +32696,7 @@
       "id": "genesis-examples-examples-speed-benchmark-franka-py",
       "name": "genesis-world: franka",
       "summary": "Official genesis-world python script example for franka. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32761,7 +32761,7 @@
       "id": "genesis-examples-examples-speed-benchmark-timers-py",
       "name": "genesis-world: timers",
       "summary": "Official genesis-world python main example for timers. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32831,7 +32831,7 @@
       "id": "genesis-examples-examples-tutorials-advanced-hybrid-robot-py",
       "name": "genesis-world: advanced hybrid robot",
       "summary": "Official genesis-world python script example for advanced hybrid robot. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32897,7 +32897,7 @@
       "id": "genesis-examples-examples-tutorials-advanced-ik-multilink-py",
       "name": "genesis-world: advanced IK multilink",
       "summary": "Official genesis-world python script example for advanced IK multilink. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -32965,7 +32965,7 @@
       "id": "genesis-examples-examples-tutorials-advanced-muscle-py",
       "name": "genesis-world: advanced muscle",
       "summary": "Official genesis-world python script example for advanced muscle. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33031,7 +33031,7 @@
       "id": "genesis-examples-examples-tutorials-advanced-worm-py",
       "name": "genesis-world: advanced worm",
       "summary": "Official genesis-world python script example for advanced worm. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33098,7 +33098,7 @@
       "id": "genesis-examples-examples-tutorials-batched-ik-py",
       "name": "genesis-world: batched IK",
       "summary": "Official genesis-world python script example for batched IK. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33165,7 +33165,7 @@
       "id": "genesis-examples-examples-tutorials-control-your-robot-py",
       "name": "genesis-world: control your robot",
       "summary": "Official genesis-world python script example for control your robot. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33231,7 +33231,7 @@
       "id": "genesis-examples-examples-tutorials-draw-debug-py",
       "name": "genesis-world: draw debug",
       "summary": "Official genesis-world python main example for draw debug. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33298,7 +33298,7 @@
       "id": "genesis-examples-examples-tutorials-entity-name-py",
       "name": "genesis-world: entity name",
       "summary": "Official genesis-world python main example for entity name. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33363,7 +33363,7 @@
       "id": "genesis-examples-examples-tutorials-hello-genesis-py",
       "name": "genesis-world: hello genesis",
       "summary": "Official genesis-world python script example for hello genesis. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33427,7 +33427,7 @@
       "id": "genesis-examples-examples-tutorials-interactive-debugging-py",
       "name": "genesis-world: interactive debugging",
       "summary": "Official genesis-world python script example for interactive debugging. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33492,7 +33492,7 @@
       "id": "genesis-examples-examples-tutorials-mpm-py",
       "name": "genesis-world: mpm",
       "summary": "Official genesis-world python script example for mpm. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33557,7 +33557,7 @@
       "id": "genesis-examples-examples-tutorials-parallel-simulation-py",
       "name": "genesis-world: parallel simulation",
       "summary": "Official genesis-world python script example for parallel simulation. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33622,7 +33622,7 @@
       "id": "genesis-examples-examples-tutorials-pbd-cloth-py",
       "name": "genesis-world: pbd cloth",
       "summary": "Official genesis-world python script example for pbd cloth. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33687,7 +33687,7 @@
       "id": "genesis-examples-examples-tutorials-position-control-comparison-py",
       "name": "genesis-world: position control comparison",
       "summary": "Official genesis-world python main example for position control comparison. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33755,7 +33755,7 @@
       "id": "genesis-examples-examples-tutorials-selecting-rendered-envs-py",
       "name": "genesis-world: selecting rendered envs",
       "summary": "Official genesis-world python script example for selecting rendered envs. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33820,7 +33820,7 @@
       "id": "genesis-examples-examples-tutorials-sph-liquid-py",
       "name": "genesis-world: sph liquid",
       "summary": "Official genesis-world python script example for sph liquid. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33885,7 +33885,7 @@
       "id": "genesis-examples-examples-tutorials-visualization-py",
       "name": "genesis-world: visualization",
       "summary": "Official genesis-world python script example for visualization. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -33951,7 +33951,7 @@
       "id": "genesis-examples-examples-usd-import-stage-py",
       "name": "genesis-world: import stage",
       "summary": "Official genesis-world python main example for import stage. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -34021,7 +34021,7 @@
       "id": "genesis-examples-examples-usd-kitchen-py",
       "name": "genesis-world: kitchen",
       "summary": "Official genesis-world python main example for kitchen. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -34090,7 +34090,7 @@
       "id": "genesis-examples-examples-viewer-plugin-keyboard-teleop-py",
       "name": "genesis-world: keyboard teleop",
       "summary": "Official genesis-world python main example for keyboard teleop. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -34160,7 +34160,7 @@
       "id": "genesis-examples-examples-viewer-plugin-mesh-point-selector-py",
       "name": "genesis-world: mesh point selector",
       "summary": "Official genesis-world python main example for mesh point selector. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [
@@ -34237,7 +34237,7 @@
       "id": "genesis-examples-examples-viewer-plugin-mouse-interaction-py",
       "name": "genesis-world: mouse interaction",
       "summary": "Official genesis-world python main example for mouse interaction. Inspect the pinned source and upstream setup before use.",
-      "framework": "genesis-examples",
+      "framework": "genesis",
       "kind": "official_example",
       "source_registry": "ecosystem-examples-v1",
       "capabilities": [

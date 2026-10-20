@@ -12288,7 +12288,8 @@
             "reason": "No supported runnable Python entrypoint"
           }
         ]
-      }
+      },
+      "framework": "genesis"
     }
   ]
 }
