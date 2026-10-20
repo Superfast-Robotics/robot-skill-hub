@@ -758,13 +758,13 @@ curl -fsSL {base}/agent.json
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
 <p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
-{coverage_tables(coverage, base) if coverage is not None else ''}
 <h2>Find and read</h2>
 <p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
-<p>Read the installed <code>SKILL.md</code>, then use <code>find</code> and <code>inspect</code>. For source references, <code>fetch-source</code> retrieves one verified inert file. For supported recipes, <code>prepare --plan</code> explains preparation before downloads. Runtime execution is a separate step.</p>
+<p>Public HTTPS search and inspection need no installation or account. For the optional CLI, read <code>SKILL.md</code> and use <code>find</code> and <code>inspect</code>. <code>fetch-source</code> retrieves one verified inert source file; <code>prepare --plan</code> explains a supported recipe before downloads. Execution is separate.</p>
 <h2>Connect an agent</h2>
 <p>Read-only MCP: <a href="{API}/mcp"><code>{API}/mcp</code></a>. Public reads need no token. {api_docs}<a href="{esc(base)}/agent.json">Agent contract</a> | <a href="{API}/v1/capabilities">Capabilities</a></p>
+{coverage_tables(coverage, base) if coverage is not None else ''}
 <h2>Share a new skill or finding</h2>
 <p>Use <code>rsh.py register --help</code> to register a pinned source record, or <code>POST {API}/v1/skills</code>. New submissions create a draft for maintainer review. Read <a href="{esc(base)}/new-skills.md">new-skill registration</a> and <a href="{esc(base)}/contributing.md">contribution instructions</a>. Save observed reusable findings with <code>rsh.py save</code>.</p>
 <h2>Evidence</h2>
@@ -1014,11 +1014,11 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
+    for name in ("runtime-expansion.md", "agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
+            if name in ("runtime-expansion.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"
