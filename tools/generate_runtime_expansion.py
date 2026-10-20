@@ -50,7 +50,7 @@ def record(recipe,source,adapter):
             'failure_modes':['Invalid input or source checksum','Different pinned package version','Unavailable runtime/driver','Goal not reached within bounded steps'],
             'stop_condition':'Terminate the adapter at the recorded timeout. No physical hardware is opened.'},
         'preparation':{'recipe_path':'recipes/'+ident,'requirements_file':'recipes/'+ident+'/requirements.txt',
-            'source_selection':'declared_paths' if recipe['backend']=='menagerie' else None,
+            'source_selection':'declared_paths' if recipe['backend'] in ['menagerie','lerobot'] else None,
             'install_argv':install,'execution_separate':True},
         'evidence':evidence,'maintenance':{'record_version':'1.0.0','last_checked':'2026-10-20','upstream_status':'immutable_source_and_explicit_dependencies'},
         'contribution':{'allowed_paths':['catalog/records/'+ident+'.json','recipes/'+ident+'/run.py','recipes/'+ident+'/requirements.txt','docs/recipes/'+ident+'.md'],
