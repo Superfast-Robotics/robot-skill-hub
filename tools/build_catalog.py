@@ -1016,11 +1016,11 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("runtime-expansion.md", "agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
+    for name in ("simulation-starting-policies.md", "runtime-expansion.md", "agent-distribution.md", "problems.md", "contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
-            if name in ("runtime-expansion.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
+            if name in ("simulation-starting-policies.md", "runtime-expansion.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "verification.md", "reuse-benchmark.md"):
                 text = text.replace("](../", "](" + REPO + "/blob/" + hub_commit + "/")
             write(output / name, text)
     openapi = ROOT / "docs/public-api.openapi.json"

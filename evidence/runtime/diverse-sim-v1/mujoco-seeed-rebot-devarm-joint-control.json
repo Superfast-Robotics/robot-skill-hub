@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-seeed-rebot-devarm-joint-control",
+  "recorded_at": "2026-10-20T05:37:42.458238+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "7ff18a1fa42f6d1c659b165ba943cdc21352fad76f8fb5d3de7935acde34d6cf",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "b1542c72ce46a013d4c30dc841a2a3064b59dbba72fa3ebe24f658f037555037",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "seeed_rebot_devarm",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-seeed-rebot-devarm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.049999997355399686,
+            -0.018258309400793572,
+            -0.012512674427706675,
+            0.08259691931621554,
+            0.04997129676993182,
+            0.0499863978082933
+          ],
+          "target_joint_positions_rad": [
+            0.0499999973553965,
+            -0.02,
+            -0.02,
+            0.0662263569982457,
+            0.05000010864662579,
+            0.0499931962578353
+          ],
+          "max_error_rad": 0.01637056231796985,
+          "movement_rad": 0.06637056231796987
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.106,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-seeed-rebot-devarm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07999999735540046,
+            -0.018256489877662905,
+            -0.012514493538870191,
+            0.11258333367664981,
+            0.07993800153076958,
+            0.07998642460120883
+          ],
+          "target_joint_positions_rad": [
+            0.0799999973553965,
+            -0.02,
+            -0.02,
+            0.0962263569982457,
+            0.0800001086466258,
+            0.0799931962578353
+          ],
+          "max_error_rad": 0.01635697667840412,
+          "movement_rad": 0.09635697667840412
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.099,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-seeed-rebot-devarm-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.05000000264460717,
+            -0.04780630683751863,
+            -0.04139078953786732,
+            -0.01750592979829172,
+            -0.050003664642688773,
+            -0.05001361161676439
+          ],
+          "target_joint_positions_rad": [
+            -0.050000002644603504,
+            -0.04954957752721502,
+            -0.04886581692765941,
+            -0.03377364300175432,
+            -0.049999891353374216,
+            -0.05000680374216471
+          ],
+          "max_error_rad": 0.016267713203462597,
+          "movement_rad": 0.050006807874599685
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.103,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

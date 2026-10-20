@@ -2738,29 +2738,33 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "import_verified",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend dmcontrol --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "0/3 frozen cases completed; retained failures are not promoted.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/dmcontrol-finger-spin.json"
+    ],
+    "runtime_verification": "import_verified",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "import_verified",
       "scope": "simulation",
-      "adapter_sha256": "8e5c05e23679358cea39d0595fdcee1e60f3698ea0c5037aece10851432d8c20",
+      "adapter_sha256": "2478958c70715a6136e355a605986a802ea4fce43af884384aaccbc33d801bcb",
       "source_commit": "3831fa523c160fe653d83a829d0a0c59715f5725",
       "record_version": "1.0.0",
-      "case_count": 0,
-      "retained_failed_cases": 0
+      "case_count": 3,
+      "retained_failed_cases": 3
     }
   },
   "maintenance": {

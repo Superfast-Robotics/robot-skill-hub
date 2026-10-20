@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-panda-stack",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "adapter_sha256": "16325c6af0945e694507c7da536331cba0b7bf7471338c1bbf5b55e3b6e6e9a8",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "robosuite-panda-stack",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "object_xyz_m": [
+        -0.04427153904576532,
+        0.031204140953097665,
+        0.8694059048185213
+      ],
+      "target_xyz_m": [
+        -0.04588165182482944,
+        0.03130190411724662,
+        0.8800000000000001
+      ],
+      "error_m": 0.010716196783924901,
+      "steps": 630,
+      "environment_success": true
+    },
+    "checks": {
+      "native_environment_goal": true,
+      "target_proximity": true,
+      "object_moved": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "elapsed_seconds": 43.772,
+  "hardware_execution": false
+}

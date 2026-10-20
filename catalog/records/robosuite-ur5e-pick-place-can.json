@@ -49,7 +49,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -270,28 +270,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend robosuite --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/robosuite-ur5e-pick-place-can.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
-      "adapter_sha256": "3ede4ee5acec8db760c839ce87e17cb48644a1f88cb3a093d9cc8f90f1ee8704",
+      "adapter_sha256": "7591a2eec78196bcfdb86dc495cbca9235f4a1ab422f9914d3d0f919ccb1846f",
       "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },

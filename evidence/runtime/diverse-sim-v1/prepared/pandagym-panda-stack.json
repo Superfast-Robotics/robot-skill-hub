@@ -1,0 +1,50 @@
+{
+  "schema_version": "1",
+  "skill_id": "pandagym-panda-stack",
+  "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+  "adapter_sha256": "b830dd47ea8486a3f3ca7fea8cb9985185b515cda4b3bbf7ffa7d7bd309fb519",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "pandagym-panda-stack",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "achieved_goal": [
+        0.0465276725590229,
+        -0.08710568398237228,
+        0.01998930796980858,
+        0.04184075817465782,
+        -0.08756677061319351,
+        0.05997767671942711
+      ],
+      "desired_goal": [
+        0.04108850657939911,
+        -0.06906398385763168,
+        0.019999999552965164,
+        0.04108850657939911,
+        -0.06906398385763168,
+        0.05999999865889549
+      ],
+      "error_m": 0.026419823989272118,
+      "steps": 560,
+      "environment_success": true
+    },
+    "checks": {
+      "native_environment_goal": true,
+      "strict_goal_error": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "fd2fde8e90118b215f27c70654bccb0a0bd0042eb10cc986b3ae5168d5635fb1",
+  "elapsed_seconds": 13.542,
+  "hardware_execution": false
+}

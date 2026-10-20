@@ -54,12 +54,12 @@
       "runtime": "mujoco",
       "runtime_version": "3.3.7",
       "robot": "trossen_vx300s",
-      "controller": "native_position_actuators",
+      "controller": "position_servo_integral_offset_compensation",
       "observation": "joint_state",
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -317,28 +317,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-trossen-vx300s-joint-control.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
-      "adapter_sha256": "d4185911e5d61d6886615361852ad39637075b425fd42f932c1df3472b48e4f5",
+      "adapter_sha256": "946f6d923b091bbe31f4620aa4b7758d3f76ff51081b229c3ba2f6907707fe00",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },

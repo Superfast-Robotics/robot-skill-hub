@@ -2517,7 +2517,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -2738,28 +2738,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend dmcontrol --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/dmcontrol-pendulum-swingup.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
-      "adapter_sha256": "c567b2eebf7b6b91a2c2ee77a64599404f26b3512a98b310bd82af23afe42d5b",
+      "adapter_sha256": "87bcaf823ddc741bbd4e95dc342bbe0b14c5e98fda86c57988d8975f2a15bd21",
       "source_commit": "3831fa523c160fe653d83a829d0a0c59715f5725",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },

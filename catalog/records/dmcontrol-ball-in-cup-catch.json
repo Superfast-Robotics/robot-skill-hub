@@ -2738,29 +2738,33 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "import_verified",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend dmcontrol --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "1/3 frozen cases completed; retained failures are not promoted.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/dmcontrol-ball-in-cup-catch.json"
+    ],
+    "runtime_verification": "import_verified",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "import_verified",
       "scope": "simulation",
-      "adapter_sha256": "d649f2bd9c4619b72fc0dc955e47cd542740b1d3d168b152e81b6f74293f0be8",
+      "adapter_sha256": "d81a8ad07d35cbcd603e2c7c2127bc6271dd2d56904e0277324692f0009bb686",
       "source_commit": "3831fa523c160fe653d83a829d0a0c59715f5725",
       "record_version": "1.0.0",
-      "case_count": 0,
-      "retained_failed_cases": 0
+      "case_count": 3,
+      "retained_failed_cases": 2
     }
   },
   "maintenance": {

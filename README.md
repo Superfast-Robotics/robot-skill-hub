@@ -22,10 +22,16 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 <!-- rsh-coverage:start -->
 ## Current execution and reference coverage
 
-98 preparation recipes: **84 completed operations/tasks**, 3 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
+139 preparation recipes: **116 completed operations/tasks**, 12 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
 
 | Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
+| dm-control | ball_in_cup | simulation | 1 | 0 | 1 | 0 |
+| dm-control | cartpole | simulation | 2 | 2 | 0 | 0 |
+| dm-control | finger | simulation | 1 | 0 | 1 | 0 |
+| dm-control | pendulum | simulation | 1 | 1 | 0 | 0 |
+| dm-control | point_mass | simulation | 2 | 2 | 0 | 0 |
+| dm-control | reacher | simulation | 2 | 2 | 0 | 0 |
 | gymnasium-robotics | fetch | simulation | 3 | 3 | 0 | 0 |
 | gymnasium-robotics | point-mass | simulation | 3 | 3 | 0 | 0 |
 | lerobot | pusht-2d-pusher | simulation | 1 | 0 | 1 | 0 |
@@ -36,38 +42,54 @@ Small HTTP installation, without a Git clone: `npx skills add https://hub.superf
 | maniskill | xarm6_robotiq | simulation | 4 | 0 | 0 | 4 |
 | mujoco | agilex_piper | simulation | 1 | 1 | 0 | 0 |
 | mujoco | aloha | simulation | 1 | 1 | 0 | 0 |
+| mujoco | arx_l5 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | dynamixel_2r | simulation | 1 | 1 | 0 | 0 |
+| mujoco | flexiv_rizon4 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | flexiv_rizon4s | simulation | 1 | 1 | 0 | 0 |
 | mujoco | franka_emika_panda | simulation | 1 | 1 | 0 | 0 |
 | mujoco | franka_fr3 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | franka_fr3_v2 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | google_robot | simulation | 1 | 1 | 0 | 0 |
 | mujoco | hello_robot_stretch | simulation | 1 | 1 | 0 | 0 |
+| mujoco | hello_robot_stretch_3 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | i2rt_yam | simulation | 1 | 1 | 0 | 0 |
 | mujoco | kinova_gen3 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | kuka_iiwa_14 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | low_cost_robot_arm | simulation | 1 | 1 | 0 | 0 |
 | mujoco | rethink_robotics_sawyer | simulation | 1 | 1 | 0 | 0 |
+| mujoco | robotis_omy_3m | simulation | 1 | 1 | 0 | 0 |
 | mujoco | robotstudio_so101 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | seeed_rebot_devarm | simulation | 1 | 1 | 0 | 0 |
 | mujoco | shadow_dexee | simulation | 1 | 1 | 0 | 0 |
+| mujoco | stanford_tidybot | simulation | 1 | 1 | 0 | 0 |
+| mujoco | trossen_vx300s | simulation | 1 | 1 | 0 | 0 |
+| mujoco | trossen_wx250s | simulation | 1 | 1 | 0 | 0 |
+| mujoco | trossen_wxai | simulation | 1 | 1 | 0 | 0 |
 | mujoco | trs_so_arm100 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | ufactory_lite6 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | ufactory_xarm7 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | unitree_go2 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | unitree_z1 | simulation | 1 | 1 | 0 | 0 |
 | mujoco | universal_robots_ur10e | simulation | 1 | 1 | 0 | 0 |
 | mujoco | universal_robots_ur5e | simulation | 1 | 1 | 0 | 0 |
+| panda-gym | franka-panda | simulation | 5 | 3 | 2 | 0 |
 | pybullet | synthetic-seven-axis-or-procedural-scene | simulation | 12 | 12 | 0 | 0 |
 | pythonrobotics | mathematical-model | computation | 28 | 28 | 0 | 0 |
-| robosuite | IIWA | simulation | 2 | 2 | 0 | 0 |
-| robosuite | Jaco | simulation | 2 | 1 | 1 | 0 |
-| robosuite | Kinova3 | simulation | 2 | 2 | 0 | 0 |
-| robosuite | Panda | simulation | 2 | 2 | 0 | 0 |
-| robosuite | Sawyer | simulation | 2 | 2 | 0 | 0 |
-| robosuite | UR5e | simulation | 2 | 2 | 0 | 0 |
+| robosuite | IIWA | simulation | 4 | 3 | 1 | 0 |
+| robosuite | Jaco | simulation | 4 | 1 | 3 | 0 |
+| robosuite | Kinova3 | simulation | 4 | 3 | 1 | 0 |
+| robosuite | Panda | simulation | 4 | 4 | 0 | 0 |
+| robosuite | Sawyer | simulation | 4 | 3 | 1 | 0 |
+| robosuite | UR5e | simulation | 4 | 4 | 0 | 0 |
 | ruckig | independent-axes | computation | 5 | 5 | 0 | 0 |
 
-Completion evidence covers 33 computations and 51 simulations across 32 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
+Completion evidence covers 33 computations and 83 simulations across 54 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
 
 | Task level | Prepared | Passed | Failed | No task run |
 | --- | ---: | ---: | ---: | ---: |
 | Algorithm / sensing | 39 | 39 | 0 | 0 |
-| Motion / control | 29 | 29 | 0 | 0 |
-| Task | 30 | 16 | 3 | 11 |
+| Motion / control | 44 | 44 | 0 | 0 |
+| Task | 56 | 33 | 12 | 11 |
 
 **1330 source references across 44 frameworks.** References are upstream declarations, not Hub execution evidence.
 

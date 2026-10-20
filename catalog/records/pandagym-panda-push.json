@@ -289,29 +289,33 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "import_verified",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend pandagym --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "1/3 frozen cases completed; retained failures are not promoted.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/pandagym-panda-push.json"
+    ],
+    "runtime_verification": "import_verified",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "import_verified",
       "scope": "simulation",
-      "adapter_sha256": "ed8d05010efee2ae05a150e94b1e1d3ec1be228c9832bc929add54d6f351ffde",
+      "adapter_sha256": "45193833931a198656022c3a4863a6c5352f40b0fa3f78660a4cff55d75cdba4",
       "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
       "record_version": "1.0.0",
-      "case_count": 0,
-      "retained_failed_cases": 0
+      "case_count": 3,
+      "retained_failed_cases": 2
     }
   },
   "maintenance": {

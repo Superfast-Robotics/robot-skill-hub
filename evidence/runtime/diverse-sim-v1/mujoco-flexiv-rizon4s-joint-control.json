@@ -1,0 +1,177 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-flexiv-rizon4s-joint-control",
+  "recorded_at": "2026-10-20T05:44:46.240742+00:00",
+  "hub_commit": "8e33f5004a3f1369dd185f1d285c3f287cf41f16",
+  "adapter_sha256": "4282b8d29a650ca2d217c5f49af03da1d47effbc4e8361e0527c525f83ae30e8",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "39acf045b48c127d4ecc6c37cf3305d1d1c24ad0019326ccda58f008f04b0ffa",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "flexiv_rizon4s",
+    "controller": "position_servo_integral_offset_compensation",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-flexiv-rizon4s-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.05002203952018927,
+            0.0050569585412975175,
+            0.049745798916327154,
+            1.6913363921599691,
+            0.06424420853246854,
+            0.03705611191291802,
+            0.04999905696481447
+          ],
+          "target_joint_positions_rad": [
+            0.050022039591709956,
+            0.005056959433103192,
+            0.049745798908709775,
+            1.6913363922529858,
+            0.06424420854244411,
+            0.037056111902090086,
+            0.049999056964839014
+          ],
+          "max_error_rad": 8.918056744466885e-10,
+          "movement_rad": 0.05000000001082794
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.576,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-flexiv-rizon4s-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.0800220394375622,
+            0.0350569583079041,
+            0.07974579896589373,
+            1.7213363920753522,
+            0.09424420852654423,
+            0.06705611191845758,
+            0.07999905696479079
+          ],
+          "target_joint_positions_rad": [
+            0.08002203959170996,
+            0.03505695943310319,
+            0.07974579890870978,
+            1.7213363922529858,
+            0.09424420854244411,
+            0.06705611190209008,
+            0.07999905696483901
+          ],
+          "max_error_rad": 1.1251990936211875e-09,
+          "movement_rad": 0.08000000005718395
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.569,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-flexiv-rizon4s-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04997796010802136,
+            -0.09494304079277398,
+            -0.050254201173487556,
+            1.5913363924782193,
+            -0.03575579144544242,
+            -0.0629438881024824,
+            -0.05000094303513335
+          ],
+          "target_joint_positions_rad": [
+            -0.04997796040829005,
+            -0.09494304056689681,
+            -0.05025420109129023,
+            1.5913363922529857,
+            -0.03575579145755589,
+            -0.06294388809790992,
+            -0.05000094303516099
+          ],
+          "max_error_rad": 3.002686918551767e-10,
+          "movement_rad": 0.05000000022587717
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.57,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

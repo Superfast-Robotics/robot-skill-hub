@@ -1,0 +1,50 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-arx-l5-joint-control",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "adapter_sha256": "85854c50a0b69928b53f60ec378e09aafe7de745a1450754cdc2f44f9362683c",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "mujoco-arx-l5-joint-control",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "joint_positions_rad": [
+        0.07999999719690672,
+        0.3147719874838879,
+        0.3273595968315099,
+        0.05189393315426764,
+        0.08000009018216711,
+        0.07998946984653577
+      ],
+      "target_joint_positions_rad": [
+        0.07999999719690634,
+        0.3147719874838887,
+        0.3273595968315138,
+        0.05189393315426864,
+        0.08000009018237665,
+        0.07998946984676608
+      ],
+      "max_error_rad": 2.303157664584887e-13,
+      "movement_rad": 0.08000000000000038
+    },
+    "checks": {
+      "nontrivial_target": true,
+      "joint_goal_reached": true,
+      "actual_motion": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "elapsed_seconds": 16.456,
+  "hardware_execution": false
+}

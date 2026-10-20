@@ -1,0 +1,147 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-dynamixel-2r-joint-control",
+  "recorded_at": "2026-10-20T05:37:39.081016+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "02e17479ce73a5525e6b5afbb5018657b2eb74ad8412e97460532e98866e7404",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "4a1f9260cf27f137e88c344679bfb68df65bf8f79873da3565708e814413ed21",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "dynamixel_2r",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-dynamixel-2r-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.04739584538914066,
+            0.042658511997878304
+          ],
+          "target_joint_positions_rad": [
+            0.05,
+            0.049999999816139944
+          ],
+          "max_error_rad": 0.00734148781826164,
+          "movement_rad": 0.04739584538914066
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.446,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-dynamixel-2r-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07644888061534753,
+            0.06924901390524815
+          ],
+          "target_joint_positions_rad": [
+            0.08,
+            0.07999999981613995
+          ],
+          "max_error_rad": 0.010750985910891797,
+          "movement_rad": 0.07644888061534753
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.446,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-dynamixel-2r-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04739584538524325,
+            -0.042658512852159054
+          ],
+          "target_joint_positions_rad": [
+            -0.05,
+            -0.05000000018386006
+          ],
+          "max_error_rad": 0.007341487331701008,
+          "movement_rad": 0.04739584538524325
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.45,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

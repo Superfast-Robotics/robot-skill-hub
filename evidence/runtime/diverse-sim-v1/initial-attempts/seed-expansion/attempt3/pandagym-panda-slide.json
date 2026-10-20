@@ -1,0 +1,152 @@
+{
+  "schema_version": "1",
+  "skill_id": "pandagym-panda-slide",
+  "recorded_at": "2026-10-20T05:42:08.514917+00:00",
+  "hub_commit": "c2638b0d61d218be5da65c81e2b1633c5f254c52",
+  "adapter_sha256": "c607de7a3b19ccee48b674845d5533244439c0ee9db7558e32d80d6f4f834081",
+  "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+  "archive_sha256": "fd2fde8e90118b215f27c70654bccb0a0bd0042eb10cc986b3ae5168d5635fb1",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "6dd8a06af56bed27a26fad22242a1b4224ee80e419def42c1c4174b666b8ff0c",
+  "environment": {
+    "runtime": "panda-gym",
+    "runtime_version": "3.0.7",
+    "robot": "franka-panda",
+    "controller": "native_pybullet_ik_cartesian_feedback",
+    "observation": "goal_dict",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "panda-gym": "3.0.7",
+    "pybullet": "3.2.7",
+    "gymnasium": "1.2.0",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-slide",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            0.2945678234100342,
+            0.0882914736866951,
+            0.014989593997597694
+          ],
+          "desired_goal": [
+            0.4410884976387024,
+            -0.06906398385763168,
+            0.029999999329447746
+          ],
+          "error_m": 0.21553273499011993,
+          "steps": 320,
+          "environment_success": false
+        },
+        "checks": {
+          "native_environment_goal": false,
+          "strict_goal_error": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.985,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-slide",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            0.3667457103729248,
+            -0.027306608855724335,
+            0.014989287592470646
+          ],
+          "desired_goal": [
+            0.4035464823246002,
+            0.1351391077041626,
+            0.029999999329447746
+          ],
+          "error_m": 0.1672370582818985,
+          "steps": 320,
+          "environment_success": false
+        },
+        "checks": {
+          "native_environment_goal": false,
+          "strict_goal_error": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.935,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "pandagym-panda-slide",
+        "status": "task_failed",
+        "success": false,
+        "outputs": {
+          "achieved_goal": [
+            0.2808477282524109,
+            0.02732452005147934,
+            0.014989431016147137
+          ],
+          "desired_goal": [
+            0.3284836411476135,
+            -0.0604526586830616,
+            0.029999999329447746
+          ],
+          "error_m": 0.10099174082279205,
+          "steps": 320,
+          "environment_success": false
+        },
+        "checks": {
+          "native_environment_goal": false,
+          "strict_goal_error": false,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "14d944120037a5bb637e629965f88bb9e13dba3b",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.991,
+      "stderr_tail": "pybullet build time: Jan 29 2025 23:16:28\nargv[0]=--background_color_red=0.8745098114013672\nargv[1]=--background_color_green=0.21176470816135406\nargv[2]=--background_color_blue=0.1764705926179886\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

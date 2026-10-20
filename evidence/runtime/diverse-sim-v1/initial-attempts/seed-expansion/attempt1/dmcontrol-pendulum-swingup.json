@@ -1,0 +1,88 @@
+{
+  "schema_version": "1",
+  "skill_id": "dmcontrol-pendulum-swingup",
+  "recorded_at": "2026-10-20T05:37:44.580644+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "944355f4eae3701f2c9d49e07f74b0cc4d56d9093cecd3c4379709c3c95005a9",
+  "source_commit": "3831fa523c160fe653d83a829d0a0c59715f5725",
+  "archive_sha256": "26a454bca7290df5df3376e36b31bb7ef56364fc3a45fc074f83cb3d30e50b5a",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "565d370712a5e6fa493f7d56f8efb905654769f2ca2fa9fca22eb3eb9774df4c",
+  "environment": {
+    "runtime": "dm-control",
+    "runtime_version": "1.0.34",
+    "robot": "pendulum",
+    "controller": "privileged_state_bounded_feedback",
+    "observation": "simulator_state_and_native_reward",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "dm-control": "1.0.34",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-pendulum-swingup",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "cannot import name 'constants' from partially initialized module 'dm_control.mujoco.wrapper.mjbindings' (most likely due to a circular import) (/home/ubuntu/rsh-runtime/cache/source-dm-control/dm_control/mujoco/wrapper/mjbindings/__init__.py)",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.173,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-pendulum-swingup",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "cannot import name 'constants' from partially initialized module 'dm_control.mujoco.wrapper.mjbindings' (most likely due to a circular import) (/home/ubuntu/rsh-runtime/cache/source-dm-control/dm_control/mujoco/wrapper/mjbindings/__init__.py)",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.175,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-pendulum-swingup",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "cannot import name 'constants' from partially initialized module 'dm_control.mujoco.wrapper.mjbindings' (most likely due to a circular import) (/home/ubuntu/rsh-runtime/cache/source-dm-control/dm_control/mujoco/wrapper/mjbindings/__init__.py)",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.173,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

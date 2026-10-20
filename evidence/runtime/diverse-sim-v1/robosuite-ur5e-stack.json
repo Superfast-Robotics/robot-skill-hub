@@ -1,0 +1,154 @@
+{
+  "schema_version": "1",
+  "skill_id": "robosuite-ur5e-stack",
+  "recorded_at": "2026-10-20T05:45:35.621052+00:00",
+  "hub_commit": "8e33f5004a3f1369dd185f1d285c3f287cf41f16",
+  "adapter_sha256": "a7c6a8e3ed83e5be73fad7644d5dcb5fd3c416e538d350e643c12b29de01cf60",
+  "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+  "archive_sha256": "b0c9011b1a90e5faf3404e22694cb44eea012728f568dd9bccc8fde6063ab903",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "fd3cfdd6b9df2755489c879e02c4eb840a5eef126de97b12b739c4d669bdc22d",
+  "environment": {
+    "runtime": "robosuite",
+    "runtime_version": "1.5.2",
+    "robot": "UR5e",
+    "controller": "OSC_POSE",
+    "observation": "privileged_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "robosuite": "1.5.2",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            -0.021428669990071758,
+            0.07624417767017312,
+            0.8695978019011819
+          ],
+          "target_xyz_m": [
+            -0.021652404896676226,
+            0.07625835684808567,
+            0.8800000000000001
+          ],
+          "error_m": 0.010404613574976141,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 7.724,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            0.024683516695635056,
+            0.023138748309299705,
+            0.8694384612537459
+          ],
+          "target_xyz_m": [
+            0.02403365414078204,
+            0.023250736709689385,
+            0.8800000000000001
+          ],
+          "error_m": 0.010582105812675036,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 7.788,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "robosuite-ur5e-stack",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "object_xyz_m": [
+            0.012039092261702121,
+            0.0792494036813095,
+            0.8693595264188599
+          ],
+          "target_xyz_m": [
+            0.011627890245234251,
+            0.07900000909901049,
+            0.8800000000000001
+          ],
+          "error_m": 0.010651336197255694,
+          "steps": 630,
+          "environment_success": true
+        },
+        "checks": {
+          "native_environment_goal": true,
+          "target_proximity": true,
+          "object_moved": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "824ac14cefcfb7ec125fe5eb2e0bad7364466154",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 7.72,
+      "stderr_tail": "[robosuite WARNING] No private macro file found! (macros.py:57)\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:58)\n[robosuite WARNING] To setup, run: python /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/scripts/setup_macros.py (macros.py:59)\n[robosuite WARNING] Could not import robosuite_models. Some robots may not be available. If you want to use these robots, please install robosuite_models from source (https://github.com/ARISE-Initiative/robosuite_models) or through pip install. (__init__.py:30)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n[robosuite INFO] Loading controller configuration from: /home/ubuntu/rsh-runtime/cache/source-robosuite/robosuite/controllers/config/robots/default_ur5e.json (composite_controller_factory.py:121)\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

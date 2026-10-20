@@ -1,0 +1,88 @@
+{
+  "schema_version": "1",
+  "skill_id": "dmcontrol-cartpole-balance",
+  "recorded_at": "2026-10-20T05:42:09.754523+00:00",
+  "hub_commit": "c2638b0d61d218be5da65c81e2b1633c5f254c52",
+  "adapter_sha256": "7782d02261bad5df807a062fcb1fdd8c643a75b2c8e510867f21808673b4f10e",
+  "source_commit": "3831fa523c160fe653d83a829d0a0c59715f5725",
+  "archive_sha256": "26a454bca7290df5df3376e36b31bb7ef56364fc3a45fc074f83cb3d30e50b5a",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "a5e6d397b82469e4c32e1b34b53869b749ae1021f59c36c364b7a0e1bed707a1",
+  "environment": {
+    "runtime": "dm-control",
+    "runtime_version": "1.0.34",
+    "robot": "cartpole",
+    "controller": "privileged_state_bounded_feedback",
+    "observation": "simulator_state_and_native_reward",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "dm-control": "1.0.34",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-cartpole-balance",
+        "status": "failed",
+        "success": false,
+        "reason_code": "execution_failed",
+        "message": "mjd_transitionFD: RK4 integrator is not supported",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.388,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-cartpole-balance",
+        "status": "failed",
+        "success": false,
+        "reason_code": "execution_failed",
+        "message": "mjd_transitionFD: RK4 integrator is not supported",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.389,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 1,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "dmcontrol-cartpole-balance",
+        "status": "failed",
+        "success": false,
+        "reason_code": "execution_failed",
+        "message": "mjd_transitionFD: RK4 integrator is not supported",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.395,
+      "stderr_tail": "libEGL warning: failed to open /dev/dri/renderD128: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card0: Permission denied\n\nlibEGL warning: failed to open /dev/dri/renderD129: Permission denied\n\nlibEGL warning: failed to open /dev/dri/card1: Permission denied\n\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

@@ -1,6 +1,6 @@
 # Diverse simulation execution receipts
 
-These are fixed maintainer-authored cases, not general accuracy or physical compatibility. Current bytes, source, environment and case plan are checked by tools/runtime_expansion.py.
+These are fixed maintainer-authored cases, not general accuracy or physical compatibility. Current bytes, source, environment and case plan are checked by tools/runtime_expansion.py. The [latest addition summary](seed-expansion-summary.json) covers 41 recipes; prior cohort summaries remain historical.
 
 | Recipe | Passed | Failed | Source of executed adapter |
 | --- | ---: | ---: | --- |
@@ -40,5 +40,44 @@ These are fixed maintainer-authored cases, not general accuracy or physical comp
 | [mujoco-universal-robots-ur5e-joint-control](mujoco-universal-robots-ur5e-joint-control.json) | 3 | 0 | 09375f440444 |
 | [mujoco-unitree-go2-stand-control](mujoco-unitree-go2-stand-control.json) | 3 | 0 | cd2f10d28100 |
 | [mujoco-shadow-dexee-finger-control](mujoco-shadow-dexee-finger-control.json) | 3 | 0 | cd2f10d28100 |
-
-[Machine-readable run summary](run-summary.json) | [Initial attempts](initial-attempts/README.md) | [Normal fresh-project preparation and execution](prepared/README.md)
+| [mujoco-arx-l5-joint-control](mujoco-arx-l5-joint-control.json) | 3 | 0 | 8e33f5004a3f |
+| [mujoco-dynamixel-2r-joint-control](mujoco-dynamixel-2r-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-flexiv-rizon4-joint-control](mujoco-flexiv-rizon4-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-flexiv-rizon4s-joint-control](mujoco-flexiv-rizon4s-joint-control.json) | 3 | 0 | 8e33f5004a3f |
+| [mujoco-franka-fr3-v2-joint-control](mujoco-franka-fr3-v2-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-google-robot-joint-control](mujoco-google-robot-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-hello-robot-stretch-3-joint-control](mujoco-hello-robot-stretch-3-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-low-cost-robot-arm-joint-control](mujoco-low-cost-robot-arm-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-robotis-omy-3m-joint-control](mujoco-robotis-omy-3m-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-seeed-rebot-devarm-joint-control](mujoco-seeed-rebot-devarm-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-stanford-tidybot-joint-control](mujoco-stanford-tidybot-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-trossen-vx300s-joint-control](mujoco-trossen-vx300s-joint-control.json) | 3 | 0 | 8e33f5004a3f |
+| [mujoco-trossen-wx250s-joint-control](mujoco-trossen-wx250s-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [mujoco-trossen-wxai-joint-control](mujoco-trossen-wxai-joint-control.json) | 3 | 0 | 8e33f5004a3f |
+| [mujoco-unitree-z1-joint-control](mujoco-unitree-z1-joint-control.json) | 3 | 0 | 88e9da93273a |
+| [pandagym-panda-reach](pandagym-panda-reach.json) | 3 | 0 | 8e33f5004a3f |
+| [pandagym-panda-push](pandagym-panda-push.json) | 1 | 2 | 8e33f5004a3f |
+| [pandagym-panda-pick-place](pandagym-panda-pick-place.json) | 3 | 0 | 8e33f5004a3f |
+| [pandagym-panda-slide](pandagym-panda-slide.json) | 0 | 3 | 8e33f5004a3f |
+| [pandagym-panda-stack](pandagym-panda-stack.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-reacher-easy](dmcontrol-reacher-easy.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-reacher-hard](dmcontrol-reacher-hard.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-point-mass-easy](dmcontrol-point-mass-easy.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-point-mass-hard](dmcontrol-point-mass-hard.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-cartpole-balance](dmcontrol-cartpole-balance.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-cartpole-balance-sparse](dmcontrol-cartpole-balance-sparse.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-pendulum-swingup](dmcontrol-pendulum-swingup.json) | 3 | 0 | 8e33f5004a3f |
+| [dmcontrol-finger-spin](dmcontrol-finger-spin.json) | 0 | 3 | 8e33f5004a3f |
+| [dmcontrol-ball-in-cup-catch](dmcontrol-ball-in-cup-catch.json) | 1 | 2 | 8e33f5004a3f |
+| [robosuite-panda-stack](robosuite-panda-stack.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-panda-pick-place-can](robosuite-panda-pick-place-can.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-sawyer-stack](robosuite-sawyer-stack.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-sawyer-pick-place-can](robosuite-sawyer-pick-place-can.json) | 0 | 3 | 8e33f5004a3f |
+| [robosuite-iiwa-stack](robosuite-iiwa-stack.json) | 2 | 1 | 8e33f5004a3f |
+| [robosuite-iiwa-pick-place-can](robosuite-iiwa-pick-place-can.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-ur5e-stack](robosuite-ur5e-stack.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-ur5e-pick-place-can](robosuite-ur5e-pick-place-can.json) | 3 | 0 | 8e33f5004a3f |
+| [robosuite-jaco-stack](robosuite-jaco-stack.json) | 0 | 3 | 8e33f5004a3f |
+| [robosuite-jaco-pick-place-can](robosuite-jaco-pick-place-can.json) | 0 | 3 | 8e33f5004a3f |
+| [robosuite-kinova3-stack](robosuite-kinova3-stack.json) | 2 | 1 | 8e33f5004a3f |
+| [robosuite-kinova3-pick-place-can](robosuite-kinova3-pick-place-can.json) | 3 | 0 | 8e33f5004a3f |

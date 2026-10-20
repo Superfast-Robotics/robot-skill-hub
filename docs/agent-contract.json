@@ -47,7 +47,8 @@
     "license_policy_url": "https://hub.superfastrobotics.com/license-policy.json",
     "sample_pages_url": "https://hub.superfastrobotics.com/samples/",
     "sample_index_url": "https://hub.superfastrobotics.com/samples/index.json",
-    "diverse_runtime_guide_url": "https://hub.superfastrobotics.com/runtime-expansion.md"
+    "diverse_runtime_guide_url": "https://hub.superfastrobotics.com/runtime-expansion.md",
+    "simulation_starting_policies_url": "https://hub.superfastrobotics.com/simulation-starting-policies.md"
   },
   "cli": {
     "minimum_python": "3.10",

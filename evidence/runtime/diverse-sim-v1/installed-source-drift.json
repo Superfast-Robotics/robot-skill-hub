@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-20T05:51:15.836882+00:00",
+  "skill_id": "dmcontrol-point-mass-hard",
+  "adapter_sha256": "9375863fb9b1c0243cc2a1801a3c5147af83502f52843628eb9412955e47afbf",
+  "test": "Modify installed pinned task code while source archive stays unchanged; reject before simulation",
+  "exit_code": 2,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "dmcontrol-point-mass-hard",
+    "status": "failed",
+    "success": false,
+    "reason_code": "invalid_input_or_environment",
+    "message": "Installed DM Control differs from pinned source: dm_control/suite/point_mass.py",
+    "hardware_execution": false
+  },
+  "installed_file_restored": true,
+  "hardware_execution": false
+}

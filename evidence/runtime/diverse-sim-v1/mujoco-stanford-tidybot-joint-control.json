@@ -1,0 +1,183 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-stanford-tidybot-joint-control",
+  "recorded_at": "2026-10-20T05:37:41.152796+00:00",
+  "hub_commit": "88e9da93273a58da51c465ed119ac2662499ca0c",
+  "adapter_sha256": "7d9a6a34ff1c486572bf05742850d5ab5186d2e84f12e119163bfd5a4da8fc77",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "3e12afdda79dd7ff790833fa7fda342492bbd153487f732b883a553560e1b9ba",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "stanford_tidybot",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-stanford-tidybot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.050000000000030485,
+            0.049999999998620655,
+            0.3255115518736433,
+            3.1916712933559457,
+            -2.226750703498692,
+            0.05022321590743718,
+            0.9986304139381008,
+            1.620792162219718
+          ],
+          "target_joint_positions_rad": [
+            0.05000000000003046,
+            0.04999999999862066,
+            0.3183973940621702,
+            3.1916553408562023,
+            -2.2228594572960483,
+            0.050010288730908035,
+            1.0042799317118383,
+            1.6207994956679421
+          ],
+          "max_error_rad": 0.007114157811473065,
+          "movement_rad": 0.057114157811473054
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.512,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-stanford-tidybot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.0800000000000305,
+            0.07999999999862059,
+            0.3557968370156322,
+            3.2216329996363076,
+            -2.1967485520950096,
+            0.08036183362868221,
+            1.0286415129363438,
+            1.6507856462036044
+          ],
+          "target_joint_positions_rad": [
+            0.08000000000003045,
+            0.07999999999862066,
+            0.34839739406217024,
+            3.2216553408562025,
+            -2.192859457296048,
+            0.08001028873090804,
+            1.0342799317118383,
+            1.6507994956679422
+          ],
+          "max_error_rad": 0.007399442953461954,
+          "movement_rad": 0.08739944295346197
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.505,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-stanford-tidybot-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.049999999999969576,
+            -0.050000000001379274,
+            0.22450872146698928,
+            3.09174768532774,
+            -2.3267475103549233,
+            -0.05014637815935761,
+            0.8986587741362073,
+            1.520812562175481
+          ],
+          "target_joint_positions_rad": [
+            -0.04999999999996955,
+            -0.050000000001379344,
+            0.21839739406217024,
+            3.0916553408562026,
+            -2.322859457296048,
+            -0.04998971126909197,
+            0.9042799317118382,
+            1.520799495667942
+          ],
+          "max_error_rad": 0.006111327404819039,
+          "movement_rad": 0.05562115757563091
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.511,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

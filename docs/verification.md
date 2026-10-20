@@ -1,12 +1,22 @@
 # Verification record
 
+## Simulation starting policies and repository positioning, 2026-10-20
+
+The Hub is a public robot-skill repository: **Discover robotics skills for AI agents**. The homepage, README, sample metadata and GitHub About describe discovery and reuse. The inappropriate skill-marketplace topic was removed. Existing references to actual third-party plugin marketplaces remain about those external services.
+
+An isolated Lambda A10 host actually ran 41 new simulation recipes against 123 fixed cases. Thirty-two recipes completed every case; 102 cases passed and 21 failed. All 82 unknown-field and source-drift rejection checks passed. Current totals are 139 preparation recipes, 116 complete, 12 failed suites, 11 without a current task run and zero unbound completion claims. Completions comprise 33 computations and 83 simulations; physical robot completions remain zero. The [starting-policy guide](simulation-starting-policies.md) and [receipt summary](../evidence/runtime/diverse-sim-v1/seed-expansion-summary.json) give exact scope. Earlier attempts remain archived; best-case selection is not used to promote an adapter.
+
+Four clean, independent project directories exercised ordinary preparation, explicit dependency installation and execution of the returned command for Panda Gym Stack, randomized DM Control point-mass control, Robosuite Panda Stack and load-compensated ARX joint control. Adapter, source and MIT license bytes were preserved. A separate [installed-source drift check](../evidence/runtime/diverse-sim-v1/installed-source-drift.json) changed installed DM Control task code while leaving the source archive unchanged; the adapter rejected execution before simulation and the original file was restored. An accidentally overlapping earlier harness invocation collided during dependency preparation; clean-project receipts establish successful sequential reuse, not concurrent preparation into the same project.
+
+The 139 static samples retain HTML, Markdown and JSON contracts, source pins and measured evidence. The complete coverage JSON is deterministically compacted within the existing 256 KiB limit; no rows, evidence fields or API quotas were dropped. Recipe wrappers keep their original Python contracts and upstream license boundaries. No Worker implementation, database migration or recurring cloud job is introduced.
+
 ## Diverse simulation execution and searchable examples, 2026-10-20
 
 Two isolated Lambda A100 hosts ran 36 new adapters against 108 predeclared cases, retaining both successful and failed outcomes. Thirty-four new recipes completed every case. Current catalog totals are 98 prepared recipes, 84 completed, three with retained failed suites and 11 without a current task run. Completed evidence comprises 33 computations and 51 simulations; physical execution remains zero. See [runtime expansion](runtime-expansion.md) for models, goals, versions and reproducible commands.
 
 Fresh-project tests exercised the normal CLI source archive check, dependency installation, MIT license/scope packaging and returned execution command in four environments. They also exposed legitimate LeRobot archive links and Linux source-build dependencies; the solution selects regular pinned code and permits the documented explicit dependency build while preserving archive traversal/link rejection. Negative tests reject unknown input, changed source, stale adapters, relabeled environments/abstraction, and reported success inconsistent with measured goals. Cases remain authored regression checks, not general accuracy or independent adoption.
 
-The homepage now identifies the Hub as an open robotics skill marketplace/source catalog before reuse measurements. Each current recipe has a static input example in HTML, Markdown and JSON, with a canonical URL, exact evidence and version-pinned API handoff. Samples, coverage and the parallel marketing work's problem pages are linked in the sitemap. Publication does not establish that a third-party search engine has indexed or ranked a page.
+The homepage identifies the Hub as a source catalog before reuse measurements. Each current recipe has a static input example in HTML, Markdown and JSON, with a canonical URL, exact evidence and version-pinned API handoff. Samples, coverage and the parallel marketing work's problem pages are linked in the sitemap. Publication does not establish that a third-party search engine has indexed or ranked a page.
 
 ## Component licensing and evidence-backed coverage, 0.5.1
 
