@@ -1,0 +1,177 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-rethink-robotics-sawyer-joint-control",
+  "recorded_at": "2026-10-20T04:29:13.525639+00:00",
+  "hub_commit": "09375f440444b84e5892864e9893de8232b5ddd3",
+  "adapter_sha256": "4f6022fb6785b789a75cb1eb2d76fdcaf27bf893a2448d9320c9b17ab58ea477",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "c1b681bbe3c406cd1b6c2d26dc4fc4a9be716eef25472b8b7dbd15a9cde35276",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "rethink_robotics_sawyer",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-rethink-robotics-sawyer-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.04988290559460644,
+            -1.088014704513809,
+            0.05606842994141382,
+            2.242334532504306,
+            0.0460320957742741,
+            0.6194131311456952,
+            3.366088397076999
+          ],
+          "target_joint_positions_rad": [
+            0.050015170469743325,
+            -1.1096273478188419,
+            0.05282303404110274,
+            2.2368282032724043,
+            0.047865074732073735,
+            0.6199010334707916,
+            3.3661005245258173
+          ],
+          "max_error_rad": 0.021612643305032764,
+          "movement_rad": 0.07161264330503281
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.458,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-rethink-robotics-sawyer-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.07990850388577843,
+            -1.057663780199339,
+            0.08608866181433383,
+            2.2716014961297892,
+            0.07625727791131416,
+            0.6492952355253988,
+            3.3960928276144293
+          ],
+          "target_joint_positions_rad": [
+            0.08001517046974332,
+            -1.0796273478188418,
+            0.08282303404110274,
+            2.2668282032724045,
+            0.07786507473207373,
+            0.6499010334707915,
+            3.3961005245258176
+          ],
+          "max_error_rad": 0.02196356761950291,
+          "movement_rad": 0.10196356761950298
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.467,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-rethink-robotics-sawyer-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04985277672179297,
+            -1.1893101596153874,
+            -0.044102334320726286,
+            2.1447352726390068,
+            -0.0545918657081748,
+            0.5198675451186094,
+            3.266118886375849
+          ],
+          "target_joint_positions_rad": [
+            -0.04998482953025668,
+            -1.209627347818842,
+            -0.04717696595889727,
+            2.1368282032724046,
+            -0.05213492526792627,
+            0.5199010334707915,
+            3.2661005245258177
+          ],
+          "max_error_rad": 0.020317188203454517,
+          "movement_rad": 0.05245694044024853
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.461,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

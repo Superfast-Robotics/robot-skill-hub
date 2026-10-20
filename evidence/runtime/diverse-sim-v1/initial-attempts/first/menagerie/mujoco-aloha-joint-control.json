@@ -1,0 +1,207 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-aloha-joint-control",
+  "recorded_at": "2026-10-20T04:25:59.683046+00:00",
+  "hub_commit": "9d37ea10504b109f3cc56f0b1f697eb7eff25a9e",
+  "adapter_sha256": "a4d6078a40b10f4094529fb404fe17aa0fc17bfd60aac9e2b9edb849c32e78f0",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "case_plan_sha256": "f397d0e69aa84ddc2f4d93d6465daf6ccf14b5e11f05319934232223cdb28e1a",
+  "source_guards_sha256": "e1d0039a9e6c45c1e078c91d35a7cc34e7aff4b105e89142993eab24262291ef",
+  "environment": {
+    "runtime": "mujoco",
+    "runtime_version": "3.3.7",
+    "robot": "aloha",
+    "controller": "native_position_actuators",
+    "observation": "joint_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-aloha-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.050000006584346994,
+            -0.9096772007581012,
+            1.250373787159255,
+            0.04964015797179839,
+            -0.19739844125054712,
+            0.05155597934299929,
+            0.050000006584346994,
+            -0.9096772007581012,
+            1.250373787159255,
+            0.04964015797179839,
+            -0.1973984412505471,
+            0.051555979342999284
+          ],
+          "target_joint_positions_rad": [
+            0.050000006794714495,
+            -0.9097903220705341,
+            1.2289585793457067,
+            0.049661195970336844,
+            -0.22403563458423764,
+            0.0500673560384061,
+            0.050000006794714495,
+            -0.9097903220705341,
+            1.2289585793457067,
+            0.049661195970336844,
+            -0.22403563458423764,
+            0.0500673560384061
+          ],
+          "max_error_rad": 0.02663719333369055,
+          "movement_rad": 0.07663719333369054
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.297,
+      "stderr_tail": "",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.05
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-aloha-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            0.08000000680288895,
+            -0.879354126410075,
+            1.2800448617155202,
+            0.07979378020369882,
+            -0.16749977797228693,
+            0.08235735074604943,
+            0.08000000680288895,
+            -0.879354126410075,
+            1.2800448617155202,
+            0.07979378020369882,
+            -0.16749977797228696,
+            0.08235735074604943
+          ],
+          "target_joint_positions_rad": [
+            0.0800000067947145,
+            -0.8797903220705342,
+            1.2589585793457068,
+            0.07966119597033684,
+            -0.19403563458423762,
+            0.0800673560384061,
+            0.0800000067947145,
+            -0.8797903220705342,
+            1.2589585793457068,
+            0.07966119597033684,
+            -0.19403563458423762,
+            0.0800673560384061
+          ],
+          "max_error_rad": 0.02653585661195068,
+          "movement_rad": 0.1065358566119507
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.272,
+      "stderr_tail": "",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": 0.08
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "mujoco-aloha-joint-control",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "joint_positions_rad": [
+            -0.04999998891153196,
+            -1.0087718966420456,
+            1.1517323855430488,
+            -0.05106484634054007,
+            -0.2987583142186416,
+            -0.0513307122385384,
+            -0.04999998891153196,
+            -1.0087718966420456,
+            1.1517323855430488,
+            -0.05106484634054007,
+            -0.2987583142186416,
+            -0.0513307122385384
+          ],
+          "target_joint_positions_rad": [
+            -0.04999999320528551,
+            -1.0097903220705342,
+            1.1289585793457066,
+            -0.05033880402966316,
+            -0.3240356345842376,
+            -0.04993264396159391,
+            -0.04999999320528551,
+            -1.0097903220705342,
+            1.1289585793457066,
+            -0.05033880402966316,
+            -0.3240356345842376,
+            -0.04993264396159391
+          ],
+          "max_error_rad": 0.025277320365596045,
+          "movement_rad": 0.05139806827694449
+        },
+        "checks": {
+          "nontrivial_target": true,
+          "joint_goal_reached": true,
+          "actual_motion": true,
+          "finite_state": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 1.182,
+      "stderr_tail": "",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": -0.05
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

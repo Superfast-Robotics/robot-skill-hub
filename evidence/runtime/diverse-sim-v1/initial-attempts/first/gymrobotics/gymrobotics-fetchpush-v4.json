@@ -1,0 +1,152 @@
+{
+  "schema_version": "1",
+  "skill_id": "gymrobotics-fetchpush-v4",
+  "recorded_at": "2026-10-20T04:25:58.233913+00:00",
+  "hub_commit": "9d37ea10504b109f3cc56f0b1f697eb7eff25a9e",
+  "adapter_sha256": "4327bb3e8c3ec0bf7f426f5796a8ec62593bd6a2aa87874ece262a7d2d0362a6",
+  "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+  "archive_sha256": "3c675a90d800b7f1a48710051f106d6c4019f06d859aa928a5cd82e8be141890",
+  "case_plan_sha256": "8abefc982ba705012f2f3a2d229816ac5b7693536ec14f02279ddcc6ddb5d254",
+  "source_guards_sha256": "dff032943e0667b5017b40ad1faf01223ce928644ed097e191fb8795d19c69a3",
+  "environment": {
+    "runtime": "gymnasium-robotics",
+    "runtime_version": "1.4.2",
+    "robot": "fetch",
+    "controller": "cartesian_delta_feedback",
+    "observation": "goal_dict",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.10"
+  },
+  "packages": {
+    "gymnasium": "1.2.0",
+    "gymnasium-robotics": "1.4.2",
+    "mujoco": "3.3.7",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "gymrobotics-fetchpush-v4",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "achieved_goal": [
+            1.4170821816319663,
+            0.8811701604110656,
+            0.42473346407927315
+          ],
+          "desired_goal": [
+            1.4395217056294507,
+            0.8728510104851657,
+            0.4246997490299934
+          ],
+          "error_m": 0.02393202100592062,
+          "steps": 82,
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "finite_state": true,
+          "bounded_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.808,
+      "stderr_tail": "AdroitHandRelocateDense-v1, AdroitHandHammerDense-v1, AdroitHandDoorDense-v1 environment's reward functions were updated in v1.2.1 without an environment version update. Therefore, use gymnasium-robotics==1.2.0 for v1 reproducibility or use v2 in gymnasium-robotics>=1.4.3. See https://github.com/Farama-Foundation/Gymnasium-Robotics/pull/220 for more details\n",
+      "input": {
+        "seed": 0
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "gymrobotics-fetchpush-v4",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "achieved_goal": [
+            1.247450847594202,
+            0.8844386358144183,
+            0.4237122585976986
+          ],
+          "desired_goal": [
+            1.238788517685259,
+            0.8836191714430223,
+            0.4246997490299934
+          ],
+          "error_m": 0.008756861233411756,
+          "steps": 76,
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "finite_state": true,
+          "bounded_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.74,
+      "stderr_tail": "AdroitHandRelocateDense-v1, AdroitHandHammerDense-v1, AdroitHandDoorDense-v1 environment's reward functions were updated in v1.2.1 without an environment version update. Therefore, use gymnasium-robotics==1.2.0 for v1 reproducibility or use v2 in gymnasium-robotics>=1.4.3. See https://github.com/Farama-Foundation/Gymnasium-Robotics/pull/220 for more details\n",
+      "input": {
+        "seed": 1
+      },
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "gymrobotics-fetchpush-v4",
+        "status": "task_complete",
+        "success": true,
+        "outputs": {
+          "achieved_goal": [
+            1.3910054584122682,
+            0.8048681327735971,
+            0.42338368205344257
+          ],
+          "desired_goal": [
+            1.3755707916590652,
+            0.8175924953453875,
+            0.4246997490299934
+          ],
+          "error_m": 0.020046704789754788,
+          "steps": 78,
+          "environment_success": true
+        },
+        "checks": {
+          "environment_goal": true,
+          "finite_state": true,
+          "bounded_steps": true
+        },
+        "execution_domain": "simulation",
+        "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
+        "interface_version": "1",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 0.744,
+      "stderr_tail": "AdroitHandRelocateDense-v1, AdroitHandHammerDense-v1, AdroitHandDoorDense-v1 environment's reward functions were updated in v1.2.1 without an environment version update. Therefore, use gymnasium-robotics==1.2.0 for v1 reproducibility or use v2 in gymnasium-robotics>=1.4.3. See https://github.com/Farama-Foundation/Gymnasium-Robotics/pull/220 for more details\n",
+      "input": {
+        "seed": 2
+      },
+      "passed": true
+    }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

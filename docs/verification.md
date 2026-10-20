@@ -1,5 +1,13 @@
 # Verification record
 
+## Diverse simulation execution and searchable examples, 2026-10-20
+
+Two isolated Lambda A100 hosts ran 36 new adapters against 108 predeclared cases, retaining both successful and failed outcomes. Thirty-four new recipes completed every case. Current catalog totals are 98 prepared recipes, 84 completed, three with retained failed suites and 11 without a current task run. Completed evidence comprises 33 computations and 51 simulations; physical execution remains zero. See [runtime expansion](runtime-expansion.md) for models, goals, versions and reproducible commands.
+
+Fresh-project tests exercised the normal CLI source archive check, dependency installation, MIT license/scope packaging and returned execution command in four environments. They also exposed legitimate LeRobot archive links and Linux source-build dependencies; the solution selects regular pinned code and permits the documented explicit dependency build while preserving archive traversal/link rejection. Negative tests reject unknown input, changed source, stale adapters, relabeled environments/abstraction, and reported success inconsistent with measured goals. Cases remain authored regression checks, not general accuracy or independent adoption.
+
+The homepage now identifies the Hub as an open robotics skill marketplace/source catalog before reuse measurements. Each current recipe has a static input example in HTML, Markdown and JSON, with a canonical URL, exact evidence and version-pinned API handoff. Samples, coverage and the parallel marketing work's problem pages are linked in the sitemap. Publication does not establish that a third-party search engine has indexed or ranked a page.
+
 ## Component licensing and evidence-backed coverage, 0.5.1
 
 The platform uses Apache-2.0. Hub-authored execution adapters and their source templates retain MIT under directory-specific license files. Original external licenses and notices remain applicable; no catalog source is relabeled and earlier MIT releases retain their terms. Prepared projects now include the Hub adapter's MIT text and scope notice alongside the separate upstream checkout. Execution adapter bytes are unchanged, so retained exact-byte runtime receipts remain applicable.

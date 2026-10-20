@@ -1,6 +1,6 @@
 # Official sample sources
 
-The Hub contains two kinds of entries:
+The Hub contains preparation recipes and source references. [Current coverage](https://hub.superfastrobotics.com/coverage.html) includes 98 recipes and 1,330 references; [diverse simulation execution](runtime-expansion.md) describes the latest additions. The following historical source selections retain their original counts and evidence:
 
 - **17 preparation recipes** wrap actual official ManiSkill motion-planning
   solvers with a pinned source archive, dependency recipe, isolated preparation,

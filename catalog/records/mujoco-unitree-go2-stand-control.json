@@ -69,7 +69,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -262,7 +262,11 @@
       "depends_on": [],
       "automatic_frame_conversion": false,
       "automatic_hardware_execution": false
-    }
+    },
+    "origin_reference_ids": [
+      "mujoco-menagerie-artifact-unitree-go2-scene-xml"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
   },
   "completion": {
     "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Maintain standing for 3500 native simulation steps using bounded joint PD torques, including reset-time base-velocity perturbations. Upright/height/tracking postconditions are required. No gait or locomotion capability is asserted.",
@@ -291,28 +295,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-unitree-go2-stand-control.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
       "adapter_sha256": "6363f37aae7bffabee77bcd279130f0ab55a8fa90320e5284fa3070fbb54f6b7",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },

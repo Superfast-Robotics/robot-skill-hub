@@ -2,6 +2,8 @@
 
 Find a preparation recipe, inspect its exact source, interface and evidence, then prepare it in the caller's project. Execution is a separate explicit local operation. The public API/MCP never executes robotics code.
 
+Current inventory: 98 preparation recipes across the original 17 ManiSkill tasks, 45 numerical/synthetic adaptations and [36 diverse robot simulation adapters](runtime-expansion.md). Current-version completion evidence covers 84 recipes; failed and unexecuted recipes remain separate. [Concrete input examples](https://hub.superfastrobotics.com/samples/) are available without installation.
+
 ```sh
 python /PATH_TO_SKILL/scripts/rsh.py find "astar" --runtime pythonrobotics --json
 python /PATH_TO_SKILL/scripts/rsh.py inspect pythonrobotics-astar-planner --json
@@ -45,7 +47,7 @@ Converted recipes use `preparation.source_selection=declared_paths`. Preparation
 
 ## Verification and extension
 
-This release adds 45 parameterized adapters: 28 PythonRobotics algorithms, five Ruckig trajectory operations and 12 PyBullet DIRECT simulation operations. Together with 17 existing ManiSkill task recipes, there are 62 preparation recipes. Twenty-four indexed reference origins now point to executable adaptations; the other 21 operations extend those same reviewed upstream projects. The 1,330 source references retain their own evidence and are not counted as executed skills.
+This conversion cohort adds 45 parameterized adapters: 28 PythonRobotics algorithms, five Ruckig trajectory operations and 12 PyBullet DIRECT simulation operations. Together with 17 existing ManiSkill task recipes, these two cohorts account for 62 preparation recipes. The additional 36 diverse simulation adapters are documented separately. Twenty-four indexed reference origins point to this cohort's adaptations; the other 21 operations extend those same reviewed upstream projects. The 1,330 source references retain their own evidence and are not counted as executed skills.
 
 The path smoother adapts upstream shortcut selection with corrected arclength interpolation and an exact segment/circle collision predicate. It rejects an already colliding input path. `tools/verify_executable_composition.py` tests real A* outputs passed through the shared interface into the smoother on three fixed maps, including obstacle and convex map-bound checks. The [composition receipt](https://github.com/Superfast-Robotics/robot-skill-hub/blob/main/evidence/integration/executable-composition-v1.json) records the exact adapter hashes. This verifies this specific two-step composition, not arbitrary workflows.
 

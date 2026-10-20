@@ -4,7 +4,10 @@ import hashlib
 import html
 import json
 from pathlib import Path
-from runtime_expansion import bound_receipt
+if __package__:
+    from .runtime_expansion import bound_receipt
+else:
+    from runtime_expansion import bound_receipt
 
 STATES = ('completed', 'failed', 'not_executed', 'evidence_unbound')
 ENV_FIELDS = ('runtime', 'runtime_version', 'robot', 'controller', 'observation', 'os', 'architecture', 'python')
@@ -57,7 +60,8 @@ def build_coverage(records, references, root, hub_commit, base):
         if ident in expansion:
             recipe=expansion[ident];source=expansion_plan['sources'][recipe['source_id']]
             try:
-                if record.get('interface')!=recipe['interface'] or [{k:c.get(k) for k in ENV_FIELDS} for c in record['compatibility']]!=[recipe['environment']]:raise ValueError('Changed interface/environment')
+                execution_interface={k:v for k,v in record.get('interface',{}).items() if k not in ['origin_reference_ids','origin_relationship']}
+                if execution_interface!=recipe['interface'] or [{k:c.get(k) for k in ENV_FIELDS} for c in record['compatibility']]!=[recipe['environment']]:raise ValueError('Changed interface/environment')
                 if any(record['source'].get(k)!=source[k] for k in ['repository','commit','archive_sha256']):raise ValueError('Changed source identity')
                 proof=bound_receipt(root,recipe,source,adapter.read_bytes())
                 if proof:

@@ -20,26 +20,52 @@ Public reads need no account, GPU or simulator. Discovery never executes robot c
 <!-- rsh-coverage:start -->
 ## Current execution and reference coverage
 
-62 preparation recipes: **50 completed operations/tasks**, 1 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
+98 preparation recipes: **84 completed operations/tasks**, 3 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
 
 | Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
+| gymnasium-robotics | fetch | simulation | 3 | 3 | 0 | 0 |
+| gymnasium-robotics | point-mass | simulation | 3 | 3 | 0 | 0 |
+| lerobot | pusht-2d-pusher | simulation | 1 | 0 | 1 | 0 |
 | maniskill | panda | simulation | 8 | 5 | 1 | 2 |
 | maniskill | panda_stick | simulation | 2 | 0 | 0 | 2 |
 | maniskill | panda_wristcam | simulation | 2 | 0 | 0 | 2 |
 | maniskill | so100 | simulation | 1 | 0 | 0 | 1 |
 | maniskill | xarm6_robotiq | simulation | 4 | 0 | 0 | 4 |
+| mujoco | agilex_piper | simulation | 1 | 1 | 0 | 0 |
+| mujoco | aloha | simulation | 1 | 1 | 0 | 0 |
+| mujoco | franka_emika_panda | simulation | 1 | 1 | 0 | 0 |
+| mujoco | franka_fr3 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | hello_robot_stretch | simulation | 1 | 1 | 0 | 0 |
+| mujoco | i2rt_yam | simulation | 1 | 1 | 0 | 0 |
+| mujoco | kinova_gen3 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | kuka_iiwa_14 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | rethink_robotics_sawyer | simulation | 1 | 1 | 0 | 0 |
+| mujoco | robotstudio_so101 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | shadow_dexee | simulation | 1 | 1 | 0 | 0 |
+| mujoco | trs_so_arm100 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | ufactory_lite6 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | ufactory_xarm7 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | unitree_go2 | simulation | 1 | 1 | 0 | 0 |
+| mujoco | universal_robots_ur10e | simulation | 1 | 1 | 0 | 0 |
+| mujoco | universal_robots_ur5e | simulation | 1 | 1 | 0 | 0 |
 | pybullet | synthetic-seven-axis-or-procedural-scene | simulation | 12 | 12 | 0 | 0 |
 | pythonrobotics | mathematical-model | computation | 28 | 28 | 0 | 0 |
+| robosuite | IIWA | simulation | 2 | 2 | 0 | 0 |
+| robosuite | Jaco | simulation | 2 | 1 | 1 | 0 |
+| robosuite | Kinova3 | simulation | 2 | 2 | 0 | 0 |
+| robosuite | Panda | simulation | 2 | 2 | 0 | 0 |
+| robosuite | Sawyer | simulation | 2 | 2 | 0 | 0 |
+| robosuite | UR5e | simulation | 2 | 2 | 0 | 0 |
 | ruckig | independent-axes | computation | 5 | 5 | 0 | 0 |
 
-Completion evidence covers 33 computations and 17 simulations across 6 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
+Completion evidence covers 33 computations and 51 simulations across 32 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
 
 | Task level | Prepared | Passed | Failed | No task run |
 | --- | ---: | ---: | ---: | ---: |
 | Algorithm / sensing | 39 | 39 | 0 | 0 |
-| Motion / control | 6 | 6 | 0 | 0 |
-| Task | 17 | 5 | 1 | 11 |
+| Motion / control | 29 | 29 | 0 | 0 |
+| Task | 30 | 16 | 3 | 11 |
 
 **1330 source references across 44 frameworks.** References are upstream declarations, not Hub execution evidence.
 
@@ -75,7 +101,7 @@ Robot categories and task/capability tags can overlap. Generic labels are preser
 [All robot, environment and task tables](https://hub.superfastrobotics.com/coverage.html) | [Compact coverage API](https://api.superfastrobotics.com/v1/coverage) | [Complete coverage JSON](https://hub.superfastrobotics.com/catalog/v1/coverage.json)
 <!-- rsh-coverage:end -->
 
-[Executable skills and interfaces](docs/executable-skills.md): 62 preparation recipes, including 45 new parameterized adaptations for planning, kinematics, filtering, trajectory generation and headless simulation. Inputs and outputs declare units, frames, abstraction level and runtime evidence. Indexed references link to matching prepared adaptations without changing the reference's evidence.
+[Executable skills and interfaces](docs/executable-skills.md): 98 preparation recipes, including 45 numerical/synthetic adaptations and [36 diverse robot simulation adapters](docs/runtime-expansion.md). Inputs and outputs declare units, frames, abstraction level and runtime evidence. Indexed references link to matching prepared adaptations without changing the reference's evidence.
 
 ```sh
 npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills

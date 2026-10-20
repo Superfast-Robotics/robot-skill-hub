@@ -44,7 +44,10 @@
     "coverage_url": "https://hub.superfastrobotics.com/catalog/v1/coverage.json",
     "coverage_tables_url": "https://hub.superfastrobotics.com/coverage.html",
     "coverage_api_url": "https://api.superfastrobotics.com/v1/coverage",
-    "license_policy_url": "https://hub.superfastrobotics.com/license-policy.json"
+    "license_policy_url": "https://hub.superfastrobotics.com/license-policy.json",
+    "sample_pages_url": "https://hub.superfastrobotics.com/samples/",
+    "sample_index_url": "https://hub.superfastrobotics.com/samples/index.json",
+    "diverse_runtime_guide_url": "https://hub.superfastrobotics.com/runtime-expansion.md"
   },
   "cli": {
     "minimum_python": "3.10",

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1",
+  "skill_id": "mujoco-franka-emika-panda-joint-control",
+  "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+  "adapter_sha256": "7d9a4b424672b82ad558b05b148ea345b0a89ac4658b835afacc6cf292043255",
+  "harness_sha256": "93ea74dd3f23ff9fadda35b38999933229f488c08127b845de87ca344070c7a0",
+  "preparation_exit_code": 0,
+  "task_exit_code": 0,
+  "result": {
+    "schema_version": "1",
+    "skill_id": "mujoco-franka-emika-panda-joint-control",
+    "status": "task_complete",
+    "success": true,
+    "outputs": {
+      "joint_positions_rad": [
+        0.07999999846333314,
+        0.09379199545645928,
+        0.07990787415241474,
+        -1.503466747142516,
+        0.07927375965166446,
+        1.6484578280927036,
+        -0.7052986162023889
+      ],
+      "target_joint_positions_rad": [
+        0.07999999846333346,
+        0.08658160573855789,
+        0.07999821994068648,
+        -1.4971027773474217,
+        0.07966552377768032,
+        1.649648903689454,
+        -0.7052999790611584
+      ],
+      "max_error_rad": 0.007210389717901389,
+      "movement_rad": 0.08721038971790139
+    },
+    "checks": {
+      "nontrivial_target": true,
+      "joint_goal_reached": true,
+      "actual_motion": true,
+      "finite_state": true
+    },
+    "execution_domain": "simulation",
+    "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
+    "interface_version": "1",
+    "hardware_execution": false
+  },
+  "adapter_bytes_preserved": true,
+  "mit_license_and_scope_preserved": true,
+  "source_archive_sha256": "6866543ef9f07fd24f3fa4d134c06b30f5276f48daf412022b6edbaf6b2f0152",
+  "elapsed_seconds": 21.352,
+  "hardware_execution": false
+}

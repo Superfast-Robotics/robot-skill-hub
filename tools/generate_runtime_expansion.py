@@ -19,6 +19,9 @@ def record(recipe,source,adapter):
     evidence_path='evidence/runtime/diverse-sim-v1/'+ident+'.json'
     level='task_complete' if complete else 'import_verified' if executed else 'source_reviewed'
     environment=copy.deepcopy(recipe['environment']);environment['status']='hub_verified' if complete else 'source_reviewed'
+    interface=copy.deepcopy(recipe['interface'])
+    if recipe['origin_reference_ids']:
+        interface.update(origin_reference_ids=recipe['origin_reference_ids'],origin_relationship='prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred')
     license=recipe['license']
     invocation=['{python}','{recipe_dir}/run.py','--source-dir','{source_dir}','--example']
     install=['{python}','-m','pip','install']+([] if recipe['backend'] in ['robosuite','lerobot'] else ['--only-binary=:all:'])+['-r','{recipe_dir}/requirements.txt']
@@ -44,7 +47,7 @@ def record(recipe,source,adapter):
         'invocation':{'entrypoint':'python run.py','argv':invocation,'inputs':recipe['example'],
             'outputs':{'format':'single JSON object','payload_selector':'outputs','schema':recipe['interface']['output_schema']},
             'example':'Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation.'},
-        'interface':recipe['interface'],
+        'interface':interface,
         'completion':{'success_condition':'All declared goal and finite-state checks pass; exit 0 with task_complete. '+recipe['goal_scope'],
             'timeout_seconds':1200 if recipe['backend']=='lerobot' else 180,
             'failure_modes':['Invalid input or source checksum','Different pinned package version','Unavailable runtime/driver','Goal not reached within bounded steps'],
