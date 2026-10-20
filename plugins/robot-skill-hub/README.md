@@ -58,5 +58,5 @@ locally. Existing Hub API/MCP checks do not establish client integration, agent
 adoption, task completion or physical hardware compatibility. Plugin version
 `0.1.0` identifies this connection package separately from the hosted service.
 
-Package license: [MIT](LICENSE). Upstream robot code discovered through the Hub
+Package license: [Apache-2.0](LICENSE). Upstream robot code discovered through the Hub
 retains its own per-record license and verification boundaries.

@@ -1,5 +1,7 @@
 # Patches and task memory
 
+New contributions follow the [component license policy](https://hub.superfastrobotics.com/LICENSE_SCOPE.md): Apache-2.0 for the Hub platform and MIT for independently authored execution adapters. Preserve applicable upstream licenses and notices for derived changes. Submit only material you are authorized to license; public-sharing permission does not establish copyright ownership. Catalog records' license fields describe their upstream sources.
+
 For a small reusable observation rather than a code change, use [shared task memory](memory.md). Memory saving and patch submission have separate project authorization. An existing patch-publication policy never authorizes public memory saving.
 
 ## Minimal public patches

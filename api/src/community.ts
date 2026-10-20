@@ -58,7 +58,7 @@ export function validateExperience(value: any): asserts value is Experience {
   if (value.variant !== undefined) {
     assert(fields(value.variant, ['patch', 'license_spdx']) && typeof value.variant.patch === 'string' && new TextEncoder().encode(value.variant.patch).byteLength <= 12000
       && /^--- (?:a\/)?[^\r\n]+\r?\n\+\+\+ (?:b\/)?[^\r\n]+/m.test(value.variant.patch)
-      && typeof value.variant.license_spdx === 'string' && /^[A-Za-z0-9.+-]{2,80}$/.test(value.variant.license_spdx), 'invalid_variant', 'A variant needs a bounded unified diff and the applicable upstream SPDX license.');
+      && typeof value.variant.license_spdx === 'string' && /^[A-Za-z0-9.+-]{2,80}$/.test(value.variant.license_spdx), 'invalid_variant', 'A variant needs a bounded unified diff and the applicable component SPDX license.');
     assert(value.finding.resolution && !value.outcome, 'invalid_variant', 'Describe the reusable change separately from a later reuse outcome.');
     // Inert patch data is downloadable, never applied by the Hub or injected into instructions.
     const paths = parsePatch(value.variant.patch).map(file => file.path);
@@ -175,8 +175,16 @@ export async function handleCommunity(request: Request, env: Env): Promise<Respo
           if (active) row = await indexedRow(db, active.hub_commit, finding.skill_id);
         }
         assert(row && row.record_version === base.record_version && row.source_commit === base.source_commit, 'unknown_source_pins', 'Use a retained published catalog version with these exact source pins.', 409);
-        if (value.variant) assert(row.license?.verified === true && !/^(?:NOASSERTION|LicenseRef-)/.test(row.license?.spdx || '') && row.license?.spdx === value.variant.license_spdx,
-          'license_mismatch', 'Automatic patch publication requires the verified license of the pinned upstream catalog record.');
+        if (value.variant) {
+          const paths = parsePatch(value.variant.patch).map(file => file.path);
+          const ownedPaths = new Set(['recipes/' + row.id + '/run.py', 'recipes/' + row.id + '/requirements.txt']);
+          const owned = paths.map(path => row.kind === 'preparation_recipe' && ownedPaths.has(path));
+          assert(!owned.some(Boolean) || owned.every(Boolean), 'license_mismatch', 'Publish Hub-adapter and upstream changes as separate variants.');
+          const license = owned.every(Boolean) && row.adapter_license?.verified === true && row.adapter_license?.spdx === 'MIT'
+            ? row.adapter_license : row.license;
+          assert(license?.verified === true && !/^(?:NOASSERTION|LicenseRef-)/.test(license?.spdx || '') && license?.spdx === value.variant.license_spdx,
+            'license_mismatch', 'Automatic patch publication requires the verified applicable component license.');
+        }
         if (value.parent_id) {
           const parent = await first(db, 'SELECT * FROM community_items WHERE id=? AND hidden=0', value.parent_id);
           assert(parent && parent.skill_id === finding.skill_id && parent.source_commit === base.source_commit && parent.record_version === base.record_version, 'parent_scope_mismatch', 'The parent must belong to this exact source and record version.', 409);

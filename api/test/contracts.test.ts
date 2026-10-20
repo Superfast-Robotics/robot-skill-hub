@@ -428,7 +428,8 @@ test('actual Python publication builder roundtrips accepted receipt and exact co
   // This is the exact test-owned temporary directory, never a computed repository path.
   assert.ok(resolve(temporary).startsWith(resolve(tmpdir()) + sep + 'rsh-api-publication-'));
   try {
-    for (const folder of ['catalog', 'schemas', 'recipes', 'docs', 'web']) await cp(join(root, folder), join(temporary, folder), { recursive: true });
+    for (const folder of ['catalog', 'schemas', 'recipes', 'docs', 'web', 'evidence', 'LICENSES']) await cp(join(root, folder), join(temporary, folder), { recursive: true });
+    for (const name of ['LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'license-policy.json']) await cp(join(root, name), join(temporary, name));
     for (const [path, content] of Object.entries(s.github.branches.get(id)!.files)) {
       await mkdir(join(temporary, path, '..'), { recursive: true }); await writeFile(join(temporary, path), content, 'utf8');
     }

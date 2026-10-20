@@ -1,0 +1,9 @@
+Robot Skill Hub
+Copyright 2026 Superfast Robotics
+
+The Hub platform is licensed under Apache License 2.0.
+Hub-authored robotics execution adapters and their templates are licensed
+separately under MIT. See LICENSE_SCOPE.md and LICENSES/MIT.txt.
+
+Referenced third-party works retain their original licenses, copyrights and
+notices. Catalog metadata does not relicense upstream works or separate assets.

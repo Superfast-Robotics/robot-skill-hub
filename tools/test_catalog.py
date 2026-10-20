@@ -23,8 +23,10 @@ class CatalogTests(unittest.TestCase):
         self.real_root = builder.ROOT
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        for folder in ("catalog", "schemas", "recipes", "docs", "web"):
+        for folder in ("catalog", "schemas", "recipes", "docs", "web", "evidence", "LICENSES"):
             shutil.copytree(self.real_root / folder, self.root / folder)
+        for name in ('LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'license-policy.json'):
+            shutil.copyfile(self.real_root / name, self.root / name)
         for name in ("search.md", "source-files.md", "community.md"):
             guide = Path("skills/find-robot-skills/references") / name
             (self.root / guide).parent.mkdir(parents=True, exist_ok=True)

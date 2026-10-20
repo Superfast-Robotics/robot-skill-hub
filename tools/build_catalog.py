@@ -33,9 +33,11 @@ from rshlib.core import RshError, task_attempt_metadata, validate_last_task_atte
 from rshlib.acquisition import plan_source
 from rshlib.interfaces import validate_interface
 if __package__:
+    from .coverage_report import build_coverage, coverage_tables, update_readme
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from .catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 else:
+    from coverage_report import build_coverage, coverage_tables, update_readme
     from reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 
@@ -50,6 +52,7 @@ V2_MANIFEST_MAX_BYTES = 128 * 1024
 V2_PAGE_MAX_BYTES = 128 * 1024
 V2_PAGE_MAX_RECORDS = 100
 RECEIPT_PROOF_MAX_BYTES = 256 * 1024
+COVERAGE_JSON_MAX_BYTES = 256 * 1024
 
 
 def read_json(path):
@@ -218,6 +221,8 @@ def load_records():
                 raise ValueError(f"{ident}: commands must be argv arrays")
         # Bundled files are generated from the editable hub recipe, never a second source.
         record["preparation"]["files"] = {name: (recipe / name).read_text(encoding="utf-8") for name in ("run.py", "requirements.txt")}
+        for name in ('LICENSE', 'LICENSE_SCOPE.md'):
+            record['preparation']['files'][name] = (ROOT / 'recipes' / name).read_text(encoding='utf-8')
         records.append(record)
     if not records:
         raise ValueError("Catalog is empty")
@@ -712,6 +717,8 @@ def search_row(record, output, base, recipe=False):
             row["robot_types"] = list(types)
     if recipe:
         row["python_requirement"] = record["requirements"]["python"]
+        row['adapter_license'] = {'spdx': 'MIT', 'verified': True, 'scope': 'Hub-authored adapter only; upstream terms remain applicable',
+                                  'paths': ['recipes/' + record['id'] + '/run.py', 'recipes/' + record['id'] + '/requirements.txt']}
         if record.get('interface'):
             row['execution_interface']={key:record['interface'][key] for key in ['version','kind','abstraction_level','execution_domain','language','input_transport','output_selector']}
     return row
@@ -736,7 +743,7 @@ def prepared_adaptation_map(records,references,base):
     return result
 
 
-def home(records, base, references=None):
+def home(records, base, references=None, coverage=None):
     references = references or {"records": []}
     install = "npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills"
     commands = f"""curl -fsSL '{API}/v1/search?q=grasp&limit=3'
@@ -749,6 +756,7 @@ curl -fsSL {base}/agent.json
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
 <p>{len(records)} preparation recipes and {len(references['records'])} source references. Source references use upstream setup; preparation adapters are identified explicitly.</p>
+{coverage_tables(coverage, base) if coverage is not None else ''}
 <h2>Find and read</h2>
 <p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search JSON</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Complete search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a></p>
 <pre><code>{esc(commands)}</code></pre>
@@ -760,6 +768,7 @@ curl -fsSL {base}/agent.json
 <h2>Evidence</h2>
 <p><code>not_run</code> means no runtime execution evidence. Source review and contributor reports do not establish task completion. Each record preserves its exact source pin and evidence level.</p>
 <p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
+<p>Platform: Apache-2.0. Hub execution adapters: MIT. External works retain their original terms. <a href="{esc(base)}/LICENSE_SCOPE.md">License scope</a>.</p>
 </main>"""
     return shell("Robot Skill Hub", "Find pinned robot code and artifacts; inspect sources and evidence; contribute reusable skills.", body, base)
 
@@ -837,6 +846,8 @@ Current catalog: {counts}. Search matches and source references do not establish
 
 - [Agent quickstart]({base}/agent-quickstart.md): install, find, inspect and use supported sources
 - [Agent contract JSON]({base}/agent.json): machine-readable operations, schemas and trust boundaries
+- [Current execution and reference coverage]({base}/coverage.html): robot, environment and task tables; [JSON]({base}/catalog/v1/coverage.json)
+- [Component license policy]({base}/license-policy.json): Apache-2.0 platform, MIT Hub execution adapters, original upstream terms
 - [Public search API]({API}/v1/search): query capabilities and inspect selected records without authentication
 - [Per-ID inspection contract]({base}/openapi.json): `GET {API}/v1/skills/{{skill_id}}` for one selected ID's exact source, license and record metadata
 - [Exact-version findings contract]({base}/openapi.json): `GET {API}/v1/findings` with required skill, source and record-version pins
@@ -909,6 +920,13 @@ def build(args):
         raise ValueError("--base-url must be an http(s) URL")
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
+    coverage = build_coverage(records, references, ROOT, hub_commit, base)
+    update_readme(ROOT, coverage, DEFAULT_BASE)
+    write_json(output / 'catalog/v1/coverage.json', coverage, max_bytes=COVERAGE_JSON_MAX_BYTES)
+    write(output / 'coverage.html', shell('Robot Skill Hub coverage', 'Current pinned execution evidence and declared reference coverage.',
+        '<main><h1>Robot Skill Hub coverage</h1><p>Hub commit: <code>' + esc(hub_commit) + '</code>. ' + esc(coverage['scope']) + '</p>' + coverage_tables(coverage, base, full=True) + '</main>', base))
+    for relative in ('LICENSE', 'NOTICE', 'LICENSE_SCOPE.md', 'license-policy.json', 'LICENSES/MIT.txt'):
+        write(output / relative, (ROOT / relative).read_text(encoding='utf-8'))
     publish_record_evidence(records, hub_commit)
     # This is the commit of the independently cached reference resource, not a
     # source pin. Keep the editable official aggregate unchanged on disk.
@@ -958,6 +976,8 @@ def build(args):
                     api_base_url=API, new_skill_url=API+"/v1/skills", intake_schema_url=base+"/schemas/intake.schema.json",
                     privacy_url=base+"/privacy.md", discovery_url=base+"/discovery.md", new_skills_guide_url=base+"/new-skills.md",
                     source_files_guide_url=base+"/source-files.md",
+                    coverage_url=base+"/catalog/v1/coverage.json", coverage_tables_url=base+"/coverage.html",
+                    coverage_api_url=API+"/v1/coverage", license_policy_url=base+"/license-policy.json",
                     executable_skills_guide_url=base+"/executable-skills.md",
                     execution_interface_schema_url=base+"/schemas/execution-interface.schema.json",
                     submission_proof_url_template=base+"/catalog/v2/submissions/{submission_id}.json",
@@ -972,7 +992,7 @@ def build(args):
         contract["resources"]["source_projects_url"] = base+"/catalog/v1/source-projects.json"
     if registry_manifests:
         contract["resources"]["source_registry_manifests"] = registry_manifests
-    write(output / "index.html", home(records, base, references))
+    write(output / "index.html", home(records, base, references, coverage))
     write(output / ".nojekyll", "")
     write(output / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n")
     parsed_base = urlparse(base)
@@ -990,7 +1010,7 @@ def build(args):
         guide = ROOT / "skills/find-robot-skills/references" / name
         if guide.exists():
             write(output / name, guide.read_text(encoding="utf-8"))
-    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md"):
+    for name in ("contributing.md", "compatibility.md", "memory.md", "new-skills.md", "discovery.md", "privacy.md", "verification.md", "reuse-benchmark.md", "sample-sources.md", "workflow-sources.md", "agent-skill-sources.md", "robot-agent-policy-sources.md", "canonical-policy-sources.md", "platform-sources-review.md", "executable-skills.md", "coverage.md"):
         document = ROOT / "docs" / name
         if document.exists():
             text = document.read_text(encoding="utf-8")
@@ -1079,7 +1099,7 @@ def build(args):
     publish_compatibility(references, output / "catalog/v1/references.json",
                           ROOT / "skills/find-robot-skills/assets/references.snapshot.json", search_manifest_url)
     resources = {}
-    for name in ("index", "references", "memories", "search", "source-index", "source-index-manifest", "source-projects"):
+    for name in ("index", "references", "memories", "search", "coverage", "source-index", "source-index-manifest", "source-projects"):
         path = output / f"catalog/v1/{name}.json"
         if path.exists():
             resources[name] = {"url": base+f"/catalog/v1/{name}.json", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}

@@ -1,4 +1,14 @@
-# Verification record — 2026-10-17 to 2026-10-19 (Asia/Seoul)
+# Verification record
+
+## Component licensing and evidence-backed coverage, 0.5.1
+
+The platform uses Apache-2.0. Hub-authored execution adapters and their source templates retain MIT under directory-specific license files. Original external licenses and notices remain applicable; no catalog source is relabeled and earlier MIT releases retain their terms. Prepared projects now include the Hub adapter's MIT text and scope notice alongside the separate upstream checkout. Execution adapter bytes are unchanged, so retained exact-byte runtime receipts remain applicable.
+
+The main page, coverage.html and checksum-bound catalog/v1/coverage.json derive current robot/model, environment, task-level and source-reference tables from the full catalog. GET /v1/coverage returns a compact summary with explicit tag coverage and an optional exact hub_commit; view=full returns complete per-recipe detail and evidence URLs. The endpoint rejects checksum drift, generation conflicts, inconsistent totals, duplicate identities, malformed reference groups and oversized resources. No D1 schema migration or quota increase is required.
+
+Coverage counts completion only when the retained evidence matches the current adapter, source, record version and applicable frozen case plan, interface, model and package versions. Tests reproduce stale-adapter and changed-input failures and reject relabeling a synthetic simulation as real hardware or a different robot. Failed current task attempts, unexecuted tasks and unbound evidence remain separate. Numerical operations and simulation tasks are not merged into a physical robot count or a general success rate. Reference frameworks are exclusive counts; robot and capability tags may overlap and remain unverified declarations.
+
+Community variants distinguish explicitly licensed Hub-owned adapter paths from upstream source paths. MIT cannot relabel an upstream Apache source, unverified component licenses remain blocked, and mixed adapter/upstream patches must be split. These are mechanical checks, not a legal certification of submitted text or a grant to unrelated assets. The tests create no production users, findings or activity counts.
 
 ## Executable source adaptations and interfaces, 0.5.0
 

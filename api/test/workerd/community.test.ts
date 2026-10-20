@@ -28,7 +28,8 @@ async function runtime() {
     await db.exec(sql.replace(/--[^\n]*/g, '').replace(/\s+/g, ' '));
   }
   await db.prepare('INSERT INTO catalog_generations(hub_commit,manifest_sha256,manifest_json,total_pages,total_records,created_at) VALUES(?,?,?,?,?,?)').bind(base.hub_commit, '0'.repeat(64), '{}', 1, 1, 1).run();
-  const row = { id: 'fixture-pick', kind: 'preparation_recipe', record_version: base.record_version, source_commit: base.source_commit, license: { spdx: 'Apache-2.0', verified: true } };
+  const row = { id: 'fixture-pick', kind: 'preparation_recipe', record_version: base.record_version, source_commit: base.source_commit,
+    license: { spdx: 'Apache-2.0', verified: true }, adapter_license: { spdx: 'MIT', verified: true } };
   await db.prepare('INSERT INTO catalog_documents(doc_hash,id,kind,row_json,search_text) VALUES(?,?,?,?,?)').bind('d'.repeat(64), row.id, row.kind, JSON.stringify(row), 'fixture').run();
   await db.prepare('INSERT INTO catalog_members(hub_commit,id,doc_hash) VALUES(?,?,?)').bind(base.hub_commit, row.id, 'd'.repeat(64)).run();
   async function call(path: string, value?: any, token?: string, ip = '192.0.2.1') {
@@ -48,6 +49,25 @@ async function runtime() {
   const query = (extra: Record<string, string> = {}) => '/items?' + new URLSearchParams({ skill_id: 'fixture-pick', record_version: base.record_version, source_commit: base.source_commit, ...extra });
   return { mf, db, call, enroll, query };
 }
+
+test('native variant licenses distinguish Hub-owned adapters from upstream and reject mixed scopes', async () => {
+  const s = await runtime(); try {
+    const writer = await s.enroll();
+    const diff = (path: string) => `--- a/${path}\n+++ b/${path}\n@@ -1 +1 @@\n-a\n+b\n`;
+    const owned = 'recipes/fixture-pick/run.py';
+    const submit = (patch: string, license_spdx: string, n: number) => s.call('/items', {
+      schema_version: '1', finding: finding(n), variant: { patch, license_spdx }
+    }, writer.token);
+    assert.equal((await submit(diff(owned), 'MIT', 40)).status, 201);
+    assert.equal((await submit(diff('demo.py'), 'MIT', 41)).status, 422);
+    assert.equal((await submit(diff('demo.py'), 'Apache-2.0', 42)).status, 201);
+    assert.equal((await submit(diff(owned) + diff('demo.py'), 'MIT', 43)).status, 422);
+    assert.equal((await submit(diff(owned) + diff('demo.py'), 'Apache-2.0', 44)).status, 422);
+    assert.equal((await submit(diff('recipes/different-id/run.py'), 'MIT', 45)).status, 422);
+    await s.db.prepare("UPDATE catalog_documents SET row_json=json_set(row_json,'$.adapter_license.verified',json('false'))").run();
+    assert.equal((await submit(diff('recipes/fixture-pick/requirements.txt'), 'MIT', 46)).status, 422);
+  } finally { await s.mf.dispose(); }
+});
 
 test('native self-service enrollment, immutable global dedup, exact recall, variants and outcome graph', async () => {
   const s = await runtime(); try {

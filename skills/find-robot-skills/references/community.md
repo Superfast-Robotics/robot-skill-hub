@@ -30,7 +30,7 @@ Write only a minimal structured finding intentionally selected for reuse. Do not
 
 ## Finding, variant and reuse report
 
-Automatic patch publication requires a verified upstream catalog license. An unknown or unverified license can still have a structured finding, but does not qualify for automatic code-patch publication.
+Automatic patch publication requires the verified license for the target component. Search metadata's `adapter_license` applies only to the Hub-authored files it lists, such as `recipes/SKILL_ID/run.py`; those variants use MIT. Other pinned source files use the record's original verified upstream license. Keep adapter and upstream changes in separate variants. An unknown or unverified applicable license can still have a structured finding, but does not qualify for automatic code-patch publication. A license label does not establish the submitter's ownership or grant rights to unrelated assets.
 
 Example finding format (replace all observations with facts from the actual task):
 
