@@ -29,7 +29,7 @@ class ProblemPagesTests(unittest.TestCase):
     def test_changed_adapter_cannot_republish_old_success(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            for name in ['catalog/problem-cases.json', 'evidence/integration/agent-discovery-v1/problem-cases.json']:
+            for name in ['catalog/problem-cases.json', 'catalog/executable-conversions.json', 'evidence/integration/agent-discovery-v1/problem-cases.json']:
                 (root / name).parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / name, root / name)
             for case in json.loads((root / 'catalog/problem-cases.json').read_text())['cases']:

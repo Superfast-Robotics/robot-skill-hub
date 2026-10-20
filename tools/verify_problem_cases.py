@@ -64,6 +64,7 @@ def main():
         report = {'id': case['id'], 'case_sha256': case_hash(case), 'problem_reproduced': problem,
                   'valid_case_passed': good, 'observed_problem': observed, 'checks': checks,
                   'adapter_sha256': hashlib.sha256((ROOT / 'recipes' / case['skill_id'] / 'run.py').read_bytes()).hexdigest(),
+                  'bad_adapter_sha256': hashlib.sha256((ROOT / 'recipes' / case['bad_skill_id'] / 'run.py').read_bytes()).hexdigest(),
                   'source_commit': case['source_commit'], 'mode': mode}
         reports.append(report); print(json.dumps(report), flush=True)
     receipt = {'schema_version': '1', 'observed_at': datetime.now(timezone.utc).isoformat(), 'cases': reports,

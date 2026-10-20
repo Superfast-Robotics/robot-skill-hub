@@ -55,13 +55,18 @@ def verified_cases(root=ROOT):
     plan = root / 'catalog/problem-cases.json'
     if not plan.exists(): return []
     entries = json.loads(plan.read_text())['cases']
+    recipes = {r['id']: r for r in json.loads((root / 'catalog/executable-conversions.json').read_text())['recipes']}
     receipt = json.loads((root / 'evidence/integration/agent-discovery-v1/problem-cases.json').read_text())
     reports = {r['id']: r for r in receipt['cases']}
     if len(reports) != len(entries): raise ValueError('Problem evidence coverage mismatch')
     for case in entries:
         row = reports[case['id']]
         current = hashlib.sha256((root / 'recipes' / case['skill_id'] / 'run.py').read_bytes()).hexdigest()
+        bad_adapter = hashlib.sha256((root / 'recipes' / case['bad_skill_id'] / 'run.py').read_bytes()).hexdigest()
+        contracts = [recipes[case['skill_id']]['interface'], recipes[case['bad_skill_id']]['interface'], recipes['pythonrobotics-path-smoothing']['interface'] if case['mode'] == 'handoff' else None]
+        contract_hash = hashlib.sha256(json.dumps(contracts, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
         if not (row['case_sha256'] == case_hash(case) and row['adapter_sha256'] == current
+                and row['bad_adapter_sha256'] == bad_adapter and case['contracts_sha256'] == contract_hash
                 and row['source_commit'] == case['source_commit'] and row['mode'] == case['mode']
                 and row['problem_reproduced'] is True and row['valid_case_passed'] is True):
             raise ValueError('Stale or unsuccessful problem evidence: ' + case['id'])

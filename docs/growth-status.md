@@ -105,3 +105,17 @@ One [voluntary verification job](https://commons.dooza.ai/api/entries?id=post_rs
 One [0.3.3 IndexNow notification](../evidence/discovery/v0.3.3/indexnow.json) at **2026-10-17 19:26:04 UTC** covered 30 newly published source pages and three discovery resources. Every URL was in the live sitemap, ownership was checked, and HTTP 200 confirmed notification receipt. Search indexing and resulting visits were not verified. Context7 and Smithery required provider authentication at that time. Additional paid directory publication was deferred.
 
 A later [measurement correction](../evidence/discovery/v0.3.3/maintainer-measurement-correction.json) excluded three proven maintainer-test reads at **20:09:52–20:09:55 UTC**. A pre-existing standalone smoke test had inherited no opt-out setting. Its exact search/inspect/search sequence matched those timestamps and the known maintainer installation HMAC. The three rows were retained in the existing non-eligible `unclassified` bucket, with their original classification preserved in the receipt. The temporary count of 16 returned to **13 of 100**; the campaign window was not reset. The smoke subprocess now always uses `--offline` and `RSH_TELEMETRY=off`. These three reads are not external adoption.
+
+
+## Task-driven distribution, 2026-10-20
+
+Three independently installable task skills cover planning, kinematics and trajectories. Ten authored CPU problem reproductions expose pinned input/contract evidence in HTML, Markdown and JSON. These are maintainer checks, not autonomous discovery or independent reuse. Public API probes and the isolated local installation used telemetry opt-out.
+
+External activity:
+
+- [PythonRobotics fix PR #1469](https://github.com/AtsushiSakai/PythonRobotics/pull/1469): arclength bug reproduced; 162 upstream tests passed locally. Pending upstream review.
+- [ROS-MCP example PR #401](https://github.com/robotmcp/ros-mcp-server/pull/401): optional read-only integration, actual official-SDK Hub probe passed; full ROS execution unverified. Pending upstream review.
+- [RAI RFC #879](https://github.com/RobotecAI/rai/issues/879): discussion-first proposal with real LangChain invocation evidence. Maintainer direction pending; no upstream code PR or full RAI validation claimed.
+- [Hugging Face Static Space](https://huggingface.co/spaces/Superfast-BS/robot-skill-hub): public files uploaded; no paid compute or hosted MCP transport.
+
+[Integration receipts](../evidence/integration/agent-discovery-v1/) preserve scope. New rolling access reports retain the original launch-window endpoint and distinguish requests, optional distribution channels and separately reported reuse outcomes. Old events remain unattributed; retained totals are not lifetime visitors.
