@@ -55,8 +55,8 @@ test('official MCP SDK initializes, lists and calls read-only tools over native 
     assert.equal(client.getServerVersion()?.version, packageInfo.version);
     assert.match(client.getInstructions() || '', /get_hub_capabilities/);
     assert.equal(outbound.length, 0, 'Initialization advertises the handoff without fetching or installing anything');
-    const listed = await client.listTools(undefined, { timeout: 5000 }); assert.equal(listed.tools.length, 3);
-    assert.deepEqual(listed.tools.map(tool => tool.name).sort(), ['find_robot_skills', 'get_hub_capabilities', 'inspect_robot_skill']);
+    const listed = await client.listTools(undefined, { timeout: 5000 }); assert.equal(listed.tools.length, 4);
+    assert.deepEqual(listed.tools.map(tool => tool.name).sort(), ['find_robot_skills', 'get_hub_capabilities', 'inspect_robot_skill', 'start_robot_task']);
     assert.ok(listed.tools.every(tool => tool.annotations?.readOnlyHint && tool.annotations?.destructiveHint === false));
     const capability = await client.callTool({ name: 'get_hub_capabilities', arguments: {} }, undefined, { timeout: 5000 }); assert.equal(capability.isError, false);
     const onboarding: any = (capability.structuredContent as any).onboarding;

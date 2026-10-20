@@ -38,7 +38,7 @@
     "submission_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/submissions/{submission_id}.json",
     "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json",
     "experience_url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}?record_version={record_version}&hub_commit={hub_commit}&include=experience",
-    "first_read": "Use short task keywords or query_mode=task with known environment filters. Follow search result inspect_url for record, findings and community; recovery.suggested_requests declares each retry scope.",
+    "first_read": "For an execution recipe call /v1/start or MCP start_robot_task with q and known environment filters. Inspect selected.record, findings, community and environment_check; selected.preparation contains pinned catalog export and setup argv. For full source discovery use /v1/search.",
     "executable_skills_guide_url": "https://hub.superfastrobotics.com/executable-skills.md",
     "execution_interface_schema_url": "https://hub.superfastrobotics.com/schemas/execution-interface.schema.json",
     "coverage_url": "https://hub.superfastrobotics.com/catalog/v1/coverage.json",
@@ -48,7 +48,10 @@
     "sample_pages_url": "https://hub.superfastrobotics.com/samples/",
     "sample_index_url": "https://hub.superfastrobotics.com/samples/index.json",
     "diverse_runtime_guide_url": "https://hub.superfastrobotics.com/runtime-expansion.md",
-    "simulation_starting_policies_url": "https://hub.superfastrobotics.com/simulation-starting-policies.md"
+    "simulation_starting_policies_url": "https://hub.superfastrobotics.com/simulation-starting-policies.md",
+    "start_url": "https://api.superfastrobotics.com/v1/start",
+    "task_starters_url": "https://hub.superfastrobotics.com/tasks/",
+    "task_starters_index_url": "https://hub.superfastrobotics.com/tasks/index.json"
   },
   "cli": {
     "minimum_python": "3.10",

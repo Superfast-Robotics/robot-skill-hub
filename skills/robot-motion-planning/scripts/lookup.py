@@ -22,7 +22,7 @@ def read_json(url, channel):
     parsed = urllib.parse.urlsplit(url)
     if parsed.scheme != 'https' or parsed.netloc != 'api.superfastrobotics.com' or parsed.fragment:
         raise ValueError('Use the exact HTTPS API inspect_url returned by search')
-    if not (parsed.path == '/v1/search' or re.fullmatch(r'/v1/skills/[a-z0-9-]{1,80}', parsed.path)):
+    if not (parsed.path in ('/v1/search', '/v1/start') or re.fullmatch(r'/v1/skills/[a-z0-9-]{1,80}', parsed.path)):
         raise ValueError('Only public search and skill inspection are supported')
     headers = {'Accept': 'application/json', 'User-Agent': 'robot-skill-hub/task-skill-v1',
                'X-RSH-Channel': channel}
@@ -52,6 +52,18 @@ def find(query, channel, runtime=None, task=False, fetch=read_json):
     if not isinstance(rows, list) or len(rows) > 3:
         raise ValueError('Invalid bounded search response')
     return {**result, 'execution_performed': False}
+
+
+def start(query, channel, runtime=None, task=False, fetch=read_json):
+    if not isinstance(query, str) or not 1 <= len(query.strip()) <= 160:
+        raise ValueError('Use 1 to 160 characters describing the current robotics task')
+    params = {'q': query, 'limit': 3, 'query_mode': 'task' if task else 'all_terms'}
+    if runtime:
+        params['runtime'] = runtime
+    result = fetch(API + '/v1/start?' + urllib.parse.urlencode(params), channel)
+    if not isinstance(result.get('results'), list) or len(result['results']) > 3 or 'selected' not in result:
+        raise ValueError('Invalid bounded task-start response')
+    return result
 
 
 def inspect_url(url, channel, fetch=read_json, include_files=False):
@@ -100,6 +112,10 @@ def main(channel):
     search.add_argument('query')
     search.add_argument('--runtime', help='Only a known runtime; omit unknown environment labels')
     search.add_argument('--task', action='store_true', help='Rank an English task sentence')
+    starter = sub.add_parser('start', help='Get candidates, the first contract, prior fixes and pinned preparation argv')
+    starter.add_argument('query')
+    starter.add_argument('--runtime')
+    starter.add_argument('--task', action='store_true')
     inspect = sub.add_parser('inspect')
     inspect.add_argument('url', help='Exact inspect_url from a search result')
     catalog = sub.add_parser('catalog', help='Export the selected full record as inert pinned CLI data')
@@ -107,7 +123,9 @@ def main(channel):
     catalog.add_argument('--output', required=True, type=Path, help='Fresh file; existing files are preserved')
     args = parser.parse_args()
     try:
-        if args.operation == 'find':
+        if args.operation == 'start':
+            result = start(args.query, channel, args.runtime, args.task)
+        elif args.operation == 'find':
             result = find(args.query, channel, args.runtime, args.task)
         elif args.operation == 'catalog':
             result = export_catalog(args.url, channel, args.output)

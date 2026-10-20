@@ -8,12 +8,14 @@ description: Find and prepare robot trajectory generation code with jerk-limited
 Use this skill when a reusable implementation or known fix would help the user's current task. Discovery is public, read-only and requires only Python 3.10+; no account, GPU, numerical packages or MCP setup is needed.
 
 ```sh
-python /ABSOLUTE_SKILL_PATH/scripts/lookup.py find "trajectory" --runtime ruckig
+python /ABSOLUTE_SKILL_PATH/scripts/lookup.py start "trajectory" --runtime ruckig
 ```
 
 Use terms from the actual task. Supply `--runtime` only when known; omit it otherwise. Use `--task` for an English task sentence. The example runtime is a supported starting point, not an inferred property of the user's environment. Results are at most three preparation recipes, not the entire source-reference collection. No match is not proof that no upstream implementation exists.
 
-Inspect the chosen result using its exact returned `inspect_url`:
+The first response includes `selected.record`, prior `findings` and `community`, and `selected.preparation` with pinned catalog export, CLI bootstrap and plan argv. Check `environment_check` before setup. `selected` is the first ranked candidate for inspection, not permission to run it. The record view omits embedded code files; its catalog export includes them. `find` remains available for a smaller candidate-only response.
+
+For another candidate, inspect its exact returned `inspect_url`:
 
 ```sh
 python /ABSOLUTE_SKILL_PATH/scripts/lookup.py inspect 'EXACT_INSPECT_URL'

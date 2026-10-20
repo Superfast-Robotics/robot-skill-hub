@@ -5,10 +5,11 @@ import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeC
 import { containsWordPrefixes, queryTerms } from './search.ts';
 import { MEMORY_ENV_KEYS, memoryEnvironmentKey } from './memory-environment.ts';
 import { communityForSelection } from './community.ts';
+import { preparationHandoff } from './starter.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.5.2';
+const VERSION = '0.5.3';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -71,6 +72,17 @@ async function digest(bytes: Uint8Array): Promise<string> {
 }
 
 export const MCP_TOOLS = [
+  { name: 'start_robot_task', description: 'Use first when implementing a robot task with a reusable execution recipe. One read returns up to three recipe candidates, selection reasons, and the first candidate with exact source, environment, input/output contract, execution evidence, prior fixes and pinned setup argv. Supply only known environment filters. English lexical task matching; this tool does not install, execute or share anything.',
+    inputSchema: { type: 'object', properties: {
+      q: { type: 'string', minLength: 1, maxLength: 240 },
+      query_mode: { type: 'string', enum: ['task', 'all_terms'], default: 'task' },
+      runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 },
+      robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 },
+      observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 },
+      python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 },
+      limit: { type: 'integer', minimum: 1, maximum: 3 }, hub_commit: { type: 'string' }
+    }, required: ['q'], additionalProperties: false },
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'find_robot_skills', description: 'Use when implementing a robotics task and looking for existing code or checking source requirements before setup. Use short task keywords, or query_mode=task with known runtime/robot filters for English sentences. Follow recovery suggestions after empty results. Results distinguish prepared recipes from upstream references; a match is not runtime verification.',
     inputSchema: { type: 'object', properties: { query_mode: { type: 'string', enum: ['all_terms', 'task'], default: 'all_terms', description: 'task opts into ASCII English lexical ranking over at most512 hard-filtered records; narrow runtime/robot when query_too_broad. No execution or compatibility inference.' }, q: { type: 'string', maxLength: 240, description: 'Default all_terms: all query terms must match word prefixes. Standalone A*, D* and RRT* are read as astar, dstar and rrtstar; embedded identifiers and repeated stars keep ordinary tokenization. Empty q browses.' }, runtime: { type: 'string', maxLength: 80 }, runtime_version: { type: 'string', maxLength: 80 }, robot: { type: 'string', maxLength: 80 }, controller: { type: 'string', maxLength: 80 }, observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 }, python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 }, kind: { type: 'string', enum: ['preparation_recipe', 'source_reference'] }, limit: { type: 'integer', minimum: 1, maximum: 50 }, offset: { type: 'integer', minimum: 0 }, hub_commit: { type: 'string' } }, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
@@ -196,6 +208,41 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         next_action: 'continue_user_task_or_query_memories' };
     }
   }
+  async function startTask(env: PublicEnv, input: Row) {
+    if (typeof input.q !== 'string' || !input.q.trim() || 'kind' in input || 'offset' in input
+        || !Number.isInteger(Number(input.limit ?? 3)) || Number(input.limit ?? 3) < 1 || Number(input.limit ?? 3) > 3)
+      fail(400, 'invalid_start', 'Provide q and known search filters, with limit=1..3. Start searches preparation recipes; use /v1/search for full-catalog discovery.');
+    const index = await snapshot(env);
+    const args = { ...input, kind: 'preparation_recipe', query_mode: input.query_mode ?? 'task', limit: input.limit ?? 3 };
+    const search: Row = await searchRows(index, args);
+    const environment = findingEnvironment(Object.fromEntries(Object.entries(input).filter(([key]) => memoryEnvironmentKey(key))));
+    const candidates: Row[] = search.results.map((row: Row) => ({ ...row,
+      selection_reason: { basis: search.search_semantics, matched_terms: row.query_match?.matched_terms ?? queryTerms(input.q),
+        unmatched_terms: row.query_match?.unmatched_terms ?? [], explicit_filters: environment,
+        caller_compatibility_verified: false },
+      start_url: API + '/v1/start?' + new URLSearchParams({ q: row.id, query_mode: 'all_terms', hub_commit: index.hub_commit,
+        ...Object.fromEntries(Object.entries(input).filter(([key]) => memoryEnvironmentKey(key)).map(([key, value]) => [key, String(value)])) })
+    }));
+    let selected: Row | null = null;
+    if (candidates.length) {
+      const { record, row } = await inspect(index, candidates[0].id, candidates[0].record_version);
+      const [findings, community] = await Promise.all([
+        selectionFindings(index, record, row, environment), communityForSelection(env, row, environment)
+      ]);
+      selected = { id: row.id, selection: 'first_ranked_candidate_for_inspection; not_an_execution_decision',
+        record: { ...record, preparation: Object.fromEntries(Object.entries(record.preparation || {}).filter(([key]) => key !== 'files')) },
+        record_files_omitted: true, full_record_url: candidates[0].inspect_url,
+        findings, community, preparation: preparationHandoff(record, row, index.hub_commit),
+        environment_check: { supplied: environment,
+          missing: ['runtime', 'robot', 'os', 'python', 'architecture'].filter(key => !environment[key]),
+          status: 'compare_record_requirements_then_run_plan' } };
+    }
+    return { ...search, results: candidates, selected,
+      next_url: search.next ? API + '/v1/search?' + new URLSearchParams(Object.entries(search.next).map(([key, value]) => [key, String(value)])) : null,
+      scope: 'preparation_recipes_only; source_references_remain_searchable_at_/v1/search',
+      next_action: selected ? 'check_selected_environment_then_run_plan_within_task_scope' : 'broaden_or_correct_query',
+      execution_performed: false, sharing_performed: false };
+  }
   async function describe(env: PublicEnv, refresh = false) {
     const index = refresh ? await snapshot(env) : cached?.value;
     return { ...capabilities(), server_version: VERSION, catalog_hub_commit: index?.hub_commit ?? null, counts: index?.counts ?? null,
@@ -216,6 +263,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
           missing_scope_or_token: 'Keep local_saved and continue the user task.', repeat_permission_for_exact_authorized_scope: false }
       },
       public_discovery: { search: API + '/v1/search', inspect: API + '/v1/skills/{skill_id}', findings: API + '/v1/findings',
+        start: API + '/v1/start', task_starters: ORIGIN + '/tasks/', first_call: 'start_robot_task for execution recipes; find_robot_skills for full source discovery',
         inspect_experience: 'Follow the search result inspect_url for a version-pinned record plus findings and community. Optional environment is URL-encoded JSON of known labels.',
         search_manifest: ORIGIN + '/catalog/v2/search-manifest.json', memory_manifest: ORIGIN + '/catalog/v2/memory-manifest.json',
         catalog: API + '/v1/catalog', references: API + '/v1/references', mcp: API + '/mcp', authentication_required: false },
@@ -253,7 +301,11 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     if (!args || Array.isArray(args) || typeof args !== 'object' || !MCP_TOOLS.some(tool => tool.name === name)) return json({ jsonrpc: '2.0', id: call.id, error: { code: -32602, message: 'Use a listed tool and an arguments object.' } });
     try {
       let value;
-      if (name === 'find_robot_skills') {
+      if (name === 'start_robot_task') {
+        if (args.limit !== undefined && (typeof args.limit !== 'number' || !Number.isInteger(args.limit))) fail(400, 'invalid_arguments', 'MCP limit must be an integer.');
+        value = await startTask(env, args);
+      }
+      else if (name === 'find_robot_skills') {
         if (['limit', 'offset'].some(k => args[k] !== undefined && (typeof args[k] !== 'number' || !Number.isInteger(args[k])))) fail(400, 'invalid_arguments', 'MCP pagination values must be integers.');
         value = await searchRows(await snapshot(env), args);
       }
@@ -275,7 +327,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   return async function handle(request: Request, env: PublicEnv, ctx?: Background): Promise<Response | null> {
     const url = new URL(request.url), path = url.pathname;
-    const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/coverage' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
+    const relevant = path === '/mcp' || path === '/v1/start' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/coverage' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
     if (!relevant) return null;
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, MCP-Protocol-Version, Mcp-Session-Id, X-RSH-Client, X-RSH-Telemetry, X-RSH-Channel, DNT', 'Access-Control-Max-Age': '600' } });
     try {
@@ -348,6 +400,9 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         if (await digest(bytes) !== expected) fail(503, 'publication_changed', 'The catalog changed during this read; retry once.');
         response = new Response(bytes.buffer as ArrayBuffer, { headers: HEADERS });
         if (request.method === 'GET') await measure(request, env, resource === 'index' ? 'catalog' : 'references', ctx);
+      } else if (path === '/v1/start') {
+        response = json(await startTask(env, Object.fromEntries(url.searchParams)));
+        if (request.method === 'GET') await measure(request, env, 'start', ctx);
       } else if (path === '/v1/search') {
         response = json(await searchRows(await snapshot(env), Object.fromEntries(url.searchParams)));
         if (request.method === 'GET') await measure(request, env, 'search', ctx);
@@ -359,6 +414,16 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
         const id = path.slice('/v1/skills/'.length);
         const index = await snapshot(env);
         if (url.searchParams.has('hub_commit') && url.searchParams.get('hub_commit') !== index.hub_commit) fail(409, 'catalog_changed', 'Refresh search before inspecting a different catalog generation.');
+        if (url.searchParams.has('format')) {
+          if (url.searchParams.get('format') !== 'catalog' || [...url.searchParams.keys()].some(key => !['format', 'hub_commit', 'record_version'].includes(key)))
+            fail(400, 'invalid_arguments', 'Catalog export accepts format=catalog, hub_commit and record_version.');
+          const { record, row } = await inspect(index, id, url.searchParams.get('record_version') || undefined);
+          if (row.kind !== 'preparation_recipe') fail(400, 'invalid_kind', 'Catalog export requires a preparation recipe.');
+          response = json({ schema_version: '1', hub_commit: index.hub_commit, records: [record],
+            coverage: { complete: false, scope: 'one_explicitly_selected_recipe' } });
+          if (request.method === 'GET') await measure(request, env, 'inspect', ctx);
+          return request.method === 'HEAD' ? new Response(null, { headers: response.headers }) : response;
+        }
         const include = url.searchParams.get('include');
         if (include !== null && include !== 'experience') fail(400, 'invalid_include', 'Use include=experience for exact-version findings and community recall.');
         if (include === 'experience' && [...url.searchParams.keys()].some(key => !['record_version', 'hub_commit', 'include', 'environment'].includes(key))) fail(400, 'invalid_arguments', 'Use environment JSON for explicit recall filters; unknown inspection parameters are not ignored.');

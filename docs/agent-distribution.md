@@ -4,6 +4,8 @@ Find a reusable implementation before rebuilding it. Inspect the exact source an
 
 Public reads require no account, model key, GPU or MCP setup:
 
+Start with [ten maintained task paths](https://hub.superfastrobotics.com/tasks/) or `GET /v1/start?q=TASK` with known environment filters. MCP clients can call `start_robot_task`. One response contains up to three recipe candidates, matching reasons, one inspected contract, prior fixes and pinned preparation argv. This recipe-only starting path does not establish absence from the full reference collection.
+
 | Task | First read | Optional installable skill |
 | --- | --- | --- |
 | A*, RRT and path smoothing | [Planning JSON](https://api.superfastrobotics.com/v1/search?q=astar&runtime=pythonrobotics&kind=preparation_recipe&limit=3) | `robot-motion-planning` |

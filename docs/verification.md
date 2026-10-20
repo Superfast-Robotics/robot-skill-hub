@@ -344,3 +344,8 @@ See the [sanitized live integration proof](https://github.com/Superfast-Robotics
 - Context7 registration, a finalized library search result and retrieval of actual Hub instructions with source links were confirmed at 2026-10-17 20:05 UTC in the [provider receipt](../evidence/discovery/v0.3.3/context7-registration.json). The then-unpublished source-file update is outside that indexing check. Platform automatic activation, general unbranded discovery, other search-engine indexing and skills.sh search inclusion remain **unverified**. Maintainer validation and repository install tests do not establish general model adoption.
 
 The original supplied planning documents remain local and were not published. No tokens, private datasets, session transcripts or full project logs were uploaded.
+# Task starting paths, 0.5.3
+
+`GET /v1/start` and MCP `start_robot_task` combine bounded recipe discovery with one inspected contract, exact-version findings and pinned preparation argv. Ten maintained task pages expose environments, inputs, success checks and existing execution evidence as plain HTML, Markdown and JSON. Full record export preserves embedded adapters while the first response omits them.
+
+The [integration receipt](../evidence/integration/task-starters-v1/verification.json) records ten expected first-candidate matches, five unrelated-query exclusions, native catalog export checks, and local test scope. These are maintainer-authored checks. The change does not establish autonomous selection, independent adoption or a new ten-simulator run.

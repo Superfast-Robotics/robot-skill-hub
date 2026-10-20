@@ -747,14 +747,14 @@ def prepared_adaptation_map(records,references,base):
 def home(records, base, references=None, coverage=None):
     references = references or {"records": []}
     install = "npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills"
-    commands = f"""curl -fsSL '{API}/v1/search?q=grasp&limit=3'
+    commands = f"""curl -fsSL '{API}/v1/start?q=pick%20cube&runtime=maniskill&robot=panda'
 curl -fsSL {base}/agent.json
 {install}"""
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
 <h1>Robot Skill Hub — Robotics Skills Catalog for AI Agents</h1>
 <p><strong>Discover robotic skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes.</strong> Find and reuse robot skills for motion planning, manipulation, kinematics and simulation. Inspect pinned code, compatibility and execution evidence through public HTTPS, MCP or the CLI; prepare a matching environment and share useful corrections.</p>
-<p><a href="{API}/v1/search?q=grasp&amp;limit=3">Search robot skills</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
+<p><a href="{esc(base)}/tasks/">Start one of ten robotics tasks</a> | <a href="{API}/v1/search?q=grasp&amp;limit=3">Search all robot sources</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
 <p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
 <p>Find reusable robot code, policies, models, datasets and workflows across robots and runtimes. Inspect immutable sources, licenses, requirements and execution evidence before use.</p>
@@ -852,6 +852,8 @@ Current catalog: {counts}. Search matches and source references do not establish
 - [Current execution and reference coverage]({base}/coverage.html): robot, environment and task tables; [JSON]({base}/catalog/v1/coverage.json)
 - [Component license policy]({base}/license-policy.json): Apache-2.0 platform, MIT Hub execution adapters, original upstream terms
 - [Public search API]({API}/v1/search): query capabilities and inspect selected records without authentication
+- [Start a robot task]({API}/v1/start): supply q and known environment filters; receive recipe candidates, one inspected contract, prior fixes and pinned preparation argv in one response
+- [Ten task starting paths]({base}/tasks/): concrete tasks from environment checks through execution and scoped finding reuse
 - [Per-ID inspection contract]({base}/openapi.json): `GET {API}/v1/skills/{{skill_id}}` for one selected ID's exact source, license and record metadata
 - [Exact-version findings contract]({base}/openapi.json): `GET {API}/v1/findings` with required skill, source and record-version pins
 - [Read-only MCP]({API}/mcp): connect an agent with search, inspect and capabilities tools
@@ -1157,12 +1159,15 @@ def build(args):
     if __package__:
         from .sample_pages import publish as publish_sample_pages
         from .problem_pages import publish as publish_problem_pages
+        from .task_starters import publish as publish_task_starters
     else:
         from sample_pages import publish as publish_sample_pages
         from problem_pages import publish as publish_problem_pages
+        from task_starters import publish as publish_task_starters
     urls.extend(publish_sample_pages(records, output, base, hub_commit, shell))
     urls.append(base+"/coverage.html")
     urls.extend(publish_problem_pages(ROOT, output, base, hub_commit))
+    urls.extend(publish_task_starters(ROOT, records, output, base, hub_commit, shell, coverage))
     if openapi.exists():
         urls.append(base+"/openapi.json")
     write(output / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(f"  <url><loc>{esc(url)}</loc></url>" for url in urls) + "\n</urlset>\n")

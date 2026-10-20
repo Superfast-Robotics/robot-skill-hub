@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "selection_basis": "Ten maintained representative tasks with current execution evidence; not a measured popularity ranking.",
+  "tasks": [
+    {"id":"grid-path-planning","title":"Plan a collision-checked grid path with A*","query":"plan an A* grid path around obstacles","runtime":"pythonrobotics","skill_id":"pythonrobotics-astar-planner"},
+    {"id":"sampling-path-planning","title":"Plan a path with RRT*","query":"RRT* path planning","runtime":"pythonrobotics","skill_id":"pythonrobotics-rrt-star-planner"},
+    {"id":"planar-inverse-kinematics","title":"Solve planar arm inverse kinematics","query":"planar inverse kinematics","runtime":"pythonrobotics","skill_id":"pythonrobotics-planar-ik"},
+    {"id":"jerk-limited-trajectory","title":"Generate a jerk-limited joint trajectory","query":"offline jerk limited trajectory","runtime":"ruckig","skill_id":"ruckig-offline-trajectory"},
+    {"id":"headless-arm-ik","title":"Solve arm IK in headless PyBullet","query":"inverse kinematics","runtime":"pybullet","skill_id":"pybullet-ik-skill"},
+    {"id":"panda-joint-control","title":"Control Panda joints in MuJoCo","query":"Panda joint control","runtime":"mujoco","robot":"franka_emika_panda","skill_id":"mujoco-franka-emika-panda-joint-control"},
+    {"id":"ur5e-cartesian-servo","title":"Move a UR5e tool with Cartesian IK servo","query":"UR5e Cartesian servo","runtime":"mink","robot":"ur5e","skill_id":"mink-ur5e-cartesian-servo"},
+    {"id":"panda-pick-cube","title":"Pick up a cube with a simulated Panda","query":"pick cube","runtime":"maniskill","robot":"panda","skill_id":"maniskill-panda-pick-cube"},
+    {"id":"sawyer-open-drawer","title":"Open a drawer with a simulated Sawyer","query":"drawer open","runtime":"metaworld","robot":"sawyer","skill_id":"metaworld-sawyer-drawer-open-v3"},
+    {"id":"fetch-push-object","title":"Push an object with a simulated Fetch","query":"FetchPush","runtime":"gymnasium-robotics","robot":"fetch","skill_id":"gymrobotics-fetchpush-v4"}
+  ]
+}

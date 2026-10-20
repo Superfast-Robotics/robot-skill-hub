@@ -785,6 +785,48 @@ test('task mode complete publisher fixture keeps static/native/MCP ranking and s
   } finally { await s.mf.dispose(); }
 });
 
+test('ten published task paths find the intended recipe and deliver native pinned handoffs in one read', { skip: !process.env.RSH_CATALOG_NATIVE_FIXTURE }, async () => {
+  const directory = process.env.RSH_CATALOG_NATIVE_FIXTURE!, current = publication('a'.repeat(40)); current.resources.clear();
+  const load = async (path: string) => { const body = await readFile(join(directory, path), 'utf8'); current.resources.set('/' + path, body); return JSON.parse(body); };
+  const version = await load('catalog/v1/version.json'), manifest = await load('catalog/v2/search-manifest.json'), memories = await load('catalog/v2/memory-manifest.json');
+  for (const page of [...manifest.pages, ...memories.pages]) await load(page.path);
+  const rows = manifest.pages.flatMap((p: any) => JSON.parse(current.resources.get('/' + p.path)!).records);
+  for (const row of rows.filter((r: any) => r.kind === 'preparation_recipe')) await load('skills/' + row.id + '/skill.json');
+  const tasks = await load('tasks/index.json'); assert.equal(tasks.tasks.length, 10);
+  const s = await runtime(current);
+  try {
+    await s.complete();
+    for (const task of tasks.tasks) {
+      const url = new URL(task.start_url), result = await s.read(url.pathname + url.search);
+      assert.equal(result.status, 200, task.id + ': ' + JSON.stringify(result.body));
+      assert.equal(result.body.selected.id, task.skill_id, task.id + ': ' + result.body.results.map((r: any) => r.id).join(','));
+      assert.equal(result.body.execution_performed, false); assert.equal(result.body.sharing_performed, false);
+      assert.equal(result.body.results[0].runtime_verification, 'task_complete');
+      assert.equal(result.body.selected.record.preparation.files, undefined);
+      assert.equal(result.body.selected.record_files_omitted, true);
+      const full = JSON.parse(current.resources.get('/skills/' + task.skill_id + '/skill.json')!);
+      assert.deepEqual(result.body.selected.record.interface, full.interface);
+      const catalogURL = new URL(result.body.selected.preparation.catalog.url);
+      const exported = await s.read(catalogURL.pathname + catalogURL.search);
+      assert.equal(exported.status, 200); assert.deepEqual(exported.body.records, [full]);
+      assert.equal(exported.body.hub_commit, version.hub_commit);
+      assert.ok(result.body.selected.preparation.plan_argv.includes(full.source.commit));
+      assert.ok(result.body.selected.preparation.plan_argv.includes(full.maintenance.record_version));
+      const page = await load('tasks/' + task.id + '/index.json');
+      assert.equal(page.current_execution_state, 'completed');
+      assert.deepEqual(page.example_input, full.invocation.inputs);
+    }
+    for (const q of ['write a wedding toast', 'translate a poem into French', 'calculate mortgage interest', 'resize a vacation photograph', 'write a legal rental contract']) {
+      const result = await s.read('/v1/start?' + new URLSearchParams({q}));
+      assert.equal(result.status, 200); assert.equal(result.body.selected, null, q);
+    }
+    const rpc = await s.mf.dispatchFetch(API + '/mcp', {method:'POST', headers:{'Content-Type':'application/json',Accept:'application/json',DNT:'1','X-RSH-Telemetry':'off'},
+      body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'start_robot_task',arguments:{q:'pick cube',runtime:'maniskill',robot:'panda'}}})});
+    const value: any = await rpc.json();
+    assert.equal(value.result.isError, false); assert.equal(value.result.structuredContent.selected.id, 'maniskill-panda-pick-cube');
+  } finally { await s.mf.dispose(); }
+});
+
 test('native mirror accepts the complete current publisher output', { skip: !process.env.RSH_CATALOG_NATIVE_FIXTURE }, async () => {
   const directory = process.env.RSH_CATALOG_NATIVE_FIXTURE!;
   const current = publication('a'.repeat(40)); current.resources.clear();
