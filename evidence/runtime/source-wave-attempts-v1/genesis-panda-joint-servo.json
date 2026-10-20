@@ -1,0 +1,91 @@
+{
+  "schema_version": "1",
+  "skill_id": "genesis-panda-joint-servo",
+  "recorded_at": "2026-10-20T07:33:41.380496+00:00",
+  "hub_commit": "5a81b1a5ebefbd376874c550f459afeceb1872f7",
+  "adapter_sha256": "57aff325b4a95cd3662b75a4bcb20191c71c4d785393dfcc70b94f25636a5178",
+  "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+  "archive_sha256": "851d0970b921ee1b5182f62c544f432600153efccc127db059d5f5e46d9ac719",
+  "case_plan_sha256": "8777388523fe022a5a2b070ebc6404cfa8b4d08fe8d339e058f69d031272a605",
+  "source_guards_sha256": "2480472f3717e0bbd20b86550ea2fc1e3ffd16cd584a3e7cd849072f514b7a30",
+  "environment": {
+    "runtime": "genesis",
+    "runtime_version": "1.4.4",
+    "robot": "panda",
+    "controller": "joint-servo",
+    "observation": "privileged_simulator_state",
+    "os": "linux",
+    "architecture": "x86_64",
+    "python": "3.11"
+  },
+  "packages": {
+    "genesis-world": "1.4.4",
+    "torch": "2.8.0",
+    "numpy": "1.26.4"
+  },
+  "cases": [
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 4.738,
+      "stderr_tail": "[I 10/20/26 07:33:29.678 5832] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 0,
+        "joint_offset_rad": 0.08
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 4.078,
+      "stderr_tail": "[I 10/20/26 07:33:34.371 6080] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 1,
+        "joint_offset_rad": -0.08
+      },
+      "passed": false
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "schema_version": "1",
+        "skill_id": "genesis-panda-joint-servo",
+        "status": "failed",
+        "success": false,
+        "reason_code": "invalid_input_or_environment",
+        "message": "No module named 'zstandard'",
+        "hardware_execution": false
+      },
+      "elapsed_seconds": 4.096,
+      "stderr_tail": "[I 10/20/26 07:33:38.454 6241] [shell.py:_shell_pop_print@25] Graphical python shell detected, using wrapped sys.stdout\n",
+      "input": {
+        "seed": 2,
+        "joint_offset_rad": 0.12
+      },
+      "passed": false
+    }
+  ],
+  "passed": 0,
+  "failed": 3,
+  "negative_unknown_field_rejected": true,
+  "negative_source_drift_rejected": true,
+  "hardware_execution": false,
+  "scope": "Authored bounded simulation cases; not general accuracy or physical compatibility."
+}

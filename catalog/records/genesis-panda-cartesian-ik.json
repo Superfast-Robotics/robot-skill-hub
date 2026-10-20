@@ -61,9 +61,42 @@
   "requirements": {
     "python": ">=3.11,<3.12",
     "packages": [
+      "DracoPy==2.2.0",
+      "OpenEXR==3.5.2",
+      "Pillow==11.3.0",
+      "PyGEL3D==0.8.2",
+      "PyOpenGL==3.1.10",
+      "av==18.1.0",
+      "coacd==1.0.14",
+      "fast_simplification==0.2.0",
+      "freetype-py==2.5.1",
+      "frozendict==2.4.7",
       "genesis-world==1.4.4",
+      "gs-madrona==0.0.10",
+      "libigl==2.6.3",
+      "moviepy==2.2.1",
+      "mujoco==3.16.0",
+      "numba==0.68.0",
+      "numpy==1.26.4",
+      "opencv-python==4.11.0.86",
+      "psutil==7.2.2",
+      "py-cpuinfo==9.0.0",
+      "pycollada==0.9.3",
+      "pydantic==2.14.1",
+      "pyglet==2.1.19",
+      "pygltflib==1.16.0",
+      "pymeshlab==2025.7.post1",
+      "pysplashsurf==0.14.1.0",
+      "quadrants==1.3.3",
+      "rtree==1.4.1",
+      "scikit-image==0.26.0",
+      "tetgen==0.8.2",
       "torch==2.8.0",
-      "numpy==1.26.4"
+      "trimesh==5.1.1",
+      "vtk==9.7.1",
+      "xacro==2.1.1",
+      "z3-solver==4.15.4.0",
+      "zstandard==0.25.0"
     ],
     "hardware": [
       "Linux x86_64; CUDA GPU; see retained receipt for the exact host environment"
@@ -99,15 +132,84 @@
       "schema": {
         "type": "object",
         "required": [
-          "final_xyz_m",
-          "target_xyz_m",
-          "error_m",
+          "arm_joint_positions_rad",
+          "target_arm_joint_positions_rad",
+          "finger_error_m",
           "movement_m",
           "max_joint_error_rad",
           "cuda_simulation",
-          "steps"
+          "steps",
+          "final_xyz_m",
+          "target_xyz_m",
+          "error_m"
         ],
         "properties": {
+          "arm_joint_positions_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "rad",
+            "x-order": [
+              "joint1",
+              "joint2",
+              "joint3",
+              "joint4",
+              "joint5",
+              "joint6",
+              "joint7"
+            ]
+          },
+          "target_arm_joint_positions_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "rad",
+            "x-order": [
+              "joint1",
+              "joint2",
+              "joint3",
+              "joint4",
+              "joint5",
+              "joint6",
+              "joint7"
+            ]
+          },
+          "finger_error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "x-unit": "m"
+          },
+          "movement_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "m"
+          },
+          "max_joint_error_rad": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50,
+            "x-unit": "rad"
+          },
+          "cuda_simulation": {
+            "type": "boolean"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
           "final_xyz_m": {
             "type": "array",
             "minItems": 3,
@@ -137,26 +239,6 @@
             "minimum": 0,
             "maximum": 50,
             "x-unit": "m"
-          },
-          "movement_m": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 50,
-            "x-unit": "m"
-          },
-          "max_joint_error_rad": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 50,
-            "x-unit": "rad"
-          },
-          "cuda_simulation": {
-            "type": "boolean"
-          },
-          "steps": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 1000
           }
         },
         "additionalProperties": false
@@ -211,15 +293,84 @@
     "output_schema": {
       "type": "object",
       "required": [
-        "final_xyz_m",
-        "target_xyz_m",
-        "error_m",
+        "arm_joint_positions_rad",
+        "target_arm_joint_positions_rad",
+        "finger_error_m",
         "movement_m",
         "max_joint_error_rad",
         "cuda_simulation",
-        "steps"
+        "steps",
+        "final_xyz_m",
+        "target_xyz_m",
+        "error_m"
       ],
       "properties": {
+        "arm_joint_positions_rad": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "rad",
+          "x-order": [
+            "joint1",
+            "joint2",
+            "joint3",
+            "joint4",
+            "joint5",
+            "joint6",
+            "joint7"
+          ]
+        },
+        "target_arm_joint_positions_rad": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          "x-unit": "rad",
+          "x-order": [
+            "joint1",
+            "joint2",
+            "joint3",
+            "joint4",
+            "joint5",
+            "joint6",
+            "joint7"
+          ]
+        },
+        "finger_error_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "x-unit": "m"
+        },
+        "movement_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "m"
+        },
+        "max_joint_error_rad": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50,
+          "x-unit": "rad"
+        },
+        "cuda_simulation": {
+          "type": "boolean"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
         "final_xyz_m": {
           "type": "array",
           "minItems": 3,
@@ -249,26 +400,6 @@
           "minimum": 0,
           "maximum": 50,
           "x-unit": "m"
-        },
-        "movement_m": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 50,
-          "x-unit": "m"
-        },
-        "max_joint_error_rad": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 50,
-          "x-unit": "rad"
-        },
-        "cuda_simulation": {
-          "type": "boolean"
-        },
-        "steps": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 1000
         }
       },
       "additionalProperties": false
@@ -340,7 +471,7 @@
     "hub_verification": {
       "runtime": "not_run",
       "scope": "simulation",
-      "adapter_sha256": "418ab11c67bde625e8325d0bbf09efba94b21ab345d61ae53ac4385e3c0f93b4",
+      "adapter_sha256": "2f6c66f685cc7a41027b8a79e4ce27535051117c33040b545e18aff80962adb9",
       "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
       "record_version": "1.0.0",
       "case_count": 0,

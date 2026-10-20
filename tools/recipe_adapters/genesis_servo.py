@@ -34,10 +34,14 @@ def mainstream_backend(root,data,spec):
         desired=cpu(robot.get_dofs_position()).copy();desired[indices[0]]+=data['joint_offset_rad'];target=None
     robot.control_dofs_position(desired)
     for _ in range(700):scene.step()
-    final=cpu(robot.get_link('hand').get_pos());actual=cpu(robot.get_dofs_position());joint_error=float(np.max(np.abs(actual-desired)))
-    if target is None:target=final.copy()
-    error=float(np.linalg.norm(final-target));movement=float(np.linalg.norm(final-initial));gpu=bool(torch.cuda.is_available() and robot.get_dofs_position().is_cuda)
-    return {'final_xyz_m':final.tolist(),'target_xyz_m':target.tolist(),'error_m':error,'movement_m':movement,
-            'max_joint_error_rad':joint_error,'cuda_simulation':gpu,'steps':800}, {
-        'cartesian_goal_reached':error<.015,'joint_goal_reached':joint_error<.04,'nontrivial_motion':movement>.015,
-        'finite_state':bool(np.isfinite(actual).all()),'cuda_simulation':gpu}
+    final=cpu(robot.get_link('hand').get_pos());actual=cpu(robot.get_dofs_position());joint_error=float(np.max(np.abs(actual[indices[:7]]-desired[indices[:7]])))
+    finger_error=float(np.max(np.abs(actual[indices[7:]]-desired[indices[7:]])))
+    movement=float(np.linalg.norm(final-initial));gpu=bool(torch.cuda.is_available() and robot.get_dofs_position().is_cuda)
+    outputs={'arm_joint_positions_rad':actual[indices[:7]].tolist(),'target_arm_joint_positions_rad':desired[indices[:7]].tolist(),
+             'max_joint_error_rad':joint_error,'finger_error_m':finger_error,'movement_m':movement,'cuda_simulation':gpu,'steps':800}
+    checks={'joint_goal_reached':joint_error<.04,'finger_goal_reached':finger_error<.005,'nontrivial_motion':movement>.015,
+            'finite_state':bool(np.isfinite(actual).all()),'cuda_simulation':gpu}
+    if target is not None:
+        error=float(np.linalg.norm(final-target));outputs.update(final_xyz_m=final.tolist(),target_xyz_m=target.tolist(),error_m=error)
+        checks['cartesian_goal_reached']=error<.015
+    return outputs,checks

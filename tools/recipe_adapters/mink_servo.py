@@ -33,8 +33,12 @@ def mainstream_backend(root,data,spec):
         if m.actuator_trntype[a]==0 and m.actuator_biasprm[a,1]<0:
             j=int(m.actuator_trnid[a,0]);indices.append((a,int(m.jnt_qposadr[j])))
     if len(indices)<6:raise ContractError('Missing position actuators')
+    integral=np.zeros(len(indices))
     for _ in range(3000):
-        for a,j in indices:d.ctrl[a]=desired[j]
+        for index,(a,j) in enumerate(indices):
+            integral[index]=np.clip(integral[index]+2*m.opt.timestep*(desired[j]-d.qpos[j]),-.3,.3)
+            command=desired[j]+integral[index]
+            d.ctrl[a]=np.clip(command,*m.actuator_ctrlrange[a]) if m.actuator_ctrllimited[a] else command
         mujoco.mj_step(m,d)
     mujoco.mj_forward(m,d);final=d.site('attachment_site').xpos.copy();error=float(np.linalg.norm(final-target))
     rotation=d.site('attachment_site').xmat.reshape(3,3);orientation_error=float(np.linalg.norm(mink.SO3.from_matrix(rotation).minus(pose.rotation())))

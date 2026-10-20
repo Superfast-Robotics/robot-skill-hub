@@ -16,10 +16,17 @@ def measured_goal(recipe,outputs):
     if backend=='metaworld':
         window=outputs['success_window']
         return len(window)>=5 and all(type(x) is bool for x in window) and all(window[-5:]) and outputs['native_success'] is True and outputs['control_effort']>0 and outputs['steps']>=5
-    if backend in ['mink','genesis']:
+    if backend=='genesis':
+        joint_error=max(abs(a-b) for a,b in zip(outputs['arm_joint_positions_rad'],outputs['target_arm_joint_positions_rad']))
+        correct=joint_error<.04 and abs(joint_error-outputs['max_joint_error_rad'])<1e-6 and outputs['finger_error_m']<.005 and outputs['movement_m']>.015 and outputs['cuda_simulation'] is True
+        if recipe['operation']=='cartesian_ik':
+            error=math.dist(outputs['final_xyz_m'],outputs['target_xyz_m'])
+            correct=correct and error<.015 and abs(error-outputs['error_m'])<1e-6
+        return correct
+    if backend=='mink':
         error=math.dist(outputs['final_xyz_m'],outputs['target_xyz_m'])
         correct=error<.015 and abs(error-outputs['error_m'])<1e-6 and outputs['movement_m']>.015
-        return correct and (outputs['orientation_error_rad']<.05 if backend=='mink' else outputs['max_joint_error_rad']<.04 and outputs['cuda_simulation'] is True)
+        return correct and outputs['orientation_error_rad']<.05
     if backend=='menagerie':
         if recipe['operation']=='quadruped_stand':return .15<outputs['base_xyz_m'][2]<.5 and outputs['minimum_base_height_m']>.15 and outputs['upright_z']>.9 and outputs['max_joint_error_rad']<.18
         return outputs['max_error_rad']<.035 and outputs['movement_rad']>=.02 and abs(max(abs(a-b) for a,b in zip(outputs['joint_positions_rad'],outputs['target_joint_positions_rad']))-outputs['max_error_rad'])<1e-6
