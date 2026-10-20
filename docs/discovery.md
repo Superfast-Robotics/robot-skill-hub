@@ -22,6 +22,14 @@ npx skills add Superfast-Robotics/robot-skill-hub --skill find-robot-skills -a c
 
 Replace `codex` with `claude-code` for Claude Code. The installed skill contains the Python CLI, schemas, reference instructions and an offline catalog snapshot. See the [agent quickstart](agent-quickstart.md) for search, inspection and preparation. Discovery does not execute robot code; preparation and execution happen in the caller's environment.
 
+## Web crawling and search indexing
+
+The public catalog is static HTML: the homepage describes the service, the [sample directory](https://hub.superfastrobotics.com/samples/) exposes recipe names, summaries and detail links without JavaScript, and each recipe/reference page contains its source and evidence. The [sitemap](https://hub.superfastrobotics.com/sitemap.xml) includes all published recipe and source-reference detail pages. [robots.txt](https://hub.superfastrobotics.com/robots.txt) allows crawling and advertises that sitemap. HTML pages declare their own canonical URLs; they do not require a login or script execution.
+
+The 2026-10-20 maintainer audit observed HTTP 200 for the homepage, sample directory, coverage, problem directory and representative recipe, reference, sample and problem detail pages. None of those responses carried a `noindex` directive. Googlebot- and Bingbot-named user-agent requests to the homepage and one recipe also returned HTTP 200. These are probes from a maintainer network, not authenticated Google/Bing crawler visits or proof of indexing. The audit found and corrected the coverage page's canonical URL, which had pointed to the homepage.
+
+Actual Google index status remains unverified without authorized Search Console access. In the property covering `https://hub.superfastrobotics.com/`, submit `https://hub.superfastrobotics.com/sitemap.xml`, then use URL Inspection for the homepage and representative `/skills/` and `/references/` URLs. Record the indexed status, last crawl and Google-selected canonical separately from the live test. A sitemap or a successful live fetch does not prove indexing; see [Google's sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview) and [URL Inspection documentation](https://support.google.com/webmasters/answer/9012289).
+
 ## Public MCP discovery
 
 The read-only MCP endpoint is `https://api.superfastrobotics.com/mcp`, using Streamable HTTP. It exposes `find_robot_skills`, `inspect_robot_skill` and `get_hub_capabilities`. No account is required for these discovery tools. Actual robot execution and authenticated contributions are separate operations.
