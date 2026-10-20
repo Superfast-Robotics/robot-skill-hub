@@ -7708,7 +7708,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-arx-l5-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -7911,7 +7913,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-dynamixel-2r-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -8142,7 +8146,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-flexiv-rizon4-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -8371,7 +8377,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-flexiv-rizon4s-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -8629,7 +8637,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-franka-fr3-v2-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -8880,7 +8890,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-google-robot-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -9185,7 +9197,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-hello-robot-stretch-3-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -9400,7 +9414,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-low-cost-robot-arm-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -9601,7 +9617,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-robotis-omy-3m-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -9910,7 +9928,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-seeed-rebot-devarm-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -10134,7 +10154,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-stanford-tidybot-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -10341,7 +10363,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-trossen-vx300s-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -10548,7 +10572,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-trossen-wx250s-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -10842,7 +10868,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-trossen-wxai-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
@@ -11065,7 +11093,9 @@
         "verified": true,
         "scope": "Original model-specific license and asset rights remain applicable. Independent Hub wrapper is MIT."
       },
-      "origin_reference_ids": [],
+      "origin_reference_ids": [
+        "mujoco-menagerie-artifact-unitree-z1-scene-xml"
+      ],
       "capabilities": [
         "controller",
         "joint-control",
