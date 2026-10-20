@@ -10,7 +10,7 @@ import unittest
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'tools'))
 import build_catalog as builder
-from coverage_report import build_coverage, coverage_tables
+from coverage_report import build_coverage, coverage_tables, coverage_markdown
 
 
 class CoverageTests(unittest.TestCase):
@@ -84,6 +84,12 @@ class CoverageTests(unittest.TestCase):
             self.assertIn('MIT License',record['preparation']['files']['LICENSE'])
             self.assertIn('upstream',record['preparation']['files']['LICENSE_SCOPE.md'])
         self.assertEqual({r['license']['spdx'] for r in self.records},{'MIT','Apache-2.0','Zlib'})
+
+    def test_repository_main_readme_uses_the_same_generated_statistics(self):
+        report=build_coverage(self.records,self.references,ROOT,'a'*40,builder.DEFAULT_BASE)
+        readme=(ROOT/'README.md').read_text(encoding='utf-8')
+        section=readme.split('<!-- rsh-coverage:start -->\n',1)[1].split('<!-- rsh-coverage:end -->',1)[0]
+        self.assertEqual(section,coverage_markdown(report,builder.DEFAULT_BASE))
 
 
 if __name__=='__main__':unittest.main()

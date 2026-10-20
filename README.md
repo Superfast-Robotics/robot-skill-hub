@@ -13,6 +13,64 @@ Public reads need no account, GPU or simulator. Discovery never executes robot c
 
 [Robot, environment and task coverage](https://hub.superfastrobotics.com/coverage.html) | [Coverage API](https://api.superfastrobotics.com/v1/coverage). Current-version completions, failed attempts and unexecuted recipes are counted separately; reference labels describe source coverage rather than verified robot support.
 
+<!-- rsh-coverage:start -->
+## Current execution and reference coverage
+
+62 preparation recipes: **50 completed operations/tasks**, 1 failed current task attempt and 11 without a current task run. Unbound evidence: 0.
+
+| Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| maniskill | panda | simulation | 8 | 5 | 1 | 2 |
+| maniskill | panda_stick | simulation | 2 | 0 | 0 | 2 |
+| maniskill | panda_wristcam | simulation | 2 | 0 | 0 | 2 |
+| maniskill | so100 | simulation | 1 | 0 | 0 | 1 |
+| maniskill | xarm6_robotiq | simulation | 4 | 0 | 0 | 4 |
+| pybullet | synthetic-seven-axis-or-procedural-scene | simulation | 12 | 12 | 0 | 0 |
+| pythonrobotics | mathematical-model | computation | 28 | 28 | 0 | 0 |
+| ruckig | independent-axes | computation | 5 | 5 | 0 | 0 |
+
+Completion evidence covers 33 computations and 17 simulations across 6 exact environment combinations. **Physical robot completions: 0.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.
+
+| Task level | Prepared | Passed | Failed | No task run |
+| --- | ---: | ---: | ---: | ---: |
+| Algorithm / sensing | 39 | 39 | 0 | 0 |
+| Motion / control | 6 | 6 | 0 | 0 |
+| Task | 17 | 5 | 1 | 11 |
+
+**1330 source references across 44 frameworks.** References are upstream declarations, not Hub execution evidence.
+
+| Reference framework | Records |
+| --- | ---: |
+| mujoco-menagerie | 221 |
+| webots | 193 |
+| pinocchio | 76 |
+| drake | 73 |
+| franka-description | 72 |
+| ros2-control | 72 |
+| ur-description | 65 |
+| isaaclab | 52 |
+| Other 36 frameworks | 506 |
+
+| Declared reference robot category | Records |
+| --- | ---: |
+| source-defined | 615 |
+| arm | 262 |
+| manipulator | 83 |
+| humanoid | 69 |
+| mobile-manipulator | 65 |
+| legged | 46 |
+| aerial | 37 |
+| wheeled | 36 |
+| dexterous-hand | 34 |
+| quadruped | 18 |
+| mobile | 9 |
+| marine | 1 |
+
+Robot categories and task/capability tags can overlap. Generic labels are preserved; supported physical robots are not inferred.
+
+[All robot, environment and task tables](https://hub.superfastrobotics.com/coverage.html) | [Compact coverage API](https://api.superfastrobotics.com/v1/coverage) | [Complete coverage JSON](https://hub.superfastrobotics.com/catalog/v1/coverage.json)
+<!-- rsh-coverage:end -->
+
 [Executable skills and interfaces](docs/executable-skills.md): 62 preparation recipes, including 45 new parameterized adaptations for planning, kinematics, filtering, trajectory generation and headless simulation. Inputs and outputs declare units, frames, abstraction level and runtime evidence. Indexed references link to matching prepared adaptations without changing the reference's evidence.
 
 ```sh

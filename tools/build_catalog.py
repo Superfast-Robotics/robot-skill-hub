@@ -33,11 +33,11 @@ from rshlib.core import RshError, task_attempt_metadata, validate_last_task_atte
 from rshlib.acquisition import plan_source
 from rshlib.interfaces import validate_interface
 if __package__:
-    from .coverage_report import build_coverage, coverage_tables
+    from .coverage_report import build_coverage, coverage_tables, update_readme
     from .reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from .catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 else:
-    from coverage_report import build_coverage, coverage_tables
+    from coverage_report import build_coverage, coverage_tables, update_readme
     from reference_index import check_source_index, require_byte_budget, SOURCE_MANIFEST_MAX_BYTES, SOURCE_SHARD_MAX_BYTES
     from catalog_v2 import compatibility_view, paged_index, receipt_proofs, json_bytes as v2_json_bytes
 
@@ -921,6 +921,7 @@ def build(args):
     output = Path(args.output).resolve()
     hub_commit = args.hub_commit or os.environ.get("GITHUB_SHA") or git_commit()
     coverage = build_coverage(records, references, ROOT, hub_commit, base)
+    update_readme(ROOT, coverage, DEFAULT_BASE)
     write_json(output / 'catalog/v1/coverage.json', coverage, max_bytes=COVERAGE_JSON_MAX_BYTES)
     write(output / 'coverage.html', shell('Robot Skill Hub coverage', 'Current pinned execution evidence and declared reference coverage.',
         '<main><h1>Robot Skill Hub coverage</h1><p>Hub commit: <code>' + esc(hub_commit) + '</code>. ' + esc(coverage['scope']) + '</p>' + coverage_tables(coverage, base, full=True) + '</main>', base))

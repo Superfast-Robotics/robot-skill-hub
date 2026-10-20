@@ -163,6 +163,45 @@ def table(caption, headers, rows):
     return '<table><caption>' + esc(caption) + '</caption><thead><tr>' + ''.join('<th scope="col">' + esc(h) + '</th>' for h in headers) + '</tr></thead><tbody>' + ''.join('<tr>' + ''.join('<td>' + cell(c) + '</td>' for c in row) + '</tr>' for row in rows) + '</tbody></table>'
 
 
+def coverage_markdown(report, base):
+    totals = report['totals']
+    lines = ['## Current execution and reference coverage', '',
+             f"{totals['preparation_recipes']} preparation recipes: **{totals['completed']} completed operations/tasks**, {totals['failed']} failed current task attempt and {totals['not_executed']} without a current task run. Unbound evidence: {totals['evidence_unbound']}.", '',
+             '| Runtime | Declared robot / model | Domain | Prepared | Passed | Failed | No task run |',
+             '| --- | --- | --- | ---: | ---: | ---: | ---: |']
+    for row in report['execution_by_runtime_model']:
+        lines.append('| ' + ' | '.join(str(row[key]).replace('|', '\\|') for key in ('runtime', 'robot_model', 'domain', 'prepared', 'completed', 'failed', 'not_executed')) + ' |')
+    lines += ['', f"Completion evidence covers {totals['completed_computations']} computations and {totals['completed_simulations']} simulations across {totals['tested_environment_combinations']} exact environment combinations. **Physical robot completions: {totals['completed_hardware']}.** Recipe counts are not unique robot counts or general success rates. Older versions do not verify changed code.", '',
+              '| Task level | Prepared | Passed | Failed | No task run |', '| --- | ---: | ---: | ---: | ---: |']
+    levels = {0: 'Algorithm / sensing', 1: 'Motion / control', 2: 'Task', 3: 'Workflow'}
+    for row in report['execution_by_abstraction']:
+        lines.append('| ' + levels.get(row['level'], 'Unspecified') + ' | ' + ' | '.join(str(row[key]) for key in ('prepared', 'completed', 'failed', 'not_executed')) + ' |')
+    lines += ['', f"**{totals['source_references']} source references across {totals['reference_frameworks']} frameworks.** References are upstream declarations, not Hub execution evidence.", '',
+              '| Reference framework | Records |', '| --- | ---: |']
+    frameworks = report['references']['by_framework']
+    for row in frameworks[:8]: lines.append('| ' + row['label'].replace('|', '\\|') + ' | ' + str(row['references']) + ' |')
+    if len(frameworks) > 8:
+        lines.append('| Other ' + str(len(frameworks) - 8) + ' frameworks | ' + str(sum(r['references'] for r in frameworks[8:])) + ' |')
+    lines += ['', '| Declared reference robot category | Records |', '| --- | ---: |']
+    for row in report['references']['by_robot_type']:
+        lines.append('| ' + row['label'].replace('|', '\\|') + ' | ' + str(row['references']) + ' |')
+    lines += ['', 'Robot categories and task/capability tags can overlap. Generic labels are preserved; supported physical robots are not inferred.', '',
+              '[All robot, environment and task tables](' + base + '/coverage.html) | [Compact coverage API](https://api.superfastrobotics.com/v1/coverage) | [Complete coverage JSON](' + base + '/catalog/v1/coverage.json)', '']
+    return '\n'.join(lines)
+
+
+def update_readme(root, report, base):
+    path = Path(root) / 'README.md'
+    if not path.exists(): return
+    text = path.read_text(encoding='utf-8')
+    start = '<!-- rsh-coverage:start -->'; end = '<!-- rsh-coverage:end -->'
+    if start not in text and end not in text: return
+    if text.count(start) != 1 or text.count(end) != 1 or text.index(start) >= text.index(end):
+        raise ValueError('README coverage markers must delimit exactly one generated section')
+    before, rest = text.split(start, 1); _, after = rest.split(end, 1)
+    path.write_bytes((before + start + '\n' + coverage_markdown(report, base) + end + after).encode())
+
+
 def coverage_tables(report, base, *, full=False):
     counts = report['totals']
     execution = [[r['runtime'], r['robot_model'], r['domain'], ', '.join(r['tested_os']) or 'no task run', r['prepared'], r['completed'], r['failed'], r['not_executed'], r['evidence_unbound']] for r in report['execution_by_runtime_model']]
