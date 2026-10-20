@@ -22,7 +22,7 @@ Substitute another skill name from the table when appropriate. Each package incl
 
 - [ROS-MCP example](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/examples/ros-mcp): project-scoped configuration alongside a local ROS server; official SDK probe of the Hub endpoint. Full ROS and robot execution are not verified.
 - [RAI/LangChain example](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/examples/rai): two stateless tools following RAI's custom-tool interface. Real LangChain invocation is tested; full RAI/ROS integration awaits upstream discussion.
-- [Hugging Face static discovery files](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/distribution/huggingface): no compute or hosted MCP transport. Deployment requires the publisher's HF authentication.
+- [Hugging Face discovery Space](https://huggingface.co/spaces/Superfast-BS/robot-skill-hub): public static task card, no compute or hosted MCP transport. [Canonical deployment files](https://github.com/Superfast-Robotics/robot-skill-hub/tree/main/distribution/huggingface).
 
 These are maintained integration examples, not upstream endorsements or default inclusion in every agent.
 

@@ -1,6 +1,6 @@
 # Read-only robot code lookup for RAI
 
-This optional example exposes two ordinary LangChain tools following [RAI's custom-tool tutorial](https://robotec.ai/rai/tutorials/tools/). It is maintained by Superfast Robotics; it is a proposed integration, not a RobotecAI endorsement.
+This optional example exposes two ordinary LangChain tools following [RAI's custom-tool tutorial](https://github.com/RobotecAI/rai/blob/main/docs/tutorials/tools.md). It is maintained by Superfast Robotics; it is a proposed integration, not a RobotecAI endorsement.
 
 Install `requirements.txt` in a separate environment. Import `ROBOT_CODE_TOOLS` from `hub_lookup.py` and append them to the tool list in your existing RAI agent construction. Keep your RAI release's initialization, model and ROS tools unchanged. No new model key, enrollment or MCP connection is needed for these public reads.
 

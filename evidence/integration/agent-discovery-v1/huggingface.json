@@ -1,0 +1,9 @@
+{
+  "space": "https://huggingface.co/spaces/Superfast-BS/robot-skill-hub",
+  "commit_url": "https://huggingface.co/spaces/Superfast-BS/robot-skill-hub/commit/09d2c1bc373c81557402c36ecbae421f6e5d1815",
+  "commit": "09d2c1bc373c81557402c36ecbae421f6e5d1815",
+  "sdk": "static",
+  "public": true,
+  "paid_hardware_requested": false,
+  "compute_requested": false
+}
