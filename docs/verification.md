@@ -2,7 +2,7 @@
 
 ## Simulation starting policies and repository positioning, 2026-10-20
 
-The Hub is a public robot-skill repository: **Discover robotics skills for AI agents**. The homepage, README, sample metadata and GitHub About describe discovery and reuse. The inappropriate skill-marketplace topic was removed. Existing references to actual third-party plugin marketplaces remain about those external services.
+The Hub is a public robot-skill repository: **Discover robotic skills for AI agents**. The homepage, README, sample metadata and GitHub About describe discovery and reuse. The inappropriate skill-marketplace topic was removed. Existing references to actual third-party plugin marketplaces remain about those external services.
 
 An isolated Lambda A10 host actually ran 41 new simulation recipes against 123 fixed cases. Thirty-two recipes completed every case; 102 cases passed and 21 failed. All 82 unknown-field and source-drift rejection checks passed. Current totals are 139 preparation recipes, 116 complete, 12 failed suites, 11 without a current task run and zero unbound completion claims. Completions comprise 33 computations and 83 simulations; physical robot completions remain zero. The [starting-policy guide](simulation-starting-policies.md) and [receipt summary](../evidence/runtime/diverse-sim-v1/seed-expansion-summary.json) give exact scope. Earlier attempts remain archived; best-case selection is not used to promote an adapter.
 

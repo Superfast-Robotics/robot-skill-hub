@@ -5,12 +5,14 @@ import contextlib
 import hashlib
 import io
 import json
+from html.parser import HTMLParser
 from pathlib import Path
 import re
 import shutil
 import socket
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from unittest import mock
 from urllib.parse import urljoin, urlparse
 
@@ -304,6 +306,51 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(full.startswith((self.root / "docs/agent-quickstart.md").read_text(encoding="utf-8")))
         self.assertIn("# Access measurement and privacy", full)
         self.assertIn("# Agent discovery", full)
+
+    def test_static_html_has_self_canonicals_and_catalog_content(self):
+        class Page(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.canonicals = []
+                self.links = []
+                self.text = []
+                self.scripts = []
+
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                if tag == 'link' and attrs.get('rel') == 'canonical':
+                    self.canonicals.append(attrs.get('href'))
+                if tag == 'a':
+                    self.links.append(attrs.get('href'))
+                if tag == 'script':
+                    self.scripts.append(attrs)
+
+            def handle_data(self, data):
+                self.text.append(data)
+
+        self.build()
+        site = self.root / 'site'
+        base = 'https://example.test/hub/'
+        sitemap = {loc.text for loc in ET.parse(site / 'sitemap.xml').iter(
+            '{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+        for path in site.rglob('*.html'):
+            relative = path.relative_to(site).as_posix()
+            if relative.endswith('index.html'):
+                relative = relative[:-len('index.html')]
+            page = Page()
+            page.feed(path.read_text(encoding='utf-8'))
+            self.assertEqual(page.canonicals, [base + relative], path)
+            self.assertFalse(page.scripts, path)
+        listing = Page()
+        listing.feed((site / 'samples/index.html').read_text(encoding='utf-8'))
+        text = ' '.join(listing.text)
+        for record in builder.load_records():
+            self.assertIn(record['name'], text)
+            self.assertIn(record['summary'], text)
+            self.assertIn(base + 'skills/' + record['id'] + '/', listing.links)
+            self.assertIn(base + 'skills/' + record['id'] + '/', sitemap)
+        for record in builder.load_references()['records']:
+            self.assertIn(base + 'references/' + record['id'] + '/', sitemap)
 
     def test_official_index_and_license_provenance_are_checked(self):
         path = self.root / "catalog/source-index.json"

@@ -9,7 +9,7 @@ from sample_pages import publish
 class SamplePagesTests(unittest.TestCase):
     def test_homepage_identifies_a_repository_for_agent_discovery(self):
         html=builder.home([],builder.DEFAULT_BASE)
-        self.assertIn('Discover robotics skills for AI agents',html)
+        self.assertIn('Discover robotic skills for AI agents',html)
         self.assertIn('public repository',html)
         self.assertNotIn('marketplace',html.lower())
 

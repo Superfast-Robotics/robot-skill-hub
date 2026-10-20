@@ -1,6 +1,6 @@
-# Robot Skill Hub
+# Robot Skill Hub — Robotics Skills Catalog for AI Agents
 
-Discover robotics skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes. Search reusable robot skills, inspect pinned code and execution evidence, prepare the matching environment, and share useful corrections. [Browse concrete skill examples](https://hub.superfastrobotics.com/samples/).
+Discover robotic skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes. Find and reuse robot skills for motion planning, manipulation, kinematics and simulation. Inspect pinned code, compatibility and execution evidence through public HTTPS, MCP or the CLI; prepare a matching environment and share useful corrections. [Browse concrete skill examples](https://hub.superfastrobotics.com/samples/).
 
 Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matching correction, and save what you learn for the next task.
 
