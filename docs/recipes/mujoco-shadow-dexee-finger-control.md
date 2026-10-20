@@ -1,7 +1,7 @@
-# Shadow DexEE three-finger joint-position control
+# Shadow DexEE distal-finger curl control
 
-Shadow DexEE three-finger joint-position control. Bounded, source-pinned simulation; no hardware execution.
+Control six named distal finger joints through the original MuJoCo PID plugin; no object-grasp or hardware claim.
 
-Control twelve named finger joints through the model's original MuJoCo PID plugin. Goal is finger posture, not contact grasping or object manipulation.
+Control the six J2/J3 distal finger joints through the original PID plugin. Other hand joints retain their native reset controls. This is finger curl, not all-joint hand posture or object grasping.
 
 Source and model terms: Apache-2.0. The Hub wrapper is MIT. See the record for input JSON, exact environment, frozen execution receipts and preparation requirements.

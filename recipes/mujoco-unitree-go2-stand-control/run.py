@@ -147,7 +147,7 @@ def mainstream_backend(root,data,spec):
         target=d.qpos[qaddrs].copy();d.qvel[0]=data['push_velocity_m_s']
         body=int(m.jnt_bodyid[0]);minimum_height=10.
         for step in range(3500):
-            torque=35*(target-d.qpos[qaddrs])-1.5*d.qvel[vaddrs]
+            torque=90*(target-d.qpos[qaddrs])-3*d.qvel[vaddrs]
             for k,a in enumerate(indices):d.ctrl[a]=np.clip(torque[k],*m.actuator_ctrlrange[a])
             mujoco.mj_step(m,d)
             if step>500:minimum_height=min(minimum_height,float(d.xpos[body,2]))

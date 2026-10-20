@@ -21,6 +21,7 @@ def record(recipe,source,adapter):
     environment=copy.deepcopy(recipe['environment']);environment['status']='hub_verified' if complete else 'source_reviewed'
     license=recipe['license']
     invocation=['{python}','{recipe_dir}/run.py','--source-dir','{source_dir}','--example']
+    install=['{python}','-m','pip','install']+([] if recipe['backend'] in ['robosuite','lerobot'] else ['--only-binary=:all:'])+['-r','{recipe_dir}/requirements.txt']
     evidence={'level':level,'verified_by':'Hub finite-case Lambda execution harness' if proof else 'Hub source review','date':'2026-10-20',
         'environment':{'scope':'simulation','physical_robot':False,'platforms':['linux'] if executed else []},
         'commands':['python tools/verify_runtime_expansion.py --backend '+recipe['backend']+' --source-cache SOURCE_CACHE --output OUTPUT'],
@@ -39,7 +40,7 @@ def record(recipe,source,adapter):
         'requirements':{'python':'>=3.10,<3.11','packages':source['packages'],'hardware':['Linux x86_64; '+('CUDA GPU, tested on A100 40GB' if recipe['backend']=='lerobot' else 'CPU simulation, tested on a Lambda A100 host')],
             'rendering':'Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.',
             'api_keys':[],'network':['Pinned source archive during preparation','PyPI dependencies during explicit installation']+(['Pinned public Hugging Face checkpoint on first execution'] if recipe['backend']=='lerobot' else []),
-            'dependency_lock':'Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements.'},
+            'dependency_lock':'Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements.'+(' Linux device dependencies may build evdev from source; an available C compiler and explicit dependency-install permission are required.' if recipe['backend'] in ['robosuite','lerobot'] else '')},
         'invocation':{'entrypoint':'python run.py','argv':invocation,'inputs':recipe['example'],
             'outputs':{'format':'single JSON object','payload_selector':'outputs','schema':recipe['interface']['output_schema']},
             'example':'Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation.'},
@@ -50,7 +51,7 @@ def record(recipe,source,adapter):
             'stop_condition':'Terminate the adapter at the recorded timeout. No physical hardware is opened.'},
         'preparation':{'recipe_path':'recipes/'+ident,'requirements_file':'recipes/'+ident+'/requirements.txt',
             'source_selection':'declared_paths' if recipe['backend']=='menagerie' else None,
-            'install_argv':['{python}','-m','pip','install','--only-binary=:all:','-r','{recipe_dir}/requirements.txt'],'execution_separate':True},
+            'install_argv':install,'execution_separate':True},
         'evidence':evidence,'maintenance':{'record_version':'1.0.0','last_checked':'2026-10-20','upstream_status':'immutable_source_and_explicit_dependencies'},
         'contribution':{'allowed_paths':['catalog/records/'+ident+'.json','recipes/'+ident+'/run.py','recipes/'+ident+'/requirements.txt','docs/recipes/'+ident+'.md'],
              'instructions':'Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware.'}}
