@@ -1,0 +1,209 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-20T04:15:40.176754+00:00",
+  "cases": [
+    {
+      "id": "path-smoothing-arclength",
+      "case_sha256": "22ec86422a022411727c00498537e3af46b98867ab44505acfb1ebbb1f330991",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "original_result": [
+          5.0,
+          5.0,
+          -1
+        ],
+        "expected": [
+          5.0,
+          0.0,
+          0
+        ]
+      },
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "supplied_obstacles_clear": true,
+        "not_longer": true
+      },
+      "adapter_sha256": "30f138778bf12bcfa8d0e9ae9f52f5b32034f9bb56df1fd7a4fffa895bb79e25",
+      "bad_adapter_sha256": "30f138778bf12bcfa8d0e9ae9f52f5b32034f9bb56df1fd7a4fffa895bb79e25",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "upstream_interpolation"
+    },
+    {
+      "id": "path-smoothing-collision",
+      "case_sha256": "3588977f692b2529a9f35f1ffdb84a2cf217bc9f0e17c800d5c432744a39c9f1",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "nonempty": true,
+        "start_reached": true,
+        "goal_reached": true,
+        "supplied_obstacles_clear": true,
+        "not_longer": true
+      },
+      "adapter_sha256": "30f138778bf12bcfa8d0e9ae9f52f5b32034f9bb56df1fd7a4fffa895bb79e25",
+      "bad_adapter_sha256": "30f138778bf12bcfa8d0e9ae9f52f5b32034f9bb56df1fd7a4fffa895bb79e25",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "ekf-state-dimension",
+      "case_sha256": "d4cb7cc4ce1edbf73b3b029cc7e9a28de0ac08258637a060c6c6198d037b3ad9",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "finite_state": true,
+        "symmetric_covariance": true,
+        "positive_semidefinite_covariance": true
+      },
+      "adapter_sha256": "217d21659ace9510fff3705bda66bf49e98a28a925429a13dccf7aab25928781",
+      "bad_adapter_sha256": "1aad261b6b6309ea716a19ae709631901cff315fcb430b19f295942f9ea36bd9",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "ekf-covariance",
+      "case_sha256": "b44c4105878bfd58a19384efd81e28e38934f1b15352f8a8e4b49fea2a0e6205",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "finite_state": true,
+        "symmetric_covariance": true,
+        "positive_semidefinite_covariance": true
+      },
+      "adapter_sha256": "1aad261b6b6309ea716a19ae709631901cff315fcb430b19f295942f9ea36bd9",
+      "bad_adapter_sha256": "1aad261b6b6309ea716a19ae709631901cff315fcb430b19f295942f9ea36bd9",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "planar-ik-reachability",
+      "case_sha256": "d18640c39ce7251e992e28d8fac7f2c59451f0205ea5f88dc764f4d8fe59eb29",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "forward_kinematics_agrees": true,
+        "target_residual_below_0_1_m": true
+      },
+      "adapter_sha256": "83cccd6ba3a1a52f435658434d4ff9108dfcf18d1d5f4ce482da64eea18d329b",
+      "bad_adapter_sha256": "83cccd6ba3a1a52f435658434d4ff9108dfcf18d1d5f4ce482da64eea18d329b",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "forward-kinematics-joint-order",
+      "case_sha256": "d0c11d42b7e2fe70581adf43fcbc43d029dc57307d400b16ab0fa5b0b76611ac",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "forward_kinematics_agrees": true
+      },
+      "adapter_sha256": "b3f6bbd8b277582166650fd5b3c3da9eb5c1ce7d1b329eae0df571544e929f0e",
+      "bad_adapter_sha256": "b3f6bbd8b277582166650fd5b3c3da9eb5c1ce7d1b329eae0df571544e929f0e",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "pendulum-lqr-state-cost",
+      "case_sha256": "3076abfdbe2d3c989697142a147de90c9e7a9bc07cca880a8494d225089b1d33",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "stable_discrete_linear_model": true
+      },
+      "adapter_sha256": "cd4c5191e0c4396cebfdd0a70cb4dad95a0c4bccbe288ef08d1feb8ef5206616",
+      "bad_adapter_sha256": "cd4c5191e0c4396cebfdd0a70cb4dad95a0c4bccbe288ef08d1feb8ef5206616",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "input"
+    },
+    {
+      "id": "ruckig-motion-limits",
+      "case_sha256": "22293f0781b0c76e0c694600386c0c9d96a8597a1ec18ed82a2527907a0062b7",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "terminal_velocity": true,
+        "terminal_acceleration": true,
+        "acceleration_bounds": true,
+        "sampled_jerk_bounds": true,
+        "terminal_position": true,
+        "velocity_bounds": true
+      },
+      "adapter_sha256": "2dd1b2b7afed66065f7080ae06735bf01d95ca1195880bebf754962a9a30ffd7",
+      "bad_adapter_sha256": "2dd1b2b7afed66065f7080ae06735bf01d95ca1195880bebf754962a9a30ffd7",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "mode": "input"
+    },
+    {
+      "id": "ruckig-axis-count",
+      "case_sha256": "5332f0e311df2a30cee972590ca09f635d5b48caa5ec5d0e7f8699196cdd0238",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {
+        "exit_code": 2,
+        "reason_code": "invalid_input_or_environment"
+      },
+      "checks": {
+        "terminal_velocity": true,
+        "terminal_acceleration": true,
+        "acceleration_bounds": true,
+        "sampled_jerk_bounds": true,
+        "terminal_position": true,
+        "velocity_bounds": true
+      },
+      "adapter_sha256": "2dd1b2b7afed66065f7080ae06735bf01d95ca1195880bebf754962a9a30ffd7",
+      "bad_adapter_sha256": "2dd1b2b7afed66065f7080ae06735bf01d95ca1195880bebf754962a9a30ffd7",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "mode": "input"
+    },
+    {
+      "id": "path-coordinate-frame",
+      "case_sha256": "c944437f36f0338bad2a764eb61e9ca1cfbf5a5a394bbdb5b66bba95a0c12002",
+      "problem_reproduced": true,
+      "valid_case_passed": true,
+      "observed_problem": {},
+      "checks": {
+        "compatible_field_handoff": true
+      },
+      "adapter_sha256": "ea67208ea9d768a5366220fc7aa10481dc708777d3bf888e2119b356fbfdf878",
+      "bad_adapter_sha256": "ea67208ea9d768a5366220fc7aa10481dc708777d3bf888e2119b356fbfdf878",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "mode": "handoff"
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "scope": "Authored failure/valid-input CPU regressions and one field handoff; not autonomous LLM discovery or hardware.",
+  "physical_robot": false,
+  "gpu": false
+}

@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "robot-motion-planning",
+    "robot-kinematics",
+    "robot-trajectory"
+  ],
+  "installer": "npx skills@latest",
+  "source": "local worktree",
+  "scope": "isolated temporary project",
+  "agent": "codex",
+  "mode": "copy",
+  "passed": 3,
+  "maintainer_probe": true,
+  "external_installs": false,
+  "telemetry_disabled": true
+}

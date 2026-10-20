@@ -1,0 +1,778 @@
+{
+  "schema_version": "1",
+  "cases": [
+    {
+      "id": "path-smoothing-arclength",
+      "title": "Path smoothing selects the wrong arclength point",
+      "resolution": "Upstream segment indexing and interpolation can select a point off the requested path segment. The Hub wrapper corrects interpolation; original source remains pinned and unchanged.",
+      "mode": "upstream_interpolation",
+      "skill_id": "pythonrobotics-path-smoothing",
+      "bad_skill_id": "pythonrobotics-path-smoothing",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "path": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            10.0,
+            0.0
+          ],
+          [
+            10.0,
+            10.0
+          ]
+        ],
+        "distance": 5.0,
+        "expected": [
+          5.0,
+          0.0,
+          0
+        ]
+      },
+      "good_input": {
+        "path_xy": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "obstacles": [],
+        "robot_radius": 0.2,
+        "seed": 0
+      },
+      "contracts_sha256": "beb0354c58d43dbfe370fc86be811b2e44195fc6cf0ab30bc7332a918fc506fb",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "path-smoothing-collision",
+      "title": "Reject a path that already crosses an inflated obstacle",
+      "resolution": "A shortcut algorithm cannot establish safety for an already colliding input path. Supply a valid detour and retain exact segment/circle checks.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-path-smoothing",
+      "bad_skill_id": "pythonrobotics-path-smoothing",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "path_xy": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "obstacles": [
+          [
+            1,
+            0,
+            0.1
+          ]
+        ],
+        "robot_radius": 0.2,
+        "seed": 0
+      },
+      "good_input": {
+        "path_xy": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "obstacles": [
+          [
+            1,
+            0,
+            0.1
+          ]
+        ],
+        "robot_radius": 0.2,
+        "seed": 0
+      },
+      "contracts_sha256": "beb0354c58d43dbfe370fc86be811b2e44195fc6cf0ab30bc7332a918fc506fb",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "ekf-state-dimension",
+      "title": "Choose a five-state EKF for velocity-scale correction",
+      "resolution": "The velocity-correction model adds a fifth velocity-scale state. Use its matching state and covariance instead of supplying five components to the four-state model.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-ekf-velocity-update",
+      "bad_skill_id": "pythonrobotics-ekf-update",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "state": [
+          0,
+          0,
+          0,
+          1,
+          1.0
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.15,
+          0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "good_input": {
+        "state": [
+          0,
+          0,
+          0,
+          1,
+          1.0
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.15,
+          0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "contracts_sha256": "323f7aa771c703a79ff6d664fb38023f3ef9ae8aef4cbbc4cb77e1bae760903e",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "ekf-covariance",
+      "title": "EKF covariance must be symmetric positive definite",
+      "resolution": "A zero/negative initial covariance eigenvalue violates this adapter precondition. The valid example uses a positive diagonal covariance; choose values justified by the actual model.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-ekf-update",
+      "bad_skill_id": "pythonrobotics-ekf-update",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "covariance": [
+          [
+            -0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.15,
+          0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "good_input": {
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "covariance": [
+          [
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.1,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.1
+          ]
+        ],
+        "measurement_xy": [
+          0.15,
+          0.02
+        ],
+        "control_v_yawrate": [
+          1,
+          0.1
+        ]
+      },
+      "contracts_sha256": "a48749d4a521ccaff23f84c626c8a86195a0bb2e02b8fc4fb681a6e8ac565c6a",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "planar-ik-reachability",
+      "title": "Check planar IK target reachability before solving",
+      "resolution": "A target outside the sum of link lengths is unreachable for this planar model. Check units, model and target; the corrected example selects a reachable target.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-planar-ik",
+      "bad_skill_id": "pythonrobotics-planar-ik",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "link_lengths": [
+          1,
+          1,
+          0.5
+        ],
+        "joint_angles": [
+          0.1,
+          0.3,
+          -0.2
+        ],
+        "target_xy": [
+          3.0,
+          0.0
+        ]
+      },
+      "good_input": {
+        "link_lengths": [
+          1,
+          1,
+          0.5
+        ],
+        "joint_angles": [
+          0.1,
+          0.3,
+          -0.2
+        ],
+        "target_xy": [
+          1.5,
+          1.0
+        ]
+      },
+      "contracts_sha256": "e85300c81cb4729cc880485cf0e8781b91d0d0feca9ed6b18c8067c5bdc70ee1",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "forward-kinematics-joint-order",
+      "title": "Forward kinematics needs one angle per link",
+      "resolution": "The ordered angle vector must match the ordered link-length vector. Preserve joint order rather than truncating or silently broadcasting a vector.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-planar-fk",
+      "bad_skill_id": "pythonrobotics-planar-fk",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "link_lengths": [
+          1,
+          1,
+          0.5
+        ],
+        "joint_angles": [
+          0.1,
+          0.3
+        ]
+      },
+      "good_input": {
+        "link_lengths": [
+          1,
+          1,
+          0.5
+        ],
+        "joint_angles": [
+          0.1,
+          0.3,
+          -0.2
+        ]
+      },
+      "contracts_sha256": "883ba44659fb7f3f48f5ed48a23af970d1d5b48c470435151ed7a9f500aef338",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "pendulum-lqr-state-cost",
+      "title": "Use positive state costs for this bounded LQR example",
+      "resolution": "This adapter requires positive state costs and checks the discrete linear closed-loop eigenvalues. This is a linear model check, not nonlinear or hardware stabilization.",
+      "mode": "input",
+      "skill_id": "pythonrobotics-pendulum-lqr",
+      "bad_skill_id": "pythonrobotics-pendulum-lqr",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "state": [
+          0,
+          0,
+          0.1,
+          0
+        ],
+        "state_cost_diagonal": [
+          0.0,
+          1.0,
+          10.0,
+          1.0
+        ],
+        "force_cost": 1.0
+      },
+      "good_input": {
+        "state": [
+          0,
+          0,
+          0.1,
+          0
+        ],
+        "state_cost_diagonal": [
+          1.0,
+          1.0,
+          10.0,
+          1.0
+        ],
+        "force_cost": 1.0
+      },
+      "contracts_sha256": "cbd174dd17f0bb5fe4b99a98e1fb6f7363a905c03853172fa3e96acb0712f911",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "ruckig-motion-limits",
+      "title": "Ruckig requires positive per-axis motion limits",
+      "resolution": "Use physically justified positive velocity, acceleration and jerk bounds. These input checks and sampled trajectory checks are separate from actuator safety.",
+      "mode": "input",
+      "skill_id": "ruckig-online-trajectory",
+      "bad_skill_id": "ruckig-online-trajectory",
+      "runtime": "ruckig",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "bad_input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1,
+          -0.5,
+          0.25
+        ],
+        "target_velocity": [
+          0,
+          0,
+          0
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          0.0,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "good_input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1,
+          -0.5,
+          0.25
+        ],
+        "target_velocity": [
+          0,
+          0,
+          0
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "contracts_sha256": "1b6001355e80051839a68c7fbec149f959d2ae80f393b5af67e5bf73b8f27892",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "ruckig-axis-count",
+      "title": "Ruckig state and limit vectors must share an axis count",
+      "resolution": "Position, velocity, acceleration and all limits must describe the same ordered axes. Match vector lengths and coordinate_type explicitly.",
+      "mode": "input",
+      "skill_id": "ruckig-online-trajectory",
+      "bad_skill_id": "ruckig-online-trajectory",
+      "runtime": "ruckig",
+      "source_commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "bad_input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0.0,
+          0.0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1,
+          -0.5,
+          0.25
+        ],
+        "target_velocity": [
+          0,
+          0,
+          0
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "good_input": {
+        "current_position": [
+          0,
+          0,
+          0.5
+        ],
+        "current_velocity": [
+          0,
+          0,
+          0
+        ],
+        "current_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "target_position": [
+          1,
+          -0.5,
+          0.25
+        ],
+        "target_velocity": [
+          0,
+          0,
+          0
+        ],
+        "target_acceleration": [
+          0,
+          0,
+          0
+        ],
+        "max_velocity": [
+          1,
+          1,
+          1
+        ],
+        "max_acceleration": [
+          2,
+          2,
+          2
+        ],
+        "max_jerk": [
+          4,
+          4,
+          4
+        ],
+        "dt": 0.01,
+        "coordinate_type": "revolute_rad"
+      },
+      "contracts_sha256": "1b6001355e80051839a68c7fbec149f959d2ae80f393b5af67e5bf73b8f27892",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    },
+    {
+      "id": "path-coordinate-frame",
+      "title": "Reject a path handoff between different coordinate frames",
+      "resolution": "The field handoff validator rejects a map path labeled as a robot-base path. Supply an explicit transform when needed; merely relabeling coordinates is not a transform.",
+      "mode": "handoff",
+      "skill_id": "pythonrobotics-astar-planner",
+      "bad_skill_id": "pythonrobotics-astar-planner",
+      "runtime": "pythonrobotics",
+      "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "bad_input": {
+        "path_xy": [
+          [
+            2.0,
+            2.0
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "target_frame": "robot_base"
+      },
+      "good_input": {
+        "start": [
+          2,
+          2
+        ],
+        "goal": [
+          18,
+          18
+        ],
+        "bounds": [
+          0,
+          20
+        ],
+        "obstacles": [
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            10,
+            12
+          ]
+        ],
+        "robot_radius": 0.3
+      },
+      "contracts_sha256": "087a27d2ce49531a42bdf299ed011d068453ac16ece54c50200a459fd783562a",
+      "scope": "Authored reproduction; not autonomous agent discovery, general accuracy or hardware verification."
+    }
+  ]
+}

@@ -290,7 +290,8 @@ class CatalogTests(unittest.TestCase):
             for href in re.findall(r"\[[^\]]*\]\(([^\s)]+)\)", text):
                 resolved = urlparse(urljoin(builder.DEFAULT_BASE + "/" + name, href))
                 if resolved.hostname == urlparse(builder.DEFAULT_BASE).hostname:
-                    self.assertTrue((site / resolved.path.lstrip("/")).is_file(), f"{name}: {href}")
+                    target = site / resolved.path.lstrip("/")
+                    self.assertTrue(target.is_file() or (target / 'index.html').is_file(), f"{name}: {href}")
         for name in ("llms.txt", "llms-full.txt"):
             text = (site / name).read_text(encoding="utf-8")
             self.assertIn("/privacy.md", text)

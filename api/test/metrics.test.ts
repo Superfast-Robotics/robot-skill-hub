@@ -5,14 +5,14 @@ import { createPublicHandler } from '../src/public.ts';
 import { createHash } from 'node:crypto';
 
 const NOW = Date.parse('2026-10-18T12:00:00Z'), START = Date.parse('2026-10-17T15:47:38Z');
-type Event = { ts: number; route: string; family: string; client_hash: string | null };
+type Event = { ts: number; route: string; family: string; client_hash: string | null; channel?: string | null };
 class Database {
   events: Event[] = []; queries: { sql: string; values: unknown[] }[] = []; fail = false;
   prepare(sql: string): Statement {
     const database = this; let values: unknown[] = [];
     return { bind(...input: unknown[]) { values = input; return this; }, async run() {
       database.queries.push({ sql, values }); if (database.fail) throw Error('Synthetic database failure');
-      if (sql.startsWith('INSERT')) database.events.push({ ts: Number(values[0]), route: String(values[1]), family: String(values[2]), client_hash: values[3] as string | null });
+      if (sql.startsWith('INSERT')) database.events.push({ ts: Number(values[0]), route: String(values[1]), family: String(values[2]), client_hash: values[3] as string | null, channel: values[4] as string | null });
       else if (sql.startsWith('DELETE')) {
         const expired = database.events.filter(event => event.ts < Number(values[0])).slice(0, 1000);
         database.events = database.events.filter(event => !expired.includes(event));
@@ -20,9 +20,14 @@ class Database {
       return {};
     }, async all<T>() {
       database.queries.push({ sql, values }); if (database.fail) throw Error('Synthetic database failure');
-      const groups = new Map<string, Event[]>();
-      for (const event of database.events.filter(event => event.ts >= Number(values[0]) && event.ts < Number(values[1]))) groups.set(event.family, [...(groups.get(event.family) || []), event]);
-      return { results: [...groups.entries()].map(([family, events]) => ({ family, requests: events.length, identified_client_days: new Set(events.map(event => event.client_hash).filter(Boolean)).size })) as T[] };
+      const groups = new Map<string, Event[]>(), channelQuery = sql.includes('GROUP BY channel');
+      for (const event of database.events.filter(event => event.ts >= Number(values[0]) && event.ts < Number(values[1]))) {
+        const key = channelQuery ? JSON.stringify([event.channel ?? null, event.route, event.family]) : event.family;
+        groups.set(key, [...(groups.get(key) || []), event]);
+      }
+      return { results: [...groups.entries()].map(([key, events]) => channelQuery
+        ? { channel: events[0].channel ?? null, route: events[0].route, family: events[0].family, requests: events.length }
+        : { family: key, requests: events.length, identified_client_days: new Set(events.map(event => event.client_hash).filter(Boolean)).size }) as T[] };
     } };
   }
 }
@@ -103,4 +108,42 @@ test('retention cleanup deletes bounded batches older than 30 days', async () =>
   s.database.events.push({ ts: cutoff, route: 'inspect', family: 'rsh_cli', client_hash: null });
   await pruneMeasurements(s.env, NOW); assert.equal(s.database.events.length, 501); assert.match(s.database.queries[0].sql, /LIMIT 1000/);
   await pruneMeasurements(s.env, NOW); assert.equal(s.database.events.length, 1); assert.equal(s.database.events[0].ts, cutoff);
+});
+
+test('channel attribution keeps fixed labels and rejects free-text referrals without changing opt-outs', async () => {
+  const s = setup();
+  await recordAccess(request('robot-skill-hub/task-skill-v1', { 'X-RSH-Channel': 'task-planning' }), s.env, 'search', false, NOW);
+  await recordAccess(request('Codex', { 'X-RSH-Channel': 'private-company-project' }), s.env, 'inspect', false, NOW);
+  await recordAccess(request('Codex', { 'X-RSH-Channel': 'rai-example', DNT: '1' }), s.env, 'search', false, NOW);
+  assert.equal(s.database.events.length, 2);
+  assert.equal(s.database.events[0].channel, 'task-planning'); assert.equal(s.database.events[1].channel, null);
+  assert.ok(!JSON.stringify(s.database.queries).includes('private-company-project'));
+});
+
+test('rolling and retained reports include later events without redefining the launch result', async () => {
+  const s = setup(), later = START + 10 * 86400000;
+  s.database.events.push({ ts: START / 1000 + 100, route: 'search', family: 'rsh_cli', client_hash: 'day-one' });
+  s.database.events.push({ ts: later / 1000 - 60, route: 'inspect', family: 'mcp_tool', client_hash: null, channel: 'rai-example' });
+  s.database.events.push({ ts: later / 1000 - 30, route: 'search', family: 'crawler', client_hash: null });
+  const launch = await measurementReport(s.env, later); assert.equal(launch.observed_agent_accesses, 1);
+  const week = await measurementReport(s.env, later, '7d'); assert.equal(week.observed_agent_accesses, 1);
+  assert.equal(week.window_start, new Date(later - 7 * 86400000).toISOString());
+  assert.ok('channels' in week && week.channels?.some((r: any) => r.channel === 'rai-example' && r.requests === 1));
+  const retained = await measurementReport(s.env, later, 'retained'); assert.equal(retained.observed_agent_accesses, 2);
+  assert.equal(retained.lifetime_total_available, false);
+  const future = await measurementReport(s.env, START + 60 * 86400000, 'retained');
+  assert.equal(future.window_start, new Date(START + 30 * 86400000).toISOString());
+});
+
+test('public metrics validates windows and bounds repeat database reads with a short cache', async () => {
+  const s = setup(); let clock = NOW;
+  const handler = createPublicHandler(fetch, () => clock);
+  const env = { ...s.env, PUBLICATION_URL: 'https://hub.superfastrobotics.com/catalog/v1/publication.json' };
+  for (const suffix of ['?window=forever', '?window=7d&query=private']) {
+    assert.equal((await handler(new Request('https://api.superfastrobotics.com/v1/metrics' + suffix), env))!.status, 400);
+  }
+  const request = () => new Request('https://api.superfastrobotics.com/v1/metrics?window=7d');
+  assert.equal((await handler(request(), env))!.status, 200); const count = s.database.queries.length;
+  await handler(request(), env); assert.equal(s.database.queries.length, count);
+  clock += 60001; await handler(request(), env); assert.ok(s.database.queries.length > count);
 });

@@ -15,6 +15,8 @@ These are deployment targets. See `docs/verification.md` for what was actually c
 
 ## Local checks and deployment
 
+Version 0.5.2 adds `api/migrations/0002_access_channels.sql` to the **METRICS** database. Apply this additive migration before deploying the Worker; historical rows keep a null channel. This deployment used the authenticated D1 API because Wrangler's remote D1 query was unavailable. That database has no Wrangler migration ledger; record the applied migration before adopting ledger-managed migrations later. Default launch metrics are unchanged; rolling reports cover seven days or at most thirty retained days. Keep maintainer probes opted out.
+
 Version 0.4 adds `api/migrations-catalog/0003_community.sql`. Apply this additive migration to the catalog database before deploying the new Worker; it does not change existing catalog tables. Community enrollment uses the existing `METRICS_KEY` with domain-separated HMAC, and stores only credential hashes. It does not require a new GitHub token or an operator-maintained caller list.
 
 Version 0.4.2 additionally requires `api/migrations-catalog/0004_community_capacity_guards.sql`. Apply it after 0003 and before the updated Worker. Its explicit abort triggers prevent `INSERT OR IGNORE` from suppressing capacity accounting failures. Check the storage counters against actual item bytes/count, installation count and attestation count during rollout; do not raise limits to conceal a mismatch.

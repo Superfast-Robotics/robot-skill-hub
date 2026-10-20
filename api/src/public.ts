@@ -1,6 +1,6 @@
 /** Public discovery and stateless, read-only MCP. Never executes robot code. */
 import { capabilities } from './memories.ts';
-import { measure, measurementReport, type MetricsEnv, type Background } from './metrics.ts';
+import { measure, measurementReport, type MeasurementWindow, type MetricsEnv, type Background } from './metrics.ts';
 import { CatalogError as PublicError, type CatalogEnv, INTERNAL_HEADERS, activeCatalog, indexedRow, indexedSearch, taskSearch, publishedVersion, validateSearch, combinationMatches, indexedFindings, staticFindings, validMemory } from './catalog.ts';
 import { containsWordPrefixes, queryTerms } from './search.ts';
 import { MEMORY_ENV_KEYS, memoryEnvironmentKey } from './memory-environment.ts';
@@ -8,7 +8,7 @@ import { communityForSelection } from './community.ts';
 
 const ORIGIN = 'https://hub.superfastrobotics.com';
 const API = 'https://api.superfastrobotics.com';
-const VERSION = '0.5.1';
+const VERSION = '0.5.2';
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26'];
 const IDENT = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -85,6 +85,7 @@ export const MCP_TOOLS = [
 export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => number = Date.now) {
   let cached: { expires: number; value: Snapshot } | undefined;
   let pending: Promise<Snapshot> | undefined;
+  const metricReports = new Map<string, { expires: number; value: unknown; database: PublicEnv['METRICS']; configured: boolean }>();
   const records = new Map<string, { expires: number; value: Row }>();
   async function read(path: string, maximum: number) {
     const response = await fetcher(ORIGIN + path, { redirect: 'manual', signal: AbortSignal.timeout(10000), headers: INTERNAL_HEADERS });
@@ -276,7 +277,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
     const url = new URL(request.url), path = url.pathname;
     const relevant = path === '/mcp' || path === '/v1/search' || path === '/v1/findings' || path === '/v1/catalog' || path === '/v1/references' || path === '/v1/coverage' || path === '/v1/metrics' || path === '/v1/capabilities' || path === '/openapi.json' || /^\/v1\/skills\/[a-z0-9-]+$/.test(path);
     if (!relevant) return null;
-    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, MCP-Protocol-Version, Mcp-Session-Id, X-RSH-Client, X-RSH-Telemetry, DNT', 'Access-Control-Max-Age': '600' } });
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, MCP-Protocol-Version, Mcp-Session-Id, X-RSH-Client, X-RSH-Telemetry, X-RSH-Channel, DNT', 'Access-Control-Max-Age': '600' } });
     try {
       if (env.PUBLIC_LIMITER) {
         const address = request.headers.get('CF-Connecting-IP') || 'unidentified';
@@ -287,7 +288,17 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       if (path === '/mcp') return await mcp(request, env, ctx);
       if (!['GET', 'HEAD'].includes(request.method)) return json({ status: 'failed', reason_code: 'method_not_allowed' }, 405, { Allow: 'GET, HEAD, OPTIONS' });
       let response: Response;
-      if (path === '/v1/metrics') response = json(await measurementReport(env, now()));
+      if (path === '/v1/metrics') {
+        const window = url.searchParams.get('window') || 'launch';
+        if ([...url.searchParams.keys()].some(key => key !== 'window') || !['launch', '7d', 'retained'].includes(window)) fail(400, 'invalid_arguments', 'Use window=launch|7d|retained.');
+        const entry = metricReports.get(window), configured = Boolean(env.METRICS && env.METRICS_KEY);
+        if (entry && entry.expires > now() && entry.database === env.METRICS && entry.configured === configured) response = json(entry.value);
+        else {
+          const value = await measurementReport(env, now(), window as MeasurementWindow);
+          metricReports.set(window, { expires: now() + 60000, value, database: env.METRICS, configured });
+          response = json(value);
+        }
+      }
       else if (path === '/v1/capabilities') response = json(await describe(env));
       else if (path === '/openapi.json') response = new Response((await read('/openapi.json', 128 * 1024)).buffer as ArrayBuffer, { headers: HEADERS });
       else if (path === '/v1/coverage') {
