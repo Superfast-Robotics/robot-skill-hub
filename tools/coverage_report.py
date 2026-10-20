@@ -155,7 +155,12 @@ def build_coverage(records, references, root, hub_commit, base):
 
 def table(caption, headers, rows):
     esc = lambda v: html.escape(str(v), quote=True)
-    return '<table><caption>' + esc(caption) + '</caption><thead><tr>' + ''.join('<th scope="col">' + esc(h) + '</th>' for h in headers) + '</tr></thead><tbody>' + ''.join('<tr>' + ''.join('<td>' + esc(c) + '</td>' for c in row) + '</tr>' for row in rows) + '</tbody></table>'
+    def cell(value):
+        if isinstance(value, tuple) and len(value) == 2:
+            label, url = value
+            return '<a href="' + esc(url) + '">' + esc(label) + '</a>' if str(url).startswith(('https://', 'http://')) else esc(label)
+        return esc(value)
+    return '<table><caption>' + esc(caption) + '</caption><thead><tr>' + ''.join('<th scope="col">' + esc(h) + '</th>' for h in headers) + '</tr></thead><tbody>' + ''.join('<tr>' + ''.join('<td>' + cell(c) + '</td>' for c in row) + '</tr>' for row in rows) + '</tbody></table>'
 
 
 def coverage_tables(report, base, *, full=False):
@@ -177,5 +182,7 @@ def coverage_tables(report, base, *, full=False):
         text += table(caption + (' (leading groups)' if len(visible) < len(rows) else ''), [label, 'References'], data)
     text += '<p><a href="' + html.escape(base, quote=True) + '/coverage.html">Full robot, environment and task tables</a> | <a href="' + html.escape(base, quote=True) + '/catalog/v1/coverage.json">Coverage JSON</a>. Source pins and retained evidence are available per recipe.</p>'
     if full:
-        text += table('Every current preparation recipe', ['ID', 'Task / operation', 'State', 'Tested OS'], [[i['id'], i['task_or_operation'], i['state'], ', '.join(i['tested_os']) or 'none'] for i in report['recipes']])
+        text += table('Every current preparation recipe', ['ID', 'Task / operation', 'State', 'Tested OS', 'Evidence'],
+                      [[(i['id'], i['record_url']), i['task_or_operation'], i['state'], ', '.join(i['tested_os']) or 'none',
+                        ('receipt', i['evidence_urls'][0]) if i['evidence_urls'] else 'none'] for i in report['recipes']])
     return text

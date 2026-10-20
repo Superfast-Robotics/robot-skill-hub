@@ -1,6 +1,6 @@
 # Coverage and license boundaries
 
-The main catalog and coverage.html show deterministic tables generated from the complete current catalog. The same report is available at catalog/v1/coverage.json and GET https://api.superfastrobotics.com/v1/coverage. The API binds bytes to the current publication checksum and rejects a mismatched optional hub_commit. The report does not execute code, query external telemetry or estimate general accuracy.
+The main catalog and coverage.html show deterministic tables generated from the complete current catalog. The full report is available at catalog/v1/coverage.json. GET https://api.superfastrobotics.com/v1/coverage returns a compact summary with the same totals, framework and robot-category tables, and explicitly bounded capability tags. Follow its full_url or use view=full for all recipe rows, robot labels and capability tags. The API binds source bytes to the current publication checksum and rejects a mismatched optional hub_commit. The report does not execute code, query external telemetry or estimate general accuracy.
 
 Completed recipes require retained evidence matching the current adapter bytes, source, version and, for the finite conversion cohort, frozen inputs, source guards, model, interface and measured package versions. A retained failed task attempt is counted separately. Missing or stale evidence is unbound; an installation/import check alone is not a task run. Current records are not promoted by older versions' attempts. Source references keep their own execution evidence.
 

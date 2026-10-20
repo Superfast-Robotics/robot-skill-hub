@@ -291,7 +291,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       else if (path === '/v1/capabilities') response = json(await describe(env));
       else if (path === '/openapi.json') response = new Response((await read('/openapi.json', 128 * 1024)).buffer as ArrayBuffer, { headers: HEADERS });
       else if (path === '/v1/coverage') {
-        if ([...url.searchParams.keys()].some(key => key !== 'hub_commit')) fail(400, 'invalid_arguments', 'Coverage accepts only an optional exact hub_commit.');
+        if ([...url.searchParams.keys()].some(key => !['hub_commit', 'view'].includes(key)) || !['summary', 'full'].includes(url.searchParams.get('view') || 'summary')) fail(400, 'invalid_arguments', 'Coverage accepts an optional exact hub_commit and view=summary|full.');
         const version = await publishedVersion(fetcher), descriptor = version.resources?.coverage;
         if (url.searchParams.has('hub_commit') && url.searchParams.get('hub_commit') !== version.hub_commit) fail(409, 'catalog_changed', 'Refresh the coverage generation.');
         if (!SHA.test(descriptor?.sha256 || '') || descriptor?.url !== ORIGIN + '/catalog/v1/coverage.json') fail(503, 'coverage_not_published', 'The current publication has no verified coverage resource.');
@@ -307,8 +307,26 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
             || !Array.isArray(value.recipes) || value.recipes.length !== totals.preparation_recipes
             || value.recipes.some((row: Row) => !IDENT.test(row?.id || '') || !['completed', 'failed', 'not_executed', 'evidence_unbound'].includes(row.state))
             || new Set(value.recipes.map((row: Row) => row.id)).size !== totals.preparation_recipes
-            || ['completed', 'failed', 'not_executed', 'evidence_unbound'].some(state => value.recipes.filter((row: Row) => row.state === state).length !== totals[state])) fail(503, 'invalid_coverage', 'Coverage does not match the current complete catalog.');
-        response = new Response(bytes.buffer as ArrayBuffer, { headers: HEADERS });
+            || ['completed', 'failed', 'not_executed', 'evidence_unbound'].some(state => value.recipes.filter((row: Row) => row.state === state).length !== totals[state])
+            || ['by_framework', 'by_robot_type', 'by_capability', 'by_robot_label', 'by_runtime_label', 'by_runtime_evidence'].some(key => {
+              const rows = value.references?.[key];
+              return !Array.isArray(rows) || rows.some((row: Row) => typeof row?.label !== 'string' || !row.label.length || row.label.length > 240
+                || !Number.isSafeInteger(row.references) || row.references < 0 || row.references > totals.source_references)
+                || new Set(rows.map((row: Row) => row.label)).size !== rows.length;
+            })
+            || ['by_framework', 'by_runtime_evidence'].some(key => value.references[key].reduce((n: number, row: Row) => n + row.references, 0) !== totals.source_references)) fail(503, 'invalid_coverage', 'Coverage does not match the current complete catalog.');
+        if (url.searchParams.get('view') === 'full') response = new Response(bytes.buffer as ArrayBuffer, { headers: HEADERS });
+        else {
+          const tags = value.references?.by_capability || [], shown = tags.slice(0, 10);
+          response = json({ schema_version: value.schema_version, interpretation: 'data_only', hub_commit: value.hub_commit,
+            view: 'summary', scope: value.scope, totals, execution_by_runtime_model: value.execution_by_runtime_model,
+            execution_by_abstraction: value.execution_by_abstraction, case_runs_by_os: value.case_runs_by_os,
+            references: { counting_rule: value.references?.counting_rule, by_framework: value.references?.by_framework,
+              by_robot_type: value.references?.by_robot_type, by_runtime_evidence: value.references?.by_runtime_evidence,
+              by_capability: shown, capability_tag_coverage: { complete: shown.length === tags.length, shown: shown.length, total: tags.length } },
+            source_resource: { url: descriptor.url + '?v=' + encodeURIComponent(version.hub_commit), sha256: descriptor.sha256 },
+            full_url: API + '/v1/coverage?view=full&hub_commit=' + encodeURIComponent(version.hub_commit), tables_url: ORIGIN + '/coverage.html' });
+        }
       }
       else if (path === '/v1/catalog' || path === '/v1/references') {
         const resource = path === '/v1/catalog' ? 'index' : 'references';

@@ -2226,9 +2226,22 @@
     },
     "/v1/coverage": {
       "get": {
-        "summary": "Read current-version robot, environment and task coverage",
-        "description": "Credential-free, checksum-bound current publication. Counts separate computation, simulation, hardware, failures, no current task execution and unbound evidence. Reference environment/robot/capability tags are declarations, may overlap and do not establish execution. No robot code runs. The resource is bounded to 256 KiB.",
+        "summary": "Read current-version coverage summary or complete detail",
+        "description": "Default summary omits per-recipe detail and bounds capability tags with explicit coverage metadata; view=full returns the complete report. Credential-free, checksum-bound current publication. Counts separate computation, simulation, hardware, failures, no current task execution and unbound evidence. Reference environment/robot/capability tags are declarations, may overlap and do not establish execution. No robot code runs. The resource is bounded to 256 KiB.",
         "parameters": [
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "summary",
+                "full"
+              ],
+              "default": "summary"
+            }
+          },
           {
             "name": "hub_commit",
             "in": "query",
