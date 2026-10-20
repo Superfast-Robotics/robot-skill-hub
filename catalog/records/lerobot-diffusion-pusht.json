@@ -230,29 +230,33 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "import_verified",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend lerobot --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "1/3 frozen cases completed; retained failures are not promoted.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/lerobot-diffusion-pusht.json"
+    ],
+    "runtime_verification": "import_verified",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "import_verified",
       "scope": "simulation",
       "adapter_sha256": "c3b7c7854e762a682106c2cf8fc89fb0dfc70751af1daaa234b6b2bdf051c03d",
       "source_commit": "b883328e6c95681ca90a18b102e4ae5e1f91e2bf",
       "record_version": "1.0.0",
-      "case_count": 0,
-      "retained_failed_cases": 0
+      "case_count": 3,
+      "retained_failed_cases": 2
     }
   },
   "maintenance": {

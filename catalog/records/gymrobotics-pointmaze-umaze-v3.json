@@ -46,7 +46,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -271,28 +271,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend gymrobotics --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/gymrobotics-pointmaze-umaze-v3.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
       "adapter_sha256": "2b13a2387de08710cf40aee49e6c815b1cd2fa39a6ad09b2d9080db90cbdd52e",
       "source_commit": "42eae53b2b27321d29090c219ce2f675c596de77",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },

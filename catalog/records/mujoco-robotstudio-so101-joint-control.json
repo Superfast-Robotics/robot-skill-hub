@@ -68,7 +68,7 @@
       "os": "linux",
       "architecture": "x86_64",
       "python": "3.10",
-      "status": "source_reviewed"
+      "status": "hub_verified"
     }
   ],
   "observation": {
@@ -326,28 +326,32 @@
     "execution_separate": true
   },
   "evidence": {
-    "level": "source_reviewed",
-    "verified_by": "Hub source review",
+    "level": "task_complete",
+    "verified_by": "Hub finite-case Lambda execution harness",
     "date": "2026-10-20",
     "environment": {
       "scope": "simulation",
       "physical_robot": false,
-      "platforms": []
+      "platforms": [
+        "linux"
+      ]
     },
     "commands": [
       "python tools/verify_runtime_expansion.py --backend menagerie --source-cache SOURCE_CACHE --output OUTPUT"
     ],
-    "result": "Execution not yet recorded.",
-    "artifacts": [],
-    "runtime_verification": "not_run",
+    "result": "All 3 frozen cases completed against this exact adapter and source.",
+    "artifacts": [
+      "evidence/runtime/diverse-sim-v1/mujoco-robotstudio-so101-joint-control.json"
+    ],
+    "runtime_verification": "task_complete",
     "contributor_reported": null,
     "hub_verification": {
-      "runtime": "not_run",
+      "runtime": "task_complete",
       "scope": "simulation",
       "adapter_sha256": "648edf960f1ed02f630d4258c446e4960ad9868f601031f814ad98e58a1af385",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "record_version": "1.0.0",
-      "case_count": 0,
+      "case_count": 3,
       "retained_failed_cases": 0
     }
   },
