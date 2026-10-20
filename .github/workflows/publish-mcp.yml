@@ -78,12 +78,12 @@ jobs:
               if response.status != 202:
                   raise RuntimeError('Public MCP endpoint rejected initialization notification')
           tools = call('tools/list', {}, 2)['tools']
-          expected = {'find_robot_skills', 'inspect_robot_skill', 'get_hub_capabilities'}
+          expected = {'start_robot_task', 'find_robot_skills', 'inspect_robot_skill', 'get_hub_capabilities'}
           if {tool['name'] for tool in tools} != expected:
               raise RuntimeError('Public MCP tool contract differs from the release')
           if any(tool.get('annotations', {}).get('readOnlyHint') is not True for tool in tools):
               raise RuntimeError('Discovery tools must declare read-only behavior')
-          print('Public MCP endpoint and release record agree; all three discovery tools are read-only.')
+          print(f'Public MCP endpoint and release record agree; all {len(expected)} discovery tools are read-only.')
           PY
 
       - name: Authenticate with GitHub Actions OIDC
