@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "checked_at": "2026-10-20",
+  "baseline_hub_commit": "ede75c00118e9808e5099da43c26f4619cc3bc37",
+  "new_source_references": 567,
+  "project_selections": 24,
+  "previously_unused_repositories": 23,
+  "new_preparation_recipes": 55,
+  "complete_new_recipes": 54,
+  "fixed_case_passes": 164,
+  "fixed_case_failures": 1,
+  "successful_rejection_checks": 110,
+  "exact_git_adapter_bytes_and_ancestry_verified": 55,
+  "fresh_project_integrations": 3,
+  "physical_robot_execution": false,
+  "scope": "Frozen authored simulation cases; not general accuracy, physical compatibility, or an estimate of all source-reference execution outcomes."
+}

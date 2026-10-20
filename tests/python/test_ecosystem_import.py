@@ -395,7 +395,7 @@ class EcosystemImportTests(unittest.TestCase):
         for project in manifest["projects"]:
             importer.validate_project(project)
             for artifact in project["artifacts"]:
-                record = managed[project["id"], artifact["path"]]
+                record = managed[project.get("framework", project["id"]), artifact["path"]]
                 self.assertEqual(artifact["sha256"], record["source"]["sha256"])
                 self.assertEqual(project["commit"], record["source"]["commit"])
                 self.assertEqual(project["license"]["sha256"], record["license"]["sha256"])

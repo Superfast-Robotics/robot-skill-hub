@@ -51,6 +51,19 @@ class RuntimeExpansionTests(unittest.TestCase):
                        lambda v:v.update(finger_error_m=.01),lambda v:v.update(movement_m=0)]:
             changed=copy.deepcopy(outputs);mutate(changed);self.assertFalse(measured_goal(recipe,changed))
 
+    def test_source_wave_fresh_preparation_executes_current_bytes_and_preserves_licenses(self):
+        import hashlib
+        for ident in ['metaworld-sawyer-reach-v3','mink-panda-cartesian-servo','genesis-panda-cartesian-ik']:
+            proof=json.loads((ROOT/'evidence/runtime/source-wave-v1/prepared'/(ident+'.json')).read_text())
+            recipe=next(r for r in self.plan['recipes'] if r['id']==ident);source=self.plan['sources'][recipe['source_id']]
+            self.assertEqual(proof['adapter_sha256'],hashlib.sha256((ROOT/'recipes'/ident/'run.py').read_bytes()).hexdigest())
+            self.assertEqual(proof['harness_sha256'],hashlib.sha256((ROOT/'tools/verify_prepared_runtime_expansion.py').read_bytes()).hexdigest())
+            self.assertEqual(proof['source_archive_sha256'],source['archive_sha256'])
+            self.assertEqual((proof['preparation_exit_code'],proof['task_exit_code']),(0,0))
+            self.assertTrue(proof['adapter_bytes_preserved'] and proof['mit_license_and_scope_preserved'])
+            self.assertIs(proof['hardware_execution'],False)
+            self.assertEqual(proof['result']['status'],'task_complete')
+
     def test_goal_measurements_override_a_forged_success_flag_and_failed_cases_are_retained(self):
         recipe=next(r for r in self.plan['recipes'] if r['id']=='robosuite-panda-reach')
         source=self.plan['sources'][recipe['source_id']];adapter=(ROOT/'recipes'/recipe['id']/'run.py').read_bytes()
