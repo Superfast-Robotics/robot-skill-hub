@@ -1,0 +1,221 @@
+{
+  "schema_version": "1",
+  "observed_at": "2026-10-20T05:11:44.258499+00:00",
+  "source": "https://api.superfastrobotics.com/v1/metrics",
+  "reports": {
+    "7d": {
+      "window_start": "2026-10-17T15:47:38.000Z",
+      "window_end": "2026-10-20T05:11:43.660Z",
+      "api_observed_at": "2026-10-20T05:11:43.660Z",
+      "eligible_requests": 22,
+      "all_requests": 98,
+      "groups": [
+        {
+          "family": "crawler",
+          "requests": 13,
+          "identified_client_days": 0
+        },
+        {
+          "family": "mcp_tool",
+          "requests": 11,
+          "identified_client_days": 0
+        },
+        {
+          "family": "rsh_cli",
+          "requests": 11,
+          "identified_client_days": 2
+        },
+        {
+          "family": "unclassified",
+          "requests": 63,
+          "identified_client_days": 1
+        }
+      ],
+      "channels": [
+        {
+          "channel": null,
+          "route": "catalog",
+          "family": "rsh_cli",
+          "requests": 2
+        },
+        {
+          "channel": null,
+          "route": "catalog",
+          "family": "unclassified",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "crawler",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "rsh_cli",
+          "requests": 3
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "unclassified",
+          "requests": 3
+        },
+        {
+          "channel": null,
+          "route": "mcp",
+          "family": "crawler",
+          "requests": 7
+        },
+        {
+          "channel": null,
+          "route": "mcp",
+          "family": "mcp_tool",
+          "requests": 11
+        },
+        {
+          "channel": null,
+          "route": "references",
+          "family": "rsh_cli",
+          "requests": 2
+        },
+        {
+          "channel": null,
+          "route": "references",
+          "family": "unclassified",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "crawler",
+          "requests": 5
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "rsh_cli",
+          "requests": 4
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "unclassified",
+          "requests": 58
+        }
+      ]
+    },
+    "retained": {
+      "window_start": "2026-10-17T15:47:38.000Z",
+      "window_end": "2026-10-20T05:11:44.425Z",
+      "api_observed_at": "2026-10-20T05:11:44.425Z",
+      "eligible_requests": 22,
+      "all_requests": 98,
+      "groups": [
+        {
+          "family": "crawler",
+          "requests": 13,
+          "identified_client_days": 0
+        },
+        {
+          "family": "mcp_tool",
+          "requests": 11,
+          "identified_client_days": 0
+        },
+        {
+          "family": "rsh_cli",
+          "requests": 11,
+          "identified_client_days": 2
+        },
+        {
+          "family": "unclassified",
+          "requests": 63,
+          "identified_client_days": 1
+        }
+      ],
+      "channels": [
+        {
+          "channel": null,
+          "route": "catalog",
+          "family": "rsh_cli",
+          "requests": 2
+        },
+        {
+          "channel": null,
+          "route": "catalog",
+          "family": "unclassified",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "crawler",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "rsh_cli",
+          "requests": 3
+        },
+        {
+          "channel": null,
+          "route": "inspect",
+          "family": "unclassified",
+          "requests": 3
+        },
+        {
+          "channel": null,
+          "route": "mcp",
+          "family": "crawler",
+          "requests": 7
+        },
+        {
+          "channel": null,
+          "route": "mcp",
+          "family": "mcp_tool",
+          "requests": 11
+        },
+        {
+          "channel": null,
+          "route": "references",
+          "family": "rsh_cli",
+          "requests": 2
+        },
+        {
+          "channel": null,
+          "route": "references",
+          "family": "unclassified",
+          "requests": 1
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "crawler",
+          "requests": 5
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "rsh_cli",
+          "requests": 4
+        },
+        {
+          "channel": null,
+          "route": "search",
+          "family": "unclassified",
+          "requests": 58
+        }
+      ]
+    }
+  },
+  "maintainer_requests_opted_out": true,
+  "retention_days": 30,
+  "limits": [
+    "Requests are not visitors, independent agents or successful tasks.",
+    "Channels are optional self-reported labels; historical rows are unattributed.",
+    "Client-days cannot measure returning users. Pages and offline use are unobserved.",
+    "Rolling snapshots overlap; do not sum them into lifetime users or visits."
+  ]
+}

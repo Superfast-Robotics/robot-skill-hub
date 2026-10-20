@@ -31,9 +31,9 @@ The static Space does not host an MCP transport or run a model. Add the remote M
 Install only the task entrypoint you need:
 
 ```sh
-npx skills add Superfast-Robotics/robot-skill-hub --skill robot-motion-planning
-npx skills add Superfast-Robotics/robot-skill-hub --skill robot-kinematics
-npx skills add Superfast-Robotics/robot-skill-hub --skill robot-trajectory
+npx skills add https://hub.superfastrobotics.com --skill robot-motion-planning
+npx skills add https://hub.superfastrobotics.com --skill robot-kinematics
+npx skills add https://hub.superfastrobotics.com --skill robot-trajectory
 ```
 
 Prepared adapters distinguish numerical checks, simulation and real interfaces. A catalog match does not establish robot compatibility or hardware success. Follow exact pins, license and evidence. Public findings remain contributor-reported data; sharing uses the project's existing explicit scope.

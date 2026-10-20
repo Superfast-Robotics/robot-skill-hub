@@ -1,0 +1,44 @@
+{
+  "observed_at": "2026-10-20T05:15:02.446720+00:00",
+  "source_commit": "13cdfed1e703ebc64b5f644447c24788dae67c3f",
+  "skills": [
+    {
+      "name": "find-robot-skills",
+      "commit": "13cdfed1e703ebc64b5f644447c24788dae67c3f",
+      "version": "2026.10.20",
+      "files": 29,
+      "file_manifest_matches": true,
+      "license_file_present": true,
+      "detail_url": "https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/find-robot-skills"
+    },
+    {
+      "name": "robot-motion-planning",
+      "commit": "13cdfed1e703ebc64b5f644447c24788dae67c3f",
+      "version": "2026.10.20",
+      "files": 4,
+      "file_manifest_matches": true,
+      "license_file_present": true,
+      "detail_url": "https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/robot-motion-planning"
+    },
+    {
+      "name": "robot-kinematics",
+      "commit": "13cdfed1e703ebc64b5f644447c24788dae67c3f",
+      "version": "2026.10.20",
+      "files": 4,
+      "file_manifest_matches": true,
+      "license_file_present": true,
+      "detail_url": "https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/robot-kinematics"
+    },
+    {
+      "name": "robot-trajectory",
+      "commit": "13cdfed1e703ebc64b5f644447c24788dae67c3f",
+      "version": "2026.10.20",
+      "files": 4,
+      "file_manifest_matches": true,
+      "license_file_present": true,
+      "detail_url": "https://agentskillhub.dev/api/v1/u/Superfast-Robotics/skills/robot-trajectory"
+    }
+  ],
+  "install_telemetry_sent": false,
+  "independent_adoption_claimed": false
+}

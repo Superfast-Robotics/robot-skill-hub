@@ -1,0 +1,26 @@
+{
+  "queries": [
+    {
+      "query": "robot motion planning",
+      "result_count": 0,
+      "hub_ranks": []
+    },
+    {
+      "query": "inverse kinematics",
+      "result_count": 2,
+      "hub_ranks": []
+    },
+    {
+      "query": "trajectory generation",
+      "result_count": 0,
+      "hub_ranks": []
+    },
+    {
+      "query": "path smoothing",
+      "result_count": 0,
+      "hub_ranks": []
+    }
+  ],
+  "query_set_fixed_before_description_update": true,
+  "scope": "Lexical provider search sample; not autonomous agent selection or general ranking quality."
+}

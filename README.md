@@ -15,6 +15,8 @@ Public reads need no account, GPU or simulator. Discovery never executes robot c
 
 [Task-specific entrypoints](docs/agent-distribution.md): `robot-motion-planning`, `robot-kinematics`, `robot-trajectory`. [Ten reproducible robotics problems](https://hub.superfastrobotics.com/problems/) provide pinned input, correction and evidence in HTML, Markdown and JSON. [ROS-MCP](examples/ros-mcp) and [RAI/LangChain](examples/rai) examples connect lookup to existing development workflows.
 
+Small HTTP installation, without a Git clone: `npx skills add https://hub.superfastrobotics.com --skill robot-motion-planning`. [Skill index and checksums](https://hub.superfastrobotics.com/.well-known/agent-skills/index.json).
+
 [Robot, environment and task coverage](https://hub.superfastrobotics.com/coverage.html) | [Coverage API](https://api.superfastrobotics.com/v1/coverage). Current-version completions, failed attempts and unexecuted recipes are counted separately; reference labels describe source coverage rather than verified robot support.
 
 <!-- rsh-coverage:start -->

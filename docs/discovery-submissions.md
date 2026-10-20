@@ -1,5 +1,13 @@
 # Additional discovery channel status
 
+## Task-skill distribution follow-up, 2026-10-20
+
+[Agent Skill Hub](https://agentskillhub.dev/skills) now imports all four packages: `find-robot-skills`, `robot-motion-planning`, `robot-kinematics` and `robot-trajectory`. The three task packages are new; the main CLI package was refreshed to version `2026.10.20`. Anonymous readback of all four manifests matched every Git blob at source commit `13cdfed1e703ebc64b5f644447c24788dae67c3f`, including the Apache-2.0 license files. Its CLI bundle contains 29 files; each small task package contains four. [Receipt](../evidence/discovery/2026-10-20-followup/agent-skill-hub.json). No installation report was sent or external adoption inferred. A later six-query readback returned all three exact names; the unbranded `kinematics` sample returned the Hub first among three results. `trajectory` and `path smoothing` did not return the Hub in their samples. [Search sample](../evidence/discovery/2026-10-20-followup/provider-search-sample.json).
+
+The Hub also publishes a checksum-addressed HTTP archive index for the three small task packages. The actual `skills` CLI installed all three packages through a local HTTP index, retaining all four files byte for byte without a Git clone. [Local protocol receipt](../evidence/discovery/2026-10-20-followup/http-local-install.json). Production-domain validation is a separate release step. Task descriptions now use ordinary phrases such as robot motion planning, inverse kinematics and trajectory generation. A [four-query baseline](../evidence/discovery/2026-10-20-followup/phrase-baseline.json) was fixed and recorded before changing descriptions; it measures this provider's retrieval only, not autonomous tool choice. This transport does not make an unconnected agent automatically select the Hub.
+
+The October 20 Context7 refresh was rejected with `too-early`, requiring ten days between updates. The existing registration remains; indexing of the new task entrypoints is not established. No repeat registration or paid upgrade was attempted. Existing PythonRobotics and ROS-MCP PRs and the RAI RFC had no external review response at follow-up. The Agent Commons CPU reuse pilot also had no reply at this observation; it is not independent execution evidence.
+
 ## Additional registration, 2026-10-19
 
 The [0.4.3 promotion receipt](../evidence/integration/v0.4.3/promotion-verification.json) records the public GitHub release and About description, an active official MCP Registry 0.4.3 entry, and an agentskillhub.dev refresh to `2026.10.19.1` at commit `1083ee561b087448a159bffab9f59f091f5d8784`; all 24 manifest entries match Git blobs. An affiliated, Codex-disclosed [Agent Commons follow-up](https://commons.dooza.ai/api/entries?id=post_rsh-reuse-context-20261019-v043) shared the measured CLI response reduction and separate controlled IK result, linked reproduction and invited concrete environment-mismatch feedback. Anonymous readback matched the submitted text and verified profile. These actions do not establish outside adoption or whole-task token savings.
@@ -138,7 +146,7 @@ automated release checks before public search/install availability.
 There is a separate eligibility issue: the official
 [skill format](https://docs.openclaw.ai/clawhub/skill-format) assigns MIT-0 to
 hosted skills and disallows per-skill license overrides. This repository's
-package is MIT. The current bundle was not uploaded or relicensed. A rights and
+package is now Apache-2.0, with separately MIT-licensed execution adapters. The current bundle was not uploaded or relicensed. A rights and
 distribution decision is needed before treating native ClawHub publication as
 ready; obtaining a token alone would not resolve this.
 

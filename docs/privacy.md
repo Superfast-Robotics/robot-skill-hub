@@ -12,6 +12,8 @@ The CLI may send a random installation ID to the owned API. Metrics retain only 
 
 The default `/v1/metrics` retains the original launch window. `?window=7d` reports rolling seven-day counts; `?window=retained` reports the available period up to thirty days. These are request counts, not lifetime visitors, returning users, autonomous selections or completed tasks. Reports are cached for sixty seconds to bound aggregate read costs. Only real, separately submitted reuse outcomes can establish reported task results.
 
+The daily distribution workflow preserves these already-public bounded aggregates in GitHub Actions artifacts for thirty days. It does not copy individual access rows or client pseudonyms. Each snapshot retains its own time window; overlapping snapshots are not additive lifetime measurements.
+
 Set `RSH_TELEMETRY=off` for CLI opt-out. HTTP clients can send `DNT: 1` or `X-RSH-Telemetry: off`. Reads and offline discovery still work. Measurement failure never blocks discovery or the original task.
 
 Public contributions are separate from access measurements. Community experiences use self-service installation credentials and explicit project scope. Canonical code/source submissions retain the legacy allowed-agent token and reviewed PR channel. Do not include private data in either channel. Local outbox entries and project locks remain in the caller's project.
