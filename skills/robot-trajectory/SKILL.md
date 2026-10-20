@@ -1,6 +1,6 @@
 ---
 name: robot-trajectory
-description: Find and prepare jerk-limited trajectories, velocity transitions and bounded stop profiles when implementing robot motion timing. Inspect axis units, velocity/acceleration/jerk limits and terminal conditions. Does not command motors.
+description: Find and prepare robot trajectory generation code with jerk-limited motion, velocity transitions and bounded stop profiles. Use for motion timing, per-axis limit checks and terminal-condition debugging. Does not command motors.
 ---
 
 # Bounded trajectory generation

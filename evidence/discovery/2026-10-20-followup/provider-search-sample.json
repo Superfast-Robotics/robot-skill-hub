@@ -1,0 +1,86 @@
+{
+  "queries": [
+    {
+      "query": "robot-motion-planning",
+      "result_count": 1,
+      "hub_matches": [
+        {
+          "rank": 1,
+          "slug": "Superfast-Robotics/robot-motion-planning",
+          "name": "robot-motion-planning"
+        }
+      ],
+      "names": [
+        "Superfast-Robotics/robot-motion-planning"
+      ]
+    },
+    {
+      "query": "robot-kinematics",
+      "result_count": 1,
+      "hub_matches": [
+        {
+          "rank": 1,
+          "slug": "Superfast-Robotics/robot-kinematics",
+          "name": "robot-kinematics"
+        }
+      ],
+      "names": [
+        "Superfast-Robotics/robot-kinematics"
+      ]
+    },
+    {
+      "query": "robot-trajectory",
+      "result_count": 1,
+      "hub_matches": [
+        {
+          "rank": 1,
+          "slug": "Superfast-Robotics/robot-trajectory",
+          "name": "robot-trajectory"
+        }
+      ],
+      "names": [
+        "Superfast-Robotics/robot-trajectory"
+      ]
+    },
+    {
+      "query": "trajectory",
+      "result_count": 10,
+      "hub_matches": [],
+      "names": [
+        "halt-catch-fire/affirmations",
+        "nexscope-ai/amazon-seller-analytics",
+        "bankai-skills/affirmations",
+        "natea/reasoningbank-with-agentdb",
+        "vasilyu1983/qa-agent-testing",
+        "its-a-skill-issue/affirmations",
+        "ruvnet/browser-record",
+        "ruvnet/cost-burn",
+        "tondevrel/scanpy",
+        "magentosh/affirmations"
+      ]
+    },
+    {
+      "query": "kinematics",
+      "result_count": 3,
+      "hub_matches": [
+        {
+          "rank": 1,
+          "slug": "Superfast-Robotics/robot-kinematics",
+          "name": "robot-kinematics"
+        }
+      ],
+      "names": [
+        "Superfast-Robotics/robot-kinematics",
+        "omer-metin/animation-systems",
+        "omer-metin/rigging-animation"
+      ]
+    },
+    {
+      "query": "path smoothing",
+      "result_count": 0,
+      "hub_matches": [],
+      "names": []
+    }
+  ],
+  "scope": "Small maintainer query sample, not agent adoption or a general search benchmark."
+}

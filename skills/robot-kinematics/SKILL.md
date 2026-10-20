@@ -1,6 +1,6 @@
 ---
 name: robot-kinematics
-description: Find and prepare inverse/forward kinematics, Jacobian and inverse-dynamics implementations for a robot modeling task. Check joint order, frames, solver residuals and model limits before adapting code. Does not provide hardware execution.
+description: Find and prepare robot kinematics code for inverse kinematics, forward kinematics, Jacobians and inverse dynamics. Use for robot modeling, solver debugging and frame/joint-order checks. Does not provide hardware execution.
 ---
 
 # Kinematics and dynamics calculations

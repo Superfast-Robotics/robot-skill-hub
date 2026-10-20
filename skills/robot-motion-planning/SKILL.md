@@ -1,6 +1,6 @@
 ---
 name: robot-motion-planning
-description: Find and prepare reusable A*, RRT, obstacle-aware planning and path-smoothing code when implementing or debugging a robot motion planner. Inspect map frames, collision assumptions and exact-source fixes. Does not command a physical robot.
+description: Find and prepare robot motion planning code for A*, RRT, collision-aware paths and path smoothing when implementing or debugging a planner. Inspect map frames, collision assumptions and exact-source fixes. Does not command a physical robot.
 ---
 
 # Planning paths and smoothing them
