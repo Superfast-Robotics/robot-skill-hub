@@ -39,6 +39,7 @@ def bound_receipt(root, recipe, source, adapter):
         if executed_spec.get(key)!=recipe.get(key):raise ValueError('Manifest differs from executed adapter: '+key)
     if executed_spec.get('source_commit')!=source['commit'] or executed_spec.get('packages')!=source['packages']:raise ValueError('Executed source/package specification differs')
     proof=json.loads(path.read_text(encoding='utf-8'))
+    if proof.get('schema_version')!='1' or proof.get('skill_id')!=recipe['id']:raise ValueError('Receipt identity differs')
     if not re.fullmatch('[a-f0-9]{40}',proof.get('hub_commit','')):raise ValueError('Missing execution source commit')
     if proof.get('adapter_sha256')!=sha(adapter) or proof.get('source_commit')!=source['commit'] or proof.get('archive_sha256')!=source['archive_sha256']:
         raise ValueError(recipe['id']+': stale adapter or source evidence')

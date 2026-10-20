@@ -2,6 +2,7 @@
 import html
 import json
 from pathlib import Path
+from urllib.parse import urlencode
 
 def publish(records, output, base, commit, shell):
     output=Path(output); urls=[]; links=[]
@@ -15,7 +16,7 @@ def publish(records, output, base, commit, shell):
                  'environment':r['compatibility'],'interface':r.get('interface'),
                  'source_commit':r['source']['commit'],'record_version':r['maintenance']['record_version'],
                  'evidence':r['evidence'],'record_url':base+'/skills/'+ident+'/skill.json',
-                 'inspect_url':'https://api.superfastrobotics.com/v1/skills/'+ident,
+                 'inspect_url':'https://api.superfastrobotics.com/v1/skills/'+ident+'?'+urlencode({'hub_commit':commit,'record_version':r['maintenance']['record_version'],'include':'experience'}),
                  'execution_performed':False}
         input_text=json.dumps(payload['example_input'],indent=2)
         environment='\n'.join(' | '.join(str(c.get(k,'unknown')) for k in ['runtime','runtime_version','robot','controller','os','python']) for c in r['compatibility'])

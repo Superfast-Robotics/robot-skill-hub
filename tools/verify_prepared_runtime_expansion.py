@@ -11,7 +11,8 @@ def main():
     for ident in args.skill_id:
         recipe=recipes[ident];record=records[ident];project=args.project_root/ident;project.mkdir(parents=True,exist_ok=True)
         catalog=project/'catalog.json';catalog.write_text(json.dumps({'schema_version':'1','hub_commit':'0'*40,'records':[record]}))
-        cmd=[sys.executable,str(ROOT/'skills/find-robot-skills/scripts/rsh.py'),'--catalog',str(catalog),'--offline','prepare',ident,'--project',str(project),'--source-archive',str(args.source_cache/(recipe['source_id']+'.tar.gz')),'--environment',json.dumps(recipe['environment']),'--install-deps','--json']
+        selected_environment=project/'environment.json';selected_environment.write_text(json.dumps(recipe['environment']))
+        cmd=[sys.executable,str(ROOT/'skills/find-robot-skills/scripts/rsh.py'),'--catalog',str(catalog),'--offline','prepare',ident,'--project',str(project),'--source-archive',str(args.source_cache/(recipe['source_id']+'.tar.gz')),'--environment',str(selected_environment),'--install-deps','--json']
         start=time.monotonic();prepared=subprocess.run(cmd,capture_output=True,text=True,env=environment,timeout=1800)
         (project/'prepare-stdout.txt').write_text(prepared.stdout);(project/'prepare-stderr.txt').write_text(prepared.stderr)
         if prepared.returncode:raise RuntimeError(ident+': preparation failed; inspect retained project logs')
@@ -22,7 +23,7 @@ def main():
         executed=subprocess.run(result['next_command'],cwd=result['next_command_cwd'],capture_output=True,text=True,env=environment,timeout=1200)
         (project/'task-stdout.txt').write_text(executed.stdout);(project/'task-stderr.txt').write_text(executed.stderr)
         body=json.loads(executed.stdout)
-        proof={'schema_version':'1','skill_id':ident,'source_commit':record['source']['commit'],'adapter_sha256':hashlib.sha256((folder/'run.py').read_bytes()).hexdigest(),
+        proof={'schema_version':'1','skill_id':ident,'source_commit':record['source']['commit'],'adapter_sha256':hashlib.sha256((folder/'run.py').read_bytes()).hexdigest(),'harness_sha256':hashlib.sha256(pathlib.Path(__file__).read_bytes()).hexdigest(),
                'preparation_exit_code':prepared.returncode,'task_exit_code':executed.returncode,'result':body,'adapter_bytes_preserved':True,'mit_license_and_scope_preserved':True,
                'source_archive_sha256':record['source']['archive_sha256'],'elapsed_seconds':round(time.monotonic()-start,3),'hardware_execution':False}
         (args.output/(ident+'.json')).write_text(json.dumps(proof,indent=2)+'\n')
