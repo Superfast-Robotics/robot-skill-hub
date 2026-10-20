@@ -96,12 +96,14 @@ def seed_backend(root, data, spec):
                 def residual(q):
                     with probe.reset_context():probe.data.qpos[:]=q
                     return probe.finger_to_target()
-                solutions=[least_squares(residual,q,max_nfev=150) for q in [p.data.qpos.copy(),np.zeros(2),np.array([1.,-2.]),np.array([-1.,2.])]]
+                solutions=[least_squares(residual,q,bounds=([-4*np.pi,-2.78],[4*np.pi,2.78]),max_nfev=150) for q in [p.data.qpos.copy(),np.zeros(2),np.array([1.,-2.]),np.array([-1.,2.])]]
                 target=min(solutions,key=lambda s:np.linalg.norm(s.fun)).x
             elif domain=='cartpole':
                 import mujoco
-                probe=p.copy(share_model=True)
+                probe=p.copy(share_model=False)
                 with probe.reset_context():probe.data.qpos[:]=0;probe.data.qvel[:]=0
+                # Linearize a separate Euler model; native RK4 rollout is unchanged.
+                probe.model.opt.integrator=mujoco.mjtIntegrator.mjINT_EULER
                 n=2*probe.model.nv;A=np.zeros((n,n));B=np.zeros((n,probe.model.nu))
                 mujoco.mjd_transitionFD(probe.model.ptr,probe.data.ptr,1e-6,True,A,B,None,None)
                 Q=np.diag([2.,25.,1.,2.]);R=np.eye(1)*.01
@@ -109,8 +111,11 @@ def seed_backend(root, data, spec):
             rewards=[];actions=[]
             for step in range(1000):
                 if domain=='reacher':
-                    error=(target-p.data.qpos+np.pi)%(2*np.pi)-np.pi
-                    action=error*8-p.data.qvel*1.5
+                    import mujoco
+                    error=target-p.data.qpos;error[0]=(error[0]+np.pi)%(2*np.pi)-np.pi
+                    mass=np.zeros((2,2));mujoco.mj_fullM(p.model.ptr,mass,p.data.qM)
+                    torque=mass@(error*40-p.data.qvel*12)+p.data.qfrc_bias
+                    action=torque/np.asarray(p.model.actuator_gear)[:,0]
                 elif domain=='point_mass':
                     error=p.named.data.geom_xpos['target',:2]-p.named.data.geom_xpos['pointmass',:2]
                     force=error*20-p.data.qvel*5
@@ -122,11 +127,13 @@ def seed_backend(root, data, spec):
                     action=-(gain@np.r_[q,p.data.qvel])
                 elif domain=='pendulum':
                     theta=float(p.data.qpos[0]);velocity=float(p.data.qvel[0]);upright=np.cos(theta)
-                    if upright>.8:action=np.array([-4*((theta+np.pi)%(2*np.pi)-np.pi)-.8*velocity])
+                    if upright>.95 and abs(velocity)<2:
+                        action=np.array([-8*((theta+np.pi)%(2*np.pi)-np.pi)-2*velocity+p.data.qfrc_bias[0]])
                     else:
-                        energy=.5*.025*velocity**2+.981*np.cos(theta)
+                        energy=float(np.sum(p.data.energy))
+                        target_energy=float(-p.model.body_mass[1]*np.dot(p.model.opt.gravity,p.model.body_pos[1]+p.model.body_ipos[1]))
                         direction=velocity if abs(velocity)>.05 else 1.
-                        action=np.array([2.5*(.981-energy)*np.sign(direction)])
+                        action=np.array([1.5*(target_energy-energy)*np.sign(direction)+.1*velocity])
                 elif domain=='finger':action=np.ones(env.action_spec().shape)*.8
                 else:
                     # Cup tracks ball horizontally and damps its own velocity.
