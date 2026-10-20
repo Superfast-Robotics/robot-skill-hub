@@ -131,7 +131,7 @@ def adapter_main(spec, backend):
 
 """MIT: finite simulation starting policies; simulator state is privileged input."""
 
-def mainstream_backend(root, data, spec):
+def seed_backend(root, data, spec):
     import importlib.metadata
     import numpy as np
     for pin in spec['packages']:
@@ -259,6 +259,18 @@ def mainstream_backend(root, data, spec):
                 'finite_state':bool(np.isfinite(p.data.qpos).all() and np.isfinite(p.data.qvel).all())}
         finally:env.close()
     raise ContractError('Unknown simulation backend')
+
+def mainstream_backend(root,data,spec):
+    # Bullet emits native diagnostics through fd 1, beyond Python redirect_stdout.
+    # Preserve the single-object stdout protocol for ordinary callers as well.
+    import ctypes
+    saved=os.dup(1)
+    try:
+        os.dup2(2,1)
+        return seed_backend(root,data,spec)
+    finally:
+        ctypes.CDLL(None).fflush(None)
+        os.dup2(saved,1);os.close(saved)
 
 SPEC = json.loads('{"id":"robosuite-jaco-stack","name":"Jaco two-cube stack","backend":"robosuite","operation":"stack","interface":{"version":"1","kind":"task","abstraction_level":2,"execution_domain":"simulation","language":"python","input_transport":"json_file_or_inline","output_transport":"json_stdout","output_selector":"outputs","conventions":{"linear_unit":"m","angular_unit":"rad","time_unit":"s","coordinate_frame":"right_handed_world_xyz; +z_up","joint_order":"not_used","quaternion_order":"not_used"},"input_schema":{"type":"object","required":["seed"],"properties":{"seed":{"type":"integer","minimum":0,"maximum":10000}},"additionalProperties":false},"output_schema":{"type":"object","required":["object_xyz_m","target_xyz_m","error_m","steps","environment_success"],"properties":{"object_xyz_m":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","minimum":-30,"maximum":30},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"target_xyz_m":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","minimum":-30,"maximum":30},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"error_m":{"type":"number","minimum":0,"maximum":50},"steps":{"type":"integer","minimum":1,"maximum":800},"environment_success":{"type":"boolean"}},"additionalProperties":false},"preconditions":["Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.","No physical robot, network actuation or external robot credentials."],"postconditions":["All reported checks must be true and all output numbers finite.","Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."],"failure_codes":["invalid_input_or_environment","execution_failed","task_failed"],"composition":{"depends_on":[],"automatic_frame_conversion":false,"automatic_hardware_execution":false}},"example":{"seed":0},"source_hashes":{"LICENSE":"177978cbece0a4c454c2aaec5b3f145b39270814874c43109da9e829c39d9cba","robosuite/__init__.py":"366c86888aab75328eb314cc0d4f3c2a460a06cf9e81ad25a6abbbdfa7ebd0dd","robosuite/environments/manipulation/lift.py":"2d88a5e350a68d32461e08b3f24d00bdf5d269257b33f9db5da86e8aea19ce7e","robosuite/controllers/parts/arm/osc.py":"e406c0620b039156e4643fae68983a6ca19234632897b8a87bd6062b98869796","robosuite/environments/manipulation/stack.py":"a1f3fd3ad687bb1ac8dd6032408adab26616076767da3ea0afa20807fee6133f","robosuite/environments/manipulation/pick_place.py":"58b435f32246f42bf8658d3d83f4e5d44e65513c3e84724f33663e012d8270de"},"summary":"Jaco two-cube stack. Bounded operational-space feedback, simulated contact and native task success checks.","observation_description":"Privileged simulator state and declared goals; no perception or real sensor validation.","goal_scope":"Native Stack or PickPlaceCan task success plus object/target distance <.08 m after release and retreat. No object teleportation after reset.","robot":"Jaco","adapter_template":"seed_tasks","source_commit":"824ac14cefcfb7ec125fe5eb2e0bad7364466154","packages":["robosuite==1.5.2","mujoco==3.3.7","numpy==1.26.4"]}')
 

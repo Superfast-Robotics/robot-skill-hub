@@ -1,6 +1,6 @@
 """MIT: finite simulation starting policies; simulator state is privileged input."""
 
-def mainstream_backend(root, data, spec):
+def seed_backend(root, data, spec):
     import importlib.metadata
     import numpy as np
     for pin in spec['packages']:
@@ -128,3 +128,15 @@ def mainstream_backend(root, data, spec):
                 'finite_state':bool(np.isfinite(p.data.qpos).all() and np.isfinite(p.data.qvel).all())}
         finally:env.close()
     raise ContractError('Unknown simulation backend')
+
+def mainstream_backend(root,data,spec):
+    # Bullet emits native diagnostics through fd 1, beyond Python redirect_stdout.
+    # Preserve the single-object stdout protocol for ordinary callers as well.
+    import ctypes
+    saved=os.dup(1)
+    try:
+        os.dup2(2,1)
+        return seed_backend(root,data,spec)
+    finally:
+        ctypes.CDLL(None).fflush(None)
+        os.dup2(saved,1);os.close(saved)

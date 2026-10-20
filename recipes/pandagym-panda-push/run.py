@@ -131,7 +131,7 @@ def adapter_main(spec, backend):
 
 """MIT: finite simulation starting policies; simulator state is privileged input."""
 
-def mainstream_backend(root, data, spec):
+def seed_backend(root, data, spec):
     import importlib.metadata
     import numpy as np
     for pin in spec['packages']:
@@ -259,6 +259,18 @@ def mainstream_backend(root, data, spec):
                 'finite_state':bool(np.isfinite(p.data.qpos).all() and np.isfinite(p.data.qvel).all())}
         finally:env.close()
     raise ContractError('Unknown simulation backend')
+
+def mainstream_backend(root,data,spec):
+    # Bullet emits native diagnostics through fd 1, beyond Python redirect_stdout.
+    # Preserve the single-object stdout protocol for ordinary callers as well.
+    import ctypes
+    saved=os.dup(1)
+    try:
+        os.dup2(2,1)
+        return seed_backend(root,data,spec)
+    finally:
+        ctypes.CDLL(None).fflush(None)
+        os.dup2(saved,1);os.close(saved)
 
 SPEC = json.loads('{"id":"pandagym-panda-push","name":"Panda Gym Push closed-loop starting policy","backend":"pandagym","operation":"push","interface":{"version":"1","kind":"task","abstraction_level":2,"execution_domain":"simulation","language":"python","input_transport":"json_file_or_inline","output_transport":"json_stdout","output_selector":"outputs","conventions":{"linear_unit":"m","angular_unit":"rad","time_unit":"s","coordinate_frame":"right_handed_world_xyz; +z_up","joint_order":"not_used","quaternion_order":"not_used"},"input_schema":{"type":"object","required":["seed"],"properties":{"seed":{"type":"integer","minimum":0,"maximum":10000}},"additionalProperties":false},"output_schema":{"type":"object","required":["achieved_goal","desired_goal","error_m","steps","environment_success"],"properties":{"achieved_goal":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","minimum":-30,"maximum":30},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"desired_goal":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number","minimum":-30,"maximum":30},"x-unit":"m","x-frame":"right_handed_world_xyz; +z_up"},"error_m":{"type":"number","minimum":0,"maximum":50},"steps":{"type":"integer","minimum":1,"maximum":1500},"environment_success":{"type":"boolean"}},"additionalProperties":false},"preconditions":["Use the exact recorded source, Linux Python 3.10 environment and pinned direct packages.","No physical robot, network actuation or external robot credentials."],"postconditions":["All reported checks must be true and all output numbers finite.","Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."],"failure_codes":["invalid_input_or_environment","execution_failed","task_failed"],"composition":{"depends_on":[],"automatic_frame_conversion":false,"automatic_hardware_execution":false}},"example":{"seed":0},"source_hashes":{"README.md":"3d125f16b96d40e745deed1197bac861e576d68f42c8b7794b1cf656920411a9","setup.py":"959f21cee326dacfb8ad52a5e19e416496f0f270d53587a2ac6c722986b9f164","LICENSE":"6d6fb3fbccaa0000bb00c69b94a4393adcafcfe00717c1f2c7a38bdbad4e00c5","panda_gym/pybullet.py":"af07722bd0ced414c85de4e29ecae36823ef0a6842a3c4157530e9529a0b3b37","panda_gym/utils.py":"ce5c4d4579e3f17c726bdd7f68950adcd9c51cf483757cc81129de49d4fed570","panda_gym/__init__.py":"4f8da02b1c77b077601cca57f52155e47df9219aefab4279c5216f514181e63d","panda_gym/envs/panda_tasks.py":"a6f957c0ab0c396881cb6db11b4d55ea73e4821d45e69b2c50841a5aadcca37b","panda_gym/envs/core.py":"36b1d73344584f0b705952510de75dbe0255035061ef34bef1f907697c0e8fba","panda_gym/envs/__init__.py":"23fc4234af8c7baaead0586a675fb515953ebbc34fb1a79d024ed3f1b839c093","panda_gym/envs/tasks/stack.py":"ca80b5b981b658a29c56593c45fc7212cecaa6ae8683de00079cc78b5c9cfbc8","panda_gym/envs/tasks/flip.py":"9d405205134ba72b0e5ab1d6795016788af3ad99d07873bc8a78c47a440d221a","panda_gym/envs/tasks/slide.py":"587b72f1ab7716b759dc25456eef51b3d444d58125f4d0f50f3e6155a547377e","panda_gym/envs/tasks/push.py":"6e15494b78d93b127ac1c0e5e54ddf24deb7221cddce1f8e29e9a19c50fef8a8","panda_gym/envs/tasks/pick_and_place.py":"2e94a75c2b0ea0e6d59aaf124bf8526b3a886a2d07f44fafe9828b0dd792585d","panda_gym/envs/tasks/reach.py":"dd4907bc88f8e9fbc2b79d07291ae7d50c86eb5264d8c11ad6ee25607adbf9a7","panda_gym/envs/tasks/__init__.py":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","panda_gym/envs/robots/panda.py":"f01efa5236849cb944a9f69ce525c843518d4edd4d00be35570dd730bfc377dd","panda_gym/envs/robots/__init__.py":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","panda_gym/assets/__init__.py":"910ce1095335ad8321d7e3f6b44e5551ff3645ff9cb1db5f0a7fb4baeddd27ac"},"summary":"Panda Gym Push closed-loop starting policy. Native IK actions, privileged simulator observations and a frozen three-seed evaluation; no state teleportation after reset.","observation_description":"Privileged simulator state and declared goals; no perception or real sensor validation.","goal_scope":"Native task success plus final Euclidean goal error <.04 m. Airborne pick/place goals retain the grasp; ground goals are released.","env_id":"PandaPush-v3","adapter_template":"seed_tasks","source_commit":"14d944120037a5bb637e629965f88bb9e13dba3b","packages":["panda-gym==3.0.7","pybullet==3.2.7","gymnasium==1.2.0","numpy==1.26.4"]}')
 
