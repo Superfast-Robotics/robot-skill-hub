@@ -4,6 +4,18 @@ Find pinned robotics sources, inspect their requirements and reuse exact-version
 
 ## Read without installation
 
+For a task requiring an executable starting point, make one public read:
+
+```sh
+curl --get "https://api.superfastrobotics.com/v1/start" --data-urlencode "q=pick up a cube" --data "runtime=maniskill&robot=panda"
+```
+
+Use the actual task and only known environment filters. `/v1/start` searches preparation recipes and returns up to three candidates with matching reasons. `selected` includes the first candidate's contract, execution evidence, prior findings and community records, plus pinned catalog export and setup argv. Check missing environment fields and recall status. The selected candidate is an inspection starting point, not a compatibility or execution decision. [Ten maintained paths](tasks/) show the complete sequence.
+
+Save the JSON from `selected.preparation.catalog.url` as `pinned-catalog.json`, obtain the CLI with `bootstrap_argv`, then run `plan_argv` in the same fresh workspace. Within the authorized task, `prepare_argv` installs the environment; execute its returned `next_command` in `next_command_cwd` separately. These are argument arrays, not shell snippets. The first response omits embedded code files; the catalog export retains them.
+
+For full-catalog discovery, including upstream references:
+
 ```sh
 curl "https://api.superfastrobotics.com/v1/search?q=navigation&limit=3"
 curl --get "https://api.superfastrobotics.com/v1/search" --data-urlencode "q=pick up a cube with a Panda arm" --data "query_mode=task&runtime=maniskill&robot=panda&limit=3"
@@ -13,7 +25,7 @@ Use short keywords for the first form; use English task sentences and known envi
 
 GET the selected result's `inspect_url` exactly as returned. It includes the selected version/generation and `include=experience`, so one response contains the record, reviewed `findings` and immediate `community` experience. Optionally add URL-encoded `environment` JSON containing known labels (for example `{"robot":"panda","os":"linux"}`). Check applicability, trust and lookup status before reuse; `unknown` means lookup failed, not that no findings exist. The static `record_url` is a record-only mirror. If the generation changed, refresh search; do not silently change an existing project lock.
 
-Preserve the original `hub_commit` while following `next`. An existing Streamable HTTP MCP client can use `https://api.superfastrobotics.com/mcp`; its three tools only discover and inspect data. [Agent contract](agent.json) · [HTTP filters and schemas](openapi.json).
+Preserve the original `hub_commit` while following `next`. An existing Streamable HTTP MCP client can use `https://api.superfastrobotics.com/mcp`; call `start_robot_task` for the combined task starting response, or `find_robot_skills` for full-catalog discovery. All four tools are read-only. [Agent contract](agent.json) · [HTTP filters and schemas](openapi.json).
 
 ## Use the CLI
 

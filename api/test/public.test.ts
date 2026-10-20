@@ -61,6 +61,67 @@ function selectedFinding(id = 1, changes: Record<string, any> = {}) {
     evidence: { level: 'contributor_reported', reported_by: 'submitter' }, ...changes };
 }
 
+test('one task start returns a pinned plan, real recall and an export usable as one-record catalog', async () => {
+  const s = fixture({ findingRows: [selectedFinding()] });
+  const r: any = await (await s.request('/v1/start?q=pick%20cube&runtime=maniskill&robot=panda&os=linux'))!.json();
+  assert.equal(r.results.length, 1); assert.equal(r.selected.id, 'alpha-pick');
+  assert.equal(r.scope.startsWith('preparation_recipes_only'), true);
+  assert.equal(r.selected.findings.total, 1);
+  assert.equal(r.selected.community.status, 'unknown');
+  assert.equal(r.results[0].selection_reason.caller_compatibility_verified, false);
+  assert.deepEqual(r.selected.environment_check.missing, ['python', 'architecture']);
+  assert.equal(r.selected.record_files_omitted, true);
+  const p = r.selected.preparation;
+  assert.deepEqual(p.bootstrap_argv[2].slice(-2), ['--detach', HUB]);
+  assert.ok(p.plan_argv.includes('--plan')); assert.ok(p.plan_argv.includes('b'.repeat(40)));
+  assert.equal(p.prepare_argv.includes('--plan'), false); assert.ok(p.prepare_argv.includes('--install-deps'));
+  assert.equal(p.execute.argv_from, 'prepare.next_command');
+  const url = new URL(p.catalog.url);
+  const catalog: any = await (await s.request(url.pathname + url.search))!.json();
+  assert.equal(catalog.hub_commit, HUB); assert.deepEqual(catalog.records, [s.details[0]]);
+  assert.equal(catalog.coverage.complete, false);
+  assert.equal(r.execution_performed, false); assert.equal(r.sharing_performed, false);
+});
+
+test('task start preserves empty results and explicit incompatibility without guessing an environment', async () => {
+  const s = fixture();
+  for (const query of ['q=unrelated%20accounting', 'q=pick%20cube&runtime=maniskill&robot=ur5']) {
+    const r: any = await (await s.request('/v1/start?' + query))!.json();
+    assert.equal(r.selected, null); assert.equal(r.results.length, 0); assert.ok(r.recovery);
+  }
+  const r: any = await (await s.request('/v1/start?q=pick%20cube'))!.json();
+  assert.deepEqual(r.selected.environment_check.supplied, {});
+  assert.equal(r.selected.environment_check.missing.length, 5);
+});
+
+test('start bounds optional lookup and validates parameters, pins, hashes and catalog exports', async () => {
+  for (const query of ['', 'q=', 'q=pick&limit=4', 'q=pick&limit=0', 'q=pick&offset=0',
+    'q=pick&kind=source_reference', 'q=pick&execute=true']) {
+    assert.equal((await fixture().request('/v1/start?' + query))!.status, 400);
+  }
+  assert.equal((await fixture().request('/v1/start?q=pick&hub_commit=' + 'f'.repeat(40)))!.status, 409);
+  assert.equal((await fixture({ badRecordHash: true }).request('/v1/start?q=pick'))!.status, 503);
+  const s = fixture({ memoryUnavailable: true });
+  const r: any = await (await s.request('/v1/start?q=pick'))!.json();
+  assert.equal(r.selected.findings.status, 'unknown'); assert.equal(r.selected.findings.total, null);
+  assert.ok(r.selected.preparation.plan_argv);
+  assert.equal(s.calls.filter(c => /\/skill.json/.test(c.url)).length, 1, 'Only the first candidate is hydrated');
+  for (const suffix of ['format=unknown', 'format=catalog&include=experience', 'format=catalog&execute=true'])
+    assert.equal((await s.request('/v1/skills/alpha-pick?' + suffix))!.status, 400);
+  assert.equal((await s.request('/v1/skills/beta-grasp?format=catalog'))!.status, 400);
+  assert.equal((await s.request('/v1/skills/alpha-pick?format=catalog&record_version=old'))!.status, 409);
+});
+
+test('MCP task start matches HTTP semantics and rejects nonnumeric limits', async () => {
+  const s = fixture();
+  const result: any = await (await s.rpc('tools/call', {name:'start_robot_task', arguments:{q:'pick cube'}}))!.json();
+  assert.equal(result.result.isError, false);
+  assert.equal(result.result.structuredContent.selected.id, 'alpha-pick');
+  assert.equal(result.result.structuredContent.execution_performed, false);
+  const bad: any = await (await s.rpc('tools/call', {name:'start_robot_task', arguments:{q:'pick',limit:'2'}}))!.json();
+  assert.equal(bad.result.isError, true);
+});
+
 test('empty first search returns a bounded actionable retry and pinned HTTP experience link', async () => {
   const s = fixture({ findingRows: [selectedFinding()] });
   const first: any = await (await s.request('/v1/search?q=Please%20find%20code%20to%20pick%20up%20a%20cube&limit=3'))!.json();
@@ -422,7 +483,7 @@ test('MCP initialize, notifications, list and tool calls follow JSON-RPC and adv
   assert.equal(initialized.result.protocolVersion, '2025-11-25'); assert.equal(s.calls.length, 0);
   const notification = await s.request('/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) });
   assert.equal(notification!.status, 202); assert.equal(await notification!.text(), '');
-  const tools: any = await (await s.rpc('tools/list'))!.json(); assert.equal(tools.result.tools.length, 3);
+  const tools: any = await (await s.rpc('tools/list'))!.json(); assert.equal(tools.result.tools.length, 4);
   assert.ok(tools.result.tools.every((tool: any) => tool.annotations.readOnlyHint && tool.annotations.destructiveHint === false));
   const found: any = await (await s.rpc('tools/call', { name: 'find_robot_skills', arguments: { q: 'cube' } }))!.json();
   assert.equal(found.result.isError, false); assert.equal(found.result.structuredContent.results[0].id, 'alpha-pick');

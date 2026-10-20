@@ -13,6 +13,21 @@ URL = client.API + '/v1/skills/example?hub_commit=' + 'a' * 40 + '&record_versio
 
 
 class TaskEntryTests(unittest.TestCase):
+    def test_start_preserves_unknown_environment_and_never_executes_handoff(self):
+        calls = []
+        response = {'results': [], 'selected': None, 'execution_performed': False}
+        def fetch(url, channel):
+            calls.append((url, channel))
+            return response
+        self.assertEqual(response, client.start('inverse kinematics', 'task-kinematics', task=True, fetch=fetch))
+        self.assertIn('/v1/start?', calls[0][0])
+        self.assertNotIn('runtime=', calls[0][0])
+        self.assertEqual('task-kinematics', calls[0][1])
+        with self.assertRaises(ValueError):
+            client.start('   ', 'task-kinematics', fetch=fetch)
+        with self.assertRaises(ValueError):
+            client.start('IK', 'task-kinematics', fetch=lambda *_: {'results': [{}] * 4, 'selected': {}})
+
     def record(self):
         return {'hub_commit': 'a' * 40, 'record': {'id': 'example', 'interface': {'abstraction_level': 0},
             'maintenance': {'record_version': '1.0.0'}, 'preparation': {'files': {'run.py': 'print(1)\n'}}},

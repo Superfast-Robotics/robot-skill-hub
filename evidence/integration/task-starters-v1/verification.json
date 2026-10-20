@@ -1,0 +1,41 @@
+{
+  "schema_version": "1",
+  "date": "2026-10-20",
+  "classification": "maintainer_integration_verification",
+  "worker_version": "0.5.3",
+  "catalog_basis": "d800c48cfd84f618a5c6ab84f8f7feec74ab0b56",
+  "verified": {
+    "representative_task_queries_select_expected_first_recipe": 10,
+    "unrelated_queries_return_no_selected_recipe": 5,
+    "native_workers_full_record_exports_match_published_records": 10,
+    "api_unit_tests_passed": 117,
+    "native_workers_tests_passed": 57,
+    "python_tests_run": 402,
+    "python_tests_passed": 398,
+    "python_tests_skipped": 4,
+    "python_skip_scope": "Windows filesystem/symlink privilege limits; see CI for Linux results",
+    "windows_python_310_plans": {
+      "supported_preparation_plan": 4,
+      "unsupported_environment": 4,
+      "unsupported_python": 2
+    },
+    "catalog_v2_tests_passed": 5,
+    "catalog_sync_tests_passed": 14,
+    "skill_frontmatter_validated": 4
+  },
+  "properties": [
+    "HTTP and MCP return bounded candidates and hydrate only the first candidate",
+    "Full source pins, record version, environment, interface and execution evidence are retained",
+    "Embedded adapter files are omitted from the first response and retained in pinned catalog export",
+    "Known environment filters scope prior findings; unknown recall is not reported as an empty success",
+    "Catalog/record drift, corrupted bytes, unsupported export modes and excessive candidate limits are rejected",
+    "No server-side code execution, dependency installation or public sharing occurs during discovery"
+  ],
+  "limits": [
+    "Task queries are maintainer-authored integration cases, not a representative search benchmark or autonomous selection measurement",
+    "Current simulation/computation evidence is reused from the exact canonical recipes; this change does not rerun all ten simulators",
+    "Local Windows planning does not establish Linux runtime execution",
+    "No external adoption, token reduction, task success improvement or independent finding reuse is inferred from these tests"
+  ],
+  "maintainer_telemetry": "off"
+}

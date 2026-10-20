@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
       "name": "Apache-2.0",
@@ -259,11 +259,22 @@
               "maxLength": 8192
             },
             "description": "URL-encoded JSON object of explicit environment labels, requiring include=experience. Example: {\"robot\":\"panda\",\"os\":\"linux\"}. At most 16 supported string labels, 240 characters each. Omit unknown values; invalid input is rejected. This filters findings, not recipe compatibility."
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "catalog"
+              ]
+            },
+            "description": "Export one preparation recipe as a full schema_version=1 CLI catalog. Use hub_commit and record_version to bind it. Cannot combine with include or environment. Source references are rejected."
           }
         ],
         "responses": {
           "200": {
-            "description": "Structured JSON response",
+            "description": "Structured JSON response With format=catalog the response is {schema_version,hub_commit,records:[full_record],coverage:{complete:false,scope:one_explicitly_selected_recipe}}.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1076,7 +1087,7 @@
     "/mcp": {
       "post": {
         "summary": "Stateless read-only Model Context Protocol over Streamable HTTP",
-        "description": "Public tools find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25.",
+        "description": "Public tools start_robot_task, find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25. start_robot_task uses /v1/start semantics.",
         "security": [],
         "requestBody": {
           "required": true,
@@ -2313,6 +2324,214 @@
             "description": "Coverage is unavailable, malformed, oversized or does not match the publication checksum"
           }
         }
+      }
+    },
+    "/v1/start": {
+      "get": {
+        "summary": "Get recipe candidates, one contract, prior fixes and pinned preparation argv",
+        "security": [],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 240,
+              "minLength": 1
+            },
+            "required": true
+          },
+          {
+            "name": "query_mode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all_terms",
+                "task"
+              ],
+              "default": "task"
+            },
+            "description": "all_terms keeps word-prefix matching. task opts into bounded ASCII English lexical ranking with at most16 content terms over at most512 hard-filtered records before text matching. query_too_broad requires narrower runtime/robot/environment filters; more text alone does not reduce scope. Task results expose query_terms, candidate_scope=hard_filtered_records, candidate_count, candidate_limit and per-row query_match scores. Preserve query_mode and hub_commit for pagination. Matches do not establish runtime compatibility."
+          },
+          {
+            "name": "runtime",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "robot",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "controller",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "observation",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "os",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 3
+            }
+          },
+          {
+            "name": "hub_commit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          },
+          {
+            "name": "runtime_version",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "python",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "architecture",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bounded recipe candidates and first-candidate handoff. selected=null when no match. Both evidence and applicability must be checked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "hub_commit",
+                    "results",
+                    "selected",
+                    "execution_performed",
+                    "sharing_performed"
+                  ],
+                  "properties": {
+                    "hub_commit": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "array",
+                      "maxItems": 3,
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "selected": {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "execution_performed": {
+                      "const": false
+                    },
+                    "sharing_performed": {
+                      "const": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Pinned catalog or record version changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Read rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Publication temporarily unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "One read-only task starting response. Defaults to task lexical ranking over preparation recipes only. Up to three candidates; only the first is hydrated. Supply known environment filters, then check missing environment fields. selected.record omits embedded code files; selected.preparation.catalog.url exports the full exact-generation one-record CLI catalog. No installation, execution or sharing is performed. Empty results keep selected=null; optional recall failure is unknown, not empty success.",
+        "operationId": "startRobotTask"
       }
     }
   },
