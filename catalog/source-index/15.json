@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-cartpole-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "2ead124b158bc9d63c08aeb1097690463e38f81409bf079c7f2e16add63c24aa",
+      "record_version": "source-2ead124b158bc9d63c08aeb1097690463e38f81409bf079c7f2e16add63c24aa"
+    },
+    {
       "id": "crazyflie-examples-parameters-persistent-params-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca",
       "record_version": "source-3530f0717d43324768cb4a5adff9bd076c1d1294bbc543499ed05dda916217ca"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-reach-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "2579e0fcb12e431eea016b155fe53f17c4f82ac208639ee993e9d777b4d0c1d0",
+      "record_version": "source-2579e0fcb12e431eea016b155fe53f17c4f82ac208639ee993e9d777b4d0c1d0"
     },
     {
       "id": "mujoco-menagerie-artifact-hello-robot-stretch-scene-xml",
@@ -36,6 +48,12 @@
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "3ca03a6b107fab1d20a18a4e3a967ed0f14de228208a95c4735a6c966ea18534",
       "record_version": "source-3ca03a6b107fab1d20a18a4e3a967ed0f14de228208a95c4735a6c966ea18534"
+    },
+    {
+      "id": "xarm-ros2-demo-mbot-demo-launch-mbot-moveit-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "b85f7b116e6a026a7a9909df84dfe704b3f5a207316536aa3ae0a229bfee6eb6",
+      "record_version": "source-b85f7b116e6a026a7a9909df84dfe704b3f5a207316536aa3ae0a229bfee6eb6"
     }
   ]
 }

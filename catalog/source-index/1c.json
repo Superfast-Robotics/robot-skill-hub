@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-drone-fly-route-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9c09f493f272630797b7d8111979701994101d1526314648887e49b4b8b2771b",
+      "record_version": "source-9c09f493f272630797b7d8111979701994101d1526314648887e49b4b8b2771b"
+    },
+    {
+      "id": "genesis-examples-examples-locomotion-go2-eval-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2e80b1c65dea21b28a97b2c11eb6f035bfa7ded87701e3e2abe8e9bd41824bd0",
+      "record_version": "source-2e80b1c65dea21b28a97b2c11eb6f035bfa7ded87701e3e2abe8e9bd41824bd0"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-locomotion-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "2061b0dc1a95189a733a9533e2e7e42fa352cfd477d99c2ad557ba1da52c6880",

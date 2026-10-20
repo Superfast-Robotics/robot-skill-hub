@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-drone-fly-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "063b40fb1e3dc3dfbaf7d8aaf1744f9a78ae6052a8c9cfa04b6317341e68f100",
+      "record_version": "source-063b40fb1e3dc3dfbaf7d8aaf1744f9a78ae6052a8c9cfa04b6317341e68f100"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-vb-barkour-vb-mjx-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e11ecfd8241415d10a4fa52848112ef48895cc216d846b16000aac02e2801d35",
@@ -18,6 +24,12 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "4bb9450399227b84ffb58e1464ba22f223e2a06081232b033e5fb2ffea798e27",
       "record_version": "source-4bb9450399227b84ffb58e1464ba22f223e2a06081232b033e5fb2ffea798e27"
+    },
+    {
+      "id": "unitree-rl-lab-scripts-mimic-replay-npz-py",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "1bee057600c78dd39a6acc3baa40af4235e20a04ef6533608062c2f698d24356",
+      "record_version": "source-1bee057600c78dd39a6acc3baa40af4235e20a04ef6533608062c2f698d24356"
     }
   ]
 }

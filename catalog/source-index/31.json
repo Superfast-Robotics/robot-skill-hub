@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "d591b8211b18efcdb05df1fad139b00bbf96296b47b6b5babf8f9eafde632c98",
+      "record_version": "source-d591b8211b18efcdb05df1fad139b00bbf96296b47b6b5babf8f9eafde632c98"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-manipulation-ubound-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "53d92909d7aa9649ea25b17751437ef16b2a7099d4a6f1e0ee29ee87e51d9a84",
+      "record_version": "source-53d92909d7aa9649ea25b17751437ef16b2a7099d4a6f1e0ee29ee87e51d9a84"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-rolling-coast-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4eb17cfecc1685feff34fe76f74d0f23bb16cecfbda74ad5252a2a7d59f013e7",
+      "record_version": "source-4eb17cfecc1685feff34fe76f74d0f23bb16cecfbda74ad5252a2a7d59f013e7"
+    },
+    {
       "id": "lerobot-src-lerobot-scripts-lerobot-replay-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "cd768d19108843a87fc2f5c6b16dfe30c334b4cdaae70306b5a57305ccf41cc1",
@@ -24,6 +42,12 @@
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
       "record_version": "source-22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf"
+    },
+    {
+      "id": "pink-examples-barriers-arm-ur5-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "2faba091ae3eaa921897ebd2d9bcdb99cf8559235cd2a25230787a2fd600c5a2",
+      "record_version": "source-2faba091ae3eaa921897ebd2d9bcdb99cf8559235cd2a25230787a2fd600c5a2"
     },
     {
       "id": "webots-projects-robots-universal-robots-controllers-ure-can-grasper-7f8e2ee7fd58",

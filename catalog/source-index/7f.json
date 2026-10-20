@@ -14,6 +14,12 @@
       "record_version": "source-9e46aec8f8c1c4b2edb03d250fcd7255682ee81627af8eec6a2bac9acd8ed670"
     },
     {
+      "id": "pink-examples-barriers-yumi-self-collision-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "68eea2a7737255b5505949b92c7bc36d4ffc12ca40df284f40d0a48f329ddc9a",
+      "record_version": "source-68eea2a7737255b5505949b92c7bc36d4ffc12ca40df284f40d0a48f329ddc9a"
+    },
+    {
       "id": "pythonrobotics-slam-fastslam1-fast-slam1-py",
       "source_commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
       "source_sha256": "d71a5058ef872f5a691c5451f698d6897948502aacee6c183a99abdd4a8b3f0d",

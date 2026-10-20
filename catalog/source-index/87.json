@@ -8,6 +8,12 @@
       "record_version": "source-d4850d7a10a51da3c862a7bdd56b69293336c87e608fbec042aaa8427e151476"
     },
     {
+      "id": "genesis-examples-examples-collision-pyramid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3eae4a9aea0cdfb74c5bfb74ec842e36561bcab8ed5f4b9291b01b58cfde4ca2",
+      "record_version": "source-3eae4a9aea0cdfb74c5bfb74ec842e36561bcab8ed5f4b9291b01b58cfde4ca2"
+    },
+    {
       "id": "isaac-groot-gr00t-eval-rollout-policy-py",
       "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
       "source_sha256": "e0833d57826f26e5b05e46e202f56eeae53fbb0e22b1c8b7c6b2271320e66132",

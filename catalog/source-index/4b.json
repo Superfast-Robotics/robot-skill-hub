@@ -8,10 +8,28 @@
       "record_version": "source-833fa7867303ddfa47edc298a129af4172fa6f0d4851504448dc357315cc5bb9"
     },
     {
+      "id": "crocoddyl-examples-biped-gaits-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "9368aca85b73eb3d06d78af4bb03d5024444996f4f8b8bfe8d715a643c21d533",
+      "record_version": "source-9368aca85b73eb3d06d78af4bb03d5024444996f4f8b8bfe8d715a643c21d533"
+    },
+    {
+      "id": "crocoddyl-examples-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "97c8945386472078d88864bbbff3112a7a04cd88b8c978a1d5856539400372b1",
+      "record_version": "source-97c8945386472078d88864bbbff3112a7a04cd88b8c978a1d5856539400372b1"
+    },
+    {
       "id": "gap-bundle-tipping-over-a-surface-edge",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b",
       "record_version": "source-6f708e3141eee3f30f15aa2cb038ba6fe65ce3c5fc857ca41af43e690dc5c76b"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-terrain-height-field-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5d629ef34f999aa17b089ed46f2b1700caae54476be5658d25c570a6ac9592f0",
+      "record_version": "source-5d629ef34f999aa17b089ed46f2b1700caae54476be5658d25c570a6ac9592f0"
     },
     {
       "id": "mavsdk-python-examples-telemetry-py",

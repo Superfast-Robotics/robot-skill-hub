@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-aerial-manipulator-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "29ebe5e148993cc2bb4500d1edf0b133387373eccbdddca96bd8c0f22e6bb46f",
+      "record_version": "source-29ebe5e148993cc2bb4500d1edf0b133387373eccbdddca96bd8c0f22e6bb46f"
+    },
+    {
       "id": "franka-description-artifact-accessories-fr3-duo-mount-v0-3-kinematics-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "4b7930ba5901e5dab9cfcfa7228b20c9140ca942380015ef4cb7fa3134a1f08e",
       "record_version": "source-4b7930ba5901e5dab9cfcfa7228b20c9140ca942380015ef4cb7fa3134a1f08e"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-stick-push-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "39da669cdd597d4ec350d9608d43e56316ac39d5c7347acafe80b86ca127bea8",
+      "record_version": "source-39da669cdd597d4ec350d9608d43e56316ac39d5c7347acafe80b86ca127bea8"
     },
     {
       "id": "mujoco-menagerie-artifact-aloha-joint-position-actuators-xml",

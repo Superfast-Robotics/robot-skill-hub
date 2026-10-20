@@ -20,10 +20,22 @@
       "record_version": "source-27b9931c7857db47e23e6ea9bf4a43eea9c8c53a099e1bb1a87327a7399db806"
     },
     {
+      "id": "genesis-examples-examples-rigid-set-phys-attr-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "3937367fd615c15aaa5e6baf7e0303659e1ce34afdbb52398703dd4f4a8c5823",
+      "record_version": "source-3937367fd615c15aaa5e6baf7e0303659e1ce34afdbb52398703dd4f4a8c5823"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-00-sim-launch-app-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "c557128b9aefe615daee45bfbaaffe6fee424a0b9b6b402132c0749c1aa71c9d",
       "record_version": "source-c557128b9aefe615daee45bfbaaffe6fee424a0b9b6b402132c0749c1aa71c9d"
+    },
+    {
+      "id": "pink-examples-double-pendulum-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "8276cebb871d3f74ab917f60406b4853d3d7d9d10594d0639fde56669740b687",
+      "record_version": "source-8276cebb871d3f74ab917f60406b4853d3d7d9d10594d0639fde56669740b687"
     },
     {
       "id": "pyrobosim-pyrobosim-examples-demo-astar-py",
@@ -36,6 +48,18 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "913d11836687880c0944f55dd4a19fe6ba8572d69ba1c5e3c5b8b57ff383e2f7",
       "record_version": "source-913d11836687880c0944f55dd4a19fe6ba8572d69ba1c5e3c5b8b57ff383e2f7"
+    },
+    {
+      "id": "safe-control-gym-examples-mpsc-mpsc-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "df5831cc5de46fc817aa0f468e5e18a37694ac1151703b12bccb5978444e7613",
+      "record_version": "source-df5831cc5de46fc817aa0f468e5e18a37694ac1151703b12bccb5978444e7613"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-control-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "83e07f351199a73d296743677f540a9388c06b269ca7f0fbe7756f2b900af8dc",
+      "record_version": "source-83e07f351199a73d296743677f540a9388c06b269ca7f0fbe7756f2b900af8dc"
     },
     {
       "id": "webots-projects-samples-devices-controllers-receiver-noise-receiver-noise-py",

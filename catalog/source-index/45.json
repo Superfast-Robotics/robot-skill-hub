@@ -2,16 +2,58 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-partial-initial-condition-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "5a0767a108ce3070be0cc4d06a0a7770d98f2e8b89b3526094ebcb99bd41adaf",
+      "record_version": "source-5a0767a108ce3070be0cc4d06a0a7770d98f2e8b89b3526094ebcb99bd41adaf"
+    },
+    {
+      "id": "aligator-examples-rollouts-bench-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "57ac776f504c7dbd2eeacb0701a8c5339b5f45c745931f6e0d0d91118ab1f86e",
+      "record_version": "source-57ac776f504c7dbd2eeacb0701a8c5339b5f45c745931f6e0d0d91118ab1f86e"
+    },
+    {
       "id": "aspire-open-drawer",
       "source_commit": "fa00f0ef2bc1d91d594b9aa502c22133c9f538f7",
       "source_sha256": "ad66c2bb4da612b8f3200ded89ca915398fd717f1e56f6c58004dfe003836ef9",
       "record_version": "source-ad66c2bb4da612b8f3200ded89ca915398fd717f1e56f6c58004dfe003836ef9"
     },
     {
+      "id": "genesis-examples-examples-manipulation-grasp-eval-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "72d1b127c47e32a316c92c1001f435d8207d404d7032ee37454ad0630aefdeb8",
+      "record_version": "source-72d1b127c47e32a316c92c1001f435d8207d404d7032ee37454ad0630aefdeb8"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-nonconvex-mesh-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8a93536c1b31bdcabf0f82768a45e0951ee37dd1d3f21cbbf4caec053004d56a",
+      "record_version": "source-8a93536c1b31bdcabf0f82768a45e0951ee37dd1d3f21cbbf4caec053004d56a"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-1e32a1970eed",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "853f19b223522e3143e0e5166f2f3285bdd255605ee99f2c473a660b07decd1e",
+      "record_version": "source-853f19b223522e3143e0e5166f2f3285bdd255605ee99f2c473a660b07decd1e"
+    },
+    {
       "id": "lerobot-src-lerobot-scripts-lerobot-rollout-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075",
       "record_version": "source-40a01fbd77b651e13b4adc6a4a3ef7c89e1a37b3a928adbd60b5363627ddb075"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-dial-turn-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "bd4ac56488eee81bd60d7aab48c578ba30c1050212e357cf104a3b2f7cbf9806",
+      "record_version": "source-bd4ac56488eee81bd60d7aab48c578ba30c1050212e357cf104a3b2f7cbf9806"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-back-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "7bf9c9515ce88230bb2af1c3d7de57713c7bf4b0d690103ec0788e013287d997",
+      "record_version": "source-7bf9c9515ce88230bb2af1c3d7de57713c7bf4b0d690103ec0788e013287d997"
     },
     {
       "id": "mujoco-menagerie-artifact-sharpa-wave-scene-right-xml",

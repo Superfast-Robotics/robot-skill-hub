@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-linear-euler-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "317b18e3865b1ff0ded7c08a54b04022fa5f26ca88d5c02d8170a0049536a28c",
+      "record_version": "source-317b18e3865b1ff0ded7c08a54b04022fa5f26ca88d5c02d8170a0049536a28c"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "7c7d1db844c5029349c6ab7479fc250bee156a812353a80d491f86cf8d52d72a",
+      "record_version": "source-7c7d1db844c5029349c6ab7479fc250bee156a812353a80d491f86cf8d52d72a"
+    },
+    {
+      "id": "myosuite-myosuite-utils-examine-env-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "eb30c565dadde461f73bc2a10baddb6a8118d6f1499c2c8e2a816900d6e89ac2",
+      "record_version": "source-eb30c565dadde461f73bc2a10baddb6a8118d6f1499c2c8e2a816900d6e89ac2"
+    },
+    {
       "id": "ompl-demos-triangulationdemo-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "e731df490e50e3cc04b0016e797b229dfe1b3e45427e59c7c5bb92ef7f0a44a8",

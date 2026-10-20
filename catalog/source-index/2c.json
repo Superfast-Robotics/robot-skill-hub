@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-stable-baselines-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "1449b9f19f982d19ac28c1f15f3b5c7499af492dbb899c4229deaab850f18a12",
+      "record_version": "source-1449b9f19f982d19ac28c1f15f3b5c7499af492dbb899c4229deaab850f18a12"
+    },
+    {
       "id": "mujoco-menagerie-artifact-boston-dynamics-spot-spot-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "f2643c93832f0aaadb29e8e4226357ba89bf1c58e39c373db231bb203406274b",

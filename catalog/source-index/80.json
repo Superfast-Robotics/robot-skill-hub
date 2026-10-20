@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-curobo-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "11d3c5f00a6cc1f845d9e3acf922e2cb88472c2bd80ea93a3659ee6fc4b102ff",
+      "record_version": "source-11d3c5f00a6cc1f845d9e3acf922e2cb88472c2bd80ea93a3659ee6fc4b102ff"
+    },
+    {
+      "id": "crocoddyl-examples-humanoid-walking-on-hands-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "8eb0eee85d0b2bddbc48036ee58790b336a7ff1c0d6ffb3d2f39daf8548ba8e9",
+      "record_version": "source-8eb0eee85d0b2bddbc48036ee58790b336a7ff1c0d6ffb3d2f39daf8548ba8e9"
+    },
+    {
       "id": "franka-description-artifact-accessories-franka-spine-v0-1-franka-spine-xacro",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "71f88790400d371f765d6d79cf3454ebb101603f6320a9052780af4764e33925",
@@ -24,6 +36,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "cec3efe34be49c8220c23afdae0cfacbce10164a5bc7c34075b6668ee0a862a6",
       "record_version": "source-cec3efe34be49c8220c23afdae0cfacbce10164a5bc7c34075b6668ee0a862a6"
+    },
+    {
+      "id": "roboverse-examples-11-light-setting-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "371284c5fdb4b2028e5502a2b9fb80a291c13435851ff539f0b06011f8c20e76",
+      "record_version": "source-371284c5fdb4b2028e5502a2b9fb80a291c13435851ff539f0b06011f8c20e76"
     }
   ]
 }

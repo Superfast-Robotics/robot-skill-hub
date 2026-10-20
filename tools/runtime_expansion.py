@@ -13,6 +13,13 @@ def version_key(value):
 
 def measured_goal(recipe,outputs):
     backend=recipe['backend']
+    if backend=='metaworld':
+        window=outputs['success_window']
+        return len(window)>=5 and all(type(x) is bool for x in window) and all(window[-5:]) and outputs['native_success'] is True and outputs['control_effort']>0 and outputs['steps']>=5
+    if backend in ['mink','genesis']:
+        error=math.dist(outputs['final_xyz_m'],outputs['target_xyz_m'])
+        correct=error<.015 and abs(error-outputs['error_m'])<1e-6 and outputs['movement_m']>.015
+        return correct and (outputs['orientation_error_rad']<.05 if backend=='mink' else outputs['max_joint_error_rad']<.04 and outputs['cuda_simulation'] is True)
     if backend=='menagerie':
         if recipe['operation']=='quadruped_stand':return .15<outputs['base_xyz_m'][2]<.5 and outputs['minimum_base_height_m']>.15 and outputs['upright_z']>.9 and outputs['max_joint_error_rad']<.18
         return outputs['max_error_rad']<.035 and outputs['movement_rad']>=.02 and abs(max(abs(a-b) for a,b in zip(outputs['joint_positions_rad'],outputs['target_joint_positions_rad']))-outputs['max_error_rad'])<1e-6
@@ -51,7 +58,7 @@ def bound_receipt(root, recipe, source, adapter):
     call=assignments[0].value
     if not isinstance(call,ast.Call) or len(call.args)!=1:raise ValueError('Invalid executed specification')
     executed_spec=json.loads(ast.literal_eval(call.args[0]))
-    for key in ['id','backend','operation','interface','source_hashes','model_path','actuator_names','actuator_indices','robot','env_id','policy_repo','policy_revision','policy_hashes','domain','task']:
+    for key in ['id','backend','operation','interface','source_hashes','model_path','actuator_names','actuator_indices','robot','env_id','policy_repo','policy_revision','policy_hashes','domain','task','policy_module','policy_class','runtime_guards','timeout_seconds']:
         if executed_spec.get(key)!=recipe.get(key):raise ValueError('Manifest differs from executed adapter: '+key)
     if executed_spec.get('source_commit')!=source['commit'] or executed_spec.get('packages')!=source['packages']:raise ValueError('Executed source/package specification differs')
     proof=json.loads(path.read_text(encoding='utf-8'))

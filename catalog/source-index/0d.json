@@ -26,6 +26,12 @@
       "record_version": "source-387293061a8509557bb80a02a0f279b0b2b4629c0189db661a93fee5d9e0b74a"
     },
     {
+      "id": "roboverse-examples-7-multiple-robots-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "fbd35f733ae778755602ad91665c62659cee32a3cb968a79ef1577704aa71ba2",
+      "record_version": "source-fbd35f733ae778755602ad91665c62659cee32a3cb968a79ef1577704aa71ba2"
+    },
+    {
       "id": "ros2-examples-rclpy-actions-minimal-action-client-examples-rclpy-mi-1237ea3c2983",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "7a1096fb8f18f9883a6ce497775250c14bce3ab53adb47005e0a93e879660701",
@@ -42,6 +48,12 @@
       "source_commit": "04537ddafe0641d1751af3eb9e76cb785fc18594",
       "source_sha256": "bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869",
       "record_version": "source-bdebf90d3a156b32e061acfba7dc1bd727ae73b6d8d4105170c2f8943ae47869"
+    },
+    {
+      "id": "tsid-exercizes-talos-conf-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "2aa792ebf40ba65573703fa1286a2e35cc3963366a38799f0b00bfe7f4e037e8",
+      "record_version": "source-2aa792ebf40ba65573703fa1286a2e35cc3963366a38799f0b00bfe7f4e037e8"
     },
     {
       "id": "ur-description-artifact-config-ur10e-joint-limits-yaml",

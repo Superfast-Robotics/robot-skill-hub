@@ -1,0 +1,5 @@
+mink==1.3.0
+mujoco==3.10.0
+numpy==1.26.4
+qpsolvers==4.12.0
+daqp==0.8.6

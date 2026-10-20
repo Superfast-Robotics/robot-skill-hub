@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-deformable-pbd-liquid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "05428bceaed466dcf4d73503061a794055fa0c339b51ed179584e6671684d698",
+      "record_version": "source-05428bceaed466dcf4d73503061a794055fa0c339b51ed179584e6671684d698"
+    },
+    {
+      "id": "mink-examples-googly-eyes-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "7e406be7ff4b65793e898aefdc527c3a2a493f07cdc787f6b96f25f04ccd93f2",
+      "record_version": "source-7e406be7ff4b65793e898aefdc527c3a2a493f07cdc787f6b96f25f04ccd93f2"
+    },
+    {
       "id": "mujoco-basic",
       "source_commit": "f1d45bd5422c74beddfb0d1deb590a02583d21de",
       "source_sha256": "ca585c99ca6eede2b2d15fb28b6d63b7c822d4a5e8ea7e031865682a700abddc",
@@ -30,6 +42,12 @@
       "source_commit": "92c9db0cc9ade6535f822e83bbf10cbd0c68136a",
       "source_sha256": "2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156",
       "record_version": "source-2ac344d1b3d7bdff5193dc8d6a5dfa1c76f46286b92c8bf1f71f3c50d66df156"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-replay-action-log-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "bf024ec0be4f1be6b528de894ee81721858435bbb3d51eaeb71fb1a0ba4cf57e",
+      "record_version": "source-bf024ec0be4f1be6b528de894ee81721858435bbb3d51eaeb71fb1a0ba4cf57e"
     },
     {
       "id": "webots-projects-samples-devices-controllers-gps-gps-py",

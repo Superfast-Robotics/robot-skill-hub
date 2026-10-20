@@ -14,6 +14,24 @@
       "record_version": "source-1c40dfb484e3e4a727310b7639f2a97238dc5e83e520006b2753954c8464c476"
     },
     {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-policy-9092994cee7c",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "ae4df1e8f54be4e7066ccac20e05439cba20cd27895b91792b5635348deb5bc2",
+      "record_version": "source-ae4df1e8f54be4e7066ccac20e05439cba20cd27895b91792b5635348deb5bc2"
+    },
+    {
+      "id": "home-robot-projects-stretch-exploration-eval-episode-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "a3e388321078b82940d845c110281ba1c7a99ce653add293ed68580d7091f7f5",
+      "record_version": "source-a3e388321078b82940d845c110281ba1c7a99ce653add293ed68580d7091f7f5"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjlab-configs-asset-configs-mus-578d2c5bd59a",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "ef0f542efef75a3da8a3235412710d342f8c5424f7872db69920cf67eb089f9c",
+      "record_version": "source-ef0f542efef75a3da8a3235412710d342f8c5424f7872db69920cf67eb089f9c"
+    },
+    {
       "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-recovery-9bce0cc8b39f",
       "source_commit": "58e4019eb149ed4387938d9cd13f38659b86f754",
       "source_sha256": "684c368fff80558623adc50c59d6f4f8f09a6fbc9138fa70cad32ffda03333b4",
@@ -24,6 +42,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "25647dd409c7ccb6345e0baf7d20fee3d58e425148c270c16497c2e10bd8ae92",
       "record_version": "source-25647dd409c7ccb6345e0baf7d20fee3d58e425148c270c16497c2e10bd8ae92"
+    },
+    {
+      "id": "roboverse-examples-16-embodiedgen-layout-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "42d4155ca4e13cb6d4722531b5e2f74624756ca9d65c695596643f1ae2d151a7",
+      "record_version": "source-42d4155ca4e13cb6d4722531b5e2f74624756ca9d65c695596643f1ae2d151a7"
     }
   ]
 }

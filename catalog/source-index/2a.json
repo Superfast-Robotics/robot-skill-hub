@@ -14,6 +14,12 @@
       "record_version": "source-4e3aaa324d1ecce761a77c570c13a1259c88fd605d248cd26b2800532f804450"
     },
     {
+      "id": "genesis-examples-examples-rigid-ik-duck-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "721e337e63a7e95a0ec9e9ae507b2e9f6fcfd0722c2046a4d11421cd7315f96f",
+      "record_version": "source-721e337e63a7e95a0ec9e9ae507b2e9f6fcfd0722c2046a4d11421cd7315f96f"
+    },
+    {
       "id": "robomimic-robomimic-scripts-playback-dataset-py",
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "3a3d9fcd95afca2e01ecb8f240c631153ee293293123d35dad4c80da473116ce",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-gar-lqr-join-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "6db7bc5e104eda4667abd8d062c454b4969a345d7bc1fae02556a60b2a52cec6",
+      "record_version": "source-6db7bc5e104eda4667abd8d062c454b4969a345d7bc1fae02556a60b2a52cec6"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-import-custom-object-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "711e766dcbedbcf4e891fb44de8ab95b8d30ea6825447a84dfc4f17970f8fc75",
+      "record_version": "source-711e766dcbedbcf4e891fb44de8ab95b8d30ea6825447a84dfc4f17970f8fc75"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-01-assets-run-articulation-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "958a4c443375951a1b521488c16d6c7ef9cea98f7a9a34b272acc486159ea667",

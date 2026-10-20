@@ -8,6 +8,12 @@
       "record_version": "source-cde188684e060892b8f0494119354750c180c8eaee974344f844f50ea55f7e6b"
     },
     {
+      "id": "genesis-examples-examples-rigid-single-franka-batch-render-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d8c7d0bdb577af9ec27ef784491a9997930f9c287b70133b1d80ed3a252dc699",
+      "record_version": "source-d8c7d0bdb577af9ec27ef784491a9997930f9c287b70133b1d80ed3a252dc699"
+    },
+    {
       "id": "isaaclab-scripts-demos-quadrupeds-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "ab95e61a02931c6635e0615bc5607443b49a09e3ae7df5e5ec09fe3fc7a2c8bb",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-objects-load-object-selector-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "592d47dae66bfbde6c63ac4ea8e57105422001e5c81b4c1774b843a270095e12",
+      "record_version": "source-592d47dae66bfbde6c63ac4ea8e57105422001e5c81b4c1774b843a270095e12"
+    },
+    {
+      "id": "causalworld-tutorials-requesting-task-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "fe495a919680a432fdcd8796e64bdbdae1ee50c53aa20f2339b6b83990598ba0",
+      "record_version": "source-fe495a919680a432fdcd8796e64bdbdae1ee50c53aa20f2339b6b83990598ba0"
+    },
+    {
       "id": "franka-description-artifact-robots-fer-inertials-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "213cbf35de6645bee36e8e60f9707ad69972738a12dcb1ec496ed720fb7ffc66",

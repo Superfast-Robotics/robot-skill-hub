@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-croc-arm-manipulation-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "0d8e5c9767ce69ca9edd3f4905e05439368a2d441608320aa71bd370b6573111",
+      "record_version": "source-0d8e5c9767ce69ca9edd3f4905e05439368a2d441608320aa71bd370b6573111"
+    },
+    {
       "id": "drake-bindings-pydrake-examples-gym-play-cart-pole-py",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "742e51f3ba5ea6b99c2c1b22a9aac31a99d6d2949b9e78a6d26ab61fb5ce0dc9",
@@ -24,6 +30,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "12b6bbd5e94758164141d54417cad9cde6acdc073311c7c9657dca1ae3fde6ec",
       "record_version": "source-12b6bbd5e94758164141d54417cad9cde6acdc073311c7c9657dca1ae3fde6ec"
+    },
+    {
+      "id": "pink-examples-arm-panda-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "ac45a5cd0954bf8d343e8b554458282c02f07560496af220b7f25c237853f561",
+      "record_version": "source-ac45a5cd0954bf8d343e8b554458282c02f07560496af220b7f25c237853f561"
     },
     {
       "id": "pinocchio-examples-simulation-pendulum-py",

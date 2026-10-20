@@ -18,6 +18,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "b59820ee0daaa2dec9c165522d0ea941d4c7a53868dfa423d964181b4aedc369",
       "record_version": "source-b59820ee0daaa2dec9c165522d0ea941d4c7a53868dfa423d964181b4aedc369"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-inverse-kinematics-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "acd8c81d1237c1316498f6ede5ff7cb07160e9e5e4c4019bd298f846d22f3be6",
+      "record_version": "source-acd8c81d1237c1316498f6ede5ff7cb07160e9e5e4c4019bd298f846d22f3be6"
     }
   ]
 }

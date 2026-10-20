@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-croc-humanoid-manipulation-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "25fa51a21c580feffd9b9592c23df5fcfd084ce6f270026d9a9a155fd9dc7732",
+      "record_version": "source-25fa51a21c580feffd9b9592c23df5fcfd084ce6f270026d9a9a155fd9dc7732"
+    },
+    {
       "id": "mujoco-menagerie-artifact-bitcraze-crazyflie-2-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "6e8ed7902dcf75d312c7ef76549c030bebf105afee0a211860ff48eb622c2310",

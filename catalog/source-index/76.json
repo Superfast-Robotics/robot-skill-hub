@@ -2,10 +2,40 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-environments-behavior-env-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "897c619e41043dc7550459a87f84dc8d9d487d418acf00ddadba765af5005dfb",
+      "record_version": "source-897c619e41043dc7550459a87f84dc8d9d487d418acf00ddadba765af5005dfb"
+    },
+    {
       "id": "franka-description-artifact-robots-fer-kinematics-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386",
       "record_version": "source-44326830a6773dd6611cdf9947045eeb3276ea4e3ca47a05272816c862c8e386"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-accelerometer-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "caa5082801a70002af9c5c06b606372550c07f46f960cb148ed2b6d55a7cced4",
+      "record_version": "source-caa5082801a70002af9c5c06b606372550c07f46f960cb148ed2b6d55a7cced4"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-franka-grasp-fem-sphere-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "bf1bbf05df5337978e12dfa68054ed233a670e77ad1013231c22ad73e025f53e",
+      "record_version": "source-bf1bbf05df5337978e12dfa68054ed233a670e77ad1013231c22ad73e025f53e"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-tactile-sandbox-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "b983516ddf3dcd3d2202089c16543651a869e59cb577987ddba0989def042126",
+      "record_version": "source-b983516ddf3dcd3d2202089c16543651a869e59cb577987ddba0989def042126"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-batched-ik-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1be0279cd56936c99f6169970022fd0453cf0a5a737da4124ed81ffb25bcd8d9",
+      "record_version": "source-1be0279cd56936c99f6169970022fd0453cf0a5a737da4124ed81ffb25bcd8d9"
     },
     {
       "id": "webots-projects-samples-devices-controllers-track-conveyor-belt-tra-7926b94c352f",

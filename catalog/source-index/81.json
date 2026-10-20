@@ -8,10 +8,22 @@
       "record_version": "source-3c19225fa490120bb0276faa83b5d8dedab56d21fc0b64a677d5c61136fde81e"
     },
     {
+      "id": "habitat-lab-examples-hitl-experimental-xr-reader-xr-reader-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "1c8720306b20cefee04791dddfd329765514bd108bd2a13b543834962d39575d",
+      "record_version": "source-1c8720306b20cefee04791dddfd329765514bd108bd2a13b543834962d39575d"
+    },
+    {
       "id": "mujoco-menagerie-artifact-unitree-z1-z1-gripper-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "b7cf72ca30b53808f70f96e1a01758cbde4912d4541abba7d24ce63b63e8e86d",
       "record_version": "source-b7cf72ca30b53808f70f96e1a01758cbde4912d4541abba7d24ce63b63e8e86d"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjx-visu-mjx-env-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "0db95a4928730d0608e277002ea074fdc066cfa75d1f6f68d7781f6ca411b7ca",
+      "record_version": "source-0db95a4928730d0608e277002ea074fdc066cfa75d1f6f68d7781f6ca411b7ca"
     }
   ]
 }

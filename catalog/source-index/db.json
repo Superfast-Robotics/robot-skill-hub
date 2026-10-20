@@ -2,16 +2,52 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-interventions-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "1fcec6ada2bf25935efc149b2a38f1f3aa0996e327437e69b70ed4048cc736f4",
+      "record_version": "source-1fcec6ada2bf25935efc149b2a38f1f3aa0996e327437e69b70ed4048cc736f4"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-three-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "a828ea138c29eae35773ab18f2bc844039f5da8468b566655ea08e9f85dc8160",
+      "record_version": "source-a828ea138c29eae35773ab18f2bc844039f5da8468b566655ea08e9f85dc8160"
+    },
+    {
       "id": "gap-bundle-plugging-a-cable-end",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29",
       "record_version": "source-8a92e15701378ce6c1ca77451d2b3b36d8181e4accfee7955697d150ff455e29"
     },
     {
+      "id": "genesis-examples-examples-locomotion-go2-train-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "9d78b33a90e8833be648c302a818f1b10ebfb632d0f5de5214f68bf1d714cb00",
+      "record_version": "source-9d78b33a90e8833be648c302a818f1b10ebfb632d0f5de5214f68bf1d714cb00"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-scripts-rename-task-names-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "8cc1eae38dccae841d08ea3ad955f454161b9cc89813e9cb598780ba44f08304",
+      "record_version": "source-8cc1eae38dccae841d08ea3ad955f454161b9cc89813e9cb598780ba44f08304"
+    },
+    {
       "id": "isaac-groot-examples-rebot-arm-dm-eval-rebot-arm-dm-py",
       "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
       "source_sha256": "5baee6c727e9ba049255fa2236e063166a2a1bfc4b6298204343ab0543fa40fc",
       "record_version": "source-5baee6c727e9ba049255fa2236e063166a2a1bfc4b6298204343ab0543fa40fc"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-sweep-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "1f716ce56739a569c377097b15a4ca16083b35023fe340e26deb08c387d39a18",
+      "record_version": "source-1f716ce56739a569c377097b15a4ca16083b35023fe340e26deb08c387d39a18"
+    },
+    {
+      "id": "mink-examples-docs-quickstart-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "0da5acd6597c5fd615f780a8430137e795d37c518537dfc387b51f054f10acee",
+      "record_version": "source-0da5acd6597c5fd615f780a8430137e795d37c518537dfc387b51f054f10acee"
     },
     {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-scene-mjx-xml",

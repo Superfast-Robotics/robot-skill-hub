@@ -24,6 +24,12 @@
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "e162bd596f22205de60fded6a1b4739a89621514f321de3efc6250db84c0d3a7",
       "record_version": "source-e162bd596f22205de60fded6a1b4739a89621514f321de3efc6250db84c0d3a7"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-5cedb92631d0",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "34d11c2dad1237ead6f6ab0831853ef66fffd63f9fd6531e7c59b17f52246454",
+      "record_version": "source-34d11c2dad1237ead6f6ab0831853ef66fffd63f9fd6531e7c59b17f52246454"
     }
   ]
 }

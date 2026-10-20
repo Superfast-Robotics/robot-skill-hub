@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mink-examples-arm-aloha-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "b988704ff17b3215ce8c8c6f5066dec53339741f3066099091e8e546a1094448",
+      "record_version": "source-b988704ff17b3215ce8c8c6f5066dec53339741f3066099091e8e546a1094448"
+    },
+    {
       "id": "mujoco-menagerie-artifact-franka-fr3-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "8f17f883872d6c95b63239bd82ca4374771deca9949b8fc9577356209f662ebe",

@@ -8,6 +8,12 @@
       "record_version": "source-1862a6bb19d796fef2e8065fa59d9bb6a4070dc270e6ed3b7bb1588306a9ca07"
     },
     {
+      "id": "genesis-examples-examples-speed-benchmark-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "5945159066fcba12617c05129fa3ed91bd1374aefd33ee99387bae2a20ba1eb0",
+      "record_version": "source-5945159066fcba12617c05129fa3ed91bd1374aefd33ee99387bae2a20ba1eb0"
+    },
+    {
       "id": "mujoco-menagerie-artifact-boston-dynamics-spot-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "3e2094dcba90cd5662efff12e252c6806e8de1317d20d3f2bbd3c54c885a6c68",

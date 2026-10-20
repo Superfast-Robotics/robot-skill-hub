@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-quadruped-pose-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "5778281d7b871af41fb155d808df73632ce9937544ae738b405e1490bb1e821e",
+      "record_version": "source-5778281d7b871af41fb155d808df73632ce9937544ae738b405e1490bb1e821e"
+    },
+    {
+      "id": "mink-examples-arm-dual-iiwa-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "989e556af90c828ed0068b52e5cab3b951310827ae24bd92a2f38e583c8089e9",
+      "record_version": "source-989e556af90c828ed0068b52e5cab3b951310827ae24bd92a2f38e583c8089e9"
+    },
+    {
+      "id": "roboverse-examples-rl-0-ppo-gym-style-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "5b814247dd5e06c954f190e528556e19269971733241f15d9ef751d96bf5c6f7",
+      "record_version": "source-5b814247dd5e06c954f190e528556e19269971733241f15d9ef751d96bf5c6f7"
+    },
+    {
       "id": "ur-description-artifact-config-ur3e-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "51f2e1d00f69154a49aca95c1f17497622861b1d14c2de5ace0a9687dc5424ca",

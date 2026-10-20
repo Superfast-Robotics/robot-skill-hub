@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-ur10-midpoint-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "83a62662f5be001efbb5246ab48b66d413afc4a5bcdf3a338aea6a00ce35c16b",
+      "record_version": "source-83a62662f5be001efbb5246ab48b66d413afc4a5bcdf3a338aea6a00ce35c16b"
+    },
+    {
       "id": "drake-examples-acrobot-run-lqr-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "cd350ec9335e50e6b36d972faff1d4a2de251bae1b98d8110052bd5302953aba",
@@ -30,6 +36,18 @@
       "source_commit": "d309eaecc18acf4152a830a895a6984b8ac71b05",
       "source_sha256": "8e5cc64eed375b20991e5261901638415f44868a4fad124ebb318d39c7c16a5a",
       "record_version": "source-8e5cc64eed375b20991e5261901638415f44868a4fad124ebb318d39c7c16a5a"
+    },
+    {
+      "id": "safe-control-gym-examples-cbf-cbf-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "3434dc02bf68f3420b42403dfa5a0d96b81c424dc26731385fbac9bb51c88e6d",
+      "record_version": "source-3434dc02bf68f3420b42403dfa5a0d96b81c424dc26731385fbac9bb51c88e6d"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-cb7e5c5908fc",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "feac3a2d3f78bbe5d8542c971cc871291b70983abd2fac88b013fe7fbbf91100",
+      "record_version": "source-feac3a2d3f78bbe5d8542c971cc871291b70983abd2fac88b013fe7fbbf91100"
     },
     {
       "id": "webots-projects-robots-k-team-khepera1-controllers-pipe-pipe-c",

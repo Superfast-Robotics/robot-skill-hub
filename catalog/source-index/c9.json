@@ -20,6 +20,12 @@
       "record_version": "source-657fff8cb085bc25b8a4835161091f4a808da028232f91733001cf911a5f59de"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-push-wall-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "12f2e5629e5670d78719e835595bd5e2f8734d893995f8bbdb70c87d7919d484",
+      "record_version": "source-12f2e5629e5670d78719e835595bd5e2f8734d893995f8bbdb70c87d7919d484"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-tiago-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "f91f37c35d21bf0adea4bfac6e6f31a5b9a3667e198e9cc0647bd0799f575b12",

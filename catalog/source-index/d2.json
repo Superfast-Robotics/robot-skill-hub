@@ -8,6 +8,12 @@
       "record_version": "source-6e837296dc7cb2536cd346bddc877a065261992c782916b5b77dae4ee033fefa"
     },
     {
+      "id": "genesis-examples-examples-rigid-multi-gpu-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "531bb772ac723a5bf49cca5dab6e80c1bb5b94c9250ea148a62e75879663a5e6",
+      "record_version": "source-531bb772ac723a5bf49cca5dab6e80c1bb5b94c9250ea148a62e75879663a5e6"
+    },
+    {
       "id": "mujoco-menagerie-artifact-leap-hand-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "9d8f25c38bdb60617f378c07b7e71f97306471353c81bf281eb9943f3f2340d8",

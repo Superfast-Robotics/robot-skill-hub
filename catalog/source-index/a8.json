@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-aerial-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "43a6888c20e048b74b4897bb9275e4e887dba01dc25c9468f093b1dccdac71a7",
+      "record_version": "source-43a6888c20e048b74b4897bb9275e4e887dba01dc25c9468f093b1dccdac71a7"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-door-unlock-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "cec15f0ef3d8b7229d83aa7795318833f3ee4e0a5b45de90683ac3f8a2aaf034",
+      "record_version": "source-cec15f0ef3d8b7229d83aa7795318833f3ee4e0a5b45de90683ac3f8a2aaf034"
+    },
+    {
       "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-25bd66787168",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "ff3c589b0cd16d75a1c6198158a51c8ac943a9fa4d9d6c45a87452aff128446d",

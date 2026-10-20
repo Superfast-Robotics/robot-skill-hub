@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "roboverse-examples-12-domain-randomization-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "3d1cf3efc037c40da41921b962ab4857626486bc2d80f1e3521693e8fce6337b",
+      "record_version": "source-3d1cf3efc037c40da41921b962ab4857626486bc2d80f1e3521693e8fce6337b"
+    },
+    {
       "id": "ur-description-artifact-config-initial-positions-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "19456f7115a4f319ed415c327f19d2834745a6167deaa45efc357c6945d6b5d9",

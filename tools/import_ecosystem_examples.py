@@ -235,10 +235,20 @@ def inspect_source(path, data):
             return {"kind": "ros2_launch", "imports": imports}
         if guarded:
             return {"kind": "python_main", "imports": imports}
+        # Meta-World policies are callable controllers, not command-line scripts.
+        # Accept only the documented Policy interface in this explicit namespace.
+        if re.fullmatch(r"metaworld/policies/sawyer_[a-z0-9_]+_v3_policy\.py", path):
+            policies = [n for n in tree.body if isinstance(n, ast.ClassDef)
+                        and any(isinstance(base, ast.Name) and base.id == "Policy" for base in n.bases)
+                        and any(isinstance(method, ast.FunctionDef) and method.name == "get_action"
+                                and [arg.arg for arg in method.args.args] == ["self", "obs"] for method in n.body)]
+            if len(policies) == 1 and "metaworld.policies.policy" in imports:
+                return {"kind": "scripted_policy", "imports": imports, "policy_class": policies[0].name}
         # Several canonical Pinocchio / Robotics Toolbox / Webots examples are
         # straight-line scripts. Require top-level operational calls AND a
         # relevant imported robotics library, not merely definitions/imports.
-        robotics = ("pinocchio", "roboticstoolbox", "controller", "ompl", "pydrake", "lerobot", "pyrobosim", "isaaclab")
+        robotics = ("pinocchio", "roboticstoolbox", "controller", "ompl", "pydrake", "lerobot", "pyrobosim", "isaaclab",
+                    "genesis", "mink", "pink", "crocoddyl", "aligator", "tsid", "pytransform3d", "movement_primitives")
         operational = any(isinstance(n, (ast.Expr, ast.Assign, ast.AnnAssign, ast.For, ast.While, ast.With))
                           and any(isinstance(v, ast.Call) for v in ast.walk(n)) for n in tree.body)
         if operational and any(x.split(".")[0] in robotics for x in imports):
@@ -371,6 +381,8 @@ def robot_types(project, path):
 
 
 def invocation(project, path, kind):
+    if kind == "scripted_policy":
+        return "Import the declared Policy subclass and call get_action(obs) in the matching pinned Meta-World environment; this module is not a command-line program"
     if project["id"] == "webots":
         return f"Webots controller: {path}; open the matching upstream .wbt world and select this controller"
     if kind == "ros2_launch":

@@ -2,10 +2,28 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "home-robot-projects-instanceimagenav-eval-episode-stretch-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "366d733f996d84346a3193d837c3833c90b6018e8add65e7b0ef4db96645a088",
+      "record_version": "source-366d733f996d84346a3193d837c3833c90b6018e8add65e7b0ef4db96645a088"
+    },
+    {
+      "id": "home-robot-projects-stretch-objectnav-rotate-in-place-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "bc5c0c0ae4155db00f3a3a58ec4ca4d85ca9a6ebe64812ec0d87240e825a5ef1",
+      "record_version": "source-bc5c0c0ae4155db00f3a3a58ec4ca4d85ca9a6ebe64812ec0d87240e825a5ef1"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-scene-velocity-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4fbda702df6f19245412264aa0707c987e99e3627fcc0cc9fc878598a1b804d1",
       "record_version": "source-4fbda702df6f19245412264aa0707c987e99e3627fcc0cc9fc878598a1b804d1"
+    },
+    {
+      "id": "pink-examples-visualize-in-yourdfpy-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "430907c580cb05ba1c0a1a7e93f95382b43270b08e9cd7c40e70adab98b22787",
+      "record_version": "source-430907c580cb05ba1c0a1a7e93f95382b43270b08e9cd7c40e70adab98b22787"
     },
     {
       "id": "ruckig-examples-06-stop-py",

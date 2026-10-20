@@ -2,6 +2,30 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-heated-state-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9ac9e4312bc25d00da5031382d95e8e9467a56da294d02965d3eeb5849196f41",
+      "record_version": "source-9ac9e4312bc25d00da5031382d95e8e9467a56da294d02965d3eeb5849196f41"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-learn-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "995fdbaf24d64124bd98b5ba5cfbe939dc3e9b507729fe87be5a167a1cdbb544",
+      "record_version": "source-995fdbaf24d64124bd98b5ba5cfbe939dc3e9b507729fe87be5a167a1cdbb544"
+    },
+    {
+      "id": "habitat-lab-examples-new-actions-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "4d6a6bb49613c4abca36ddade4e6b93c45d830dd93a96125b7128c4b77bb8e9d",
+      "record_version": "source-4d6a6bb49613c4abca36ddade4e6b93c45d830dd93a96125b7128c4b77bb8e9d"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-pick-out-of-hole-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "9dec0f56d859cbc80481b61d1f769c68618d217df692cc10141daa507d138631",
+      "record_version": "source-9dec0f56d859cbc80481b61d1f769c68618d217df692cc10141daa507d138631"
+    },
+    {
       "id": "moveit2-doc-how-to-guides-pilz-industrial-motion-planner-src-pilz-mtc-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "130fdbfc1a71df92aef3acee6070fa44566df8d220534d02d619852b219bf00a",
@@ -12,6 +36,12 @@
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "cbc1363b4ecb600f9a2d58761906c012d20659f99472cac109b787bd8c37cc64",
       "record_version": "source-cbc1363b4ecb600f9a2d58761906c012d20659f99472cac109b787bd8c37cc64"
+    },
+    {
+      "id": "unitree-mujoco-example-ros2-src-stand-go2-cpp",
+      "source_commit": "1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d",
+      "source_sha256": "d6378fc00c7de9fa5efc97798cc836f970ca5f92d9bce4aadd3fc1edbbe7cc08",
+      "record_version": "source-d6378fc00c7de9fa5efc97798cc836f970ca5f92d9bce4aadd3fc1edbbe7cc08"
     }
   ]
 }

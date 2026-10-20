@@ -5,7 +5,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 def execute(recipe,source,cache,output,hub_commit):
     adapter=ROOT/'recipes'/recipe['id']/'run.py';source_dir=cache/('source-'+recipe['source_id'])
-    timeout=1200 if recipe['backend']=='lerobot' else 180
+    timeout=recipe.get('timeout_seconds',1200 if recipe['backend']=='lerobot' else 180)
     def run(data,root=source_dir):
         started=time.monotonic()
         try:
@@ -44,7 +44,7 @@ def execute(recipe,source,cache,output,hub_commit):
     return proof
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--backend',default='all',choices=['all','menagerie','robosuite','gymrobotics','lerobot','pandagym','dmcontrol']);parser.add_argument('--source-cache',type=pathlib.Path,required=True);parser.add_argument('--output',type=pathlib.Path,required=True);parser.add_argument('--hub-commit',required=True);parser.add_argument('--workers',type=int,default=4);parser.add_argument('--skill-id',action='append',default=[])
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--backend',default='all',choices=['all','menagerie','robosuite','gymrobotics','lerobot','pandagym','dmcontrol','metaworld','mink','genesis']);parser.add_argument('--source-cache',type=pathlib.Path,required=True);parser.add_argument('--output',type=pathlib.Path,required=True);parser.add_argument('--hub-commit',required=True);parser.add_argument('--workers',type=int,default=4);parser.add_argument('--skill-id',action='append',default=[])
     args=parser.parse_args();assert 1<=args.workers<=8 and len(args.hub_commit)==40
     manifest=json.loads((ROOT/'catalog/runtime-expansion.json').read_text());recipes=[r for r in manifest['recipes'] if (args.backend=='all' or r['backend']==args.backend) and (not args.skill_id or r['id'] in args.skill_id)]
     if not recipes or (args.skill_id and set(args.skill_id)!={r['id'] for r in recipes}):raise ValueError('Unknown recipe selection')

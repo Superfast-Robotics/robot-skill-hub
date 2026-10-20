@@ -2,6 +2,24 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-ur10-ballistic-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "4f78815830e936e8fba591f599a6f1dd9e730e94bde76eb0bc62f7e6411bf03d",
+      "record_version": "source-4f78815830e936e8fba591f599a6f1dd9e730e94bde76eb0bc62f7e6411bf03d"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-solve-simple-task-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9285b3db47c7816525154a579c481d55a37c00d795840cd403a4bd156b675f0a",
+      "record_version": "source-9285b3db47c7816525154a579c481d55a37c00d795840cd403a4bd156b675f0a"
+    },
+    {
+      "id": "crocoddyl-examples-double-pendulum-continuous-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "bb15294dd184521b9e1f119d4ba1c9ddf1d2ce1492af3e0fa38437880f4a84d6",
+      "record_version": "source-bb15294dd184521b9e1f119d4ba1c9ddf1d2ce1492af3e0fa38437880f4a84d6"
+    },
+    {
       "id": "drake-examples-hydroelastic-ball-plate-ball-plate-run-dynamics-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "5980d7f36c1861146a558d7353ef793351e86d6828cf69f796009af6949114da",

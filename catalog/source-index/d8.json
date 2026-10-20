@@ -20,6 +20,18 @@
       "record_version": "source-04e5f0ecc9fedd882d81c50f2e3a65f31939e9a6a9ec432e49cd333ae1e4bc81"
     },
     {
+      "id": "genesis-examples-examples-gui-imgui-joint-control-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2818e7e2e051c62750542556ff9625e24fca8290e0f7dbaebb6dc21408d7fc13",
+      "record_version": "source-2818e7e2e051c62750542556ff9625e24fca8290e0f7dbaebb6dc21408d7fc13"
+    },
+    {
+      "id": "home-robot-projects-offline-mapping-build-map-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "f30d65529768b4b6a6ba3988604a44dad0276d85232d7a1815e8c697fc27ec39",
+      "record_version": "source-f30d65529768b4b6a6ba3988604a44dad0276d85232d7a1815e8c697fc27ec39"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-talos-talos-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "d6f83a3eacdf0470e34d7292e2087ac067fdbd6201044a200cf1babdff487904",

@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-manipulation-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "ea67b9fc02c56a500e3abc90a577a07e66610f3aea035661f756ab6a79fda8f0",
+      "record_version": "source-ea67b9fc02c56a500e3abc90a577a07e66610f3aea035661f756ab6a79fda8f0"
+    },
+    {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-downwash-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "1ca8f88dc23584fc35c350c4f5330baaf8791f8ef88148d56735eb566e6d1f98",
+      "record_version": "source-1ca8f88dc23584fc35c350c4f5330baaf8791f8ef88148d56735eb566e6d1f98"
+    },
+    {
       "id": "lerobot-examples-isaac-teleop-to-so101-override-reset-pose-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "3f879f3d2dee81d52dec65bb7e102ca9298797383868ee8a40d8ae58859d1ff4",

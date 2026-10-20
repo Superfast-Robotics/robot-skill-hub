@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-learning-navigation-policy-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "44b89b2914afa27a0576778cde808efa44305f56f43406cb9250ae1a9dc2b43f",
+      "record_version": "source-44b89b2914afa27a0576778cde808efa44305f56f43406cb9250ae1a9dc2b43f"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-visualization-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "484f5a4433b0d7f9455a5d0934a9c238a525f34aa24137be180b7d70225e6935",
+      "record_version": "source-484f5a4433b0d7f9455a5d0934a9c238a525f34aa24137be180b7d70225e6935"
+    },
+    {
       "id": "libfranka-robot-state",
       "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
       "source_sha256": "61aae6fbfdec06ce438a67ebb8c4600eae380a7e77d24017b6d803a0457f0ef4",
@@ -12,6 +24,12 @@
       "source_commit": "241fb3514b7c40957a86d869fecb7c7fc353f540",
       "source_sha256": "dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c",
       "record_version": "source-dfaab1cd9a067860d36c8c10ff43f8d80cde29220482b88dba3c40714cb2f89c"
+    },
+    {
+      "id": "pink-examples-arm-kinova-gen2-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d4a93aa36bbe38577a77b30f95a170dbaf2df56f8e40e492bcd99053e9bf2e26",
+      "record_version": "source-d4a93aa36bbe38577a77b30f95a170dbaf2df56f8e40e492bcd99053e9bf2e26"
     },
     {
       "id": "unitree-sdk2-python-example-h2-high-level-h2-loco-client-example-py",

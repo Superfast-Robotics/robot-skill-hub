@@ -2,6 +2,36 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-grasping-mode-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "0c9eed16f850dda247123e2e294b4794ba9c62783096eb43f2e5adf5ff481f78",
+      "record_version": "source-0c9eed16f850dda247123e2e294b4794ba9c62783096eb43f2e5adf5ff481f78"
+    },
+    {
+      "id": "causalworld-tutorials-change-action-space-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "6b0363034cb37f4d1eecd055927f2dc31dd3b963c1974d0c9222b8be70ab2114",
+      "record_version": "source-6b0363034cb37f4d1eecd055927f2dc31dd3b963c1974d0c9222b8be70ab2114"
+    },
+    {
+      "id": "pink-examples-mobile-omni-wheeled-robot-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "5d32d6bc473a7351cd2dbcba81d389a34d2e5db7653f21d9ac73f25416069797",
+      "record_version": "source-5d32d6bc473a7351cd2dbcba81d389a34d2e5db7653f21d9ac73f25416069797"
+    },
+    {
+      "id": "roboverse-examples-10-robotwin-aloha-replay-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "9c570849d49982749b65d56b7d55dd2c0d0006528b69c01886250af773cb3ced",
+      "record_version": "source-9c570849d49982749b65d56b7d55dd2c0d0006528b69c01886250af773cb3ced"
+    },
+    {
+      "id": "trifinger-simulation-scripts-screenshot-mode-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "c8f36eea2d104df9ea87f66326979966c8480a487509642fdbfa606661825889",
+      "record_version": "source-c8f36eea2d104df9ea87f66326979966c8480a487509642fdbfa606661825889"
+    },
+    {
       "id": "unitree-sdk2-python-example-h2-high-level-h2-arm-sdk-dds-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "f07cfac372c49f05e9eb096642487e96e5eba1a6ac0996535c1d2ec6a0c646b8",

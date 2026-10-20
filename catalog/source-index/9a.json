@@ -8,6 +8,12 @@
       "record_version": "source-1a4b018b2aaa2778f0fbfb874cd7d1d2d8197b0c79c963128776414343ec9cf8"
     },
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-robot-control-example-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "9c8b100c55ddfd31118d96f0106d245534eb0b3f2b22083d3d37e56b494690c8",
+      "record_version": "source-9c8b100c55ddfd31118d96f0106d245534eb0b3f2b22083d3d37e56b494690c8"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-teleoperate-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "aa87e80f7baff881957f9fb3d7e1520e7fbb557023ace984a3ae6a7128322741",
@@ -20,6 +26,12 @@
       "record_version": "source-54cc9bf9ad77d857677618b46180eaa6bee29804baa28300ccfb94827b43970d"
     },
     {
+      "id": "mink-examples-biped-cassie-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "a11106a42d11a952027dacd9454ca588a6a3790d5fac1365e38596e0f5d3f787",
+      "record_version": "source-a11106a42d11a952027dacd9454ca588a6a3790d5fac1365e38596e0f5d3f787"
+    },
+    {
       "id": "mujoco-menagerie-artifact-flybody-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "910da8b2c93eb17ea42b569720115cd9d86fbf5a4886df27a520e9f3c507dd32",
@@ -30,6 +42,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "5a4947ec2521840219c1a67c08c52447666c77bed4f6b86d8b8404ec2d3cfede",
       "record_version": "source-5a4947ec2521840219c1a67c08c52447666c77bed4f6b86d8b8404ec2d3cfede"
+    },
+    {
+      "id": "myosuite-myosuite-envs-myo-backends-mjx-train-jax-ppo-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "1f8e7638fa93952b7f0e74eafb7a1887ef74d9b33182289f4c949180daa89f5e",
+      "record_version": "source-1f8e7638fa93952b7f0e74eafb7a1887ef74d9b33182289f4c949180daa89f5e"
     },
     {
       "id": "pyrobosim-pyrobosim-ros-examples-demo-commands-py",

@@ -26,6 +26,12 @@
       "record_version": "source-b6819d3530d760ae8f4a318348d0125f3a2ae67bf03bfc965060d8388fd060f7"
     },
     {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-pid-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "2bcc67e4b6b3adda71536739d69a73bf1a054a8cf80e66b067ef89dc5f4cbb02",
+      "record_version": "source-2bcc67e4b6b3adda71536739d69a73bf1a054a8cf80e66b067ef89dc5f4cbb02"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-05-controllers-run-diff-ik-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "fbd000abdda9fbb5dabb87d718441cca81a536c902f03ffc7ab262b819e99716",

@@ -8,6 +8,18 @@
       "record_version": "source-bffe99e543ea6803dfbade0eeaf49524b3bf02efbcf9cdd297ba13a0a3907ae3"
     },
     {
+      "id": "safe-control-gym-examples-mpc-mpc-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "53bb42c11a7090a70130602dd5333e8f4f1f2cdc6fdb8be3b6030db36302f9a5",
+      "record_version": "source-53bb42c11a7090a70130602dd5333e8f4f1f2cdc6fdb8be3b6030db36302f9a5"
+    },
+    {
+      "id": "safe-control-gym-examples-no-controller-verbose-api-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "77dd194f17b94b90d166db95872f534df39e1d6c61a6d75cf0bdd802955c4e66",
+      "record_version": "source-77dd194f17b94b90d166db95872f534df39e1d6c61a6d75cf0bdd802955c4e66"
+    },
+    {
       "id": "unitree-sdk2-python-example-go2-low-level-go2-stand-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "0d6cb04cecdcbaad946073216fda79af8837ab1ac10e3b9a009d315ef9405896",

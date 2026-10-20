@@ -8,10 +8,28 @@
       "record_version": "source-9cba79292952f182ab61f1722b82b9698457a21433389f63157a095a8c57e968"
     },
     {
+      "id": "causalworld-tutorials-evaluating-model-tutorial-five-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "521db3aa0e8a226a32d5daaf4f946bb1a419c39dd875482f44a65427903a787b",
+      "record_version": "source-521db3aa0e8a226a32d5daaf4f946bb1a419c39dd875482f44a65427903a787b"
+    },
+    {
       "id": "mavsdk-python-examples-follow-me-example-py",
       "source_commit": "8fa280f1d7473524a32d061e60b7bb346ff65264",
       "source_sha256": "27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d",
       "record_version": "source-27ea2eddec03636062ca43c232670147fab8cea1de003d7ae9306049fe21ca3d"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-drawer-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "e12efa18f12a6d84afc75f217b336592e155912e58fefdd4b6f241f94f61470b",
+      "record_version": "source-e12efa18f12a6d84afc75f217b336592e155912e58fefdd4b6f241f94f61470b"
+    },
+    {
+      "id": "mink-examples-docs-tasks-and-limits-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "94e956b49a193bfa20c3a6891aab62fe5a4d64a1a09c5444821350da26b669ac",
+      "record_version": "source-94e956b49a193bfa20c3a6891aab62fe5a4d64a1a09c5444821350da26b669ac"
     },
     {
       "id": "mujoco-menagerie-artifact-unitree-go1-scene-xml",
@@ -30,6 +48,18 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b",
       "record_version": "source-8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-run-replay-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "b58dca158fa91693a4dde135d47f1ee9499172876d378bf36b4045a9712d78fd",
+      "record_version": "source-b58dca158fa91693a4dde135d47f1ee9499172876d378bf36b4045a9712d78fd"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-d2ed3a2e5123",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "56859832148dacc724ddba3954a7684b99a43560e4fde561f6361b9daa051b56",
+      "record_version": "source-56859832148dacc724ddba3954a7684b99a43560e4fde561f6361b9daa051b56"
     },
     {
       "id": "webots-projects-samples-devices-controllers-pen-pen-py",

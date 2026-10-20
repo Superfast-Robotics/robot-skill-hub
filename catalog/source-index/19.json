@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-coupling-fem-cube-linked-with-arm-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "76b0efa993506d694fa1321eca6f027adeb1c9a3f87f7403b0ac01c73f3bb077",
+      "record_version": "source-76b0efa993506d694fa1321eca6f027adeb1c9a3f87f7403b0ac01c73f3bb077"
+    },
+    {
       "id": "isaac-groot-examples-droid-main-gr00t-py",
       "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
       "source_sha256": "f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b",
       "record_version": "source-f95920a6198387c693bbf3db604bd9eae6b155abe7a07e87c953fa3ea3602c3b"
+    },
+    {
+      "id": "mink-examples-humanoid-g1-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "1212684e58a923321af450915ff4bad5433c1ce647012eb0d5e825409757451b",
+      "record_version": "source-1212684e58a923321af450915ff4bad5433c1ce647012eb0d5e825409757451b"
     },
     {
       "id": "mujoco-menagerie-artifact-unitree-a1-a1-xml",

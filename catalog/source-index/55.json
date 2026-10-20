@@ -14,6 +14,12 @@
       "record_version": "source-169373f248203887bf4e1ffc6458cf6942f740a01e5ae881a3aef60d36628f26"
     },
     {
+      "id": "pink-examples-upkie-rolling-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "9f9140f72613aa382191f6304f179b63a01230af88290de53288758fb3b58233",
+      "record_version": "source-9f9140f72613aa382191f6304f179b63a01230af88290de53288758fb3b58233"
+    },
+    {
       "id": "rai-src-rai-extensions-rai-perception-rai-perception-scripts-run-pe-06864147bf08",
       "source_commit": "b018729833742c6f71e1e9f332ee2b435676fb4f",
       "source_sha256": "fcd33f6953f5128086ce6275d0c8ee8103076e727f3f35edad34e68a59bf834d",
@@ -36,6 +42,12 @@
       "source_commit": "d911319cebc45142613e18086aabb8067b18ab7f",
       "source_sha256": "e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66",
       "record_version": "source-e07efeaed4812fc83d0266649a6e176663d771b8d8607ab49259c08bfcbb0d66"
+    },
+    {
+      "id": "xarm-ros2-xarm-moveit-config-launch-demo-demo-dual-fake-launch-py",
+      "source_commit": "62936f7ea1846a85f7350de2c4c18f39e6d19715",
+      "source_sha256": "34378301f4f53f549d55a375b0606101d91fd94e80461dcc9376b9829184ecc7",
+      "record_version": "source-34378301f4f53f549d55a375b0606101d91fd94e80461dcc9376b9829184ecc7"
     }
   ]
 }

@@ -8,6 +8,12 @@
       "record_version": "source-49c952d4e72464f42457fde53eb1a9f98568bf2f0dea58870172b3ab8885467f"
     },
     {
+      "id": "genesis-examples-examples-sap-coupling-fem-fixed-constraint-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "f474fddc7be4777ae6cf617bdb0ecc03d2ec0b3cf45f2083ec83581c84326bfc",
+      "record_version": "source-f474fddc7be4777ae6cf617bdb0ecc03d2ec0b3cf45f2083ec83581c84326bfc"
+    },
+    {
       "id": "libfranka-joint-poses",
       "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
       "source_sha256": "835bb857cb3d7a4b69e3d254a7dc52880a47a5dd10354a3571b9c9abf16d5412",

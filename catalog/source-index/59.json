@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-solo-kinodynamics-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "999b32c9ea9a28fa9384621c460a13fae6a9bb8b4b4f981f29316d19d78d84c5",
+      "record_version": "source-999b32c9ea9a28fa9384621c460a13fae6a9bb8b4b4f981f29316d19d78d84c5"
+    },
+    {
+      "id": "causalworld-tutorials-rlkit-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "93abd0e8756f0e1b284a034e2b0567b9a7f427cf4c7c63aac93c05e4c3934ab4",
+      "record_version": "source-93abd0e8756f0e1b284a034e2b0567b9a7f427cf4c7c63aac93c05e4c3934ab4"
+    },
+    {
       "id": "drake-examples-multibody-strandbeest-run-with-motor-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "ba6bf1824900eaa74019b9c54bfd0abdd9e852dd6b15d60ce7fd258fac0da421",

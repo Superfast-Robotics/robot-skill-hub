@@ -8,6 +8,12 @@
       "record_version": "source-8f068b2f9093e36fe7dfb7dbb811eb77b86c2aa4215bb2624217784458031a89"
     },
     {
+      "id": "genesis-examples-examples-sensors-surface-distance-shadowhand-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "04f3b6cbb4a8511cb55b2b922acd4746e5116cc153ae69f62e5d7e2e2996cb92",
+      "record_version": "source-04f3b6cbb4a8511cb55b2b922acd4746e5116cc153ae69f62e5d7e2e2996cb92"
+    },
+    {
       "id": "moveit2-doc-examples-motion-planning-python-api-scripts-motion-plan-76f2e6acb01d",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "1c7e54c18f2784c5f4c99df9949535a54b96fc4b867cfa7b3ae08ba4e320ab03",
@@ -24,6 +30,12 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "5200cabf56c727f362cc2231673167606f196b8a99994308122cfc1dd2c5cc04",
       "record_version": "source-5200cabf56c727f362cc2231673167606f196b8a99994308122cfc1dd2c5cc04"
+    },
+    {
+      "id": "tsid-demo-demo-quadruped-py",
+      "source_commit": "25762a26464d10f6a2b1becc87f6e9a13c24c44b",
+      "source_sha256": "7a1da94d7acf44bbb10f2cab5e7da8e031a2a33093809c05b7aef7eeba006a93",
+      "record_version": "source-7a1da94d7acf44bbb10f2cab5e7da8e031a2a33093809c05b7aef7eeba006a93"
     },
     {
       "id": "ur-description-artifact-config-ur16e-default-kinematics-yaml",

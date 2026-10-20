@@ -32,6 +32,12 @@
       "record_version": "source-4e319f50eefdd3968aac074a21184dee48ae5d7f0fcefa0d2626c0ccee833fd6"
     },
     {
+      "id": "trifinger-simulation-scripts-profiling-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9e02463943ece4fb08350ceeb0559778961a5fdc4744fecd53649f90adbc04bd",
+      "record_version": "source-9e02463943ece4fb08350ceeb0559778961a5fdc4744fecd53649f90adbc04bd"
+    },
+    {
       "id": "unitree-sdk2-python-example-h1-high-level-h1-loco-client-example-py",
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "124e3d7b73a4715bb9fb42f3ad4728c4be1ff66df665de34f562b3bbc28785f4",

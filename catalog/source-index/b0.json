@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-curriculums-tutorial-two-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "fb4c7861823b53ebb6751ee77558d31ac97d3fb129e3baf9a2b3635d1a887539",
+      "record_version": "source-fb4c7861823b53ebb6751ee77558d31ac97d3fb129e3baf9a2b3635d1a887539"
+    },
+    {
       "id": "gap-bundle-grasping-concave-contour",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "24c40b77ba5321eca10b41e3d8887fd4ac6c0191d1c5e9ef39a58c573b9765ed",
@@ -12,6 +18,12 @@
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9",
       "record_version": "source-caeb7946c1badeabf7ac73f81739b73882aaa64c085e89034effa32e4fb0c4f9"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-window-open-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "326da81d5aa275eb6999aad5f3e30dfa091ee79f40e659ced1118c2944e97a29",
+      "record_version": "source-326da81d5aa275eb6999aad5f3e30dfa091ee79f40e659ced1118c2944e97a29"
     },
     {
       "id": "mujoco-menagerie-artifact-kinova-gen3-gen3-xml",

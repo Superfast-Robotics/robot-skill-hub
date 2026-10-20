@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-guided-goal-generation-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "93013a08e4d672da5edc6823a82a6409f745ed69284d45f28c6df619069dfcc5",
+      "record_version": "source-93013a08e4d672da5edc6823a82a6409f745ed69284d45f28c6df619069dfcc5"
+    },
+    {
       "id": "ur-description-artifact-config-ur30-visual-parameters-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "9f207e694a9247c3d7d1f0ac21470a64bb244c4004d254a6cf798f9912aef84e",

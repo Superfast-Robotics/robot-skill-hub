@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mink-examples-arm-ur5e-actuators-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "9deafdee1eb6c8e69b14cca770a765abae997f890ce5e90229a9a6aea54dc30d",
+      "record_version": "source-9deafdee1eb6c8e69b14cca770a765abae997f890ce5e90229a9a6aea54dc30d"
+    },
+    {
       "id": "pinocchio-examples-append-urdf-model-with-another-model-py",
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "fa3cfb6d0fb304c9c8b6f6b47803820a45b0ab6597d436b107d43f53960bde44",

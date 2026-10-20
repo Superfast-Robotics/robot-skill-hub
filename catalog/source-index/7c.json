@@ -8,6 +8,12 @@
       "record_version": "source-ede6a4d7f9b7964ef1935085b817ea26a58ff8d5f98d7f11fde66d09648d63a0"
     },
     {
+      "id": "moveit-task-constructor-demo-launch-demo-launch-py",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "5caec925c214c97307cc9e5997705db7e42960cffac7a20467772eb72ed89b08",
+      "record_version": "source-5caec925c214c97307cc9e5997705db7e42960cffac7a20467772eb72ed89b08"
+    },
+    {
       "id": "roboticstoolbox-examples-neo-py",
       "source_commit": "0b8fde6c7853f5b3241c6fa70acf17be5167bccc",
       "source_sha256": "2c847930dbcf2d2f600317ade2946ac514df46c48d45807d27815e8654976a5c",

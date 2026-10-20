@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-scenes-scene-selector-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "54bf38fd82bb4fcdc53d4f2373ee827b87daa1a3cf8cb9a49be31e4f32a5ac8e",
+      "record_version": "source-54bf38fd82bb4fcdc53d4f2373ee827b87daa1a3cf8cb9a49be31e4f32a5ac8e"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-8c705d712f30",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "1745046f52a1b214b5bfa4e9712be2de0cecb4f554ea1a6bed6783864de24795",
+      "record_version": "source-1745046f52a1b214b5bfa4e9712be2de0cecb4f554ea1a6bed6783864de24795"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-evaluate-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "f9d9367e57ef154af334d09fbe0761dde388465427f61bfc7b8c9ab3183c3f2b",

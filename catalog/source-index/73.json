@@ -1,0 +1,35 @@
+{
+  "schema_version": "1",
+  "records": [
+    {
+      "id": "crocoddyl-examples-double-pendulum-continuous-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "83ce8b06ff8d00a86f74cf47c352db0ca70bd365d964c7b187d3dc687aed103f",
+      "record_version": "source-83ce8b06ff8d00a86f74cf47c352db0ca70bd365d964c7b187d3dc687aed103f"
+    },
+    {
+      "id": "home-robot-projects-habitat-ovmm-scripts-gen-configs-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "530726bed56661c643289900d7e755f658d5834f7bd111593989efa80ff6ebe2",
+      "record_version": "source-530726bed56661c643289900d7e755f658d5834f7bd111593989efa80ff6ebe2"
+    },
+    {
+      "id": "home-robot-projects-slap-manipulation-src-slap-manipulation-dataloa-d18b3432d9ed",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "21ab4c8ec8fe01fa745ce580f2596a993ac702c5cfe722055f14f4f5412946b1",
+      "record_version": "source-21ab4c8ec8fe01fa745ce580f2596a993ac702c5cfe722055f14f4f5412946b1"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-plate-slide-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "0c8d220c4fc0e27e65c462bbf526475ea7849235460d90801aff2bc27d8e6930",
+      "record_version": "source-0c8d220c4fc0e27e65c462bbf526475ea7849235460d90801aff2bc27d8e6930"
+    },
+    {
+      "id": "pink-examples-arm-ur3-velocity-smoothing-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "54bb4dacc02991bfb438c22c46be9cfdae6f606727d35d5344c855ab967b9bf8",
+      "record_version": "source-54bb4dacc02991bfb438c22c46be9cfdae6f606727d35d5344c855ab967b9bf8"
+    }
+  ]
+}

@@ -14,6 +14,18 @@
       "record_version": "source-34a50286d9f216fbeb10e7c73b8761dd70f4d874295a440dbacbcdffaa616e41"
     },
     {
+      "id": "genesis-examples-examples-coupling-cloth-attached-to-rigid-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "2ba73434fffd95700e07a941bc90c0167fc3900eec3da199a7d4aa1d58a44fa3",
+      "record_version": "source-2ba73434fffd95700e07a941bc90c0167fc3900eec3da199a7d4aa1d58a44fa3"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-convex-decomposition-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "a3871e9e4f76c847b10e7d0077c554458746c93894d649aa71047eeb74a8b65d",
+      "record_version": "source-a3871e9e4f76c847b10e7d0077c554458746c93894d649aa71047eeb74a8b65d"
+    },
+    {
       "id": "mujoco-menagerie-artifact-google-barkour-v0-barkour-v0-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3",
@@ -24,6 +36,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "90c315c4ec91076bbe6922c92993bcdc6efe49d9d18857671516b0cf3ad9c015",
       "record_version": "source-90c315c4ec91076bbe6922c92993bcdc6efe49d9d18857671516b0cf3ad9c015"
+    },
+    {
+      "id": "roboverse-examples-4-motion-planning-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "8b6cf80b6dadbd8f65de47e1dac3232a33acf5df5ae867414e56ee9bcb34cac5",
+      "record_version": "source-8b6cf80b6dadbd8f65de47e1dac3232a33acf5df5ae867414e56ee9bcb34cac5"
     },
     {
       "id": "webots-projects-robots-neuronics-ipr-controllers-ipr-factory-ipr-factory-cpp",

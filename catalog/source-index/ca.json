@@ -14,6 +14,12 @@
       "record_version": "source-84e66e67adb9a1d347d17a23c7bbd359a2061d9bc50c723cd082650a273eea51"
     },
     {
+      "id": "mink-examples-kinetic-energy-reg-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "7118794bb9e3d9b42667320fb02798edc35bb0a49d4f3486e839d35104425513",
+      "record_version": "source-7118794bb9e3d9b42667320fb02798edc35bb0a49d4f3486e839d35104425513"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-tiago-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "4dcfd84865552744418af57c5a420c80062b661f4d1279615fc1dc4b3f4029df",

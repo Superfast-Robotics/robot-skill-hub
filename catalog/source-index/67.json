@@ -14,6 +14,12 @@
       "record_version": "source-0716060b3513032c5db91fe5f8fbcceee03b4becc296e556f48541564c75d445"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-window-close-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "b24fc31835c5fc867c4557980761739c3fbcd87518c003e515481d8b3bca0e1e",
+      "record_version": "source-b24fc31835c5fc867c4557980761739c3fbcd87518c003e515481d8b3bca0e1e"
+    },
+    {
       "id": "openpi-examples-aloha-real-convert-aloha-data-to-lerobot-py",
       "source_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
       "source_sha256": "5380876e2bd9e2b4294ebf818f7d18378090291cf4aae3481f08e0ed254a3284",

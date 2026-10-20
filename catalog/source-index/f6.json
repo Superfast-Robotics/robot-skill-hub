@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-frontflip-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "3d984e6e5ce137967349e5b2c0f2df7e9b71460ecbe592a8bfda1088ef43ca7d",
+      "record_version": "source-3d984e6e5ce137967349e5b2c0f2df7e9b71460ecbe592a8bfda1088ef43ca7d"
+    },
+    {
       "id": "diffusion-policy-eval-py",
       "source_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
       "source_sha256": "e62694214cce4265ad783d1352713e25e963fb6684365ff1f0f4db08e57ade12",
@@ -42,6 +48,12 @@
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba",
       "record_version": "source-7958a7823939cc2ca8255475bc6e0cd255612d5f6e6341eb8226bada4b81caba"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-button-press-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "00a1fb01dbaa60330fd170dfd423222f0029451fe28f92f7684fac7eb0e03802",
+      "record_version": "source-00a1fb01dbaa60330fd170dfd423222f0029451fe28f92f7684fac7eb0e03802"
     },
     {
       "id": "pinocchio-examples-sample-model-viewer-py",

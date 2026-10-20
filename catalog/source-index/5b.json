@@ -8,6 +8,18 @@
       "record_version": "source-42e999184f37689568b58f320d062859053f03c62c8b49bf00a00d69f20d7a65"
     },
     {
+      "id": "genesis-examples-examples-rigid-diffik-controller-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "50296e0e981c7f8223ac1e62dbc700b8fec1344e3693887c3fb3a32df6397873",
+      "record_version": "source-50296e0e981c7f8223ac1e62dbc700b8fec1344e3693887c3fb3a32df6397873"
+    },
+    {
+      "id": "genesis-examples-examples-usd-import-stage-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "8a20051c1ffc08db963d1d3b77a821d2906053b1db8cd95dd59ce3468c5ac457",
+      "record_version": "source-8a20051c1ffc08db963d1d3b77a821d2906053b1db8cd95dd59ce3468c5ac457"
+    },
+    {
       "id": "moveit2-doc-examples-motion-planning-api-src-motion-planning-api-tutorial-cpp",
       "source_commit": "e1b3727d4bbd22a57f17120ec423a4171f4bdc66",
       "source_sha256": "220c0ba11686a3bbbaa4362fedf9e287c4b8000767685f664c782e921d6c9ca8",
@@ -24,6 +36,12 @@
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "b7ef8a5bbd16af7f7de690f5ad3e5fabc7825b7df40b0613af9910e416f9c377",
       "record_version": "source-b7ef8a5bbd16af7f7de690f5ad3e5fabc7825b7df40b0613af9910e416f9c377"
+    },
+    {
+      "id": "pink-examples-load-custom-urdf-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "af5585c819c51300e3753ef385723019f19d13c85f3a3a53f3b0fe6514839be5",
+      "record_version": "source-af5585c819c51300e3753ef385723019f19d13c85f3a3a53f3b0fe6514839be5"
     }
   ]
 }

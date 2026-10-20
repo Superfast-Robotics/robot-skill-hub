@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "causalworld-tutorials-logging-data-tutorial-one-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "f8ac8a5c2de5f3385aee07c1dca8ad9e171ad83478230196fce0fc92f7dc8e05",
+      "record_version": "source-f8ac8a5c2de5f3385aee07c1dca8ad9e171ad83478230196fce0fc92f7dc8e05"
+    },
+    {
+      "id": "genesis-examples-examples-rigid-terrain-subterrain-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "0159b74e2113693138dd2a92582f1ecc8f25e7b29fd85c8f22949607a935d75a",
+      "record_version": "source-0159b74e2113693138dd2a92582f1ecc8f25e7b29fd85c8f22949607a935d75a"
+    },
+    {
       "id": "mujoco-menagerie-artifact-berkeley-humanoid-berkeley-humanoid-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "e5b9396bf23dea75c2d58b22091edd07646c6704f9d3626645e75977f527ace1",

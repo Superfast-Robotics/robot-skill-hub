@@ -8,6 +8,18 @@
       "record_version": "source-c59136b82f8356e6ebd53a4d530bea3a4f54d07de3deeb95987aff846eee14de"
     },
     {
+      "id": "genesis-examples-examples-rigid-gravity-compensation-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "ecfe456fd3d76446481279e7e5e8bc2ca98f02d05907c26cdf4c3572e65aa67f",
+      "record_version": "source-ecfe456fd3d76446481279e7e5e8bc2ca98f02d05907c26cdf4c3572e65aa67f"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-shelf-place-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "503f7ecb4d1eabab405b504275b3d4a0dc0384cecd425b4a9f379186e409ac4a",
+      "record_version": "source-503f7ecb4d1eabab405b504275b3d4a0dc0384cecd425b4a9f379186e409ac4a"
+    },
+    {
       "id": "mujoco-menagerie-artifact-tetheria-aero-hand-open-right-hand-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "f9e136acec1c5e51265bd2d6f21f346449dc7506bb293ee5ebf698d16d4e9692",
@@ -18,6 +30,12 @@
       "source_commit": "e904bcb7288ac9970bf373190e5b0774a3476efb",
       "source_sha256": "1589a0e39a8890e4d62944b4eac7c4743bc9c9d729b85db39a83c46c8a6fe334",
       "record_version": "source-1589a0e39a8890e4d62944b4eac7c4743bc9c9d729b85db39a83c46c8a6fe334"
+    },
+    {
+      "id": "roboverse-examples-libero-passthrough-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "325e418e723832435d0d8cc65abfe49fc38665cc6f4002c3023279dfbac6dfac",
+      "record_version": "source-325e418e723832435d0d8cc65abfe49fc38665cc6f4002c3023279dfbac6dfac"
     },
     {
       "id": "ros2-examples-rclpy-actions-minimal-action-server-examples-rclpy-mi-8e69932f0cde",

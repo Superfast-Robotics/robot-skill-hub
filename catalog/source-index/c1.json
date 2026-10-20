@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "gym-pybullet-drones-gym-pybullet-drones-examples-beta-py",
+      "source_commit": "f83fbdd4ee1c07e1afa52694963f3a9a889a0f56",
+      "source_sha256": "5dcb8442fe220a823b76229eb34125e3fcade67a4096a5188f4363054e718358",
+      "record_version": "source-5dcb8442fe220a823b76229eb34125e3fcade67a4096a5188f4363054e718358"
+    },
+    {
       "id": "libfranka-force-control",
       "source_commit": "e88d08f64cbf842b8f53c0b551963684064038d6",
       "source_sha256": "218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7",
       "record_version": "source-218dca8ea8f283a7ab7ed1f17b544f29ba1d7799f0b46eb455ec3c6842a1eeb7"
+    },
+    {
+      "id": "mink-examples-mobile-stretch-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "ee4139de04f432d5af184e582b8ca10d2aedaf64402922a5dada51a685487674",
+      "record_version": "source-ee4139de04f432d5af184e582b8ca10d2aedaf64402922a5dada51a685487674"
     },
     {
       "id": "moveit2-doc-examples-moveit-cpp-src-moveit-cpp-tutorial-cpp",

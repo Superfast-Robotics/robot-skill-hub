@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-temperature-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "1779239bbb369f5b336bc75ae5ede729b7c06ed146f6ecf165b24e0d53b0646c",
+      "record_version": "source-1779239bbb369f5b336bc75ae5ede729b7c06ed146f6ecf165b24e0d53b0646c"
+    },
+    {
       "id": "gap-bundle-grasping-direct-ik",
       "source_commit": "752dfbd96968d4d08379f8111765efbf6457800b",
       "source_sha256": "8da12c9c156c03f21970fab330d7359e5426f3a11307d36d79e4b4e5fb2e1712",
@@ -32,10 +38,22 @@
       "record_version": "source-cc5951773ddd85b89426799d1c4e065daac11c8a662c45edeb2701f795d9e210"
     },
     {
+      "id": "roboverse-examples-5-hybrid-sim-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "7f1787590f1905f630a6f920f4c33a337900d13e7c9f1a6dc453d9f323f9fb04",
+      "record_version": "source-7f1787590f1905f630a6f920f4c33a337900d13e7c9f1a6dc453d9f323f9fb04"
+    },
+    {
       "id": "ros2-examples-rclpy-topics-pointcloud-publisher-examples-rclpy-poin-77f3f0d4e115",
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c",
       "record_version": "source-d6d1f650df457b3faf5ca3588ef00575545fb5968a5097b98f8c2539813c494c"
+    },
+    {
+      "id": "trifinger-simulation-scripts-plot-position-error-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "926214740a10e0a3ebc31d73007190b708ba34055c0def0ee1b3a3858f5eb8d8",
+      "record_version": "source-926214740a10e0a3ebc31d73007190b708ba34055c0def0ee1b3a3858f5eb8d8"
     },
     {
       "id": "webots-projects-samples-devices-controllers-coupled-motors-coupled-motors-c",

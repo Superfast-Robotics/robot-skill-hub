@@ -20,6 +20,12 @@
       "record_version": "source-5f259a9453957fb08d21e7a0ec5febd29c986cdb7e031ee2a4573628bfc30852"
     },
     {
+      "id": "myosuite-myosuite-utils-export-onnx-py",
+      "source_commit": "2d08f42dfec85278566c95b1d09f5bd67662b3d6",
+      "source_sha256": "08e1e66a669dc78a7343ca4a469e11f9dfee1a25aa9eed0ec1873afaa81a64ce",
+      "record_version": "source-08e1e66a669dc78a7343ca4a469e11f9dfee1a25aa9eed0ec1873afaa81a64ce"
+    },
+    {
       "id": "ompl-demos-geometriccarplanning-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "3fe3176b406880e3d730c5871523eda7b0b7779d660e2a7eaa55a2e8acb43e83",
@@ -30,6 +36,18 @@
       "source_commit": "2ae77666e894a39127b283dcce3e2399ec19242d",
       "source_sha256": "8298313da963c88eb4c8ecf7c1fe5cc6dd3f7e7ac178478ebb5d3cb37ad26f83",
       "record_version": "source-8298313da963c88eb4c8ecf7c1fe5cc6dd3f7e7ac178478ebb5d3cb37ad26f83"
+    },
+    {
+      "id": "safe-control-gym-examples-rl-rl-experiment-py",
+      "source_commit": "6b5391d014f36fdfa0f9d22d92c77387e5274308",
+      "source_sha256": "34c9ba30e901b95866bb99a2ee3d0758e5341a1a33faf8b777646ed800762fe0",
+      "record_version": "source-34c9ba30e901b95866bb99a2ee3d0758e5341a1a33faf8b777646ed800762fe0"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-plain-torque-control-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "852718c6ba7620ec1b379cb18fefc47c728bc2f6f67360987a6b6ef1316d37eb",
+      "record_version": "source-852718c6ba7620ec1b379cb18fefc47c728bc2f6f67360987a6b6ef1316d37eb"
     }
   ]
 }

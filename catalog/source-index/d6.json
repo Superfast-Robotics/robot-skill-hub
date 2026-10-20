@@ -32,6 +32,12 @@
       "record_version": "source-f3fc8aec931c62ce8dda8c9d1326f7ac5e213e53a3cb6390601a595f749cc956"
     },
     {
+      "id": "trifinger-simulation-scripts-playback-data-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "8696db13be93d18a1648d48699e6e21c4c3aa8974ad291220e201839ab4a9c76",
+      "record_version": "source-8696db13be93d18a1648d48699e6e21c4c3aa8974ad291220e201839ab4a9c76"
+    },
+    {
       "id": "webots-projects-samples-devices-controllers-position-sensor-position-sensor-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "510071e845bbe1186c835306e7627fa5f435d219ca6ba182491cc517f62dbc65",

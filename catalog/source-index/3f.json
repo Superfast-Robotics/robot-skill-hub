@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-handstanding-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "dfe45b0045100a428c54c07f0793b26b19fdd976e6cf0ea7291193c17bee0b8f",
+      "record_version": "source-dfe45b0045100a428c54c07f0793b26b19fdd976e6cf0ea7291193c17bee0b8f"
+    },
+    {
+      "id": "crocoddyl-examples-quadruped-gaits-invdyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "b1ba90223e48a16fb5d85d68b67cb043ee13730d4e68843dad404e5ad416c658",
+      "record_version": "source-b1ba90223e48a16fb5d85d68b67cb043ee13730d4e68843dad404e5ad416c658"
+    },
+    {
       "id": "mujoco-menagerie-artifact-agilex-piper-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "a4146e916ab3a85f5cfdc4139e2844b686bdaa2109f6ce2486df7e43b53bf602",
@@ -18,6 +30,12 @@
       "source_commit": "3c35e783e268e5235bb042a71c68112a3ecb777e",
       "source_sha256": "8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b",
       "record_version": "source-8a1939c72983574fe399264c9b81795b4e7dcbcb2c1ecff89e6519cc4b10a50b"
+    },
+    {
+      "id": "trifinger-simulation-demos-demo-cameras-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9589397541f8eecf97a371468873a2bcfa5570252a2db6ea68bb76ea9e8e2646",
+      "record_version": "source-9589397541f8eecf97a371468873a2bcfa5570252a2db6ea68bb76ea9e8e2646"
     },
     {
       "id": "webots-projects-samples-devices-controllers-coaxial-rotors-coaxial-rotors-c",

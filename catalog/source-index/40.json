@@ -8,6 +8,18 @@
       "record_version": "source-d0d285576adcb60841e637ccb2c0e61b599fb1db3e1c7ca269568f1c1cb6b47f"
     },
     {
+      "id": "home-robot-projects-scannet-offline-eval-demo-proto-robot-robodata-server-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "667882658e92f469b179796f53be9fb02f86e367ba59b55a77ef54954ab32866",
+      "record_version": "source-667882658e92f469b179796f53be9fb02f86e367ba59b55a77ef54954ab32866"
+    },
+    {
+      "id": "home-robot-projects-scannet-offline-eval-demo-publishers-scannet-publisher-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "5c5ae2a86d1590130d83607d6b39152e4529058085d3abf83d7912486040b138",
+      "record_version": "source-5c5ae2a86d1590130d83607d6b39152e4529058085d3abf83d7912486040b138"
+    },
+    {
       "id": "ompl-demos-planarmanipulator-planarmanipulatordemo-cpp",
       "source_commit": "1ae6ac0bf7e9cb67d8994a8b8742833f813fdd39",
       "source_sha256": "7fc69dd942c249700a55df07d0ca44f1712d614b0bde1bc3a1a607418f838f2d",

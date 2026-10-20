@@ -14,6 +14,24 @@
       "record_version": "source-b245d2a94d6f6dc072e0a073e67c30b381e995998d505fc406eb2a3c2069f2c3"
     },
     {
+      "id": "home-robot-projects-slap-manipulation-scripts-eval-lang-slap-agent-py",
+      "source_commit": "ede6a67a2d0c0c8e12ad3b9726f330cea6cf90f5",
+      "source_sha256": "d8ab8301afe00eb671d5c3073b81ada9fbd43fb7833fd1c845df6c585c8cefee",
+      "record_version": "source-d8ab8301afe00eb671d5c3073b81ada9fbd43fb7833fd1c845df6c585c8cefee"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-disassemble-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "f7e8ba12e8eaa2877509f4e74b88c4d07126ac984fc068421dd6ef33ff66ceea",
+      "record_version": "source-f7e8ba12e8eaa2877509f4e74b88c4d07126ac984fc068421dd6ef33ff66ceea"
+    },
+    {
+      "id": "metaworld-metaworld-policies-sawyer-peg-insertion-side-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "0d917c48a0c79eda3b011d7f3124847939d92f0ec14b9164b3142a3b7a170bd8",
+      "record_version": "source-0d917c48a0c79eda3b011d7f3124847939d92f0ec14b9164b3142a3b7a170bd8"
+    },
+    {
       "id": "mujoco-menagerie-artifact-arx-l5-arx-l5-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "5d83116bda7378b6c247f3f93a0b27d6174057fcb86ce37418d1bee60bde735c",

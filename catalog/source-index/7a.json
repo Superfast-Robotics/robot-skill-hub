@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-pendulum-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "9b2e2f5bc89a143301bbd30590ed6867ecda2180d630eb09661cf9fef45d6d7e",
+      "record_version": "source-9b2e2f5bc89a143301bbd30590ed6867ecda2180d630eb09661cf9fef45d6d7e"
+    },
+    {
       "id": "lerobot-examples-training-train-policy-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "456639de7cc92465bde9499cc2e5e7186da526529f05f8edc52f7497bd2f8726",

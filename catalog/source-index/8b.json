@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "habitat-lab-examples-vln-reference-path-follower-example-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "b179cb9275690e1ffc0b77e1023b39658cb4cd15f2d6419ddbe84682594fc4bc",
+      "record_version": "source-b179cb9275690e1ffc0b77e1023b39658cb4cd15f2d6419ddbe84682594fc4bc"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-01-assets-run-surface-gripper-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "510d589ab80fdfc3cd65e9c629474800009a3ea45f096281db01cf88bf4081f8",
       "record_version": "source-510d589ab80fdfc3cd65e9c629474800009a3ea45f096281db01cf88bf4081f8"
+    },
+    {
+      "id": "pink-examples-humanoid-jvrc-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "9feb492ba86f9c3e3313ec6f93e5ef6ad59ed4b209f2e60eb8ea160a8e939e7b",
+      "record_version": "source-9feb492ba86f9c3e3313ec6f93e5ef6ad59ed4b209f2e60eb8ea160a8e939e7b"
     },
     {
       "id": "pinocchio-examples-inverse-kinematics-cpp",

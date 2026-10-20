@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-marine-manipulator-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "6bb939bd5b9dc33bc2a31a702ec764bd75244784b6a6d8c7e912d6bd10436f21",
+      "record_version": "source-6bb939bd5b9dc33bc2a31a702ec764bd75244784b6a6d8c7e912d6bd10436f21"
+    },
+    {
+      "id": "franka-ros2-franka-example-controllers-src-async-motions-ptp-motion-efda9b826143",
+      "source_commit": "4acc05c01ebfcdf916ee6b3df966df0ad7b2f9ec",
+      "source_sha256": "68117f413e7e17e4927ffabce23b2c63fe922dcf23df49c36042af2786629c78",
+      "record_version": "source-68117f413e7e17e4927ffabce23b2c63fe922dcf23df49c36042af2786629c78"
+    },
+    {
       "id": "isaac-groot-gr00t-experiment-launch-train-py",
       "source_commit": "dac54b313160c201c450f97df0fd74ebd379c892",
       "source_sha256": "e1e86e694459b661b4ce53424acb44aeb3ebccee63de0accde9637ad244a0c7f",

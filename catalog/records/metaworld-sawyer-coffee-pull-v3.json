@@ -1,0 +1,350 @@
+{
+  "schema_version": "1",
+  "id": "metaworld-sawyer-coffee-pull-v3",
+  "name": "Meta-World Sawyer coffee-pull-v3 scripted controller",
+  "summary": "Meta-World Sawyer coffee-pull-v3 scripted controller. Bounded, source-pinned simulation with an explicit task contract and retained fixed-case outcomes.",
+  "capabilities": [
+    "simulation",
+    "bounded-json",
+    "metaworld",
+    "scripted-policy"
+  ],
+  "aliases": [
+    "sawyer",
+    "metaworld",
+    "scripted-policy"
+  ],
+  "source": {
+    "repository": "https://github.com/Farama-Foundation/Metaworld",
+    "commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+    "archive_url": "https://codeload.github.com/Farama-Foundation/Metaworld/tar.gz/c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+    "archive_sha256": "ea091176e3be68314432025d945fa7005f50cc82b319db3cc19374d37c6b52c0",
+    "archive_bytes": 174769862,
+    "authors": [
+      "Original Metaworld contributors; preserve all pinned source and asset notices"
+    ],
+    "paths": [
+      "LICENSE",
+      "pyproject.toml",
+      "metaworld/__init__.py",
+      "metaworld/env_dict.py",
+      "metaworld/sawyer_xyz_env.py",
+      "metaworld/policies/policy.py",
+      "metaworld/policies/action.py",
+      "metaworld/policies/sawyer_coffee_pull_v3_policy.py",
+      "metaworld/envs/sawyer_coffee_pull_v3.py"
+    ]
+  },
+  "license": {
+    "spdx": "MIT",
+    "url": "https://github.com/Farama-Foundation/Metaworld/blob/c0dafaf1557f31cad3b96ba2b62462f45638f5a5/LICENSE",
+    "verified": true,
+    "scope": "Pinned first-party code terms. Preserve all upstream notices; robot assets and dependencies retain their separate licenses. Hub-authored wrapper is MIT."
+  },
+  "compatibility": [
+    {
+      "runtime": "metaworld",
+      "runtime_version": "3.1.1",
+      "robot": "sawyer",
+      "controller": "scripted-policy",
+      "observation": "privileged_simulator_state",
+      "os": "linux",
+      "architecture": "x86_64",
+      "python": "3.11",
+      "status": "source_reviewed"
+    }
+  ],
+  "observation": {
+    "required": [
+      "simulator_state"
+    ],
+    "privileged_state": true,
+    "description": "Privileged simulator observations and goal/state feedback. No physical sensor validation."
+  },
+  "requirements": {
+    "python": ">=3.11,<3.12",
+    "packages": [
+      "metaworld==3.1.1",
+      "mujoco==3.3.0",
+      "numpy==1.26.4",
+      "gymnasium==1.2.0"
+    ],
+    "hardware": [
+      "Linux x86_64; CPU simulation; see retained receipt for the exact host environment"
+    ],
+    "rendering": "Headless. EGL libraries are required for MuJoCo imports; PushT uses SDL dummy video. No interactive display.",
+    "api_keys": [],
+    "network": [
+      "Pinned source archive during preparation",
+      "PyPI dependencies during explicit installation"
+    ],
+    "dependency_lock": "Direct runtime versions are pinned and measured. The receipt retains the complete environment freeze; prepare records the installed environment. System drivers are separate host requirements."
+  },
+  "invocation": {
+    "entrypoint": "python run.py",
+    "argv": [
+      "{python}",
+      "{recipe_dir}/run.py",
+      "--source-dir",
+      "{source_dir}",
+      "--example"
+    ],
+    "inputs": {
+      "seed": 0
+    },
+    "outputs": {
+      "format": "single JSON object",
+      "payload_selector": "outputs",
+      "schema": {
+        "type": "object",
+        "required": [
+          "success_window",
+          "native_success",
+          "steps",
+          "control_effort",
+          "hand_movement_m",
+          "native_metrics"
+        ],
+        "properties": {
+          "success_window": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": {
+              "type": "boolean"
+            }
+          },
+          "native_success": {
+            "type": "boolean"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 500
+          },
+          "control_effort": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "hand_movement_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "x-unit": "m"
+          },
+          "native_metrics": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "value"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "value": {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "example": "Prepare explicitly; run --example or replace it with --input TASK.json. --describe reads the bounded contract without running simulation."
+  },
+  "interface": {
+    "version": "1",
+    "kind": "task",
+    "abstraction_level": 2,
+    "execution_domain": "simulation",
+    "language": "python",
+    "input_transport": "json_file_or_inline",
+    "output_transport": "json_stdout",
+    "output_selector": "outputs",
+    "conventions": {
+      "linear_unit": "m",
+      "angular_unit": "rad",
+      "time_unit": "s",
+      "coordinate_frame": "right_handed_world_xyz; +z_up",
+      "joint_order": "not_used",
+      "quaternion_order": "not_used"
+    },
+    "input_schema": {
+      "type": "object",
+      "required": [
+        "seed"
+      ],
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "required": [
+        "success_window",
+        "native_success",
+        "steps",
+        "control_effort",
+        "hand_movement_m",
+        "native_metrics"
+      ],
+      "properties": {
+        "success_window": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "native_success": {
+          "type": "boolean"
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "control_effort": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "hand_movement_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "x-unit": "m"
+        },
+        "native_metrics": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "value"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "value": {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": [
+      "Use the exact recorded source, Linux Python 3.11 environment and pinned direct packages.",
+      "No physical robot, network actuation or external robot credentials."
+    ],
+    "postconditions": [
+      "All reported checks must be true and all output numbers finite.",
+      "Success covers the declared goal and frozen cases, not arbitrary tasks or physical hardware."
+    ],
+    "failure_codes": [
+      "invalid_input_or_environment",
+      "execution_failed",
+      "task_failed"
+    ],
+    "composition": {
+      "depends_on": [],
+      "automatic_frame_conversion": false,
+      "automatic_hardware_execution": false
+    },
+    "origin_reference_ids": [
+      "metaworld-metaworld-policies-sawyer-coffee-pull-v3-policy-py"
+    ],
+    "origin_relationship": "prepared_from_the_same_pinned_model; inspect the declared controller and goal; no physical compatibility is inferred"
+  },
+  "completion": {
+    "success_condition": "All declared goal and finite-state checks pass; exit 0 with task_complete. Five consecutive native task-success predicates within 500 dynamic simulation steps. Task-specific success definitions come from the pinned upstream environment; this is not a general manipulation score.",
+    "timeout_seconds": 180,
+    "failure_modes": [
+      "Invalid input or source checksum",
+      "Different pinned package version",
+      "Unavailable runtime/driver",
+      "Goal not reached within bounded steps"
+    ],
+    "stop_condition": "Terminate the adapter at the recorded timeout. No physical hardware is opened."
+  },
+  "preparation": {
+    "recipe_path": "recipes/metaworld-sawyer-coffee-pull-v3",
+    "requirements_file": "recipes/metaworld-sawyer-coffee-pull-v3/requirements.txt",
+    "install_argv": [
+      "{python}",
+      "-m",
+      "pip",
+      "install",
+      "--only-binary=:all:",
+      "-r",
+      "{recipe_dir}/requirements.txt"
+    ],
+    "execution_separate": true
+  },
+  "evidence": {
+    "level": "source_reviewed",
+    "verified_by": "Hub source review",
+    "date": "2026-10-20",
+    "environment": {
+      "scope": "simulation",
+      "physical_robot": false,
+      "platforms": []
+    },
+    "commands": [
+      "python tools/verify_runtime_expansion.py --backend metaworld --source-cache SOURCE_CACHE --output OUTPUT"
+    ],
+    "result": "Execution not yet recorded.",
+    "artifacts": [],
+    "runtime_verification": "not_run",
+    "contributor_reported": null,
+    "hub_verification": {
+      "runtime": "not_run",
+      "scope": "simulation",
+      "adapter_sha256": "255ee22e98d5da90c59c9abbe52545bd07176b5d811153a06801ad0f63933b48",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "record_version": "1.0.0",
+      "case_count": 0,
+      "retained_failed_cases": 0
+    }
+  },
+  "maintenance": {
+    "record_version": "1.0.0",
+    "last_checked": "2026-10-20",
+    "upstream_status": "immutable_source_and_explicit_dependencies"
+  },
+  "contribution": {
+    "allowed_paths": [
+      "catalog/records/metaworld-sawyer-coffee-pull-v3.json",
+      "recipes/metaworld-sawyer-coffee-pull-v3/run.py",
+      "recipes/metaworld-sawyer-coffee-pull-v3/requirements.txt",
+      "docs/recipes/metaworld-sawyer-coffee-pull-v3.md"
+    ],
+    "instructions": "Change the runtime expansion manifest/template, regenerate, and rerun all frozen cases. Preserve source/model/checkpoint licenses and distinguish simulation from hardware."
+  }
+}

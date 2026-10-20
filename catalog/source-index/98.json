@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-sensors-tactile-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "973ca2cf0682c49c7328c6ff2184a8e3cf5d1cdd2f28de8eb2e6364b685e999b",
+      "record_version": "source-973ca2cf0682c49c7328c6ff2184a8e3cf5d1cdd2f28de8eb2e6364b685e999b"
+    },
+    {
       "id": "mujoco-menagerie-artifact-robotiq-2f85-v4-2f85-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "8d4a4f840ff5f928d56e387a8325d1f34437b35f72b82792e4d46f8de879e133",

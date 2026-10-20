@@ -8,6 +8,12 @@
       "record_version": "source-adfa7599b9afca3fc0e4b1df699d6953ff401e0372894e4a91a014ffd3f5cdf9"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-stick-pull-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "01e6f9b0b6d7fefa12dc02275423ce32965b762e3ff260004fd10aba704348b5",
+      "record_version": "source-01e6f9b0b6d7fefa12dc02275423ce32965b762e3ff260004fd10aba704348b5"
+    },
+    {
       "id": "mujoco-menagerie-artifact-low-cost-robot-arm-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "dbf6b9901364e99d4c5b0a71c1ab029355787a3dbc01a9e0f4c2b2a7022c67b9",
@@ -18,6 +24,24 @@
       "source_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
       "source_sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77",
       "record_version": "source-369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77"
+    },
+    {
+      "id": "pink-examples-humanoid-draco3-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "3137fe3673cad4cffd1e980427eaa91cd8b90c889a735fe72962d1a0d0bb3166",
+      "record_version": "source-3137fe3673cad4cffd1e980427eaa91cd8b90c889a735fe72962d1a0d0bb3166"
+    },
+    {
+      "id": "pink-examples-one-dof-configuration-limit-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "af63291fa57f3253b78f4067364be870561828623e066b906ae1319f813017ef",
+      "record_version": "source-af63291fa57f3253b78f4067364be870561828623e066b906ae1319f813017ef"
+    },
+    {
+      "id": "pink-examples-stretch-world-target-py",
+      "source_commit": "2c333161fc260de93fb7be1dd8d6519d2ecc2df2",
+      "source_sha256": "d95864af3e87f71535c897d85110f896de24f4e7897758ae089298b2468869de",
+      "record_version": "source-d95864af3e87f71535c897d85110f896de24f4e7897758ae089298b2468869de"
     },
     {
       "id": "pinocchio-examples-casadi-casadi-rnea-cpp",

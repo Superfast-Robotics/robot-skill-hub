@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "aligator-examples-solo-jump-py",
+      "source_commit": "05f19ca05484a294f4aadd480ba2088a67b1431c",
+      "source_sha256": "5b50f3400caf2802c7d6893592126225049c4a574333fa4d44f9c142b55061a5",
+      "record_version": "source-5b50f3400caf2802c7d6893592126225049c4a574333fa4d44f9c142b55061a5"
+    },
+    {
+      "id": "causalworld-tutorials-viewing-policies-tutorial-four-py",
+      "source_commit": "1045277101a92c506db42704da28f6e7227d401b",
+      "source_sha256": "2338b4d922315f929b09c9ae793579c372550e46b823b29797a98485bab650c6",
+      "record_version": "source-2338b4d922315f929b09c9ae793579c372550e46b823b29797a98485bab650c6"
+    },
+    {
       "id": "drake-examples-allegro-hand-joint-control-run-twisting-mug-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "3d09dcac8ae38cc59234f5d7949a6c9c4ebdf29e83e5e10ab42e6ea2dd30e7d2",
@@ -12,6 +24,18 @@
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1",
       "record_version": "source-6edc70dc552caa2596f40695f17dec8afd4eb489d67e36e5d0327d3ee4705ed1"
+    },
+    {
+      "id": "genesis-examples-examples-sap-coupling-fem-sphere-and-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "d0df939d8a1cc57225f5a373fe48791a2f5990e0ba2f417f92add8c772c5a0a0",
+      "record_version": "source-d0df939d8a1cc57225f5a373fe48791a2f5990e0ba2f417f92add8c772c5a0a0"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-draw-debug-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "896191d0e9db89b5e6b1ed04af4eee681ac307312904c19258b975348b6d0975",
+      "record_version": "source-896191d0e9db89b5e6b1ed04af4eee681ac307312904c19258b975348b6d0975"
     },
     {
       "id": "ruckig-examples-01-position-py",

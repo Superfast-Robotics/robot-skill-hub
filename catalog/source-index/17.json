@@ -14,6 +14,12 @@
       "record_version": "source-43c57906389b9f3d217b38355c07ff5797cb67d6c5f2327fb1a23d8c580069d4"
     },
     {
+      "id": "genesis-examples-examples-rigid-control-franka-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "4a17abd38dad0dfaee43a2a43450cf902487a21ddf3d2386873346e194924c2c",
+      "record_version": "source-4a17abd38dad0dfaee43a2a43450cf902487a21ddf3d2386873346e194924c2c"
+    },
+    {
       "id": "isaaclab-scripts-tutorials-04-sensors-run-ray-caster-py",
       "source_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
       "source_sha256": "3941a8b9514bbaa3b92d2e663cdb775f42bffaf16b7c34ebc1c62f78d7aed466",
@@ -36,6 +42,12 @@
       "source_commit": "07008852303f2a35a91c65d78046b274a35477ea",
       "source_sha256": "a2db58f672b61a386b610ec18d85333ea1ca55e06d56dc1186c85a7916e077fd",
       "record_version": "source-a2db58f672b61a386b610ec18d85333ea1ca55e06d56dc1186c85a7916e077fd"
+    },
+    {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-run-evaluate-policy-py",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "9ef9d6168518cc7f6f958a2e6696173950af3fe7e69574e85fca1173d4a88cbb",
+      "record_version": "source-9ef9d6168518cc7f6f958a2e6696173950af3fe7e69574e85fca1173d4a88cbb"
     },
     {
       "id": "webots-projects-samples-devices-controllers-coupled-motors-coupled-motors-py",

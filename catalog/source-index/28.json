@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-humanoid-backflip-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "437058e9cfe5b76670922f469bf2908ad771f4743fe84d083ad2143b69e6b351",
+      "record_version": "source-437058e9cfe5b76670922f469bf2908ad771f4743fe84d083ad2143b69e6b351"
+    },
+    {
       "id": "drake-examples-kinova-jaco-arm-move-jaco-ee-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "a86f23ef00012b8b33abf05991a6be28c16de6509ef8099b90606f4fee6baae6",

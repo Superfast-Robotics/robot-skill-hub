@@ -8,6 +8,12 @@
       "record_version": "source-a3327fcd24527f7ee9299f1992cb177839b289fe3455f1e7c9e884e6096e11b8"
     },
     {
+      "id": "genesis-examples-examples-coupling-grasp-soft-cube-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1c6aeb3a77801859458c42cee2a01c7c18a7b966abfcfd057feb92284517f22c",
+      "record_version": "source-1c6aeb3a77801859458c42cee2a01c7c18a7b966abfcfd057feb92284517f22c"
+    },
+    {
       "id": "lerobot-examples-so100-to-so100-ee-record-py",
       "source_commit": "7e241bd630a3719a56157a497ce5d08f244784f1",
       "source_sha256": "9daafbc8d075a60fa6189e76306f462538103f2200320aa68514e15c69623d99",

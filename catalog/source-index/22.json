@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "mink-examples-hand-shadow-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "c916e2ff2f05211dcfc7c48c4322546cebb9aa5fadeb0b761dd4b0f07303caaf",
+      "record_version": "source-c916e2ff2f05211dcfc7c48c4322546cebb9aa5fadeb0b761dd4b0f07303caaf"
+    },
+    {
       "id": "mujoco-menagerie-artifact-i2rt-yam-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "ebaec659011610ad1ab91c6e6ff869a8edf8dcd519ac952a0a4ce44ef89df3ca",

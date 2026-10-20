@@ -20,6 +20,12 @@
       "record_version": "source-9e1b3587ded4cfbc87eb51f1ae9b9bcb12174aa2a4d81f75dc78fea6db738610"
     },
     {
+      "id": "moveit-task-constructor-demo-src-modular-cpp",
+      "source_commit": "f527048b3db1574f68f5c646e9ed7099085af5c8",
+      "source_sha256": "a4da84987638e575d478946252311de99cc6ad05300ebc618567a41dc3ee764c",
+      "record_version": "source-a4da84987638e575d478946252311de99cc6ad05300ebc618567a41dc3ee764c"
+    },
+    {
       "id": "mujoco-menagerie-artifact-ms-human-700-ms-human-700-manipulation-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "7a74b19a4b6b42633b171257641edf1c023604fe57abe0526aa6cee384864058",
@@ -36,6 +42,12 @@
       "source_commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
       "source_sha256": "7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d",
       "record_version": "source-7cac3a5bc3cffa06c4ad0172a954c3bae0202b0a3acea349e304ca73b080765d"
+    },
+    {
+      "id": "roboverse-examples-viser-viser-demo-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "1aae55291055046627e5166f7272ec28880f37c969fc16c19dd1b68398a9c7d1",
+      "record_version": "source-1aae55291055046627e5166f7272ec28880f37c969fc16c19dd1b68398a9c7d1"
     },
     {
       "id": "ros2-control-artifact-example-14-description-urdf-rrbot-modular-act-1a74980c77ab",

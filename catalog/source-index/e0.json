@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "genesis-examples-examples-rigid-merge-entities-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "1e3f92e59bac19ed8c906333b998d7281d938995b388e8a81bda454c2f76c5b8",
+      "record_version": "source-1e3f92e59bac19ed8c906333b998d7281d938995b388e8a81bda454c2f76c5b8"
+    },
+    {
+      "id": "habitat-lab-examples-hitl-pick-throw-vr-pick-throw-vr-py",
+      "source_commit": "0fb6f43ffe806a8088a171b036336c093bcf604e",
+      "source_sha256": "9cf7e59b75983b6c286bb7696773a3fb09f735a63ef75f044d11ce3598e8ed3b",
+      "record_version": "source-9cf7e59b75983b6c286bb7696773a3fb09f735a63ef75f044d11ce3598e8ed3b"
+    },
+    {
       "id": "mujoco-menagerie-artifact-hello-robot-stretch-3-scene-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "1396b4932b216e0d9f0cd5065147b9d0bde116abe2f98380b68ff382f6eae70b",
@@ -24,6 +36,12 @@
       "source_commit": "814556d15970dd2ecf1c9984e845ca02ab07e206",
       "source_sha256": "e70fb2e56c15b4629ee33b02603f6438eb0abd1e1951a5c6f13cd9d660e01cc4",
       "record_version": "source-e70fb2e56c15b4629ee33b02603f6438eb0abd1e1951a5c6f13cd9d660e01cc4"
+    },
+    {
+      "id": "universal-robots-ros2-driver-ur-robot-driver-scripts-wait-robot-booted-py",
+      "source_commit": "43f2f3a1a1b7481a0e2bd6af5973403dc8ddb11b",
+      "source_sha256": "f3dd3348787114f50cd3158a5c82b8eab266127d9a5a011850052c164f1c3f52",
+      "record_version": "source-f3dd3348787114f50cd3158a5c82b8eab266127d9a5a011850052c164f1c3f52"
     },
     {
       "id": "webots-projects-samples-devices-controllers-imu-imu-c",

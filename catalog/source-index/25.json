@@ -2,10 +2,22 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "crocoddyl-examples-biped-pose-fwddyn-py",
+      "source_commit": "babab496116e883960a9203df8fbac25a05116ee",
+      "source_sha256": "80b3f938a97dc4e88a120610a786d4f91323265f5e73f31cb2ecdffbd9e20b6e",
+      "record_version": "source-80b3f938a97dc4e88a120610a786d4f91323265f5e73f31cb2ecdffbd9e20b6e"
+    },
+    {
       "id": "franka-description-artifact-robots-fr3v2-joint-limits-yaml",
       "source_commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
       "source_sha256": "34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c",
       "record_version": "source-34b78a3c1d500cfff3912750f6b4c19c677a223b03c22a074e49f0d5f1c1314c"
+    },
+    {
+      "id": "genesis-examples-examples-sensors-contact-force-go2-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c9a43a13a9328e8ee1b4b6e436a3680a16cf5d87120354f12ba5fd53a65887b5",
+      "record_version": "source-c9a43a13a9328e8ee1b4b6e436a3680a16cf5d87120354f12ba5fd53a65887b5"
     },
     {
       "id": "mavsdk-python-examples-mission-py",
@@ -14,10 +26,22 @@
       "record_version": "source-891197dce4f5fd64f1c5028f2f8d9d1f132c0b034b5321c59498b5baebb0beee"
     },
     {
+      "id": "metaworld-metaworld-policies-sawyer-push-v3-policy-py",
+      "source_commit": "c0dafaf1557f31cad3b96ba2b62462f45638f5a5",
+      "source_sha256": "921d7380bc04fce1834cf025fde0bdf4aa625fcf5ffbd93c7c5a85eb40e4cf53",
+      "record_version": "source-921d7380bc04fce1834cf025fde0bdf4aa625fcf5ffbd93c7c5a85eb40e4cf53"
+    },
+    {
       "id": "mujoco-menagerie-artifact-pal-tiago-dual-scene-motor-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "2d48d996caa63373d6252a56fa9a2d1a3c9a2a967bc8ac2389c516c9de36f32f",
       "record_version": "source-2d48d996caa63373d6252a56fa9a2d1a3c9a2a967bc8ac2389c516c9de36f32f"
+    },
+    {
+      "id": "roboverse-examples-15-gs-background-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "0fc6e4e4f8133cba2f92def33cbb0683bfda0dff6f4b606dde06ba8c1a54797e",
+      "record_version": "source-0fc6e4e4f8133cba2f92def33cbb0683bfda0dff6f4b606dde06ba8c1a54797e"
     },
     {
       "id": "ros2-control-artifact-example-1-bringup-config-rrbot-forward-positi-95e55c4f4ae9",

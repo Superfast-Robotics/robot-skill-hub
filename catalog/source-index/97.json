@@ -32,6 +32,12 @@
       "record_version": "source-22ace1ce172174df15bc0e6c377ce0cae44160b527f942a89677754e38840793"
     },
     {
+      "id": "trifinger-simulation-trifinger-simulation-tasks-move-cube-on-trajec-9b4e8c065081",
+      "source_commit": "684cb929ad639f10d5b9b238c4f3a11fe426012f",
+      "source_sha256": "76a51a8e336f9c50a8f1265d77b6618045c800ebb4e144606645cf4edcb820fa",
+      "record_version": "source-76a51a8e336f9c50a8f1265d77b6618045c800ebb4e144606645cf4edcb820fa"
+    },
+    {
       "id": "webots-projects-robots-husarion-rosbot-controllers-rosbot-rosbot-c",
       "source_commit": "c6793d8f7230a311c4bc2a3101d9f1a8bc0aa01b",
       "source_sha256": "8e4d4e7a20c84f2eb2d40617d7c7d9448546075f48363358231a544567e34502",

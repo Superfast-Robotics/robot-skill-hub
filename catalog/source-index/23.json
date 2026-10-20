@@ -20,6 +20,18 @@
       "record_version": "source-3ff727bc7bf885bb4e9f3b4293d06ffb611786cfa2cbda4893914cf791345938"
     },
     {
+      "id": "roboverse-examples-rerun-save-trajectory-simple-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "7501de9b3da45185521c068518e7d83448200ce27cfaba5fdc4e0a3451576bef",
+      "record_version": "source-7501de9b3da45185521c068518e7d83448200ce27cfaba5fdc4e0a3451576bef"
+    },
+    {
+      "id": "unitree-rl-lab-source-unitree-rl-lab-unitree-rl-lab-tasks-locomotio-fc236331005d",
+      "source_commit": "4960b84732b0c2ec593dccbfe963fda1bcd7b1e3",
+      "source_sha256": "22deed51bf779bb9730cdbb48df3b098ec64dab15984942153f0073d40840b8f",
+      "record_version": "source-22deed51bf779bb9730cdbb48df3b098ec64dab15984942153f0073d40840b8f"
+    },
+    {
       "id": "ur-description-artifact-config-ur7e-default-kinematics-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "4ffc6086bb0118a5a8e4a3576ef41de878de946710799ea4835789063fa9c0bc",

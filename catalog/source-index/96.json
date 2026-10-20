@@ -38,6 +38,12 @@
       "record_version": "source-301a48c55e9ed0f6160e9d370a5429dc1c9f5b18127f0b8ba36971d80dbf9c79"
     },
     {
+      "id": "mink-examples-quadruped-spot-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "fd029cab1fedafcea6f3ebfb85e59507b21f41d1fa889dfabbf82839e7ec74a8",
+      "record_version": "source-fd029cab1fedafcea6f3ebfb85e59507b21f41d1fa889dfabbf82839e7ec74a8"
+    },
+    {
       "id": "mujoco-menagerie-artifact-i2rt-yam-yam-xml",
       "source_commit": "62ab00f2bc44f6f20c1c9b7a13f3fb1dd41a4e35",
       "source_sha256": "5ae901629db944abd3e6cbb0eaf28ea78bbda3483c840d6db1167e999cc0348c",

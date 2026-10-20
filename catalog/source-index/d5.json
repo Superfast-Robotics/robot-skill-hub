@@ -50,6 +50,12 @@
       "record_version": "source-466bec488b52b7965a2e3dfb6d745cb52ac05a1d9aea34fb2d9e6d5469130cef"
     },
     {
+      "id": "roboverse-examples-9-maniskill-two-robot-stack-cube-py",
+      "source_commit": "5f3ec0185d2d3bcb59d53b0bd1f5b0f8a6f2ce14",
+      "source_sha256": "5f33aa58d4d2169daa842850e56a6a80a296cf7fbe5e5a4eb3d1035b469fe55f",
+      "record_version": "source-5f33aa58d4d2169daa842850e56a6a80a296cf7fbe5e5a4eb3d1035b469fe55f"
+    },
+    {
       "id": "ur-description-artifact-config-ur30-joint-limits-yaml",
       "source_commit": "d4042c1f5123c86645cc5dbd650b4f461f697ee9",
       "source_sha256": "ba2be7ecf42ee235d83aa572ca3743532c45577affef0d75b65d9f0cd40aed66",

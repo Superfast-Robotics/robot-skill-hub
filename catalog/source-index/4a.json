@@ -2,6 +2,18 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-object-states-slicing-demo-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "c75ad6a094d29f4f9e5dd70a4302ca0dad8cf066ba3f6f7fc176475d2093dc7d",
+      "record_version": "source-c75ad6a094d29f4f9e5dd70a4302ca0dad8cf066ba3f6f7fc176475d2093dc7d"
+    },
+    {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-wip-view-cloth-configurations-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "b65295b3ff169948d6c6046a7b95b81496223e12ec6d95cc7fe6302e7bbaa6f2",
+      "record_version": "source-b65295b3ff169948d6c6046a7b95b81496223e12ec6d95cc7fe6302e7bbaa6f2"
+    },
+    {
       "id": "drake-examples-planar-gripper-planar-gripper-simulation-cc",
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "170b6b80a051913873a387e976d3f1647967b9cc7ae87210a328a7a70bff4555",

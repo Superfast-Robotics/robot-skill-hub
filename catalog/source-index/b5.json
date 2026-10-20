@@ -2,6 +2,12 @@
   "schema_version": "1",
   "records": [
     {
+      "id": "behavior-1k-omnigibson-omnigibson-examples-robots-all-robots-visualizer-py",
+      "source_commit": "7d6718cb8ac5f249bb3c610c23713627d97da1ef",
+      "source_sha256": "389d1805ef1bbedb75db3dda800718bccfd46058ffda958c06f5a8a67bb67073",
+      "record_version": "source-389d1805ef1bbedb75db3dda800718bccfd46058ffda958c06f5a8a67bb67073"
+    },
+    {
       "id": "crazyflie-examples-step-by-step-sbs-connect-log-param-py",
       "source_commit": "3c1cb0d024fef6f45d08f0ad236a22ac395dd924",
       "source_sha256": "f6f5f1c36d3df20affd2668fca1e6b19362624ecf73c4e0db5956d55a0a7bc39",
@@ -12,6 +18,18 @@
       "source_commit": "09bc913cf1af0cdde31073d5f1f7f66ca35ee0d8",
       "source_sha256": "1678a23318ef5a541ebd4b3720a3b3d7121c86b9b718e549e4d27fc854d2d59c",
       "record_version": "source-1678a23318ef5a541ebd4b3720a3b3d7121c86b9b718e549e4d27fc854d2d59c"
+    },
+    {
+      "id": "genesis-examples-examples-tutorials-control-your-robot-py",
+      "source_commit": "a5c4e9a73aca221fa26e611281f2696c5f8b0ca8",
+      "source_sha256": "c00db8d5629c4f583db922a8870862d5aa4047feb24ed2f32973ad8bec57f2bb",
+      "record_version": "source-c00db8d5629c4f583db922a8870862d5aa4047feb24ed2f32973ad8bec57f2bb"
+    },
+    {
+      "id": "mink-examples-arm-dual-panda-py",
+      "source_commit": "ae6759602593113ed7e5431ac7c65726ea27dc29",
+      "source_sha256": "84e932c4e5fbf4b4bc1a9f375ba33b33b7e06d3ecf39ccaef933e92340564848",
+      "record_version": "source-84e932c4e5fbf4b4bc1a9f375ba33b33b7e06d3ecf39ccaef933e92340564848"
     },
     {
       "id": "nav2-artifact-nav2-bt-navigator-behavior-trees-navigate-w-replanning-speed-xml",
