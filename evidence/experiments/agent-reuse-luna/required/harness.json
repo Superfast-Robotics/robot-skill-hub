@@ -1,0 +1,7 @@
+{
+  "protocol_commit": "e6781c6b216b8a897a268126187025ba02fe7b29",
+  "executor_archive_sha256": "2810d3f3d5c25a4a09bab256cec0a88284b3b41a9b596c3a2976810eba8b9abc",
+  "execution_checks": "Actual run_recipe call required for Hub successes; no-network non-root containers; independent numerical judge",
+  "main_model": "gpt-6-luna",
+  "pricing_cache_write_usd_per_million": 0.125
+}

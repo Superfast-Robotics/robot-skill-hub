@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-21T15:18:10.294527+00:00",
+  "terminated_at": "2026-10-21T15:51:29.062738+00:00",
+  "termination_status_confirmed": "terminated",
+  "hourly_usd": 1.29,
+  "estimated_instance_usd": 0.716225275739034,
+  "gpu_used": false,
+  "scope": "Own disposable host; CPU-only isolated code execution; other instances unchanged; estimate is not a billing invoice."
+}

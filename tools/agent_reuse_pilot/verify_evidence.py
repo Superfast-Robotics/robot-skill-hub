@@ -21,6 +21,11 @@ def main():
                     assert sum(t['usage'][key] for t in trace)==r['usage'][key],(r['id'],key)
                 assert len(trace)==r['model_calls']
                 assert sum(t['usage'].get('input_tokens_details',{}).get('cached_tokens',0) for t in trace)==r['usage']['cached_input_tokens']
+                prices=plan['pricing_usd_per_million_tokens'];expected_cost=0
+                for turn in trace:
+                    u=turn['usage'];details=u.get('input_tokens_details',{});cached=details.get('cached_tokens',0);written=details.get('cache_write_tokens',0)
+                    expected_cost+=((u['input_tokens']-cached)*prices['input']+cached*prices['cached_input']+u['output_tokens']*prices['output']+written*(prices.get('cache_write',prices['input'])-prices['input']))/1e6
+                assert abs(expected_cost-r['estimated_model_usd'])<1e-12,'Cost does not match provider usage'
                 held=json.loads(z.read(r['id']+'/held-out.json'))
                 passed=sum(x['grade']['passed'] for x in held['runs']) if held else 0
                 assert passed==r['held_out_passed']
