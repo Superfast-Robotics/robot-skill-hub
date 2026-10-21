@@ -22,7 +22,7 @@
       "development_failures": 2,
       "agent_elapsed_s": 360.1997710000005,
       "median_agent_elapsed_s": 23.56065750000016,
-      "estimated_model_usd": 0.0121694
+      "estimated_model_usd": 0.012623275000000002
     },
     "hub": {
       "trials": 9,
@@ -40,7 +40,7 @@
       "development_failures": 7,
       "agent_elapsed_s": 433.49180930000057,
       "median_agent_elapsed_s": 33.33856999999989,
-      "estimated_model_usd": 0.01523735
+      "estimated_model_usd": 0.01595745
     }
   },
   "all_trial_comparison": {
@@ -50,7 +50,7 @@
     "model_calls_reduction_percent": -39.99999999999999,
     "tool_calls_reduction_percent": -39.99999999999999,
     "agent_elapsed_s_reduction_percent": -20.34760824431505,
-    "estimated_model_usd_reduction_percent": -25.21036369911418
+    "estimated_model_usd_reduction_percent": -26.412915824142313
   },
   "joint_success_pairs": 9,
   "joint_success_trials": {
@@ -70,7 +70,7 @@
       "development_failures": 2,
       "agent_elapsed_s": 360.1997710000005,
       "median_agent_elapsed_s": 23.56065750000016,
-      "estimated_model_usd": 0.012169400000000004
+      "estimated_model_usd": 0.012623275000000002
     },
     "hub": {
       "trials": 9,
@@ -88,7 +88,7 @@
       "development_failures": 7,
       "agent_elapsed_s": 433.49180930000057,
       "median_agent_elapsed_s": 33.33856999999989,
-      "estimated_model_usd": 0.01523735
+      "estimated_model_usd": 0.01595745
     }
   },
   "joint_success_comparison": {
@@ -98,7 +98,7 @@
     "model_calls_reduction_percent": -39.99999999999999,
     "tool_calls_reduction_percent": -39.99999999999999,
     "agent_elapsed_s_reduction_percent": -20.34760824431505,
-    "estimated_model_usd_reduction_percent": -25.210363699114136
+    "estimated_model_usd_reduction_percent": -26.412915824142313
   },
   "by_task": {
     "astar": {
@@ -118,7 +118,7 @@
         "development_failures": 1,
         "agent_elapsed_s": 228.15488200000073,
         "median_agent_elapsed_s": 77.52301380000063,
-        "estimated_model_usd": 0.007636260000000001
+        "estimated_model_usd": 0.007858735
       },
       "hub": {
         "trials": 3,
@@ -136,7 +136,7 @@
         "development_failures": 2,
         "agent_elapsed_s": 266.8323554000008,
         "median_agent_elapsed_s": 84.61404949999996,
-        "estimated_model_usd": 0.00957226
+        "estimated_model_usd": 0.009991385000000002
       }
     },
     "trajectory": {
@@ -156,7 +156,7 @@
         "development_failures": 0,
         "agent_elapsed_s": 58.51997649999976,
         "median_agent_elapsed_s": 20.376045299999532,
-        "estimated_model_usd": 0.00203729
+        "estimated_model_usd": 0.00211384
       },
       "hub": {
         "trials": 3,
@@ -174,7 +174,7 @@
         "development_failures": 0,
         "agent_elapsed_s": 49.43214520000038,
         "median_agent_elapsed_s": 14.677026100000148,
-        "estimated_model_usd": 0.00175612
+        "estimated_model_usd": 0.001848845
       }
     },
     "bullet_ik": {
@@ -194,7 +194,7 @@
         "development_failures": 1,
         "agent_elapsed_s": 73.52491250000003,
         "median_agent_elapsed_s": 23.56065750000016,
-        "estimated_model_usd": 0.00249585
+        "estimated_model_usd": 0.0026507
       },
       "hub": {
         "trials": 3,
@@ -212,7 +212,7 @@
         "development_failures": 5,
         "agent_elapsed_s": 117.22730869999941,
         "median_agent_elapsed_s": 33.33856999999989,
-        "estimated_model_usd": 0.00390897
+        "estimated_model_usd": 0.00411722
       }
     }
   },

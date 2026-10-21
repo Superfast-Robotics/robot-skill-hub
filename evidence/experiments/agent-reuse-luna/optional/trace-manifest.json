@@ -17,8 +17,8 @@
     },
     {
       "path": "astar-baseline-1/result.json",
-      "sha256": "98f97ae9838e9994aaee318c2c63cb29bfa8532a84b3ab64d767fd14f4230a00",
-      "bytes": 712
+      "sha256": "4953bc8fb771ecb445c221468253b37738c9a88555b1e06a62e1aad32f96a48a",
+      "bytes": 758
     },
     {
       "path": "astar-baseline-1/trace.json",
@@ -42,8 +42,8 @@
     },
     {
       "path": "astar-baseline-2/result.json",
-      "sha256": "c2cb5db2ce33b9fbc879ac1e8139c2df84c30b39d703343fb540dce74c85bb64",
-      "bytes": 711
+      "sha256": "292fd4f22f42b175bb8945a5a9bbb359a6de598cfb4c8982e9fa70d9ac14e183",
+      "bytes": 757
     },
     {
       "path": "astar-baseline-2/trace.json",
@@ -77,8 +77,8 @@
     },
     {
       "path": "astar-baseline-3/result.json",
-      "sha256": "707a90ee4a2ab0ea80bca5340e7aa60b63cf320b54c8f9585129578ad281c25c",
-      "bytes": 723
+      "sha256": "18c4af224134a71be86a4731fd5f7430ebc0163c970d1645dab649d86a319733",
+      "bytes": 780
     },
     {
       "path": "astar-baseline-3/trace.json",
@@ -112,8 +112,8 @@
     },
     {
       "path": "astar-hub-1/result.json",
-      "sha256": "e1b25ba370db99dbf99e9a9a05d64415edf6d184ac0f97f4d9faed121222c414",
-      "bytes": 714
+      "sha256": "d43a3dddb2056304fc5b5f8dfe529d11fe2714be9babe1f7c0b2bb69f3ba92d4",
+      "bytes": 761
     },
     {
       "path": "astar-hub-1/trace.json",
@@ -137,8 +137,8 @@
     },
     {
       "path": "astar-hub-2/result.json",
-      "sha256": "c6182bae73b20fa7d3fa3aadb85ec2b3441a36eed730dcb34c13340be12abe62",
-      "bytes": 701
+      "sha256": "9f5eafe95bb0fdf706305cb3bfeb78a675e70677411b5e1e34574254220b0b30",
+      "bytes": 758
     },
     {
       "path": "astar-hub-2/trace.json",
@@ -172,8 +172,8 @@
     },
     {
       "path": "astar-hub-3/result.json",
-      "sha256": "1315ae86349d0b4dea0c02794e55a2a5e9e214f591926cec5b63a564034168e9",
-      "bytes": 703
+      "sha256": "6127ff2fd6f7f03e5346e3285bc44273133adf26491d5c8a87c8439d1f8318bc",
+      "bytes": 750
     },
     {
       "path": "astar-hub-3/trace.json",
@@ -197,8 +197,8 @@
     },
     {
       "path": "bullet_ik-baseline-1/result.json",
-      "sha256": "356e15ae38c769b3c5875a19344857ecf62b25e2b9c3abaf034985b5bcf4f20e",
-      "bytes": 719
+      "sha256": "d93acf3739561facff1775cb94e0055f441f8644d9809493d1a26272f21665ab",
+      "bytes": 776
     },
     {
       "path": "bullet_ik-baseline-1/trace.json",
@@ -232,8 +232,8 @@
     },
     {
       "path": "bullet_ik-baseline-2/result.json",
-      "sha256": "0d1e2b13b7d970126b726187a62f69f3278967c589dbbe59fe530009d8c178e6",
-      "bytes": 729
+      "sha256": "49f85c7c9c14f51d0ea03fd093db1b97503b68ecf77ed81a984ab0a4517faa47",
+      "bytes": 786
     },
     {
       "path": "bullet_ik-baseline-2/trace.json",
@@ -257,8 +257,8 @@
     },
     {
       "path": "bullet_ik-baseline-3/result.json",
-      "sha256": "105112ad8ab58804777eaaad727d83fff94de643f057b9456c769061b077230d",
-      "bytes": 719
+      "sha256": "149a214c8bf60e14ac459e0cb199ab12c4eb1c7d69c8ffd51bde5d7ef2dbaf05",
+      "bytes": 765
     },
     {
       "path": "bullet_ik-baseline-3/trace.json",
@@ -292,8 +292,8 @@
     },
     {
       "path": "bullet_ik-hub-1/result.json",
-      "sha256": "2a1790140098972d755b9638f53d4db0db7aa88523909ad27cba0ef8360e3698",
-      "bytes": 711
+      "sha256": "38e019eebaa844c076e3cd7a21161d0416d5ab96f48d0a68c44fa27b7581c230",
+      "bytes": 758
     },
     {
       "path": "bullet_ik-hub-1/trace.json",
@@ -357,8 +357,8 @@
     },
     {
       "path": "bullet_ik-hub-2/result.json",
-      "sha256": "39e072b9504560c5a3c9835105473ededfb7da4356cbf91b41bf2ba9635eff0f",
-      "bytes": 712
+      "sha256": "bc25827136660afe706d37fd7d5524ffe51822a30be61120336a986941b80630",
+      "bytes": 759
     },
     {
       "path": "bullet_ik-hub-2/trace.json",
@@ -382,8 +382,8 @@
     },
     {
       "path": "bullet_ik-hub-3/result.json",
-      "sha256": "0eb37eed9bbda94a5b477c588b5289cf6038e916cf6d8f145315eb4ecca60e71",
-      "bytes": 708
+      "sha256": "5f599bb68da3a52ebc3ccbfc1b90062a232dcd44b17f75a5e6ca56798bc53679",
+      "bytes": 754
     },
     {
       "path": "bullet_ik-hub-3/trace.json",
@@ -407,8 +407,8 @@
     },
     {
       "path": "trajectory-baseline-1/result.json",
-      "sha256": "e96880b167b368c2aaac8e5e4a74e5b93c8040dc6f7bc5670e8b7f02fe01a8de",
-      "bytes": 732
+      "sha256": "06cf3b0723ca9ee73872a6aac68d5d5ec6c61d1c748db74472253b44afa6a69e",
+      "bytes": 777
     },
     {
       "path": "trajectory-baseline-1/trace.json",
@@ -432,8 +432,8 @@
     },
     {
       "path": "trajectory-baseline-2/result.json",
-      "sha256": "6fe6ac78beffda789740ab3939ba4ecfd81e1f77ce3de51d68eccd68527c0d3d",
-      "bytes": 720
+      "sha256": "f28ccadfe0a62c57a86d9922068830d24e258b2ab29f04791ee0e9050b5c970a",
+      "bytes": 766
     },
     {
       "path": "trajectory-baseline-2/trace.json",
@@ -457,8 +457,8 @@
     },
     {
       "path": "trajectory-baseline-3/result.json",
-      "sha256": "ee8dda24c1fd53090d3fb8e47d5b2f1c2fd996289464cd6aa6ded4af93defe70",
-      "bytes": 732
+      "sha256": "bc44d4d444a5dd0a4f9c844c1ef9edd165641edf152575e1ad6234a8cb3ba55b",
+      "bytes": 789
     },
     {
       "path": "trajectory-baseline-3/trace.json",
@@ -482,8 +482,8 @@
     },
     {
       "path": "trajectory-hub-1/result.json",
-      "sha256": "148bdeed5e198d610b7e669b7d7ee1219b469d8f49af1b61ca958827a1293c96",
-      "bytes": 711
+      "sha256": "d8cc8fa9af8e2e703a02be149cf6ec5dcc254a483f4bb3495094c86395b5669b",
+      "bytes": 757
     },
     {
       "path": "trajectory-hub-1/trace.json",
@@ -507,8 +507,8 @@
     },
     {
       "path": "trajectory-hub-2/result.json",
-      "sha256": "eab52a21780be3e4b2a90eb298b4b797db007fcd6fc826a2e075ea1008b22c18",
-      "bytes": 711
+      "sha256": "b678b5d1f19b0b412bc6172b4d778b3b6297308e8f15117fd451f827bdf40b75",
+      "bytes": 758
     },
     {
       "path": "trajectory-hub-2/trace.json",
@@ -532,8 +532,8 @@
     },
     {
       "path": "trajectory-hub-3/result.json",
-      "sha256": "122190acd69aeb2ba36e675395ae7e009ded303bfe4eabd2342e191bed6a3d3e",
-      "bytes": 711
+      "sha256": "f934cf639641ed906b9d25291d8801d62d8408f3fffcb3a56de1a3c51908d059",
+      "bytes": 757
     },
     {
       "path": "trajectory-hub-3/trace.json",
@@ -544,5 +544,5 @@
   "redactions": [
     "Opaque encrypted reasoning payloads and provider response IDs omitted; usage, prompts, tool requests, candidates and execution evidence retained."
   ],
-  "archive_sha256": "d00cc98fad6790d64da319eb769d79f921fb40d1683fa6e86ccb08f6dfd86763"
+  "archive_sha256": "50d06aa95a979152032334bfdb648d6b4555aed11f0d6241932f7079347b7557"
 }

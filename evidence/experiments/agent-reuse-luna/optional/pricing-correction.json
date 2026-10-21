@@ -1,0 +1,97 @@
+{
+  "reason": "Ancillary cohort was scored before cache-write pricing was added to the accounting code. Correct only estimated cost using provider-reported usage; retain original estimate per trial. No model call, outcome, token count or timing changed. Frozen plan unchanged.",
+  "effective_cache_write_usd_per_million": 0.125,
+  "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+  "adjustments": [
+    {
+      "id": "astar-baseline-3",
+      "cache_write_tokens": 5197,
+      "additional_estimated_usd": 0.000129925
+    },
+    {
+      "id": "trajectory-baseline-1",
+      "cache_write_tokens": 3062,
+      "additional_estimated_usd": 7.654999999999999e-05
+    },
+    {
+      "id": "trajectory-baseline-3",
+      "cache_write_tokens": 0,
+      "additional_estimated_usd": 0.0
+    },
+    {
+      "id": "trajectory-hub-1",
+      "cache_write_tokens": 3132,
+      "additional_estimated_usd": 7.83e-05
+    },
+    {
+      "id": "bullet_ik-hub-2",
+      "cache_write_tokens": 7059,
+      "additional_estimated_usd": 0.00017647500000000002
+    },
+    {
+      "id": "astar-hub-1",
+      "cache_write_tokens": 8009,
+      "additional_estimated_usd": 0.00020022500000000003
+    },
+    {
+      "id": "bullet_ik-baseline-3",
+      "cache_write_tokens": 3126,
+      "additional_estimated_usd": 7.815e-05
+    },
+    {
+      "id": "astar-baseline-2",
+      "cache_write_tokens": 0,
+      "additional_estimated_usd": 0.0
+    },
+    {
+      "id": "trajectory-baseline-2",
+      "cache_write_tokens": 0,
+      "additional_estimated_usd": 0.0
+    },
+    {
+      "id": "bullet_ik-baseline-2",
+      "cache_write_tokens": 1133,
+      "additional_estimated_usd": 2.8325000000000004e-05
+    },
+    {
+      "id": "bullet_ik-hub-3",
+      "cache_write_tokens": 0,
+      "additional_estimated_usd": 0.0
+    },
+    {
+      "id": "bullet_ik-baseline-1",
+      "cache_write_tokens": 1935,
+      "additional_estimated_usd": 4.8375e-05
+    },
+    {
+      "id": "astar-hub-2",
+      "cache_write_tokens": 2543,
+      "additional_estimated_usd": 6.3575e-05
+    },
+    {
+      "id": "bullet_ik-hub-1",
+      "cache_write_tokens": 1271,
+      "additional_estimated_usd": 3.1775e-05
+    },
+    {
+      "id": "astar-baseline-1",
+      "cache_write_tokens": 3702,
+      "additional_estimated_usd": 9.255000000000001e-05
+    },
+    {
+      "id": "astar-hub-3",
+      "cache_write_tokens": 6213,
+      "additional_estimated_usd": 0.00015532500000000002
+    },
+    {
+      "id": "trajectory-hub-2",
+      "cache_write_tokens": 577,
+      "additional_estimated_usd": 1.4425e-05
+    },
+    {
+      "id": "trajectory-hub-3",
+      "cache_write_tokens": 0,
+      "additional_estimated_usd": 0.0
+    }
+  ]
+}

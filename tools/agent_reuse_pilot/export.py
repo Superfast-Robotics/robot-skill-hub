@@ -9,7 +9,7 @@ def scrub(value):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--work',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,required=True);args=p.parse_args()
     out=args.output;out.mkdir(parents=True,exist_ok=True)
-    for name in ['plan.json','plan.sha256','results.json','scored-start.json','executor-preflight.json','source-receipts.json','classification-correction.json']:
+    for name in ['plan.json','plan.sha256','results.json','scored-start.json','executor-preflight.json','source-receipts.json','classification-correction.json','pricing-correction.json']:
         if (args.work/name).exists():shutil.copy2(args.work/name,out/name)
     archive=out/'traces.zip'
     receipts=[]

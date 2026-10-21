@@ -11,3 +11,5 @@ Each cohort retains its plan, start receipt, CSV, summary, numerical outputs, ca
 The live Hub lookup uses a pinned source commit and telemetry opt-out. The PyBullet test measures synthetic-arm position IK/FK, not dynamic manipulation or physical robots. These small repeated tasks do not establish general robotics accuracy, independent discovery, adoption or cold-start savings.
 
 Older-model results were withdrawn from promotion; original records remain in Git history and a private archive. They are not pooled with this study.
+
+The ancillary study's `pricing-correction.json` records a post-run accounting correction for provider-reported cache-write tokens. Original estimates are retained per trial; outcomes, timing, token counts and the frozen plan are unchanged. The primary productivity study already included cache-write pricing when scored.
