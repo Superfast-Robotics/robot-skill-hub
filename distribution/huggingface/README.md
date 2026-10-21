@@ -40,6 +40,3 @@ Prepared adapters distinguish numerical checks, simulation and real interfaces. 
 
 This static discovery card uses no compute, analytics script, cookie or background API request. API calls support `DNT: 1` or `X-RSH-Telemetry: off`.
 
-## Agent reuse pilot
-
-[Read the 54-trial report, statistics and execution traces](https://huggingface.co/datasets/Superfast-BS/robot-skill-hub-agent-reuse-pilot). The report includes successful reuse, failures and increased token costs; it does not claim general token savings or physical-robot performance.
