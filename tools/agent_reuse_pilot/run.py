@@ -37,15 +37,20 @@ def trial(plan,task,arm,repeat,out,key,endpoint):
     folder.mkdir(parents=True,exist_ok=False)
     started=datetime.datetime.now(datetime.timezone.utc).isoformat();start=time.perf_counter()
     prompt=task['request']+'\nPinned upstream entry: '+task['source_path']+'\nInput schema: '+json.dumps(task['input_schema'])+'\nOutput schema: '+json.dumps(task['output_schema'])+'\nDevelopment input: '+json.dumps(task['development'])
-    messages=[{'role':'system','content':SYSTEM},{'role':'user','content':prompt}]
+    instruction=plan.get('workflow_instructions',{}).get(arm,'')
+    messages=[{'role':'system','content':SYSTEM+ ('\n'+instruction if instruction else '')},{'role':'user','content':prompt}]
     tools=TOOLS+([HUB] if arm=='hub' else [])
     trace=[];usage={'input_tokens':0,'cached_input_tokens':0,'output_tokens':0,'total_tokens':0}
     attempts=0;candidate=None;passed=False;hub_calls=0;call_count=0;tool_calls=0;infrastructure_error=None
     try:
         for turn in range(plan['max_turns']):
             if time.perf_counter()-start>plan['wall_clock_limit_s']:break
-            payload={'model':plan['model'],'input':messages,'tools':tools,'temperature':plan['temperature'],
+            payload={'model':plan['model'],'input':messages,'tools':tools,
                      'max_output_tokens':plan['max_output_tokens'],'store':False,'parallel_tool_calls':False}
+            if plan.get('temperature') is not None:payload['temperature']=plan['temperature']
+            if plan.get('reasoning_effort'):
+                payload['reasoning']={'effort':plan['reasoning_effort']}
+                payload['include']=['reasoning.encrypted_content']
             raw=request('https://api.openai.com/v1/responses',payload,{'Authorization':'Bearer '+key,'Content-Type':'application/json'})
             call_count+=1;u=raw['usage']
             for k in ('input_tokens','output_tokens','total_tokens'):usage[k]+=u[k]
