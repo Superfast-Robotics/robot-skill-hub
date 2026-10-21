@@ -9,7 +9,8 @@ def download(url):
     with urllib.request.urlopen(req,timeout=45) as r:return r.read()
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--plan',type=pathlib.Path,help='Reuse a published frozen plan');args=p.parse_args()
+    frozen=json.loads(args.plan.read_text()) if args.plan else None
     out=args.output;out.mkdir(exist_ok=True,parents=True);stage=out/'executor';stage.mkdir(exist_ok=True)
     for name in ['Dockerfile','executor.py','candidate_entry.py','judge.py']:shutil.copy2(HERE/name,stage/name)
     (stage/'public').mkdir(exist_ok=True);shutil.copy2(HERE/'scene.py',stage/'public/scene.py')
@@ -57,16 +58,17 @@ def main():
           'development':cases[kind][0],'held_out':cases[kind][1:]})
     plan={'version':'1','model':'gpt-4.1-mini-2025-04-14','temperature':.2,'repetitions':3,'arms':['baseline','hub'],'order_seed':20261021,
       'max_turns':8,'max_execution_attempts':5,'max_output_tokens':3500,'max_input_tokens_per_request':60000,'wall_clock_limit_s':600,
-      'source_hub_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+      'source_hub_commit':frozen['source_hub_commit'] if frozen else subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
       'primary':'All three held-out cases pass using the first development-passing candidate; missing or timed-out candidates fail.',
       'aggregation':'All trials and paired jointly successful trials; raw task-family rows; no significance/generalization claim.',
       'tasks':tasklist,'sources':source_receipts,'scope':'Warm preinstalled numerical robotics programming, including synthetic PyBullet IK. No installation/discovery/physical task benchmark.',
       'pricing_usd_per_million_tokens':{'input':.4,'cached_input':.1,'output':1.6},'pricing_source':'https://developers.openai.com/api/docs/models/gpt-4.1-mini',
       'planned_trial_count':18,'test_traffic_opt_out':True}
+    if frozen:assert plan==frozen,'Source or cohort differs from the frozen plan; use its matching checkout'
     target=out/'plan.json'
     if target.exists():assert json.loads(target.read_text())==plan,'Never overwrite a different frozen plan'
-    else:target.write_text(json.dumps(plan,indent=2)+'\n',encoding='utf-8')
-    (out/'plan.sha256').write_text(sha(target.read_bytes())+'\n')
+    else:target.write_bytes((json.dumps(plan,indent=2)+'\n').encode())
+    (out/'plan.sha256').write_bytes((sha(target.read_bytes())+'\n').encode())
     (out/'source-receipts.json').write_text(json.dumps(source_receipts,indent=2)+'\n')
     with tarfile.open(out/'executor.tar.gz','w:gz') as archive:archive.add(stage,arcname='.')
     print(json.dumps({'plan_sha256':sha(target.read_bytes()),'source_files':len(jobs),'planned_trials':18,'archive_bytes':(out/'executor.tar.gz').stat().st_size}))
