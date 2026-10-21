@@ -65,7 +65,7 @@ def main():
       'pricing_usd_per_million_tokens':{'input':.4,'cached_input':.1,'output':1.6},'pricing_source':'https://developers.openai.com/api/docs/models/gpt-4.1-mini',
       'planned_trial_count':18,'test_traffic_opt_out':True}
     if frozen:
-        for key in ('tasks','sources','source_hub_commit','planned_trial_count'):
+        for key in ('tasks','sources','source_hub_commit'):
             assert plan[key]==frozen[key],'Source or cohort differs from the frozen plan: '+key
         plan=frozen
     target=out/'plan.json'
@@ -74,5 +74,5 @@ def main():
     (out/'plan.sha256').write_bytes((sha(target.read_bytes())+'\n').encode())
     (out/'source-receipts.json').write_text(json.dumps(source_receipts,indent=2)+'\n')
     with tarfile.open(out/'executor.tar.gz','w:gz') as archive:archive.add(stage,arcname='.')
-    print(json.dumps({'plan_sha256':sha(target.read_bytes()),'source_files':len(jobs),'planned_trials':18,'archive_bytes':(out/'executor.tar.gz').stat().st_size}))
+    print(json.dumps({'plan_sha256':sha(target.read_bytes()),'source_files':len(jobs),'planned_trials':plan['planned_trial_count'],'archive_bytes':(out/'executor.tar.gz').stat().st_size}))
 if __name__=='__main__':main()

@@ -2,12 +2,12 @@
   "version": "1",
   "model": "gpt-6-luna",
   "temperature": null,
-  "repetitions": 3,
+  "repetitions": 5,
   "arms": [
     "baseline",
     "hub"
   ],
-  "order_seed": 20261022,
+  "order_seed": 2026102202,
   "max_turns": 8,
   "max_execution_attempts": 5,
   "max_output_tokens": 8000,
@@ -1025,16 +1025,23 @@
   "pricing_usd_per_million_tokens": {
     "input": 0.1,
     "cached_input": 0.01,
-    "output": 0.5
+    "output": 0.5,
+    "cache_write": 0.125
   },
   "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
-  "planned_trial_count": 18,
+  "planned_trial_count": 30,
   "test_traffic_opt_out": true,
-  "cohort": "luna-guided",
-  "workflow_instructions": {
-    "baseline": "Workflow for this run: first inspect the provided pinned upstream entry with read_file, then integrate or adapt the code and test your solve(task).",
-    "hub": "Workflow for this run: first call hub_lookup for the task. If it returns a matching supported recipe, use its experiment_local_preparation invocation to reuse that exact adapter in solve(task); otherwise inspect upstream and implement the task. Test the result; never infer success from a catalog match."
-  },
   "reasoning_effort": "medium",
-  "design_note": "Current-model repeat; both cohorts fixed before any scored calls. Optional selection and guided reuse reported separately. No outcome-based reruns. Setup excluded equally. 8000 output tokens per request includes reasoning."
+  "cohort": "luna-required-reuse",
+  "design_note": "User clarified that productivity under required reuse is the target. This separate comparison was frozen before its scored calls. The optional-choice study is ancillary and is not pooled into productivity results. No outcome-based reruns. Matching recipe identifiers are assigned; live retrieval and its model tokens/time count. Dependency installation excluded equally.",
+  "forced_reuse": true,
+  "recipe_queries": {
+    "astar": "pythonrobotics astar planner",
+    "trajectory": "ruckig offline trajectory",
+    "bullet_ik": "pybullet ik"
+  },
+  "workflow_instructions": {
+    "baseline": "Implement and test solve(task) directly using the supplied upstream code and libraries. You may inspect sources or write your own implementation. Hub adapters are not available in this condition.",
+    "hub": "This condition measures mandatory reuse. First use load_recipe to obtain the exact assigned recipe. Your solve(task) MUST call its experiment_local_preparation run_recipe invocation to compute the outputs; adapt the inputs or outputs if needed. Do not rewrite the underlying algorithm. Test your function. Execution traces independently check that the actual adapter was called."
+  }
 }

@@ -52,15 +52,15 @@ def main():
         for i,(task,values) in enumerate(tasks.items()):
             for j,arm in enumerate(plan['arms']):
                 total=values[arm][metric];value=total/scale/(values[arm]['trials'] if metric!='successful_trials' else 1)
-                hub_label='Guided Hub' if plan.get('workflow_instructions') else 'Hub available'
+                hub_label='Required Hub reuse' if plan.get('forced_reuse') else ('Guided Hub' if plan.get('workflow_instructions') else 'Hub available')
                 ax.bar(i+(j-.5)*.32,value,width=.3,color=colors[j],label='Direct upstream' if j==0 and i==0 else (hub_label if i==0 else None))
                 ax.text(i+(j-.5)*.32,value,str(round(value,1)) if metric!='successful_trials' else str(int(value)),ha='center',va='bottom',fontsize=9)
         ax.set_xticks(range(len(tasks)),[names[t].replace(' ','\n',1) for t in tasks],fontsize=9)
         ax.set_title(title,fontsize=11);ax.spines[['right','top']].set_visible(False);ax.margins(y=.18)
-        if metric=='successful_trials':ax.set_ylim(0,3.8);ax.set_yticks([0,1,2,3])
+        if metric=='successful_trials':ax.set_ylim(0,plan['repetitions']+.8);ax.set_yticks(range(plan['repetitions']+1))
     axes[0].legend(frameon=False,fontsize=9)
     fig.suptitle('Robot Skill Hub: paired agent reuse pilot',fontsize=15)
-    fig.text(.5,.015,'3 tasks × 3 repetitions × 2 conditions | '+plan['model']+' | preinstalled environment | all trials retained',ha='center',fontsize=9)
+    fig.text(.5,.015,f"3 tasks × {plan['repetitions']} repetitions × 2 conditions | "+plan['model']+' | preinstalled environment | all trials retained',ha='center',fontsize=9)
     fig.tight_layout(rect=[0,.08,1,.93]);fig.savefig(out/'pilot-results.png',dpi=160);fig.savefig(out/'pilot-results.svg');plt.close(fig)
     svg=out/'pilot-results.svg';svg.write_bytes(('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n').encode())
     print(json.dumps(summary))

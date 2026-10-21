@@ -9,7 +9,7 @@ def main():
     for cohort in cohorts:
         root=args.evidence/cohort
         plan=json.loads((root/'plan.json').read_text());summary=json.loads((root/'summary.json').read_text());rows=json.loads((root/'results.json').read_text())
-        assert len(rows)==plan['planned_trial_count']==18
+        assert len(rows)==plan['planned_trial_count']
         assert hashlib.sha256((root/'plan.json').read_bytes()).hexdigest()==summary['plan_sha256']==(root/'plan.sha256').read_text().strip()
         manifest=json.loads((root/'trace-manifest.json').read_text())
         assert hashlib.sha256((root/'traces.zip').read_bytes()).hexdigest()==manifest['archive_sha256']
@@ -27,6 +27,9 @@ def main():
                 assert r['success']==(passed==r['held_out_total'])
                 assert all(t['model']==plan['model'] for t in trace),'Unexpected model substitution'
                 assert not r['infrastructure_error']
+                if plan.get('forced_reuse') and r['arm']=='hub' and r['success']:
+                    skill=next(t['skill_id'] for t in plan['tasks'] if t['id']==r['task'])
+                    assert all(skill in x.get('recipe_calls',[]) for x in held['runs'])
             for arm in ('baseline','hub'):
                 assert summary['all_trials'][arm]==aggregate([r for r in rows if r['arm']==arm])
         total+=len(rows)

@@ -24,13 +24,14 @@ TOOLS=[tool('read_file','Read a pinned source file or provided scene. Page with 
        tool('test_solution','Execute complete Python source defining solve(task) on the visible development input and independently check output. Source replaces the previous candidate.',
             {'code':{'type':'string'}})]
 HUB=tool('hub_lookup','Find a reusable Robot Skill Hub execution recipe. Returns the public first-response record, evidence, preparation, and a warm experiment-only adapter invocation if a matching recipe is installed.',{'query':{'type':'string'}})
+LOAD=tool('load_recipe','Retrieve the exact Robot Skill Hub recipe assigned to this task, its contract and the prepared adapter invocation. Then call that adapter from solve(task).',{})
 
 def request(url,data=None,headers=None,timeout=120):
     req=urllib.request.Request(url,data=None if data is None else json.dumps(data).encode(),headers=headers or {})
     with urllib.request.urlopen(req,timeout=timeout) as r:return json.load(r)
 
-def execute(endpoint,task,arm,code,cases):
-    return request(endpoint,{'kind':task['id'],'arm':arm,'code':code,'cases':cases},{'Content-Type':'application/json'},timeout=180)
+def execute(endpoint,task,arm,code,cases,require_recipe=None):
+    return request(endpoint,{'kind':task['id'],'arm':arm,'code':code,'cases':cases,'require_recipe':require_recipe},{'Content-Type':'application/json'},timeout=180)
 
 def lookup(plan,query):
     url='https://api.superfastrobotics.com/v1/start?'+urllib.parse.urlencode({'q':query,'limit':1,'hub_commit':plan['source_hub_commit']})
@@ -53,7 +54,9 @@ def trial(plan,task,arm,repeat,out,key,endpoint,resume_pending=False):
     prompt=task['request']+'\nPinned upstream entry: '+task['source_path']+'\nInput schema: '+json.dumps(task['input_schema'])+'\nOutput schema: '+json.dumps(task['output_schema'])+'\nDevelopment input: '+json.dumps(task['development'])
     instruction=plan.get('workflow_instructions',{}).get(arm,'')
     messages=[{'role':'system','content':SYSTEM+ ('\n'+instruction if instruction else '')},{'role':'user','content':prompt}]
-    tools=TOOLS+([HUB] if arm=='hub' else [])
+    forced=bool(plan.get('forced_reuse')) and arm=='hub'
+    required_recipe=task['skill_id'] if forced else None
+    tools=TOOLS+([LOAD if forced else HUB] if arm=='hub' else [])
     trace=[];usage={'input_tokens':0,'cached_input_tokens':0,'output_tokens':0,'total_tokens':0}
     attempts=0;candidate=None;passed=False;hub_calls=0;call_count=0;tool_calls=0;infrastructure_error=None;agent_failure=None
     elapsed_offset=0;first_turn=0;recovery=None
@@ -79,6 +82,7 @@ def trial(plan,task,arm,repeat,out,key,endpoint,resume_pending=False):
             if elapsed_offset+time.perf_counter()-start>plan['wall_clock_limit_s']:break
             payload={'model':plan['model'],'input':messages,'tools':tools,
                      'max_output_tokens':plan['max_output_tokens'],'store':False,'parallel_tool_calls':False}
+            if forced and turn==0:payload['tool_choice']={'type':'function','name':'load_recipe'}
             if plan.get('temperature') is not None:payload['temperature']=plan['temperature']
             if plan.get('reasoning_effort'):
                 payload['reasoning']={'effort':plan['reasoning_effort']}
@@ -111,9 +115,13 @@ def trial(plan,task,arm,repeat,out,key,endpoint,resume_pending=False):
                 elif name=='hub_lookup' and arm=='hub':
                     hub_calls+=1
                     result=lookup(plan,args['query'])
+                elif name=='load_recipe' and forced:
+                    hub_calls+=1
+                    result=lookup(plan,plan['recipe_queries'][task['id']])
+                    assert (result.get('experiment_local_preparation') or {}).get('skill_id')==required_recipe,'Assigned recipe lookup mismatch'
                 elif name=='test_solution':
                     attempts+=1;candidate=args['code'];(folder/f'candidate-{attempts}.py').write_text(candidate,encoding='utf-8')
-                    execution=execute(endpoint,task,arm,candidate,[task['development']])
+                    execution=execute(endpoint,task,arm,candidate,[task['development']],required_recipe)
                     (folder/f'execution-{attempts}.json').write_text(json.dumps(execution,indent=2)+'\n',encoding='utf-8')
                     run=execution['runs'][0];result={'grade':run['grade'],'exit_code':run['exit_code'],'stderr':run['stderr']}
                     passed=run['grade']['passed']
@@ -128,11 +136,13 @@ def trial(plan,task,arm,repeat,out,key,endpoint,resume_pending=False):
     evaluation_start=time.perf_counter()
     held=None
     if passed and candidate is not None:
-        try:held=execute(endpoint,task,arm,candidate,task['held_out'])
+        try:held=execute(endpoint,task,arm,candidate,task['held_out'],required_recipe)
         except Exception as exc:infrastructure_error='Held-out execution: '+type(exc).__name__
     (folder/'held-out.json').write_text(json.dumps(held,indent=2)+'\n',encoding='utf-8')
     pricing=plan['pricing_usd_per_million_tokens'];cached=usage['cached_input_tokens']
     cost=((usage['input_tokens']-cached)*pricing['input']+cached*pricing['cached_input']+usage['output_tokens']*pricing['output'])/1e6
+    cache_writes=sum(t['usage'].get('input_tokens_details',{}).get('cache_write_tokens',0) for t in trace)
+    cost+=cache_writes*(pricing.get('cache_write',pricing['input'])-pricing['input'])/1e6
     result={'id':ident,'task':task['id'],'arm':arm,'repeat':repeat,'started_at':started,'model':plan['model'],
       'development_passed':passed,'held_out_passed':sum(r['grade']['passed'] for r in held['runs']) if held else 0,
       'held_out_total':len(task['held_out']),'success':bool(held) and all(r['grade']['passed'] for r in held['runs']),

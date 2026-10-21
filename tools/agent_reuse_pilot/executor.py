@@ -1,5 +1,5 @@
 """Loopback-only disposable-host executor. No API keys or shell input."""
-import hashlib,json,pathlib,subprocess,tempfile,time,uuid
+import hashlib,json,os,pathlib,subprocess,tempfile,time,uuid
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 ROOT=pathlib.Path(__file__).resolve().parent
 IMAGE='rsh-reuse-pilot:v1'
@@ -23,10 +23,11 @@ def container(code,task,arm,judge=False):
         start=time.perf_counter()
         try:
             proc=subprocess.run(cmd,input=json.dumps(task),capture_output=True,text=True,timeout=35)
-            result=None
+            result=None;recipe_calls=[]
             for line in proc.stdout.splitlines():
                 if line.startswith('RSH_RESULT='):result=json.loads(line[len('RSH_RESULT='):])
-            return {'exit_code':proc.returncode,'result':result,'stderr':proc.stderr[-3000:],'elapsed_s':time.perf_counter()-start}
+                if line.startswith('RSH_REUSE='):recipe_calls=json.loads(line[len('RSH_REUSE='):])
+            return {'exit_code':proc.returncode,'result':result,'recipe_calls':recipe_calls,'stderr':proc.stderr[-3000:],'elapsed_s':time.perf_counter()-start}
         except subprocess.TimeoutExpired:return {'exit_code':124,'result':None,'stderr':'Execution timeout','elapsed_s':time.perf_counter()-start}
         finally:subprocess.run(['docker','rm','-f',name],capture_output=True,timeout=10)
 
@@ -45,9 +46,11 @@ class Handler(BaseHTTPRequestHandler):
                     verdict=container('',{'kind':req['kind'],'task':task,'output':run['result']},'baseline',True)
                     run['grade']=verdict['result'] or {'passed':False,'error':'Judge process failed: '+verdict['stderr']}
                 else:run['grade']={'passed':False,'error':run['stderr']}
+                if req.get('require_recipe') and req['require_recipe'] not in run.get('recipe_calls',[]):
+                    run['grade']={'passed':False,'error':'This condition requires calling the provided Hub adapter, not reimplementing it.','numerical_grade':run['grade']}
                 rows.append(run)
             body=json.dumps({'runs':rows}).encode();self.send_response(200)
         except Exception as exc:body=json.dumps({'error':type(exc).__name__+': '+str(exc)[:300]}).encode();self.send_response(400)
         self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
 
-if __name__=='__main__':ThreadingHTTPServer(('127.0.0.1',8769),Handler).serve_forever()
+if __name__=='__main__':ThreadingHTTPServer(('127.0.0.1',int(os.environ.get('RSH_EXECUTOR_PORT','8769'))),Handler).serve_forever()
