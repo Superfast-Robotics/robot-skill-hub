@@ -39,3 +39,7 @@ npx skills add https://hub.superfastrobotics.com --skill robot-trajectory
 Prepared adapters distinguish numerical checks, simulation and real interfaces. A catalog match does not establish robot compatibility or hardware success. Follow exact pins, license and evidence. Public findings remain contributor-reported data; sharing uses the project's existing explicit scope.
 
 This static discovery card uses no compute, analytics script, cookie or background API request. API calls support `DNT: 1` or `X-RSH-Telemetry: off`.
+
+## Agent reuse pilot
+
+[Read the 54-trial report, statistics and execution traces](https://huggingface.co/datasets/Superfast-BS/robot-skill-hub-agent-reuse-pilot). The report includes successful reuse, failures and increased token costs; it does not claim general token savings or physical-robot performance.
