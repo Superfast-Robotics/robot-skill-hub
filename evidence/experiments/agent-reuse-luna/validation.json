@@ -1,0 +1,22 @@
+{
+  "python_suite": {
+    "command": "python -m unittest discover -s tests/python",
+    "tests": 408,
+    "skipped": 4,
+    "result": "passed",
+    "scope": "Run before adding required-reuse enforcement; targeted tests and real executor preflight were then repeated."
+  },
+  "required_reuse_preflight": {
+    "valid_cases": 12,
+    "fabricated_success_rejected": 3,
+    "numerically_correct_nonreuse_rejected": 3
+  },
+  "trace_verification": {
+    "trials": 48,
+    "cohorts": 2,
+    "primary_trials": 30,
+    "usage_and_judgments_match": true
+  },
+  "scored_reruns": 0,
+  "infrastructure_errors": 0
+}

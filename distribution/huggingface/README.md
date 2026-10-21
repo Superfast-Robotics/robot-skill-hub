@@ -39,3 +39,7 @@ npx skills add https://hub.superfastrobotics.com --skill robot-trajectory
 Prepared adapters distinguish numerical checks, simulation and real interfaces. A catalog match does not establish robot compatibility or hardware success. Follow exact pins, license and evidence. Public findings remain contributor-reported data; sharing uses the project's existing explicit scope.
 
 This static discovery card uses no compute, analytics script, cookie or background API request. API calls support `DNT: 1` or `X-RSH-Telemetry: off`.
+
+## Robot coding reuse experiment
+
+[Read the short GPT-6 Luna article and all 30 productivity trials](https://huggingface.co/datasets/Superfast-BS/robot-skill-hub-luna-reuse). Direct implementation versus required skill reuse, with measured time, success, retries and total tokens.
