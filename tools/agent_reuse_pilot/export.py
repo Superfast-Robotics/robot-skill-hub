@@ -17,7 +17,7 @@ def main():
         for folder in sorted((args.work/'trials').iterdir()):
             if not folder.is_dir():continue
             for f in sorted(folder.iterdir()):
-                if f.name not in ('trace.json','held-out.json','result.json') and not (f.name.startswith(('candidate-','execution-')) and f.suffix in ('.py','.json')):continue
+                if f.name not in ('trace.json','held-out.json','result.json','infrastructure-interruption.json') and not (f.name.startswith(('candidate-','execution-')) and f.suffix in ('.py','.json')):continue
                 raw=f.read_bytes()
                 if f.suffix=='.json':raw=(json.dumps(scrub(json.loads(raw)),indent=2)+'\n').encode()
                 name=folder.name+'/'+f.name;z.writestr(name,raw)

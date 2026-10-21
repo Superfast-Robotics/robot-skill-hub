@@ -1,0 +1,1039 @@
+{
+  "version": "1",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "temperature": 0.2,
+  "repetitions": 3,
+  "arms": [
+    "baseline",
+    "hub"
+  ],
+  "order_seed": 20261021,
+  "max_turns": 8,
+  "max_execution_attempts": 5,
+  "max_output_tokens": 3500,
+  "max_input_tokens_per_request": 60000,
+  "wall_clock_limit_s": 600,
+  "source_hub_commit": "f97266a5cdd2c600cd376397a54892f08290df20",
+  "primary": "All three held-out cases pass using the first development-passing candidate; missing or timed-out candidates fail.",
+  "aggregation": "All trials and paired jointly successful trials; raw task-family rows; no significance/generalization claim.",
+  "tasks": [
+    {
+      "id": "astar",
+      "skill_id": "pythonrobotics-astar-planner",
+      "request": "Write a reusable solve(task) returning path_xy and length_m for a circular robot in a 2D map (metres). Path must run start to goal, remain strictly inside bounds, and every continuous segment must clear all point obstacles and the integer-sampled boundary by robot_radius. No shortest-path optimality claim is required. Use available pinned upstream code or implement the solver. Avoid plots.",
+      "source_path": "/sources/pythonrobotics/PathPlanning/AStar/a_star.py",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "start",
+          "goal",
+          "bounds",
+          "obstacles",
+          "robot_radius"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 39
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "x-order": [
+              "x",
+              "y"
+            ],
+            "description": "start; units=m; frame=planar_map_xy; component order=x,y"
+          },
+          "goal": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 39
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "x-order": [
+              "x",
+              "y"
+            ],
+            "description": "goal; units=m; frame=planar_map_xy; component order=x,y"
+          },
+          "bounds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 40
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "description": "bounds; units=m; frame=planar_map_xy"
+          },
+          "obstacles": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 200,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 40
+              }
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "x-order": [
+              "x",
+              "y"
+            ],
+            "description": "obstacles; units=m; frame=planar_map_xy; component order=x,y"
+          },
+          "robot_radius": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 0.6,
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "description": "robot_radius; units=m; frame=planar_map_xy"
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": [
+          "path_xy",
+          "length_m"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path_xy": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2048,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number",
+                "minimum": -100.0,
+                "maximum": 100.0
+              }
+            },
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "x-order": [
+              "x",
+              "y"
+            ],
+            "description": "path_xy; units=m; frame=planar_map_xy; component order=x,y"
+          },
+          "length_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000,
+            "x-unit": "m",
+            "x-frame": "planar_map_xy",
+            "description": "length_m; units=m; frame=planar_map_xy"
+          }
+        }
+      },
+      "development": {
+        "start": [
+          3,
+          3
+        ],
+        "goal": [
+          17,
+          16
+        ],
+        "bounds": [
+          0,
+          20
+        ],
+        "obstacles": [
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "robot_radius": 0.3
+      },
+      "held_out": [
+        {
+          "start": [
+            17,
+            3
+          ],
+          "goal": [
+            3,
+            17
+          ],
+          "bounds": [
+            0,
+            20
+          ],
+          "obstacles": [
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              4
+            ],
+            [
+              11,
+              5
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              7
+            ],
+            [
+              11,
+              8
+            ],
+            [
+              11,
+              9
+            ],
+            [
+              11,
+              10
+            ],
+            [
+              11,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "robot_radius": 0.3
+        },
+        {
+          "start": [
+            4,
+            5
+          ],
+          "goal": [
+            16,
+            9
+          ],
+          "bounds": [
+            0,
+            20
+          ],
+          "obstacles": [
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              10,
+              13
+            ]
+          ],
+          "robot_radius": 0.3
+        },
+        {
+          "start": [
+            3,
+            16
+          ],
+          "goal": [
+            17,
+            3
+          ],
+          "bounds": [
+            0,
+            20
+          ],
+          "obstacles": [
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              8,
+              10
+            ]
+          ],
+          "robot_radius": 0.3
+        }
+      ]
+    },
+    {
+      "id": "trajectory",
+      "skill_id": "ruckig-offline-trajectory",
+      "request": "Write solve(task) returning time_s, position, velocity, acceleration, coordinate_type, duration_s. Generate an offline jerk-limited trajectory for independent joint axes using the supplied boundary states and limits. Include t=0 and exact completion time, sample spacing <= dt, all position/velocity/acceleration endpoints within 1e-6, and respect velocity, acceleration and sampled jerk bounds. Derivatives must be numerically consistent. Duration <=30 s, at most 3000 samples. Ruckig is available. No physical robot.",
+      "source_path": "/sources/ruckig/examples/02_position_offline.py",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "current_position",
+          "current_velocity",
+          "current_acceleration",
+          "target_position",
+          "target_velocity",
+          "target_acceleration",
+          "max_velocity",
+          "max_acceleration",
+          "max_jerk",
+          "dt",
+          "coordinate_type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "current_position": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m_or_rad",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "current_position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+          },
+          "current_velocity": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s_or_rad/s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "current_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+          },
+          "current_acceleration": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "current_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+          },
+          "target_position": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m_or_rad",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "target_position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+          },
+          "target_velocity": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s_or_rad/s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "target_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+          },
+          "target_acceleration": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "target_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+          },
+          "max_velocity": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s_or_rad/s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "max_velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+          },
+          "max_acceleration": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "max_acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+          },
+          "max_jerk": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "coordinate_type:m/s^3_or_rad/s^3",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "max_jerk; units=coordinate_type:m/s^3_or_rad/s^3; frame=independent_axes_in_input_array_order"
+          },
+          "dt": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 0.05,
+            "x-unit": "s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "dt; units=s; frame=independent_axes_in_input_array_order"
+          },
+          "coordinate_type": {
+            "type": "string",
+            "enum": [
+              "revolute_rad",
+              "linear_m"
+            ],
+            "x-unit": "dimensionless",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "coordinate_type; units=dimensionless; frame=independent_axes_in_input_array_order"
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": [
+          "time_s",
+          "position",
+          "velocity",
+          "acceleration",
+          "coordinate_type",
+          "duration_s"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "time_s": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 150
+            },
+            "x-unit": "s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "time_s; units=s; frame=independent_axes_in_input_array_order"
+          },
+          "position": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              }
+            },
+            "x-unit": "coordinate_type:m_or_rad",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "position; units=coordinate_type:m_or_rad; frame=independent_axes_in_input_array_order"
+          },
+          "velocity": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -1000,
+                "maximum": 1000
+              }
+            },
+            "x-unit": "coordinate_type:m/s_or_rad/s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "velocity; units=coordinate_type:m/s_or_rad/s; frame=independent_axes_in_input_array_order"
+          },
+          "acceleration": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3000,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "number",
+                "minimum": -1000,
+                "maximum": 1000
+              }
+            },
+            "x-unit": "coordinate_type:m/s^2_or_rad/s^2",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "acceleration; units=coordinate_type:m/s^2_or_rad/s^2; frame=independent_axes_in_input_array_order"
+          },
+          "coordinate_type": {
+            "type": "string",
+            "enum": [
+              "revolute_rad",
+              "linear_m"
+            ],
+            "x-unit": "dimensionless",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "coordinate_type; units=dimensionless; frame=independent_axes_in_input_array_order"
+          },
+          "duration_s": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 150,
+            "x-unit": "s",
+            "x-frame": "independent_axes_in_input_array_order",
+            "description": "duration_s; units=s; frame=independent_axes_in_input_array_order"
+          }
+        }
+      },
+      "development": {
+        "current_position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "current_velocity": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "current_acceleration": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_position": [
+          0.8,
+          -0.6,
+          0.35
+        ],
+        "target_velocity": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "target_acceleration": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_velocity": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "max_acceleration": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "max_jerk": [
+          4.0,
+          4.0,
+          4.0
+        ],
+        "dt": 0.02,
+        "coordinate_type": "revolute_rad"
+      },
+      "held_out": [
+        {
+          "current_position": [
+            0.0,
+            0.0
+          ],
+          "current_velocity": [
+            0.0,
+            0.0
+          ],
+          "current_acceleration": [
+            0.0,
+            0.0
+          ],
+          "target_position": [
+            -0.7,
+            0.4
+          ],
+          "target_velocity": [
+            0.0,
+            0.0
+          ],
+          "target_acceleration": [
+            0.0,
+            0.0
+          ],
+          "max_velocity": [
+            1.0,
+            1.0
+          ],
+          "max_acceleration": [
+            2.0,
+            2.0
+          ],
+          "max_jerk": [
+            4.0,
+            4.0
+          ],
+          "dt": 0.02,
+          "coordinate_type": "revolute_rad"
+        },
+        {
+          "current_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "current_velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "current_acceleration": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "target_position": [
+            1.1,
+            -0.3,
+            0.6
+          ],
+          "target_velocity": [
+            0.1,
+            -0.1,
+            0
+          ],
+          "target_acceleration": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_velocity": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "max_acceleration": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "max_jerk": [
+            4.0,
+            4.0,
+            4.0
+          ],
+          "dt": 0.02,
+          "coordinate_type": "revolute_rad"
+        },
+        {
+          "current_position": [
+            0.0
+          ],
+          "current_velocity": [
+            0.0
+          ],
+          "current_acceleration": [
+            0.0
+          ],
+          "target_position": [
+            -0.25
+          ],
+          "target_velocity": [
+            0.0
+          ],
+          "target_acceleration": [
+            0.0
+          ],
+          "max_velocity": [
+            1.0
+          ],
+          "max_acceleration": [
+            2.0
+          ],
+          "max_jerk": [
+            4.0
+          ],
+          "dt": 0.02,
+          "coordinate_type": "revolute_rad"
+        }
+      ]
+    },
+    {
+      "id": "bullet_ik",
+      "skill_id": "pybullet-ik-skill",
+      "request": "Write solve(task) for headless PyBullet inverse kinematics on the provided synthetic seven-axis arm. Use scene.create_arm(pybullet) from /public/scene.py to construct it in DIRECT mode; initialize all seven joints from task. Solve link index 6 position for target_xyz (metres, world frame). Return joint_angles_rad, end_effector_xyz_m and position_error_m. A separate fresh simulator reconstructs the arm from your joint angles; target error must be <0.002 m. Do not use a different robot model. No orientation, collision-avoidance or physical-robot claim.",
+      "source_path": "/sources/pybullet/examples/pybullet/examples/inverse_kinematics.py",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "joint_angles",
+          "target_xyz"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "joint_angles": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -3,
+              "maximum": 3
+            },
+            "x-unit": "rad",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "description": "joint_angles; units=rad; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+          },
+          "target_xyz": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -2,
+              "maximum": 2
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ],
+            "description": "target_xyz; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin; component order=x,y,z"
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": [
+          "joint_angles_rad",
+          "end_effector_xyz_m",
+          "position_error_m"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "joint_angles_rad": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "x-unit": "rad",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "description": "joint_angles_rad; units=rad; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+          },
+          "end_effector_xyz_m": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -10,
+              "maximum": 10
+            },
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "x-order": [
+              "x",
+              "y",
+              "z"
+            ],
+            "description": "end_effector_xyz_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin; component order=x,y,z"
+          },
+          "position_error_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "x-unit": "m",
+            "x-frame": "right_handed_world_xyz; +z_up; procedural_arm_base=world_origin",
+            "description": "position_error_m; units=m; frame=right_handed_world_xyz; +z_up; procedural_arm_base=world_origin"
+          }
+        }
+      },
+      "development": {
+        "joint_angles": [
+          0.1,
+          -0.3,
+          0.4,
+          0.2,
+          -0.2,
+          0.1,
+          0.1
+        ],
+        "target_xyz": [
+          0.32,
+          0.15,
+          1.08
+        ]
+      },
+      "held_out": [
+        {
+          "joint_angles": [
+            0.1,
+            -0.3,
+            0.4,
+            0.2,
+            -0.2,
+            0.1,
+            0.1
+          ],
+          "target_xyz": [
+            0.28,
+            -0.16,
+            1.03
+          ]
+        },
+        {
+          "joint_angles": [
+            0.1,
+            -0.3,
+            0.4,
+            0.2,
+            -0.2,
+            0.1,
+            0.1
+          ],
+          "target_xyz": [
+            0.38,
+            0.12,
+            0.98
+          ]
+        },
+        {
+          "joint_angles": [
+            0.1,
+            -0.3,
+            0.4,
+            0.2,
+            -0.2,
+            0.1,
+            0.1
+          ],
+          "target_xyz": [
+            -0.25,
+            0.2,
+            1.05
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "skill_id": "pythonrobotics-astar-planner",
+      "upstream": "https://github.com/AtsushiSakai/PythonRobotics",
+      "commit": "cdd0cc888802b584c2d654ca85e3c5460973487d",
+      "adapter_sha256": "ea67208ea9d768a5366220fc7aa10481dc708777d3bf888e2119b356fbfdf878"
+    },
+    {
+      "skill_id": "ruckig-offline-trajectory",
+      "upstream": "https://github.com/pantor/ruckig",
+      "commit": "a8db97a4e9c55e5160a3855f739fa3b270df8e4c",
+      "adapter_sha256": "889a206b6272c0987d3ad2d77ea70d5c6b706e4fea17f18af5b4c551f1916924"
+    },
+    {
+      "skill_id": "pybullet-ik-skill",
+      "upstream": "https://github.com/bulletphysics/bullet3",
+      "commit": "2c204c49e56ed15ec5fcfa71d199ab6d6570b3f5",
+      "adapter_sha256": "d9273c070ca7a20bc86f9c330378c522c708062614d6c111756e9d5b3b3498b5"
+    }
+  ],
+  "scope": "Warm preinstalled numerical robotics programming, including synthetic PyBullet IK. No installation/discovery/physical task benchmark.",
+  "pricing_usd_per_million_tokens": {
+    "input": 0.4,
+    "cached_input": 0.1,
+    "output": 1.6
+  },
+  "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+  "planned_trial_count": 18,
+  "test_traffic_opt_out": true,
+  "cohort": "guided41",
+  "workflow_instructions": {
+    "baseline": "Workflow for this run: first inspect the provided pinned upstream entry with read_file, then integrate or adapt the code and test your solve(task).",
+    "hub": "Workflow for this run: first call hub_lookup for the task. If it returns a matching supported recipe, use its experiment_local_preparation invocation to reuse that exact adapter in solve(task); otherwise inspect upstream and implement the task. Test the result; never infer success from a catalog match."
+  },
+  "follow_up_reason": "Optional-tool cohort was already underway and initially showed non-selection. This separately declared follow-up tests instructed reuse, not autonomous discovery. Original optional-tool results will remain published."
+}

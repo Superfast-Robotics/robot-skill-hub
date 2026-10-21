@@ -64,7 +64,10 @@ def main():
       'tasks':tasklist,'sources':source_receipts,'scope':'Warm preinstalled numerical robotics programming, including synthetic PyBullet IK. No installation/discovery/physical task benchmark.',
       'pricing_usd_per_million_tokens':{'input':.4,'cached_input':.1,'output':1.6},'pricing_source':'https://developers.openai.com/api/docs/models/gpt-4.1-mini',
       'planned_trial_count':18,'test_traffic_opt_out':True}
-    if frozen:assert plan==frozen,'Source or cohort differs from the frozen plan; use its matching checkout'
+    if frozen:
+        for key in ('tasks','sources','source_hub_commit','planned_trial_count'):
+            assert plan[key]==frozen[key],'Source or cohort differs from the frozen plan: '+key
+        plan=frozen
     target=out/'plan.json'
     if target.exists():assert json.loads(target.read_text())==plan,'Never overwrite a different frozen plan'
     else:target.write_bytes((json.dumps(plan,indent=2)+'\n').encode())
