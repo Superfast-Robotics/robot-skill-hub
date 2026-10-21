@@ -1,0 +1,41 @@
+{
+  "url": "https://huggingface.co/datasets/Superfast-BS/robot-skill-hub-luna-reuse",
+  "commit": "85620619115e93780f8e7d83f8d9716a3be237f4",
+  "anonymous_checks": [
+    {
+      "path": "README.md",
+      "sha256": "71a5d0d447968ce026c02fba6f5fc4b805687d2ba0d8dedac18e531f95f43187",
+      "anonymous_read": true
+    },
+    {
+      "path": "article.md",
+      "sha256": "0688ecf84cf8714fe3eec00e641127a147566c64a6ff66e7f93dc8ff866fc005",
+      "anonymous_read": true
+    },
+    {
+      "path": "optional/summary.json",
+      "sha256": "4518c02190da55aa5dceb057afc8d7b47a01900b4963115c2d1acf151364f1af",
+      "anonymous_read": true
+    },
+    {
+      "path": "required/summary.json",
+      "sha256": "cf046d691ee84bcc9f7629e9d602c46b901a3d034a57e9cb31d8e57ae63ed996",
+      "anonymous_read": true
+    },
+    {
+      "path": "optional/traces.zip",
+      "sha256": "d00cc98fad6790d64da319eb769d79f921fb40d1683fa6e86ccb08f6dfd86763",
+      "anonymous_read": true
+    },
+    {
+      "path": "required/traces.zip",
+      "sha256": "4f111f2e882127ee1bed4684471f75abfdb204157ce648c76ddf6effc0a7bfc4",
+      "anonymous_read": true
+    }
+  ],
+  "old_report_private": true,
+  "dedicated_blog_published": false,
+  "account_pro": false,
+  "paid_plan_changed": false,
+  "space_link": "https://huggingface.co/spaces/Superfast-BS/robot-skill-hub"
+}
