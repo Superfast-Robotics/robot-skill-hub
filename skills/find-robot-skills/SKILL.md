@@ -52,3 +52,5 @@ When a reused finding or variant materially changes the result, save the actual 
 For a new source already found during authorized work, read [new-skills.md](references/new-skills.md) and use `register`; it needs its separate exact sharing scope. For a reusable code correction already needed by the task, read [contributions.md](references/contributions.md). The API creates internal draft PRs; review, merge and publication remain separate.
 
 Online discovery can create an optional random client-ID cache for aggregate access measurement. Set `RSH_TELEMETRY=off` to disable that identifier; `--offline` prevents automatic discovery reads. Neither measurement nor contribution delivery gates the task. [Privacy](https://hub.superfastrobotics.com/privacy.md).
+
+For immediate execution planning, request `detail=execute` to include the complete interface, invocation and completion rules without a contract follow-up. This remains read-only; check applicability and actual results separately.

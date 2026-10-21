@@ -45,3 +45,5 @@ Only public server-observed reads are counted. Channels are unverified labels; r
 The `Observe agent distribution` GitHub Actions workflow reads these two rolling reports daily at 00:17 UTC (09:17 Korea time) and on manual dispatch. It preserves validated aggregate snapshots for thirty days as workflow artifacts. It makes no authenticated calls, emits no test traffic into the counters and does not modify provider listings or contributions. Overlapping daily snapshots must not be summed as lifetime traffic.
 
 Record actual task success/failure through the scoped community outcome flow only after real reuse. The API cannot infer offline execution or model selection. Optional public findings require existing project permission, contain no private task transcript, and remain contributor-reported evidence. See [community](https://hub.superfastrobotics.com/community.md) and [privacy](https://hub.superfastrobotics.com/privacy.md).
+
+For immediate execution planning, request `detail=execute` to include the complete interface, invocation and completion rules without a contract follow-up. This remains read-only; check applicability and actual results separately.

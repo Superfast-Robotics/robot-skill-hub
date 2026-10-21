@@ -57,7 +57,7 @@ def find(query, channel, runtime=None, task=False, fetch=read_json):
 def start(query, channel, runtime=None, task=False, fetch=read_json):
     if not isinstance(query, str) or not 1 <= len(query.strip()) <= 160:
         raise ValueError('Use 1 to 160 characters describing the current robotics task')
-    params = {'q': query, 'limit': 1, 'query_mode': 'task' if task else 'all_terms'}
+    params = {'q': query, 'limit': 1, 'detail': 'execute', 'query_mode': 'task' if task else 'all_terms'}
     if runtime:
         params['runtime'] = runtime
     result = fetch(API + '/v1/start?' + urllib.parse.urlencode(params), channel)

@@ -30,15 +30,29 @@ for (const id of ids) {
   for (const field of ['interface', 'invocation', 'completion', 'source', 'license', 'requirements', 'evidence'])
     assert.deepEqual(contract.value.record[field], full.value.selected.record[field], `${id}:${field}`);
   assert.ok(compact.bytes < full.bytes, String(id));
+  const execute = await read(API + '/v1/start?' + query + '&detail=execute');
+  assert.equal(execute.value.selected.contract_omitted, false);
+  for (const field of ['interface', 'completion', 'requirements', 'evidence'])
+    assert.deepEqual(execute.value.selected.record[field], full.value.selected.record[field]);
+  const invocation = structuredClone(execute.value.selected.record.invocation);
+  if (invocation.outputs?.schema_from) {
+    assert.equal(invocation.outputs.schema_from, '#/selected/record/interface/output_schema');
+    delete invocation.outputs.schema_from;
+    invocation.outputs.schema = execute.value.selected.record.interface.output_schema;
+  }
+  assert.deepEqual(invocation, full.value.selected.record.invocation);
+  assert.ok(execute.bytes < full.bytes, String(id));
   measurements.push({ id, hub_commit: full.value.hub_commit, full_bytes: full.bytes, compact_bytes: compact.bytes,
+    execute_bytes: execute.bytes,
     contract_bytes: contract.bytes, compact_plus_contract_bytes: compact.bytes + contract.bytes,
     first_response_reduction_pct: 100 * (1 - compact.bytes / full.bytes) });
 }
 const sum = (key: string) => measurements.reduce((n, row: any) => n + row[key], 0);
 const report = { schema_version: '1', measured_at: new Date().toISOString(), mode: 'live_api',
-  method: 'Exact-ID queries, all_terms, limit=1 in both modes. UTF-8 uncompressed HTTP body bytes, not tokens. Same pinned record and full evidence; full contract equality asserted.',
-  limits: 'No model trials or latency claim. Compact omits full recall bodies; reading applicable recall adds bytes. Contract read is required before execution unless already held at the same pins. Historical model experiment is unchanged.',
+  method: 'Exact-ID queries, all_terms, limit=1 in all modes. UTF-8 uncompressed HTTP body bytes, not tokens. Same pinned record and full evidence; interface and reconstructed invocation equality asserted.',
+  limits: 'No model trials or latency claim. Reading applicable recall adds bytes. Compact requires a contract read unless already held at the same pins; execute includes it in one call. Historical model experiment is unchanged.',
   measurements, totals: { full_bytes: sum('full_bytes'), compact_bytes: sum('compact_bytes'), contract_bytes: sum('contract_bytes'),
+    execute_bytes: sum('execute_bytes'), execute_response_reduction_pct: 100 * (1 - sum('execute_bytes') / sum('full_bytes')),
     first_response_reduction_pct: 100 * (1 - sum('compact_bytes') / sum('full_bytes')),
     compact_plus_contract_reduction_pct: 100 * (1 - sum('compact_plus_contract_bytes') / sum('full_bytes')) } };
 const output = resolve(option('--output', '.local/compact-agent-responses/payloads.json'));

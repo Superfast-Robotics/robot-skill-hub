@@ -2445,11 +2445,12 @@
               "type": "string",
               "enum": [
                 "compact",
+                "execute",
                 "full"
               ],
               "default": "compact"
             },
-            "description": "compact omits the full contract and recall bodies; follow selected.contract_url before execution. full restores the previous combined view."
+            "description": "compact: selection summary; follow contract_url before execution. execute: complete interface, invocation and completion checks in the same lightweight response. full: legacy combined view. Neither mode executes code."
           }
         ],
         "responses": {
@@ -2545,7 +2546,7 @@
             }
           }
         },
-        "description": "Read-only task entry. Default detail=compact returns one recipe candidate, source pins, requirements, complete evidence, recall summaries and pinned setup argv. selected.contract_omitted=true: read selected.contract_url (or MCP selected.contract_tool) before execution, and applicable recall details before reuse. detail=full includes the complete contract and recall with up to three candidates by default. Explicit limit=1..3 works in either mode. selected.preparation.catalog.url retains complete embedded code as a one-record catalog. Empty results keep selected=null; unknown recall means lookup failed. No execution or sharing.",
+        "description": "Read-only task entry. Default detail=compact returns one recipe candidate, source pins, requirements, complete evidence, recall summaries and pinned setup argv. selected.contract_omitted=true: read selected.contract_url (or MCP selected.contract_tool) before execution, and applicable recall details before reuse. detail=full includes the complete contract and recall with up to three candidates by default. Explicit limit=1..3 works in either mode. selected.preparation.catalog.url retains complete embedded code as a one-record catalog. Empty results keep selected=null; unknown recall means lookup failed. No execution or sharing. detail=execute includes the complete interface, invocation and completion checks immediately (contract_omitted=false). A duplicate invocation.outputs.schema is replaced only when byte-equivalent to interface.output_schema, with schema_from=#/selected/record/interface/output_schema. Source file lists stay in the catalog export. Default limit=1 in execute mode.",
         "operationId": "startRobotTask"
       }
     }

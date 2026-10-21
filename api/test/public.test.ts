@@ -137,6 +137,9 @@ test('compact discovery retains pins and failures; full mode and pinned contract
   assert.equal(findingsURL.searchParams.get('source_commit'), 'b'.repeat(40));
   assert.equal(findingsURL.searchParams.get('robot'), 'panda');
   assert.equal(new URL(r.selected.community.details_url).pathname, '/v1/community/items');
+  const execution: any = await (await s.request('/v1/start?q=pick&detail=execute'))!.json();
+  assert.equal(execution.detail, 'execute'); assert.equal(execution.limit, 1);
+  assert.equal(execution.selected.contract_omitted, false);
   const detail = new URL(r.selected.full_record_url);
   assert.deepEqual(JSON.parse(detail.searchParams.get('environment')!), { robot: 'panda' });
   const full: any = await (await s.request('/v1/start?q=pick&detail=full'))!.json();

@@ -73,7 +73,7 @@ async function digest(bytes: Uint8Array): Promise<string> {
 }
 
 export const MCP_TOOLS = [
-  { name: 'start_robot_task', description: 'Find an executable starting point for a robot task. Default compact response: one candidate, source pins, environment, evidence/recall summaries and setup argv. Read selected.contract_url before execution and applicable recall details before reuse. detail=full includes the complete contract and recall in one call. Supply only known filters. Read-only English lexical matching; no installation, execution or sharing.',
+  { name: 'start_robot_task', description: 'Find an executable starting point for a robot task. Default compact response: one candidate, source pins, environment, evidence/recall summaries and setup argv. Use detail=execute for the complete execution contract in this same lightweight response; otherwise read selected.contract_url before execution. Read applicable recall details before reuse. detail=full restores the legacy combined view. Supply only known filters. Read-only English lexical matching; no installation, execution or sharing.',
     inputSchema: { type: 'object', properties: {
       q: { type: 'string', minLength: 1, maxLength: 240 },
       query_mode: { type: 'string', enum: ['task', 'all_terms'], default: 'task' },
@@ -82,7 +82,7 @@ export const MCP_TOOLS = [
       observation: { type: 'string', maxLength: 80 }, os: { type: 'string', maxLength: 80 },
       python: { type: 'string', maxLength: 80 }, architecture: { type: 'string', maxLength: 80 },
       limit: { type: 'integer', minimum: 1, maximum: 3, default: 1 }, hub_commit: { type: 'string' },
-      detail: { type: 'string', enum: ['compact', 'full'], default: 'compact' }
+      detail: { type: 'string', enum: ['compact', 'execute', 'full'], default: 'compact' }
     }, required: ['q'], additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true } },
   { name: 'find_robot_skills', description: 'Use for broad robotics source/reference discovery or a small candidate-only list. For an executable starting point with prior fixes and setup argv, prefer start_robot_task. Use short task keywords, or query_mode=task with known runtime/robot filters for English sentences. Follow recovery suggestions after empty results. Results distinguish prepared recipes from upstream references; a match is not runtime verification.',
@@ -212,7 +212,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
   }
   async function startTask(env: PublicEnv, input: Row) {
     const { detail = 'compact', ...filters } = input;
-    if (!['compact', 'full'].includes(detail)) fail(400, 'invalid_detail', 'detail must be compact or full.');
+    if (!['compact', 'execute', 'full'].includes(detail)) fail(400, 'invalid_detail', 'detail must be compact, execute or full.');
     if (typeof input.q !== 'string' || !input.q.trim() || 'kind' in input || 'offset' in input
         || !Number.isInteger(Number(input.limit ?? 1)) || Number(input.limit ?? 1) < 1 || Number(input.limit ?? 1) > 3)
       fail(400, 'invalid_start', 'Provide q and known search filters, with limit=1..3. Start searches preparation recipes; use /v1/search for full-catalog discovery.');
@@ -248,7 +248,7 @@ export function createPublicHandler(fetcher: typeof fetch = fetch, now: () => nu
       scope: 'preparation_recipes_only; source_references_remain_searchable_at_/v1/search',
       next_action: selected ? 'check_selected_environment_then_run_plan_within_task_scope' : 'broaden_or_correct_query',
       execution_performed: false, sharing_performed: false };
-    return detail === 'full' ? { ...result, detail } : compactStart(result);
+    return detail === 'full' ? { ...result, detail } : compactStart(result, detail === 'execute');
   }
   async function describe(env: PublicEnv, refresh = false) {
     const index = refresh ? await snapshot(env) : cached?.value;
