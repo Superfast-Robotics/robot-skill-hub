@@ -1,7 +1,0 @@
-{
-  "trial": "astar-baseline-1",
-  "previous_classification": "JSONDecodeError: Unterminated string starting at: line 1 column 9 (char 8)",
-  "classification": "Model-generated tool arguments were truncated at the predeclared 3500 output-token limit. This is a failed agent trial, not an executor/API outage. No trial is retried; success, costs, tokens and elapsed time remain unchanged.",
-  "scoring_changed": false,
-  "original_trace_preserved": true
-}

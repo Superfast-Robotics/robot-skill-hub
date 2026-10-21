@@ -1,9 +1,0 @@
-{
-  "created_at": "2026-10-21T14:16:55.419087+00:00",
-  "terminated_at": "2026-10-21T14:55:27.501385+00:00",
-  "termination_status_confirmed": "terminated",
-  "hourly_usd": 1.29,
-  "estimated_instance_usd": 0.828496156712373,
-  "gpu_used": false,
-  "scope": "Own disposable A10 instance used only for isolated CPU execution; existing instances unchanged; not a billing invoice."
-}

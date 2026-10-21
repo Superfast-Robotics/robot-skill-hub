@@ -4,7 +4,9 @@ from summarize import aggregate
 def main():
     p=argparse.ArgumentParser();p.add_argument('--evidence',type=pathlib.Path,required=True);args=p.parse_args()
     total=0
-    for cohort in ('optional41','guided41','guided54'):
+    cohorts=sorted(p.name for p in args.evidence.iterdir() if p.is_dir() and (p/'plan.json').is_file())
+    assert cohorts,'No cohorts found'
+    for cohort in cohorts:
         root=args.evidence/cohort
         plan=json.loads((root/'plan.json').read_text());summary=json.loads((root/'summary.json').read_text());rows=json.loads((root/'results.json').read_text())
         assert len(rows)==plan['planned_trial_count']==18
@@ -22,10 +24,11 @@ def main():
                 held=json.loads(z.read(r['id']+'/held-out.json'))
                 passed=sum(x['grade']['passed'] for x in held['runs']) if held else 0
                 assert passed==r['held_out_passed']
-                assert r['success']==(passed==3)
+                assert r['success']==(passed==r['held_out_total'])
+                assert all(t['model']==plan['model'] for t in trace),'Unexpected model substitution'
                 assert not r['infrastructure_error']
             for arm in ('baseline','hub'):
                 assert summary['all_trials'][arm]==aggregate([r for r in rows if r['arm']==arm])
         total+=len(rows)
-    print(json.dumps({'verified_trials':total,'cohorts':3,'trace_usage_matches':True,'judgments_match':True,'archive_hashes_match':True}))
+    print(json.dumps({'verified_trials':total,'cohorts':len(cohorts),'trace_usage_matches':True,'judgments_match':True,'archive_hashes_match':True}))
 if __name__=='__main__':main()
