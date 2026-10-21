@@ -1,0 +1,5 @@
+FROM python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+RUN pip install --no-cache-dir numpy==1.26.4 scipy==1.13.1 matplotlib==3.9.4 ruckig==0.19.4 pybullet==3.2.7
+ENV MPLBACKEND=Agg MPLCONFIGDIR=/tmp/matplotlib OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1
+WORKDIR /tmp
+USER 65534:65534
