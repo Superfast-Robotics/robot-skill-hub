@@ -34,7 +34,7 @@ Actual Google index status remains unverified without authorized Search Console 
 
 ## Public MCP discovery
 
-The read-only MCP endpoint is `https://api.superfastrobotics.com/mcp`, using Streamable HTTP. It exposes `start_robot_task`, `find_robot_skills`, `inspect_robot_skill` and `get_hub_capabilities`. Start a task with candidates, one exact contract, prior fixes and preparation argv in a single call; use find for full-catalog discovery. No account is required for these discovery tools. Actual robot execution and contributions are separate operations.
+The read-only MCP endpoint is `https://api.superfastrobotics.com/mcp`, using Streamable HTTP. It exposes `start_robot_task`, `find_robot_skills`, `inspect_robot_skill` and `get_hub_capabilities`. Start with one compact candidate, pins, evidence, recall summaries and preparation argv. Follow selected.contract_url (or selected.contract_tool) before execution; detail=full returns the combined contract and recall. Use find for full-catalog discovery. No account is required for these discovery tools. Actual robot execution and contributions are separate operations.
 
 For MCP clients that accept a `mcpServers` object with HTTP transports:
 

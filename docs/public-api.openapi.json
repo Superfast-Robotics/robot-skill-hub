@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Robot Skill Hub API",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "description": "Pinned robotics discovery, immediate immutable community experience and a separate reviewed canonical contribution channel. Contributor reports never establish Hub runtime verification.",
     "license": {
       "name": "Apache-2.0",
@@ -266,10 +266,11 @@
             "schema": {
               "type": "string",
               "enum": [
-                "catalog"
+                "catalog",
+                "contract"
               ]
             },
-            "description": "Export one preparation recipe as a full schema_version=1 CLI catalog. Use hub_commit and record_version to bind it. Cannot combine with include or environment. Source references are rejected."
+            "description": "catalog exports a complete one-recipe CLI catalog. contract returns the complete execution interface, invocation, requirements, source, licenses, evidence and completion checks without embedded code or recall. Both preserve hub_commit and record_version pins."
           }
         ],
         "responses": {
@@ -334,7 +335,7 @@
             }
           }
         },
-        "description": "Follow a search result inspect_url for a pinned record plus bounded exact-source findings and community experience. Without include, the legacy record-only response is preserved. Optional lookup failure returns status=unknown, not empty success; caller must check applicability and contributor-reported trust before reuse. No installation, execution or authentication is required. A recipe record may include interface v1 with bounded schemas, units, frame and component annotations, preconditions and composition rules. A source inspection may additionally return prepared_adaptations as distinct source-derived executable records."
+        "description": "Follow a search result inspect_url for a pinned record plus bounded exact-source findings and community experience. Without include, the legacy record-only response is preserved. Optional lookup failure returns status=unknown, not empty success; caller must check applicability and contributor-reported trust before reuse. No installation, execution or authentication is required. A recipe record may include interface v1 with bounded schemas, units, frame and component annotations, preconditions and composition rules. A source inspection may additionally return prepared_adaptations as distinct source-derived executable records. format=contract reads only the pinned execution contract, omitting code and recall. Unknown generation/version fails instead of silently changing pins."
       }
     },
     "/v1/catalog": {
@@ -1087,7 +1088,7 @@
     "/mcp": {
       "post": {
         "summary": "Stateless read-only Model Context Protocol over Streamable HTTP",
-        "description": "Public tools start_robot_task, find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25. start_robot_task uses /v1/start semantics.",
+        "description": "Public tools start_robot_task, find_robot_skills, inspect_robot_skill and get_hub_capabilities. inspect_robot_skill accepts an optional explicit environment object (up to 16 documented finding environment keys with nonempty string values of at most 240 characters). Its response keeps the immutable record and adds a separate findings view: up to three exact-source/version observations, coverage and pagination, always data_only and needs_applicability_check. Optional recall failure returns findings.status=unknown with total=null and preserves the record; it never proves absence. Search does not query findings per result. No robot execution, installation or arbitrary URL fetching. Supported protocol versions 2025-03-26, 2025-06-18 and 2025-11-25. start_robot_task uses /v1/start semantics. inspect_robot_skill also accepts hub_commit and detail=contract for a pinned code-free execution contract without recall.",
         "security": [],
         "requestBody": {
           "required": true,
@@ -2328,7 +2329,7 @@
     },
     "/v1/start": {
       "get": {
-        "summary": "Get recipe candidates, one contract, prior fixes and pinned preparation argv",
+        "summary": "Get compact recipe selection and pinned execution-contract links",
         "security": [],
         "parameters": [
           {
@@ -2401,8 +2402,9 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 3,
-              "default": 3
-            }
+              "default": 1
+            },
+            "description": "Default 1 in compact mode, 3 in full mode."
           },
           {
             "name": "hub_commit",
@@ -2435,11 +2437,24 @@
               "type": "string",
               "maxLength": 80
             }
+          },
+          {
+            "name": "detail",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "compact",
+                "full"
+              ],
+              "default": "compact"
+            },
+            "description": "compact omits the full contract and recall bodies; follow selected.contract_url before execution. full restores the previous combined view."
           }
         ],
         "responses": {
           "200": {
-            "description": "Bounded recipe candidates and first-candidate handoff. selected=null when no match. Both evidence and applicability must be checked.",
+            "description": "Compact selection by default; full execution contract is a separate pinned read. detail=full returns the combined view.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2530,7 +2545,7 @@
             }
           }
         },
-        "description": "One read-only task starting response. Defaults to task lexical ranking over preparation recipes only. Up to three candidates; only the first is hydrated. Supply known environment filters, then check missing environment fields. selected.record omits embedded code files; selected.preparation.catalog.url exports the full exact-generation one-record CLI catalog. No installation, execution or sharing is performed. Empty results keep selected=null; optional recall failure is unknown, not empty success.",
+        "description": "Read-only task entry. Default detail=compact returns one recipe candidate, source pins, requirements, complete evidence, recall summaries and pinned setup argv. selected.contract_omitted=true: read selected.contract_url (or MCP selected.contract_tool) before execution, and applicable recall details before reuse. detail=full includes the complete contract and recall with up to three candidates by default. Explicit limit=1..3 works in either mode. selected.preparation.catalog.url retains complete embedded code as a one-record catalog. Empty results keep selected=null; unknown recall means lookup failed. No execution or sharing.",
         "operationId": "startRobotTask"
       }
     }

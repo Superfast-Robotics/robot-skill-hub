@@ -13,7 +13,7 @@ python /ABSOLUTE_SKILL_PATH/scripts/lookup.py start "astar" --runtime pythonrobo
 
 Use terms from the actual task. Supply `--runtime` only when known; omit it otherwise. Use `--task` for an English task sentence. The example runtime is a supported starting point, not an inferred property of the user's environment. Results are at most three preparation recipes, not the entire source-reference collection. No match is not proof that no upstream implementation exists.
 
-The first response includes `selected.record`, prior `findings` and `community`, and `selected.preparation` with pinned catalog export, CLI bootstrap and plan argv. Check `environment_check` before setup. `selected` is the first ranked candidate for inspection, not permission to run it. The record view omits embedded code files; its catalog export includes them. `find` remains available for a smaller candidate-only response.
+The first response defaults to one candidate with record and recall summaries and `selected.preparation` setup argv. Read `selected.contract_url` for the complete input/output contract before execution, or use `inspect` below to obtain the full contract and recall together. Check `environment_check` before setup and read applicable recall details before reuse. `selected` is an inspection candidate, not permission to run it. Code files remain in the pinned catalog export. Avoid rereading an unchanged contract; keep its exact Hub and record pins. `find` returns up to three candidates.
 
 For another candidate, inspect its exact returned `inspect_url`:
 

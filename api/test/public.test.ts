@@ -122,6 +122,44 @@ test('MCP task start matches HTTP semantics and rejects nonnumeric limits', asyn
   assert.equal(bad.result.isError, true);
 });
 
+test('compact discovery retains pins and failures; full mode and pinned contract remain accessible', async () => {
+  const evidence = { level: 'import_verified', hub_verification: { last_task_attempt: { status: 'failed', success: false } } };
+  const s = fixture({ recipeEvidence: evidence, findingRows: [selectedFinding()] });
+  const r: any = await (await s.request('/v1/start?q=pick&robot=panda'))!.json();
+  assert.equal(r.detail, 'compact'); assert.equal(r.limit, 1);
+  assert.equal(r.selected.contract_omitted, true);
+  assert.deepEqual(r.selected.record.evidence, evidence);
+  assert.equal(r.selected.findings.results[0].observation, undefined);
+  assert.equal(r.selected.findings.results[0].summary, 'Observed dependency issue');
+  assert.equal(r.selected.findings.details_omitted, true);
+  const findingsURL = new URL(r.selected.findings.details_url);
+  assert.equal(findingsURL.pathname, '/v1/findings');
+  assert.equal(findingsURL.searchParams.get('source_commit'), 'b'.repeat(40));
+  assert.equal(findingsURL.searchParams.get('robot'), 'panda');
+  assert.equal(new URL(r.selected.community.details_url).pathname, '/v1/community/items');
+  const detail = new URL(r.selected.full_record_url);
+  assert.deepEqual(JSON.parse(detail.searchParams.get('environment')!), { robot: 'panda' });
+  const full: any = await (await s.request('/v1/start?q=pick&detail=full'))!.json();
+  assert.equal(full.limit, 3); assert.equal(full.detail, 'full');
+  assert.equal(full.selected.findings.results[0].observation, selectedFinding().observation);
+  const url = new URL(r.selected.contract_url);
+  const contract: any = await (await s.request(url.pathname + url.search))!.json();
+  assert.equal(contract.hub_commit, HUB); assert.equal(contract.record_version, '1.0.0');
+  assert.deepEqual(contract.record.source, s.details[0].source);
+  assert.deepEqual(contract.record.evidence, evidence);
+  assert.equal(contract.record.preparation, undefined); assert.equal(contract.findings, undefined);
+  const rpc: any = await (await s.rpc('tools/call', r.selected.contract_tool))!.json();
+  assert.deepEqual(rpc.result.structuredContent, contract);
+  assert.deepEqual(JSON.parse(rpc.result.content[0].text), contract);
+  for (const suffix of ['detail=typo', 'detail=full&execute=true'])
+    assert.equal((await s.request('/v1/start?q=pick&' + suffix))!.status, 400);
+  assert.equal((await s.request('/v1/skills/alpha-pick?format=contract&record_version=old'))!.status, 409);
+  assert.equal((await s.request('/v1/skills/alpha-pick?format=contract&hub_commit=' + 'f'.repeat(40)))!.status, 409);
+  const bad: any = await (await s.rpc('tools/call', { name: 'inspect_robot_skill', arguments: {
+    skill_id: 'alpha-pick', detail: 'contract', hub_commit: 'f'.repeat(40) } }))!.json();
+  assert.equal(bad.result.isError, true);
+});
+
 test('empty first search returns a bounded actionable retry and pinned HTTP experience link', async () => {
   const s = fixture({ findingRows: [selectedFinding()] });
   const first: any = await (await s.request('/v1/search?q=Please%20find%20code%20to%20pick%20up%20a%20cube&limit=3'))!.json();

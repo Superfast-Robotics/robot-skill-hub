@@ -4,7 +4,7 @@ Find a reusable implementation before rebuilding it. Inspect the exact source an
 
 Public reads require no account, model key, GPU or MCP setup:
 
-Start with [ten maintained task paths](https://hub.superfastrobotics.com/tasks/) or `GET /v1/start?q=TASK` with known environment filters. MCP clients can call `start_robot_task`. One response contains up to three recipe candidates, matching reasons, one inspected contract, prior fixes and pinned preparation argv. This recipe-only starting path does not establish absence from the full reference collection.
+Start with [ten maintained task paths](https://hub.superfastrobotics.com/tasks/) or `GET /v1/start?q=TASK` with known environment filters. MCP clients can call `start_robot_task`. The default response contains one compact candidate, pins, evidence and recall summaries, and preparation argv. Read selected.contract_url before execution and applicable recall details before reuse; detail=full retains the combined view. This recipe-only starting path does not establish absence from the full reference collection.
 
 | Task | First read | Optional installable skill |
 | --- | --- | --- |

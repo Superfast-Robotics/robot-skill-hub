@@ -38,7 +38,7 @@
     "submission_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/submissions/{submission_id}.json",
     "memory_proof_url_template": "https://hub.superfastrobotics.com/catalog/v2/memories/{memory_id}.json",
     "experience_url_template": "https://api.superfastrobotics.com/v1/skills/{skill_id}?record_version={record_version}&hub_commit={hub_commit}&include=experience",
-    "first_read": "For an execution recipe call /v1/start or MCP start_robot_task with q and known environment filters. Inspect selected.record, findings, community and environment_check; selected.preparation contains pinned catalog export and setup argv. For full source discovery use /v1/search.",
+    "first_read": "For an execution recipe call /v1/start or MCP start_robot_task. Default compact response has one candidate, pinned metadata, evidence, recall summaries and setup argv. Read selected.contract_url or call selected.contract_tool before execution; inspect applicable recall details before reuse. Keep exact pins and reuse unchanged contracts. detail=full restores the combined view. Use /v1/search for full source discovery.",
     "executable_skills_guide_url": "https://hub.superfastrobotics.com/executable-skills.md",
     "execution_interface_schema_url": "https://hub.superfastrobotics.com/schemas/execution-interface.schema.json",
     "coverage_url": "https://hub.superfastrobotics.com/catalog/v1/coverage.json",
