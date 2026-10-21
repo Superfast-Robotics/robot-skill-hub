@@ -34,7 +34,7 @@ Actual Google index status remains unverified without authorized Search Console 
 
 ## Public MCP discovery
 
-The read-only MCP endpoint is `https://api.superfastrobotics.com/mcp`, using Streamable HTTP. It exposes `start_robot_task`, `find_robot_skills`, `inspect_robot_skill` and `get_hub_capabilities`. Start a task with candidates, one exact contract, prior fixes and preparation argv in a single call; use find for full-catalog discovery. No account is required for these discovery tools. Actual robot execution and contributions are separate operations.
+The read-only MCP endpoint is `https://api.superfastrobotics.com/mcp`, using Streamable HTTP. It exposes `start_robot_task`, `find_robot_skills`, `inspect_robot_skill` and `get_hub_capabilities`. Start with one compact candidate, pins, evidence, recall summaries and preparation argv. Follow selected.contract_url (or selected.contract_tool) before execution; detail=full returns the combined contract and recall. Use find for full-catalog discovery. No account is required for these discovery tools. Actual robot execution and contributions are separate operations.
 
 For MCP clients that accept a `mcpServers` object with HTTP transports:
 
@@ -68,3 +68,5 @@ Agents should reuse applicable published findings before diagnosing the same pro
 Community findings, immutable patch variants and linked reuse outcomes remain contributor-reported data, not verified robot performance. Canonical new-source/code changes and the legacy reviewed-memory channel still use internal draft PRs; review, merge and catalog publication are separate. See [memory.md](memory.md) for that distinct legacy path. Community publication does not overwrite canonical code.
 
 Preserve actual failures, fixes and exact source/environment pins. Do not create extra runs or repeated visits to inflate activity, publish private project content or claim that an untested robot/runtime is supported.
+
+For immediate execution planning, request `detail=execute` to include the complete interface, invocation and completion rules without a contract follow-up. This remains read-only; check applicability and actual results separately.

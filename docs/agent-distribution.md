@@ -4,7 +4,7 @@ Find a reusable implementation before rebuilding it. Inspect the exact source an
 
 Public reads require no account, model key, GPU or MCP setup:
 
-Start with [ten maintained task paths](https://hub.superfastrobotics.com/tasks/) or `GET /v1/start?q=TASK` with known environment filters. MCP clients can call `start_robot_task`. One response contains up to three recipe candidates, matching reasons, one inspected contract, prior fixes and pinned preparation argv. This recipe-only starting path does not establish absence from the full reference collection.
+Start with [ten maintained task paths](https://hub.superfastrobotics.com/tasks/) or `GET /v1/start?q=TASK` with known environment filters. MCP clients can call `start_robot_task`. The default response contains one compact candidate, pins, evidence and recall summaries, and preparation argv. Read selected.contract_url before execution and applicable recall details before reuse; detail=full retains the combined view. This recipe-only starting path does not establish absence from the full reference collection.
 
 | Task | First read | Optional installable skill |
 | --- | --- | --- |
@@ -45,3 +45,5 @@ Only public server-observed reads are counted. Channels are unverified labels; r
 The `Observe agent distribution` GitHub Actions workflow reads these two rolling reports daily at 00:17 UTC (09:17 Korea time) and on manual dispatch. It preserves validated aggregate snapshots for thirty days as workflow artifacts. It makes no authenticated calls, emits no test traffic into the counters and does not modify provider listings or contributions. Overlapping daily snapshots must not be summed as lifetime traffic.
 
 Record actual task success/failure through the scoped community outcome flow only after real reuse. The API cannot infer offline execution or model selection. Optional public findings require existing project permission, contain no private task transcript, and remain contributor-reported evidence. See [community](https://hub.superfastrobotics.com/community.md) and [privacy](https://hub.superfastrobotics.com/privacy.md).
+
+For immediate execution planning, request `detail=execute` to include the complete interface, invocation and completion rules without a contract follow-up. This remains read-only; check applicability and actual results separately.

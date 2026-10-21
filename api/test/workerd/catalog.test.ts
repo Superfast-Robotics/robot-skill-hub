@@ -802,10 +802,36 @@ test('ten published task paths find the intended recipe and deliver native pinne
       assert.equal(result.body.selected.id, task.skill_id, task.id + ': ' + result.body.results.map((r: any) => r.id).join(','));
       assert.equal(result.body.execution_performed, false); assert.equal(result.body.sharing_performed, false);
       assert.equal(result.body.results[0].runtime_verification, 'task_complete');
-      assert.equal(result.body.selected.record.preparation.files, undefined);
+      assert.equal(result.body.selected.record.preparation, undefined);
       assert.equal(result.body.selected.record_files_omitted, true);
       const full = JSON.parse(current.resources.get('/skills/' + task.skill_id + '/skill.json')!);
-      assert.deepEqual(result.body.selected.record.interface, full.interface);
+      assert.equal(result.body.selected.contract_omitted, true);
+      const contractURL = new URL(result.body.selected.contract_url);
+      const contract = await s.read(contractURL.pathname + contractURL.search);
+      assert.equal(contract.status, 200);
+      for (const field of ['interface', 'invocation', 'completion', 'requirements', 'evidence', 'source', 'license'])
+        assert.deepEqual(contract.body.record[field], full[field]);
+      url.searchParams.set('detail', 'full');
+      const detailed = await s.read(url.pathname + url.search);
+      assert.deepEqual(detailed.body.selected.record.interface, full.interface);
+      assert.ok(JSON.stringify(result.body).length < JSON.stringify(detailed.body).length, task.id);
+      url.searchParams.set('detail', 'execute');
+      const execution = await s.read(url.pathname + url.search);
+      assert.equal(execution.status, 200);
+      assert.equal(execution.body.selected.contract_omitted, false);
+      const record = execution.body.selected.record;
+      for (const field of ['interface', 'completion', 'requirements', 'evidence', 'license', 'observation'])
+        assert.deepEqual(record[field], full[field]);
+      const invocation = structuredClone(record.invocation);
+      if (invocation.outputs?.schema_from) {
+        assert.equal(invocation.outputs.schema_from, '#/selected/record/interface/output_schema');
+        delete invocation.outputs.schema_from;
+        invocation.outputs.schema = record.interface.output_schema;
+      }
+      assert.deepEqual(invocation, full.invocation);
+      assert.equal(record.source.commit, full.source.commit);
+      assert.equal(record.source.archive_sha256, full.source.archive_sha256);
+      assert.ok(JSON.stringify(execution.body).length < JSON.stringify(detailed.body).length, task.id);
       const catalogURL = new URL(result.body.selected.preparation.catalog.url);
       const exported = await s.read(catalogURL.pathname + catalogURL.search);
       assert.equal(exported.status, 200); assert.deepEqual(exported.body.records, [full]);
