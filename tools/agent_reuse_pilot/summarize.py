@@ -31,7 +31,7 @@ def main():
     joint=[r for pair in pairs.values() if all(x['success'] for x in pair.values()) for r in pair.values()]
     joint_groups={arm:aggregate([r for r in joint if r['arm']==arm]) for arm in plan['arms']}
     tasks={t['id']:{a:aggregate([r for r in rows if r['task']==t['id'] and r['arm']==a]) for a in plan['arms']} for t in plan['tasks']}
-    summary={'plan_sha256':hashlib.sha256((args.work/'plan.json').read_bytes()).hexdigest(),'model':plan['model'],
+    summary={'plan_sha256':hashlib.sha256((args.work/'plan.json').read_bytes()).hexdigest(),'model':plan['model'],'cohort':plan.get('cohort','optional41'),
       'planned_trials':plan['planned_trial_count'],'completed_trials':len(rows),'task_families':len(tasks),'all_trials':groups,
       'all_trial_comparison':compare(groups['baseline'],groups['hub']),'joint_success_pairs':len(joint)//2,'joint_success_trials':joint_groups,
       'joint_success_comparison':compare(joint_groups['baseline'],joint_groups['hub']),'by_task':tasks,
@@ -59,7 +59,7 @@ def main():
         if metric=='successful_trials':ax.set_ylim(0,3.8);ax.set_yticks([0,1,2,3])
     axes[0].legend(frameon=False,fontsize=9)
     fig.suptitle('Robot Skill Hub: paired agent reuse pilot',fontsize=15)
-    fig.text(.5,.015,'3 task families × 3 repetitions × 2 conditions | GPT-4.1 mini (2025-04-14) | preinstalled environment | all trials retained',ha='center',fontsize=9)
+    fig.text(.5,.015,'3 tasks × 3 repetitions × 2 conditions | '+plan['model']+' | preinstalled environment | all trials retained',ha='center',fontsize=9)
     fig.tight_layout(rect=[0,.08,1,.93]);fig.savefig(out/'pilot-results.png',dpi=160);fig.savefig(out/'pilot-results.svg');plt.close(fig)
     print(json.dumps(summary))
 if __name__=='__main__':main()

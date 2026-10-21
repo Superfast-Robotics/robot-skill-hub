@@ -41,7 +41,7 @@ def trial(plan,task,arm,repeat,out,key,endpoint):
     messages=[{'role':'system','content':SYSTEM+ ('\n'+instruction if instruction else '')},{'role':'user','content':prompt}]
     tools=TOOLS+([HUB] if arm=='hub' else [])
     trace=[];usage={'input_tokens':0,'cached_input_tokens':0,'output_tokens':0,'total_tokens':0}
-    attempts=0;candidate=None;passed=False;hub_calls=0;call_count=0;tool_calls=0;infrastructure_error=None
+    attempts=0;candidate=None;passed=False;hub_calls=0;call_count=0;tool_calls=0;infrastructure_error=None;agent_failure=None
     try:
         for turn in range(plan['max_turns']):
             if time.perf_counter()-start>plan['wall_clock_limit_s']:break
@@ -55,13 +55,18 @@ def trial(plan,task,arm,repeat,out,key,endpoint):
             call_count+=1;u=raw['usage']
             for k in ('input_tokens','output_tokens','total_tokens'):usage[k]+=u[k]
             usage['cached_input_tokens']+=u.get('input_tokens_details',{}).get('cached_tokens',0)
-            event={'turn':turn,'response_id':raw['id'],'model':raw['model'],'usage':u,'output':raw['output'],'tools':[]}
+            event={'turn':turn,'response_id':raw['id'],'model':raw['model'],'status':raw.get('status'),'usage':u,'output':raw['output'],'tools':[]}
             trace.append(event);messages.extend(raw['output'])
             calls=[x for x in raw['output'] if x['type']=='function_call']
             if not calls:break
             for call in calls:
                 tool_calls+=1
-                args=json.loads(call['arguments']);name=call['name']
+                try:args=json.loads(call['arguments'])
+                except json.JSONDecodeError:
+                    agent_failure='invalid_or_truncated_model_tool_arguments'
+                    event['tools'].append({'name':call['name'],'arguments_parse_failed':True})
+                    break
+                name=call['name']
                 if name=='read_file':
                     path=args['path'];offset=args['offset'];base=out/'executor'
                     allowed=('/sources/','/public/')+(('/hub/',) if arm=='hub' else ())
@@ -91,7 +96,7 @@ def trial(plan,task,arm,repeat,out,key,endpoint):
                 event['tools'].append({'name':name,'arguments':args,'result':result})
                 messages.append({'type':'function_call_output','call_id':call['call_id'],'output':json.dumps(result,separators=(',',':'))})
             (folder/'trace.json').write_text(json.dumps(trace,indent=2)+'\n',encoding='utf-8')
-            if passed or attempts>=plan['max_execution_attempts'] or u['input_tokens']>plan['max_input_tokens_per_request']:break
+            if passed or agent_failure or attempts>=plan['max_execution_attempts'] or u['input_tokens']>plan['max_input_tokens_per_request']:break
     except Exception as exc:
         infrastructure_error=type(exc).__name__+': '+str(exc)[:400]
     agent_elapsed=time.perf_counter()-start
@@ -107,23 +112,28 @@ def trial(plan,task,arm,repeat,out,key,endpoint):
       'held_out_total':len(task['held_out']),'success':bool(held) and all(r['grade']['passed'] for r in held['runs']),
       'model_calls':call_count,'tool_calls':tool_calls,'hub_calls':hub_calls,'execution_attempts':attempts,
       'development_failures':attempts-int(passed),'agent_elapsed_s':agent_elapsed,'evaluation_elapsed_s':time.perf_counter()-start-agent_elapsed,
-      'usage':usage,'estimated_model_usd':cost,'infrastructure_error':infrastructure_error}
+      'usage':usage,'estimated_model_usd':cost,'infrastructure_error':infrastructure_error,'agent_failure':agent_failure}
     (folder/'result.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     (folder/'trace.json').write_text(json.dumps(trace,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result),flush=True)
     return result
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--work',type=pathlib.Path,required=True);p.add_argument('--key-file',type=pathlib.Path,required=True);p.add_argument('--endpoint',default='http://127.0.0.1:18769');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--work',type=pathlib.Path,required=True);p.add_argument('--key-file',type=pathlib.Path,required=True);p.add_argument('--endpoint',default='http://127.0.0.1:18769');p.add_argument('--resume',action='store_true',help='Continue only unstarted trials; never rerun a result');args=p.parse_args()
     plan_raw=(args.work/'plan.json').read_bytes();plan=json.loads(plan_raw)
     assert hashlib.sha256(plan_raw).hexdigest()==(args.work/'plan.sha256').read_text().strip()
-    assert not (args.work/'scored-start.json').exists(),'Never silently rerun the scored cohort'
+    assert args.resume or not (args.work/'scored-start.json').exists(),'Never silently rerun the scored cohort'
     key=args.key_file.read_text(encoding='utf-8-sig').strip()
     cohort=[(task,arm,repeat) for task in plan['tasks'] for repeat in range(1,plan['repetitions']+1) for arm in plan['arms']]
     random.Random(plan['order_seed']).shuffle(cohort)
-    (args.work/'scored-start.json').write_text(json.dumps({'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'plan_sha256':hashlib.sha256(plan_raw).hexdigest(),'order':[(t['id'],a,r) for t,a,r in cohort]},indent=2)+'\n')
     results=[]
-    for task,arm,repeat in cohort:
+    if args.resume:
+        started=json.loads((args.work/'scored-start.json').read_text());assert started['plan_sha256']==hashlib.sha256(plan_raw).hexdigest()
+        results=json.loads((args.work/'results.json').read_text())
+        assert not any(r['infrastructure_error'] for r in results),'Resolve and document infrastructure errors before continuing'
+        assert [r['id'] for r in results]==[f"{t['id']}-{a}-{r}" for t,a,r in cohort[:len(results)]]
+    else:(args.work/'scored-start.json').write_text(json.dumps({'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'plan_sha256':hashlib.sha256(plan_raw).hexdigest(),'order':[(t['id'],a,r) for t,a,r in cohort]},indent=2)+'\n')
+    for task,arm,repeat in cohort[len(results):]:
         results.append(trial(plan,task,arm,repeat,args.work,key,args.endpoint))
         (args.work/'results.json').write_text(json.dumps(results,indent=2)+'\n')
         if any(r['infrastructure_error'] for r in results):
