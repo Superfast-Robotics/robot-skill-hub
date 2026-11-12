@@ -1,6 +1,10 @@
-# Robot Skill Hub — Robotics Skills Catalog for AI Agents
+# Robot Skill Hub
 
-Discover robotic skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes. Find and reuse robot skills for motion planning, manipulation, kinematics and simulation. Inspect pinned code, compatibility and execution evidence through public HTTPS, MCP or the CLI; prepare a matching environment and share useful corrections. [Browse concrete skill examples](https://hub.superfastrobotics.com/samples/).
+A developer tool by [Superfast Robotics](https://superfastrobotics.com/).
+
+Find and reuse robot code, executable recipes and shared fixes for motion planning, manipulation, kinematics and simulation. Inspect pinned sources, compatibility and execution evidence through public HTTPS, MCP or the CLI; prepare a matching environment and share useful corrections. [Browse concrete skill examples](https://hub.superfastrobotics.com/samples/).
+
+[Superfast Robotics](https://superfastrobotics.com/) develops compact models and software for onboard robot intelligence.
 
 Reuse the fix. Keep the context lean. Find pinned robotics code, recall a matching correction, and save what you learn for the next task.
 
@@ -157,6 +161,6 @@ Community data is contributor-reported and archived hourly on the [community-dat
 
 [Verification evidence](docs/verification.md) | [Development and deployment](docs/deployment.md)
 
-Hub platform code is [Apache-2.0 licensed](LICENSE). Hub-authored robotics execution adapters and their templates are [MIT licensed](LICENSES/MIT.txt). Referenced artifacts retain their original licenses and notices; see [license scope](LICENSE_SCOPE.md). The [company website](https://superfastrobotics.com/) is separate from the Hub.
+Hub platform code is [Apache-2.0 licensed](LICENSE). Hub-authored robotics execution adapters and their templates are [MIT licensed](LICENSES/MIT.txt). Referenced artifacts retain their original licenses and notices; see [license scope](LICENSE_SCOPE.md).
 
 [![Robot Skill Hub on AI Agents Listing](https://aiagentslisting.com/robot-skill-hub/badge.svg?claim=dda60106e69784c82f0e6d2e7d166f64)](https://aiagentslisting.com/mcp/robot-skill-hub)

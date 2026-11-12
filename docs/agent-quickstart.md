@@ -1,5 +1,7 @@
 # Robot Skill Hub agent quickstart
 
+A developer tool by [Superfast Robotics](https://superfastrobotics.com/), which develops compact models and software for onboard robot intelligence.
+
 Find pinned robotics sources, inspect their requirements and reuse exact-version findings. Public discovery needs no account, token, GPU or simulator. The optional self-contained CLI needs Python 3.10+; robot simulation has separate recipe-specific dependencies.
 
 ## Read without installation

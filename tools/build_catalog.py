@@ -530,7 +530,8 @@ def shell(title, description, body, base, path=""):
 <link rel="alternate" type="application/json" href="{esc(base)}/catalog/v1/index.json" title="Catalog JSON">
 </head>
 <body>
-<header><p><a href="{esc(base)}/">Robot Skill Hub</a> by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
+<header><p><a href="{esc(base)}/">Robot Skill Hub</a> · A developer tool by <a href="https://superfastrobotics.com/">Superfast Robotics</a></p>
+<p><small>Superfast Robotics develops compact models and software for onboard robot intelligence. <a href="https://superfastrobotics.com/">Explore our work →</a></small></p>
 <nav aria-label="Main navigation"><a href="{esc(base)}/samples/">Skill examples</a> | <a href="{esc(base)}/catalog/v2/search-manifest.json">Search index</a> | <a href="{esc(base)}/agent-quickstart.md">Agent quickstart</a> | <a href="{esc(base)}/llms-full.txt">Full text</a> | <a href="{REPO}">GitHub</a></nav></header>
 {body}
 <footer><hr><p><a href="{esc(base)}/agent.json">Publication proof contract</a> | <a href="{esc(base)}/contributing.md">Contributing</a> | <a href="{REPO}/blob/main/LICENSE">License</a></p></footer>
@@ -752,8 +753,8 @@ curl -fsSL {base}/agent.json
 {install}"""
     api_docs = f'<a href="{esc(base)}/openapi.json">OpenAPI</a> | ' if (ROOT / "docs/public-api.openapi.json").exists() else ""
     body = f"""<main id="main-content">
-<h1>Robot Skill Hub — Robotics Skills Catalog for AI Agents</h1>
-<p><strong>Discover robotic skills for AI agents. A public repository of reusable robot code, executable recipes and shared fixes.</strong> Find and reuse robot skills for motion planning, manipulation, kinematics and simulation. Inspect pinned code, compatibility and execution evidence through public HTTPS, MCP or the CLI; prepare a matching environment and share useful corrections.</p>
+<h1>Robot Skill Hub</h1>
+<p><strong>A tool for finding and reusing robot code.</strong> Browse pinned sources, executable recipes and shared fixes for motion planning, manipulation, kinematics and simulation. Inspect compatibility and execution evidence, prepare a matching environment and share useful corrections.</p>
 <p><a href="{esc(base)}/tasks/">Start one of ten robotics tasks</a> | <a href="{API}/v1/search?q=grasp&amp;limit=3">Search all robot sources</a> | <a href="{esc(base)}/samples/">Browse task examples</a> | <a href="{esc(base)}/coverage.html">Verified robot and environment coverage</a></p>
 <p>Reuse the fix. Keep the context lean. Find a pinned starting point, recall a matching correction, and save what you learn for the next task.</p>
 <p>CLI inspection JSON: <strong>17% fewer tokens. Same fields.</strong> Two-link IK regression: <strong>12/24 to 24/24 targets passed</strong> after saved-fix reuse. <a href="{esc(base)}/reuse-benchmark.md">Measurements and reproduction</a>.</p>
@@ -773,7 +774,7 @@ curl -fsSL {base}/agent.json
 <p><a href="{esc(base)}/catalog/v1/version.json">Version and resource checksums</a> | <a href="{esc(base)}/llms.txt">All discovery resources</a> | <a href="{esc(base)}/verification.md">Verification history</a></p>
 <p>Platform: Apache-2.0. Hub execution adapters: MIT. External works retain their original terms. <a href="{esc(base)}/LICENSE_SCOPE.md">License scope</a>.</p>
 </main>"""
-    return shell("Robot Skill Hub | Discover Robotic Skills for AI Agents", "Find and reuse robot skills for motion planning, manipulation, kinematics and simulation. Inspect pinned code, compatibility and execution evidence via HTTPS, MCP or CLI.", body, base)
+    return shell("Robot Skill Hub | Developer Tool by Superfast Robotics", "A developer tool by Superfast Robotics for finding and reusing robot code, recipes and fixes. Inspect sources through HTTPS, MCP or CLI.", body, base)
 
 
 def detail(r, base, hub_commit):
@@ -843,7 +844,11 @@ def discovery_text(records, base, references=None, *, memory_count=None):
         counts += f"; {memory_count} published findings"
     return f"""# Robot Skill Hub
 
-> Pinned robot code, environment contracts and preparation commands for coding agents.
+> A developer tool by Superfast Robotics for finding and reusing robot code, recipes and fixes.
+
+[Superfast Robotics](https://superfastrobotics.com/) develops compact models and software for onboard robot intelligence.
+
+The Hub provides pinned robot code, environment contracts and preparation commands for coding agents through HTTPS, MCP and CLI.
 
 Current catalog: {counts}. Search matches and source references do not establish runtime compatibility or task completion.
 
