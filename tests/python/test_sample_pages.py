@@ -7,10 +7,11 @@ import build_catalog as builder
 from sample_pages import publish
 
 class SamplePagesTests(unittest.TestCase):
-    def test_homepage_identifies_a_repository_for_agent_discovery(self):
+    def test_homepage_identifies_the_tool_and_company(self):
         html=builder.home([],builder.DEFAULT_BASE)
-        self.assertIn('Discover robotic skills for AI agents',html)
-        self.assertIn('public repository',html)
+        self.assertIn('A developer tool by',html)
+        self.assertIn('compact models and software for onboard robot intelligence',html)
+        self.assertIn('href="https://superfastrobotics.com/"',html)
         self.assertNotIn('marketplace',html.lower())
 
     def test_pages_keep_pinned_inputs_and_evidence_and_are_readable_without_javascript(self):
